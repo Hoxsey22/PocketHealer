@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.states;
 
+import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
@@ -8,7 +9,7 @@ import com.hoxseygaming.pockethealer.PocketHealer;
 /**
  * Created by Hoxsey on 5/27/2017.
  */
-public abstract class State {
+public abstract class State extends ApplicationAdapter {
     protected OrthographicCamera cam;
     protected Vector3 mouse;
     protected com.hoxseygaming.pockethealer.states.StateManager sm;

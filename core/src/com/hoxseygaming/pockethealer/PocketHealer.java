@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.physics.box2d.Shape;
+import com.hoxseygaming.pockethealer.states.ReTestState;
 import com.hoxseygaming.pockethealer.states.TestState;
 
 public class PocketHealer extends ApplicationAdapter {
@@ -24,7 +25,7 @@ public class PocketHealer extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		shapeRenderer = new ShapeRenderer();
 		sm = new com.hoxseygaming.pockethealer.states.StateManager();
-		sm.push(new TestState(sm, batch));
+		sm.push(new ReTestState(sm, batch));
 	}
 
 	@Override
@@ -34,7 +35,7 @@ public class PocketHealer extends ApplicationAdapter {
 		sm.update(Gdx.graphics.getDeltaTime());
 		sm.render(batch);
 	}
-	
+
 	@Override
 	public void dispose () {
 		super.dispose();

@@ -1,12 +1,11 @@
-package com.hoxseygaming.pockethealer.reformat.Spells;
+package com.hoxseygaming.pockethealer.reformat.spells;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Timer;
-import com.hoxseygaming.pockethealer.reformat.Player;
-
-import java.util.ArrayList;
+import com.hoxseygaming.pockethealer.reformat.EncounterData;
+import com.hoxseygaming.pockethealer.reformat.player.Player;
 
 /**
  * Created by Hoxsey on 6/17/2017.
@@ -18,6 +17,7 @@ public class Spell extends Actor {
         HEAL,HEALALL,HEALMULTIPLE,SHIELD,HEALOVERTIME
     }
 
+    public int index;
     public Player owner;
     public String name;
     public String description;
@@ -28,13 +28,14 @@ public class Spell extends Actor {
     public float cdCounter;
     public boolean isReady;
     public boolean isCasting;
-    public Image image;
+    public Texture image;
     public float cdPercentage;
     public Timer cdTimer;
 
 
     public Spell(String name, String description, EffectType effectType, int output, int cost, float cooldown, int index) {
         setBounds(SpellData.positions[index].x,SpellData.positions[index].y,80,80);
+        this.index = index;
         this.name = name;
         this.description = description;
         this.output = output;
@@ -47,26 +48,29 @@ public class Spell extends Actor {
         cdPercentage = 1f;
     }
 
+    public void castSpell() {
+        System.out.println("Casted a spell!");
+    }
+
     public void startCooldownTimer()    {
             cdTimer = new Timer();
             isReady = false;
-
-            final Spell s = this;
-            s.setCdCounter(0);
+            setCdCounter(cooldown);
 
             cdTimer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
-                    s.cdCount();
+                    cdCount();
                     System.out.println(name + " " + cdCounter);
-                    if(s.cdPercentage == 1f) {
+                    if(getCdPercentage() <= 0f) {
                         cdTimer.clear();
-                        System.out.println(s.name+" is off cooldown.");
+                        System.out.println(name+" is off cooldown.");
                         isReady = true;
+                        setCdCounter(0);
                     }
 
                 }
-            },0.1f,0.1f, (int)(s.cooldown/0.1));
+            },0.1f,0.1f, (int)(cooldown/0.1));
     }
 
     public Player getOwner() {
@@ -102,15 +106,15 @@ public class Spell extends Actor {
     }
 
     public void cdCount()   {
-        cdCounter = cdCounter + 0.1f;
+        cdCounter = cdCounter - 0.1f;
         getCdPercentage();
     }
 
-    public Image getImage() {
+    public Texture getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(Texture image) {
         this.image = image;
     }
 
@@ -139,12 +143,15 @@ public class Spell extends Actor {
     }
 
     public float getCdPercentage() {
-        cdPercentage = cdCounter/cooldown;
-        return cdPercentage;
+        return cdPercentage = cdCounter/cooldown;
     }
 
     public void setCdPercentage(float cdPercentage) {
         this.cdPercentage = cdPercentage;
+    }
+
+    public void useMana()   {
+        owner.mana = owner.mana - cost;
     }
 
     public boolean isCastable() {
@@ -160,11 +167,18 @@ public class Spell extends Actor {
             System.out.println(name + " IS STILL CASTING!");
             return false;
         }
-        if(!owner.getTarget().isDead())    {
-            System.out.println("Target is dead!");
+        if(owner.getTarget().isDead())    {
+            System.out.println("ID:"+owner.getTarget().id+" Target is dead!");
             return false;
         }
 
         return true;
+    }
+
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        batch.draw(image, getX(),getY(),getWidth(), getHeight());
+        batch.draw(EncounterData.cooldownBar, getX(),getY(),getWidth(), getHeight()*getCdPercentage());
     }
 }

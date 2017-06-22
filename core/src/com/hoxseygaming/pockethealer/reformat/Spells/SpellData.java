@@ -1,6 +1,5 @@
-package com.hoxseygaming.pockethealer.reformat.Spells;
+package com.hoxseygaming.pockethealer.reformat.spells;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -9,9 +8,9 @@ import com.badlogic.gdx.math.Vector2;
 public class SpellData {
 
     public static Vector2 positions[] = {
-            new Vector2(20,80),
-            new Vector2(135,80),
-            new Vector2(250,80),
-            new Vector2(365,80)
+            new Vector2(25,80),
+            new Vector2(142,80),
+            new Vector2(259,80),
+            new Vector2(376,80)
     };
 }

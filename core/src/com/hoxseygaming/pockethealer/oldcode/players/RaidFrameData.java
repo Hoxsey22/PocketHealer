@@ -1,4 +1,4 @@
-package com.hoxseygaming.pockethealer.players;
+package com.hoxseygaming.pockethealer.oldcode.players;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class RaidFrameData{
 
 
-    public static int postion[] = {
+    public static int position[] = {
             660,20, 660,174, 660,328, 581,20,
             581,174, 581,328, 502,20, 502,174, 502,328,
             423,20, 423,174, 423,328, 344,20, 344,174,

@@ -1,8 +1,9 @@
-package com.hoxseygaming.pockethealer.reformat.Spells;
+package com.hoxseygaming.pockethealer.reformat.spells;
 
 import com.badlogic.gdx.utils.Timer;
-import com.hoxseygaming.pockethealer.reformat.RaidData;
-import com.hoxseygaming.pockethealer.reformat.RaidMember;
+import com.hoxseygaming.pockethealer.reformat.EncounterData;
+import com.hoxseygaming.pockethealer.reformat.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.reformat.player.Player;
 
 /**
  * Created by Hoxsey on 6/18/2017.
@@ -13,9 +14,10 @@ public class Renew extends Spell {
     public float currentTime;
     public Timer durationTimer;
 
-    public Renew(int position)  {
+    public Renew(int position, Player player)  {
         super("Renew","A small heal that is healed over time.", EffectType.HEALOVERTIME, 7, 15, 0.5f, position);
-        setImage(RaidData.renewIconImage);
+        owner = player;
+        image = EncounterData.renewIconImage;
 
         duration = 10f;
         currentTime = 0f;
@@ -24,6 +26,7 @@ public class Renew extends Spell {
 
     public void castSpell()    {
         if(isCastable())  {
+            useMana();
             startCooldownTimer();
             startDurationTimer();
         }

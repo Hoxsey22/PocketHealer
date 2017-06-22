@@ -1,9 +1,9 @@
-package com.hoxseygaming.pockethealer.players;
+package com.hoxseygaming.pockethealer.oldcode.players;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Rectangle;
-import com.hoxseygaming.pockethealer.spells.Effect;
-import com.hoxseygaming.pockethealer.spells.Spell;
+import com.hoxseygaming.pockethealer.oldcode.players.spells.Effect;
+import com.hoxseygaming.pockethealer.oldcode.players.spells.Spell;
 
 import java.util.ArrayList;
 import java.util.Comparator;

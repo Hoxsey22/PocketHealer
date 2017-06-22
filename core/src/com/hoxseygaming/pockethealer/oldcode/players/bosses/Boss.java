@@ -1,4 +1,4 @@
-package com.hoxseygaming.pockethealer.bosses;
+package com.hoxseygaming.pockethealer.oldcode.players.bosses;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -9,11 +9,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Timer;
-import com.hoxseygaming.pockethealer.players.Member;
-import com.hoxseygaming.pockethealer.players.Party;
-import com.hoxseygaming.pockethealer.players.RaidFrame;
-import com.hoxseygaming.pockethealer.spells.Effect;
-import com.hoxseygaming.pockethealer.spells.Spell;
+import com.hoxseygaming.pockethealer.oldcode.players.Member;
+import com.hoxseygaming.pockethealer.oldcode.players.Party;
+import com.hoxseygaming.pockethealer.oldcode.players.RaidFrame;
+import com.hoxseygaming.pockethealer.oldcode.players.spells.Effect;
+import com.hoxseygaming.pockethealer.oldcode.players.spells.Spell;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,7 @@
-package com.hoxseygaming.pockethealer;
+package com.hoxseygaming.pockethealer.oldcode.players;
 
 import com.badlogic.gdx.math.Rectangle;
-import com.hoxseygaming.pockethealer.spells.Spell;
+import com.hoxseygaming.pockethealer.oldcode.players.spells.Spell;
 
 /**
  * Created by Hoxsey on 6/7/2017.

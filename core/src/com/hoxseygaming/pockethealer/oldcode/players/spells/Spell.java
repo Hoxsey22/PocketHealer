@@ -1,10 +1,6 @@
-package com.hoxseygaming.pockethealer.spells;
+package com.hoxseygaming.pockethealer.oldcode.players.spells;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.hoxseygaming.pockethealer.players.Member;
-
-import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 5/27/2017.

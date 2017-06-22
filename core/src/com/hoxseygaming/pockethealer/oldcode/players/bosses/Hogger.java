@@ -1,18 +1,10 @@
-package com.hoxseygaming.pockethealer.bosses;
+package com.hoxseygaming.pockethealer.oldcode.players.bosses;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Timer;
-import com.hoxseygaming.pockethealer.bosses.Boss;
-import com.hoxseygaming.pockethealer.players.Member;
-import com.hoxseygaming.pockethealer.players.Party;
-import com.hoxseygaming.pockethealer.spells.Spell;
-
-import java.util.ArrayList;
+import com.hoxseygaming.pockethealer.oldcode.players.Party;
 
 /**
  * Created by Hoxsey on 6/3/2017.

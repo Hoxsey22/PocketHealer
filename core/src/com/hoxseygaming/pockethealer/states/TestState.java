@@ -1,20 +1,15 @@
 package com.hoxseygaming.pockethealer.states;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.hoxseygaming.pockethealer.GUI;
-import com.hoxseygaming.pockethealer.HealingEngine;
-import com.hoxseygaming.pockethealer.PocketHealer;
-import com.hoxseygaming.pockethealer.bosses.Boss;
-import com.hoxseygaming.pockethealer.bosses.Hogger;
-import com.hoxseygaming.pockethealer.players.Party;
-import com.hoxseygaming.pockethealer.players.Player;
-import com.hoxseygaming.pockethealer.spells.Spell;
+import com.hoxseygaming.pockethealer.oldcode.players.GUI;
+import com.hoxseygaming.pockethealer.oldcode.players.HealingEngine;
+import com.hoxseygaming.pockethealer.oldcode.players.bosses.Boss;
+import com.hoxseygaming.pockethealer.oldcode.players.bosses.Hogger;
+import com.hoxseygaming.pockethealer.oldcode.players.Party;
+import com.hoxseygaming.pockethealer.oldcode.players.Player;
 
 /**
  * Created by Hoxsey on 5/28/2017.

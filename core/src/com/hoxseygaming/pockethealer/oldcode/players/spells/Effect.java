@@ -1,6 +1,6 @@
-package com.hoxseygaming.pockethealer.spells;
+package com.hoxseygaming.pockethealer.oldcode.players.spells;
 
-import com.hoxseygaming.pockethealer.players.Member;
+import com.hoxseygaming.pockethealer.oldcode.players.Member;
 
 /**
  * Created by Hoxsey on 5/27/2017.

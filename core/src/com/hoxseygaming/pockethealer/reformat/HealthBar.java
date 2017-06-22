@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.reformat;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -21,9 +22,9 @@ public class HealthBar {
 
 
     public HealthBar(int x, int y)  {
-        this.x = x + 5;
-        this.y = y + 5;
-        backgroundBar = new Rectangle(x-2,y-2,WIDTH+4,HEIGHT+4);
+        this.x = x + 7;
+        this.y = y + 7;
+        backgroundBar = new Rectangle(x+5,y+5,WIDTH+4,HEIGHT+4);
         barColor = Color.GREEN;
         renderer = new ShapeRenderer();
         percent = 1f;
@@ -54,12 +55,18 @@ public class HealthBar {
         this.percent = percent;
     }
 
-    public void draw(float percent)  {
+    public void draw(Batch batch, float alpha, float hpPercent, float shieldPercent)  {
+        batch.end();
+        renderer.setProjectionMatrix(batch.getProjectionMatrix());
         renderer.setColor(Color.BLACK);
         renderer.begin(ShapeRenderer.ShapeType.Filled);
             renderer.rect(backgroundBar.x,backgroundBar.y,backgroundBar.width,backgroundBar.getHeight());
             renderer.setColor(barColor);
-            renderer.rect(x,y,WIDTH*percent,HEIGHT);
+            renderer.rect(x,y,WIDTH*hpPercent,HEIGHT);
+
+            renderer.setColor(Color.SKY);
+            renderer.rect(x,y,WIDTH*shieldPercent,HEIGHT);
         renderer.end();
+        batch.begin();
     }
 }

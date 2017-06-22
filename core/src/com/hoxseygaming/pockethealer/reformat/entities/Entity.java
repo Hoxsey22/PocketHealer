@@ -1,16 +1,17 @@
-package com.hoxseygaming.pockethealer.reformat;
+package com.hoxseygaming.pockethealer.reformat.entities;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.hoxseygaming.pockethealer.reformat.Spells.Spell;
-import com.hoxseygaming.pockethealer.spells.Effect;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.hoxseygaming.pockethealer.reformat.EncounterData;
+import com.hoxseygaming.pockethealer.reformat.spells.Spell;
 
 import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 6/16/2017.
  */
-public abstract class Entity extends Actor{
+public class Entity extends Actor{
 
     public int id;
     public String name;
@@ -21,8 +22,8 @@ public abstract class Entity extends Actor{
     public String role;
     public int damage;
     public boolean isDead;
-    public Image roleImage;
-    public ArrayList<Spell.EffectType> effects;
+    public Texture roleImage;
+    public ArrayList<Texture> effects;
     public boolean selected;
 
     /**
@@ -31,25 +32,28 @@ public abstract class Entity extends Actor{
      * @param role
      */
     public Entity(int id, String role) {
+        this.setBounds((float) EncounterData.raidPositions[(id)*2+1],
+                (float) EncounterData.raidPositions[id*2],134,64);
+
+        System.out.println("ID: "+id+", x:"+getX()+" y:"+getY()+", width:"+getWidth()+", height:"+getHeight());
+
         this.id = id;
         this.role = role;
-        setRole(role);
+        setRoleStats(role);
         hp = maxHp;
         hpPercent = getHpPercent();
         shield = 0;
         isDead = false;
-        effects = new ArrayList<Spell.EffectType>();
+        effects = new ArrayList<Texture>();
         selected = false;
     }
 
     /**
      * BOSS param
-     * @param id
      * @param name
      * @param maxHp
      */
-    public Entity(int id, String name, int maxHp) {
-        this.id = id;
+    public Entity(String name, int maxHp) {
         this.name = name;
         this.maxHp = maxHp;
         hp = maxHp;
@@ -62,17 +66,14 @@ public abstract class Entity extends Actor{
             case "Tank":
                 maxHp = 200;
                 damage = 5;
-                roleImage = RaidData.tankIconImage;
                 break;
             case "Healer":
                 maxHp = 100;
                 damage = 2;
-                roleImage = RaidData.healerIconImage;
                 break;
             case "Dps":
                 maxHp = 100;
                 damage = 10;
-                roleImage = RaidData.dpsIconImage;
                 break;
         }
     }
@@ -103,10 +104,25 @@ public abstract class Entity extends Actor{
         }
     }
 
+    public void dealDamage(Entity target)    {
+        target.receiveDamage(damage);
+        }
+
+    public void receiveDamage(int output) {
+        if(!isDead()) {
+            hp = hp - output;
+            if(hp <= 0) {
+                isDead = true;
+                hp = 0;
+            }
+        }
+    }
+
     public void receiveHealing(int output) {
+        System.out.println("\n\n ID:"+id+" Role:"+role+" is receiving heals!");
         if (!isDead)   {
             if (hp < maxHp) {
-                hp += output;
+                hp = hp + output;
                 if (hp > maxHp)
                     hp = maxHp;
             }
@@ -116,20 +132,22 @@ public abstract class Entity extends Actor{
 
     public void applyShield(int output)   {
         shield = output;
+        if(!containsEffects(Spell.EffectType.SHIELD))
+            applyEffect(Spell.EffectType.SHIELD);
         System.out.println("SHIELD APPLIED!");
     }
 
     public void applyEffect(Spell.EffectType buff) {
-        effects.add(buff);
+        effects.add(EncounterData.getEffectImage(buff));
     }
 
     public void removeEffect(Spell.EffectType buff)    {
-        effects.remove(effects.indexOf(buff));
+        effects.remove(effects.indexOf(EncounterData.getEffectImage(buff)));
         System.out.println(buff.toString()+" REMOVED");
     }
 
     public boolean containsEffects(Spell.EffectType buff)   {
-        if(effects.indexOf(buff) > -1)
+        if(effects.indexOf(EncounterData.getEffectImage(buff)) > -1)
             return true;
         else
             return false;
@@ -207,31 +225,31 @@ public abstract class Entity extends Actor{
         return hpPercent;
     }
 
+    public float getShieldPercent() {
+        return (float)shield/(float)maxHp;
+    }
+
     public void setHpPercent(float hpPercent) {
         this.hpPercent = hpPercent;
     }
 
-    public Image getRoleImage() {
+    public Texture getRoleImage() {
         return roleImage;
     }
 
-    public void setRoleImage(Image roleImage) {
+    public void setRoleImage(Texture roleImage) {
         this.roleImage = roleImage;
     }
 
-    public ArrayList<Spell.EffectType> getEffects() {
+    public ArrayList<Texture> getEffects() {
         return effects;
-    }
-
-    public void setEffects(ArrayList<Spell.EffectType> effects) {
-        this.effects = effects;
     }
 
     public boolean isSelected() {
         return selected;
     }
 
-    public void setSelected(boolean selected) {
-        this.selected = selected;
+    public void selected() {
+        selected = true;
     }
 }

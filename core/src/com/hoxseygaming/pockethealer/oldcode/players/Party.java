@@ -1,4 +1,4 @@
-package com.hoxseygaming.pockethealer.players;
+package com.hoxseygaming.pockethealer.oldcode.players;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Timer;
@@ -12,14 +12,14 @@ import java.util.Collections;
 public class Party {
 
     private ArrayList<RaidFrame> frames;
-    public ArrayList<Member> party;
+    public ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member> party;
     public RaidFrame target;
     public int deathCount;
     public Timer damageTimer;
 
 
     public Party()  {
-        party = new ArrayList<Member>();
+        party = new ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member>();
         frames = new ArrayList<RaidFrame>();
         deathCount = 0;
         damageTimer = new Timer();
@@ -77,17 +77,17 @@ public class Party {
     }
 
     public void addDPS()    {
-        party.add(new Member(getSize()+1,100, Member.DPS, 10));
+        party.add(new com.hoxseygaming.pockethealer.oldcode.players.Member(getSize()+1,100, com.hoxseygaming.pockethealer.oldcode.players.Member.DPS, 10));
         addRaidFrame(party.get(getSize()-1).getId());
     }
 
     public void addHealer() {
-        party.add(new Member(getSize()+1,100, Member.HEALER, 2));
+        party.add(new com.hoxseygaming.pockethealer.oldcode.players.Member(getSize()+1,100, com.hoxseygaming.pockethealer.oldcode.players.Member.HEALER, 2));
         addRaidFrame(party.get(getSize()-1).getId());
     }
 
     public void addTank()   {
-        party.add(new Member(getSize()+1,200, Member.TANK, 5));
+        party.add(new com.hoxseygaming.pockethealer.oldcode.players.Member(getSize()+1,200, com.hoxseygaming.pockethealer.oldcode.players.Member.TANK, 5));
         addRaidFrame(party.get(getSize()-1).getId());
     }
 
@@ -95,15 +95,15 @@ public class Party {
         frames.add(new RaidFrame(party.get(id-1)));
     }
 
-    public Member swapTank(Member curTank)    {
-        if(curTank.getId() != getSize() && getMember(curTank.getId()).getRole() == Member.TANK && !getMember(curTank.getId()).isDead())
+    public com.hoxseygaming.pockethealer.oldcode.players.Member swapTank(com.hoxseygaming.pockethealer.oldcode.players.Member curTank)    {
+        if(curTank.getId() != getSize() && getMember(curTank.getId()).getRole() == com.hoxseygaming.pockethealer.oldcode.players.Member.TANK && !getMember(curTank.getId()).isDead())
             return getMember(curTank.getId());
         else
             return getRandomMember();
     }
 
-    public Member getRandomMember() {
-        ArrayList<Member> temp = new ArrayList<Member>();
+    public com.hoxseygaming.pockethealer.oldcode.players.Member getRandomMember() {
+        ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member> temp = new ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member>();
         temp.addAll(party);
         Collections.shuffle(temp);
         for (int i = 0; i < temp.size(); i++) {
@@ -113,10 +113,10 @@ public class Party {
         return getMember(0);
     }
 
-    public Member[] findTwo()   {
-        Member theTwo [] = new Member[2];
+    public com.hoxseygaming.pockethealer.oldcode.players.Member[] findTwo()   {
+        com.hoxseygaming.pockethealer.oldcode.players.Member theTwo [] = new com.hoxseygaming.pockethealer.oldcode.players.Member[2];
         int counter = 0;
-        ArrayList<Member> temp = new ArrayList<Member>();
+        ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member> temp = new ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member>();
         temp.addAll(party);
         Collections.shuffle(temp);
         for (int i = 0; i < getSize(); i++) {
@@ -132,19 +132,19 @@ public class Party {
         return  theTwo;
     }
 
-    public void removeMember(Member m)  {
+    public void removeMember(com.hoxseygaming.pockethealer.oldcode.players.Member m)  {
         party.remove(m.getId()-1);
     }
 
-    public Member nextMember(Member m)    {
+    public com.hoxseygaming.pockethealer.oldcode.players.Member nextMember(com.hoxseygaming.pockethealer.oldcode.players.Member m)    {
         return party.remove(m.getId());
     }
 
-    public Member getMember(int pos)  {
+    public com.hoxseygaming.pockethealer.oldcode.players.Member getMember(int pos)  {
         return party.get(pos);
     }
 
-    public  RaidFrame getMemberFrame(int pos)  {
+    public RaidFrame getMemberFrame(int pos)  {
         return frames.get(party.indexOf(party.get(pos)));
     }
 
@@ -152,8 +152,8 @@ public class Party {
         return party.size();
     }
 
-    public ArrayList<Member> getMemberWithLowestHp(int cap)    {
-        ArrayList<Member> lowest = new ArrayList<Member>(cap);
+    public ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member> getMemberWithLowestHp(int cap)    {
+        ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member> lowest = new ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member>(cap);
         for (int i = 0; i < getSize(); i++)  {
             if(lowest.size() < cap)    {
                 lowest.add(getMember(i));
@@ -168,8 +168,8 @@ public class Party {
         return lowest;
     }
 
-    public ArrayList<Member> getMemberWithLowestHp(int cap, Member currentTarget)    {
-        ArrayList<Member> lowest = new ArrayList<Member>(cap);
+    public ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member> getMemberWithLowestHp(int cap, com.hoxseygaming.pockethealer.oldcode.players.Member currentTarget)    {
+        ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member> lowest = new ArrayList<com.hoxseygaming.pockethealer.oldcode.players.Member>(cap);
         for (int i = 0; i < getSize(); i++)  {
             if(getMember(i) != currentTarget) {
                 if (lowest.size() < cap) {

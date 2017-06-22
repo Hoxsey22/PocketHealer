@@ -1,4 +1,4 @@
-package com.hoxseygaming.pockethealer.players;
+package com.hoxseygaming.pockethealer.oldcode.players;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.hoxseygaming.pockethealer.players.*;
 
 import java.util.ArrayList;
 
@@ -37,8 +36,8 @@ public class RaidFrame  {
 
     public RaidFrame(Member member)  {
         this.member = member;
-        x = (float) com.hoxseygaming.pockethealer.players.RaidFrameData.postion[(member.getId()-1)*2+1];
-        y = (float) com.hoxseygaming.pockethealer.players.RaidFrameData.postion[(member.getId()-1)*2];
+        x = (float) RaidFrameData.position[(member.getId()-1)*2+1];
+        y = (float) RaidFrameData.position[(member.getId()-1)*2];
         role = member.getRole();
 
         frame = new Rectangle(x,y,WIDTH,HEIGHT);
@@ -137,13 +136,13 @@ public class RaidFrame  {
     public void setRoleImage()  {
         switch (role)   {
             case Member.DPS:
-                roleImage = com.hoxseygaming.pockethealer.players.RaidFrameData.dpsIconImage;
+                roleImage = RaidFrameData.dpsIconImage;
                 break;
             case Member.HEALER:
-                roleImage = com.hoxseygaming.pockethealer.players.RaidFrameData.healerIconImage;
+                roleImage = RaidFrameData.healerIconImage;
                 break;
             case Member.TANK:
-                roleImage = com.hoxseygaming.pockethealer.players.RaidFrameData.tankIconImage;
+                roleImage = RaidFrameData.tankIconImage;
                 break;
         }
     }

@@ -1,10 +1,9 @@
-package com.hoxseygaming.pockethealer.reformat;
+package com.hoxseygaming.pockethealer.reformat.entities.raid;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
-import com.badlogic.gdx.utils.SnapshotArray;
-import com.hoxseygaming.pockethealer.players.Member;
+import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.reformat.entities.bosses.Boss;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,14 +13,28 @@ import java.util.Collections;
  */
 public class Raid extends Group {
 
-    public ArrayList<RaidMember> children;
+    public ArrayList<RaidMember> raidMembers;
+    public Timer raidDamageTimer;
 
-    public Raid()   {
+    public Raid(int size)   {
+        //super();
         setName("Raid");
-        // NEED TO CHANGE
-        setBounds(0,0,0,0);
-        children = new ArrayList<RaidMember>();
+        raidMembers = new ArrayList<RaidMember>();
+        premade(size);
+        raidDamageTimer = new Timer();
 
+    }
+
+    public void startRaidDamageTimer(final Boss t)   {
+        final Boss target = t;
+
+        raidDamageTimer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                for (int i = 0; i < raidMembers.size(); i++)
+                    target.takeDamage(raidMembers.get(i).getDamage());
+            }
+        },3f,1f);
     }
 
     public void premade(int size)   {
@@ -53,30 +66,34 @@ public class Raid extends Group {
 
     public void addTank(int amount)   {
         for(int i = 0; i < amount; i++) {
-            children.add(new RaidMember(children.size(), "Tank"));
-            addActor(children.get(children.size() - 1));
+            raidMembers.add(new RaidMember(raidMembers.size(), "Tank"));
+            addActor(raidMembers.get(raidMembers.size() - 1));
         }
     }
 
     public void addHealer(int amount)   {
         for(int i = 0; i < amount; i++) {
-            children.add(new RaidMember(children.size(), "Healer"));
-            addActor(children.get(children.size() - 1));
+            raidMembers.add(new RaidMember(raidMembers.size(), "Healer"));
+            addActor(raidMembers.get(raidMembers.size() - 1));
         }
     }
 
     public void addDps(int amount)   {
         for(int i = 0; i < amount; i++) {
-            children.add(new RaidMember(children.size(), "Dps"));
-            addActor(children.get(children.size() - 1));
+            raidMembers.add(new RaidMember(raidMembers.size(), "Dps"));
+            addActor(raidMembers.get(raidMembers.size() - 1));
         }
+    }
+
+    public RaidMember getRaidMember(int index)   {
+        return raidMembers.get(index);
     }
 
     public RaidMember[] getRandomRaidMember(int amount) {
         RaidMember raidMembers [] = new RaidMember[amount];
         int counter = 0;
         ArrayList<RaidMember> temp = new ArrayList<RaidMember>();
-        temp.addAll(children);
+        temp.addAll(this.raidMembers);
         Collections.shuffle(temp);
         for (int i = 0; i < temp.size(); i++) {
             if(counter != amount) {
@@ -93,7 +110,7 @@ public class Raid extends Group {
 
     public Actor getRandomRaidMember()  {
         ArrayList<RaidMember> temp = new ArrayList<RaidMember>();
-        temp.addAll(children);
+        temp.addAll(raidMembers);
         Collections.shuffle(temp);
         for (int i = 0; i < temp.size(); i++) {
             if (!temp.get(i).isDead())
@@ -104,19 +121,18 @@ public class Raid extends Group {
 
     public ArrayList<RaidMember> getRaidMembersWithLowestHp(int cap)    {
         ArrayList<RaidMember> lowest = new ArrayList<RaidMember>(cap);
-        for (int i = 0; i < children.size(); i++)  {
-            if(!children.get(i).isSelected()) {
+        for (int i = 0; i < raidMembers.size(); i++)  {
+            if(!raidMembers.get(i).isSelected()) {
                 if (lowest.size() < cap) {
-                    lowest.add(children.get(i));
+                    lowest.add(raidMembers.get(i));
                 } else {
                     Collections.sort(lowest);
-                    if (children.get(i).hp < lowest.get(0).getHp()) {
-                        lowest.add(0, children.get(i));
+                    if (raidMembers.get(i).hp < lowest.get(0).getHp()) {
+                        lowest.add(0, raidMembers.get(i));
                     }
                 }
             }
         }
         return lowest;
     }
-
 }
