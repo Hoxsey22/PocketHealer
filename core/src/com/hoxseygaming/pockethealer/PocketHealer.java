@@ -6,9 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.physics.box2d.Shape;
-import com.hoxseygaming.pockethealer.states.ReTestState;
-import com.hoxseygaming.pockethealer.states.TestState;
+import com.hoxseygaming.pockethealer.states.TestingState;
 
 public class PocketHealer extends ApplicationAdapter {
     public static final int WIDTH = 480;
@@ -25,7 +23,7 @@ public class PocketHealer extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		shapeRenderer = new ShapeRenderer();
 		sm = new com.hoxseygaming.pockethealer.states.StateManager();
-		sm.push(new ReTestState(sm, batch));
+		sm.push(new TestingState(sm, batch));
 	}
 
 	@Override
