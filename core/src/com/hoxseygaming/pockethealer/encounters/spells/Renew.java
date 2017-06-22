@@ -48,15 +48,15 @@ public class Renew extends Spell {
                 target.receiveHealing(output);
                 increaseCurrentTimer();
                 System.out.println("Renew is ticking! "+currentTime);
-                if(currentTime == duration)    {
+                if(currentTime >= duration)    {
                     target.removeEffect(EffectType.HEALOVERTIME);
                     System.out.println("Renew expired");
                 }
             }
-        }, 2f, 2f, (int)(duration/2f));
+        }, 2f, 2f, (int)(duration/2f)-1);
     }
 
     public void increaseCurrentTimer()   {
-        currentTime = currentTime +0.1f;
+        currentTime = currentTime +2f;
     }
 }
