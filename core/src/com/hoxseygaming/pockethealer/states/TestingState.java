@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -30,6 +31,7 @@ public class TestingState extends State {
     Raid raid;
     Hogger hogger;
     Image img;
+    Sound bgMusic;
 
     public TestingState(StateManager sm, SpriteBatch sb) {
         super(sm);
@@ -44,6 +46,8 @@ public class TestingState extends State {
         castBar = new CastBar(player);
         raid = new Raid(10);
         hogger = new Hogger(raid);
+        bgMusic = Gdx.audio.newSound(Gdx.files.internal("sfx/battle_music.mp3"));
+        bgMusic.loop(0.2f);
 
         stage = new Stage(new FitViewport(PocketHealer.WIDTH,PocketHealer.HEIGHT));
 
