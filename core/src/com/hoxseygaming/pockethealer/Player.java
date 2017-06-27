@@ -22,6 +22,7 @@ public class Player {
     public ArrayList<Spell> spells;
     public float spellCastPercent;
     public boolean isCasting;
+    private Assets assets;
 
     public Player() {
         maxMana = 1000;
@@ -29,21 +30,21 @@ public class Player {
         spellCastPercent = 0;
         spells = new ArrayList<Spell>();
         spellBar = new SpellBar();
-        addDebuggingSpell();
+        //addDebuggingSpell();
         isCasting = false;
     }
 
     public void addDebuggingSpell() {
-        spells.add(new Heal(spells.size(),this));
+        spells.add(new Heal(spells.size(),this, assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
-        spells.add(new FlashHeal(spells.size(),this));
+        spells.add(new FlashHeal(spells.size(),this, assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
-        spells.add(new Renew(spells.size(),this));
+        spells.add(new Renew(spells.size(),this, assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
-        spells.add(new Barrier(spells.size(),this));
+        spells.add(new Barrier(spells.size(),this, assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
         for(int i = 0; i < spells.size(); i++)   {
@@ -114,5 +115,9 @@ public class Player {
             this.target.selected();
         }
 
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
     }
 }

@@ -3,14 +3,17 @@ package com.hoxseygaming.pockethealer.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.player.bars.CastBar;
@@ -23,35 +26,55 @@ import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 /**
  * Created by Hoxsey on 5/28/2017.
  */
-public class TestingState extends State {
-    Player player;
-    ManaBar manaBar;
-    CastBar castBar;
-    Stage stage;
-    Raid raid;
-    Hogger hogger;
-    Image img;
-    Sound bgMusic;
+public class EncounterState extends State {
+    public Player player;
+    public ManaBar manaBar;
+    public CastBar castBar;
+    public Stage stage;
+    public Raid raid;
+    public Hogger hogger;
+    public Image img;
+    public Music bgMusic;
+    public Image bgImage;
+    public Assets assets;
 
-    public TestingState(StateManager sm, SpriteBatch sb) {
+
+    public EncounterState(StateManager sm, SpriteBatch sb, Assets assets) {
         super(sm);
+        this.assets = assets;
         create();
     }
 
     @Override
     public void create() {
         //super.create();
+
         player = new Player();
-        manaBar = new ManaBar(player);
-        castBar = new CastBar(player);
-        raid = new Raid(10);
-        hogger = new Hogger(raid);
-        bgMusic = Gdx.audio.newSound(Gdx.files.internal("sfx/battle_music.mp3"));
-        bgMusic.loop(0.2f);
+        player.setAssets(assets);
+        player.addDebuggingSpell();
+
+        manaBar = new ManaBar(player, assets);
+
+        castBar = new CastBar(player, assets);
+
+        raid = new Raid(10, assets);
+
+        hogger = new Hogger(raid, assets);
+
+        bgMusic = assets.getMusic("sfx/battle_music.ogg");
+        bgMusic.setLooping(true);
+        bgMusic.setVolume(0.3f);
+        bgMusic.play();
+
+        bgImage = new Image(assets.getTexture("battle_bg1.png"));
+        bgImage.setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
+
+
 
         stage = new Stage(new FitViewport(PocketHealer.WIDTH,PocketHealer.HEIGHT));
 
         // add all actors to the stage
+        stage.addActor(bgImage);
         stage.addActor(hogger);
         stage.addActor(raid);
         stage.addActor(player.spellBar);

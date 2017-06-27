@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.EncounterData;
 import com.hoxseygaming.pockethealer.encounters.entities.Entity;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
@@ -15,8 +16,8 @@ public class Boss extends Entity {
     public RaidMember target;
 
 
-    public Boss(String name, int maxHp, Raid enemies) {
-        super(name, maxHp);
+    public Boss(String name, int maxHp, Raid enemies, Assets assets) {
+        super(name, maxHp, assets);
         setBounds(20, 740, 445, 40);
         this.enemies = enemies;
         target = getMainTank();
@@ -36,8 +37,8 @@ public class Boss extends Entity {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(EncounterData.blackBar, getX(), getY(), getWidth(), getHeight());
-        batch.draw(EncounterData.raidFrameHbLow, getX()+2, getY()+2, (getWidth()-4), getHeight()-4);
-        batch.draw(EncounterData.raidFrameBoss, getX()+2, getY()+2, (getWidth()-4)*getHpPercent(), getHeight()-4);
+        batch.draw(assets.getTexture("black_bar.png"), getX(), getY(), getWidth(), getHeight());
+        batch.draw(assets.getTexture("red_bar.png"), getX()+2, getY()+2, (getWidth()-4), getHeight()-4);
+        batch.draw(assets.getTexture("green_bar.png"), getX()+2, getY()+2, (getWidth()-4)*getHpPercent(), getHeight()-4);
     }
 }

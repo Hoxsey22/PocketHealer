@@ -20,18 +20,16 @@ public class EncounterData {
     public static Texture healerIconImage = new Texture("healer_role_icon.png");
     public static Texture tankIconImage = new Texture("tank_role_icon.png");
 
-    public static Texture healIconImage = new Texture("spell_holy_greaterheal.jpg");
-    public static Texture renewIconImage = new Texture("spell_holy_renew.jpg");
-    public static Texture barrierIconImage = new Texture("spell_holy_powerwordshield.jpg");
-    public static Texture flashIconImage = new Texture("spell_holy_flashheal.jpg");
+    public static Texture healIconImage = new Texture("heal_icon.png");
+    public static Texture renewIconImage = new Texture("renew_icon.png");
+    public static Texture barrierIconImage = new Texture("barrier_icon.png");
+    public static Texture flashIconImage = new Texture("flash_heal_icon.png");
 
     public static Texture blackBar = new Texture(Gdx.files.internal("raid_frame_background_box.png"));
     public static Texture whiteBar = new Texture(Gdx.files.internal("white_bar.png"));
 
     public static Texture raidFrameIdle = new Texture(Gdx.files.internal("raid_frame_idle.png"));
     public static Texture raidFrameSelected = new Texture(Gdx.files.internal("raid_frame_selected.png"));
-    public static Texture raidFrameHbFull = new Texture(Gdx.files.internal("raid_frame_health_bar_full.png"));
-    public static Texture raidFrameHbHalf = new Texture(Gdx.files.internal("raid_frame_health_bar_half.png"));
     public static Texture raidFrameHbLow = new Texture(Gdx.files.internal("raid_frame_health_bar_low.png"));
     public static Texture raidFrameBoss = new Texture(Gdx.files.internal("raid_frame_boss.png"));
 

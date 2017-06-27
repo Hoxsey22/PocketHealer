@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.EncounterData;
 
@@ -31,6 +32,7 @@ public class Spell extends Actor {
     public Texture image;
     public float cdPercentage;
     public Timer cdTimer;
+    public Assets assets;
 
 
     public Spell(String name, String description, EffectType effectType, int output, int cost, float cooldown, int index) {
@@ -48,10 +50,16 @@ public class Spell extends Actor {
         cdPercentage = 1f;
     }
 
+    /**
+     * Check to make sure the player can cast this spell
+     */
     public void castSpell() {
         System.out.println("Casted a spell!");
     }
 
+    /**
+     * This starts the cooldown timer for the spell
+     */
     public void startCooldownTimer()    {
             cdTimer = new Timer();
             isReady = false;
@@ -73,14 +81,26 @@ public class Spell extends Actor {
             },0.1f,0.1f, (int)(cooldown/0.1));
     }
 
+    /**
+     * Gets the player that owns the the spell
+     * @return Player
+     */
     public Player getOwner() {
         return owner;
     }
 
+    /**
+     * Changes the owner of the spell
+     * @param owner
+     */
     public void setOwner(Player owner) {
         this.owner = owner;
     }
 
+    /**
+     *
+     * @return boolean
+     */
     public boolean isCasting() {
         return isCasting;
     }
@@ -175,10 +195,14 @@ public class Spell extends Actor {
         return true;
     }
 
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(image, getX(),getY(),getWidth(), getHeight());
-        batch.draw(EncounterData.cooldownBar, getX(),getY(),getWidth(), getHeight()*getCdPercentage());
+        batch.draw(assets.getTexture("cooldown_bar.png"), getX(),getY(),getWidth(), getHeight()*getCdPercentage());
     }
 }

@@ -1,6 +1,9 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.EncounterData;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
@@ -15,13 +18,18 @@ public class Heal extends Spell {
     public float castTimeCounter;
     public float castTimePercentage;
     public Timer castTimer;
+    public Sound casting_sfx;
+    public Sound finish_spell;
 
-    public Heal(int position, Player player) {
+    public Heal(int position, Player player, Assets assets) {
         super("Heal","An efficient slow powerful single target heal.", EffectType.HEAL, 40, 10, 0.5f, position);
+        this.assets = assets;
         owner = player;
-        image = EncounterData.healIconImage;
+        image = this.assets.getTexture("heal_icon.png");
         castTime = 1.5f;
         castTimeCounter = 1f;
+        casting_sfx = this.assets.getSound("sfx/casting_sfx.mp3");
+        finish_spell = this.assets.getSound("sfx/heal_sfx.mp3");
     }
 
     public void castSpell()    {
@@ -40,6 +48,9 @@ public class Heal extends Spell {
         owner.isCasting = isCasting;
         castTimeCounter = 0;
         System.out.println("Heal ID: "+ owner.target.getId());
+
+        casting_sfx.loop(0.3f);
+
         final RaidMember selectedTarget = owner.getTarget();
 
         castTimer.schedule(new Timer.Task() {
@@ -50,12 +61,15 @@ public class Heal extends Spell {
                 owner.setSpellCastPercent(getCastTimePercentage());
                 System.out.println(name + " cast timer: " + castTimeCounter);
                 if (getCastTimePercentage() >= 1f) {
+                    finish_spell.play(0.3f);
                     applySpell(selectedTarget);
                     setCastTimeCounter(1f);
                     isCasting = false;
                     owner.isCasting = false;
                     castTimer.clear();
                     owner.setSpellCastPercent(0);
+                    casting_sfx.stop();
+
                 }
             }
         }, 0.05f, 0.05f, (int)(castTime/0.05));

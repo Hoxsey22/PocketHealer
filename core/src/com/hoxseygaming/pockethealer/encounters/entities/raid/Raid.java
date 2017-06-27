@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.raid;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 import java.util.ArrayList;
@@ -15,9 +16,11 @@ public class Raid extends Group {
 
     public ArrayList<RaidMember> raidMembers;
     public Timer raidDamageTimer;
+    private Assets assets;
 
-    public Raid(int size)   {
+    public Raid(int size, Assets assets)   {
         //super();
+        this.assets = assets;
         setName("Raid");
         raidMembers = new ArrayList<RaidMember>();
         premade(size);
@@ -66,21 +69,22 @@ public class Raid extends Group {
 
     public void addTank(int amount)   {
         for(int i = 0; i < amount; i++) {
-            raidMembers.add(new RaidMember(raidMembers.size(), "Tank"));
+            raidMembers.add(new RaidMember(raidMembers.size(), "Tank", assets));
+            raidMembers.get(raidMembers.size() - 1).setAssets(assets);
             addActor(raidMembers.get(raidMembers.size() - 1));
         }
     }
 
     public void addHealer(int amount)   {
         for(int i = 0; i < amount; i++) {
-            raidMembers.add(new RaidMember(raidMembers.size(), "Healer"));
+            raidMembers.add(new RaidMember(raidMembers.size(), "Healer", assets));
             addActor(raidMembers.get(raidMembers.size() - 1));
         }
     }
 
     public void addDps(int amount)   {
         for(int i = 0; i < amount; i++) {
-            raidMembers.add(new RaidMember(raidMembers.size(), "Dps"));
+            raidMembers.add(new RaidMember(raidMembers.size(), "Dps", assets));
             addActor(raidMembers.get(raidMembers.size() - 1));
         }
     }

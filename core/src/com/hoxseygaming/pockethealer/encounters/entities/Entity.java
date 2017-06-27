@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.EncounterData;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
@@ -22,17 +23,20 @@ public class Entity extends Actor{
     public int damage;
     public boolean isDead;
     public Texture roleImage;
+    public Texture deathImage;
     public ArrayList<Texture> effects;
     public boolean selected;
+    public Assets assets;
 
     /**
      * RaidMember param
      * @param id
      * @param role
      */
-    public Entity(int id, String role) {
-        this.setBounds((float) EncounterData.raidPositions[(id)*2+1],
-                (float) EncounterData.raidPositions[id*2],134,64);
+    public Entity(int id, String role, Assets assets) {
+        this.assets = assets;
+        this.setBounds(assets.raidPositions.get(id).x,
+                assets.raidPositions.get(id).y,134,64);
 
         System.out.println("ID: "+id+", x:"+getX()+" y:"+getY()+", width:"+getWidth()+", height:"+getHeight());
 
@@ -52,7 +56,8 @@ public class Entity extends Actor{
      * @param name
      * @param maxHp
      */
-    public Entity(String name, int maxHp) {
+    public Entity(String name, int maxHp, Assets assets) {
+        this.assets = assets;
         this.name = name;
         this.maxHp = maxHp;
         hp = maxHp;
@@ -79,7 +84,6 @@ public class Entity extends Actor{
 
     public void takeDamage(int damage)    {
         if(!isDead) {
-            System.out.println("Shield: "+shield);
             if(shield > 0)
                 takeShieldDamage(damage);
             else
@@ -88,6 +92,8 @@ public class Entity extends Actor{
             if(hp <= 0) {
                 isDead = true;
                 hp = 0;
+                shield = 0;
+                effects.clear();
             }
             getHpPercent();
         }
@@ -137,16 +143,16 @@ public class Entity extends Actor{
     }
 
     public void applyEffect(Spell.EffectType buff) {
-        effects.add(EncounterData.getEffectImage(buff));
+        effects.add(assets.getEffectImage(buff));
     }
 
     public void removeEffect(Spell.EffectType buff)    {
-        effects.remove(effects.indexOf(EncounterData.getEffectImage(buff)));
+        effects.remove(effects.indexOf(assets.getEffectImage(buff)));
         System.out.println(buff.toString()+" REMOVED");
     }
 
     public boolean containsEffects(Spell.EffectType buff)   {
-        if(effects.indexOf(EncounterData.getEffectImage(buff)) > -1)
+        if(effects.indexOf(assets.getEffectImage(buff)) > -1)
             return true;
         else
             return false;
@@ -250,5 +256,9 @@ public class Entity extends Actor{
 
     public void selected() {
         selected = true;
+    }
+
+    public void setAssets(Assets assets)    {
+        this.assets = assets;
     }
 }

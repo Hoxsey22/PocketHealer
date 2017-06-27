@@ -1,5 +1,8 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.EncounterData;
 
@@ -8,10 +11,14 @@ import com.hoxseygaming.pockethealer.encounters.EncounterData;
  */
 public class Barrier extends Spell {
 
-    public Barrier(int index, Player player) {
+    public Sound sfx;
+
+    public Barrier(int index, Player player, Assets assets) {
         super("Barrier", "An absorption shield.", EffectType.SHIELD, 60, 35, 4f, index);
+        setAssets(assets);
         owner = player;
-        image = EncounterData.barrierIconImage;
+        image = this.assets.getTexture("barrier_icon.png");
+        sfx = this.assets.getSound("sfx/barrier_sfx.mp3");
     }
 
     @Override
@@ -23,6 +30,7 @@ public class Barrier extends Spell {
     }
 
     public void applySpell()    {
+        sfx.play(0.3f);
         startCooldownTimer();
         owner.getTarget().applyShield(output);
     }

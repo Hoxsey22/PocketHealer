@@ -14,11 +14,11 @@ import java.util.ArrayList;
 public class SpellBar extends Group {
 
     public ArrayList<Spell> spells;
-    public Texture background;
+    //public Texture background;
 
     public SpellBar()   {
         spells = new ArrayList<Spell>();
-        background = EncounterData.blackBar;
+        //background = EncounterData.blackBar;
     }
 
     public void addSpell(Spell spell)  {
@@ -36,9 +36,6 @@ public class SpellBar extends Group {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        for(int i = 0; i < spells.size(); i++)
-            batch.draw(background,spells.get(i).getX()-5, spells.get(i).getY()-5, 90, 90);
-
         super.draw(batch, parentAlpha);
     }
 }
