@@ -17,6 +17,7 @@ public class Raid extends Group {
     public ArrayList<RaidMember> raidMembers;
     public Timer raidDamageTimer;
     private Assets assets;
+    public boolean isRaidAlive;
 
     public Raid(int size, Assets assets)   {
         //super();
@@ -25,17 +26,29 @@ public class Raid extends Group {
         raidMembers = new ArrayList<RaidMember>();
         premade(size);
         raidDamageTimer = new Timer();
-
+        isRaidAlive = true;
     }
 
     public void startRaidDamageTimer(final Boss t)   {
         final Boss target = t;
 
         raidDamageTimer.schedule(new Timer.Task() {
+            int deathCount = 0;
             @Override
             public void run() {
-                for (int i = 0; i < raidMembers.size(); i++)
+
+                for (int i = 0; i < raidMembers.size(); i++) {
+                    if(raidMembers.get(i).isDead())
+                        deathCount++;
                     target.takeDamage(raidMembers.get(i).getDamage());
+                }
+
+                if(deathCount == raidMembers.size())    {
+                    raidDamageTimer.stop();
+                    raidDamageTimer.clear();
+                    System.out.println("Raid Damage Timer has stopped!");
+                }
+
             }
         },3f,1f);
     }
@@ -138,5 +151,40 @@ public class Raid extends Group {
             }
         }
         return lowest;
+    }
+
+    public boolean tanksAlive() {
+
+        for(int i = 0; i < raidMembers.size(); i++)   {
+            if(raidMembers.get(i).getRole() == "tank" && !raidMembers.get(i).isDead());
+            return true;
+        }
+        return false;
+    }
+
+    public int healersAlive() {
+        int counter = 0;
+        for(int i = 0; i < raidMembers.size(); i++)   {
+            if(raidMembers.get(i).getRole() == "healer");
+            counter++;
+        }
+        return counter;
+    }
+
+    public int dpsAlive() {
+        int counter = 0;
+        for(int i = 0; i < raidMembers.size(); i++)   {
+            if(raidMembers.get(i).getRole() == "dps");
+            counter++;
+        }
+        return counter;
+    }
+
+    public boolean isRaidDead() {
+        for(int i = 0; i < raidMembers.size(); i++)   {
+            if(!raidMembers.get(i).isDead())
+                return false;
+        }
+        return true;
     }
 }

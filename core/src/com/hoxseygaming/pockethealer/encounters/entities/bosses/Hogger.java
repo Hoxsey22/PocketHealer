@@ -3,7 +3,6 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.hoxseygaming.pockethealer.Assets;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.timers.AutoAttackTimer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.timers.CleaveTimer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.timers.TankSwapTimer;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
@@ -14,23 +13,22 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 public class Hogger extends Boss {
 
     public CleaveTimer cleaveTimer;
-    public AutoAttackTimer autoAttackTimer;
     public TankSwapTimer tankSwapTimer;
     public Texture namePlate;
+    public float autoAttackTimer;
 
     public Hogger(Raid enemies, Assets assets) {
         super("Hogger", 12000, enemies, assets);
 
-        damage = 30;
+        damage = 20;
+        autoAttackTimer = 2f;
         namePlate = assets.getTexture("hogger_name.png");
         cleaveTimer = new CleaveTimer(this,3.5f);
-        autoAttackTimer = new AutoAttackTimer(this, 2f);
-        tankSwapTimer = new TankSwapTimer(this,getMainTank(),getOffTank());
+        tankSwapTimer = new TankSwapTimer(this,getMainTank(),getOffTank(), autoAttackTimer);
     }
 
     public void start() {
         cleaveTimer.startTimer();
-        autoAttackTimer.startTimer();
         tankSwapTimer.startTimer();
     }
 

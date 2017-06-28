@@ -67,6 +67,7 @@ public class Assets {
         manager.load("raid_frame_idle.png", Texture.class);
         manager.load("raid_frame_selected.png", Texture.class);
         manager.load("red_bar.png", Texture.class);
+        manager.load("red_outline_bar.png", Texture.class);
         manager.load("green_bar.png", Texture.class);
 
         manager.load("mana_bar.png", Texture.class);

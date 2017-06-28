@@ -48,6 +48,17 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         selected = true;
         frame = assets.getTexture("raid_frame_selected.png");
     }
+
+    @Override
+    public int compareTo(RaidMember rm) {
+        return hp - rm.getHp();
+    }
+
+    @Override
+    public int compare(RaidMember rm1, RaidMember rm2) {
+        return rm1.getHp() - rm2.getHp();
+    }
+
     @Override
     public void draw(Batch batch, float alpha) {
         batch.draw(frame, getX(),getY(),getWidth(),getHeight());
@@ -61,16 +72,9 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         else {
             batch.draw(assets.getTexture("death_icon.png"), getX()+5, getY() + getHeight()- 39, 34,34);
         }
+
     }
 
 
-    @Override
-    public int compareTo(RaidMember rm) {
-        return hp - rm.getHp();
-    }
 
-    @Override
-    public int compare(RaidMember rm1, RaidMember rm2) {
-        return rm1.getHp() - rm2.getHp();
-    }
 }

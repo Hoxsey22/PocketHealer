@@ -1,8 +1,13 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
@@ -33,6 +38,7 @@ public class Spell extends Actor {
     public float cdPercentage;
     public Timer cdTimer;
     public Assets assets;
+    private Label label;
 
 
     public Spell(String name, String description, EffectType effectType, int output, int cost, float cooldown, int index) {
@@ -48,6 +54,7 @@ public class Spell extends Actor {
         isCasting = false;
         cdCounter = 0f;
         cdPercentage = 1f;
+        setupFont();
     }
 
     /**
@@ -79,6 +86,18 @@ public class Spell extends Actor {
 
                 }
             },0.1f,0.1f, (int)(cooldown/0.1));
+    }
+
+    public void setupFont() {
+        Label.LabelStyle labelStyle = new Label.LabelStyle();
+        BitmapFont font = new BitmapFont(Gdx.files.internal("cooldown_font.fnt"));
+        labelStyle.font = font;
+        labelStyle.fontColor = Color.WHITE;
+
+        label = new Label(cdCounter+"",labelStyle);
+        label.setSize(getWidth(), getHeight());
+        label.setPosition(getX(), getY());
+        label.setAlignment(Align.center);
     }
 
     /**
@@ -204,5 +223,8 @@ public class Spell extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(image, getX(),getY(),getWidth(), getHeight());
         batch.draw(assets.getTexture("cooldown_bar.png"), getX(),getY(),getWidth(), getHeight()*getCdPercentage());
+        label.setText(String.format("%.1f",cdCounter));
+        if(!isReady)
+            label.draw(batch, parentAlpha);
     }
 }

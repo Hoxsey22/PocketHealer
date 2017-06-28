@@ -210,7 +210,10 @@ public class Entity extends Actor{
     }
 
     public int getDamage() {
-        return damage;
+        if(!isDead())
+            return damage;
+        else
+            return 0;
     }
 
     public void setDamage(int damage) {
