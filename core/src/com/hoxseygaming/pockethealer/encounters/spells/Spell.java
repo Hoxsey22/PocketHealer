@@ -39,6 +39,7 @@ public class Spell extends Actor {
     public Timer cdTimer;
     public Assets assets;
     private Label label;
+    public CriticalChance criticalChance;
 
 
     public Spell(String name, String description, EffectType effectType, int output, int cost, float cooldown, int index) {
@@ -54,6 +55,7 @@ public class Spell extends Actor {
         isCasting = false;
         cdCounter = 0f;
         cdPercentage = 1f;
+        criticalChance = new CriticalChance(0);
         setupFont();
     }
 
@@ -193,7 +195,15 @@ public class Spell extends Actor {
         owner.mana = owner.mana - cost;
     }
 
+    public void setCriticalChance(int chance)  {
+        criticalChance.setChanceThreshold(chance);
+    }
+
     public boolean isCastable() {
+        if(owner.target == null)    {
+            System.out.println("NO TARGET FOUND!");
+            return false;
+        }
         if(owner.getMana() < cost) {
             System.out.println("OUT OF MANA!");
             return false;

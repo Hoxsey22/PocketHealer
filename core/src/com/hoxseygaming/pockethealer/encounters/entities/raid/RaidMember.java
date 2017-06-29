@@ -3,7 +3,8 @@ package com.hoxseygaming.pockethealer.encounters.entities.raid;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.hoxseygaming.pockethealer.Assets;
-import com.hoxseygaming.pockethealer.encounters.EncounterData;
+import com.hoxseygaming.pockethealer.encounters.floatingtext.FloatingTextManager;
+import com.hoxseygaming.pockethealer.encounters.floatingtext.FloatingText;
 import com.hoxseygaming.pockethealer.encounters.entities.Entity;
 
 import java.util.Comparator;
@@ -15,6 +16,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     public Texture frame;
     public HealthBar healthBar;
+    public FloatingTextManager floatingTextManager;
 
 
     public RaidMember(int id, String role, Assets assets)  {
@@ -22,7 +24,27 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         healthBar = new HealthBar((int)getX(),(int)getY());
         frame = assets.getTexture("raid_frame_idle.png");
         setRoleImage();
+        floatingTextManager = new FloatingTextManager(this);
 
+    }
+
+    @Override
+    public void takeDamage(int output) {
+        super.takeDamage(output);
+        floatingTextManager.add(output, FloatingText.DAMAGE);
+    }
+
+    @Override
+    public int receiveHealing(int output, boolean isCritical) {
+        int newOutput = super.receiveHealing(output, isCritical);
+        floatingTextManager.add(newOutput,FloatingText.HEAL, isCritical);
+        return newOutput;
+    }
+
+    @Override
+    public void applyShield(int output) {
+        super.applyShield(output);
+        floatingTextManager.add(output,FloatingText.SHIELD);
     }
 
     public void setRoleImage()  {
@@ -68,10 +90,14 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
                 batch.draw(effects.get(i), healthBar.x + healthBar.WIDTH - 20 * (i) - 20, healthBar.y + healthBar.HEIGHT + 5, 20, 20);
             }
             healthBar.draw(batch, alpha, getHpPercent(), getShieldPercent());
+            floatingTextManager.draw(batch, alpha);
         }
         else {
+            floatingTextManager.clear();
             batch.draw(assets.getTexture("death_icon.png"), getX()+5, getY() + getHeight()- 39, 34,34);
         }
+
+
 
     }
 

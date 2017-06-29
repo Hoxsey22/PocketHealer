@@ -135,6 +135,15 @@ public class Entity extends Actor{
 
     }
 
+    public int receiveHealing(int output, boolean isCritical)    {
+        int newOutput = output;
+        if(isCritical)
+            newOutput = newOutput + (newOutput/2);
+        System.out.println("NEW OUTPUT:"+newOutput);
+        receiveHealing(newOutput);
+        return newOutput;
+    }
+
     public void applyShield(int output)   {
         shield = output;
         if(!containsEffects(Spell.EffectType.SHIELD))

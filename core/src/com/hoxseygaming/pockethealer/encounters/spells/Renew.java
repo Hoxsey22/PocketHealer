@@ -29,6 +29,7 @@ public class Renew extends Spell {
 
         duration = 10f;
         sfx = this.assets.getSound("sfx/hot_sfx.mp3");
+        setCriticalChance(10);
 
     }
 
@@ -56,7 +57,7 @@ public class Renew extends Spell {
             public void run() {
                 if(target.isDead())
                     durationTimer.stop();
-                target.receiveHealing(output);
+                target.receiveHealing(output,criticalChance.isCritical());
                 currentTime = currentTime +2f;
                 System.out.println("Renew is ticking! "+currentTime);
                 if(currentTime >= duration)    {

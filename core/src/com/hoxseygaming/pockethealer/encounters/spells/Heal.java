@@ -2,11 +2,14 @@ package com.hoxseygaming.pockethealer.encounters.spells;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.g3d.particles.influencers.ColorInfluencer;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.EncounterData;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+
+import java.util.Random;
 
 /**
  * Created by Hoxsey on 6/18/2017.
@@ -30,6 +33,7 @@ public class Heal extends Spell {
         castTimeCounter = 1f;
         casting_sfx = this.assets.getSound("sfx/casting_sfx.mp3");
         finish_spell = this.assets.getSound("sfx/heal_sfx.mp3");
+        setCriticalChance(10);
     }
 
     public void castSpell()    {
@@ -76,7 +80,7 @@ public class Heal extends Spell {
     }
 
     public void applySpell(RaidMember target)    {
-        target.receiveHealing(output);
+        target.receiveHealing(output,criticalChance.isCritical());
     }
 
     public float getCastTime() {

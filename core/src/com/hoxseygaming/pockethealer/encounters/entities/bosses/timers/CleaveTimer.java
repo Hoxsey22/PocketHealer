@@ -55,7 +55,7 @@ public class CleaveTimer {
                 targets = owner.enemies.getRandomRaidMember(numOfTargets);
                 for (int i = 0; i < numOfTargets; i++) {
                     if (targets[i] != null)
-                        targets[i].receiveDamage(owner.damage);
+                        targets[i].takeDamage(owner.damage);
                         //owner.dealDamage(targets[i]);
                 }
             }

@@ -21,7 +21,6 @@ public class Boss extends Entity {
         setBounds(20, 740, 445, 40);
         this.enemies = enemies;
         target = getMainTank();
-        target.selected();
     }
 
     public RaidMember getMainTank() {

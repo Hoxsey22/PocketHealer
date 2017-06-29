@@ -16,6 +16,7 @@ public class FlashHeal extends Heal {
         image = this.assets.getTexture("flash_heal_icon.png");
         setCost(25);
         setCastTime(0.7f);
+        setCriticalChance(20);
     }
 
     @Override
