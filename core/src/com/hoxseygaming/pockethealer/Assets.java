@@ -5,6 +5,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
@@ -48,6 +49,7 @@ public class Assets {
     public void load()  {
         loadImages();
         loadSounds();
+        loadFonts();
         loadPositions();
     }
 
@@ -105,6 +107,12 @@ public class Assets {
 
     }
 
+    public void loadFonts() {
+        manager.load("floating_font", BitmapFont.class);
+        manager.load("mana_font", BitmapFont.class);
+        manager.load("cooldown_font", BitmapFont.class);
+    }
+
 
 
     public Texture getTexture(String filename)   {
@@ -117,6 +125,10 @@ public class Assets {
 
     public Music getMusic(String filename)   {
         return manager.get(filename, Music.class);
+    }
+
+    public BitmapFont getFont(String filename)   {
+        return manager.get(filename, BitmapFont.class);
     }
 
     public Texture getEffectImage(Spell.EffectType effectType) {

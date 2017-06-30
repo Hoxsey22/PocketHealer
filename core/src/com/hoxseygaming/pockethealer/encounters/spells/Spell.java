@@ -92,7 +92,7 @@ public class Spell extends Actor {
 
     public void setupFont() {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
-        BitmapFont font = new BitmapFont(Gdx.files.internal("cooldown_font.fnt"));
+        BitmapFont font = assets.getFont("cooldown_font.fnt");
         labelStyle.font = font;
         labelStyle.fontColor = Color.WHITE;
 

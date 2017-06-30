@@ -30,7 +30,7 @@ public class ManaBar extends Actor {
 
     private void setupFont()    {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
-        font = new BitmapFont(Gdx.files.internal("font.fnt"));
+        font = assets.getFont("mana_font.fnt");
         labelStyle.font = font;
         labelStyle.fontColor = Color.WHITE;
 
