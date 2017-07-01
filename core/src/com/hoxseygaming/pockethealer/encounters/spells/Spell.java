@@ -42,8 +42,9 @@ public class Spell extends Actor {
     public CriticalChance criticalChance;
 
 
-    public Spell(String name, String description, EffectType effectType, int output, int cost, float cooldown, int index) {
+    public Spell(String name, String description, EffectType effectType, int output, int cost, float cooldown, int index, Assets assets) {
         setBounds(SpellData.positions[index].x,SpellData.positions[index].y,80,80);
+        this.assets = assets;
         this.index = index;
         this.name = name;
         this.description = description;

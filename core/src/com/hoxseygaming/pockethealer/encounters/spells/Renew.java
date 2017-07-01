@@ -22,8 +22,7 @@ public class Renew extends Spell {
      * @param player
      */
     public Renew(int position, Player player, Assets assets)  {
-        super("Renew","A small heal that is healed over time.", EffectType.HEALOVERTIME, 7, 15, 0.5f, position);
-        setAssets(assets);
+        super("Renew","A small heal that is healed over time.", EffectType.HEALOVERTIME, 7, 15, 0.5f, position, assets);
         owner = player;
         image = this.assets.getTexture("renew_icon.png");
 

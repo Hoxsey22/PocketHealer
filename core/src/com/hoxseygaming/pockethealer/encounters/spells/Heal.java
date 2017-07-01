@@ -25,8 +25,7 @@ public class Heal extends Spell {
     public Sound finish_spell;
 
     public Heal(int position, Player player, Assets assets) {
-        super("Heal","An efficient slow powerful single target heal.", EffectType.HEAL, 40, 10, 0.5f, position);
-        this.assets = assets;
+        super("Heal","An efficient slow powerful single target heal.", EffectType.HEAL, 40, 10, 0.5f, position, assets);
         owner = player;
         image = this.assets.getTexture("heal_icon.png");
         castTime = 1.5f;

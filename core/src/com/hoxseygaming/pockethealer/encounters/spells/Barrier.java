@@ -14,8 +14,7 @@ public class Barrier extends Spell {
     public Sound sfx;
 
     public Barrier(int index, Player player, Assets assets) {
-        super("Barrier", "An absorption shield.", EffectType.SHIELD, 60, 35, 4f, index);
-        setAssets(assets);
+        super("Barrier", "An absorption shield.", EffectType.SHIELD, 60, 35, 4f, index,assets);
         owner = player;
         image = this.assets.getTexture("barrier_icon.png");
         sfx = this.assets.getSound("sfx/barrier_sfx.mp3");

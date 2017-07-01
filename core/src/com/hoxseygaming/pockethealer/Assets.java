@@ -108,9 +108,9 @@ public class Assets {
     }
 
     public void loadFonts() {
-        manager.load("floating_font", BitmapFont.class);
-        manager.load("mana_font", BitmapFont.class);
-        manager.load("cooldown_font", BitmapFont.class);
+        manager.load("floating_font.fnt", BitmapFont.class);
+        manager.load("mana_font.fnt", BitmapFont.class);
+        manager.load("cooldown_font.fnt", BitmapFont.class);
     }
 
 
@@ -139,5 +139,13 @@ public class Assets {
                 return getTexture("renew_icon.png");
         }
         return null;
+    }
+
+    public float getProgress()  {
+        return manager.getProgress();
+    }
+
+    public boolean update() {
+        return manager.update();
     }
 }

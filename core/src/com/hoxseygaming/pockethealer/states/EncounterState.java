@@ -33,13 +33,12 @@ public class EncounterState extends State {
     public Stage stage;
     public Raid raid;
     public Hogger hogger;
-    public Image img;
     public Music bgMusic;
     public Image bgImage;
     public Assets assets;
 
 
-    public EncounterState(StateManager sm, SpriteBatch sb, Assets assets) {
+    public EncounterState(StateManager sm, Assets assets) {
         super(sm);
         this.assets = assets;
         create();
