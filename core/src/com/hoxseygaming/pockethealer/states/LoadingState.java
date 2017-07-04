@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
 
 /**
@@ -22,6 +23,7 @@ import com.hoxseygaming.pockethealer.PocketHealer;
  */
 public class LoadingState extends State {
 
+    private Player player;
     private Image logo;
     private float progress;
     private ShapeRenderer shapeRenderer;
@@ -32,8 +34,10 @@ public class LoadingState extends State {
     private BitmapFont font;
     private Label.LabelStyle textStyle;
 
-    public LoadingState(StateManager sm) {
+    public LoadingState(StateManager sm, Player player) {
         super(sm);
+
+        this.player = player;
 
         logo = new Image(new Texture("logo_screen.png"));
         logo.setSize(PocketHealer.WIDTH,PocketHealer.HEIGHT);
@@ -92,7 +96,9 @@ public class LoadingState extends State {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if(isReady)
-                    sm.push(new EncounterState(sm, assets));
+                    //sm.push(new TalentState(sm,assets, player));
+                    sm.push(new EncounterState(sm,assets));
+                    //sm.push(new TestState(sm,assets));
                 return false;
             }
 

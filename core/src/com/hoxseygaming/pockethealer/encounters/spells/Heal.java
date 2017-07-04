@@ -81,6 +81,9 @@ public class Heal extends Spell {
     public void applySpell(RaidMember target)    {
         target.receiveHealing(output,criticalChance.isCritical());
     }
+    public void applySpell(RaidMember target, int output)    {
+        target.receiveHealing(output,criticalChance.isCritical());
+    }
 
     public float getCastTime() {
         return castTime;

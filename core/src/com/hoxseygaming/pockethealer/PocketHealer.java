@@ -17,12 +17,14 @@ public class PocketHealer extends ApplicationAdapter {
 
 	SpriteBatch batch;
 	private StateManager sm;
+	public Player player;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		sm = new StateManager();
-		sm.push(new LoadingState(sm));
+		player = new Player();
+		sm.push(new LoadingState(sm, player));
 	}
 
 	@Override

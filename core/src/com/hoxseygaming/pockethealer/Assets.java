@@ -18,28 +18,56 @@ public class Assets {
 
     public AssetManager manager;
     public ArrayList<Vector2> raidPositions;
-    /*
-    public Texture dpsIconImage = new Texture("dps_role_icon.png");
-    public Texture healerIconImage = new Texture("healer_role_icon.png");
-    public Texture tankIconImage = new Texture("tank_role_icon.png");
+    public String dpsIcon = "dps_role_icon.png";
+    public String healerIcon = "healer_role_icon.png";
+    public String tankIcon = "tank_role_icon.png";
 
-    public Texture healIconImage = new Texture("heal_icon.png");
-    public Texture renewIconImage = new Texture("renew_icon.png");
-    public Texture barrierIconImage = new Texture("barrier_icon.png");
-    public Texture flashIconImage = new Texture("flash_heal_icon.png");
+    public String healIcon = "heal_icon.png";
+    public String renewIcon = "renew_icon.png";
+    public String barrierIcon = "barrier_icon.png";
+    public String flashIcon = "flash_heal_icon.png";
+    public String deathIcon = "death_icon.png";
 
-    public Texture blackBar = new Texture(Gdx.files.internal("raid_frame_background_box.png"));
-    public Texture whiteBar = new Texture(Gdx.files.internal("white_bar.png"));
+    public String hoggerName = "hogger_name.png";
 
-    public Texture raidFrameIdle = new Texture(Gdx.files.internal("raid_frame_idle.png"));
-    public Texture raidFrameSelected = new Texture(Gdx.files.internal("raid_frame_selected.png"));
-    public Texture raidFrameHbLow = new Texture(Gdx.files.internal("raid_frame_health_bar_low.png"));
-    public Texture raidFrameBoss = new Texture(Gdx.files.internal("raid_frame_boss.png"));
+    public String battleBg1 = "battle_bg1.png";
+    public String battleBg2 = "battle_bg2.png";
 
-    public Texture manaBar = new Texture(Gdx.files.internal("mana_bar.png"));
-    public Texture castBar = new Texture(Gdx.files.internal("casting_bar.png"));
-    public Texture cooldownBar = new Texture(Gdx.files.internal("cooldown_bar.png"));
-    */
+    public String blackBar = "black_bar.png";
+    public String whiteBar = "white_bar.png";
+    public String redBar = "red_bar.png";
+    public String redOutlineBar = "red_outline_bar.png";
+    public String greenBar = "green_bar.png";
+
+    public String raidFrameIdle = "raid_frame_idle.png";
+    public String raidFrameSelected = "raid_frame_selected.png";
+
+    public String manaBar = "mana_bar.png";
+    public String castBar = "casting_bar.png";
+    public String cooldownBar = "cooldown_bar.png";
+
+    public String battleMusic = "sfx/battle_music.ogg";
+    public String barrierSFX ="sfx/barrier_sfx.mp3";
+    public String castingSFX ="sfx/casting_sfx.mp3";
+    public String healSFX ="sfx/heal_sfx.mp3";
+    public String hotSFX ="sfx/hot_sfx.mp3";
+
+    public String floatingFnt = "floating_font.fnt";
+    public String manaFnt = "mana_font.fnt";
+    public String cooldownFnt = "cooldown_font.fnt";
+
+    public String continuousRenewalIcon = "continuous_renewal.png";
+    public String lifeboomIcon = "lifeboom.png";
+    public String perseveranceIcon = "perseverance.png";
+    public String burstHealerIcon = "burst_healer.png";
+    public String innerFocusIcon = "inner_focus.png";
+    public String workTogetherIcon = "work_together.png";
+    public String selectedTalent = "selected_talent.png";
+    public String talentStateTitle = "talent_screen_title.png";
+
+    public String talentBg = "talent_bg.png";
+    public String talentTooltip = "talent_tooltip_font.fnt";
+
 
     public Assets() {
         manager = new AssetManager();
@@ -54,50 +82,57 @@ public class Assets {
     }
 
     public void loadImages() {
-        manager.load("dps_role_icon.png", Texture.class);
-        manager.load("healer_role_icon.png", Texture.class);
-        manager.load("tank_role_icon.png", Texture.class);
+        manager.load(dpsIcon, Texture.class);
+        manager.load(healerIcon, Texture.class);
+        manager.load(tankIcon, Texture.class);
 
-        manager.load("heal_icon.png", Texture.class);
-        manager.load("death_icon.png", Texture.class);
-        manager.load("renew_icon.png", Texture.class);
-        manager.load("barrier_icon.png", Texture.class);
-        manager.load("flash_heal_icon.png", Texture.class);
+        manager.load(healIcon, Texture.class);
+        manager.load(deathIcon, Texture.class);
+        manager.load(renewIcon, Texture.class);
+        manager.load(barrierIcon, Texture.class);
+        manager.load(flashIcon, Texture.class);
 
-        manager.load("black_bar.png", Texture.class);
-        manager.load("white_bar.png", Texture.class);
-        manager.load("raid_frame_idle.png", Texture.class);
-        manager.load("raid_frame_selected.png", Texture.class);
-        manager.load("red_bar.png", Texture.class);
-        manager.load("red_outline_bar.png", Texture.class);
-        manager.load("green_bar.png", Texture.class);
+        manager.load(blackBar, Texture.class);
+        manager.load(whiteBar, Texture.class);
+        manager.load(raidFrameIdle, Texture.class);
+        manager.load(raidFrameSelected, Texture.class);
+        manager.load(redBar, Texture.class);
+        manager.load(redOutlineBar, Texture.class);
+        manager.load(greenBar, Texture.class);
 
-        manager.load("mana_bar.png", Texture.class);
-        manager.load("casting_bar.png", Texture.class);
-        manager.load("cooldown_bar.png", Texture.class);
+        manager.load(manaBar, Texture.class);
+        manager.load(castBar, Texture.class);
+        manager.load(cooldownBar, Texture.class);
 
-        manager.load("hogger_name.png", Texture.class);
+        manager.load(hoggerName, Texture.class);
 
-        manager.load("battle_bg1.png", Texture.class);
-        manager.load("battle_bg2.png", Texture.class);
+        manager.load(battleBg1, Texture.class);
+        manager.load(battleBg2, Texture.class);
+
+        manager.load(continuousRenewalIcon, Texture.class);
+        manager.load(lifeboomIcon, Texture.class);
+        manager.load(perseveranceIcon, Texture.class);
+        manager.load(burstHealerIcon, Texture.class);
+        manager.load(innerFocusIcon, Texture.class);
+        manager.load(workTogetherIcon, Texture.class);
+        manager.load(selectedTalent, Texture.class);
+        manager.load(talentStateTitle, Texture.class);
+
+        manager.load(talentBg, Texture.class);
+
+
     }
 
     public void loadSounds() {
-        manager.load("sfx/battle_music.ogg", Music.class);
-        manager.load("sfx/barrier_sfx.mp3", Sound.class);
-        manager.load("sfx/casting_sfx.mp3", Sound.class);
-        manager.load("sfx/heal_sfx.mp3", Sound.class);
-        manager.load("sfx/hot_sfx.mp3", Sound.class);
+        manager.load(battleMusic, Music.class);
+        manager.load(barrierSFX, Sound.class);
+        manager.load(castingSFX, Sound.class);
+        manager.load(healSFX, Sound.class);
+        manager.load(hotSFX, Sound.class);
 
     }
 
     public void loadPositions() {
-        /*
-                660,20, 660,174, 660,328, 581,20,
-                581,174, 581,328, 502,20, 502,174, 502,328,
-                423,20, 423,174, 423,328, 344,20, 344,174,
-                344,328, 265,20, 265,174, 265,328
-                */
         for(int i = 0; i < 6; i++) {
             for(int j = 0; j < 3; j++) {
                 raidPositions.add(new Vector2(20+(j*154), 660-(i*79)));
@@ -108,9 +143,10 @@ public class Assets {
     }
 
     public void loadFonts() {
-        manager.load("floating_font.fnt", BitmapFont.class);
-        manager.load("mana_font.fnt", BitmapFont.class);
-        manager.load("cooldown_font.fnt", BitmapFont.class);
+        manager.load(floatingFnt, BitmapFont.class);
+        manager.load(manaFnt, BitmapFont.class);
+        manager.load(cooldownFnt, BitmapFont.class);
+        manager.load(talentTooltip, BitmapFont.class);
     }
 
 
