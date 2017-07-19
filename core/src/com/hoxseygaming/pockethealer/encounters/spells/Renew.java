@@ -16,6 +16,7 @@ public class Renew extends Spell {
     public float duration;
     public Timer durationTimer;
     public Sound sfx;
+    public int totalHealing;
 
     /**
      * @param position
@@ -25,6 +26,7 @@ public class Renew extends Spell {
         super("Renew","A small heal that is healed over time.", EffectType.HEALOVERTIME, 7, 15, 0.5f, position, assets);
         owner = player;
         image = this.assets.getTexture("renew_icon.png");
+        totalHealing = 0;
 
         duration = 10f;
         sfx = this.assets.getSound("sfx/hot_sfx.mp3");
@@ -37,8 +39,12 @@ public class Renew extends Spell {
         if(isCastable())  {
             useMana();
             startCooldownTimer();
-            startDurationTimer();
+            applySpell();
         }
+    }
+
+    public void applySpell()    {
+        startDurationTimer();
     }
 
     public void startDurationTimer()    {
@@ -49,6 +55,7 @@ public class Renew extends Spell {
         else
             durationTimer.clear();
         sfx.play(0.3f);
+        totalHealing = 0;
         final RaidMember target = owner.getTarget();
         durationTimer.scheduleTask(new Timer.Task() {
             float currentTime = 0;
@@ -56,12 +63,17 @@ public class Renew extends Spell {
             public void run() {
                 if(target.isDead())
                     durationTimer.stop();
-                target.receiveHealing(output,criticalChance.isCritical());
+                 totalHealing = totalHealing + target.receiveHealing(output,criticalChance.isCritical());
                 currentTime = currentTime +2f;
                 System.out.println("Renew is ticking! "+currentTime);
                 if(currentTime >= duration)    {
+                    if(owner.talentBook.getTalent("Lifeboom").isSelected()) {
+                        target.receiveHealing(totalHealing);
+                        System.out.println("lifeboom used!");
+                    }
                     target.removeEffect(EffectType.HEALOVERTIME);
                     System.out.println("Renew expired");
+                    totalHealing = 0;
                     //durationTimer.clear();
                 }
             }

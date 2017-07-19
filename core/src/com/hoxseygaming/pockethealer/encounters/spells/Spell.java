@@ -67,6 +67,10 @@ public class Spell extends Actor {
         System.out.println("Casted a spell!");
     }
 
+    public void applySpell() {
+        System.out.println("Applying spell!");
+    }
+
     /**
      * This starts the cooldown timer for the spell
      */
@@ -93,7 +97,7 @@ public class Spell extends Actor {
 
     public void setupFont() {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
-        BitmapFont font = assets.getFont("cooldown_font.fnt");
+        BitmapFont font = assets.getFont(assets.cooldownFnt);
         labelStyle.font = font;
         labelStyle.fontColor = Color.WHITE;
 

@@ -23,11 +23,13 @@ public class Heal extends Spell {
     public Timer castTimer;
     public Sound casting_sfx;
     public Sound finish_spell;
+    public int castCounter;
 
     public Heal(int position, Player player, Assets assets) {
         super("Heal","An efficient slow powerful single target heal.", EffectType.HEAL, 40, 10, 0.5f, position, assets);
         owner = player;
         image = this.assets.getTexture("heal_icon.png");
+        castCounter = 0;
         castTime = 1.5f;
         castTimeCounter = 1f;
         casting_sfx = this.assets.getSound("sfx/casting_sfx.mp3");
@@ -64,6 +66,7 @@ public class Heal extends Spell {
                 owner.setSpellCastPercent(getCastTimePercentage());
                 System.out.println(name + " cast timer: " + castTimeCounter);
                 if (getCastTimePercentage() >= 1f) {
+                    castCounter++;
                     finish_spell.play(0.3f);
                     applySpell(selectedTarget);
                     setCastTimeCounter(1f);
@@ -72,14 +75,36 @@ public class Heal extends Spell {
                     castTimer.clear();
                     owner.setSpellCastPercent(0);
                     casting_sfx.stop();
-
                 }
             }
         }, 0.05f, 0.05f, (int)(castTime/0.05));
     }
 
     public void applySpell(RaidMember target)    {
-        target.receiveHealing(output,criticalChance.isCritical());
+        if(owner.talentBook.getTalent("Perseverance").isSelected() && castCounter == 3)    {
+            target.receiveHealing(output*2,criticalChance.isCritical());
+            System.out.println("Perseverance is used!");
+        }
+        else    {
+            if(castCounter == 3)    {
+                castCounter = 0;
+            }
+            if(owner.talentBook.getTalent("Burst Healer").isSelected())    {
+                target.receiveHealing(output,criticalChance.isCritical());
+                owner.raid.getRaidMembersWithLowestHp(1).get(0).receiveHealing(output, criticalChance.isCritical());
+                System.out.println("Burst Healing used!");
+
+            }
+            else {
+                target.receiveHealing(output, criticalChance.isCritical());
+            }
+        }
+
+        if(owner.talentBook.getTalent("Continuous Renewal").isSelected())    {
+            Renew temp = (Renew) owner.getSpell("Renew");
+            System.out.println("Continuous renewal used!");
+            temp.applySpell();
+        }
     }
     public void applySpell(RaidMember target, int output)    {
         target.receiveHealing(output,criticalChance.isCritical());

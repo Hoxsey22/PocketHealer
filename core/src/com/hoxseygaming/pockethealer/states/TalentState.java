@@ -4,13 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
@@ -19,46 +19,43 @@ import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.talent.Talent;
 import com.hoxseygaming.pockethealer.talent.TalentBook;
 import com.hoxseygaming.pockethealer.talent.TalentTooltip;
+import com.hoxseygaming.pockethealer.talent.TalentWindow;
 
 /**
  * Created by Hoxsey on 7/2/2017.
  */
 public class TalentState extends State {
 
-    public Image background;
     public Stage stage;
     public Player player;
     public Assets assets;
     public TalentBook talentBook;
-    public TalentTooltip talentTooltip;
-    public Image title;
+    public TalentWindow talentWindow;
+    public Image background;
 
     public TalentState(StateManager sm, Assets assets, Player player) {
         super(sm);
         this.assets = assets;
 
-        title = new Image(assets.getTexture(assets.talentStateTitle));
-        title.setBounds(PocketHealer.WIDTH/2 - (100), PocketHealer.HEIGHT -100, 200,100);
-
-        background = new Image(assets.getTexture(assets.battleBg2));
-        background.setSize(PocketHealer.WIDTH, PocketHealer.HEIGHT);
+        background = new Image(assets.getTexture(assets.talentStateBg));
+        background.setBounds(0,0,PocketHealer.WIDTH,PocketHealer.HEIGHT);
 
         stage = new Stage(new FitViewport(PocketHealer.WIDTH, PocketHealer.HEIGHT));
 
         this.player = player;
+        player.setAssets(assets);
 
-        talentBook = new TalentBook(assets);
-        talentTooltip = new TalentTooltip(assets);
+        talentBook = new TalentBook(player);
+
+        talentWindow = new TalentWindow(talentBook,assets);
 
         stage.addActor(background);
-        stage.addActor(title);
-        stage.addActor(talentBook);
-        stage.addActor(talentTooltip);
+        stage.addActor(talentWindow);
     }
 
     @Override
     protected void handleInput() {
-        Gdx.input.setInputProcessor(stage/*new InputProcessor() {
+        Gdx.input.setInputProcessor( new InputProcessor() {
             @Override
             public boolean keyDown(int keycode) {
                 return false;
@@ -77,13 +74,26 @@ public class TalentState extends State {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
-                Talent selectedTalent = (Talent) talentBook.hit(coord.x,coord.y, false);
-                if(selectedTalent != null)  {
-                    System.out.println("Talent selected: "+selectedTalent.name);
-                    System.out.println("Selected talent's partner is : "+selectedTalent.partner.name);
-                    selectedTalent.selected();
+                System.out.println("[ x: "+coord.x+" y: "+coord.y+"]" );
+                if(coord.y > 70) {
+                    Talent selectedTalent = (Talent) talentWindow.hit(coord.x, coord.y, false);
+                    if (selectedTalent != null) {
+                        System.out.println("Talent selected: " + selectedTalent.name);
+                        System.out.println("Selected talent's partner is : " + selectedTalent.partner.name);
+                        selectedTalent.selected();
+                        talentWindow.tooltip.fire(selectedTalent,(int)coord.x,(int)coord.y);
+                        System.out.println("Is Talent selected? -" + selectedTalent.isSelected());
+                    }
                 }
-                System.out.println("Is Talent selected? -"+selectedTalent.isSelected());
+                else    {
+                    Actor done = talentWindow.hit(coord.x,coord.y,false);
+                    if(done != null) {
+                        if (done.getName().equals("done")) {
+                            player.setTalentBook(talentBook);
+                            sm.push(new EncounterState(sm,player));
+                        }
+                    }
+                }
                 return false;
             }
 
@@ -106,44 +116,63 @@ public class TalentState extends State {
             public boolean scrolled(int amount) {
                 return false;
             }
-        }*/);
+        });
+
 
     }
 
     public void handleTooltip() {
         talentBook.addListener( new ClickListener() {
             @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchDown(event, x, y, pointer, button);
+                System.out.println("[ x: "+x+" y: "+y+"]" );
+                if(y > 70) {
+                    System.out.println("********");
+                    Talent selectedTalent = (Talent) talentWindow.hit(x, y, false);
+                    if (selectedTalent != null) {
+                        System.out.println("Talent selected: " + selectedTalent.name);
+                        System.out.println("Selected talent's partner is : " + selectedTalent.partner.name);
+                        talentWindow.tooltip.fire(selectedTalent,(int)x,(int)y);
+                        selectedTalent.selected();
+                        System.out.println("Is Talent selected? -" + selectedTalent.isSelected());
+                    }
+                }
+                else    {
+                    Actor done = talentWindow.hit(x,y,false);
+                    System.out.println("---------");
+                    if(done != null) {
+                        if (done.getName().equals("done")) {
+                            player.setTalentBook(talentBook);
+                            sm.push(new EncounterState(sm,player));
+                        }
+                    }
+                }
+
+
+                return true;
+            }
+            @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 //Vector2 coord = stage.screenToStageCoordinates(new Vector2(x,y));
-                Talent hoverOverTalent = (Talent) talentBook.hit(x,y, false);
-                talentTooltip.fire(hoverOverTalent,(int)x,(int)y);
+                Talent hoverOverTalent = (Talent) talentWindow.hit(x,y, false);
+                if(hoverOverTalent != null)
+                    talentWindow.tooltip.fire(hoverOverTalent,(int)x,(int)y);
             }
 
             @Override
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                talentTooltip.setLocation(-100,-100);
-                talentTooltip.setActive(false);
+                talentWindow.tooltip.setActive(false);
             }
 
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Talent selectedTalent = (Talent) talentBook.hit(x,y, false);
-                if(selectedTalent != null)  {
-                    System.out.println("Talent selected: "+selectedTalent.name);
-                    System.out.println("Selected talent's partner is : "+selectedTalent.partner.name);
-                    selectedTalent.selected();
-                }
-                System.out.println("Is Talent selected? -"+selectedTalent.isSelected());
 
-                return super.touchDown(event, x, y, pointer, button);
-            }
         });
     }
 
     @Override
     public void update(float dt) {
         handleInput();
-        handleTooltip();
+       // handleTooltip();
     }
 
     @Override

@@ -18,7 +18,7 @@ public class Hogger extends Boss {
     public float autoAttackTimer;
 
     public Hogger(Raid enemies, Assets assets) {
-        super("Hogger", 12000, enemies, assets);
+        super("Hogger", 12000, enemies, assets, false);
 
         damage = 20;
         autoAttackTimer = 2f;

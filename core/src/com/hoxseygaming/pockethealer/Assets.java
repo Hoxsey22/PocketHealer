@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -38,13 +37,18 @@ public class Assets {
     public String redBar = "red_bar.png";
     public String redOutlineBar = "red_outline_bar.png";
     public String greenBar = "green_bar.png";
+    public String yellowFill = "yellow_hp_fill.png";
+    public String redFill = "red_hp_fill.png";
+    public String greenFill = "green_hp_fill.png";
 
     public String raidFrameIdle = "raid_frame_idle.png";
     public String raidFrameSelected = "raid_frame_selected.png";
 
-    public String manaBar = "mana_bar.png";
+    public String hpManaBar = "hp_mana_bar.png";
+    public String manaFill = "mana_fill.png";
     public String castBar = "casting_bar.png";
     public String cooldownBar = "cooldown_bar.png";
+    public String spellBar = "spell_bar.png";
 
     public String battleMusic = "sfx/battle_music.ogg";
     public String barrierSFX ="sfx/barrier_sfx.mp3";
@@ -52,21 +56,39 @@ public class Assets {
     public String healSFX ="sfx/heal_sfx.mp3";
     public String hotSFX ="sfx/hot_sfx.mp3";
 
-    public String floatingFnt = "floating_font.fnt";
-    public String manaFnt = "mana_font.fnt";
-    public String cooldownFnt = "cooldown_font.fnt";
+    public String floatingFnt = "fonts/floating_font.fnt";
+    public String manaFnt = "fonts/mana_font.fnt";
+    public String cooldownFnt = "fonts/cooldown_font.fnt";
+    public String talentTooltipFont = "fonts/talent_tooltip_font.fnt";
 
-    public String continuousRenewalIcon = "continuous_renewal.png";
-    public String lifeboomIcon = "lifeboom.png";
-    public String perseveranceIcon = "perseverance.png";
-    public String burstHealerIcon = "burst_healer.png";
-    public String innerFocusIcon = "inner_focus.png";
-    public String workTogetherIcon = "work_together.png";
-    public String selectedTalent = "selected_talent.png";
-    public String talentStateTitle = "talent_screen_title.png";
+    public String continuousRenewalIcon = "talent_state/continuous_renewal.png";
+    public String lifeboomIcon = "talent_state/lifeboom.png";
+    public String perseveranceIcon = "talent_state/perseverance.png";
+    public String burstHealerIcon = "talent_state/burst_healer.png";
+    public String innerFocusIcon = "talent_state/inner_focus.png";
+    public String workTogetherIcon = "talent_state/work_together.png";
+    public String selectedTalent = "talent_state/selected_talent_frame.png";
+    public String talentWindow = "talent_state/talent_window.png";
+    public String talentBg = "talent_state/unselected_talent_frame.png";
+    public String talentStateBg = "talent_state/bg.png";
+    public String doneButton = "talent_state/done_button.png";
+    public String toolTipFrame = "talent_state/tooltip_frame.png";
 
-    public String talentBg = "talent_bg.png";
-    public String talentTooltip = "talent_tooltip_font.fnt";
+    public String miniBossIcon = "level_mini_boss.png";
+    public String bossIcon = "level_boss.png";
+
+    public String mmBG = "main_menu_state/bg.png";
+    public String mmPlayButtonIdle = "main_menu_state/play_button_idle.png";
+    public String mmPlayButtonHover = "main_menu_state/play_button_hover.png";
+    public String mmContinueButtonIdle = "main_menu_state/play_button_idle.png";
+    public String mmContinueButtonHover = "main_menu_state/play_button_hover.png";
+    public String mmMusic = "mm_music.ogg";
+    public String names[] = {"Hoxsey","Coco","Mop", "Zern","Ash","Captazn","Brian"};
+    public String hoggerChat = "Hey, we need a healer this guys keeps giving us trouble...\n" +
+            "he does a lot of cleave damage so watch out.";
+
+
+
 
 
     public Assets() {
@@ -99,8 +121,14 @@ public class Assets {
         manager.load(redBar, Texture.class);
         manager.load(redOutlineBar, Texture.class);
         manager.load(greenBar, Texture.class);
+        manager.load(redFill, Texture.class);
+        manager.load(yellowFill, Texture.class);
+        manager.load(greenFill, Texture.class);
 
-        manager.load(manaBar, Texture.class);
+
+        manager.load(hpManaBar, Texture.class);
+        manager.load(manaFill, Texture.class);
+
         manager.load(castBar, Texture.class);
         manager.load(cooldownBar, Texture.class);
 
@@ -116,15 +144,29 @@ public class Assets {
         manager.load(innerFocusIcon, Texture.class);
         manager.load(workTogetherIcon, Texture.class);
         manager.load(selectedTalent, Texture.class);
-        manager.load(talentStateTitle, Texture.class);
+        manager.load(talentWindow, Texture.class);
+        manager.load(spellBar, Texture.class);
 
         manager.load(talentBg, Texture.class);
+        manager.load(doneButton, Texture.class);
+        manager.load(toolTipFrame, Texture.class);
+        manager.load(talentStateBg, Texture.class);
+
+        manager.load(miniBossIcon, Texture.class);
+        manager.load(bossIcon, Texture.class);
+
+        manager.load(mmBG, Texture.class);
+        manager.load(mmPlayButtonIdle, Texture.class);
+        manager.load(mmPlayButtonHover, Texture.class);
+        manager.load(mmContinueButtonIdle, Texture.class);
+        manager.load(mmContinueButtonHover, Texture.class);
 
 
     }
 
     public void loadSounds() {
         manager.load(battleMusic, Music.class);
+        //manager.load(mmMusic, Music.class);
         manager.load(barrierSFX, Sound.class);
         manager.load(castingSFX, Sound.class);
         manager.load(healSFX, Sound.class);
@@ -135,7 +177,8 @@ public class Assets {
     public void loadPositions() {
         for(int i = 0; i < 6; i++) {
             for(int j = 0; j < 3; j++) {
-                raidPositions.add(new Vector2(20+(j*154), 660-(i*79)));
+                //raidPositions.add(new Vector2(20+(j*154), 660-(i*79)));
+                raidPositions.add(new Vector2(20+(j*147), 660-(i*70)));
             }
         }
 
@@ -146,10 +189,8 @@ public class Assets {
         manager.load(floatingFnt, BitmapFont.class);
         manager.load(manaFnt, BitmapFont.class);
         manager.load(cooldownFnt, BitmapFont.class);
-        manager.load(talentTooltip, BitmapFont.class);
+        manager.load(talentTooltipFont, BitmapFont.class);
     }
-
-
 
     public Texture getTexture(String filename)   {
         return manager.get(filename, Texture.class);

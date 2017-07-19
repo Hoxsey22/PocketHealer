@@ -36,7 +36,7 @@ public class Entity extends Actor{
     public Entity(int id, String role, Assets assets) {
         this.assets = assets;
         this.setBounds(assets.raidPositions.get(id).x,
-                assets.raidPositions.get(id).y,134,64);
+                assets.raidPositions.get(id).y,147,70);
 
         System.out.println("ID: "+id+", x:"+getX()+" y:"+getY()+", width:"+getWidth()+", height:"+getHeight());
 
@@ -156,8 +156,10 @@ public class Entity extends Actor{
     }
 
     public void removeEffect(Spell.EffectType buff)    {
-        effects.remove(effects.indexOf(assets.getEffectImage(buff)));
-        System.out.println(buff.toString()+" REMOVED");
+        if(effects.indexOf(assets.getEffectImage(buff)) != -1) {
+            effects.remove(effects.indexOf(assets.getEffectImage(buff)));
+            System.out.println(buff.toString() + " REMOVED");
+        }
     }
 
     public boolean containsEffects(Spell.EffectType buff)   {

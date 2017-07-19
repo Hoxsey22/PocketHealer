@@ -21,7 +21,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     public RaidMember(int id, String role, Assets assets)  {
         super(id,role,assets);
-        healthBar = new HealthBar((int)getX(),(int)getY());
+        healthBar = new HealthBar(this,(int)getX(),(int)getY(),(int)getWidth(),(int) getHeight());
         frame = assets.getTexture("raid_frame_idle.png");
         setRoleImage();
         floatingTextManager = new FloatingTextManager(this);
@@ -32,6 +32,12 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
     public void takeDamage(int output) {
         super.takeDamage(output);
         floatingTextManager.add(output, FloatingText.DAMAGE);
+    }
+
+    @Override
+    public void receiveHealing(int output) {
+        super.receiveHealing(output);
+        floatingTextManager.add(output,FloatingText.HEAL);
     }
 
     @Override
@@ -73,23 +79,32 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     @Override
     public int compareTo(RaidMember rm) {
-        return hp - rm.getHp();
+        return (int)(getHealthPercent()*100) - (int)(rm.getHealthPercent()*100);
     }
 
     @Override
     public int compare(RaidMember rm1, RaidMember rm2) {
-        return rm1.getHp() - rm2.getHp();
+        return (int)(rm1.getHealthPercent()*100) - (int)(rm2.getHealthPercent()*100);
+    }
+
+    public float getHealthPercent() {
+        return (float)hp/(float)maxHp;
+    }
+
+    @Override
+    public String toString() {
+        return id+":"+role+" hp:"+getHealthPercent();
     }
 
     @Override
     public void draw(Batch batch, float alpha) {
         batch.draw(frame, getX(),getY(),getWidth(),getHeight());
         if(!isDead()) {
-            batch.draw(roleImage, getX()+5, getY() + getHeight()- 39, 34,34);
+            batch.draw(roleImage, getX()+8, getY() + getHeight()- 39, 34,34);
             for (int i = 0; i < effects.size(); i++) {
-                batch.draw(effects.get(i), healthBar.x + healthBar.WIDTH - 20 * (i) - 20, healthBar.y + healthBar.HEIGHT + 5, 20, 20);
+                batch.draw(effects.get(i), healthBar.x + healthBar.width - 20 * (i) - 20, healthBar.y + healthBar.height + 5, 20, 20);
             }
-            healthBar.draw(batch, alpha, getHpPercent(), getShieldPercent());
+            healthBar.draw(batch, alpha);
             floatingTextManager.draw(batch, alpha);
         }
         else {

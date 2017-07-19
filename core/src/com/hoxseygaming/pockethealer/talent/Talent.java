@@ -2,45 +2,61 @@ package com.hoxseygaming.pockethealer.talent;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Player;
 
 /**
  * Created by Hoxsey on 7/1/2017.
  */
 public class Talent extends Actor{
 
+    private Player owner;
     public String name;
     public int levelRequirement;
     public String description;
     public Texture image;
+    private Assets assets;
     public boolean isSelected;
     public Talent partner;
-    public Texture selectedImage;
-
-    @Override
-    public boolean hasParent() {
-        return super.hasParent();
-    }
 
     /**
      * @param name
      * @param levelReq
      * @param desc
      */
-    public Talent(final String name, int levelReq, String desc) {
+    public Talent(Player owner, String name, int levelReq, String desc) {
+        this.owner = owner;
         this.name = name;
+        assets = owner.getAssets();
         levelRequirement = levelReq;
         description = desc;
         isSelected = false;
-        setSize(215, 80);
-        /*
-        bounds = new Rectangle();
-        bounds.setSize(215,80);
-        */
+        setImage();
+        setSize(174, 111);
+    }
+
+    public void setImage() {
+        switch (name)   {
+            case "Continuous Renewal":
+                image = assets.getTexture(assets.continuousRenewalIcon);
+                break;
+            case "Lifeboom":
+                image = assets.getTexture(assets.lifeboomIcon);
+                break;
+            case "Perseverance":
+                image = assets.getTexture(assets.perseveranceIcon);
+                break;
+            case "Burst Healer":
+                image = assets.getTexture(assets.burstHealerIcon);
+                break;
+            case "Inner Focus":
+                image = assets.getTexture(assets.innerFocusIcon);
+                break;
+            case "Work Together":
+                image = assets.getTexture(assets.workTogetherIcon);
+                break;
+        }
     }
 
     public void setPartner(Talent newPartner)    {
@@ -64,14 +80,6 @@ public class Talent extends Actor{
         this.description = description;
     }
 
-    public Texture getImage() {
-        return image;
-    }
-
-    public void setImage(Texture image) {
-        this.image = image;
-    }
-
     public boolean isSelected() {
         return isSelected;
     }
@@ -87,10 +95,14 @@ public class Talent extends Actor{
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(image,getX(),getY(), getWidth(),getHeight());
-        if(isSelected()) {
-            batch.draw(selectedImage, getX(), getY(), getWidth(), getHeight());
+        if(!isSelected()) {
+            batch.draw(assets.getTexture(assets.talentBg), getX(), getY(), getWidth(), getHeight());
         }
+        else{
+            batch.draw(assets.getTexture(assets.selectedTalent), getX(), getY(), getWidth(), getHeight());
+        }
+        batch.draw(image, getX(),getY(),getWidth(),getHeight());
+
 
     }
 }

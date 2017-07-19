@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.player.bars;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -18,19 +19,23 @@ public class ManaBar extends Actor {
 
     private Player owner;
     private Assets assets;
+    private Texture manaBar;
+    private Texture manaFill;
     private BitmapFont font;
     private Label label;
 
     public ManaBar(Player player, Assets assets)    {
-        setBounds(20,190,442,40);
+        setBounds(0,95,480,49);
         owner = player;
         this.assets = assets;
+        manaBar = assets.getTexture(assets.hpManaBar);
+        manaFill = assets.getTexture(assets.manaFill);
         setupFont();
     }
 
     private void setupFont()    {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
-        font = assets.getFont("mana_font.fnt");
+        font = assets.getFont(assets.manaFnt);
         labelStyle.font = font;
         labelStyle.fontColor = Color.WHITE;
 
@@ -49,10 +54,17 @@ public class ManaBar extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        batch.draw(manaBar, getX(),getY(),getWidth(),getHeight());
+        batch.draw(manaFill, getX()+11,getY()+5,(getWidth()-20)*getPercentage(),37);
+        label.setText(owner.getMana()+"/"+owner.getMaxMana());
+        label.draw(batch,parentAlpha);
+
+        /*
         batch.draw(assets.getTexture("black_bar.png"), getX(),getY(),getWidth(),getHeight());
         batch.draw(assets.getTexture("white_bar.png"), getX()+4,getY()+4,getWidth()-8,getHeight()-8);
         batch.draw(assets.getTexture("mana_bar.png"), getX()+4,getY()+4,(getWidth()-8)*getPercentage(),getHeight()-8);
         label.setText(owner.getMana()+"/"+owner.getMaxMana());
         label.draw(batch,parentAlpha);
+        */
     }
 }

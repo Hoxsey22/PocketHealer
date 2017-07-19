@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer;
 
+import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.spells.Barrier;
 import com.hoxseygaming.pockethealer.encounters.spells.FlashHeal;
 import com.hoxseygaming.pockethealer.encounters.spells.Heal;
@@ -7,6 +8,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Renew;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 import com.hoxseygaming.pockethealer.encounters.player.bars.SpellBar;
+import com.hoxseygaming.pockethealer.talent.TalentBook;
 
 import java.util.ArrayList;
 
@@ -18,18 +20,19 @@ public class Player {
     public int maxMana;
     public int mana;
     public RaidMember target;
+    public Raid raid;
     public SpellBar spellBar;
     public ArrayList<Spell> spells;
     public float spellCastPercent;
     public boolean isCasting;
-    private Assets assets;
+    public Assets assets;
+    public TalentBook talentBook;
 
     public Player() {
         maxMana = 1000;
         mana = 1000;
         spellCastPercent = 0;
         spells = new ArrayList<Spell>();
-        spellBar = new SpellBar();
         //addDebuggingSpell();
         isCasting = false;
     }
@@ -62,6 +65,15 @@ public class Player {
 
     public Spell getSpell(int pos) {
         return spells.get(pos);
+    }
+
+    public Spell getSpell(String name) {
+        for(int i = 0; i < spells.size(); i++)   {
+            if(name.equals(spells.get(i).name))    {
+                return spells.get(i);
+            }
+        }
+        return null;
     }
 
     public int getMaxMana() {
@@ -117,7 +129,23 @@ public class Player {
 
     }
 
+    public void setRaid(Raid raid)   {
+        this.raid = raid;
+    }
+
+    public void setTalentBook(TalentBook talentBook) {
+        this.talentBook = talentBook;
+    }
+
     public void setAssets(Assets assets) {
         this.assets = assets;
+    }
+
+    public Assets getAssets()   {
+        return assets;
+    }
+
+    public void createSpellBar()    {
+        spellBar = new SpellBar(assets);
     }
 }

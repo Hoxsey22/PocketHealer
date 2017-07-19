@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.player.bars;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.EncounterData;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
@@ -14,11 +15,12 @@ import java.util.ArrayList;
 public class SpellBar extends Group {
 
     public ArrayList<Spell> spells;
-    //public Texture background;
+    public Texture image;
+    public Assets assets;
 
-    public SpellBar()   {
+    public SpellBar(Assets assets)   {
         spells = new ArrayList<Spell>();
-        //background = EncounterData.blackBar;
+        image = assets.getTexture(assets.spellBar);
     }
 
     public void addSpell(Spell spell)  {
@@ -36,6 +38,7 @@ public class SpellBar extends Group {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        batch.draw(image,0,0,480,97);
         super.draw(batch, parentAlpha);
     }
 }

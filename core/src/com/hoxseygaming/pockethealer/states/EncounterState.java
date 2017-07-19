@@ -4,23 +4,21 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hogger;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.player.bars.CastBar;
 import com.hoxseygaming.pockethealer.encounters.player.bars.ManaBar;
-import com.hoxseygaming.pockethealer.Player;
-import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hogger;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 /**
@@ -38,18 +36,18 @@ public class EncounterState extends State {
     public Assets assets;
 
 
-    public EncounterState(StateManager sm, Assets assets) {
+    public EncounterState(StateManager sm, Player player) {
         super(sm);
-        this.assets = assets;
+        this.player = player;
+
         create();
     }
 
     @Override
     public void create() {
         //super.create();
-
-        player = new Player();
-        player.setAssets(assets);
+        assets = player.assets;
+        player.createSpellBar();
         player.addDebuggingSpell();
 
         manaBar = new ManaBar(player, assets);
@@ -57,6 +55,7 @@ public class EncounterState extends State {
         castBar = new CastBar(player, assets);
 
         raid = new Raid(10, assets);
+        player.setRaid(raid);
 
         hogger = new Hogger(raid, assets);
 

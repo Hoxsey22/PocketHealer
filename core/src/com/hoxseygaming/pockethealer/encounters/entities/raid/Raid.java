@@ -137,7 +137,24 @@ public class Raid extends Group {
     }
 
     public ArrayList<RaidMember> getRaidMembersWithLowestHp(int cap)    {
-        ArrayList<RaidMember> lowest = new ArrayList<RaidMember>(cap);
+        ArrayList<RaidMember> lowest = new ArrayList<>(cap);
+        ArrayList<RaidMember> temp = new ArrayList<>();
+        temp.addAll(raidMembers);
+
+        Collections.sort(temp);
+        System.out.println(temp.toString());
+        int counter = 0;
+        for(int i = 0; i < temp.size(); i++) {
+            if (!temp.get(i).isSelected()) {
+                lowest.add(temp.get(i));
+                counter++;
+                if(counter == cap)    {
+                    return lowest;
+                }
+            }
+        }
+        return null;
+        /*
         for (int i = 0; i < raidMembers.size(); i++)  {
             if(!raidMembers.get(i).isSelected()) {
                 if (lowest.size() < cap) {
@@ -149,8 +166,7 @@ public class Raid extends Group {
                     }
                 }
             }
-        }
-        return lowest;
+        }*/
     }
 
     public boolean tanksAlive() {

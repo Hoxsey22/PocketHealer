@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
@@ -23,7 +22,6 @@ import com.hoxseygaming.pockethealer.PocketHealer;
  */
 public class LoadingState extends State {
 
-    private Player player;
     private Image logo;
     private float progress;
     private ShapeRenderer shapeRenderer;
@@ -33,11 +31,14 @@ public class LoadingState extends State {
     private Label loadingText;
     private BitmapFont font;
     private Label.LabelStyle textStyle;
+    private MainMenuState nextState;
+    private Player player;
 
-    public LoadingState(StateManager sm, Player player) {
+    public LoadingState(StateManager sm) {
         super(sm);
+        player = new Player();
 
-        this.player = player;
+
 
         logo = new Image(new Texture("logo_screen.png"));
         logo.setSize(PocketHealer.WIDTH,PocketHealer.HEIGHT);
@@ -52,13 +53,12 @@ public class LoadingState extends State {
         isReady = false;
 
         assets = new Assets();
+        player.setAssets(assets);
 
         stage = new Stage(new FitViewport(PocketHealer.WIDTH,PocketHealer.HEIGHT));
 
         stage.addActor(logo);
         stage.addActor(loadingText);
-
-
 
         assets.load();
 
@@ -66,7 +66,7 @@ public class LoadingState extends State {
 
     private void createFont()   {
         textStyle = new Label.LabelStyle();
-        font = new BitmapFont(Gdx.files.internal("loading_font.fnt"));
+        font = new BitmapFont(Gdx.files.internal("fonts/loading_font.fnt"));
         textStyle.font = font;
 
         loadingText = new Label("Loading...",textStyle);
@@ -97,8 +97,9 @@ public class LoadingState extends State {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if(isReady)
                     //sm.push(new TalentState(sm,assets, player));
-                    sm.push(new EncounterState(sm,assets));
+                    //sm.push(new EncounterState(sm,assets));
                     //sm.push(new TestState(sm,assets));
+                    sm.push(new MainMenuState(sm, player));
                 return false;
             }
 

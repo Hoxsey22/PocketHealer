@@ -2,7 +2,6 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.hoxseygaming.pockethealer.Assets;
-import com.hoxseygaming.pockethealer.encounters.EncounterData;
 import com.hoxseygaming.pockethealer.encounters.entities.Entity;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
@@ -14,13 +13,15 @@ public class Boss extends Entity {
 
     public Raid enemies;
     public RaidMember target;
+    public boolean isMini;
 
 
-    public Boss(String name, int maxHp, Raid enemies, Assets assets) {
+    public Boss(String name, int maxHp, Raid enemies, Assets assets, boolean isMini) {
         super(name, maxHp, assets);
         setBounds(20, 740, 445, 40);
         this.enemies = enemies;
         target = getMainTank();
+        this.isMini = isMini;
     }
 
     public RaidMember getMainTank() {

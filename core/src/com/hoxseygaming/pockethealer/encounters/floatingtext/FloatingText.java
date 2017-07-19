@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 import java.util.ArrayList;
@@ -33,8 +34,10 @@ public class FloatingText {
     private Timer timer;
     private int duration;
     public boolean isAnimating;
+    public Assets assets;
 
-    public FloatingText(int id, RaidMember raidMember, int damage, int type)   {
+    public FloatingText(Assets assets, int id, RaidMember raidMember, int damage, int type)   {
+        this.assets = assets;
         this.id = id;
         owner = raidMember;
         this.damage = ""+damage;
@@ -47,12 +50,12 @@ public class FloatingText {
 
     public void create()    {
         style = new Label.LabelStyle();
-        font = new BitmapFont(Gdx.files.internal("floating_font.fnt"));
+        font = assets.getFont(assets.floatingFnt);
         style.font = font;
         style.fontColor = Color.WHITE;
 
         floatingText = new Label("",style);
-        floatingText.setSize(1,1);
+        floatingText.setScale(0.5f);
         addText();
 
         floatingText.setAlignment(Align.center);
