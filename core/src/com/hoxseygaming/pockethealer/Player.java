@@ -27,14 +27,18 @@ public class Player {
     public boolean isCasting;
     public Assets assets;
     public TalentBook talentBook;
+    public int level;
 
-    public Player() {
+    public Player(Assets assets) {
+        level = 1;
         maxMana = 1000;
         mana = 1000;
         spellCastPercent = 0;
         spells = new ArrayList<Spell>();
+        setAssets(assets);
         //addDebuggingSpell();
         isCasting = false;
+        talentBook = new TalentBook(this);
     }
 
     public void addDebuggingSpell() {
@@ -74,6 +78,14 @@ public class Player {
             }
         }
         return null;
+    }
+
+    public void setLevel(int level)  {
+        this.level = level;
+    }
+
+    public int getLevel()   {
+        return level;
     }
 
     public int getMaxMana() {

@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.timers.CleaveTimer;
@@ -14,12 +13,12 @@ public class Hogger extends Boss {
 
     public CleaveTimer cleaveTimer;
     public TankSwapTimer tankSwapTimer;
-    public Texture namePlate;
     public float autoAttackTimer;
 
-    public Hogger(Raid enemies, Assets assets) {
-        super("Hogger", 12000, enemies, assets, false);
+    public Hogger(Assets assets) {
+        super("Hogger", 12000, new Raid(10, assets), assets);
 
+        id = 1;
         damage = 20;
         autoAttackTimer = 2f;
         namePlate = assets.getTexture("hogger_name.png");
@@ -28,13 +27,17 @@ public class Hogger extends Boss {
     }
 
     public void start() {
+        super.start();
         cleaveTimer.startTimer();
         tankSwapTimer.startTimer();
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        batch.draw(namePlate, getX()+(getWidth()/2)-((getWidth()/3)/2) ,getY()+2,getWidth()/3,getHeight()-5);
     }
 }

@@ -38,6 +38,7 @@ public class MainMenuState extends State{
 
         bg = new Image(assets.getTexture(assets.mmBG));
         bg.setBounds(0,0, PocketHealer.WIDTH, PocketHealer.HEIGHT);
+        bg.setName("bg");
         playButton = new Image(assets.getTexture(assets.mmPlayButtonIdle));
         playButton.setPosition(bg.getWidth()/2 - playButton.getWidth()/2, 100);
         playButton.setName("play");
@@ -71,7 +72,7 @@ public class MainMenuState extends State{
                 if(hitActor != null  && hitActor.getName().equalsIgnoreCase("play"))    {
                     System.out.println("Hit inside");
                     PocketHealer.music.dispose();
-                    sm.push(new EncounterState(sm, player));
+                    sm.push(new MapState(sm, player));
                 }
                 return false;
             }

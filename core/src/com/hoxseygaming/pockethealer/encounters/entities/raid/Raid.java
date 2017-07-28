@@ -76,8 +76,12 @@ public class Raid extends Group {
                 addDps(14);
                 break;
         }
+    }
 
-
+    public void customRaid(int tanks, int healers, int dps)    {
+        addTank(tanks);
+        addHealer(healers);
+        addDps(dps);
     }
 
     public void addTank(int amount)   {

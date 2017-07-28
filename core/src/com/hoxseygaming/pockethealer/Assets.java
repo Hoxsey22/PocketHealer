@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 import java.util.ArrayList;
@@ -17,50 +18,17 @@ public class Assets {
 
     public AssetManager manager;
     public ArrayList<Vector2> raidPositions;
-    public String dpsIcon = "dps_role_icon.png";
-    public String healerIcon = "healer_role_icon.png";
-    public String tankIcon = "tank_role_icon.png";
+    public ArrayList<Vector2> bossIconPosition;
 
-    public String healIcon = "heal_icon.png";
-    public String renewIcon = "renew_icon.png";
-    public String barrierIcon = "barrier_icon.png";
-    public String flashIcon = "flash_heal_icon.png";
-    public String deathIcon = "death_icon.png";
 
-    public String hoggerName = "hogger_name.png";
 
-    public String battleBg1 = "battle_bg1.png";
-    public String battleBg2 = "battle_bg2.png";
-
-    public String blackBar = "black_bar.png";
-    public String whiteBar = "white_bar.png";
-    public String redBar = "red_bar.png";
-    public String redOutlineBar = "red_outline_bar.png";
-    public String greenBar = "green_bar.png";
-    public String yellowFill = "yellow_hp_fill.png";
-    public String redFill = "red_hp_fill.png";
-    public String greenFill = "green_hp_fill.png";
-
-    public String raidFrameIdle = "raid_frame_idle.png";
-    public String raidFrameSelected = "raid_frame_selected.png";
-
-    public String hpManaBar = "hp_mana_bar.png";
-    public String manaFill = "mana_fill.png";
-    public String castBar = "casting_bar.png";
-    public String cooldownBar = "cooldown_bar.png";
-    public String spellBar = "spell_bar.png";
-
-    public String battleMusic = "sfx/battle_music.ogg";
-    public String barrierSFX ="sfx/barrier_sfx.mp3";
-    public String castingSFX ="sfx/casting_sfx.mp3";
-    public String healSFX ="sfx/heal_sfx.mp3";
-    public String hotSFX ="sfx/hot_sfx.mp3";
-
+    // fonts
     public String floatingFnt = "fonts/floating_font.fnt";
     public String manaFnt = "fonts/mana_font.fnt";
     public String cooldownFnt = "fonts/cooldown_font.fnt";
     public String talentTooltipFont = "fonts/talent_tooltip_font.fnt";
 
+    // pngs
     public String continuousRenewalIcon = "talent_state/continuous_renewal.png";
     public String lifeboomIcon = "talent_state/lifeboom.png";
     public String perseveranceIcon = "talent_state/perseverance.png";
@@ -73,19 +41,70 @@ public class Assets {
     public String talentStateBg = "talent_state/bg.png";
     public String doneButton = "talent_state/done_button.png";
     public String toolTipFrame = "talent_state/tooltip_frame.png";
-
     public String miniBossIcon = "level_mini_boss.png";
     public String bossIcon = "level_boss.png";
-
     public String mmBG = "main_menu_state/bg.png";
     public String mmPlayButtonIdle = "main_menu_state/play_button_idle.png";
     public String mmPlayButtonHover = "main_menu_state/play_button_hover.png";
     public String mmContinueButtonIdle = "main_menu_state/play_button_idle.png";
     public String mmContinueButtonHover = "main_menu_state/play_button_hover.png";
+    public String dpsIcon = "dps_role_icon.png";
+    public String healerIcon = "healer_role_icon.png";
+    public String tankIcon = "tank_role_icon.png";
+    public String healIcon = "heal_icon.png";
+    public String renewIcon = "renew_icon.png";
+    public String barrierIcon = "barrier_icon.png";
+    public String flashIcon = "flash_heal_icon.png";
+    public String deathIcon = "death_icon.png";
+    public String hoggerName = "hogger_name.png";
+    public String battleBg1 = "battle_bg1.png";
+    public String battleBg2 = "battle_bg2.png";
+    public String blackBar = "black_bar.png";
+    public String whiteBar = "white_bar.png";
+    public String redBar = "red_bar.png";
+    public String redOutlineBar = "red_outline_bar.png";
+    public String greenBar = "green_bar.png";
+    public String yellowFill = "yellow_hp_fill.png";
+    public String redFill = "red_hp_fill.png";
+    public String greenFill = "green_hp_fill.png";
+    public String raidFrameIdle = "raid_frame_idle.png";
+    public String raidFrameSelected = "raid_frame_selected.png";
+    public String hpManaBar = "hp_mana_bar.png";
+    public String manaFill = "mana_fill.png";
+    public String castBar = "casting_bar.png";
+    public String cooldownBar = "cooldown_bar.png";
+    public String spellBar = "spell_bar.png";
+    public String mapBg = "map_state/map.png";
+    public String exitButton = "map_state/exit_button.png";
+    public String bossLocation = "map_state/boss_location.png";
+    public String infoFrame = "map_state/info_frame.png";
+    public String spellButton = "map_state/spells_button.png";
+    public String talentButton = "map_state/talent_button.png";
+    public String infoButton = "map_state/info_button.png";
+    public String startButton = "map_state/start_button.png";
+    public String selectedLevel = "map_state/selected_level.png";
+    public String bleedIcon = "bleed_icon.png";
+    public String wampusCatName = "wampus_cat_name.png";
+
+    // music
     public String mmMusic = "mm_music.ogg";
-    public String names[] = {"Hoxsey","Coco","Mop", "Zern","Ash","Captazn","Brian"};
-    public String hoggerChat = "Hey, we need a healer this guys keeps giving us trouble...\n" +
-            "he does a lot of cleave damage so watch out.";
+    public String battleMusic = "sfx/battle_music.ogg";
+
+    // sounds
+    public String barrierSFX ="sfx/barrier_sfx.mp3";
+    public String castingSFX ="sfx/casting_sfx.mp3";
+    public String healSFX ="sfx/heal_sfx.mp3";
+    public String hotSFX ="sfx/hot_sfx.mp3";
+
+    // info strings
+    public String hoggerInfo = "Hogger does tank swapping and cleaves the raid every once in a while.";
+    public String btsInfo = "Bullet Tooth, the Sneaky, doesn't focus on tanks, but on everyone. Random hits a raid member very hard." +
+            "While sometimes dropping items that increase or decrease damage.";
+    public String proctorInfo = "Proctor does heavy tank damage. While sundering random raid members which increase damage taken. Lastly, the Proctor does a roar" +
+            "that damages the entire raid.";
+    public String wampusCatInfo = "Wampus Cat, has two phases, cat and human form. While in cat, she pounces around giving bleeds. While in human form, she just auto attacks.";
+    public String laLechuzaInfo = "La Lechuza will a tank swap and grab random raid members to suck their soul out, healing unless dispelled. After will drop the target" +
+            " from great heights. She does a powerful screech and will summon storms to randomly hit raid.";
 
 
 
@@ -94,6 +113,7 @@ public class Assets {
     public Assets() {
         manager = new AssetManager();
         raidPositions = new ArrayList<Vector2>();
+        bossIconPosition = new ArrayList<Vector2>();
     }
 
     public void load()  {
@@ -161,6 +181,18 @@ public class Assets {
         manager.load(mmContinueButtonIdle, Texture.class);
         manager.load(mmContinueButtonHover, Texture.class);
 
+        manager.load(bossLocation, Texture.class);
+        manager.load(exitButton, Texture.class);
+        manager.load(infoFrame, Texture.class);
+        manager.load(mapBg, Texture.class);
+        manager.load(spellButton, Texture.class);
+        manager.load(talentButton, Texture.class);
+        manager.load(infoButton, Texture.class);
+        manager.load(startButton, Texture.class);
+        manager.load(selectedLevel, Texture.class);
+        manager.load(bleedIcon, Texture.class);
+        manager.load(wampusCatName, Texture.class);
+
 
     }
 
@@ -175,12 +207,17 @@ public class Assets {
     }
 
     public void loadPositions() {
+        // raid position
         for(int i = 0; i < 6; i++) {
             for(int j = 0; j < 3; j++) {
                 //raidPositions.add(new Vector2(20+(j*154), 660-(i*79)));
                 raidPositions.add(new Vector2(20+(j*147), 660-(i*70)));
             }
         }
+
+        // boss icon position
+        bossIconPosition.add(new Vector2(PocketHealer.WIDTH/2 - 50, PocketHealer.HEIGHT/2 - 50)); // hogger
+        bossIconPosition.add(new Vector2(PocketHealer.WIDTH/2 - 50 - 100, PocketHealer.HEIGHT/2 - 50 - 100)); // wampus cat
 
 
     }
@@ -208,12 +245,36 @@ public class Assets {
         return manager.get(filename, BitmapFont.class);
     }
 
+    public String getBossDescription(String name)  {
+        switch (name)   {
+            case "Hogger":
+                return hoggerInfo;
+            case "Bullet Tooth, the Sneaky":
+                return btsInfo;
+            case "Proctor":
+                return proctorInfo;
+            case "Wampus Cat":
+                return wampusCatInfo;
+            case "La Luchuza":
+                return laLechuzaInfo;
+        }
+        return "";
+    }
+
     public Texture getEffectImage(Spell.EffectType effectType) {
         switch (effectType) {
             case SHIELD:
                 return getTexture("barrier_icon.png");
             case HEALOVERTIME:
                 return getTexture("renew_icon.png");
+        }
+        return null;
+    }
+
+    public Texture getEffectImage(Mechanic.Debuff debuff) {
+        switch (debuff) {
+            case BLEED:
+                return this.getTexture(bleedIcon);
         }
         return null;
     }

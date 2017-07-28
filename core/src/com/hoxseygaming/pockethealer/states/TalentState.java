@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
@@ -18,7 +17,6 @@ import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.talent.Talent;
 import com.hoxseygaming.pockethealer.talent.TalentBook;
-import com.hoxseygaming.pockethealer.talent.TalentTooltip;
 import com.hoxseygaming.pockethealer.talent.TalentWindow;
 
 /**
@@ -33,17 +31,18 @@ public class TalentState extends State {
     public TalentWindow talentWindow;
     public Image background;
 
-    public TalentState(StateManager sm, Assets assets, Player player) {
+    public TalentState(StateManager sm, Player player) {
         super(sm);
-        this.assets = assets;
+        assets = player.getAssets();
+        this.player = player;
+
 
         background = new Image(assets.getTexture(assets.talentStateBg));
         background.setBounds(0,0,PocketHealer.WIDTH,PocketHealer.HEIGHT);
 
         stage = new Stage(new FitViewport(PocketHealer.WIDTH, PocketHealer.HEIGHT));
 
-        this.player = player;
-        player.setAssets(assets);
+
 
         talentBook = new TalentBook(player);
 
@@ -90,7 +89,7 @@ public class TalentState extends State {
                     if(done != null) {
                         if (done.getName().equals("done")) {
                             player.setTalentBook(talentBook);
-                            sm.push(new EncounterState(sm,player));
+                            sm.push(new MapState(sm,player));
                         }
                     }
                 }
@@ -140,11 +139,10 @@ public class TalentState extends State {
                 }
                 else    {
                     Actor done = talentWindow.hit(x,y,false);
-                    System.out.println("---------");
                     if(done != null) {
                         if (done.getName().equals("done")) {
                             player.setTalentBook(talentBook);
-                            sm.push(new EncounterState(sm,player));
+                            sm.push(new MapState(sm,player));
                         }
                     }
                 }

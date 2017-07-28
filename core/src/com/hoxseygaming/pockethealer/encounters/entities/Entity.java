@@ -3,7 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.hoxseygaming.pockethealer.Assets;
-import com.hoxseygaming.pockethealer.encounters.EncounterData;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 import java.util.ArrayList;
@@ -155,10 +155,21 @@ public class Entity extends Actor{
         effects.add(assets.getEffectImage(buff));
     }
 
+    public void applyEffect(Mechanic.Debuff debuff)   {
+        effects.add(assets.getEffectImage(debuff));
+    }
+
     public void removeEffect(Spell.EffectType buff)    {
         if(effects.indexOf(assets.getEffectImage(buff)) != -1) {
             effects.remove(effects.indexOf(assets.getEffectImage(buff)));
             System.out.println(buff.toString() + " REMOVED");
+        }
+    }
+
+    public void removeEffect(Mechanic.Debuff debuff)    {
+        if(effects.indexOf(assets.getEffectImage(debuff)) != -1) {
+            effects.remove(effects.indexOf(assets.getEffectImage(debuff)));
+            System.out.println(debuff.toString() + " REMOVED");
         }
     }
 

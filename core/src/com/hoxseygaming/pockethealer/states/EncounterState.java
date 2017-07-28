@@ -14,7 +14,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hogger;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.player.bars.CastBar;
@@ -30,15 +30,17 @@ public class EncounterState extends State {
     public CastBar castBar;
     public Stage stage;
     public Raid raid;
-    public Hogger hogger;
+    public Boss boss;
     public Music bgMusic;
     public Image bgImage;
     public Assets assets;
 
 
-    public EncounterState(StateManager sm, Player player) {
+    public EncounterState(StateManager sm, Player player, Boss boss) {
         super(sm);
         this.player = player;
+        this.boss = boss;
+        raid = boss.enemies;
 
         create();
     }
@@ -54,10 +56,10 @@ public class EncounterState extends State {
 
         castBar = new CastBar(player, assets);
 
-        raid = new Raid(10, assets);
-        player.setRaid(raid);
+        //raid = new Raid(10, assets);
+        player.setRaid(boss.enemies);
 
-        hogger = new Hogger(raid, assets);
+        //hogger = new Hogger(assets);
 
         bgMusic = assets.getMusic("sfx/battle_music.ogg");
         bgMusic.setLooping(true);
@@ -73,14 +75,13 @@ public class EncounterState extends State {
 
         // add all actors to the stage
         stage.addActor(bgImage);
-        stage.addActor(hogger);
+        stage.addActor(boss);
         stage.addActor(raid);
         stage.addActor(player.spellBar);
         stage.addActor(manaBar);
         stage.addActor(castBar);
         //
-        hogger.start();
-        raid.startRaidDamageTimer(hogger);
+        boss.start();
         System.out.println("STAGE - > Width:"+stage.getWidth()+" Height:"+stage.getHeight());
 
     }
@@ -96,7 +97,6 @@ public class EncounterState extends State {
                         player.mana = player.mana - 50;
                         break;
                     case Input.Keys.NUM_2:
-                        hogger.hp = hogger.hp - 50;
                         break;
                     case Input.Keys.NUM_3:
                         raid.raidMembers.get(0).takeDamage(50);
@@ -167,6 +167,7 @@ public class EncounterState extends State {
     @Override
     public void update(float dt) {
         handleInput();
+        boss.update();
     }
 
     @Override
