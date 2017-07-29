@@ -21,9 +21,13 @@ public class WampusCat extends Boss {
 
         id = 2;
         damage = 20;
-
+        level = 4;
         namePlate = assets.getTexture(assets.wampusCatName);
 
+    }
+
+    @Override
+    public void create()    {
         humanForm = new HumanForm(this);
         catForm = new CatForm(this);
 
@@ -42,6 +46,7 @@ public class WampusCat extends Boss {
     @Override
     public void start() {
         super.start();
+        create();
         catForm.start();
         autoAttack.start();
     }
@@ -49,14 +54,5 @@ public class WampusCat extends Boss {
     @Override
     public void stop() {
         super.stop();
-    }
-
-    @Override
-    public void update() {
-        super.update();
-        if(this.hp <= 0)    {
-            stop();
-            this.setDead(true);
-        }
     }
 }

@@ -31,16 +31,17 @@ public class Mechanic {
         this.owner = owner;
         target = owner.target;
         isActive = false;
+        create();
     }
 
     public void create()    {
         System.out.println("Mechanic created");
+        timer = new Timer();
     }
 
     public void start()    {
         System.out.println("Timer started!");
         isActive = true;
-        timer = new Timer();
     }
 
     public void stop()  {
@@ -48,6 +49,8 @@ public class Mechanic {
         isActive = false;
         timer.stop();
         timer.clear();
+
+
     }
 
     public void applyMechanic()  {

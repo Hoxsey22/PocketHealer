@@ -16,6 +16,7 @@ public class Button extends Actor {
     public Button(String name, Image image) {
         setName(name);
         this.image = image;
+        setBounds(0,0,image.getWidth(), image.getHeight());
         isHit = false;
     }
 
@@ -36,7 +37,13 @@ public class Button extends Actor {
     }
 
     @Override
+    public void setPosition(float x, float y) {
+        super.setPosition(x, y);
+        image.setPosition(x,y);
+    }
+
+    @Override
     public void draw(Batch batch, float parentAlpha) {
-        image.draw(batch,parentAlpha);
+        image.draw(batch, parentAlpha);
     }
 }

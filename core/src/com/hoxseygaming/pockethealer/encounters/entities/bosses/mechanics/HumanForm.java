@@ -24,7 +24,7 @@ public class HumanForm extends Mechanic{
     public void start() {
         super.start();
 
-        timer.schedule(new Timer.Task() {
+        timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
                 linkedMechanic.start();

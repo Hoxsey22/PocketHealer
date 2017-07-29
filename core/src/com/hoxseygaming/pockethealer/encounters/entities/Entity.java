@@ -93,7 +93,8 @@ public class Entity extends Actor{
                 isDead = true;
                 hp = 0;
                 shield = 0;
-                effects.clear();
+                if(effects != null)
+                    effects.clear();
             }
             getHpPercent();
         }
@@ -285,5 +286,9 @@ public class Entity extends Actor{
 
     public void setAssets(Assets assets)    {
         this.assets = assets;
+    }
+
+    public void reset() {
+        hp = maxHp;
     }
 }

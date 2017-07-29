@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.GameOverFrame;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
@@ -34,13 +35,18 @@ public class EncounterState extends State {
     public Music bgMusic;
     public Image bgImage;
     public Assets assets;
+    public GameOverFrame gameOverFrame;
+    public boolean isDone;
 
 
     public EncounterState(StateManager sm, Player player, Boss boss) {
         super(sm);
         this.player = player;
+        this.player.reset();
+
         this.boss = boss;
-        raid = boss.enemies;
+        this.boss.reset();
+        raid = this.boss.enemies;
 
         create();
     }
@@ -48,9 +54,10 @@ public class EncounterState extends State {
     @Override
     public void create() {
         //super.create();
+        isDone = false;
         assets = player.assets;
-        player.createSpellBar();
-        player.addDebuggingSpell();
+        //player.createSpellBar();
+        //player.addDebuggingSpell();
 
         manaBar = new ManaBar(player, assets);
 
@@ -80,6 +87,7 @@ public class EncounterState extends State {
         stage.addActor(player.spellBar);
         stage.addActor(manaBar);
         stage.addActor(castBar);
+        stage.setDebugAll(true);
         //
         boss.start();
         System.out.println("STAGE - > Width:"+stage.getWidth()+" Height:"+stage.getHeight());
@@ -94,9 +102,12 @@ public class EncounterState extends State {
             public boolean keyDown(int keycode) {
                 switch (keycode)    {
                     case Input.Keys.NUM_1:
-                        player.mana = player.mana - 50;
+                        boss.takeDamage(1000);
                         break;
                     case Input.Keys.NUM_2:
+                        for(int i = 0; i < raid.raidMembers.size(); i++)   {
+                            raid.raidMembers.get(i).takeDamage(50);
+                        }
                         break;
                     case Input.Keys.NUM_3:
                         raid.raidMembers.get(0).takeDamage(50);
@@ -164,10 +175,109 @@ public class EncounterState extends State {
 
     }
 
+    protected void endGameHandleInput() {
+
+        Gdx.input.setInputProcessor(new InputProcessor() {
+            @Override
+            public boolean keyDown(int keycode) {
+                switch (keycode)    {
+                    case Input.Keys.NUM_1:
+                        break;
+                    case Input.Keys.NUM_2:
+                        break;
+                    case Input.Keys.NUM_3:
+                        break;
+                    case Input.Keys.NUM_0:
+                        break;
+                }
+                return false;
+            }
+
+            @Override
+            public boolean keyUp(int keycode) {
+                return false;
+            }
+
+            @Override
+            public boolean keyTyped(char character) {
+                return false;
+            }
+
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
+                String buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
+                if(buttonHit != "") {
+                    switch (buttonHit) {
+                        case "finish":
+                            player.newLevel(boss.getLevel());
+                            bgMusic.stop();
+                            sm.set(new MapState(sm, player));
+                            break;
+                        case "leave":
+                            bgMusic.stop();
+                            sm.set(new MapState(sm, player));
+                            break;
+                        case "reset":
+                            System.out.println("reset");
+                            bgMusic.stop();
+                            sm.set(new EncounterState(sm, player, boss));
+                            break;
+                    }
+
+
+                }
+                return false;
+            }
+
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                return false;
+            }
+
+            @Override
+            public boolean touchDragged(int screenX, int screenY, int pointer) {
+                return false;
+            }
+
+            @Override
+            public boolean mouseMoved(int screenX, int screenY) {
+                return false;
+            }
+
+            @Override
+            public boolean scrolled(int amount) {
+                return false;
+            }
+        });
+
+    }
+
     @Override
     public void update(float dt) {
-        handleInput();
-        boss.update();
+        if(!isDone) {
+            handleInput();
+            if (boss.isDead()) {
+                gameOverFrame = new GameOverFrame(true, assets);
+                stage.addActor(gameOverFrame);
+                gameOverFrame.setDebug(true);
+                boss.stop();
+                raid.stop();
+                isDone = true;
+            } else if (raid.isRaidDead()) {
+                gameOverFrame = new GameOverFrame(false, assets);
+                gameOverFrame.setDebug(true);
+                stage.addActor(gameOverFrame);
+                boss.stop();
+                raid.stop();
+                isDone = true;
+
+            }
+        }
+        else {
+            endGameHandleInput();
+        }
+
     }
 
     @Override

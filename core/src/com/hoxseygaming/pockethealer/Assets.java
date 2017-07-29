@@ -85,6 +85,13 @@ public class Assets {
     public String selectedLevel = "map_state/selected_level.png";
     public String bleedIcon = "bleed_icon.png";
     public String wampusCatName = "wampus_cat_name.png";
+    public String disableBG = "disable_bg.png";
+    public String endGameFrame = "end_game_frame.png";
+    public String finishButton = "finish_button.png";
+    public String resetButton = "reset_button.png";
+    public String leaveButton = "leave_button.png";
+    public String youWin = "you_win_text.png";
+    public String youWiped = "you_wiped_text.png";
 
     // music
     public String mmMusic = "mm_music.ogg";
@@ -192,6 +199,15 @@ public class Assets {
         manager.load(selectedLevel, Texture.class);
         manager.load(bleedIcon, Texture.class);
         manager.load(wampusCatName, Texture.class);
+
+        manager.load(disableBG, Texture.class);
+        manager.load(endGameFrame, Texture.class);
+        manager.load(finishButton, Texture.class);
+        manager.load(resetButton, Texture.class);
+        manager.load(leaveButton, Texture.class);
+        manager.load(youWin, Texture.class);
+        manager.load(youWiped, Texture.class);
+
 
 
     }

@@ -75,6 +75,8 @@ public class MapState extends State {
         stage.addActor(bossList);
         stage.addActor(levelInfo);
 
+        stage.setDebugAll(true);
+
 
     }
 

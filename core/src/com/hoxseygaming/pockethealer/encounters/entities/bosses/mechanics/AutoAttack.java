@@ -22,7 +22,7 @@ public class AutoAttack extends Mechanic {
     public void start() {
         super.start();
 
-        timer.schedule(new Timer.Task() {
+        timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
 
@@ -41,6 +41,7 @@ public class AutoAttack extends Mechanic {
                     timer.clear();
                     return;
                 }
+                System.out.println("AUTO ATTACK!");
             }
         },speed,speed);
     }

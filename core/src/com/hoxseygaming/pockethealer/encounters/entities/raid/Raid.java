@@ -29,7 +29,7 @@ public class Raid extends Group {
         isRaidAlive = true;
     }
 
-    public void startRaidDamageTimer(final Boss t)   {
+    public void start(final Boss t)   {
         final Boss target = t;
 
         raidDamageTimer.schedule(new Timer.Task() {
@@ -51,6 +51,11 @@ public class Raid extends Group {
 
             }
         },3f,1f);
+    }
+
+    public void stop()  {
+        raidDamageTimer.stop();
+        raidDamageTimer.clear();
     }
 
     public void premade(int size)   {
@@ -207,4 +212,12 @@ public class Raid extends Group {
         }
         return true;
     }
+
+    public void reset() {
+        for(int i = 0; i < raidMembers.size(); i++)   {
+            raidMembers.get(i).reset();
+        }
+    }
+
+
 }

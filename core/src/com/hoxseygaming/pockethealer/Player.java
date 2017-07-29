@@ -1,13 +1,13 @@
 package com.hoxseygaming.pockethealer;
 
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.player.bars.SpellBar;
 import com.hoxseygaming.pockethealer.encounters.spells.Barrier;
 import com.hoxseygaming.pockethealer.encounters.spells.FlashHeal;
 import com.hoxseygaming.pockethealer.encounters.spells.Heal;
-import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Renew;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
-import com.hoxseygaming.pockethealer.encounters.player.bars.SpellBar;
 import com.hoxseygaming.pockethealer.talent.TalentBook;
 
 import java.util.ArrayList;
@@ -39,6 +39,7 @@ public class Player {
         //addDebuggingSpell();
         isCasting = false;
         talentBook = new TalentBook(this);
+
     }
 
     public void addDebuggingSpell() {
@@ -56,6 +57,12 @@ public class Player {
 
         for(int i = 0; i < spells.size(); i++)   {
             System.out.println(spellBar.getSpell(i).name+" added to spell bar!");
+        }
+    }
+
+    public void newLevel(int level)  {
+        if(level > this.level)    {
+            this.level = level;
         }
     }
 
@@ -159,5 +166,9 @@ public class Player {
 
     public void createSpellBar()    {
         spellBar = new SpellBar(assets);
+    }
+
+    public void reset() {
+        mana = maxMana;
     }
 }

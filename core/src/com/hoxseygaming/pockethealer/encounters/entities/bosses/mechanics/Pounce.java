@@ -4,11 +4,15 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
+import java.util.ArrayList;
+
 /**
  * Created by Hoxsey on 7/26/2017.
  */
 
 public class Pounce extends Mechanic {
+
+    ArrayList<Bleed> bleeds;
 
     public Pounce(Boss owner) {
         super(owner);
@@ -16,6 +20,7 @@ public class Pounce extends Mechanic {
         name = "Pounce";
         damage = 30;
         speed = 4f;
+        bleeds = new ArrayList<>();
     }
 
     @Override
@@ -33,9 +38,12 @@ public class Pounce extends Mechanic {
                 */
 
                 for (int i = 0; i < temp.length; i++)   {
-                    temp[i].takeDamage(damage);
-                    Bleed bleeds = new Bleed(owner,temp[i]);
-                    bleeds.start();
+                    if(temp[i] != null) {
+                        temp[i].takeDamage(damage);
+                        Bleed bleed = new Bleed(owner, temp[i]);
+                        bleeds.add(bleed);
+                        bleed.start();
+                    }
                 }
 
             }
@@ -45,5 +53,13 @@ public class Pounce extends Mechanic {
     @Override
     public void applyMechanic() {
         super.applyMechanic();
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+        for(int i = 0; i < bleeds.size(); i++)   {
+            bleeds.get(i).stop();
+        }
     }
 }

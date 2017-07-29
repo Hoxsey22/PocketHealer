@@ -19,6 +19,8 @@ public class Boss extends Entity {
     public RaidMember target;
     public ArrayList<Mechanic> mechanics;
     public Texture namePlate;
+    public int level;
+    public int raidSize;
 
     public Boss(String name, int maxHp, Assets assets) {
         super(name, maxHp, assets);
@@ -31,10 +33,14 @@ public class Boss extends Entity {
         super(name, maxHp, assets);
         setBounds(20, 740, 445, 40);
         this.enemies = enemies;
+        raidSize = enemies.raidMembers.size();
         target = getMainTank();
         mechanics = new ArrayList<>();
     }
 
+    public void create()    {
+        System.out.println("boss created!");
+    }
 
     public RaidMember getMainTank() {
        return enemies.getRaidMember(0);
@@ -46,17 +52,13 @@ public class Boss extends Entity {
 
     public void start() {
         System.out.println("BOSS IS NOW ACTIVE!");
-        enemies.startRaidDamageTimer(this);
+        enemies.start(this);
     }
 
     public void stop()  {
         System.out.println("BOSS IS NOW INACTIVE!");
         for (int i = 0; i <  mechanics.size(); i++)
             mechanics.get(i).stop();
-    }
-
-    public void update()    {
-        System.out.println("Updating Boss!");
     }
 
     public void nextThreat() {
@@ -76,6 +78,17 @@ public class Boss extends Entity {
 
     public void setEnemies(Raid enemies)    {
         this.enemies = enemies;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        enemies = new Raid(raidSize, assets);
+        target = getMainTank();
     }
 
     @Override

@@ -56,7 +56,6 @@ public class Bleed extends Mechanic {
                 if(count % (speed/0.01f)   == 0)    {
                     tar.takeDamage(damage);
                     amplify();
-                    System.out.println(name+" tick, "+count);
                 }
             }
         },0.01f,0.01f);

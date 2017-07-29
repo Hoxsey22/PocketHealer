@@ -20,6 +20,8 @@ public class Hogger extends Boss {
 
         id = 1;
         damage = 20;
+        level = 1;
+
         autoAttackTimer = 2f;
         namePlate = assets.getTexture("hogger_name.png");
         cleaveTimer = new CleaveTimer(this,3.5f);

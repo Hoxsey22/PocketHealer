@@ -30,6 +30,8 @@ public class MainMenuState extends State{
         stage = new Stage(new FitViewport(PocketHealer.WIDTH, PocketHealer.HEIGHT));
 
         assets = player.getAssets();
+        player.createSpellBar();
+        player.addDebuggingSpell();
 
         /*music = assets.getMusic(assets.mmMusic);
         music.setLooping(true);

@@ -10,6 +10,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 public class CatForm extends Mechanic{
 
     public Mechanic linkedMechanic;
+    public Pounce pounce;
 
     public CatForm(Boss owner) {
         super(owner);
@@ -18,16 +19,16 @@ public class CatForm extends Mechanic{
         damage = 0;
         speed = 30f;
         duration = 0;
+        pounce = new Pounce(owner);
     }
 
     @Override
     public void start() {
         super.start();
 
-        final Pounce pounce = new Pounce(owner);
         pounce.start();
 
-        timer.schedule(new Timer.Task() {
+        timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
                 pounce.stop();
@@ -41,4 +42,9 @@ public class CatForm extends Mechanic{
         linkedMechanic = mechanic;
     }
 
+    @Override
+    public void stop() {
+        super.stop();
+        pounce.stop();
+    }
 }
