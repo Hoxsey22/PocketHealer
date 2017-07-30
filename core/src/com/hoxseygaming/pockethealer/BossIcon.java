@@ -31,7 +31,7 @@ public class BossIcon extends Actor {
         this.boss = boss;
         setName(boss.name);
         description = assets.getBossDescription(getName());
-        image = new Image(assets.getTexture(assets.bossIcon));
+        image = new Image(assets.getTexture(assets.bossLocation));
         image.setBounds(assets.bossIconPosition.get(boss.id-1).x,assets.bossIconPosition.get(boss.id-1).y, 100, 100);
         glow = new Image(assets.getTexture(assets.selectedLevel));
         glow.setBounds(image.getX(),image.getY(),image.getWidth(), image.getHeight());

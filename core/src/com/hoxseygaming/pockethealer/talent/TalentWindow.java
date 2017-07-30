@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.hoxseygaming.pockethealer.Assets;
-import com.hoxseygaming.pockethealer.PocketHealer;
 
 import java.util.ArrayList;
 
@@ -38,17 +37,32 @@ public class TalentWindow extends Group {
 
         this.talentBook = talentBook;
         setTalentPositions();
-        addActor(talentBook);
+        addActor(this.talentBook);
         addActor(tooltip);
         addActor(doneButton);
 
     }
-    /*
-    @Override
-    public Actor hit(float x, float y, boolean touchable) {
 
-        return talentBook.hit(x,y,touchable);
-    }*/
+    public Talent hit(float x, float y) {
+        Actor hit= talentBook.hit(x,y,false);
+        if(hit != null) {
+            switch (hit.getName()) {
+                case "Continuous Renewal":
+                    return talentBook.getTalent(hit.getName());
+                case "Lifeboom":
+                    return talentBook.getTalent(hit.getName());
+                case "Perseverance":
+                    return talentBook.getTalent(hit.getName());
+                case "Burst Healer":
+                    return talentBook.getTalent(hit.getName());
+                case "Inner Focus":
+                    return talentBook.getTalent(hit.getName());
+                case "Work Together":
+                    return talentBook.getTalent(hit.getName());
+            }
+        }
+        return null;
+    }
 
     public Texture getImage() {
         return image;
@@ -93,7 +107,7 @@ public class TalentWindow extends Group {
     public void setTalentPositions()    {
         ArrayList<Talent> talents = talentBook.talents;
 
-        talents.get(0).setPosition(tooltip.getX(), tooltip.getY()+ tooltip.getHeight() + (talents.get(0).getHeight()* 3));
+        talents.get(0).setPosition(getX()+15, getY()+ tooltip.getHeight() + (talents.get(0).getHeight()* 3));
         talents.get(1).setPosition(talents.get(0).getX() +talents.get(0).getWidth()+ 2, talents.get(0).getY());
         for(int i = 2; i < talents.size(); i = i * 2) {
             talents.get(i).setPosition(talents.get(i-2).getX(), talents.get(i-2).getY() - talents.get(i-2).getHeight());

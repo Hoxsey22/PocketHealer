@@ -28,6 +28,7 @@ public class Talent extends Actor{
     public Talent(Player owner, String name, int levelReq, String desc) {
         this.owner = owner;
         this.name = name;
+        setName(name);
         assets = owner.getAssets();
         levelRequirement = levelReq;
         description = desc;

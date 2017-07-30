@@ -4,12 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
@@ -29,7 +29,7 @@ public class TalentState extends State {
     public Assets assets;
     public TalentBook talentBook;
     public TalentWindow talentWindow;
-    public Image background;
+    public Texture background;
 
     public TalentState(StateManager sm, Player player) {
         super(sm);
@@ -37,18 +37,13 @@ public class TalentState extends State {
         this.player = player;
 
 
-        background = new Image(assets.getTexture(assets.talentStateBg));
-        background.setBounds(0,0,PocketHealer.WIDTH,PocketHealer.HEIGHT);
+        background = assets.getTexture(assets.talentStateBg);
 
         stage = new Stage(new FitViewport(PocketHealer.WIDTH, PocketHealer.HEIGHT));
-
-
 
         talentBook = new TalentBook(player);
 
         talentWindow = new TalentWindow(talentBook,assets);
-
-        stage.addActor(background);
         stage.addActor(talentWindow);
     }
 
@@ -75,7 +70,7 @@ public class TalentState extends State {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
                 System.out.println("[ x: "+coord.x+" y: "+coord.y+"]" );
                 if(coord.y > 70) {
-                    Talent selectedTalent = (Talent) talentWindow.hit(coord.x, coord.y, false);
+                    Talent selectedTalent = talentWindow.hit(coord.x, coord.y);
                     if (selectedTalent != null) {
                         System.out.println("Talent selected: " + selectedTalent.name);
                         System.out.println("Selected talent's partner is : " + selectedTalent.partner.name);
@@ -179,8 +174,15 @@ public class TalentState extends State {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glEnable(GL20.GL_BLEND);
         update(Gdx.graphics.getDeltaTime());
+
+        sb.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
+        sb.begin();
+            sb.draw(background, 0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
+        sb.end();;
+
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
+
 
     }
 
