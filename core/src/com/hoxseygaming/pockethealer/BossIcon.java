@@ -29,14 +29,26 @@ public class BossIcon extends Actor {
     public BossIcon(Assets assets, Boss boss)   {
         this.assets = assets;
         this.boss = boss;
+
         setName(boss.name);
         description = assets.getBossDescription(getName());
+
         image = new Image(assets.getTexture(assets.bossLocation));
-        image.setBounds(assets.bossIconPosition.get(boss.id-1).x,assets.bossIconPosition.get(boss.id-1).y, 100, 100);
+        image.setBounds(assets.bossIconPosition.get(boss.id-1).x,assets.bossIconPosition.get(boss.id-1).y, 50, 50);
+
         glow = new Image(assets.getTexture(assets.selectedLevel));
         glow.setBounds(image.getX(),image.getY(),image.getWidth(), image.getHeight());
+
         setBounds(image.getX(), image.getY(), image.getWidth(), image.getHeight());
+
         System.out.println(this.getDebug());
+    }
+
+    @Override
+    public void setPosition(float x, float y) {
+        super.setPosition(x, y);
+        image.setPosition(x,y);
+        glow.setPosition(x,y);
     }
 
     public void select()    {
@@ -57,9 +69,10 @@ public class BossIcon extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        image.draw(batch, parentAlpha);
-        if(isSelected)    {
+        if(isSelected)
             glow.draw(batch, parentAlpha);
-        }
+        else
+            image.draw(batch, parentAlpha);
+
     }
 }

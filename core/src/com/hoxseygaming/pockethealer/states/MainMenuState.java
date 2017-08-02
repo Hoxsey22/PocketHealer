@@ -2,12 +2,15 @@ package com.hoxseygaming.pockethealer.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.hoxseygaming.pockethealer.AnimatedBackground;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
@@ -18,7 +21,8 @@ import com.hoxseygaming.pockethealer.PocketHealer;
 public class MainMenuState extends State{
 
     public Stage stage;
-    public Image bg;
+    public Image title;
+    public AnimatedBackground animatedBackground;
     public Image playButton;
     public Assets assets;
     private Player player;
@@ -30,6 +34,11 @@ public class MainMenuState extends State{
         stage = new Stage(new FitViewport(PocketHealer.WIDTH, PocketHealer.HEIGHT));
 
         assets = player.getAssets();
+
+        animatedBackground = new AnimatedBackground(assets.getTexture(assets.mmBG),assets.getTexture(assets.mmMain),
+                assets.getTexture(assets.mmFG),false,assets);
+        stage.addActor(animatedBackground);
+
         player.createSpellBar();
         player.addDebuggingSpell();
 
@@ -38,14 +47,19 @@ public class MainMenuState extends State{
         music.setVolume(0.4f);
         music.play();*/
 
-        bg = new Image(assets.getTexture(assets.mmBG));
-        bg.setBounds(0,0, PocketHealer.WIDTH, PocketHealer.HEIGHT);
-        bg.setName("bg");
+        title = new Image(assets.getTexture(assets.title));
+        title.setPosition(PocketHealer.WIDTH/2-title.getWidth()/2,PocketHealer.HEIGHT - title.getHeight());
+       /* title.setBounds(PocketHealer.WIDTH/2 - title.getImageWidth()/2, PocketHealer.HEIGHT/2 - title.getImageHeight()/2 - 100,
+                title.getImageWidth(), title.getImageHeight());*/
+        title.setName("title");
+
         playButton = new Image(assets.getTexture(assets.mmPlayButtonIdle));
-        playButton.setPosition(bg.getWidth()/2 - playButton.getWidth()/2, 100);
+        playButton.setPosition(PocketHealer.WIDTH/2 - playButton.getWidth()/2, 100);
         playButton.setName("play");
-        stage.addActor(bg);
+
+        stage.addActor(title);
         stage.addActor(playButton);
+        animatedBackground.start();
     }
 
     @Override
@@ -73,7 +87,7 @@ public class MainMenuState extends State{
                 System.out.println("Hit");
                 if(hitActor != null  && hitActor.getName().equalsIgnoreCase("play"))    {
                     System.out.println("Hit inside");
-                    PocketHealer.music.dispose();
+                    animatedBackground.stop();
                     sm.push(new MapState(sm, player));
                 }
                 return false;
@@ -108,6 +122,9 @@ public class MainMenuState extends State{
 
     @Override
     public void render(SpriteBatch sb) {
+        Gdx.gl.glClearColor(Color.BLACK.r,Color.BLACK.g,Color.BLACK.b,Color.BLACK.a);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glEnable(GL20.GL_BLEND);
         update(Gdx.graphics.getDeltaTime());
         stage.draw();
 

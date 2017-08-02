@@ -18,9 +18,9 @@ public class GameOverFrame extends Group {
     public Image frame;
     public Label boxLabel;  //maybe for a later time
     public ArrayList<Label> chat;   // maybe for a later time
-    public Button finishButton;
-    public Button resetButton;
-    public Button leaveButton;
+    public ImageButton finishImageButton;
+    public ImageButton resetImageButton;
+    public ImageButton leaveImageButton;
     public Image results;
     public Music endingMusic;   // maybe later
     public Assets assets;
@@ -45,26 +45,26 @@ public class GameOverFrame extends Group {
         addActor(frame);
 
         if(won) {
-            finishButton = new Button("finish", new Image(assets.getTexture(assets.finishButton)));
-            finishButton.setName("finish");
-            finishButton.setPosition(frame.getX() + frame.getWidth()/2 - finishButton.getWidth()/2, frame.getY() - finishButton.getHeight()/2);
+            finishImageButton = new ImageButton("finish", new Image(assets.getTexture(assets.finishButton)));
+            finishImageButton.setName("finish");
+            finishImageButton.setPosition(frame.getX() + frame.getWidth()/2 - finishImageButton.getWidth()/2, frame.getY() - finishImageButton.getHeight()/2);
 
-            addActor(finishButton);
+            addActor(finishImageButton);
             results = new Image(assets.getTexture(assets.youWin));
             results.setName("results");
             results.setPosition(frame.getX(),frame.getY());
         }
         else {
-            resetButton = new Button("reset", new Image(assets.getTexture(assets.resetButton)));
-            resetButton.setName("reset");
-            resetButton.setPosition(frame.getX() + frame.getWidth()/2 - resetButton.getWidth(), frame.getY() - resetButton.getHeight()/2);
+            resetImageButton = new ImageButton("reset", new Image(assets.getTexture(assets.resetButton)));
+            resetImageButton.setName("reset");
+            resetImageButton.setPosition(frame.getX() + frame.getWidth()/2 - resetImageButton.getWidth(), frame.getY() - resetImageButton.getHeight()/2);
 
-            leaveButton = new Button("leave", new Image(assets.getTexture(assets.leaveButton)));
-            leaveButton.setName("leave");
-            leaveButton.setPosition(resetButton.getX() + (float)(resetButton.getWidth()), frame.getY() - leaveButton.getHeight()/2);
+            leaveImageButton = new ImageButton("leave", new Image(assets.getTexture(assets.leaveButton)));
+            leaveImageButton.setName("leave");
+            leaveImageButton.setPosition(resetImageButton.getX() + (float)(resetImageButton.getWidth()), frame.getY() - leaveImageButton.getHeight()/2);
 
-            addActor(resetButton);
-            addActor(leaveButton);
+            addActor(resetImageButton);
+            addActor(leaveImageButton);
             results = new Image(assets.getTexture(assets.youWiped));
             results.setName("results");
             results.setPosition(frame.getX(),frame.getY());

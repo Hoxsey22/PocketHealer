@@ -2,17 +2,16 @@ package com.hoxseygaming.pockethealer.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.BossIcon;
 import com.hoxseygaming.pockethealer.Button;
-import com.hoxseygaming.pockethealer.LevelInfo;
+import com.hoxseygaming.pockethealer.MapFrame;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hogger;
@@ -25,15 +24,10 @@ public class MapState extends State {
 
     public Player player;
     public Stage stage;
-    public Image bgMap;
     public int page;
     public int maxPage;
-    public Group bossList;
-    public Button talentButton;
-    public Button spellButton;
-    public Button infoButton;
-    public LevelInfo levelInfo;
     public Assets assets;
+    public MapFrame mapFrame;
     public BossIcon selectedLevel;
 
 
@@ -48,32 +42,8 @@ public class MapState extends State {
         this.player = player;
         assets = player.getAssets();
 
-        bgMap = new Image(assets.getTexture(assets.mapBg));
-        bgMap.setName("Map");
-        bgMap.setBounds(0,0, PocketHealer.WIDTH, PocketHealer.HEIGHT);
-
-        levelInfo = new LevelInfo(assets);
-
-
-        talentButton = new Button("Talent", new Image(assets.getTexture(assets.talentButton)),0,0,160,100);
-        spellButton = new Button("Spell", new Image(assets.getTexture(assets.spellButton)), (int)(talentButton.getX()+talentButton.getWidth()), 0,160, 100);
-        infoButton = new Button("Info", new Image(assets.getTexture(assets.infoButton)),(int)(spellButton.getX()+spellButton.getWidth()), 0,160, 100);
-
-
-
-
-
-        bossList = new Group();
         nextPage();
 
-        stage.addActor(bgMap);
-        stage.addActor(talentButton);
-        stage.addActor(spellButton);
-        stage.addActor(infoButton);
-
-
-        stage.addActor(bossList);
-        stage.addActor(levelInfo);
 
 
     }
@@ -81,16 +51,18 @@ public class MapState extends State {
     public void nextPage()  {
         if(player.getLevel() >= page + 1 && page + 1 <= maxPage) {
             page++;
+            mapFrame = new MapFrame(page, assets);
+            stage.addActor(mapFrame);
             loadPage();
         }
     }
 
     public void loadPage()  {
-        bossList.clear();
+
         switch (page)   {
             case 1:
-                bossList.addActor(new BossIcon(assets, new Hogger(assets)));
-                bossList.addActor(new BossIcon(assets, new WampusCat(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new Hogger(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new WampusCat(assets)));
                 break;
             case 2:
                 break;
@@ -121,42 +93,41 @@ public class MapState extends State {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float) screenX, (float) screenY));
                 System.out.println("x:" + coord.x + " y:" + coord.y);
-                if (coord.y < 150) {
-                    Actor hitActor = stage.hit(coord.x, coord.y, false);
-                    if (hitActor != null) {
 
-                        switch (hitActor.getName()) {
-                            case "Talent":
-                                sm.push(new TalentState(sm, player));
-                                break;
-                            case "Spell":
-                                //sm.push(new SpellBookState(sm, player));
-                                break;
-                            case "Info":
-                                levelInfo.displayInfo();
-                                break;
+                if(coord.y > mapFrame.innerFrame.getY())    {
+                    BossIcon bi = mapFrame.getMap().hit(coord.x, coord.y);
+                    if(bi != null)    {
+                        if(selectedLevel != null)    {
+                            selectedLevel.unselect();
                         }
+                        selectedLevel = bi;
+                        mapFrame.setTitle(bi.getName());
+                        mapFrame.setBody(bi.getDescription());
+                        bi.select();
                     }
-                } else {
-                    if(!levelInfo.isActive) {
-                        BossIcon bi = (BossIcon) bossList.hit(coord.x, coord.y, false);
-                        if (bi != null) {
-                            if(selectedLevel != null)   {
-                                selectedLevel.unselect();
-                            }
-                            selectedLevel = bi;
-                            selectedLevel.select();
-
-                            levelInfo.setInfo(bi);
-                        }
-                    }
-                    else {
-                        if(levelInfo.hit(coord.x, coord.y))    {
-                            sm.push(new EncounterState(sm, player, levelInfo.getBoss()));
-                        }
-                    }
-
                 }
+                if(coord.y < mapFrame.talentButton.getY() + mapFrame.talentButton.getHeight())    {
+                    Button hit = mapFrame.hitButton(coord.x, coord.y);
+                    if(hit != null)    {
+                        switch (hit.getName())   {
+                            case "TALENTS":
+                                sm.set(new TalentState(sm, player));
+                                break;
+                            case "START":
+                                if(selectedLevel != null)    {
+                                    PocketHealer.music.dispose();
+                                    sm.set(new EncounterState(sm, player, selectedLevel.boss));
+                                }
+                                break;
+                            case "SPELLS":
+                                //sm.set(new SpellState(sm, player));
+                                break;
+                        }
+
+                    }
+                }
+
+
                 return false;
             }
 
@@ -189,6 +160,9 @@ public class MapState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
+        Gdx.gl.glClearColor(Color.BLACK.r,Color.BLACK.g,Color.BLACK.b,Color.BLACK.a);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Gdx.gl.glEnable(GL20.GL_BLEND);
         update(Gdx.graphics.getDeltaTime());
         stage.draw();
     }

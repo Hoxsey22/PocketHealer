@@ -27,6 +27,9 @@ public class Assets {
     public String manaFnt = "fonts/mana_font.fnt";
     public String cooldownFnt = "fonts/cooldown_font.fnt";
     public String talentTooltipFont = "fonts/talent_tooltip_font.fnt";
+    public String mapTitle = "map_state/title.fnt";
+    public String mapDescription = "map_state/description.fnt";
+
 
     // pngs
     public String continuousRenewalIcon = "talent_state/continuous_renewal.png";
@@ -44,6 +47,8 @@ public class Assets {
     public String miniBossIcon = "level_mini_boss.png";
     public String bossIcon = "level_boss.png";
     public String mmBG = "main_menu_state/bg.png";
+    public String mmMain = "main_menu_state/main.png";
+    public String mmFG = "main_menu_state/fg.png";
     public String mmPlayButtonIdle = "main_menu_state/play_button_idle.png";
     public String mmPlayButtonHover = "main_menu_state/play_button_hover.png";
     public String mmContinueButtonIdle = "main_menu_state/play_button_idle.png";
@@ -74,7 +79,6 @@ public class Assets {
     public String castBar = "casting_bar.png";
     public String cooldownBar = "cooldown_bar.png";
     public String spellBar = "spell_bar.png";
-    public String mapBg = "map_state/map.png";
     public String exitButton = "map_state/exit_button.png";
     public String bossLocation = "map_state/boss_location.png";
     public String infoFrame = "map_state/info_frame.png";
@@ -92,6 +96,13 @@ public class Assets {
     public String leaveButton = "leave_button.png";
     public String youWin = "you_win_text.png";
     public String youWiped = "you_wiped_text.png";
+    public String mapOuterFrame = "map_state/map_outer_frame.png";
+    public String mapInnerFrame = "map_state/map_inner_frame.png";
+    public String button = "button.png";
+    public String title = "title.png";
+
+    public String mapBg1 = "map_state/map.png";
+    public ArrayList<String> maps;
 
     // music
     public String mmMusic = "mm_music.ogg";
@@ -113,14 +124,12 @@ public class Assets {
     public String laLechuzaInfo = "La Lechuza will a tank swap and grab random raid members to suck their soul out, healing unless dispelled. After will drop the target" +
             " from great heights. She does a powerful screech and will summon storms to randomly hit raid.";
 
-
-
-
-
     public Assets() {
         manager = new AssetManager();
         raidPositions = new ArrayList<Vector2>();
         bossIconPosition = new ArrayList<Vector2>();
+        maps = new ArrayList<>();
+        maps.add(mapBg1);
     }
 
     public void load()  {
@@ -183,6 +192,8 @@ public class Assets {
         manager.load(bossIcon, Texture.class);
 
         manager.load(mmBG, Texture.class);
+        manager.load(mmFG, Texture.class);
+        manager.load(mmMain, Texture.class);
         manager.load(mmPlayButtonIdle, Texture.class);
         manager.load(mmPlayButtonHover, Texture.class);
         manager.load(mmContinueButtonIdle, Texture.class);
@@ -191,7 +202,7 @@ public class Assets {
         manager.load(bossLocation, Texture.class);
         manager.load(exitButton, Texture.class);
         manager.load(infoFrame, Texture.class);
-        manager.load(mapBg, Texture.class);
+        manager.load(mapBg1, Texture.class);
         manager.load(spellButton, Texture.class);
         manager.load(talentButton, Texture.class);
         manager.load(infoButton, Texture.class);
@@ -207,6 +218,13 @@ public class Assets {
         manager.load(leaveButton, Texture.class);
         manager.load(youWin, Texture.class);
         manager.load(youWiped, Texture.class);
+
+        manager.load(mapInnerFrame, Texture.class);
+        manager.load(mapOuterFrame, Texture.class);
+
+        manager.load(button, Texture.class);
+
+        manager.load(title, Texture.class);
 
 
 
@@ -232,8 +250,11 @@ public class Assets {
         }
 
         // boss icon position
-        bossIconPosition.add(new Vector2(PocketHealer.WIDTH/2 - 50, PocketHealer.HEIGHT/2 - 50)); // hogger
-        bossIconPosition.add(new Vector2(PocketHealer.WIDTH/2 - 50 - 100, PocketHealer.HEIGHT/2 - 50 - 100)); // wampus cat
+        bossIconPosition.add(new Vector2(192,-47)); // hogger
+        bossIconPosition.add(new Vector2(56,-126)); // bullet
+        bossIconPosition.add(new Vector2(327,-174)); // proctor
+        bossIconPosition.add(new Vector2(89,-292)); // wampus
+        bossIconPosition.add(new Vector2(331,-342)); // laluchuza
 
 
     }
@@ -243,6 +264,8 @@ public class Assets {
         manager.load(manaFnt, BitmapFont.class);
         manager.load(cooldownFnt, BitmapFont.class);
         manager.load(talentTooltipFont, BitmapFont.class);
+        manager.load(mapTitle, BitmapFont.class);
+        manager.load(mapDescription, BitmapFont.class);
     }
 
     public Texture getTexture(String filename)   {

@@ -87,7 +87,6 @@ public class EncounterState extends State {
         stage.addActor(player.spellBar);
         stage.addActor(manaBar);
         stage.addActor(castBar);
-        stage.setDebugAll(true);
         //
         boss.start();
         System.out.println("STAGE - > Width:"+stage.getWidth()+" Height:"+stage.getHeight());
