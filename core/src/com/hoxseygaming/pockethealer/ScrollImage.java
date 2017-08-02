@@ -27,9 +27,11 @@ public class ScrollImage {
         this.isVertical = isVertical;
 
         image1 = new Image(texture);
-        image1.setBounds(frame.x,frame.y,480,400);
+        image1.setBounds(frame.x,frame.y,texture.getWidth(),texture.getHeight());
         image2 = new Image(texture);
-        image2.setBounds(frame.x,frame.y,480,400);
+        image2.setBounds(frame.x,frame.y,texture.getWidth(),texture.getHeight());
+
+        setPosition(frame.x,frame.y);
 
         this.velocity = velocity;
 
@@ -55,6 +57,7 @@ public class ScrollImage {
             outOfRange();
             image1.setX(image1.getX() + velocity);
             matchPartner();
+
         }
     }
 

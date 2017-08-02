@@ -47,8 +47,10 @@ public class Assets {
     public String miniBossIcon = "level_mini_boss.png";
     public String bossIcon = "level_boss.png";
     public String mmBG = "main_menu_state/bg.png";
-    public String mmMain = "main_menu_state/main.png";
-    public String mmFG = "main_menu_state/fg.png";
+    public String mmBG2 = "main_menu_state/bg2.png";
+    public String mmBG3 = "main_menu_state/bg3.png";
+    public String mmBG4 = "main_menu_state/main.png";
+
     public String mmPlayButtonIdle = "main_menu_state/play_button_idle.png";
     public String mmPlayButtonHover = "main_menu_state/play_button_hover.png";
     public String mmContinueButtonIdle = "main_menu_state/play_button_idle.png";
@@ -192,8 +194,10 @@ public class Assets {
         manager.load(bossIcon, Texture.class);
 
         manager.load(mmBG, Texture.class);
-        manager.load(mmFG, Texture.class);
-        manager.load(mmMain, Texture.class);
+        manager.load(mmBG2, Texture.class);
+        manager.load(mmBG3, Texture.class);
+        manager.load(mmBG4, Texture.class);
+
         manager.load(mmPlayButtonIdle, Texture.class);
         manager.load(mmPlayButtonHover, Texture.class);
         manager.load(mmContinueButtonIdle, Texture.class);

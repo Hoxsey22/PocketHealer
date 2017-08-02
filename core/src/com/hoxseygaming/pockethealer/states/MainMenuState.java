@@ -6,14 +6,16 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.AnimatedBackground;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
+import com.hoxseygaming.pockethealer.ScrollImage;
+import com.hoxseygaming.pockethealer.Text;
 
 /**
  * Created by Hoxsey on 7/11/2017.
@@ -23,7 +25,7 @@ public class MainMenuState extends State{
     public Stage stage;
     public Image title;
     public AnimatedBackground animatedBackground;
-    public Image playButton;
+    public Text text;
     public Assets assets;
     private Player player;
 
@@ -35,9 +37,20 @@ public class MainMenuState extends State{
 
         assets = player.getAssets();
 
-        animatedBackground = new AnimatedBackground(assets.getTexture(assets.mmBG),assets.getTexture(assets.mmMain),
-                assets.getTexture(assets.mmFG),false,assets);
+        animatedBackground = new AnimatedBackground();
+        animatedBackground.add(new ScrollImage(assets.getTexture(assets.mmBG),false, new Vector2(0,0),1f,assets));
+        animatedBackground.add(new ScrollImage(assets.getTexture(assets.mmBG2),false, new Vector2(0,0),2f,assets));
+        animatedBackground.add(new ScrollImage(assets.getTexture(assets.mmBG3),false, new Vector2(0,0),3f,assets));
+        animatedBackground.add(new ScrollImage(assets.getTexture(assets.mmBG4),false, new Vector2(0,0),4f,assets));
+        animatedBackground.setDebug(true);
+
+        text = new Text("Press Screen to Continue...");
+        text.setPosition(PocketHealer.WIDTH/2 - text.getCenter(), 50);
+        text.setAlignment(Align.center);
+        text.setFontSize(32);
+
         stage.addActor(animatedBackground);
+        stage.addActor(text);
 
         player.createSpellBar();
         player.addDebuggingSpell();
@@ -49,16 +62,10 @@ public class MainMenuState extends State{
 
         title = new Image(assets.getTexture(assets.title));
         title.setPosition(PocketHealer.WIDTH/2-title.getWidth()/2,PocketHealer.HEIGHT - title.getHeight());
-       /* title.setBounds(PocketHealer.WIDTH/2 - title.getImageWidth()/2, PocketHealer.HEIGHT/2 - title.getImageHeight()/2 - 100,
-                title.getImageWidth(), title.getImageHeight());*/
         title.setName("title");
 
-        playButton = new Image(assets.getTexture(assets.mmPlayButtonIdle));
-        playButton.setPosition(PocketHealer.WIDTH/2 - playButton.getWidth()/2, 100);
-        playButton.setName("play");
-
         stage.addActor(title);
-        stage.addActor(playButton);
+        //stage.addActor(playButton);
         animatedBackground.start();
     }
 
@@ -82,14 +89,8 @@ public class MainMenuState extends State{
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
-                Actor hitActor = stage.hit(coord.x, coord.y, false);
-                System.out.println("Hit");
-                if(hitActor != null  && hitActor.getName().equalsIgnoreCase("play"))    {
-                    System.out.println("Hit inside");
-                    animatedBackground.stop();
-                    sm.push(new MapState(sm, player));
-                }
+                animatedBackground.stop();
+                sm.push(new MapState(sm, player));
                 return false;
             }
 
