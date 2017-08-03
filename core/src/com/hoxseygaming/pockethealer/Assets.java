@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * Created by Hoxsey on 6/26/2017.
  */
 public class Assets {
-
+    //
     public AssetManager manager;
     public ArrayList<Vector2> raidPositions;
     public ArrayList<Vector2> bossIconPosition;
