@@ -16,7 +16,13 @@ public class Pounce extends Mechanic {
 
     public Pounce(Boss owner) {
         super(owner);
-        id = 2;
+        id = 4;
+        create();
+    }
+
+    @Override
+    public void create() {
+        super.create();
         name = "Pounce";
         damage = 30;
         speed = 4f;
@@ -31,11 +37,6 @@ public class Pounce extends Mechanic {
             @Override
             public void run() {
                 RaidMember temp [] = owner.enemies.getRandomRaidMember(3);
-                /*
-                target.takeDamage(damage);
-                Bleed bleed = new Bleed(owner);
-                bleed.start();
-                */
 
                 for (int i = 0; i < temp.length; i++)   {
                     if(temp[i] != null) {
@@ -48,6 +49,8 @@ public class Pounce extends Mechanic {
 
             }
         },speed, speed);
+
+        startAnnouncementTimer();
     }
 
     @Override

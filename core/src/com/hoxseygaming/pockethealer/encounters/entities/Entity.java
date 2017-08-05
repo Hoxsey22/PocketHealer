@@ -175,10 +175,7 @@ public class Entity extends Actor{
     }
 
     public boolean containsEffects(Spell.EffectType buff)   {
-        if(effects.indexOf(assets.getEffectImage(buff)) > -1)
-            return true;
-        else
-            return false;
+        return effects.indexOf(assets.getEffectImage(buff)) > -1;
     }
 
 
@@ -275,6 +272,8 @@ public class Entity extends Actor{
     public ArrayList<Texture> getEffects() {
         return effects;
     }
+
+
 
     public boolean isSelected() {
         return selected;

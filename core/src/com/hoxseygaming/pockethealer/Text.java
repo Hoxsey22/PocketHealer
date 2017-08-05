@@ -6,25 +6,23 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
 
 /**
  * Created by Hoxsey on 8/2/2017.
  */
 
-public class Text extends Actor {
+public class Text extends Label{
 
     private BitmapFont font;
-    private Label label;
-    private Label.LabelStyle labelStyle;
     private FreeTypeFontGenerator generator;
     private FreeTypeFontParameter parameter;
-    public String text;
+    private ShapeRenderer shapeRenderer;
 
-    public Text(String text)   {
-
-        this.text = text;
+    public Text(String text)    {
+        super(text, new LabelStyle(new BitmapFont(), Color.BLACK));
 
         generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chela_one_regular.ttf"));
         parameter = new FreeTypeFontParameter();
@@ -32,54 +30,40 @@ public class Text extends Actor {
 
         font = generator.generateFont(parameter);
 
-        labelStyle = new Label.LabelStyle();
-        labelStyle.font = font;
+        LabelStyle newLabelStyle = new LabelStyle();
+        newLabelStyle.font = font;
+        newLabelStyle.fontColor = Color.WHITE;
 
-        label = new Label(this.text,labelStyle);
+        setStyle(newLabelStyle);
 
-    }
+        setAlignment(Align.center);
 
-    public void setWrap(boolean isWrap)   {
-        label.setWrap(isWrap);
-    }
-
-    public void setWidth(float width)  {
-        label.setWidth(width);
-    }
-
-    public void setColor(Color color)  {
-        label.setColor(color);
-    }
-
-    public void setText(String string)   {
-        text = string;
-        label.setText(text);
     }
 
     public void setFontSize(int size)   {
+        LabelStyle temp = new LabelStyle();
         parameter.size = size;
         font = generator.generateFont(parameter);
-        labelStyle.font = font;
-        label.setStyle(labelStyle);
+        temp.font = font;
+        temp.fontColor = getStyle().fontColor;
+        setStyle(temp);
     }
 
     public float getCenter()    {
-        return label.getWidth()/2;
+        return getWidth()/2;
     }
 
-    public void setAlignment(int alignment)  {
-        label.setAlignment(alignment);
-    }
-
-    @Override
-    public void setPosition(float x, float y)   {
-        label.setPosition(x,y);
-        super.setPosition(x,y);
-    }
-
-    @Override
+    //@Override
     public void draw(Batch batch, float parentAlpha) {
-        label.draw(batch, parentAlpha);
+        super.draw(batch,parentAlpha);
+        /*
+        if(isDebug)    {
+            shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+            shapeRenderer.setColor(Color.GREEN);
+            shapeRenderer.rect(label.getX(),label.getY(),label.getWidth(),label.getHeight());
+            shapeRenderer.end();
+        }*/
     }
 
     public void dispose()   {

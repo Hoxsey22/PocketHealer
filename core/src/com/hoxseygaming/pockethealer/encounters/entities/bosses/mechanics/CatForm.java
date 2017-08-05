@@ -14,18 +14,25 @@ public class CatForm extends Mechanic{
 
     public CatForm(Boss owner) {
         super(owner);
-        id = 4;
+        id = 5;
+        create();
+    }
+
+    @Override
+    public void create() {
+        super.create();
         name = "Cat Form";
+        announcementString = "Wampus is in her Human form!";
         damage = 0;
         speed = 30f;
         duration = 0;
         pounce = new Pounce(owner);
+
     }
 
     @Override
     public void start() {
         super.start();
-
         pounce.start();
 
         timer.scheduleTask(new Timer.Task() {
@@ -33,6 +40,7 @@ public class CatForm extends Mechanic{
             public void run() {
                 pounce.stop();
                 linkedMechanic.start();
+                owner.announcement.setText(announcementString);
                 stop();
             }
         },speed);

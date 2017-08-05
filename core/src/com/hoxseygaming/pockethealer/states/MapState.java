@@ -15,6 +15,7 @@ import com.hoxseygaming.pockethealer.MapFrame;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hogger;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Proctor;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.WampusCat;
 
 /**
@@ -62,6 +63,7 @@ public class MapState extends State {
         switch (page)   {
             case 1:
                 mapFrame.getMap().add(new BossIcon(assets, new Hogger(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new Proctor(assets)));
                 mapFrame.getMap().add(new BossIcon(assets, new WampusCat(assets)));
                 break;
             case 2:

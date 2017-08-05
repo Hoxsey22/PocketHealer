@@ -53,7 +53,7 @@ public class Heal extends Spell {
 
         final RaidMember selectedTarget = owner.getTarget();
 
-        castTimer.schedule(new Timer.Task() {
+        Timer.schedule(new Timer.Task() {
 
             @Override
             public void run() {

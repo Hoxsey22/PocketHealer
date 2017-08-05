@@ -1,8 +1,11 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.utils.Align;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Text;
 import com.hoxseygaming.pockethealer.encounters.entities.Entity;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
@@ -21,6 +24,8 @@ public class Boss extends Entity {
     public Texture namePlate;
     public int level;
     public int raidSize;
+    public Text nameText;
+    public Text announcement;
 
     public Boss(String name, int maxHp, Assets assets) {
         super(name, maxHp, assets);
@@ -36,6 +41,20 @@ public class Boss extends Entity {
         raidSize = enemies.raidMembers.size();
         target = getMainTank();
         mechanics = new ArrayList<>();
+
+        nameText = new Text(name);
+        nameText.setPosition(getX()+(getWidth()/2) - nameText.getWidth()/2 ,getY() + getHeight()/2 - nameText.getHeight()/2);
+        nameText.setFontSize(45);
+        nameText.setColor(Color.BLACK);
+
+        announcement = new Text("");
+        announcement.setPosition(getX(), getY() - announcement.getHeight()-announcement.getHeight()/2);
+        announcement.setFontSize(18);
+        announcement.setColor(Color.RED);
+        announcement.setWidth(getWidth());
+        announcement.setWrap(true);
+        announcement.setAlignment(Align.left);
+       // nameText.turnOnDebug();
     }
 
     public void create()    {
@@ -84,6 +103,38 @@ public class Boss extends Entity {
         return level;
     }
 
+    public Raid getEnemies() {
+        return enemies;
+    }
+
+    public RaidMember getTarget() {
+        return target;
+    }
+
+    public void setTarget(RaidMember target) {
+        this.target = target;
+    }
+
+    public ArrayList<Mechanic> getMechanics() {
+        return mechanics;
+    }
+
+    public void setMechanics(ArrayList<Mechanic> mechanics) {
+        this.mechanics = mechanics;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getRaidSize() {
+        return raidSize;
+    }
+
+    public void setRaidSize(int raidSize) {
+        this.raidSize = raidSize;
+    }
+
     @Override
     public void reset() {
         super.reset();
@@ -98,7 +149,9 @@ public class Boss extends Entity {
         batch.draw(assets.getTexture("green_bar.png"), getX()+2, getY()+2, (getWidth()-4)*getHpPercent(), getHeight()-4);
         if(target != null)
             batch.draw(assets.getTexture("red_outline_bar.png"), target.getX(), target.getY(), target.getWidth(), target.getHeight());
-        batch.draw(namePlate, getX()+(getWidth()/2)-((getWidth()/3)/2) ,getY()+2,getWidth()/3,getHeight()-5);
+        //batch.draw(namePlate, getX()+(getWidth()/2)-((getWidth()/3)/2) ,getY()+2,getWidth()/3,getHeight()-5);
+        nameText.draw(batch, parentAlpha);
+        announcement.draw(batch, parentAlpha);
 
     }
 }

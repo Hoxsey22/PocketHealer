@@ -32,7 +32,7 @@ public class Raid extends Group {
     public void start(final Boss t)   {
         final Boss target = t;
 
-        raidDamageTimer.schedule(new Timer.Task() {
+        Timer.schedule(new Timer.Task() {
             int deathCount = 0;
             @Override
             public void run() {
@@ -176,6 +176,12 @@ public class Raid extends Group {
                 }
             }
         }*/
+    }
+
+    public void takeDamage(int damage)    {
+        for(int i= 0; i <  raidMembers.size(); i++)   {
+            raidMembers.get(i).takeDamage(damage);
+        }
     }
 
     public boolean tanksAlive() {

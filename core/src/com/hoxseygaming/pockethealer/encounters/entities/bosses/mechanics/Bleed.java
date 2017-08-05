@@ -13,6 +13,7 @@ public class Bleed extends Mechanic {
 
     public Bleed( Boss owner) {
         super(owner);
+        id = 3;
         create();
     }
 

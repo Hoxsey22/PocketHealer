@@ -27,7 +27,7 @@ public class AnimatedBackground extends Actor {
 
     public void start() {
         timer = new Timer();
-        timer.schedule(new Timer.Task() {
+        Timer.schedule(new Timer.Task() {
 
             @Override
             public void run() {

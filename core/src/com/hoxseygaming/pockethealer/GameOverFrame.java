@@ -61,7 +61,7 @@ public class GameOverFrame extends Group {
 
             leaveImageButton = new ImageButton("leave", new Image(assets.getTexture(assets.leaveButton)));
             leaveImageButton.setName("leave");
-            leaveImageButton.setPosition(resetImageButton.getX() + (float)(resetImageButton.getWidth()), frame.getY() - leaveImageButton.getHeight()/2);
+            leaveImageButton.setPosition(resetImageButton.getX() + resetImageButton.getWidth(), frame.getY() - leaveImageButton.getHeight()/2);
 
             addActor(resetImageButton);
             addActor(leaveImageButton);

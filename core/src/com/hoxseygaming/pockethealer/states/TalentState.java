@@ -178,7 +178,7 @@ public class TalentState extends State {
         sb.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
         sb.begin();
             sb.draw(background, 0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
-        sb.end();;
+        sb.end();
 
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();

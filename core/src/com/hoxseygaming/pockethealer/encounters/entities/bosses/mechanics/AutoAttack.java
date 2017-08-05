@@ -12,10 +12,15 @@ public class AutoAttack extends Mechanic {
     public AutoAttack(Boss owner) {
         super(owner);
         id = 1;
-        name = "Auto Attack";
-        damage = owner.damage;
-        speed = 2f;
+        create();
+    }
 
+    @Override
+    public void create() {
+        super.create();
+        name = "Auto Attack";
+        damage = owner.getDamage();
+        speed = 2f;
     }
 
     @Override
@@ -27,14 +32,14 @@ public class AutoAttack extends Mechanic {
             public void run() {
 
                 System.out.println("Boss attacked id["+owner.target.getId()+"] role:"+owner.target.getRole());
-                if(owner.target.isDead())
+                if(owner.getTarget().isDead())
                     owner.nextThreat();
-                if(!owner.target.isDead()) {
-                    owner.target.takeDamage(damage);
-                    if(owner.target.isDead())
+                if(!owner.getTarget().isDead()) {
+                    owner.getTarget().takeDamage(damage);
+                    if(owner.getTarget().isDead())
                         owner.nextThreat();
                 }
-                if (owner.enemies.isRaidDead()) {
+                if (owner.getEnemies().isRaidDead()) {
                     System.out.println("RAID IS DEAD!");
                     System.out.println("Auto Attack Timer has stopped");
                     timer.stop();

@@ -13,11 +13,19 @@ public class HumanForm extends Mechanic{
 
     public HumanForm(Boss owner)  {
         super(owner);
-        id = 5;
+        id = 6;
+        create();
+    }
+
+    @Override
+    public void create() {
+        super.create();
         name = "Human Form";
+        announcementString = "Wampus Cat is in her car form!";
         damage = 0;
         speed = 30f;
         duration = 0;
+
     }
 
     @Override
@@ -28,6 +36,7 @@ public class HumanForm extends Mechanic{
             @Override
             public void run() {
                 linkedMechanic.start();
+                owner.announcement.setText(announcementString);
                 stop();
             }
         },speed);

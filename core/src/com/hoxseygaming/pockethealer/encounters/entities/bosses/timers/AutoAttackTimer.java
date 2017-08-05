@@ -28,7 +28,7 @@ public class AutoAttackTimer {
     public void startTimer()    {
         timer = new Timer();
         isActive = true;
-        timer.schedule(new Timer.Task() {
+        Timer.schedule(new Timer.Task() {
             @Override
             public void run() {
 

@@ -47,7 +47,7 @@ public class CleaveTimer {
     public void startTimer()    {
 
         isActive = true;
-        timer.schedule(new Timer.Task() {
+        Timer.schedule(new Timer.Task() {
             RaidMember[] targets = new RaidMember[2];
 
             @Override
