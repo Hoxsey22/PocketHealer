@@ -12,25 +12,36 @@ public class FloatingTextManager {
 
     private RaidMember owner;
     private ArrayList<FloatingText> floatingTexts;
+    private FloatingText floatingText;
     private int idCounter;
 
 
     public FloatingTextManager(RaidMember owner)    {
         this.owner = owner;
         floatingTexts = new ArrayList<>();
+        floatingText = new FloatingText(0,owner,0,0);
         idCounter = 0;
+
     }
 
     public void add(int damage, int type)   {
-        floatingTexts.add(new FloatingText(owner.assets, idCounter, owner, damage, type));
+        floatingText.setId(idCounter);
+        floatingText.setType(type);
+        floatingText.setDamage(""+damage);
+
+        floatingTexts.add(floatingText);
         floatingTexts.get(getIndex(idCounter)).startAnimation();
         idCounter++;
     }
 
     public void add(int damage, int type, boolean isCritical)   {
-        floatingTexts.add(new FloatingText(owner.assets,idCounter, owner, damage, type));
+        floatingText.setId(idCounter);
+        floatingText.setType(type);
+        floatingText.setDamage(""+damage);
+
+        floatingTexts.add(floatingText);
         if(isCritical)    {
-            floatingTexts.get(getIndex(idCounter)).getFloatingText().setFontScale(1.25f);
+            floatingTexts.get(getIndex(idCounter)).getFloatingText().setFontSize(32);
         }
         floatingTexts.get(getIndex(idCounter)).startAnimation();
         idCounter++;
@@ -39,6 +50,7 @@ public class FloatingTextManager {
     public boolean remove(FloatingText floatingText)    {
         int removeIndex = getIndex(floatingText.getId());
         if(removeIndex != -1) {
+            //floatingText.dispose();
             floatingTexts.remove(removeIndex);
             return true;
         }

@@ -2,11 +2,9 @@ package com.hoxseygaming.pockethealer;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
 
@@ -23,8 +21,8 @@ public class MapFrame extends Group {
     public Button startButton;
     public Button spellButton;
     public Table table;
-    public Label title;
-    public Label body;
+    public Text title;
+    public Text body;
     public int page;
     public Assets assets;
 
@@ -73,24 +71,19 @@ public class MapFrame extends Group {
     }
 
     public void createFont()    {
-        Label.LabelStyle titleStyle = new Label.LabelStyle();
 
-        BitmapFont titleFont = assets.getFont(assets.mapTitle);
-
-        titleStyle.font = titleFont;
-
-        title = new Label("",titleStyle);
+        title = new Text("");
+        title.setFontSize(32);
         title.setColor(Color.YELLOW);
-        title.setFontScale(1.5f);
         title.setWrap(true);
         title.setAlignment(Align.center);
+
         table.add(title);
         table.row();
 
-        Label.LabelStyle bodyStyle = new Label.LabelStyle();
-        BitmapFont bodyFont = assets.getFont(assets.mapDescription);
-        bodyStyle.font = bodyFont;
-        body = new Label("",bodyStyle);
+        body = new Text("");
+        body.setFontSize(24);
+        body.setColor(Color.WHITE);
         body.setWrap(true);
 
         table.add(body).width(table.getWidth());

@@ -1,17 +1,14 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
-import com.hoxseygaming.pockethealer.encounters.EncounterData;
+import com.hoxseygaming.pockethealer.Text;
 
 /**
  * Created by Hoxsey on 6/17/2017.
@@ -38,7 +35,7 @@ public class Spell extends Actor {
     public float cdPercentage;
     public Timer cdTimer;
     public Assets assets;
-    private Label label;
+    private Text text;
     public CriticalChance criticalChance;
 
 
@@ -57,7 +54,7 @@ public class Spell extends Actor {
         cdCounter = 0f;
         cdPercentage = 1f;
         criticalChance = new CriticalChance(0);
-        setupFont();
+        setupText();
     }
 
     /**
@@ -95,16 +92,13 @@ public class Spell extends Actor {
             },0.1f,0.1f, (int)(cooldown/0.1));
     }
 
-    public void setupFont() {
-        Label.LabelStyle labelStyle = new Label.LabelStyle();
-        BitmapFont font = assets.getFont(assets.cooldownFnt);
-        labelStyle.font = font;
-        labelStyle.fontColor = Color.WHITE;
-
-        label = new Label(cdCounter+"",labelStyle);
-        label.setSize(getWidth(), getHeight());
-        label.setPosition(getX(), getY());
-        label.setAlignment(Align.center);
+    public void setupText() {
+        text = new Text("");
+        text.setFontSize(26);
+        text.setPosition(getX()+getWidth()/2 - text.getWidth()/2, getY() + getHeight()/2 -
+                text.getHeight()/2);
+        text.setBorder(Color.BLACK, 1);
+        text.setAlignment(Align.center);
     }
 
     /**
@@ -238,8 +232,8 @@ public class Spell extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(image, getX(),getY(),getWidth(), getHeight());
         batch.draw(assets.getTexture("cooldown_bar.png"), getX(),getY(),getWidth(), getHeight()*getCdPercentage());
-        label.setText(String.format("%.1f",cdCounter));
+        text.setText(String.format("%.1f",cdCounter));
         if(!isReady)
-            label.draw(batch, parentAlpha);
+            text.draw(batch, parentAlpha);
     }
 }

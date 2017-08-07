@@ -2,11 +2,8 @@ package com.hoxseygaming.pockethealer;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.utils.Align;
 
 /**
  * Created by Hoxsey on 7/30/2017.
@@ -15,7 +12,7 @@ import com.badlogic.gdx.utils.Align;
 public class Button extends Actor {
 
     public Image image;
-    public Label label;
+    public Text text;
     public Assets assets;
     public boolean isHit;
 
@@ -25,7 +22,7 @@ public class Button extends Actor {
         image = new Image(assets.getTexture(assets.button));
         setBounds(0,0,image.getWidth(), image.getHeight());
         isHit = false;
-        setupLabel();
+        setupText();
     }
 
     public Button(String name, Image image, int x, int y, int width, int height) {
@@ -36,17 +33,14 @@ public class Button extends Actor {
         isHit = false;
     }
 
-    private void setupLabel()   {
-        Label.LabelStyle textStyle = new Label.LabelStyle();
-        BitmapFont font = assets.getFont(assets.mapTitle);
-        textStyle.font = font;
+    private void setupText()   {
 
-        label = new Label(getName(),textStyle);
-        label.setColor(Color.BLACK);
-        label.setWrap(true);
-        label.setWidth(this.getWidth());
-        label.setAlignment(Align.center);
-        label.setPosition(getX()+getWidth()/2-label.getWidth()/2,getY()+ getHeight()/2 - label.getHeight()/2);
+        text = new Text(getName());
+        text.setFontSize(32);
+        text.setColor(Color.BLACK);
+        text.setWrap(true);
+        text.setWidth(getWidth());
+        text.setPosition(getX()+getWidth()/2-text.getWidth()/2,getY()+ getHeight()/2 - text.getHeight()/2);
     }
 
     public void hit()   {
@@ -61,12 +55,12 @@ public class Button extends Actor {
     public void setPosition(float x, float y) {
         super.setPosition(x, y);
         image.setPosition(x,y);
-        label.setPosition(getX()+getWidth()/2-label.getWidth()/2,getY()+ getHeight()/2 - label.getHeight()/2);
+        text.setPosition(getX()+getWidth()/2-text.getWidth()/2,getY()+ getHeight()/2 - text.getHeight()/2);
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         image.draw(batch, parentAlpha);
-        label.draw(batch, parentAlpha);
+        text.draw(batch, parentAlpha);
     }
 }

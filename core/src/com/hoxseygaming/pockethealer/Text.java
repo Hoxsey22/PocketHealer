@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 
@@ -19,7 +18,6 @@ public class Text extends Label{
     private BitmapFont font;
     private FreeTypeFontGenerator generator;
     private FreeTypeFontParameter parameter;
-    private ShapeRenderer shapeRenderer;
 
     public Text(String text)    {
         super(text, new LabelStyle(new BitmapFont(), Color.BLACK));
@@ -49,6 +47,19 @@ public class Text extends Label{
         setStyle(temp);
     }
 
+    public void setBorder(Color color, int width)   {
+        LabelStyle temp = new LabelStyle();
+
+        parameter.borderColor = color;
+        parameter.borderWidth = width;
+
+        font = generator.generateFont(parameter);
+
+        temp.font = font;
+        setStyle(temp);
+
+    }
+
     public float getCenter()    {
         return getWidth()/2;
     }
@@ -56,14 +67,6 @@ public class Text extends Label{
     //@Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch,parentAlpha);
-        /*
-        if(isDebug)    {
-            shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-            shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-            shapeRenderer.setColor(Color.GREEN);
-            shapeRenderer.rect(label.getX(),label.getY(),label.getWidth(),label.getHeight());
-            shapeRenderer.end();
-        }*/
     }
 
     public void dispose()   {

@@ -1,16 +1,11 @@
 package com.hoxseygaming.pockethealer.encounters.floatingtext;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Timer;
-import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Text;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
-
-import java.util.ArrayList;
 
 
 /**
@@ -26,18 +21,12 @@ public class FloatingText {
     private RaidMember owner;
     private String damage;
     private int type;
-
-
-    private BitmapFont font;
-    private Label.LabelStyle style;
-    private Label floatingText;
+    private Text floatingText;
     private Timer timer;
     private int duration;
     public boolean isAnimating;
-    public Assets assets;
 
-    public FloatingText(Assets assets, int id, RaidMember raidMember, int damage, int type)   {
-        this.assets = assets;
+    public FloatingText(int id, RaidMember raidMember, int damage, int type)   {
         this.id = id;
         owner = raidMember;
         this.damage = ""+damage;
@@ -49,13 +38,10 @@ public class FloatingText {
     }
 
     public void create()    {
-        style = new Label.LabelStyle();
-        font = assets.getFont(assets.floatingFnt);
-        style.font = font;
-        style.fontColor = Color.WHITE;
 
-        floatingText = new Label("",style);
-        floatingText.setScale(0.5f);
+        floatingText = new Text("");
+        floatingText.setFontSize(24);
+        floatingText.setBorder(Color.BLACK,1);
         addText();
 
         floatingText.setAlignment(Align.center);
@@ -105,25 +91,38 @@ public class FloatingText {
         return id;
     }
 
-    public BitmapFont getFont() {
-        return font;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setFont(BitmapFont font) {
-        this.font = font;
+    public String getDamage() {
+        return damage;
     }
 
-    public Label getFloatingText() {
+    public void setDamage(String damage) {
+        this.damage = damage;
+        floatingText.setText(this.damage);
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public Text getFloatingText() {
         return floatingText;
-    }
-
-    public void setFloatingText(Label floatingText) {
-        this.floatingText = floatingText;
     }
 
     public void draw(Batch batch, float alpha)  {
         if(isAnimating){
             floatingText.draw(batch,alpha);
         }
+    }
+
+    public void dispose()   {
+        floatingText.dispose();
     }
 }

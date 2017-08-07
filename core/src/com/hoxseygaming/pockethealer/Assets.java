@@ -31,7 +31,7 @@ public class Assets {
     public String mapDescription = "map_state/description.fnt";
 
 
-    // pngs
+    // pngss
     public String continuousRenewalIcon = "talent_state/continuous_renewal.png";
     public String lifeboomIcon = "talent_state/lifeboom.png";
     public String perseveranceIcon = "talent_state/perseverance.png";
