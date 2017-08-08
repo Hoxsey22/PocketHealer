@@ -24,7 +24,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         healthBar = new HealthBar(this,(int)getX(),(int)getY(),(int)getWidth(),(int) getHeight());
         frame = assets.getTexture("raid_frame_idle.png");
         setRoleImage();
-        floatingTextManager = new FloatingTextManager(this);
+        floatingTextManager = new FloatingTextManager(this, assets);
 
     }
 

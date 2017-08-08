@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -93,11 +92,10 @@ public class Spell extends Actor {
     }
 
     public void setupText() {
-        text = new Text("");
-        text.setFontSize(26);
+        text = new Text("", assets);
+        text.setFont(24, true);
         text.setPosition(getX()+getWidth()/2 - text.getWidth()/2, getY() + getHeight()/2 -
                 text.getHeight()/2);
-        text.setBorder(Color.BLACK, 1);
         text.setAlignment(Align.center);
     }
 

@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Text;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
@@ -25,8 +26,10 @@ public class FloatingText {
     private Timer timer;
     private int duration;
     public boolean isAnimating;
+    private Assets assets;
 
-    public FloatingText(int id, RaidMember raidMember, int damage, int type)   {
+    public FloatingText(int id, RaidMember raidMember, int damage, int type, Assets assets)   {
+        this.assets = assets;
         this.id = id;
         owner = raidMember;
         this.damage = ""+damage;
@@ -39,9 +42,8 @@ public class FloatingText {
 
     public void create()    {
 
-        floatingText = new Text("");
-        floatingText.setFontSize(24);
-        floatingText.setBorder(Color.BLACK,1);
+        floatingText = new Text("", assets);
+        floatingText.setFont(24, true);
         addText();
 
         floatingText.setAlignment(Align.center);

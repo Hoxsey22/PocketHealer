@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.floatingtext;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 import java.util.ArrayList;
@@ -12,37 +13,32 @@ public class FloatingTextManager {
 
     private RaidMember owner;
     private ArrayList<FloatingText> floatingTexts;
-    private FloatingText floatingText;
     private int idCounter;
+    private Assets assets;
 
 
-    public FloatingTextManager(RaidMember owner)    {
+    public FloatingTextManager(RaidMember owner, Assets assets)    {
+        this.assets = assets;
         this.owner = owner;
         floatingTexts = new ArrayList<>();
-        floatingText = new FloatingText(0,owner,0,0);
         idCounter = 0;
 
     }
 
     public void add(int damage, int type)   {
-        floatingText.setId(idCounter);
-        floatingText.setType(type);
-        floatingText.setDamage(""+damage);
-
-        floatingTexts.add(floatingText);
+        floatingTexts.add(new FloatingText(idCounter, owner,damage,type, assets));
+        floatingTexts.get(getIndex(idCounter)).getFloatingText().setFont(24, true);
         floatingTexts.get(getIndex(idCounter)).startAnimation();
         idCounter++;
     }
 
     public void add(int damage, int type, boolean isCritical)   {
-        floatingText.setId(idCounter);
-        floatingText.setType(type);
-        floatingText.setDamage(""+damage);
-
-        floatingTexts.add(floatingText);
+        floatingTexts.add(new FloatingText(idCounter, owner, damage, type, assets));
         if(isCritical)    {
-            floatingTexts.get(getIndex(idCounter)).getFloatingText().setFontSize(32);
+            floatingTexts.get(getIndex(idCounter)).getFloatingText().setFont(32, true);
         }
+        else
+            floatingTexts.get(getIndex(idCounter)).getFloatingText().setFont(24, true);
         floatingTexts.get(getIndex(idCounter)).startAnimation();
         idCounter++;
     }
