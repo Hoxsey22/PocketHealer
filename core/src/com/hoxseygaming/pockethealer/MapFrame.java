@@ -126,4 +126,12 @@ public class MapFrame extends Group {
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
     }
+
+    public void dispose()   {
+        talentButton.dispose();
+        spellButton.dispose();
+        startButton.dispose();
+        title.dispose();
+        body.dispose();
+    }
 }

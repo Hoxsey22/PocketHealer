@@ -171,6 +171,7 @@ public class MapState extends State {
 
     @Override
     public void dispose() {
-
+        System.out.println("Map Disposed!");
+        mapFrame.dispose();
     }
 }

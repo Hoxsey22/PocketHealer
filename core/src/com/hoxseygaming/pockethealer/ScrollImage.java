@@ -90,4 +90,5 @@ public class ScrollImage {
         image1.draw(batch, parent);
         image2.draw(batch, parent);
     }
+
 }

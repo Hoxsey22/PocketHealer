@@ -133,6 +133,7 @@ public class MainMenuState extends State{
 
     @Override
     public void dispose() {
-
+        System.out.println("DISPOSE MM!");
+        text.dispose();
     }
 }

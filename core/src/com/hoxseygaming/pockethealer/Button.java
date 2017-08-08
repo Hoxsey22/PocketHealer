@@ -63,4 +63,8 @@ public class Button extends Actor {
         image.draw(batch, parentAlpha);
         text.draw(batch, parentAlpha);
     }
+
+    public void dispose()   {
+        text.dispose();
+    }
 }

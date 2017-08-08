@@ -16,14 +16,12 @@ import com.badlogic.gdx.utils.Align;
 public class Text extends Label{
 
     private BitmapFont font;
-    private FreeTypeFontGenerator generator;
-    private FreeTypeFontParameter parameter;
 
     public Text(String text)    {
         super(text, new LabelStyle(new BitmapFont(), Color.BLACK));
 
-        generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chela_one_regular.ttf"));
-        parameter = new FreeTypeFontParameter();
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chela_one_regular.ttf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
         parameter.size = 12;
 
         font = generator.generateFont(parameter);
@@ -35,20 +33,30 @@ public class Text extends Label{
         setStyle(newLabelStyle);
 
         setAlignment(Align.center);
+        generator.dispose();
 
     }
 
     public void setFontSize(int size)   {
         LabelStyle temp = new LabelStyle();
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chela_one_regular.ttf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+
         parameter.size = size;
         font = generator.generateFont(parameter);
         temp.font = font;
         temp.fontColor = getStyle().fontColor;
+
         setStyle(temp);
+        generator.dispose();
     }
 
     public void setBorder(Color color, int width)   {
         LabelStyle temp = new LabelStyle();
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chela_one_regular.ttf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 
         parameter.borderColor = color;
         parameter.borderWidth = width;
@@ -57,6 +65,7 @@ public class Text extends Label{
 
         temp.font = font;
         setStyle(temp);
+        generator.dispose();
 
     }
 
@@ -70,6 +79,6 @@ public class Text extends Label{
     }
 
     public void dispose()   {
-        generator.dispose();
+        font.dispose();
     }
 }

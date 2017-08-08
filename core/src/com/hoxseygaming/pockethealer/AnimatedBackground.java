@@ -50,4 +50,6 @@ public class AnimatedBackground extends Actor {
             scrollImages.get(i).draw(batch, parentAlpha);
         }
     }
+
+
 }

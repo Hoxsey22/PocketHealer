@@ -154,6 +154,6 @@ public class LoadingState extends State {
 
     @Override
     public void dispose() {
-
+        stage.dispose();
     }
 }

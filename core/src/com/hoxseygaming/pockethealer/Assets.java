@@ -29,6 +29,7 @@ public class Assets {
     public String talentTooltipFont = "fonts/talent_tooltip_font.fnt";
     public String mapTitle = "map_state/title.fnt";
     public String mapDescription = "map_state/description.fnt";
+    public String gameFont = "fonts/chela_one_regular.ttf";
 
 
     // pngss
@@ -287,6 +288,25 @@ public class Assets {
     public BitmapFont getFont(String filename)   {
         return manager.get(filename, BitmapFont.class);
     }
+
+    /*
+    public BitmapFont getFont(int fontSize, Color fontColor, int borderSize, Color borderColor)   {
+
+        FreeTypeFontLoaderParameter font = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
+        font.fontFileName = gameFont;
+        font.fontParameters.size = fontSize;
+        font.fontParameters.color = fontColor;
+        font.fontParameters.borderWidth = borderSize;
+        font.fontParameters.borderColor = borderColor;
+        man
+
+
+
+
+
+
+        return manager.get(filename, BitmapFont.class);
+    }*/
 
     public String getBossDescription(String name)  {
         switch (name)   {
