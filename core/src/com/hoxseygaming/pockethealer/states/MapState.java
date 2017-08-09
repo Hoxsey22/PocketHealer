@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.BossIcon;
 import com.hoxseygaming.pockethealer.Button;
@@ -35,7 +34,7 @@ public class MapState extends State {
     public MapState(StateManager sm, Player player) {
         super(sm);
 
-        stage = new Stage(new FitViewport(480, 800));
+        stage = new Stage(viewport);
 
         page = 0;
         maxPage = 1;

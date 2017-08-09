@@ -12,7 +12,7 @@ public class TankSwap extends Mechanic {
     public TankSwap(Boss owner) {
         super(owner);
         id = 2;
-        speed = 5f;
+        speed = 8f;
         setMainTank();
         setOffTank();
     }

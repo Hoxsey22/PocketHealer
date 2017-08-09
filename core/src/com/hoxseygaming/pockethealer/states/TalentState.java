@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
@@ -39,7 +38,7 @@ public class TalentState extends State {
 
         background = assets.getTexture(assets.talentStateBg);
 
-        stage = new Stage(new FitViewport(PocketHealer.WIDTH, PocketHealer.HEIGHT));
+        stage = new Stage(viewport);
 
         talentBook = new TalentBook(player);
 

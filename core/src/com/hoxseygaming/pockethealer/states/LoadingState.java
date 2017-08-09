@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
@@ -51,7 +50,7 @@ public class LoadingState extends State {
 
         assets = new Assets();
 
-        stage = new Stage(new FitViewport(PocketHealer.WIDTH,PocketHealer.HEIGHT));
+        stage = new Stage(viewport);
 
         stage.addActor(logo);
         stage.addActor(loadingText);

@@ -14,7 +14,7 @@ public class AnimatedBackground extends Actor {
 
     public ArrayList<ScrollImage> scrollImages;
     public Timer timer;
-
+    //
     //public Assets assets;
 
     public AnimatedBackground() {

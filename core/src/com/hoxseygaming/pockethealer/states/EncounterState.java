@@ -10,7 +10,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.GameOverFrame;
 import com.hoxseygaming.pockethealer.Player;
@@ -74,11 +73,12 @@ public class EncounterState extends State {
         bgMusic.play();
 
         bgImage = new Image(assets.getTexture("battle_bg1.png"));
+
+
+
+
+        stage = new Stage(viewport);
         bgImage.setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
-
-
-
-        stage = new Stage(new FitViewport(PocketHealer.WIDTH,PocketHealer.HEIGHT));
 
         // add all actors to the stage
         stage.addActor(bgImage);

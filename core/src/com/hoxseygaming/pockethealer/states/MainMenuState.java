@@ -9,7 +9,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.AnimatedBackground;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
@@ -33,7 +32,7 @@ public class MainMenuState extends State{
         super(sm);
 
         this.player = player;
-        stage = new Stage(new FitViewport(PocketHealer.WIDTH, PocketHealer.HEIGHT));
+        stage = new Stage(viewport);
 
         assets = player.getAssets();
 
@@ -127,6 +126,7 @@ public class MainMenuState extends State{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glEnable(GL20.GL_BLEND);
         update(Gdx.graphics.getDeltaTime());
+        stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
 
     }

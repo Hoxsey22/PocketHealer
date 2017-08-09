@@ -73,7 +73,7 @@ public class Text extends Label{
                     temp.font = assets.gameFont32;
                     break;
                 case 45:
-                    temp.font = assets.gameFontB45;
+                    temp.font = assets.gameFont45;
                     break;
             }
         }
