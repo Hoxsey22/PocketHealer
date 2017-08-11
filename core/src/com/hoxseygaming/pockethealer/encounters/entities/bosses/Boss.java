@@ -42,14 +42,14 @@ public class Boss extends Entity {
         target = getMainTank();
         mechanics = new ArrayList<>();
 
-        nameText = new Text(name, assets);
+        nameText = new Text(name, false, assets);
         nameText.setPosition(getX()+(getWidth()/2) - nameText.getWidth()/2 ,getY() + getHeight()/2 - nameText.getHeight()/2);
-        nameText.setFont(45, false);
+        nameText.setFontSize(45);
         nameText.setColor(Color.BLACK);
 
-        announcement = new Text("",assets);
+        announcement = new Text("", false, assets);
         announcement.setPosition(getX(), getY() - announcement.getHeight()-announcement.getHeight()/2);
-        announcement.setFont(16,false);
+        announcement.setFontSize(16);
         announcement.setColor(Color.RED);
         announcement.setWidth(getWidth());
         announcement.setWrap(true);

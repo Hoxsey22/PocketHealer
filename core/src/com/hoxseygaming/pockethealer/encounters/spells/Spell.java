@@ -92,8 +92,8 @@ public class Spell extends Actor {
     }
 
     public void setupText() {
-        text = new Text("", assets);
-        text.setFont(24, true);
+        text = new Text("", true,assets);
+        text.setFontSize(24);
         text.setPosition(getX()+getWidth()/2 - text.getWidth()/2, getY() + getHeight()/2 -
                 text.getHeight()/2);
         text.setAlignment(Align.center);

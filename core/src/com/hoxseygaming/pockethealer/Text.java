@@ -1,8 +1,9 @@
 package com.hoxseygaming.pockethealer;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 
@@ -14,90 +15,54 @@ public class Text extends Label{
 
     //private BitmapFont font;
     private Assets assets;
+    private Color textColor;
+    private int fontSize;
 
-    public Text(String text, Assets assets)    {
-        super(text, new LabelStyle(new BitmapFont(), Color.BLACK));
+    public Text(String text, boolean isBorder, Assets assets)    {
+        super(text, new LabelStyle(assets.getFont(isBorder), Color.BLACK));
+        textColor = Color.BLACK;
+        fontSize = 16;
         this.assets = assets;
-        /*
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chela_one_regular.ttf"));
-        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-        parameter.size = 12;
-        */
-
-        //font = generator.generateFont(parameter);
-
-        LabelStyle newLabelStyle = new LabelStyle();
-        newLabelStyle.font = assets.gameFont16;
-        newLabelStyle.fontColor = Color.WHITE;
-
-        setStyle(newLabelStyle);
         setAlignment(Align.center);
 
     }
 
-    public void setFont(int fontSize, boolean isBordered)   {
-        LabelStyle temp = new LabelStyle();
-        /*
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chela_one_regular.ttf"));
-        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-
-        parameter.size = size;
-        //font.dispose();
-        //font = generator.generateFont(parameter);
-        */
-        if(isBordered) {
-            switch (fontSize) {
-                case 16:
-                    temp.font = assets.gameFontB16;
-                    break;
-                case 24:
-                    temp.font = assets.gameFontB24;
-                    break;
-                case 32:
-                    temp.font = assets.gameFontB32;
-                    break;
-                case 45:
-                    temp.font = assets.gameFontB45;
-                    break;
-            }
-        }
-        else {
-            switch (fontSize) {
-                case 16:
-                    temp.font = assets.gameFont16;
-                    break;
-                case 24:
-                    temp.font = assets.gameFont24;
-                    break;
-                case 32:
-                    temp.font = assets.gameFont32;
-                    break;
-                case 45:
-                    temp.font = assets.gameFont45;
-                    break;
-            }
-        }
-        setStyle(temp);
-    }
-
-    /*
-    public void setBorder(Color color, int width)   {
-        LabelStyle temp = new LabelStyle();
+    public void setFontColor(Color color)  {
+        /*textColor = color;
+        getStyle().fontColor = textColor;
+        //setStyle(getStyle());*/
 
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chela_one_regular.ttf"));
-        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = fontSize;
+        parameter.color = color;
 
-        parameter.borderColor = color;
-        parameter.borderWidth = width;
+        textColor = color;
 
-        //font = generator.generateFont(parameter);
+        getStyle().font = generator.generateFont(parameter);
+        getStyle().fontColor = textColor;
 
-        temp.font = generator.generateFont(parameter);
-        setStyle(temp);
         generator.dispose();
-
+        setStyle(getStyle());
     }
-    */
+
+    /**
+     * Be sure to change color before size
+     * @param fontSize
+     */
+    public void setFontSize(int fontSize)   {
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/chela_one_regular.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = fontSize;
+        parameter.color = textColor;
+        this.fontSize = fontSize;
+
+        getStyle().font = generator.generateFont(parameter);
+        getStyle().fontColor = textColor;
+
+        generator.dispose();
+        setStyle(getStyle());
+    }
 
     public float getCenter()    {
         return getWidth()/2;

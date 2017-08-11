@@ -72,18 +72,18 @@ public class MapFrame extends Group {
 
     public void createFont()    {
 
-        title = new Text("", assets);
-        title.setFont(32, false);
-        title.setColor(Color.YELLOW);
+        title = new Text("", false, assets);
+        title.setFontSize(32);
+        title.setFontColor(Color.YELLOW);
         title.setWrap(true);
         title.setAlignment(Align.center);
 
         table.add(title);
         table.row();
 
-        body = new Text("", assets);
-        body.setFont(24, false);
-        body.setColor(Color.WHITE);
+        body = new Text("", false, assets);
+        body.setFontSize(24);
+        body.setFontColor(Color.WHITE);
         body.setWrap(true);
 
         table.add(body).width(table.getWidth());

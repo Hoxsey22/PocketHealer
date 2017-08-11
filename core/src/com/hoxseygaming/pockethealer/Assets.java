@@ -1,13 +1,10 @@
 package com.hoxseygaming.pockethealer;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Vector2;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
@@ -34,14 +31,8 @@ public class Assets {
     public String mapDescription = "map_state/description.fnt";
     public String gameFont = "fonts/chela_one_regular.ttf";
 
-    public BitmapFont gameFont16;
-    public BitmapFont gameFont24;
-    public BitmapFont gameFont32;
-    public BitmapFont gameFont45;
-    public BitmapFont gameFontB45;
-    public BitmapFont gameFontB16;
-    public BitmapFont gameFontB24;
-    public BitmapFont gameFontB32;
+    public String gameFont16 = "fonts/game_font_small.fnt";
+    public String gameFontB16 = "fonts/game_font_small_border.fnt";
 
 
     // pngss
@@ -283,32 +274,8 @@ public class Assets {
         manager.load(talentTooltipFont, BitmapFont.class);
         manager.load(mapTitle, BitmapFont.class);
         manager.load(mapDescription, BitmapFont.class);
-
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal(gameFont));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 16;
-        gameFont16 = generator.generateFont(parameter);
-        parameter.size = 24;
-        gameFont24 = generator.generateFont(parameter);
-        parameter.size = 32;
-        gameFont32 = generator.generateFont(parameter);
-        parameter.size = 45;
-        gameFont45 = generator.generateFont(parameter);
-
-        parameter.size = 16;
-        parameter.borderColor = Color.BLACK;
-        parameter.borderWidth = 1;
-        gameFontB16 = generator.generateFont(parameter);
-        parameter.size = 24;
-        gameFontB24 = generator.generateFont(parameter);
-        parameter.size = 32;
-        gameFontB32 = generator.generateFont(parameter);
-        parameter.size = 45;
-        gameFontB45 = generator.generateFont(parameter);
-        generator.dispose();
-
-
-
+        manager.load(gameFont16,BitmapFont.class);
+        manager.load(gameFontB16,BitmapFont.class);
     }
 
     public Texture getTexture(String filename)   {
@@ -325,6 +292,15 @@ public class Assets {
 
     public BitmapFont getFont(String filename)   {
         return manager.get(filename, BitmapFont.class);
+    }
+
+    public BitmapFont getFont(boolean isBorder)   {
+        if(isBorder)    {
+            return manager.get(gameFontB16, BitmapFont.class);
+        }
+        else {
+            return manager.get(gameFont16, BitmapFont.class);
+        }
     }
 
     /*

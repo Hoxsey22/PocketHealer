@@ -41,9 +41,10 @@ public class FloatingText {
     }
 
     public void create()    {
-
-        floatingText = new Text("", assets);
-        floatingText.setFont(24, true);
+       /* Label.LabelStyle labelStyle = new Label.LabelStyle();
+        BitmapFont font = assets.getFont(assets.gameFont16);
+        labelStyle.font = font;*/
+        floatingText = new Text(""+damage, false, assets);
         addText();
 
         floatingText.setAlignment(Align.center);
@@ -71,19 +72,23 @@ public class FloatingText {
 
     }
 
+    public void setFontSize(int size)   {
+        floatingText.setFontSize(size);
+    }
+
     public void addText()   {
         floatingText.setText(damage);
         switch (type)   {
             case DAMAGE:
-                floatingText.setColor(Color.RED);
+                floatingText.setFontColor(Color.RED);
                 floatingText.setPosition(owner.getX()+ owner.getWidth()/2 - 5, owner.getY()+20);
                 break;
             case HEAL:
-                floatingText.setColor(Color.GREEN);
+                floatingText.setFontColor(Color.GREEN);
                 floatingText.setPosition(owner.getX()+ owner.getWidth()/2 + 10, owner.getY()+20);
                 break;
             case SHIELD:
-                floatingText.setColor(Color.YELLOW);
+                floatingText.setFontColor(Color.YELLOW);
                 floatingText.setPosition(owner.getX()+ owner.getWidth()/2 - 15, owner.getY()+20);
         }
 
@@ -125,6 +130,5 @@ public class FloatingText {
     }
 
     public void dispose()   {
-        floatingText.dispose();
     }
 }

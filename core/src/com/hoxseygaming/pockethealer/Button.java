@@ -35,8 +35,8 @@ public class Button extends Actor {
 
     private void setupText()   {
 
-        text = new Text(getName(),assets);
-        text.setFont(32, false);
+        text = new Text(getName(), false, assets);
+        text.setFontSize(32);
         text.setColor(Color.BLACK);
         text.setWrap(true);
         text.setWidth(getWidth());

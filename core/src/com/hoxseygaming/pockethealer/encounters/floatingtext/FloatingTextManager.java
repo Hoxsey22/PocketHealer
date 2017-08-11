@@ -27,7 +27,7 @@ public class FloatingTextManager {
 
     public void add(int damage, int type)   {
         floatingTexts.add(new FloatingText(idCounter, owner,damage,type, assets));
-        floatingTexts.get(getIndex(idCounter)).getFloatingText().setFont(24, true);
+        floatingTexts.get(getIndex(idCounter)).setFontSize(24);
         floatingTexts.get(getIndex(idCounter)).startAnimation();
         idCounter++;
     }
@@ -35,10 +35,10 @@ public class FloatingTextManager {
     public void add(int damage, int type, boolean isCritical)   {
         floatingTexts.add(new FloatingText(idCounter, owner, damage, type, assets));
         if(isCritical)    {
-            floatingTexts.get(getIndex(idCounter)).getFloatingText().setFont(32, true);
+            floatingTexts.get(getIndex(idCounter)).setFontSize(32);
         }
         else
-            floatingTexts.get(getIndex(idCounter)).getFloatingText().setFont(24, true);
+            floatingTexts.get(getIndex(idCounter)).setFontSize(24);
         floatingTexts.get(getIndex(idCounter)).startAnimation();
         idCounter++;
     }
