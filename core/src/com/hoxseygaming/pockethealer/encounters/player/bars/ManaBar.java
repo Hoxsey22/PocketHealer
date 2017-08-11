@@ -30,9 +30,7 @@ public class ManaBar extends Actor {
 
     private void setupText()    {
 
-        text = new Text(owner.getMana()+"/"+owner.getMaxMana(), true, assets);
-        text.setFontSize(32);
-        text.setColor(Color.WHITE);
+        text = new Text(owner.getMana()+"/"+owner.getMaxMana(),32, Color.WHITE, true, assets);
         text.setPosition(getX()+(getWidth()/2)-(text.getWidth()/2), getY()+getHeight()/2 -text.getHeight()/2);
 
     }

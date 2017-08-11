@@ -27,13 +27,40 @@ public class FloatingText {
     private int duration;
     public boolean isAnimating;
     private Assets assets;
+    private int fontSize;
+    private Color color;
+    private float x,y;
 
-    public FloatingText(int id, RaidMember raidMember, int damage, int type, Assets assets)   {
+    public FloatingText(int id, RaidMember raidMember, int damage, int type, boolean isCritical, Assets assets)   {
         this.assets = assets;
         this.id = id;
         owner = raidMember;
         this.damage = ""+damage;
         this.type = type;
+
+        if(isCritical)    {
+            fontSize = 32;
+        }
+        else    {
+            fontSize = 24;
+        }
+
+        switch (type)   {
+            case DAMAGE:
+                color = Color.RED;
+                x = owner.getX()+ owner.getWidth()/2 - 5;
+                y = owner.getY()+20;
+                break;
+            case HEAL:
+                color = Color.GREEN;
+                x = owner.getX()+ owner.getWidth()/2 + 10;
+                y = owner.getY()+20;
+                break;
+            case SHIELD:
+                color = Color.YELLOW;
+                x = owner.getX()+ owner.getWidth()/2 - 15;
+                y = owner.getY()+20;
+        }
 
         duration = 10;
         isAnimating = false;
@@ -44,10 +71,9 @@ public class FloatingText {
        /* Label.LabelStyle labelStyle = new Label.LabelStyle();
         BitmapFont font = assets.getFont(assets.gameFont16);
         labelStyle.font = font;*/
-        floatingText = new Text(""+damage, false, assets);
-        addText();
-
+        floatingText = new Text("" + damage, fontSize, color, false, assets);
         floatingText.setAlignment(Align.center);
+        setPosition(x,y);
     }
 
     public void startAnimation() {
@@ -60,7 +86,7 @@ public class FloatingText {
             @Override
             public void run() {
                 currentTimer++;
-                floatingText.setPosition(floatingText.getX(), floatingText.getY()+(currentTimer/2));
+                setPosition(floatingText.getX(), floatingText.getY()+(currentTimer/2));
                 if(currentTimer == duration)    {
                     isAnimating = false;
                     timer.stop();
@@ -72,27 +98,12 @@ public class FloatingText {
 
     }
 
-    public void setFontSize(int size)   {
-        floatingText.setFontSize(size);
+    public void setPosition(float x, float y)   {
+        this.x = x;
+        this.y = y;
+        floatingText.setPosition(this.x, this.y);
     }
 
-    public void addText()   {
-        floatingText.setText(damage);
-        switch (type)   {
-            case DAMAGE:
-                floatingText.setFontColor(Color.RED);
-                floatingText.setPosition(owner.getX()+ owner.getWidth()/2 - 5, owner.getY()+20);
-                break;
-            case HEAL:
-                floatingText.setFontColor(Color.GREEN);
-                floatingText.setPosition(owner.getX()+ owner.getWidth()/2 + 10, owner.getY()+20);
-                break;
-            case SHIELD:
-                floatingText.setFontColor(Color.YELLOW);
-                floatingText.setPosition(owner.getX()+ owner.getWidth()/2 - 15, owner.getY()+20);
-        }
-
-    }
 
     public int getId() {
         return id;

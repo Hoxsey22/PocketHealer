@@ -61,7 +61,7 @@ public class EncounterState extends State {
         manaBar = new ManaBar(player, assets);
 
         castBar = new CastBar(player, assets);
-
+        castBar.anchor(manaBar);
         //raid = new Raid(10, assets);
         player.setRaid(boss.enemies);
 

@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
-import com.hoxseygaming.pockethealer.encounters.EncounterData;
+import com.hoxseygaming.pockethealer.PocketHealer;
 
 /**
  * Created by Hoxsey on 6/20/2017.
@@ -18,6 +18,10 @@ public class CastBar extends Actor {
         setBounds(20,235,442,40);
         owner = player;
         this.assets = assets;
+    }
+
+    public void anchor(Actor actor) {
+        setPosition(PocketHealer.WIDTH/2 - this.getWidth()/2, actor.getY()+ actor.getHeight() + 10);
     }
 
     public boolean isActive() {

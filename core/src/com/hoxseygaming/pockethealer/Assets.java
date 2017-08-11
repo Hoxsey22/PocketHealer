@@ -32,7 +32,13 @@ public class Assets {
     public String gameFont = "fonts/chela_one_regular.ttf";
 
     public String gameFont16 = "fonts/game_font_small.fnt";
+    public String gameFont24 = "fonts/game_font_medium.fnt";
+    public String gameFont32 = "fonts/game_font_large.fnt";
+    public String gameFont45 = "fonts/game_font_xlarge.fnt";
     public String gameFontB16 = "fonts/game_font_small_border.fnt";
+    public String gameFontB24 = "fonts/game_font_medium_border.fnt";
+    public String gameFontB32 = "fonts/game_font_large_border.fnt";
+    public String gameFontB45 = "fonts/game_font_xlarge_border.fnt";
 
 
     // pngss
@@ -274,8 +280,15 @@ public class Assets {
         manager.load(talentTooltipFont, BitmapFont.class);
         manager.load(mapTitle, BitmapFont.class);
         manager.load(mapDescription, BitmapFont.class);
+
         manager.load(gameFont16,BitmapFont.class);
+        manager.load(gameFont24,BitmapFont.class);
+        manager.load(gameFont32,BitmapFont.class);
+        manager.load(gameFont45,BitmapFont.class);
         manager.load(gameFontB16,BitmapFont.class);
+        manager.load(gameFontB24,BitmapFont.class);
+        manager.load(gameFontB32,BitmapFont.class);
+        manager.load(gameFontB45,BitmapFont.class);
     }
 
     public Texture getTexture(String filename)   {
