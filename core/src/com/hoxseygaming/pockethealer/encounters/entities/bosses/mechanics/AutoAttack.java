@@ -12,6 +12,14 @@ public class AutoAttack extends Mechanic {
     public AutoAttack(Boss owner) {
         super(owner);
         id = 1;
+        speed = 2f;
+        create();
+    }
+
+    public AutoAttack(Boss owner, float speed) {
+        super(owner);
+        id = 1;
+        this.speed = speed;
         create();
     }
 
@@ -20,7 +28,6 @@ public class AutoAttack extends Mechanic {
         super.create();
         name = "Auto Attack";
         damage = owner.getDamage();
-        speed = 2f;
     }
 
     @Override

@@ -11,7 +11,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 public class Mechanic {
 
     public enum Debuff  {
-        BLEED, SUNDER, SOULSTEAL,
+        BLEED, POISON, SUNDER, SOULSTEAL,
         MAIME, HEALINGABSORB
     }
 

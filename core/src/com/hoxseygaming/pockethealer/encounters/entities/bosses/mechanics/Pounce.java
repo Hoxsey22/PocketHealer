@@ -13,10 +13,19 @@ import java.util.ArrayList;
 public class Pounce extends Mechanic {
 
     ArrayList<Bleed> bleeds;
+    int numOfTargets;
 
     public Pounce(Boss owner) {
         super(owner);
         id = 4;
+        numOfTargets = 3;
+        create();
+    }
+
+    public Pounce(Boss owner, int numOfTargets) {
+        super(owner);
+        id = 4;
+        this.numOfTargets = numOfTargets;
         create();
     }
 

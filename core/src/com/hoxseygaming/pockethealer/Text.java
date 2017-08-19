@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Align;
  */
 
 public class Text extends Actor{
-    
+
     private Assets assets;
     private Label label;
     private Label.LabelStyle labelStyle;

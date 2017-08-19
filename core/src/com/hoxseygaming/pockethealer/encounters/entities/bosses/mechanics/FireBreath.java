@@ -35,6 +35,7 @@ public class FireBreath extends Mechanic{
             @Override
             public void run() {
                 startChannel();
+                timer.stop();
             }
         },speed, speed);
         startAnnouncementTimer();
@@ -45,11 +46,11 @@ public class FireBreath extends Mechanic{
     public void startChannel()  {
         channel = new Timer();
 
-        channel.scheduleTask(new Timer.Task() {
+        channel.schedule(new Timer.Task() {
             int count =  0;
             @Override
             public void run() {
-                if(count != 4) {
+                if(count != 3) {
                     count++;
                     owner.getEnemies().takeDamage(damage);
                 }
@@ -59,6 +60,6 @@ public class FireBreath extends Mechanic{
                     start();
                 }
             }
-        },0.5f,0.5f,4);
+        },0.5f,0.5f,3);
     }
 }

@@ -5,23 +5,21 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 /**
- * Created by Hoxsey on 8/4/2017.
+ * Created by Hoxsey on 8/18/2017.
  */
 
-public class BullCharge extends Mechanic {
+public class RockThrow extends Mechanic {
 
+    int numOfTargets;
 
-    public BullCharge(Boss owner) {
+    public RockThrow(Boss owner) {
         super(owner);
-        id = 8;
-        speed = 6f;
+        speed = 2f;
         create();
-
     }
 
-    public BullCharge(Boss owner, float speed) {
+    public RockThrow(Boss owner, float speed) {
         super(owner);
-        id = 8;
         this.speed = speed;
         create();
     }
@@ -29,9 +27,8 @@ public class BullCharge extends Mechanic {
     @Override
     public void create() {
         super.create();
-        name = "Bull Charge";
-        announcementString = "Proctor is about to charge someone!";
         damage = 50;
+        name = "Rock Throw";
     }
 
     @Override
@@ -41,10 +38,12 @@ public class BullCharge extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                RaidMember selected = owner.getEnemies().getRandomRaidMember(1)[0];
-                if(selected != null)    {
-                    selected.takeDamage(damage);
+                RaidMember tempEnemies [] = owner.getEnemies().getRandomRaidMember(numOfTargets);
+
+                for(int i = 0; i < tempEnemies.length-1; i++)   {
+                    tempEnemies[i].takeDamage(damage);
                 }
+
             }
         },speed,speed);
         startAnnouncementTimer();
