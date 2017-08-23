@@ -20,9 +20,9 @@ public class Proctor extends Boss {
 
     public Proctor(Assets assets) {
         super("Proctor", 12000, new Raid(10, assets), assets);
-        id = 3;
+        setId(8);
         level = 3;
-        damage = 40;
+        damage = 20;
         create();
     }
 
@@ -31,24 +31,10 @@ public class Proctor extends Boss {
         super.create();
 
         autoAttack = new AutoAttack(this);
-        mechanics.add(autoAttack);
-
         bullCharge = new BullCharge(this);
-        mechanics.add(bullCharge);
-
         fireBreath = new FireBreath(this);
-        mechanics.add(fireBreath);
-
         tankSwap = new TankSwap(this);
-        mechanics.add(tankSwap);
-    }
 
-    @Override
-    public void start() {
-        super.start();
-        autoAttack.start();
-        bullCharge.start();
-        fireBreath.start();
-        tankSwap.start();
+        loadMechanics(autoAttack, tankSwap, bullCharge, fireBreath);
     }
 }

@@ -10,24 +10,13 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 public class AutoAttack extends Mechanic {
 
     public AutoAttack(Boss owner) {
-        super(owner);
+        super("Auto Attack", owner.getDamage(), 2f, owner);
         id = 1;
-        speed = 2f;
-        create();
     }
 
     public AutoAttack(Boss owner, float speed) {
-        super(owner);
+        super("Auto Attack", owner.getDamage(), speed, owner);
         id = 1;
-        this.speed = speed;
-        create();
-    }
-
-    @Override
-    public void create() {
-        super.create();
-        name = "Auto Attack";
-        damage = owner.getDamage();
     }
 
     @Override
@@ -38,7 +27,6 @@ public class AutoAttack extends Mechanic {
             @Override
             public void run() {
 
-                System.out.println("Boss attacked id["+owner.target.getId()+"] role:"+owner.target.getRole());
                 if(owner.getTarget().isDead())
                     owner.nextThreat();
                 if(!owner.getTarget().isDead()) {
@@ -53,7 +41,7 @@ public class AutoAttack extends Mechanic {
                     timer.clear();
                     return;
                 }
-                System.out.println("AUTO ATTACK!");
+                System.out.println("AUTO ATTACK! "+owner.getTarget().getId()+"taking "+damage);
             }
         },speed,speed);
     }

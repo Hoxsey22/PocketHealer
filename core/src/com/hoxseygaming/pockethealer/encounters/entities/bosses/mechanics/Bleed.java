@@ -12,25 +12,13 @@ public class Bleed extends Mechanic {
 
 
     public Bleed( Boss owner) {
-        super(owner);
-        id = 3;
-        create();
-    }
-
-    public Bleed(Boss owner, RaidMember target) {
-        super(owner);
-        create();
-        this.target = target;
-    }
-
-    @Override
-    public void create() {
-        id = 2;
-        name = "Bleed";
+        super("Bleed", 5, 3f, owner);
         debuff = Debuff.BLEED;
-        damage = 5;
-        speed = 3f;
-        super.create();
+    }
+
+    public Bleed(Boss owner, float speed) {
+        super("Bleed", 5, speed, owner);
+        debuff = Debuff.BLEED;
     }
 
     public void amplify()   {
@@ -51,7 +39,7 @@ public class Bleed extends Mechanic {
                 count++;
                 if(tar.getHpPercent() > 0.9)    {
                     stop();
-                    tar.removeEffect(Debuff.BLEED);
+                    tar.removeEffect(debuff);
                 }
 
                 if(count % (speed/0.01f)   == 0)    {
@@ -60,16 +48,5 @@ public class Bleed extends Mechanic {
                 }
             }
         },0.01f,0.01f);
-    }
-
-    @Override
-    public void applyMechanic() {
-        super.applyMechanic();
-        target.applyEffect(Debuff.BLEED);
-    }
-
-    public void stop()  {
-        timer.stop();
-        timer.clear();
     }
 }

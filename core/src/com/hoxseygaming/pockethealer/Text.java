@@ -25,7 +25,6 @@ public class Text extends Actor{
         labelStyle = new Label.LabelStyle(assets.getFont(isBorder), Color.BLACK);
         label = new Label(text,labelStyle);
 
-
         label.setAlignment(Align.left);
 
     }

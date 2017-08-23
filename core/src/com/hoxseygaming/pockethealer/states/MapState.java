@@ -13,9 +13,14 @@ import com.hoxseygaming.pockethealer.Button;
 import com.hoxseygaming.pockethealer.MapFrame;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.BanditLeader;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.GiantHornet;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Golem;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hogger;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Proctor;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Tiger;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.WampusCat;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.WildBoar;
 
 /**
  * Created by Hoxsey on 7/11/2017.
@@ -61,6 +66,11 @@ public class MapState extends State {
 
         switch (page)   {
             case 1:
+                mapFrame.getMap().add(new BossIcon(assets, new WildBoar(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new Tiger(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new GiantHornet(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new Golem(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new BanditLeader(assets)));
                 mapFrame.getMap().add(new BossIcon(assets, new Hogger(assets)));
                 mapFrame.getMap().add(new BossIcon(assets, new Proctor(assets)));
                 mapFrame.getMap().add(new BossIcon(assets, new WampusCat(assets)));

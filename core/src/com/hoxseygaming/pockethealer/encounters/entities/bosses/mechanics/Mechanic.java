@@ -31,8 +31,12 @@ public class Mechanic {
     public Timer announcementTimer;
 
 
-    public Mechanic(Boss owner)   {
+    public Mechanic(String name, int damage, float speed, Boss owner)   {
         this.owner = owner;
+        this.name = name;
+        this.damage = damage;
+        this.speed = speed;
+
         target = owner.getTarget();
         isActive = false;
         announcementString = "";
@@ -41,7 +45,7 @@ public class Mechanic {
 
     public void create()    {
         System.out.println("Mechanic created");
-        timer = new Timer();
+        //timer = new Timer();
     }
 
     public void start()    {
@@ -87,6 +91,7 @@ public class Mechanic {
 
     public void applyMechanic()  {
         System.out.println("Mechanic applied");
+        target.applyEffect(debuff);
     }
 
 

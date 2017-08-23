@@ -13,18 +13,8 @@ public class FireBreath extends Mechanic{
     public Timer channel;
 
     public FireBreath(Boss owner) {
-        super(owner);
-        id = 7;
-        create();
-    }
-
-    @Override
-    public void create() {
-        name = "Fire Breath";
+        super("Fire Breath", 10, 20f, owner);
         announcementString = owner.getName()+" is about breath fire!";
-        damage = 10;
-        speed = 20f;
-        super.create();
     }
 
     @Override
@@ -35,12 +25,10 @@ public class FireBreath extends Mechanic{
             @Override
             public void run() {
                 startChannel();
-                timer.stop();
+                stop();
             }
         },speed, speed);
         startAnnouncementTimer();
-
-
     }
 
     public void startChannel()  {

@@ -12,26 +12,15 @@ public class BullCharge extends Mechanic {
 
 
     public BullCharge(Boss owner) {
-        super(owner);
+        super("Bull Charge", 50, 6f, owner);
         id = 8;
-        speed = 6f;
-        create();
-
+        announcementString = owner.getName()+" is about to charge someone!";
     }
 
     public BullCharge(Boss owner, float speed) {
-        super(owner);
+        super("Bull Charge", 50, speed, owner);
         id = 8;
-        this.speed = speed;
-        create();
-    }
-
-    @Override
-    public void create() {
-        super.create();
-        name = "Bull Charge";
-        announcementString = "Proctor is about to charge someone!";
-        damage = 50;
+        announcementString = owner.getName()+" is about to charge someone!";
     }
 
     @Override

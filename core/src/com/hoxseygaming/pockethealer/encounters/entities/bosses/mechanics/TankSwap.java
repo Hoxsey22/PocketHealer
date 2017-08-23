@@ -10,9 +10,13 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 public class TankSwap extends Mechanic {
 
     public TankSwap(Boss owner) {
-        super(owner);
-        id = 2;
-        speed = 8f;
+        super("Tank Swap",0,8f,owner);
+        setMainTank();
+        setOffTank();
+    }
+
+    public TankSwap(Boss owner, float speed) {
+        super("Tank Swap",0,speed,owner);
         setMainTank();
         setOffTank();
     }

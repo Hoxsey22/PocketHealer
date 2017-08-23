@@ -12,23 +12,13 @@ public class Poison extends Mechanic {
 
 
     public Poison(Boss owner) {
-        super(owner);
-        create();
-    }
-
-    public Poison(Boss owner, RaidMember target) {
-        super(owner);
-        create();
-        this.target = target;
-    }
-
-    @Override
-    public void create() {
-        name = "Poison";
+        super("Poison", 10, 2f, owner);
         debuff = Debuff.POISON;
-        damage = 10;
-        speed = 2f;
-        super.create();
+    }
+
+    public Poison(Boss owner, float speed) {
+        super("Poison", 10, speed, owner);
+        debuff = Debuff.POISON;
     }
 
     @Override
@@ -43,11 +33,9 @@ public class Poison extends Mechanic {
             @Override
             public void run() {
                 count++;
-                if(tar.getHpPercent() > 0.9)    {
+                if(!tar.containsEffects(debuff))    {
                     stop();
-                    tar.removeEffect(Debuff.BLEED);
                 }
-
                 if(count % (speed/0.01f)   == 0)    {
                     tar.takeDamage(damage);
                 }
@@ -58,7 +46,6 @@ public class Poison extends Mechanic {
     @Override
     public void applyMechanic() {
         super.applyMechanic();
-        target.applyEffect(Debuff.BLEED);
     }
 
     public void stop()  {

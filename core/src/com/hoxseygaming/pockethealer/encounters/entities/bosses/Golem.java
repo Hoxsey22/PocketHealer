@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.RockThrow;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
  * Created by Hoxsey on 8/17/2017.
@@ -14,7 +15,8 @@ public class Golem extends Boss {
     public RockThrow rockThrow;
 
     public Golem(Assets assets) {
-        super("Golem", 3000, assets);
+        super("Golem", 3000, new Raid(5,assets), assets);
+        setId(4);
         create();
     }
 
@@ -26,16 +28,9 @@ public class Golem extends Boss {
 
         autoAttack = new AutoAttack(this, 3f);
         rockThrow = new RockThrow(this, 5f);
+        rockThrow.setNumOfTargets(2);
 
-        mechanics.add(autoAttack);
-        mechanics.add(rockThrow);
+        loadMechanics(autoAttack,rockThrow);
 
-    }
-
-    @Override
-    public void start() {
-        super.start();
-        autoAttack.start();
-        rockThrow.start();
     }
 }

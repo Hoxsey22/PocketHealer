@@ -177,6 +177,9 @@ public class Entity extends Actor{
     public boolean containsEffects(Spell.EffectType buff)   {
         return effects.indexOf(assets.getEffectImage(buff)) > -1;
     }
+    public boolean containsEffects(Mechanic.Debuff debuff)   {
+        return effects.indexOf(assets.getEffectImage(debuff)) > -1;
+    }
 
 
     /*Getters and Setters*/

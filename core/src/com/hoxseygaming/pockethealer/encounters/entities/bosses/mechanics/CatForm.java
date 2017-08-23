@@ -13,21 +13,9 @@ public class CatForm extends Mechanic{
     public Pounce pounce;
 
     public CatForm(Boss owner) {
-        super(owner);
-        id = 5;
-        create();
-    }
-
-    @Override
-    public void create() {
-        super.create();
-        name = "Cat Form";
-        announcementString = "Wampus is in her Human form!";
-        damage = 0;
-        speed = 30f;
-        duration = 0;
+        super("Cat Form", 0, 30f, owner);
+        announcementString = owner.getName()+" is in her Human form!";
         pounce = new Pounce(owner);
-
     }
 
     @Override

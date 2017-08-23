@@ -13,22 +13,11 @@ public class RockThrow extends Mechanic {
     int numOfTargets;
 
     public RockThrow(Boss owner) {
-        super(owner);
-        speed = 2f;
-        create();
+        super("Rock Throw", 50, 2f, owner);
     }
 
     public RockThrow(Boss owner, float speed) {
-        super(owner);
-        this.speed = speed;
-        create();
-    }
-
-    @Override
-    public void create() {
-        super.create();
-        damage = 50;
-        name = "Rock Throw";
+        super("Rock Throw", 50, speed, owner);
     }
 
     @Override
@@ -47,5 +36,13 @@ public class RockThrow extends Mechanic {
             }
         },speed,speed);
         startAnnouncementTimer();
+    }
+
+    public int getNumOfTargets() {
+        return numOfTargets;
+    }
+
+    public void setNumOfTargets(int numOfTargets) {
+        this.numOfTargets = numOfTargets;
     }
 }

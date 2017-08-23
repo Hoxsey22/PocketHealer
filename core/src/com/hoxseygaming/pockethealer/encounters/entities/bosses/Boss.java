@@ -47,10 +47,8 @@ public class Boss extends Entity {
 
         announcement = new Text("",16,Color.RED, false, assets);
         announcement.setPosition(getX(), getY() - announcement.getHeight()-announcement.getHeight()/2);
-        //announcement.setWidth(getWidth());
         announcement.setWrap(true);
         announcement.setAlignment(Align.left);
-       // nameText.turnOnDebug();
     }
 
     public void create()    {
@@ -65,9 +63,18 @@ public class Boss extends Entity {
         return enemies.getRaidMember(1);
     }
 
+    public void loadMechanics(Mechanic... mechs) {
+        for(Mechanic mech: mechs)   {
+            mechanics.add(mech);
+        }
+    }
+
     public void start() {
         System.out.println("BOSS IS NOW ACTIVE!");
         enemies.start(this);
+        for(int i = 0; i < mechanics.size(); i++)   {
+            mechanics.get(i).start();
+        }
     }
 
     public void stop()  {

@@ -128,9 +128,23 @@ public class Assets {
     public String hotSFX ="sfx/hot_sfx.mp3";
 
     // info strings
+    public String wildBoarInfo = "A wild boar is rampaging through the town and hurting innocent " +
+            "people.\n The wild boar will do moderate damage to the tank and will charge a random " +
+            "raid member every once in a while.";
+    public String tigerInfo = "A tiger is eating all the live stock and harming some people that " +
+            "try to stop him.\nThe tiger will do moderate damage to the tank and will pounce on raid" +
+            " members doing moderate damage and leaving behind a bleed.";
+    public String giantHornetInfo = "A sorcerer has put a spell on a hornet causing it to grow into " +
+            "a giant. It needs to be stopped before someone gets hurt.\nThe giant hornet is fast, but does" +
+            "small damage to the tanks and will sting a random raid member causing the target to be " +
+            "poisoned. ";
+    public String golemInfo = "The sorcerer is at it again and has summoned a Golem to stop anyone " +
+            "from reaching her.\nThe golem does heavy damage to the tank and will throw rocks at " +
+            "two raid members dealing heavy damage.";
+    public String banditLeaderInfor = "The sorcerer is partnering up the bandit leader and is having" +
+            " him steal precious materials for her.\nThe bandit leader moderate damage to the tank " +
+            "and will back stab a random raid member dealing heavy damage and leaving behind a bleed.";
     public String hoggerInfo = "Hogger does tank swapping and cleaves the raid every once in a while.";
-    public String btsInfo = "Bullet Tooth, the Sneaky, doesn't focus on tanks, but on everyone. Random hits a raid member very hard." +
-            "While sometimes dropping items that increase or decrease damage.";
     public String proctorInfo = "Proctor does heavy tank damage. While sundering random raid members which increase damage taken. Lastly, the Proctor does a roar" +
             "that damages the entire raid.";
     public String wampusCatInfo = "Wampus Cat, has two phases, cat and human form. While in cat, she pounces around giving bleeds. While in human form, she just auto attacks.";
@@ -267,11 +281,33 @@ public class Assets {
         }
 
         // boss icon position
+        bossIconPosition.add(new Vector2(30,-47)); // wild boar
+        bossIconPosition.add(new Vector2(90,-47)); // tiger
+        bossIconPosition.add(new Vector2(150,-47)); // giant bee
+        bossIconPosition.add(new Vector2(210,-47)); // golem
+        bossIconPosition.add(new Vector2(270,-47)); // bandit leader
+
+        bossIconPosition.add(new Vector2(30,-200)); // hogger
+        bossIconPosition.add(new Vector2(90,-200)); // wampus
+        bossIconPosition.add(new Vector2(150,-200)); // proctor
+        bossIconPosition.add(new Vector2(210,-200)); // laluchuza
+        bossIconPosition.add(new Vector2(270,-200)); // sorcerer
+
+        bossIconPosition.add(new Vector2(30,-300)); // mother spider
+        bossIconPosition.add(new Vector2(90,-300)); // zombie horde
+        bossIconPosition.add(new Vector2(150,-300)); // crazy professor
+        bossIconPosition.add(new Vector2(210,-300)); // blood queen
+        bossIconPosition.add(new Vector2(270,-300)); // death dragon
+
+
+
+        /*
         bossIconPosition.add(new Vector2(192,-47)); // hogger
         bossIconPosition.add(new Vector2(56,-126)); // bullet
         bossIconPosition.add(new Vector2(327,-174)); // proctor
         bossIconPosition.add(new Vector2(89,-292)); // wampus
         bossIconPosition.add(new Vector2(331,-342)); // laluchuza
+        */
 
 
     }
@@ -340,10 +376,18 @@ public class Assets {
 
     public String getBossDescription(String name)  {
         switch (name)   {
+            case "Wild Boar":
+                return wildBoarInfo;
+            case "Tiger":
+                return tigerInfo;
+            case "Giant Hornet":
+                return giantHornetInfo;
+            case "Golem":
+                return golemInfo;
+            case "Bandit Leader":
+                return banditLeaderInfor;
             case "Hogger":
                 return hoggerInfo;
-            case "Bullet Tooth, the Sneaky":
-                return btsInfo;
             case "Proctor":
                 return proctorInfo;
             case "Wampus Cat":
@@ -368,6 +412,8 @@ public class Assets {
         switch (debuff) {
             case BLEED:
                 return this.getTexture(bleedIcon);
+            case POISON:
+                return this.getTexture(poisonIcon);
         }
         return null;
     }

@@ -7,24 +7,15 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import java.util.ArrayList;
 
 /**
- * Created by Hoxsey on 7/26/2017.
+ * Created by Hoxsey on 8/20/2017.
  */
 
-public class Pounce extends Mechanic {
+public class BackStab extends Mechanic {
 
-    ArrayList<Bleed> bleeds;
-    int numOfTargets;
+    public ArrayList<Bleed> bleeds;
 
-    public Pounce(Boss owner) {
-        super("Pounce",30,4f,owner);
-        id = 4;
-        numOfTargets = 3;
-        bleeds = new ArrayList<>();
-    }
-
-    public Pounce(Boss owner, float speed) {
-        super("Pounce",30,speed,owner);
-        id = 4;
+    public BackStab(Boss owner) {
+        super("Back Stab", 60, 10f, owner);
         bleeds = new ArrayList<>();
     }
 
@@ -35,7 +26,7 @@ public class Pounce extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                RaidMember temp [] = owner.enemies.getRandomRaidMember(3);
+                RaidMember temp [] = owner.enemies.getRandomRaidMember(1);
 
                 for (int i = 0; i < temp.length; i++)   {
                     if(temp[i] != null) {
@@ -54,23 +45,10 @@ public class Pounce extends Mechanic {
     }
 
     @Override
-    public void applyMechanic() {
-        super.applyMechanic();
-    }
-
-    @Override
     public void stop() {
         super.stop();
         for(int i = 0; i < bleeds.size(); i++)   {
             bleeds.get(i).stop();
         }
-    }
-
-    public int getNumOfTargets() {
-        return numOfTargets;
-    }
-
-    public void setNumOfTargets(int numOfTargets) {
-        this.numOfTargets = numOfTargets;
     }
 }

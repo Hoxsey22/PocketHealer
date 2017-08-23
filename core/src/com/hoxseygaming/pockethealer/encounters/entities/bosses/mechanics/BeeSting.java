@@ -7,25 +7,19 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import java.util.ArrayList;
 
 /**
- * Created by Hoxsey on 7/26/2017.
+ * Created by Hoxsey on 8/21/2017.
  */
 
-public class Pounce extends Mechanic {
+public class BeeSting extends Mechanic {
 
-    ArrayList<Bleed> bleeds;
+    public ArrayList<Poison> poisons;
     int numOfTargets;
 
-    public Pounce(Boss owner) {
-        super("Pounce",30,4f,owner);
-        id = 4;
-        numOfTargets = 3;
-        bleeds = new ArrayList<>();
-    }
-
-    public Pounce(Boss owner, float speed) {
-        super("Pounce",30,speed,owner);
-        id = 4;
-        bleeds = new ArrayList<>();
+    public BeeSting(Boss owner) {
+        super("Bee String", 20, 10f, owner);
+        announcementString = owner.getName()+" is about to string someone!";
+        poisons = new ArrayList<>();
+        numOfTargets = 1;
     }
 
     @Override
@@ -35,15 +29,15 @@ public class Pounce extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                RaidMember temp [] = owner.enemies.getRandomRaidMember(3);
+                RaidMember temp [] = owner.getEnemies().getRandomRaidMember(numOfTargets);
 
                 for (int i = 0; i < temp.length; i++)   {
                     if(temp[i] != null) {
                         temp[i].takeDamage(damage);
-                        Bleed bleed = new Bleed(owner);
-                        bleed.setTarget(temp[i]);
-                        bleeds.add(bleed);
-                        bleed.start();
+                        Poison poison = new Poison(owner);
+                        poison.setTarget(temp[i]);
+                        poisons.add(poison);
+                        poison.start();
                     }
                 }
 
@@ -54,15 +48,10 @@ public class Pounce extends Mechanic {
     }
 
     @Override
-    public void applyMechanic() {
-        super.applyMechanic();
-    }
-
-    @Override
     public void stop() {
         super.stop();
-        for(int i = 0; i < bleeds.size(); i++)   {
-            bleeds.get(i).stop();
+        for (int i = 0; i < poisons.size(); i++)  {
+            poisons.get(i).stop();
         }
     }
 
