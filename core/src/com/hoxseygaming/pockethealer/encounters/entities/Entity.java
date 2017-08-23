@@ -293,4 +293,8 @@ public class Entity extends Actor{
     public void reset() {
         hp = maxHp;
     }
+
+    public boolean equals(Entity entity) {
+        return (this.getId() == entity.getId());
+    }
 }

@@ -37,22 +37,22 @@ public class TankSwap extends Mechanic {
     public void tankSwap()  {
         if(offTank.isDead() || mainTank.isDead())   {
             if(mainTank.isDead()) {
-                owner.setTarget(offTank);
+                owner.setTarget(owner.getOffTank());
                 stop();
                 return;
             }
             else    {
-                owner.setTarget(mainTank);
+                owner.setTarget(owner.getMainTank());
                 stop();
                 return;
             }
         }
 
-        if( owner.getTarget() == mainTank) {
-            owner.setTarget(offTank);
+        if( owner.getTarget().equals(mainTank)) {
+            owner.setTarget(owner.getOffTank());
         }
         else {
-            owner.setTarget(mainTank);
+            owner.setTarget(owner.getMainTank());
         }
     }
 }

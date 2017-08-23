@@ -148,11 +148,11 @@ public class Mechanic {
     }
 
     public void setMainTank()    {
-        mainTank = owner.enemies.raidMembers.get(0);
+        mainTank = owner.getMainTank();
     }
 
     public void setOffTank()    {
-        offTank = owner.enemies.raidMembers.get(1);
+        offTank = owner.getOffTank();
     }
 
 
