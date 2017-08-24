@@ -47,6 +47,7 @@ public class Assets {
     public String perseveranceIcon = "talent_state/perseverance.png";
     public String burstHealerIcon = "talent_state/burst_healer.png";
     public String innerFocusIcon = "talent_state/inner_focus.png";
+    public String diseaseIcon = "disease_icon.png";
     public String workTogetherIcon = "talent_state/work_together.png";
     public String selectedTalent = "talent_state/selected_talent_frame.png";
     public String talentWindow = "talent_state/talent_window.png";
@@ -84,6 +85,7 @@ public class Assets {
     public String yellowFill = "yellow_hp_fill.png";
     public String redFill = "red_hp_fill.png";
     public String greenFill = "green_hp_fill.png";
+    public String purpleFill = "purple_fill.png";
     public String raidFrameIdle = "raid_frame_idle.png";
     public String raidFrameSelected = "raid_frame_selected.png";
     public String hpManaBar = "hp_mana_bar.png";
@@ -187,6 +189,7 @@ public class Assets {
         manager.load(redFill, Texture.class);
         manager.load(yellowFill, Texture.class);
         manager.load(greenFill, Texture.class);
+        manager.load(purpleFill, Texture.class);
 
 
         manager.load(hpManaBar, Texture.class);
@@ -208,6 +211,7 @@ public class Assets {
         manager.load(workTogetherIcon, Texture.class);
         manager.load(selectedTalent, Texture.class);
         manager.load(talentWindow, Texture.class);
+        manager.load(diseaseIcon, Texture.class);
         manager.load(spellBar, Texture.class);
 
         manager.load(talentBg, Texture.class);

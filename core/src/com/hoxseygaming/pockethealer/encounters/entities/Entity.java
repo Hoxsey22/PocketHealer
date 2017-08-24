@@ -19,6 +19,7 @@ public class Entity extends Actor{
     public int hp;
     public float hpPercent;
     public int shield;
+    public int healingAbsorb;
     public String role;
     public int damage;
     public boolean isDead;
@@ -110,6 +111,16 @@ public class Entity extends Actor{
         }
     }
 
+    public void reduceHealingAbsorb(int output)   {
+        healingAbsorb = healingAbsorb - output;
+        if(healingAbsorb <= 0) {
+            receiveHealing(Math.abs(healingAbsorb));
+            removeEffect(Mechanic.Debuff.DISEASE);
+            healingAbsorb = 0;
+            getHpPercent();
+        }
+    }
+
     public void dealDamage(Entity target)    {
         target.receiveDamage(damage);
         }
@@ -140,8 +151,13 @@ public class Entity extends Actor{
         int newOutput = output;
         if(isCritical)
             newOutput = newOutput + (newOutput/2);
-        System.out.println("NEW OUTPUT:"+newOutput);
-        receiveHealing(newOutput);
+        if(healingAbsorb > 0) {
+            reduceHealingAbsorb(newOutput);
+        }
+        else {
+            System.out.println("NEW OUTPUT:" + newOutput);
+            receiveHealing(newOutput);
+        }
         return newOutput;
     }
 
@@ -262,6 +278,10 @@ public class Entity extends Actor{
 
     public void setHpPercent(float hpPercent) {
         this.hpPercent = hpPercent;
+    }
+
+    public float getHealingAbsorbPercent()  {
+        return (float)healingAbsorb/(float)maxHp;
     }
 
     public Texture getRoleImage() {

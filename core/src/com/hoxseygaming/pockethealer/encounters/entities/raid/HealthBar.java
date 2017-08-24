@@ -1,11 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.raid;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
 
 /**
@@ -45,19 +41,6 @@ public class HealthBar {
             batch.draw(assets.getTexture(assets.greenFill), x+3,y+2,(width-6)*owner.getHealthPercent(),height-4);
         }
         batch.draw(assets.getTexture(assets.manaFill), x+3,y+2,(width-6)*owner.getShieldPercent(),height-4);
-        /*
-        batch.end();
-        renderer.setProjectionMatrix(batch.getProjectionMatrix());
-        renderer.setColor(Color.BLACK);
-        renderer.begin(ShapeRenderer.ShapeType.Filled);
-            renderer.rect(backgroundBar.x,backgroundBar.y,backgroundBar.width,backgroundBar.getHeight());
-            renderer.setColor(barColor);
-            renderer.rect(x,y,WIDTH*hpPercent,HEIGHT);
-
-            renderer.setColor(Color.SKY);
-            renderer.rect(x,y,WIDTH*shieldPercent,HEIGHT);
-        renderer.end();
-        batch.begin();
-        */
+        batch.draw(assets.getTexture(assets.purpleFill), x+3,y+2,(width-6)*owner.getHealingAbsorbPercent(),height-4);
     }
 }
