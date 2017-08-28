@@ -260,6 +260,7 @@ public class Assets {
         manager.load(title, Texture.class);
 
         manager.load(poisonIcon, Texture.class);
+        manager.load(diseaseIcon, Texture.class);
 
 
 
@@ -294,7 +295,7 @@ public class Assets {
         bossIconPosition.add(new Vector2(30,-200)); // hogger
         bossIconPosition.add(new Vector2(90,-200)); // wampus
         bossIconPosition.add(new Vector2(150,-200)); // proctor
-        bossIconPosition.add(new Vector2(210,-200)); // laluchuza
+        bossIconPosition.add(new Vector2(210,-200)); // apprentice
         bossIconPosition.add(new Vector2(270,-200)); // sorcerer
 
         bossIconPosition.add(new Vector2(30,-300)); // mother spider
@@ -418,6 +419,8 @@ public class Assets {
                 return this.getTexture(bleedIcon);
             case POISON:
                 return this.getTexture(poisonIcon);
+            case DISEASE:
+                return this.getTexture(diseaseIcon);
         }
         return null;
     }

@@ -8,17 +8,12 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
  * Created by Hoxsey on 7/12/2017.
  */
 
-public class Poison extends Mechanic {
+public class Disease extends Mechanic {
 
 
-    public Poison(Boss owner) {
-        super("Poison", 10, 2f, owner);
-        debuff = Debuff.POISON;
-    }
-
-    public Poison(Boss owner, float speed) {
-        super("Poison", 10, speed, owner);
-        debuff = Debuff.POISON;
+    public Disease(Boss owner) {
+        super("Disease", 0, 0, owner);
+        debuff = Debuff.DISEASE;
     }
 
     @Override
@@ -29,7 +24,6 @@ public class Poison extends Mechanic {
         final RaidMember tar = target;
         timer.scheduleTask(new Timer.Task() {
             int count = 0;
-            int tickCounter = 0;
 
             @Override
             public void run() {
@@ -37,25 +31,14 @@ public class Poison extends Mechanic {
                 if(!tar.containsEffects(debuff))    {
                     stop();
                 }
-                if(count % (speed/0.01f)   == 0)    {
-                    tar.takeDamage(damage);
-                    tickCounter++;
-                }
-                if(tickCounter == 5)    {
-                    tar.removeEffect(Debuff.POISON);
-                    stop();
-                }
             }
-        },0.01f,0.01f);
+        },0.1f,0.1f);
     }
 
     @Override
     public void applyMechanic() {
-        super.applyMechanic();
-    }
-
-    public void stop()  {
-        timer.stop();
-        timer.clear();
+        if(!target.containsEffects(debuff))
+            super.applyMechanic();
+        target.applyHealingAbsorb(50);
     }
 }
