@@ -1,13 +1,36 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Outbreak;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonPotion;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
- * Created by Hoxsey on 8/20/2017.
+ * Created by Hoxsey on 8/26/2017.
  */
 
 public class DeathDragon extends Boss {
-    public DeathDragon(String name, int maxHp, Assets assets) {
-        super(name, maxHp, assets);
+
+    public Outbreak outbreak;
+    public PoisonPotion poisonPotion;
+    public Fireball fireball;
+
+    public DeathDragon(Assets assets) {
+        super("Apprentice", 15000,new Raid(10,assets), assets);
+        setId(15);
+        create();
+    }
+
+    @Override
+    public void create() {
+        super.create();
+        damage = 0;
+
+        outbreak = new Outbreak(this, 10f);
+        poisonPotion = new PoisonPotion(this, 9f);
+        poisonPotion.setNumOfTargets(3);
+        fireball = new Fireball(this, 3f);
+        loadMechanics(outbreak, poisonPotion,fireball);
     }
 }

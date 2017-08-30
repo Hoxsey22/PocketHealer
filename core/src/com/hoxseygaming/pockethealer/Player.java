@@ -19,6 +19,8 @@ public class Player {
 
     public int maxMana;
     public int mana;
+    public float haste;
+    public float boost;
     public RaidMember target;
     public Raid raid;
     public SpellBar spellBar;
@@ -39,6 +41,8 @@ public class Player {
         //addDebuggingSpell();
         isCasting = false;
         talentBook = new TalentBook(this);
+        boost = 0;
+        haste = 0;
 
     }
 

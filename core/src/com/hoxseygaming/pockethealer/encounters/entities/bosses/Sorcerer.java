@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FireBreath;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Outbreak;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonPotion;
@@ -10,15 +11,16 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
  * Created by Hoxsey on 8/26/2017.
  */
 
-public class ZombieHorde extends Boss {
+public class Sorcerer extends Boss {
 
     public Outbreak outbreak;
     public PoisonPotion poisonPotion;
     public Fireball fireball;
+    public FireBreath fireBreath;
 
-    public ZombieHorde(Assets assets) {
-        super("Apprentice", 15000,new Raid(10,assets), assets);
-        setId(9);
+    public Sorcerer(Assets assets) {
+        super("Sorcerer", 20000,new Raid(15,assets), assets);
+        setId(10);
         create();
     }
 
@@ -31,6 +33,7 @@ public class ZombieHorde extends Boss {
         poisonPotion = new PoisonPotion(this, 9f);
         poisonPotion.setNumOfTargets(3);
         fireball = new Fireball(this, 3f);
-        loadMechanics(outbreak, poisonPotion,fireball);
+        fireBreath = new FireBreath(this);
+        loadMechanics(outbreak, poisonPotion,fireball,fireBreath);
     }
 }
