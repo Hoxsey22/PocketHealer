@@ -1,9 +1,9 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 
 import com.hoxseygaming.pockethealer.Assets;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Outbreak;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonPotion;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Consume;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.ZombieAttack;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.ZombieBite;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -12,13 +12,9 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class ZombieHorde extends Boss {
 
-    public Outbreak outbreak;
-    public PoisonPotion poisonPotion;
-    public Fireball fireball;
-
     public ZombieHorde(Assets assets) {
-        super("Apprentice", 15000,new Raid(10,assets), assets);
-        setId(9);
+        super("Zombie Horde", 20000,new Raid(15,assets), assets);
+        setId(12);
         create();
     }
 
@@ -27,10 +23,14 @@ public class ZombieHorde extends Boss {
         super.create();
         damage = 0;
 
-        outbreak = new Outbreak(this, 10f);
-        poisonPotion = new PoisonPotion(this, 9f);
-        poisonPotion.setNumOfTargets(3);
-        fireball = new Fireball(this, 3f);
-        loadMechanics(outbreak, poisonPotion,fireball);
+        ZombieAttack zombieAttack = new ZombieAttack(this, 2.5f);
+
+        ZombieBite zombieBite = new ZombieBite(this, 9f);
+
+        zombieBite.setNumOfTargets(4);
+
+        Consume consume = new Consume(this, 17f);
+
+        loadMechanics(zombieAttack, zombieBite, consume);
     }
 }

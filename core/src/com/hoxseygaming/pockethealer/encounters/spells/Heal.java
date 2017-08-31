@@ -21,7 +21,7 @@ public class Heal extends Spell {
     public int castCounter;
 
     public Heal(int position, Player player, Assets assets) {
-        super("Heal","An efficient slow powerful single target heal.", EffectType.HEAL, 40, 10, 0.5f, position, assets);
+        super(player, "Heal","An efficient slow powerful single target heal.", EffectType.HEAL, 40, 10, 0.5f, position, assets);
         owner = player;
         image = this.assets.getTexture("heal_icon.png");
         castCounter = 0;

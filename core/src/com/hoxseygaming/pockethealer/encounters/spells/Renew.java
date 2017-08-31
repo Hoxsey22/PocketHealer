@@ -1,11 +1,9 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
-import com.hoxseygaming.pockethealer.encounters.EncounterData;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 /**
@@ -23,7 +21,7 @@ public class Renew extends Spell {
      * @param player
      */
     public Renew(int position, Player player, Assets assets)  {
-        super("Renew","A small heal that is healed over time.", EffectType.HEALOVERTIME, 7, 15, 0.5f, position, assets);
+        super(player, "Renew","A small heal that is healed over time.", EffectType.HEALOVERTIME, 7, 15, 0.5f, position, assets);
         owner = player;
         image = this.assets.getTexture("renew_icon.png");
         totalHealing = 0;

@@ -14,8 +14,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 public class MotherSpider extends Boss {
 
     public MotherSpider(Assets assets) {
-        super("Apprentice", 20000,new Raid(15,assets), assets);
-        setId(12);
+        super("Mother Spider", 20000,new Raid(15,assets), assets);
+        setId(11);
         create();
     }
 
@@ -30,7 +30,7 @@ public class MotherSpider extends Boss {
         poisonBite.setNumOfTargets(4);
 
         WebTrap webTrap = new WebTrap(this, 16f);
-        webTrap.setNumOfTarget(6);
+        webTrap.setNumOfTarget(4);
 
         Consume consume = new Consume(this, 15f);
 

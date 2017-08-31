@@ -32,6 +32,9 @@ public class Consume extends Mechanic {
                 for(int i = 0; i <  diseasedTargets.size(); i++)   {
                     diseasedTargets.get(i).takeDamage(200);
                     owner.receiveHealing(diseasedTargets.get(i).getMaxHp());
+                    if(owner.getName().equalsIgnoreCase("Zombie Horde"))    {
+                        owner.setDamage(owner.getDamage()+2);
+                    }
                 }
             }
         },speed,speed);

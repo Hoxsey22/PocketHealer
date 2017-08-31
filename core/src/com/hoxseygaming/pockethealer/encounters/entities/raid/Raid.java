@@ -163,19 +163,32 @@ public class Raid extends Group {
             }
         }
         return null;
-        /*
-        for (int i = 0; i < raidMembers.size(); i++)  {
-            if(!raidMembers.get(i).isSelected()) {
-                if (lowest.size() < cap) {
-                    lowest.add(raidMembers.get(i));
-                } else {
-                    Collections.sort(lowest);
-                    if (raidMembers.get(i).hp < lowest.get(0).getHp()) {
-                        lowest.add(0, raidMembers.get(i));
-                    }
+    }
+
+    public ArrayList<RaidMember> getRaidMembersWithLowestHp(int cap, RaidMember target)    {
+        ArrayList<RaidMember> lowest = new ArrayList<>(cap);
+        ArrayList<RaidMember> temp = new ArrayList<>();
+        temp.addAll(raidMembers);
+
+        Collections.sort(temp);
+        System.out.println(temp.toString());
+        int counter = 0;
+        for(int i = 0; i < temp.size(); i++) {
+            if (!temp.get(i).isSelected()) {
+                lowest.add(temp.get(i));
+                counter++;
+                if(counter == cap)    {
+                    return lowest;
                 }
             }
-        }*/
+        }
+        return null;
+    }
+
+    public void receiveHealing(int output)    {
+        for(int i= 0; i <  raidMembers.size(); i++)   {
+            raidMembers.get(i).receiveHealing(output, false);
+        }
     }
 
     public void takeDamage(int damage)    {

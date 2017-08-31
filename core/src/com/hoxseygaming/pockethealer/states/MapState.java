@@ -18,10 +18,13 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.BanditLeader;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.GiantHornet;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Golem;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hogger;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.MotherSpider;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Proctor;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Sorcerer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Tiger;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.WampusCat;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.WildBoar;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.ZombieHorde;
 
 /**
  * Created by Hoxsey on 7/11/2017.
@@ -76,6 +79,15 @@ public class MapState extends State {
                 mapFrame.getMap().add(new BossIcon(assets, new Proctor(assets)));
                 mapFrame.getMap().add(new BossIcon(assets, new WampusCat(assets)));
                 mapFrame.getMap().add(new BossIcon(assets, new Apprentice(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new Sorcerer(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new MotherSpider(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new ZombieHorde(assets)));
+                /*
+                mapFrame.getMap().add(new BossIcon(assets, new CrazyProfessor(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new BloodQueen(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new DeathDragon(assets)));
+                */
+
                 break;
             case 2:
                 break;

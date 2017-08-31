@@ -3,7 +3,7 @@ package com.hoxseygaming.pockethealer;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.player.bars.SpellBar;
-import com.hoxseygaming.pockethealer.encounters.spells.Barrier;
+import com.hoxseygaming.pockethealer.encounters.spells.DivineHymn;
 import com.hoxseygaming.pockethealer.encounters.spells.FlashHeal;
 import com.hoxseygaming.pockethealer.encounters.spells.Heal;
 import com.hoxseygaming.pockethealer.encounters.spells.Renew;
@@ -56,8 +56,16 @@ public class Player {
         spells.add(new Renew(spells.size(),this, assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
+        spells.add(new DivineHymn(spells.size(),this, assets));
+        spellBar.addSpell(spells.get(spells.size()-1));
+
+        /*
+        spells.add(new HolyNova(spells.size(),this, assets));
+        spellBar.addSpell(spells.get(spells.size()-1));
+
         spells.add(new Barrier(spells.size(),this, assets));
         spellBar.addSpell(spells.get(spells.size()-1));
+        */
 
         for(int i = 0; i < spells.size(); i++)   {
             System.out.println(spellBar.getSpell(i).name+" added to spell bar!");
