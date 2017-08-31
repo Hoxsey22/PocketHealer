@@ -18,23 +18,26 @@ public class BloodBoil extends Mechanic {
     public BloodBoil(Boss owner) {
         super("Blood Boil",20, 12f, owner);
         debuff = Debuff.BOIL;
+        numOfTargets = 1;
     }
 
     public BloodBoil(Boss owner, float speed) {
         super("Blood Boil", 20, speed, owner);
         debuff = Debuff.BOIL;
+        numOfTargets = 1;
     }
 
     @Override
     public void start() {
         super.start();
-        applyTimer.scheduleTask(new Timer.Task() {
+        timer.scheduleTask(new Timer.Task() {
 
             @Override
             public void run() {
-                ArrayList<RaidMember> raidMembers = raid.getRandomRaidMember(numOfTargets);
+                ArrayList<RaidMember> raidMembers = getRaid().getRandomRaidMember(numOfTargets);
                 for (int i = 0; i < raidMembers.size(); i++)  {
                     target = raidMembers.get(i);
+                    target.takeDamage(damage);
                     startDebuff();
                 }
 
@@ -54,11 +57,11 @@ public class BloodBoil extends Mechanic {
             public void run() {
                 count++;
                 if(tar.getHpPercent() > 0.99)    {
-                    raid.takeDamage(damage);
+                    getRaid().takeDamage(damage);
                     tar.removeEffect(debuff);
                     applyTimer.stop();
                     applyTimer.clear();
-
+                    return;
                 }
 
                 if(count >= (1f/0.01f) * 15)    {
@@ -68,5 +71,13 @@ public class BloodBoil extends Mechanic {
                 }
             }
         },0.01f,0.01f);
+    }
+
+    public int getNumOfTargets() {
+        return numOfTargets;
+    }
+
+    public void setNumOfTargets(int numOfTargets) {
+        this.numOfTargets = numOfTargets;
     }
 }

@@ -17,7 +17,10 @@ public class BloodBolts extends Mechanic{
 
     public BloodBolts(Boss owner) {
         super("Blood Bolts", 10, 45f, owner);
-        announcementString = owner.getName()+" is about to cast Blood Bolts!";
+    }
+
+    public BloodBolts(Boss owner, float speed) {
+        super("Blood Bolts", 10, speed, owner);
     }
 
     @Override
@@ -43,7 +46,7 @@ public class BloodBolts extends Mechanic{
             public void run() {
                 if(count != 3) {
                     count++;
-                    ArrayList<RaidMember> raidMembers = raid.getRandomRaidMember(4);
+                    ArrayList<RaidMember> raidMembers = getRaid().getRandomRaidMember(4);
                     for(int i = 0; i < raidMembers.size(); i++)   {
                         raidMembers.get(i).takeDamage(damage);
                     }

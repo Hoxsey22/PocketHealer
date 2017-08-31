@@ -42,9 +42,9 @@ public class Consume extends Mechanic {
 
     public ArrayList<RaidMember> findDisease()   {
         ArrayList<RaidMember> diseasedTargets = new ArrayList<>();
-        for(int i = 0; i < owner.getEnemies().raidMembers.size(); i++)   {
-            if(owner.getEnemies().raidMembers.get(i).containsEffects(Debuff.DISEASE))   {
-                diseasedTargets.add(owner.getEnemies().raidMembers.get(i));
+        for(int i = 0; i < getRaid().raidMembers.size(); i++)   {
+            if(getRaid().raidMembers.get(i).containsEffects(Debuff.DISEASE))   {
+                diseasedTargets.add(getRaid().raidMembers.get(i));
             }
         }
         return diseasedTargets;

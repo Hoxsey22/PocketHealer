@@ -42,7 +42,6 @@ public class Mechanic {
         target = owner.getTarget();
         isActive = false;
         announcementString = "";
-        raid = owner.getEnemies();
         create();
     }
 
@@ -158,5 +157,11 @@ public class Mechanic {
         offTank = owner.getOffTank();
     }
 
+    public Raid getRaid() {
+        return owner.getEnemies();
+    }
 
+    public void setRaid(Raid raid) {
+        this.raid = raid;
+    }
 }

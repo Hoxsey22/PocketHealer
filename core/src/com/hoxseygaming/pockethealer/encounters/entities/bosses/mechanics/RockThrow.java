@@ -29,7 +29,7 @@ public class RockThrow extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                ArrayList<RaidMember> tempEnemies  = owner.getEnemies().getRandomRaidMember(numOfTargets);
+                ArrayList<RaidMember> tempEnemies  = getRaid().getRandomRaidMember(numOfTargets);
 
                 for(int i = 0; i < tempEnemies.size(); i++)   {
                     tempEnemies.get(i).takeDamage(damage);

@@ -35,7 +35,7 @@ public class Pounce extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(3);
+                ArrayList<RaidMember> temp  = getRaid().getRandomRaidMember(3);
 
                 for (int i = 0; i < temp.size(); i++)   {
                     if(temp.get(i) != null) {

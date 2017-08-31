@@ -182,5 +182,8 @@ public class Player {
 
     public void reset() {
         mana = maxMana;
+        for (int i = 0; i < spells.size(); i++) {
+            spells.get(i).resetCD();
+        }
     }
 }

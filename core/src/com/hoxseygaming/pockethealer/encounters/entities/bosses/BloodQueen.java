@@ -6,9 +6,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BloodB
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BloodBoil;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BloodBolts;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Cleave;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Outbreak;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonPotion;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
@@ -17,10 +14,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
  */
 
 public class BloodQueen extends Boss {
-
-    public Outbreak outbreak;
-    public PoisonPotion poisonPotion;
-    public Fireball fireball;
 
     public BloodQueen(Assets assets) {
         super("Blood Queen", 20000,new Raid(15,assets), assets);
@@ -34,11 +27,18 @@ public class BloodQueen extends Boss {
         damage = 3;
 
         AutoAttack autoAttack = new AutoAttack(this, 0.5f);
+
         TankSwap tankSwap = new TankSwap(this, 10f);
-        Cleave cleave = new Cleave(this);
-        BloodBite bloodBite = new BloodBite(this);
-        BloodBoil bloodBoil = new BloodBoil(this);
-        BloodBolts bloodBolts = new BloodBolts(this);
+
+        Cleave cleave = new Cleave(this, 3f);
+        cleave.setNumOfTargets(4);
+
+        BloodBite bloodBite = new BloodBite(this, 15f);
+
+        BloodBoil bloodBoil = new BloodBoil(this, 12f);
+        bloodBoil.setNumOfTargets(4);
+
+        BloodBolts bloodBolts = new BloodBolts(this, 45f);
 
 
         loadMechanics(autoAttack, tankSwap, cleave, bloodBite, bloodBoil, bloodBolts);

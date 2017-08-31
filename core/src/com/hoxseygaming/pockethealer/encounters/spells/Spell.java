@@ -88,14 +88,13 @@ public class Spell extends Actor {
             isReady = false;
             setCdCounter(cooldown);
 
-            Timer.schedule(new Timer.Task() {
+            cdTimer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
                     cdCount();
                     System.out.println(name + " " + cdCounter);
                     if(getCdPercentage() <= 0f) {
                         cdTimer.clear();
-                        System.out.println(name+" is off cooldown.");
                         isReady = true;
                         setCdCounter(0);
                     }
@@ -235,6 +234,15 @@ public class Spell extends Actor {
 
     public void setAssets(Assets assets) {
         this.assets = assets;
+    }
+
+    public void resetCD()   {
+        if(cdTimer != null) {
+            cdTimer.stop();
+            cdTimer.clear();
+        }
+        isReady = true;
+        setCdCounter(0);
     }
 
 

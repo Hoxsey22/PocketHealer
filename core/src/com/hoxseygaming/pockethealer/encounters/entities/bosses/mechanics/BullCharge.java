@@ -32,7 +32,7 @@ public class BullCharge extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                ArrayList<RaidMember> selected = owner.getEnemies().getRandomRaidMember(1);
+                ArrayList<RaidMember> selected = getRaid().getRandomRaidMember(1);
                 if(selected != null)    {
                     selected.get(0).takeDamage(damage);
                 }

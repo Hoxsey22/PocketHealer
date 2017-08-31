@@ -27,7 +27,7 @@ public class Fireball extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                ArrayList<RaidMember> random  = owner.getEnemies().getRandomRaidMember(1);
+                ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
                 random.get(0).takeDamage(damage);
             }
         },speed,speed);

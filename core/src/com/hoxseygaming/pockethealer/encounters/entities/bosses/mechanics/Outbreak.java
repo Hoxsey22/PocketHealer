@@ -30,7 +30,7 @@ public class Outbreak extends Mechanic {
             @Override
             public void run() {
                 if(hasDiseases())   {
-                    ArrayList<RaidMember> temp = owner.getEnemies().getRandomRaidMember(3);
+                    ArrayList<RaidMember> temp = getRaid().getRandomRaidMember(3);
                     for(int i = 0; i < temp.size(); i++)   {
                         Disease disease = new Disease(owner);
                         disease.setTarget(temp.get(i));
@@ -38,7 +38,7 @@ public class Outbreak extends Mechanic {
                     }
                 }
                 else {
-                    ArrayList<RaidMember> temp = owner.getEnemies().getRandomRaidMember(1);
+                    ArrayList<RaidMember> temp = getRaid().getRandomRaidMember(1);
                     Disease disease = new Disease(owner);
                     disease.setTarget(temp.get(0));
                     disease.start();
@@ -49,8 +49,8 @@ public class Outbreak extends Mechanic {
 
     public boolean hasDiseases()    {
 
-        for(int i = 0;  i < owner.getEnemies().raidMembers.size(); i++)   {
-            if(owner.getEnemies().getRaidMember(i).containsEffects(Debuff.DISEASE))    {
+        for(int i = 0;  i < getRaid().raidMembers.size(); i++)   {
+            if(getRaid().getRaidMember(i).containsEffects(Debuff.DISEASE))    {
                 return true;
             }
         }

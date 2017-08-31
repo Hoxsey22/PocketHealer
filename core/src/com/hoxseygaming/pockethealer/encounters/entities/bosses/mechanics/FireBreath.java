@@ -40,7 +40,7 @@ public class FireBreath extends Mechanic{
             public void run() {
                 if(count != 3) {
                     count++;
-                    owner.getEnemies().takeDamage(damage);
+                    getRaid().takeDamage(damage);
                 }
                 else    {
                     channel.stop();

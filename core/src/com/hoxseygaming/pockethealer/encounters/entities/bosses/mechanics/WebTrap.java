@@ -31,7 +31,7 @@ public class WebTrap extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                ArrayList<RaidMember> temp = owner.getEnemies().getRandomRaidMember(numOfTargets);
+                ArrayList<RaidMember> temp = getRaid().getRandomRaidMember(numOfTargets);
                 for(int i = 0; i < temp.size(); i++)   {
                     Disease disease = new Disease(owner);
                     disease.setTarget(temp.get(i));

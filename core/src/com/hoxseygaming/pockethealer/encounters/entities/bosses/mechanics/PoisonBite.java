@@ -30,7 +30,7 @@ public class PoisonBite extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                ArrayList<RaidMember> temp = owner.getEnemies().getRandomRaidMember(numOfTargets);
+                ArrayList<RaidMember> temp = getRaid().getRandomRaidMember(numOfTargets);
                 for(int i = 0; i < temp.size(); i++) {
                     temp.get(i).takeDamage(damage);
                     Poison poison = new Poison(owner);

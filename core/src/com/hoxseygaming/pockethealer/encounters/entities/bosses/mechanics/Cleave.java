@@ -12,12 +12,16 @@ import java.util.ArrayList;
 
 public class Cleave extends Mechanic {
 
+    int numOfTargets;
+
     public Cleave(Boss owner) {
         super("Cleave", 15, 5f, owner);
+        numOfTargets = 2;
     }
 
     public Cleave(Boss owner, float speed) {
         super("Cleave", 15, speed, owner);
+        numOfTargets = 2;
     }
 
     @Override
@@ -27,11 +31,19 @@ public class Cleave extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                ArrayList<RaidMember> raidMembers = raid.getRandomRaidMember(4);
+                ArrayList<RaidMember> raidMembers = getRaid().getRandomRaidMember(numOfTargets);
                 for(int i = 0; i < raidMembers.size(); i++)   {
                     raidMembers.get(i).takeDamage(damage);
                 }
             }
         },speed, speed);
+    }
+
+    public int getNumOfTargets() {
+        return numOfTargets;
+    }
+
+    public void setNumOfTargets(int numOfTargets) {
+        this.numOfTargets = numOfTargets;
     }
 }

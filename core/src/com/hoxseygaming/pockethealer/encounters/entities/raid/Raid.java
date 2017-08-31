@@ -136,9 +136,9 @@ public class Raid extends Group {
     }*/
 
     public ArrayList<RaidMember> getRandomRaidMember(int amount) {
-        ArrayList<RaidMember> raidMembers = new ArrayList<>(amount);
+        ArrayList<RaidMember> raidMembers = new ArrayList<>();
         int counter = 0;
-        ArrayList<RaidMember> temp = new ArrayList<RaidMember>();
+        ArrayList<RaidMember> temp = new ArrayList<>();
         temp.addAll(this.raidMembers);
         Collections.shuffle(temp);
         for (int i = 0; i < temp.size(); i++) {
@@ -155,7 +155,7 @@ public class Raid extends Group {
     }
 
     public ArrayList<RaidMember> getRandomRaidMember(int amount, ArrayList<RaidMember> group) {
-        ArrayList<RaidMember> randomMembers = new ArrayList<>(amount);
+        ArrayList<RaidMember> randomMembers = new ArrayList<>();
         int counter = 0;
         Collections.shuffle(group);
         for (int i = 0; i < group.size(); i++) {

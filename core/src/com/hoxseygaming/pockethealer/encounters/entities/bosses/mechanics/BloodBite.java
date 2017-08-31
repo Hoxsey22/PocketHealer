@@ -30,15 +30,18 @@ public class BloodBite extends Mechanic {
     @Override
     public void start() {
         super.start();
+        bleeds = new ArrayList<>();
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
                 ArrayList<RaidMember> temp;
-                if(numOfTargets == 1)
-                    temp = raid.getRandomRaidMember(numOfTargets,raid.getDebuffLessRaidMembers(Debuff.BITTEN));
-                else    {
+                if(numOfTargets == 1) {
+                    temp = getRaid().getRandomRaidMember(numOfTargets, getRaid().getDebuffLessRaidMembers(Debuff.BITTEN));
                     numOfTargets = numOfTargets * 2;
-                    temp = raid.getRandomRaidMember(numOfTargets,raid.getDebuffLessRaidMembers(Debuff.BITTEN));
+                }
+                else    {
+                    temp = getRaid().getRandomRaidMember(numOfTargets,getRaid().getDebuffLessRaidMembers(Debuff.BITTEN));
+                    numOfTargets = numOfTargets * 2;
                 }
                 for(int i = 0; i < temp.size(); i++) {
                     target = temp.get(i);
