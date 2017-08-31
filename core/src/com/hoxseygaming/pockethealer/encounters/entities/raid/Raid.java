@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -114,7 +115,7 @@ public class Raid extends Group {
     public RaidMember getRaidMember(int index)   {
         return raidMembers.get(index);
     }
-
+    /*
     public RaidMember[] getRandomRaidMember(int amount) {
         RaidMember raidMembers [] = new RaidMember[amount];
         int counter = 0;
@@ -132,6 +133,42 @@ public class Raid extends Group {
                 return raidMembers;
         }
         return  raidMembers;
+    }*/
+
+    public ArrayList<RaidMember> getRandomRaidMember(int amount) {
+        ArrayList<RaidMember> raidMembers = new ArrayList<>(amount);
+        int counter = 0;
+        ArrayList<RaidMember> temp = new ArrayList<RaidMember>();
+        temp.addAll(this.raidMembers);
+        Collections.shuffle(temp);
+        for (int i = 0; i < temp.size(); i++) {
+            if(counter != amount) {
+                if (!temp.get(i).isDead()) {
+                    raidMembers.add(temp.get(i));
+                    counter++;
+                }
+            }
+            else
+                return raidMembers;
+        }
+        return  raidMembers;
+    }
+
+    public ArrayList<RaidMember> getRandomRaidMember(int amount, ArrayList<RaidMember> group) {
+        ArrayList<RaidMember> randomMembers = new ArrayList<>(amount);
+        int counter = 0;
+        Collections.shuffle(group);
+        for (int i = 0; i < group.size(); i++) {
+            if(counter != amount) {
+                if (!group.get(i).isDead()) {
+                    randomMembers.add(group.get(i));
+                    counter++;
+                }
+            }
+            else
+                return randomMembers;
+        }
+        return  randomMembers;
     }
 
     public Actor getRandomRaidMember()  {
@@ -236,6 +273,16 @@ public class Raid extends Group {
         for(int i = 0; i < raidMembers.size(); i++)   {
             raidMembers.get(i).reset();
         }
+    }
+
+    public ArrayList<RaidMember> getDebuffLessRaidMembers(Mechanic.Debuff debuff)    {
+        ArrayList<RaidMember> debuffLess = new ArrayList<>();
+        for(int i = 0; i <  raidMembers.size(); i++)   {
+            if(!raidMembers.get(i).containsEffects(debuff))    {
+                debuffLess.add(raidMembers.get(i));
+            }
+        }
+        return  debuffLess;
     }
 
 

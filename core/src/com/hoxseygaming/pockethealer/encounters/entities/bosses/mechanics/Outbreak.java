@@ -4,6 +4,8 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
+import java.util.ArrayList;
+
 /**
  * Created by Hoxsey on 8/23/2017.
  */
@@ -28,17 +30,17 @@ public class Outbreak extends Mechanic {
             @Override
             public void run() {
                 if(hasDiseases())   {
-                    RaidMember [] temp = owner.getEnemies().getRandomRaidMember(3);
-                    for(int i = 0; i < temp.length; i++)   {
+                    ArrayList<RaidMember> temp = owner.getEnemies().getRandomRaidMember(3);
+                    for(int i = 0; i < temp.size(); i++)   {
                         Disease disease = new Disease(owner);
-                        disease.setTarget(temp[i]);
+                        disease.setTarget(temp.get(i));
                         disease.start();
                     }
                 }
                 else {
-                    RaidMember [] temp = owner.getEnemies().getRandomRaidMember(1);
+                    ArrayList<RaidMember> temp = owner.getEnemies().getRandomRaidMember(1);
                     Disease disease = new Disease(owner);
-                    disease.setTarget(temp[0]);
+                    disease.setTarget(temp.get(0));
                     disease.start();
                 }
             }

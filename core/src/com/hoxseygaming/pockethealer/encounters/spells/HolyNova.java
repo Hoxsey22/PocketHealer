@@ -16,8 +16,8 @@ public class HolyNova extends Spell {
 
     public HolyNova(int index, Player player, Assets assets) {
         super(player, "Holy Nova", "", EffectType.HEALMULTIPLE, 30, 35, 3f, index,assets);
-        image = assets.getTexture("barrier_icon.png");
-        sfx = assets.getSound("sfx/barrier_sfx.mp3");
+        image = assets.getTexture(assets.holyNovaIcon);
+        sfx = assets.getSound(assets.hotSFX);
         setCriticalChance(30);
     }
 

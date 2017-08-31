@@ -117,6 +117,16 @@ public class Assets {
     public String poisonIcon = "poison_icon.png";
 
     public String mapBg1 = "map_state/map.png";
+    public String biteIcon = "bite_icon.png";
+    public String boilIcon = "boil_icon.png";
+    public String smiteIcon = "smite_icon.png";
+    public String holyNovaIcon = "holy_nova_icon.png";
+    public String greaterHealerIcon = "greater_heal_icon.png";
+    public String lightWellIcon = "light_well_icon.png";
+    public String divineHymnIcon = "divine_hymn_icon.png";
+
+
+
     public ArrayList<String> maps;
 
     // music
@@ -261,6 +271,15 @@ public class Assets {
 
         manager.load(poisonIcon, Texture.class);
         manager.load(diseaseIcon, Texture.class);
+
+        manager.load(biteIcon, Texture.class);
+        manager.load(boilIcon, Texture.class);
+
+        manager.load(smiteIcon, Texture.class);
+        manager.load(holyNovaIcon, Texture.class);
+        manager.load(greaterHealerIcon, Texture.class);
+        manager.load(lightWellIcon, Texture.class);
+        manager.load(divineHymnIcon, Texture.class);
 
 
 
@@ -421,6 +440,10 @@ public class Assets {
                 return this.getTexture(poisonIcon);
             case DISEASE:
                 return this.getTexture(diseaseIcon);
+            case BITTEN:
+                return this.getTexture(biteIcon);
+            case BOIL:
+                return this.getTexture(boilIcon);
         }
         return null;
     }

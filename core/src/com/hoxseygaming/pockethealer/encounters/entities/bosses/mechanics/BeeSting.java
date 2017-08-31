@@ -29,13 +29,13 @@ public class BeeSting extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                RaidMember temp [] = owner.getEnemies().getRandomRaidMember(numOfTargets);
+                ArrayList<RaidMember> temp  = owner.getEnemies().getRandomRaidMember(numOfTargets);
 
-                for (int i = 0; i < temp.length; i++)   {
-                    if(temp[i] != null) {
-                        temp[i].takeDamage(damage);
+                for (int i = 0; i < temp.size(); i++)   {
+                    if(temp.get(i) != null) {
+                        temp.get(i).takeDamage(damage);
                         Poison poison = new Poison(owner);
-                        poison.setTarget(temp[i]);
+                        poison.setTarget(temp.get(i));
                         poisons.add(poison);
                         poison.start();
                     }

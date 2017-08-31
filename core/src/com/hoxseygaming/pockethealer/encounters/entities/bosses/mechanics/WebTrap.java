@@ -4,6 +4,8 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
+import java.util.ArrayList;
+
 /**
  * Created by Hoxsey on 8/23/2017.
  */
@@ -29,10 +31,10 @@ public class WebTrap extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                RaidMember [] temp = owner.getEnemies().getRandomRaidMember(numOfTargets);
-                for(int i = 0; i < temp.length; i++)   {
+                ArrayList<RaidMember> temp = owner.getEnemies().getRandomRaidMember(numOfTargets);
+                for(int i = 0; i < temp.size(); i++)   {
                     Disease disease = new Disease(owner);
-                    disease.setTarget(temp[i]);
+                    disease.setTarget(temp.get(i));
                     disease.start();
                 }
             }

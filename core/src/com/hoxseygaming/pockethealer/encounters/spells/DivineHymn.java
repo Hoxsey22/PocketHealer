@@ -15,8 +15,8 @@ public class DivineHymn extends Spell {
 
     public DivineHymn(int index, Player player, Assets assets) {
         super(player, "Divine Hymn", "", EffectType.HEALALL, 15, 150, 45f, index, assets);
-        image = assets.getTexture("barrier_icon.png");
-        sfx = assets.getSound("sfx/barrier_sfx.mp3");
+        image = assets.getTexture(assets.divineHymnIcon);
+        sfx = assets.getSound(assets.castingSFX);
         setCriticalChance(0);
     }
 

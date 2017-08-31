@@ -26,13 +26,13 @@ public class BackStab extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                RaidMember temp [] = owner.enemies.getRandomRaidMember(1);
+                ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(1);
 
-                for (int i = 0; i < temp.length; i++)   {
-                    if(temp[i] != null) {
-                        temp[i].takeDamage(damage);
+                for (int i = 0; i < temp.size(); i++)   {
+                    if(temp.get(i) != null) {
+                        temp.get(i).takeDamage(damage);
                         Bleed bleed = new Bleed(owner);
-                        bleed.setTarget(temp[i]);
+                        bleed.setTarget(temp.get(i));
                         bleeds.add(bleed);
                         bleed.start();
                     }

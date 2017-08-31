@@ -4,6 +4,8 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
+import java.util.ArrayList;
+
 /**
  * Created by Hoxsey on 8/18/2017.
  */
@@ -27,10 +29,10 @@ public class RockThrow extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                RaidMember tempEnemies [] = owner.getEnemies().getRandomRaidMember(numOfTargets);
+                ArrayList<RaidMember> tempEnemies  = owner.getEnemies().getRandomRaidMember(numOfTargets);
 
-                for(int i = 0; i < tempEnemies.length-1; i++)   {
-                    tempEnemies[i].takeDamage(damage);
+                for(int i = 0; i < tempEnemies.size(); i++)   {
+                    tempEnemies.get(i).takeDamage(damage);
                 }
 
             }

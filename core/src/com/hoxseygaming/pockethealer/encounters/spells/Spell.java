@@ -37,7 +37,7 @@ public class Spell extends Actor {
     public Assets assets;
     private Text text;
     public CriticalChance criticalChance;
-
+//
     /**
      * @param player
      * @param name

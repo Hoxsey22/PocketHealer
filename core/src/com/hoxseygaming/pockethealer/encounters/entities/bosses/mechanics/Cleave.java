@@ -7,17 +7,17 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import java.util.ArrayList;
 
 /**
- * Created by Hoxsey on 8/28/2017.
+ * Created by Hoxsey on 8/20/2017.
  */
 
-public class Fireball extends Mechanic {
+public class Cleave extends Mechanic {
 
-    public Fireball(Boss owner) {
-        super("Fireball", 20, 2f, owner);
+    public Cleave(Boss owner) {
+        super("Cleave", 15, 5f, owner);
     }
 
-    public Fireball(Boss owner, float speed) {
-        super("Fireball", 20, speed, owner);
+    public Cleave(Boss owner, float speed) {
+        super("Cleave", 15, speed, owner);
     }
 
     @Override
@@ -27,9 +27,11 @@ public class Fireball extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                ArrayList<RaidMember> random  = owner.getEnemies().getRandomRaidMember(1);
-                random.get(0).takeDamage(damage);
+                ArrayList<RaidMember> raidMembers = raid.getRandomRaidMember(4);
+                for(int i = 0; i < raidMembers.size(); i++)   {
+                    raidMembers.get(i).takeDamage(damage);
+                }
             }
-        },speed,speed);
+        },speed, speed);
     }
 }

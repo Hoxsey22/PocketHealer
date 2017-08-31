@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 /**
@@ -11,8 +12,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 public class Mechanic {
 
     public enum Debuff  {
-        BLEED, POISON,DISEASE, SUNDER, SOULSTEAL,
-        MAIME, HEALINGABSORB
+        BLEED, POISON, DISEASE, SUNDER, SOULSTEAL,
+        MAIME, HEALINGABSORB, BITTEN, BOIL
     }
 
     public int id;
@@ -23,6 +24,7 @@ public class Mechanic {
     public RaidMember target;
     public RaidMember mainTank;
     public RaidMember offTank;
+    public Raid raid;
     public int damage;
     public float speed;
     public int duration;
@@ -40,6 +42,7 @@ public class Mechanic {
         target = owner.getTarget();
         isActive = false;
         announcementString = "";
+        raid = owner.getEnemies();
         create();
     }
 

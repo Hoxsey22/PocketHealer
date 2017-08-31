@@ -4,6 +4,8 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
+import java.util.ArrayList;
+
 /**
  * Created by Hoxsey on 8/4/2017.
  */
@@ -30,9 +32,9 @@ public class BullCharge extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                RaidMember selected = owner.getEnemies().getRandomRaidMember(1)[0];
+                ArrayList<RaidMember> selected = owner.getEnemies().getRandomRaidMember(1);
                 if(selected != null)    {
-                    selected.takeDamage(damage);
+                    selected.get(0).takeDamage(damage);
                 }
             }
         },speed,speed);

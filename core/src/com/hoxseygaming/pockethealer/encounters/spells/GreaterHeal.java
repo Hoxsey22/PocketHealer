@@ -12,7 +12,7 @@ public class GreaterHeal extends Heal {
     public GreaterHeal(int position, Player player, Assets assets) {
         super(position, player, assets);
         name = "Greater Heal";
-        image = this.assets.getTexture("flash_heal_icon.png");
+        image = assets.getTexture(assets.greaterHealerIcon);
         setCost(25);
         setCastTime(2f);
         setCriticalChance(20);

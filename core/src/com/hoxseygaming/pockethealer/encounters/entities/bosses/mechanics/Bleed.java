@@ -10,7 +10,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 public class Bleed extends Mechanic {
 
-
     public Bleed( Boss owner) {
         super("Bleed", 5, 3f, owner);
         debuff = Debuff.BLEED;
@@ -23,6 +22,10 @@ public class Bleed extends Mechanic {
 
     public void amplify()   {
         damage = damage + 5;
+    }
+
+    public void amplify(int amp)   {
+        damage = damage + amp;
     }
 
     @Override

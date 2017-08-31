@@ -93,7 +93,7 @@ public class Boss extends Entity {
                 }
             }
             System.out.println("New threat is random!");
-            target = enemies.getRandomRaidMember(1)[0];
+            target = enemies.getRandomRaidMember(1).get(0);
         }
 
     }

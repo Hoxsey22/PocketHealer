@@ -15,6 +15,7 @@ import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Apprentice;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.BanditLeader;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.BloodQueen;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.GiantHornet;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Golem;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hogger;
@@ -82,6 +83,7 @@ public class MapState extends State {
                 mapFrame.getMap().add(new BossIcon(assets, new Sorcerer(assets)));
                 mapFrame.getMap().add(new BossIcon(assets, new MotherSpider(assets)));
                 mapFrame.getMap().add(new BossIcon(assets, new ZombieHorde(assets)));
+                mapFrame.getMap().add(new BossIcon(assets, new BloodQueen(assets)));
                 /*
                 mapFrame.getMap().add(new BossIcon(assets, new CrazyProfessor(assets)));
                 mapFrame.getMap().add(new BossIcon(assets, new BloodQueen(assets)));
