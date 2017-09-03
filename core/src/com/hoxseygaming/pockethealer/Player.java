@@ -1,12 +1,13 @@
 package com.hoxseygaming.pockethealer;
 
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.player.bars.SpellBar;
-import com.hoxseygaming.pockethealer.encounters.spells.DivineHymn;
 import com.hoxseygaming.pockethealer.encounters.spells.FlashHeal;
 import com.hoxseygaming.pockethealer.encounters.spells.Heal;
 import com.hoxseygaming.pockethealer.encounters.spells.Renew;
+import com.hoxseygaming.pockethealer.encounters.spells.Smite;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 import com.hoxseygaming.pockethealer.talent.TalentBook;
 
@@ -23,6 +24,7 @@ public class Player {
     public float boost;
     public RaidMember target;
     public Raid raid;
+    private Boss eTarget;
     public SpellBar spellBar;
     public ArrayList<Spell> spells;
     public float spellCastPercent;
@@ -36,7 +38,7 @@ public class Player {
         maxMana = 1000;
         mana = 1000;
         spellCastPercent = 0;
-        spells = new ArrayList<Spell>();
+        spells = new ArrayList<>();
         setAssets(assets);
         //addDebuggingSpell();
         isCasting = false;
@@ -47,23 +49,23 @@ public class Player {
     }
 
     public void addDebuggingSpell() {
-        spells.add(new Heal(spells.size(),this, assets));
+        spells.add(new Heal(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
-        spells.add(new FlashHeal(spells.size(),this, assets));
+        spells.add(new FlashHeal(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
-        spells.add(new Renew(spells.size(),this, assets));
+        spells.add(new Renew(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
-        spells.add(new DivineHymn(spells.size(),this, assets));
+        spells.add(new Smite(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
         /*
-        spells.add(new HolyNova(spells.size(),this, assets));
+        spells.add(new HolyNova(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
-        spells.add(new Barrier(spells.size(),this, assets));
+        spells.add(new Barrier(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
         */
 
@@ -185,5 +187,13 @@ public class Player {
         for (int i = 0; i < spells.size(); i++) {
             spells.get(i).resetCD();
         }
+    }
+
+    public Boss getBoss() {
+        return eTarget;
+    }
+
+    public void setBoss(Boss eTarget) {
+        this.eTarget = eTarget;
     }
 }

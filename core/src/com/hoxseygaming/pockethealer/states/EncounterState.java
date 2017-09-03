@@ -46,6 +46,7 @@ public class EncounterState extends State {
         this.boss = boss;
         this.boss.reset();
         raid = this.boss.enemies;
+        player.setBoss(this.boss);
 
         create();
     }
@@ -63,7 +64,7 @@ public class EncounterState extends State {
         castBar = new CastBar(player, assets);
         castBar.anchor(manaBar);
         //raid = new Raid(10, assets);
-        player.setRaid(boss.enemies);
+        player.setRaid(boss.getEnemies());
 
         //hogger = new Hogger(assets);
 

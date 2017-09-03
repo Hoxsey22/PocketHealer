@@ -9,18 +9,13 @@ import com.hoxseygaming.pockethealer.Player;
 public class GreaterHeal extends Heal {
 
 
-    public GreaterHeal(int position, Player player, Assets assets) {
-        super(position, player, assets);
+    public GreaterHeal(Player player, int index, Assets assets) {
+        super(player, index, assets);
         name = "Greater Heal";
-        image = assets.getTexture(assets.greaterHealerIcon);
+        setImage(assets.getTexture(assets.greaterHealerIcon));
         setCost(25);
         setCastTime(2f);
         setCriticalChance(20);
         setOutput(60);
-    }
-
-    @Override
-    public void castSpell() {
-        super.castSpell();
     }
 }

@@ -9,15 +9,16 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.Text;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 /**
  * Created by Hoxsey on 6/17/2017.
  */
-public class Spell extends Actor {
+public abstract class Spell extends Actor {
 
 
     public enum EffectType  {
-        HEAL,HEALALL,HEALMULTIPLE,SHIELD,HEALOVERTIME
+        HEAL,HEALALL,HEALMULTIPLE,SHIELD,HEALOVERTIME,DAMAGEHEAL
     }
 
     public int index;
@@ -36,6 +37,7 @@ public class Spell extends Actor {
     public Timer cdTimer;
     public Assets assets;
     private Text text;
+    public RaidMember target;
     public CriticalChance criticalChance;
 //
     /**
@@ -68,17 +70,9 @@ public class Spell extends Actor {
         criticalChance = new CriticalChance(0);
         setupText();
     }
+    public abstract void castSpell();
 
-    /**
-     * Check to make sure the player can cast this spell
-     */
-    public void castSpell() {
-        System.out.println("Casted a spell!");
-    }
-
-    public void applySpell() {
-        System.out.println("Applying spell!");
-    }
+    public abstract void applySpell(RaidMember target);
 
     /**
      * This starts the cooldown timer for the spell
@@ -234,6 +228,14 @@ public class Spell extends Actor {
 
     public void setAssets(Assets assets) {
         this.assets = assets;
+    }
+
+    public RaidMember getTarget() {
+        return owner.getTarget();
+    }
+
+    public void setTarget(RaidMember newTarget) {
+        owner.setTarget(newTarget);
     }
 
     public void resetCD()   {

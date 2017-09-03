@@ -183,7 +183,7 @@ public class Raid extends Group {
     }
 
     public ArrayList<RaidMember> getRaidMembersWithLowestHp(int cap)    {
-        ArrayList<RaidMember> lowest = new ArrayList<>(cap);
+        ArrayList<RaidMember> lowest = new ArrayList<>();
         ArrayList<RaidMember> temp = new ArrayList<>();
         temp.addAll(raidMembers);
 
@@ -200,6 +200,21 @@ public class Raid extends Group {
             }
         }
         return null;
+    }
+
+    public RaidMember getRaidMemberWithLowestHp()    {
+        ArrayList<RaidMember> temp = new ArrayList<>();
+        temp.addAll(raidMembers);
+        Collections.sort(temp);
+
+        System.out.println(temp.toString());
+        for(int i = 0; i <  temp.size(); i++)   {
+            if(!temp.get(i).isDead())    {
+                return temp.get(i);
+            }
+        }
+        return null;
+
     }
 
     public ArrayList<RaidMember> getRaidMembersWithLowestHp(int cap, RaidMember target)    {

@@ -17,15 +17,13 @@ public class Renew extends Spell {
     public int totalHealing;
 
     /**
-     * @param position
+     * @param index
      * @param player
      */
-    public Renew(int position, Player player, Assets assets)  {
-        super(player, "Renew","A small heal that is healed over time.", EffectType.HEALOVERTIME, 7, 15, 0.5f, position, assets);
-        owner = player;
+    public Renew(Player player, int index, Assets assets)  {
+        super(player, "Renew","A small heal that is healed over time.", EffectType.HEALOVERTIME, 7, 15, 0.5f, index, assets);
         image = this.assets.getTexture("renew_icon.png");
         totalHealing = 0;
-
         duration = 10f;
         sfx = this.assets.getSound("sfx/hot_sfx.mp3");
         setCriticalChance(10);
@@ -39,6 +37,10 @@ public class Renew extends Spell {
             startCooldownTimer();
             applySpell();
         }
+    }
+
+    @Override
+    public void applySpell(RaidMember target) {
     }
 
     public void applySpell()    {
@@ -61,7 +63,7 @@ public class Renew extends Spell {
             public void run() {
                 if(target.isDead())
                     durationTimer.stop();
-                 totalHealing = totalHealing + target.receiveHealing(output,criticalChance.isCritical());
+                totalHealing = totalHealing + target.receiveHealing(output,criticalChance.isCritical());
                 currentTime = currentTime +2f;
                 System.out.println("Renew is ticking! "+currentTime);
                 if(currentTime >= duration)    {
