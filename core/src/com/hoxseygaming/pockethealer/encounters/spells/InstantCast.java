@@ -11,10 +11,11 @@ import java.util.ArrayList;
  * Created by Hoxsey on 8/31/2017.
  */
 
-public class InstantCast extends Spell {
+public abstract class InstantCast extends Spell {
 
     public Sound spellSFX;
     public int numOfTargets;
+    public int MIN_NUM_OF_TARGETS;
     public ArrayList<RaidMember> targets;
 
     /**
@@ -35,6 +36,7 @@ public class InstantCast extends Spell {
         super(player, name, description, effectType, output, cost, cooldown, index, assets);
         this.spellSFX = spellSFX;
         this.numOfTargets = numOfTargets;
+        MIN_NUM_OF_TARGETS = numOfTargets;
     }
 
     @Override
@@ -58,6 +60,11 @@ public class InstantCast extends Spell {
                 targets.get(i).receiveHealing(output, criticalChance.isCritical());
             }
         }
+    }
+
+    @Override
+    public void stop() {
+
     }
 
     public void getRandomTargets()  {

@@ -4,19 +4,22 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Button;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
-import com.hoxseygaming.pockethealer.talent.Talent;
-import com.hoxseygaming.pockethealer.talent.TalentBook;
-import com.hoxseygaming.pockethealer.talent.TalentWindow;
+import com.hoxseygaming.pockethealer.Text;
+import com.hoxseygaming.pockethealer.encounters.spells.Talents.Talent;
+import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
+
+import static com.badlogic.gdx.utils.Align.center;
+import static com.badlogic.gdx.utils.Align.top;
 
 /**
  * Created by Hoxsey on 7/2/2017.
@@ -26,24 +29,92 @@ public class TalentState extends State {
     public Stage stage;
     public Player player;
     public Assets assets;
-    public TalentBook talentBook;
-    public TalentWindow talentWindow;
-    public Texture background;
+    public Table lowerTable;
+    public Table topTable;
+    public Text talentTreeTitle;
+    public Text title;
+    public Text body;
+    public TalentTree talentTree;
+    public Image background;
+    public Button select;
+    public Button done;
+    public Talent selectedTalent;
+    public Text pointTracker;
 
     public TalentState(StateManager sm, Player player) {
         super(sm);
         assets = player.getAssets();
+
         this.player = player;
 
+        talentTree = player.talentTree;
+        talentTree.setName("Talent Tree");
 
-        background = assets.getTexture(assets.talentStateBg);
+        pointTracker = new Text("POINTS:",24,Color.WHITE,false, assets);
+        pointTracker.setName("Point tracker");
+        //pointTracker.setPosition(talentTree.getRight()-talentTree.getLeft()-pointTracker.getWidth()/2, talentTree.getTop() + 20 );
+
+        select = new Button("SELECT", assets);
+        select.setPosition(talentTree.getLeft(), 50);
+
+        done = new Button("DONE", assets);
+        done.setPosition(talentTree.getRight() - done.getWidth(), 50);
+
+        talentTreeTitle = new Text("Talent Tree", 45, Color.SKY, true, assets);
+        talentTreeTitle.setName("Talent Tree Title");
+        //talentTreeTitle.setPosition(talentTree.getRight()-talentTree.getLeft()-talentTreeTitle.getWidth()/2, 730);
+
+        background = new Image(assets.getTexture(assets.talentBg));
+        background.setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
+        background.setName("bg");
 
         stage = new Stage(viewport);
+        stage.addActor(background);
+        //stage.addActor(talentTreeTitle.getLabel());
+        stage.addActor(talentTree);
+        //stage.addActor(pointTracker.getLabel());
+        stage.addActor(select);
+        stage.addActor(done);
+        //stage.setDebugAll(true);
+        createText();
+    }
 
-        talentBook = new TalentBook(player);
+    public void createText()    {
+        lowerTable = new Table();
+        lowerTable.setName("Lower Table");
 
-        talentWindow = new TalentWindow(talentBook,assets);
-        stage.addActor(talentWindow);
+        title  = new Text("", 24, Color.BLACK, false, assets);
+        body  = new Text("", 16, Color.SKY, false, assets);
+        body.setWrap(true);
+
+        title.setWrap(true);
+        title.setAlignment(top);
+
+        lowerTable.setBounds(talentTree.getLeft(), talentTree.getButtom() - 20 - 100, talentTree.getRight() - talentTree.getLeft(), 100);
+        lowerTable.top();
+        lowerTable.add(title.getLabel());
+        lowerTable.row();
+        lowerTable.add(body.getLabel()).width(lowerTable.getWidth());
+        stage.addActor(lowerTable);
+
+        topTable = new Table();
+        topTable.setName("Top Table");
+
+        talentTreeTitle.setWrap(true);
+        talentTreeTitle.setAlignment(center);
+
+        pointTracker.setAlignment(center);
+        topTable.setBounds(talentTree.getLeft(), talentTree.getTop(),talentTree.getRight()-talentTree.getLeft(), 90);
+        topTable.top();
+        topTable.add(talentTreeTitle.getLabel());
+        topTable.row();
+        topTable.add(pointTracker.getLabel()).width(topTable.getWidth());
+        stage.addActor(topTable);
+
+
+
+
+
     }
 
     @Override
@@ -67,26 +138,34 @@ public class TalentState extends State {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
-                System.out.println("[ x: "+coord.x+" y: "+coord.y+"]" );
-                if(coord.y > 70) {
-                    Talent selectedTalent = talentWindow.hit(coord.x, coord.y);
-                    if (selectedTalent != null) {
-                        System.out.println("Talent selected: " + selectedTalent.name);
-                        System.out.println("Selected talent's partner is : " + selectedTalent.partner.name);
-                        selectedTalent.selected();
-                        talentWindow.tooltip.fire(selectedTalent,(int)coord.x,(int)coord.y);
-                        System.out.println("Is Talent selected? -" + selectedTalent.isSelected());
+                if(coord.y > talentTree.getButtom() - 10) {
+                    Talent hit = talentTree.hit(coord.x, coord.y);
+                    if (hit != null) {
+                        selectedTalent = hit;
+                        title.setText(hit.getName());
+                        body.setText(hit.getDescription());
                     }
+                    return false;
                 }
                 else    {
-                    Actor done = talentWindow.hit(coord.x,coord.y,false);
-                    if(done != null) {
-                        if (done.getName().equals("done")) {
-                            player.setTalentBook(talentBook);
-                            sm.push(new MapState(sm,player));
+                    Actor hit = stage.hit(coord.x, coord.y, false);
+                    if(hit != null) {
+                        switch (hit.getName())  {
+                            case "SELECT":
+                                talentTree.usePoint(selectedTalent);
+                                break;
+                            case "DONE":
+                                sm.set(new MapState(sm, player));
+                                break;
                         }
                     }
+
+
                 }
+
+
+
+
                 return false;
             }
 
@@ -114,70 +193,20 @@ public class TalentState extends State {
 
     }
 
-    public void handleTooltip() {
-        talentBook.addListener( new ClickListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                super.touchDown(event, x, y, pointer, button);
-                System.out.println("[ x: "+x+" y: "+y+"]" );
-                if(y > 70) {
-                    System.out.println("********");
-                    Talent selectedTalent = (Talent) talentWindow.hit(x, y, false);
-                    if (selectedTalent != null) {
-                        System.out.println("Talent selected: " + selectedTalent.name);
-                        System.out.println("Selected talent's partner is : " + selectedTalent.partner.name);
-                        talentWindow.tooltip.fire(selectedTalent,(int)x,(int)y);
-                        selectedTalent.selected();
-                        System.out.println("Is Talent selected? -" + selectedTalent.isSelected());
-                    }
-                }
-                else    {
-                    Actor done = talentWindow.hit(x,y,false);
-                    if(done != null) {
-                        if (done.getName().equals("done")) {
-                            player.setTalentBook(talentBook);
-                            sm.push(new MapState(sm,player));
-                        }
-                    }
-                }
-
-
-                return true;
-            }
-            @Override
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                //Vector2 coord = stage.screenToStageCoordinates(new Vector2(x,y));
-                Talent hoverOverTalent = (Talent) talentWindow.hit(x,y, false);
-                if(hoverOverTalent != null)
-                    talentWindow.tooltip.fire(hoverOverTalent,(int)x,(int)y);
-            }
-
-            @Override
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                talentWindow.tooltip.setActive(false);
-            }
-
-
-        });
-    }
-
     @Override
     public void update(float dt) {
         handleInput();
-       // handleTooltip();
+        pointTracker.setText("POINTS: "+talentTree.getUnusedPoints());
     }
 
     @Override
     public void render(SpriteBatch sb) {
-        Gdx.gl.glClearColor(Color.TAN.r,Color.TAN.g,Color.TAN.b,Color.TAN.a);
+        Gdx.gl.glClearColor(Color.WHITE.r,Color.WHITE.g,Color.WHITE.b,Color.WHITE.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glEnable(GL20.GL_BLEND);
         update(Gdx.graphics.getDeltaTime());
 
         sb.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
-        sb.begin();
-            sb.draw(background, 0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
-        sb.end();
 
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();

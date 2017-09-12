@@ -28,6 +28,7 @@ public class Entity extends Actor{
     public ArrayList<Texture> effects;
     public boolean selected;
     public Assets assets;
+    public int amountAbsorbed;
 
     /**
      * RaidMember param
@@ -101,13 +102,26 @@ public class Entity extends Actor{
         }
     }
 
+    public int takeDamage(int output, boolean isCritical)    {
+        int newOutput = output;
+        if(isCritical)
+            newOutput = newOutput + (newOutput/2);
+        takeDamage(newOutput);
+        return newOutput;
+    }
+
     public void takeShieldDamage(int damage)  {
+        int oldShield = shield;
         shield = shield - damage;
         if(shield <= 0) {
             hp = hp - Math.abs(shield);
             removeEffect(Spell.EffectType.SHIELD);
             shield = 0;
             getHpPercent();
+            amountAbsorbed = oldShield;
+        }
+        else {
+            amountAbsorbed = damage;
         }
     }
 

@@ -43,7 +43,7 @@ public class LevelInfo extends Group {
 
         isActive = false;
         table = new Table();
-        table.setName("table");
+        table.setName("lowerTable");
         table.setBounds(frame.getX()+25, frame.getY()+20, frame.getWidth()-50, frame.getHeight()-60);
         table.align(Align.topLeft);
         createFont();

@@ -71,7 +71,7 @@ public class FloatingText {
        /* Label.LabelStyle labelStyle = new Label.LabelStyle();
         BitmapFont font = assets.getFont(assets.gameFont16);
         labelStyle.font = font;*/
-        floatingText = new Text("" + damage, fontSize, color, false, assets);
+        floatingText = new Text("" + damage, fontSize, color, true, assets);
         floatingText.setAlignment(Align.center);
         setPosition(x,y);
     }

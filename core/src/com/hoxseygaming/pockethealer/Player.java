@@ -4,12 +4,12 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.player.bars.SpellBar;
-import com.hoxseygaming.pockethealer.encounters.spells.FlashHeal;
 import com.hoxseygaming.pockethealer.encounters.spells.Heal;
+import com.hoxseygaming.pockethealer.encounters.spells.Lightwell;
 import com.hoxseygaming.pockethealer.encounters.spells.Renew;
 import com.hoxseygaming.pockethealer.encounters.spells.Smite;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
-import com.hoxseygaming.pockethealer.talent.TalentBook;
+import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 import java.util.ArrayList;
 
@@ -18,10 +18,11 @@ import java.util.ArrayList;
  */
 public class Player {
 
+    private final int originCritical = 10;
+
+
     public int maxMana;
     public int mana;
-    public float haste;
-    public float boost;
     public RaidMember target;
     public Raid raid;
     private Boss eTarget;
@@ -30,7 +31,8 @@ public class Player {
     public float spellCastPercent;
     public boolean isCasting;
     public Assets assets;
-    public TalentBook talentBook;
+    public TalentTree talentTree;
+    public int criticalChance;
     public int level;
 
     public Player(Assets assets) {
@@ -42,18 +44,17 @@ public class Player {
         setAssets(assets);
         //addDebuggingSpell();
         isCasting = false;
-        talentBook = new TalentBook(this);
-        boost = 0;
-        haste = 0;
-
+        //talentBook = new TalentBook(this);
+        talentTree = new TalentTree(this,15);
+        criticalChance = originCritical;
     }
 
     public void addDebuggingSpell() {
         spells.add(new Heal(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
-        spells.add(new FlashHeal(this, spells.size(), assets));
-        spellBar.addSpell(spells.get(spells.size()-1));
+        //spells.add(new FlashHeal(this, spells.size(), assets));
+        //spellBar.addSpell(spells.get(spells.size()-1));
 
         spells.add(new Renew(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
@@ -64,13 +65,19 @@ public class Player {
         /*
         spells.add(new HolyNova(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
-
-        spells.add(new Barrier(this, spells.size(), assets));
-        spellBar.addSpell(spells.get(spells.size()-1));
         */
+        spells.add(new Lightwell(this, spells.size(), assets));
+        spellBar.addSpell(spells.get(spells.size()-1));
+
 
         for(int i = 0; i < spells.size(); i++)   {
             System.out.println(spellBar.getSpell(i).name+" added to spell bar!");
+        }
+    }
+
+    public void loadTalents()   {
+        for (int i = 0; i <  spells.size(); i++)    {
+            spells.get(i).checkTalents();
         }
     }
 
@@ -166,10 +173,6 @@ public class Player {
         this.raid = raid;
     }
 
-    public void setTalentBook(TalentBook talentBook) {
-        this.talentBook = talentBook;
-    }
-
     public void setAssets(Assets assets) {
         this.assets = assets;
     }
@@ -184,8 +187,15 @@ public class Player {
 
     public void reset() {
         mana = maxMana;
+        stop();
         for (int i = 0; i < spells.size(); i++) {
             spells.get(i).resetCD();
+        }
+    }
+
+    public void stop()  {
+        for (int i = 0; i < spells.size(); i++) {
+            spells.get(i).stop();
         }
     }
 
@@ -195,5 +205,33 @@ public class Player {
 
     public void setBoss(Boss eTarget) {
         this.eTarget = eTarget;
+    }
+
+    public void addPoint()  {
+        talentTree.addPoint();
+    }
+
+    public void setTalentTree(TalentTree talentTree) {
+        this.talentTree = talentTree;
+    }
+
+    public Raid getRaid() {
+        return raid;
+    }
+
+    public void setCasting(boolean casting) {
+        isCasting = casting;
+    }
+
+    public TalentTree getTalentTree() {
+        return talentTree;
+    }
+
+    public int getCriticalChance() {
+        return criticalChance;
+    }
+
+    public void setCriticalChance(int criticalChance) {
+        this.criticalChance = criticalChance;
     }
 }

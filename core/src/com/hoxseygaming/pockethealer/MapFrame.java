@@ -30,7 +30,7 @@ public class MapFrame extends Group {
         this.page = page;
         this.assets = assets;
         table = new Table();
-        table.setName("table");
+        table.setName("lowerTable");
         setName("Map "+page);
         create();
     }

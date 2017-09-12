@@ -59,7 +59,7 @@ public class Button extends Actor {
     @Override
     public void setPosition(float x, float y) {
         super.setPosition(x, y);
-        //table.setPosition(x,y);
+        //lowerTable.setPosition(x,y);
         image.setPosition(x,y);
         text.setPosition(x+getWidth()/2-text.getXCenter(),y+ getHeight()/2 - text.getYCenter());
     }

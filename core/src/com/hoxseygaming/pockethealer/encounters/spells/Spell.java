@@ -18,7 +18,7 @@ public abstract class Spell extends Actor {
 
 
     public enum EffectType  {
-        HEAL,HEALALL,HEALMULTIPLE,SHIELD,HEALOVERTIME,DAMAGEHEAL
+        HEAL,HEALALL,HEALMULTIPLE,SHIELD,HEALOVERTIME,DAMAGEHEAL, TEMPHEAL
     }
 
     public int index;
@@ -27,8 +27,11 @@ public abstract class Spell extends Actor {
     public String description;
     public EffectType effectType;
     public int output;
+    public int MIN_OUTPUT;
     public int cost;
+    public int MIN_COST;
     public float cooldown;
+    public float MIN_COOLDOWN;
     public float cdCounter;
     public boolean isReady;
     public boolean isCasting;
@@ -39,6 +42,7 @@ public abstract class Spell extends Actor {
     private Text text;
     public RaidMember target;
     public CriticalChance criticalChance;
+    public int MIN_CRITICAL;
 //
     /**
      * @param player
@@ -60,17 +64,23 @@ public abstract class Spell extends Actor {
         this.name = name;
         this.description = description;
         this.output = output;
+        MIN_OUTPUT = output;
         this.cost = cost;
+        MIN_COST = cost;
         this.cooldown = cooldown;
+        MIN_COOLDOWN = cooldown;
         this.effectType = effectType;
         isReady = true;
         isCasting = false;
         cdCounter = 0f;
         cdPercentage = 1f;
-        criticalChance = new CriticalChance(0);
+        MIN_CRITICAL = 15;
+        criticalChance = new CriticalChance(MIN_CRITICAL);
         setupText();
     }
     public abstract void castSpell();
+
+    public abstract void checkTalents();
 
     public abstract void applySpell(RaidMember target);
 
@@ -246,6 +256,8 @@ public abstract class Spell extends Actor {
         isReady = true;
         setCdCounter(0);
     }
+
+    public abstract void stop();
 
 
     @Override

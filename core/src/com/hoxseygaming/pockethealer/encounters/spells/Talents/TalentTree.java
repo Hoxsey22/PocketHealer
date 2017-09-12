@@ -1,5 +1,9 @@
 package com.hoxseygaming.pockethealer.encounters.spells.Talents;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 
 import java.util.ArrayList;
@@ -8,43 +12,100 @@ import java.util.ArrayList;
  * Created by Hoxsey on 9/1/2017.
  */
 
-public class TalentTree {
+public class TalentTree extends Group{
+
+    public static final String LIFEBOOM = "Lifeboom";
+    public static final String HEALER_CHANNEL = "Healer Channel";
+    public static final String RENEWING_NOVA = "Renewing Nova";
+    public static final String AOD = "Aspect of the Druid";
+    public static final String CRITICAL_HEALER = "Critical Healer";
+    public static final String BARRIER_MASTER = "Barrier Master";
+    public static final String DISCIPLINE = "Discipline";
+    public static final String CRITICAL_HEALER_II = "Critical Healer II";
+    public static final String HASTE_BUILD = "Haste Build";
+    public static final String SUPER_NOVA = "Super Nova";
+    public static final String RESURGENCE = "Resurgence";
+    public static final String HOLY_FOCUS = "Holy Focus";
+
 
     public Player owner;
+    public ArrayList<Talent> talents;
     public int unusedPoints;
     public int totalPoints;
-    public ArrayList<Talent> talents;
+    public Assets assets;
 
-    public TalentTree() {
+    public TalentTree(Player player) {
+        owner = player;
         talents = new ArrayList<>();
+        unusedPoints = 0;
+        totalPoints = 0;
+        assets = owner.getAssets();
+        createTalents();
+        placeTalentPosition();
+        //setBounds(talents.get(3).getX(), talents.get(3).getY(),(talents.get(11).getX() + talents.get(11).getWidth())-talents.get(3).getX(),
+                //(talents.get(0).getX() +talents.get(0).getHeight())-talents.get(3).getY());
+    }
 
+    public TalentTree(Player player, int addedPoints) {
+        owner = player;
+        talents = new ArrayList<>();
+        unusedPoints = addedPoints;
+        totalPoints = 0;
+        assets = owner.getAssets();
+        createTalents();
+        placeTalentPosition();
+        //setBounds(talents.get(3).getX(), talents.get(3).getY(),(talents.get(11).getX() + talents.get(11).getWidth())-talents.get(3).getX(),
+                //(talents.get(0).getX() +talents.get(0).getHeight())-talents.get(3).getY());
     }
 
     public void createTalents()  {
-        talents.add(new Talent(1, "Lifeboom", "After Renew expires, two more Renew will spawn."));
-        talents.add(new Talent(2, "Healer Channel", "Healers in the raid will no longer deal damage, but will instead heal.", talents.get(talents.size()-1)));
-        talents.add(new Talent(3, "Renewing Nova", "Holy Nova now put a Renew on each target that was healed.", talents.get(talents.size()-1)));
-        talents.add(new Talent(4, "Aspect of the Druid","Renew now does more healing and faster ticks.", talents.get(talents.size()-1)));
+        talents.add(new Talent(this, 1, LIFEBOOM, "After Renew expires, two more Renew will spawn.", assets.getTexture(assets.lifeboomIcon), assets));
+        talents.add(new Talent(this, 2, HEALER_CHANNEL, "Healers in the raid will no longer deal damage, but will instead heal.", talents.get(talents.size()-1),
+                assets.getTexture(assets.workTogetherIcon), assets));
+        talents.add(new Talent(this, 3, RENEWING_NOVA, "Holy Nova now put a Renew on each target that was healed.", talents.get(talents.size()-1),
+                assets.getTexture(assets.renewingNovaIcon), assets));
+        talents.add(new Talent(this, 4, AOD,"Renew now does more healing and faster ticks.", talents.get(talents.size()-1),
+                assets.getTexture(assets.aodIcon), assets));
 
-        talents.add(new Talent(5,"Critical Healer","Increase the critical strike chance of all spells."));
-        talents.add(new Talent(6, "Shield", "Barrier now reflects 50% of the damage absorbed.", talents.get(talents.size()-1)));
-        talents.add(new Talent(7, "Discipline", "Barrier absorbs more damage. Smite does more healing and when critical," +
-                        " it will place a small barrier on the target.",talents.get(talents.size()-1)));
-        talents.add(new Talent(8,"Critical Healer II", "Any spells that are critical will place a barrier for 50% of the amount healed.",talents.get(talents.size()-1)));
+        talents.add(new Talent(this, 5,CRITICAL_HEALER,"Increase the critical strike chance of all spells.",
+                assets.getTexture(assets.smiteIcon), assets));
+        talents.add(new Talent(this, 6, BARRIER_MASTER, "The cooldown of Barrier is now 1.0 seconds and the cost is reduced to 15.", talents.get(talents.size()-1),
+                assets.getTexture(assets.tankIcon), assets));
+        talents.add(new Talent(this, 7, DISCIPLINE, "Barrier absorbs more damage. Smite does more healing and damage. Also when Smite is critical," +
+                        " it will place a small barrier on the target.",talents.get(talents.size()-1), assets.getTexture(assets.disciplineIcon), assets));
+        talents.add(new Talent(this, 8,CRITICAL_HEALER_II, "Any spells that are critical will place a barrier for 50% of the amount healed. Smite's barrier increase as well.",
+                talents.get(talents.size()-1), assets.getTexture(assets.criticalHealer2Icon), assets));
 
-        talents.add(new Talent(9,"Haste Build","All spell 0.5 seconds faster."));
-        talents.add(new Talent(10, "Super Nova","Holy Nova now heals one additional target.", talents.get(talents.size()-1)));
-        talents.add(new Talent(11,"Resurgence","All critical single target heals will now give mana back",talents.get(talents.size()-1)));
-        talents.add(new Talent(12, "Holy Focus","Divine Hymn gives 15% mana back and the cooldown is reduced by 15 seconds.", talents.get(talents.size()-1)));
+        talents.add(new Talent(this, 9,HASTE_BUILD,"All spell 0.5 seconds faster.", assets.getTexture(assets.flashIcon), assets));
+        talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova now heals one additional target.", talents.get(talents.size()-1),
+                assets.getTexture(assets.superNovaIcon), assets));
+        talents.add(new Talent(this, 11,RESURGENCE,"All critical single target heals will now give mana back (Cost will be half).",talents.get(talents.size()-1),
+                assets.getTexture(assets.resurgenceIcon), assets));
+        talents.add(new Talent(this, 12, HOLY_FOCUS,"Divine Hymn gives 15% mana back and Lightwell will be available",
+                talents.get(talents.size()-1), assets.getTexture(assets.divineHymnIcon), assets));
+
+        for(int i = 0; i < talents.size(); i++)   {
+            addActor(talents.get(i));
+        }
+
+
     }
 
-    public void addPoint()  {
-        unusedPoints++;
-        totalPoints++;
+    public void placeTalentPosition()   {
+
+        for(int i = 0; i < talents.size(); i++)   {
+            talents.get(i).setBounds(assets.talentPositions.get(i).x,assets.talentPositions.get(i).y,80,80);
+        }
+
     }
 
-    public void usePoint(Talent talent)  {
-
+    public Talent hit(float x, float y) {
+        Actor hit = hit(x,y,false);
+        if(hit != null)    {
+            Talent talent = getTalent(hit.getName());
+            return talent;
+        }
+        return null;
     }
 
     public Talent getTalent(String name)   {
@@ -57,7 +118,149 @@ public class TalentTree {
         return null;
     }
 
+    public boolean usePoint(Talent selectedTalent)  {
+        if(isTalentSelectable(selectedTalent))    {
+            selectedTalent.setSelected(true);
+            totalPoints++;
+            unusedPoints--;
+            return true;
+        }
+        return false;
+    }
 
+    private boolean isTalentSelectable(Talent talent)    {
+        if(getUnusedPoints() < 1)    {
+            //System.out.println("Not enough points.");
+            return false;
+        }
+        if(talent.hasPreReq()) {
+            if (!talent.getPreReq().isSelected()) {
+               // System.out.println(talent.getPreReq().getName() + " needs to be selected before selecting " + talent.getName());
+                return false;
+            }
+        }
+        if(talent.getTotalPointRequirement() > getTotalPoints())    {
+            //System.out.println("Not enough points in your talent tree.");
+            return false;
+        }
+        if(talent.isSelected())    {
+            return false;
+        }
+        return true;
+    }
 
+    public Player getOwner() {
+        return owner;
+    }
 
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+    public void addPoint()  {
+        unusedPoints++;
+    }
+
+    public ArrayList<Talent> getTalents() {
+        return talents;
+    }
+
+    public void setTalents(ArrayList<Talent> talents) {
+        this.talents = talents;
+    }
+
+    public int getUnusedPoints() {
+        return unusedPoints;
+    }
+
+    public void setUnusedPoints(int unusedPoints) {
+        this.unusedPoints = unusedPoints;
+    }
+
+    public float getLeft() {
+        return getSmallestX();
+    }
+
+    public float getButtom()    {
+        return getSmallestY();
+    }
+
+    public float getRight() {
+        return getLargestX() + talents.get(0).getWidth();
+    }
+
+    public float getTop()   {
+        return getLargestY() + talents.get(0).getHeight();
+    }
+
+    private float getLargestY() {
+        float largest = 0;
+        for(int i = 0; i < talents.size(); i++)   {
+            if(largest == 0)    {
+                largest = talents.get(i).getY();
+            }
+            else if(largest < talents.get(i).getY())    {
+                largest = talents.get(i).getY();
+            }
+        }
+        return largest;
+    }
+
+    private float getSmallestY()    {
+        float smallest = 0;
+        for(int i = 0; i < talents.size(); i++)   {
+            if(smallest == 0)    {
+                smallest = talents.get(i).getY();
+            }
+            else if(smallest > talents.get(i).getY())    {
+                smallest = talents.get(i).getY();
+            }
+        }
+        return smallest;
+    }
+
+    private float getLargestX() {
+        float largest = 0;
+        for(int i = 0; i < talents.size(); i++)   {
+            if(largest == 0)    {
+                largest = talents.get(i).getX();
+            }
+            else if(largest < talents.get(i).getX())    {
+                largest = talents.get(i).getX();
+            }
+        }
+        return largest;
+    }
+
+    private float getSmallestX()    {
+        float smallest = 0;
+        for(int i = 0; i < talents.size(); i++)   {
+            if(smallest == 0)    {
+                smallest = talents.get(i).getX();
+            }
+            else if(smallest > talents.get(i).getX())    {
+                smallest = talents.get(i).getX();
+            }
+        }
+        return smallest;
+    }
+
+    public int getTotalPoints() {
+        return totalPoints;
+    }
+
+    public void setTotalPoints(int totalPoints) {
+        this.totalPoints = totalPoints;
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        super.draw(batch, parentAlpha);
+        for(int i = 0; i < talents.size(); i++)   {
+            if(!isTalentSelectable(talents.get(i)) && !talents.get(i).isSelected()) {
+                batch.draw(assets.getTexture(assets.shadowIcon), talents.get(i).getX(), talents.get(i).getY(),
+                        talents.get(i).getWidth(), talents.get(i).getHeight());
+            }
+        }
+    }
 }

@@ -1,35 +1,46 @@
 package com.hoxseygaming.pockethealer.encounters.spells.Talents;
 
-import com.hoxseygaming.pockethealer.Player;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.hoxseygaming.pockethealer.Assets;
 
 /**
  * Created by Hoxsey on 9/2/2017.
  */
 
-public class Talent  {
+public class Talent extends Actor{
 
     public int id;
-    public String name;
+    public TalentTree talentTree;
     public String description;
     public boolean isSelected;
     public int totalPointRequirement;
     public Talent preReq;
+    public Texture image;
+    public Assets assets;
 
-    Talent(int id, String name, String description, Talent pair) {
+    public Talent(TalentTree talentTree, int id, String name, String description, Talent pair, Texture image, Assets assets) {
+        this.talentTree = talentTree;
         this.id = id;
-        this.name = name;
+        setName(name);
         this.description = description;
+        this.image = image;
         isSelected = false;
         preReq = pair;
         totalPointRequirement = 0;
+        this.assets = assets;
     }
 
-    Talent(int id, String name, String description) {
+    public Talent(TalentTree talentTree, int id, String name, String description, Texture image, Assets assets) {
         this.id = id;
-        this.name = name;
+        this.talentTree = talentTree;
+        setName(name);
         this.description = description;
+        this.image = image;
         isSelected = false;
         totalPointRequirement = 0;
+        this.assets = assets;
     }
 
     public int getId() {
@@ -48,14 +59,6 @@ public class Talent  {
         isSelected = selected;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -72,23 +75,40 @@ public class Talent  {
         this.totalPointRequirement = totalPointRequirement;
     }
 
+    public boolean hasPreReq()  {
+        if(preReq != null)
+            return true;
+        else
+            return false;
+    }
+
     public Talent getPreReq() {
         return preReq;
     }
 
-    public void setPreReq(Talent preReq) {
-        this.preReq = preReq;
+    public float getCenterX()   {
+        return getX() + getWidth()/2;
     }
 
-    public boolean isSelectedable(Player player) {
-        if(totalPointRequirement > player.getLevel()) {
-            System.out.println("You do not have enough points.");
-            return false;
-        }
-        if(!getPreReq().isSelected()) {
-            System.out.println("You must have points in "+preReq.getName());
-            return false;
-        }
-        return  true;
+    public float getTop()   {
+        return getY() + getHeight();
     }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        batch.draw(image, getX(), getY(), getWidth(), getHeight());
+        if(preReq != null) {
+            if (isSelected) {
+                batch.draw(assets.getTexture(assets.selectedLine), getCenterX(), getTop(), assets.getTexture(assets.selectedLine).getWidth(),
+                        preReq.getY() - (getY() + getHeight()));
+            } else {
+                batch.draw(assets.getTexture(assets.idleLine), getCenterX(), getTop(), assets.getTexture(assets.idleLine).getWidth(),
+                        preReq.getY() - (getY() + getHeight()));
+            }
+        }
+        if(isSelected()) {
+            batch.draw(assets.getTexture(assets.selectedTalent), getX(), getY(), getWidth(), getHeight());
+        }
+    }
+
 }

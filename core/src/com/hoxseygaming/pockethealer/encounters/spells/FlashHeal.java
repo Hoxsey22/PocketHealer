@@ -15,6 +15,7 @@ public class FlashHeal extends Heal {
         setImage(assets.getTexture(assets.flashIcon));
         setCost(25);
         setCastTime(0.7f);
-        setCriticalChance(20);
+        MIN_CAST_TIME = 0.7f;
+        setCriticalChance(player.criticalChance);
     }
 }

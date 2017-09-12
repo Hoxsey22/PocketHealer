@@ -41,11 +41,15 @@ public class EncounterState extends State {
     public EncounterState(StateManager sm, Player player, Boss boss) {
         super(sm);
         this.player = player;
+        this.player.loadTalents();
         this.player.reset();
 
         this.boss = boss;
+        boss.setPlayer(player);
         this.boss.reset();
-        raid = this.boss.enemies;
+
+        raid = this.boss.getEnemies();
+
         player.setBoss(this.boss);
 
         create();

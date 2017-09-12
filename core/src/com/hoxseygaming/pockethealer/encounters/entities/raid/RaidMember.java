@@ -37,7 +37,6 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
     @Override
     public void receiveHealing(int output) {
         super.receiveHealing(output);
-        floatingTextManager.add(output,FloatingText.HEAL);
     }
 
     @Override
@@ -56,20 +55,20 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
     public void setRoleImage()  {
         switch (role)   {
             case "Tank":
-                roleImage = assets.getTexture("tank_role_icon.png");
+                roleImage = assets.getTexture(assets.tankIcon);
                 break;
             case "Healer":
-                roleImage = assets.getTexture("healer_role_icon.png");
+                roleImage = assets.getTexture(assets.healerIcon);
                 break;
             case "Dps":
-                roleImage = assets.getTexture("dps_role_icon.png");
+                roleImage = assets.getTexture(assets.dpsIcon);
                 break;
         }
     }
 
     public void unselected()  {
         selected = false;
-        frame = assets.getTexture("raid_frame_idle.png");
+        frame = assets.getTexture(assets.raidFrameIdle);
     }
 
     public void selected()  {
@@ -109,7 +108,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         }
         else {
             floatingTextManager.clear();
-            batch.draw(assets.getTexture("death_icon.png"), getX()+5, getY() + getHeight()- 39, 34,34);
+            batch.draw(assets.getTexture(assets.deathIcon), getX()+5, getY() + getHeight()- 39, 34,34);
         }
 
 

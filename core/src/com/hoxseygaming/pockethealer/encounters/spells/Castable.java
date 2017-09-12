@@ -10,9 +10,10 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
  * Created by Hoxsey on 8/31/2017.
  */
 
-public class Castable extends Spell {
+public abstract class Castable extends Spell {
 
     public float castTime;
+    public float MIN_CAST_TIME;
     public Timer castTimer;
     public Sound castingSFX;
     public Sound spellSFX;
@@ -36,6 +37,7 @@ public class Castable extends Spell {
         super(player, name, description, effectType, output, cost, cooldown, index, assets);
         this.spellSFX = spellSFX;
         this.castTime = castTime;
+        MIN_CAST_TIME = castTime;
         castingSFX = assets.getSound(assets.castingSFX);
     }
 

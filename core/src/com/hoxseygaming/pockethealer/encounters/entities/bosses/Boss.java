@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Align;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.Text;
 import com.hoxseygaming.pockethealer.encounters.entities.Entity;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
@@ -20,6 +21,7 @@ public class Boss extends Entity {
 
     public Raid enemies;
     public RaidMember target;
+    public Player player;
     public ArrayList<Mechanic> mechanics;
     public Texture namePlate;
     public int level;
@@ -136,6 +138,14 @@ public class Boss extends Entity {
 
     public void setRaidSize(int raidSize) {
         this.raidSize = raidSize;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Player getPlayer()   {
+        return player;
     }
 
     @Override

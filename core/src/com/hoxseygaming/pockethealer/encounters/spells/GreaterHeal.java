@@ -15,7 +15,7 @@ public class GreaterHeal extends Heal {
         setImage(assets.getTexture(assets.greaterHealerIcon));
         setCost(25);
         setCastTime(2f);
-        setCriticalChance(20);
+        MIN_CAST_TIME = 2f;
         setOutput(60);
     }
 }

@@ -1,83 +1,88 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
+
+import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 6/18/2017.
  */
-public class Renew extends Spell {
+public class Renew extends Periodical {
 
-    public float duration;
-    public Timer durationTimer;
-    public Sound sfx;
-    public int totalHealing;
+    private boolean isSelectedLifeboom;
+
+    public ArrayList<Lifeboom> lifebooms;
 
     /**
      * @param index
      * @param player
      */
     public Renew(Player player, int index, Assets assets)  {
-        super(player, "Renew","A small heal that is healed over time.", EffectType.HEALOVERTIME, 7, 15, 0.5f, index, assets);
-        image = this.assets.getTexture("renew_icon.png");
-        totalHealing = 0;
-        duration = 10f;
-        sfx = this.assets.getSound("sfx/hot_sfx.mp3");
-        setCriticalChance(10);
-
+        super(player, "Renew", "A small heal that is healed over time.", EffectType.HEALOVERTIME, 1, 7, 15,
+                0.5f, 10f, 2f, assets.getSound(assets.hotSFX), index, assets);
+        image = this.assets.getTexture(assets.renewIcon);
+        lifebooms = new ArrayList<>();
+        isSelectedLifeboom = false;
     }
 
+    @Override
+    public void checkLifeboom() {
+        if(isSelectedLifeboom)    {
+            ArrayList<RaidMember> randRM = owner.raid.getRandomRaidMember(3, owner.raid.getBuffLessRaidMembers(effectType));
 
-    public void castSpell()    {
-        if(isCastable())  {
-            useMana();
-            startCooldownTimer();
-            applySpell();
+            for (int i = 0; i < randRM.size(); i++) {
+                lifebooms.add(new Lifeboom(owner,this, assets));
+                lifebooms.get(lifebooms.size()-1).startDurationTimer(randRM.get(i));
+            }
+
         }
     }
 
     @Override
-    public void applySpell(RaidMember target) {
-    }
+    public void checkTalents() {
 
-    public void applySpell()    {
-        startDurationTimer();
-    }
+        resetDefault();
 
-    public void startDurationTimer()    {
-        if (!owner.getTarget().containsEffects(EffectType.HEALOVERTIME)) {
-            owner.getTarget().applyEffect(EffectType.HEALOVERTIME);
-            durationTimer = new Timer();
+        if(owner.getTalentTree().getTalent(TalentTree.LIFEBOOM).isSelected())    {
+            isSelectedLifeboom = true;
         }
-        else
-            durationTimer.clear();
-        sfx.play(0.3f);
-        totalHealing = 0;
-        final RaidMember target = owner.getTarget();
-        durationTimer.scheduleTask(new Timer.Task() {
-            float currentTime = 0;
-            @Override
-            public void run() {
-                if(target.isDead())
-                    durationTimer.stop();
-                totalHealing = totalHealing + target.receiveHealing(output,criticalChance.isCritical());
-                currentTime = currentTime +2f;
-                System.out.println("Renew is ticking! "+currentTime);
-                if(currentTime >= duration)    {
-                    if(owner.talentBook.getTalent("Lifeboom").isSelected()) {
-                        target.receiveHealing(totalHealing);
-                        System.out.println("lifeboom used!");
-                    }
-                    target.removeEffect(EffectType.HEALOVERTIME);
-                    System.out.println("Renew expired");
-                    totalHealing = 0;
-                    //durationTimer.clear();
-                }
-            }
-        }, 2f, 2f, (int)(duration/2f)-1);
+        if(owner.getTalentTree().getTalent(TalentTree.AOD).isSelected())    {
+            output = 10;
+            duration = 12;
+            speed = 1.5f;
+        }
+        if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER).isSelected())    {
+            setCriticalChance(30);
+        }
+        if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
+            speed = speed - 0.5f;
+        }
+
+
     }
+
+    public void resetDefault()  {
+        isSelectedLifeboom = false;
+
+        numOfTargets = MIN_NUM_OF_TARGETS;
+        output = MIN_OUTPUT;
+        cost = MIN_COST;
+        cooldown = MIN_COOLDOWN;
+        duration = MIN_DURATION;
+        speed = MIN_SPEED;
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+        for(int i = 0; i < lifebooms.size(); i++)   {
+            lifebooms.get(i).stop();
+            lifebooms.get(i).clear();
+        }
+    }
+
 
 }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
+import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,6 +17,7 @@ import java.util.Collections;
 public class Raid extends Group {
 
     public ArrayList<RaidMember> raidMembers;
+    public ArrayList<RaidMember> healers;
     public Timer raidDamageTimer;
     private Assets assets;
     public boolean isRaidAlive;
@@ -24,30 +26,32 @@ public class Raid extends Group {
         //super();
         this.assets = assets;
         setName("Raid");
-        raidMembers = new ArrayList<RaidMember>();
+        raidMembers = new ArrayList<>();
+        healers = new ArrayList<>();
         premade(size);
         raidDamageTimer = new Timer();
         isRaidAlive = true;
     }
 
     public void start(final Boss t)   {
-        final Boss target = t;
 
-        Timer.schedule(new Timer.Task() {
-            int deathCount = 0;
+        final Boss target = t;
+        final boolean healerChannel = target.getPlayer().talentTree.getTalent("Healer Channel").isSelected();
+
+        raidDamageTimer.schedule(new Timer.Task() {
+
             @Override
             public void run() {
 
                 for (int i = 0; i < raidMembers.size(); i++) {
-                    if(raidMembers.get(i).isDead())
-                        deathCount++;
-                    target.takeDamage(raidMembers.get(i).getDamage());
-                }
-
-                if(deathCount == raidMembers.size())    {
-                    raidDamageTimer.stop();
-                    raidDamageTimer.clear();
-                    System.out.println("Raid Damage Timer has stopped!");
+                    if(!raidMembers.get(i).isDead()) {
+                        if( raidMembers.get(i).getRole().equalsIgnoreCase("Healer") && healerChannel) {
+                            getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).damage);
+                        }
+                        else {
+                            target.takeDamage(raidMembers.get(i).getDamage());
+                        }
+                    }
                 }
 
             }
@@ -101,6 +105,7 @@ public class Raid extends Group {
     public void addHealer(int amount)   {
         for(int i = 0; i < amount; i++) {
             raidMembers.add(new RaidMember(raidMembers.size(), "Healer", assets));
+            healers.add(raidMembers.get(raidMembers.size()-1));
             addActor(raidMembers.get(raidMembers.size() - 1));
         }
     }
@@ -115,25 +120,6 @@ public class Raid extends Group {
     public RaidMember getRaidMember(int index)   {
         return raidMembers.get(index);
     }
-    /*
-    public RaidMember[] getRandomRaidMember(int amount) {
-        RaidMember raidMembers [] = new RaidMember[amount];
-        int counter = 0;
-        ArrayList<RaidMember> temp = new ArrayList<RaidMember>();
-        temp.addAll(this.raidMembers);
-        Collections.shuffle(temp);
-        for (int i = 0; i < temp.size(); i++) {
-            if(counter != amount) {
-                if (!temp.get(i).isDead()) {
-                    raidMembers[counter] = temp.get(i);
-                    counter++;
-                }
-            }
-            else
-                return raidMembers;
-        }
-        return  raidMembers;
-    }*/
 
     public ArrayList<RaidMember> getRandomRaidMember(int amount) {
         ArrayList<RaidMember> raidMembers = new ArrayList<>();
@@ -298,6 +284,16 @@ public class Raid extends Group {
             }
         }
         return  debuffLess;
+    }
+
+    public ArrayList<RaidMember> getBuffLessRaidMembers(Spell.EffectType buff)    {
+        ArrayList<RaidMember> buffLess = new ArrayList<>();
+        for(int i = 0; i <  raidMembers.size(); i++)   {
+            if(!raidMembers.get(i).containsEffects(buff))    {
+                buffLess.add(raidMembers.get(i));
+            }
+        }
+        return  buffLess;
     }
 
 

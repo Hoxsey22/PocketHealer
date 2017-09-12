@@ -10,10 +10,12 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
  * Created by Hoxsey on 8/31/2017.
  */
 
-public class ChannelCast extends Spell {
+public abstract class ChannelCast extends Spell {
 
     public float castTime;
+    public float MIN_CAST_TIME;
     public int ticksPerCast;
+    public int MIN_TICK_PER_CAST;
     public Timer castTimer;
     public Sound castingSFX;
     public Sound spellSFX;
@@ -36,7 +38,9 @@ public class ChannelCast extends Spell {
         super(player, name, description, effectType, output, cost, cooldown, index, assets);
         //this.spellSFX = spellSFX;
         this.castTime = castTime;
+        MIN_CAST_TIME = castTime;
         this.ticksPerCast = ticksPerCast;
+        MIN_TICK_PER_CAST = ticksPerCast;
         castingSFX = assets.getSound(assets.castingSFX);
     }
 
