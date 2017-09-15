@@ -34,7 +34,7 @@ public class FireBreath extends Mechanic{
     public void startChannel()  {
         channel = new Timer();
 
-        channel.schedule(new Timer.Task() {
+        Timer.schedule(new Timer.Task() {
             int count =  0;
             @Override
             public void run() {

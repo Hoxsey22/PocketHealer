@@ -143,10 +143,7 @@ public class TalentTree extends Group{
             //System.out.println("Not enough points in your talent tree.");
             return false;
         }
-        if(talent.isSelected())    {
-            return false;
-        }
-        return true;
+        return !talent.isSelected();
     }
 
     public Player getOwner() {
@@ -181,7 +178,7 @@ public class TalentTree extends Group{
         return getSmallestX();
     }
 
-    public float getButtom()    {
+    public float getBottom()    {
         return getSmallestY();
     }
 

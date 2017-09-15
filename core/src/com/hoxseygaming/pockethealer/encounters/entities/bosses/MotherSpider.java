@@ -36,4 +36,9 @@ public class MotherSpider extends Boss {
 
         loadMechanics(autoAttack, poisonBite, webTrap, consume);
     }
+
+    @Override
+    public void reward() {
+        rewardPoint();
+    }
 }

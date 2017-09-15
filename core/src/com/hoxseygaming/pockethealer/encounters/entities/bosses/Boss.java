@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * Created by Hoxsey on 6/16/2017.
  */
-public class Boss extends Entity {
+public abstract class Boss extends Entity {
 
     public Raid enemies;
     public RaidMember target;
@@ -28,12 +28,15 @@ public class Boss extends Entity {
     public int raidSize;
     public Text nameText;
     public Text announcement;
+    public String rewardDescription;
+    public boolean isDefeated;
 
     public Boss(String name, int maxHp, Assets assets) {
         super(name, maxHp, assets);
         setBounds(20, 740, 445, 40);
         target = getMainTank();
         mechanics = new ArrayList<>();
+        rewardDescription = "";
     }
 
     public Boss(String name, int maxHp, Raid enemies, Assets assets) {
@@ -51,6 +54,7 @@ public class Boss extends Entity {
         announcement.setPosition(getX(), getY() - announcement.getHeight()-announcement.getHeight()/2);
         announcement.setWrap(true);
         announcement.setAlignment(Align.left);
+        rewardDescription = "";
     }
 
     public void create()    {
@@ -100,6 +104,8 @@ public class Boss extends Entity {
 
     }
 
+    public abstract void reward();
+
     public void setEnemies(Raid enemies)    {
         this.enemies = enemies;
     }
@@ -144,8 +150,34 @@ public class Boss extends Entity {
         this.player = player;
     }
 
+    public boolean isDefeated() {
+        return isDefeated;
+    }
+
+    public void setDefeated(boolean defeated) {
+        isDefeated = defeated;
+    }
+
     public Player getPlayer()   {
         return player;
+    }
+
+    public String getRewardDescription() {
+        return rewardDescription;
+    }
+
+    public void setRewardDescription(String rewardDescription) {
+        this.rewardDescription = rewardDescription;
+    }
+
+    public void rewardPoint()   {
+        player.getTalentTree().addPoint();
+        rewardDescription = rewardDescription +"1 point added!";
+    }
+
+    public void rewardSpell(String spell)   {
+        //give player spell
+        rewardDescription = rewardDescription +"\n"+spell+" rewarded";
     }
 
     @Override

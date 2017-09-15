@@ -29,4 +29,9 @@ public class WildBoar extends Boss {
 
         loadMechanics(autoAttack, bullCharge);
     }
+
+    @Override
+    public void reward() {
+        rewardPoint();
+    }
 }

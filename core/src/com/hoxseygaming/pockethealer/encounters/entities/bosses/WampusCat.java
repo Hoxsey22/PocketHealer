@@ -55,4 +55,9 @@ public class WampusCat extends Boss {
     public void stop() {
         super.stop();
     }
+
+    @Override
+    public void reward() {
+        rewardPoint();
+    }
 }

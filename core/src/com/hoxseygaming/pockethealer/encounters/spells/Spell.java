@@ -92,7 +92,7 @@ public abstract class Spell extends Actor {
             isReady = false;
             setCdCounter(cooldown);
 
-            cdTimer.schedule(new Timer.Task() {
+            Timer.schedule(new Timer.Task() {
                 @Override
                 public void run() {
                     cdCount();

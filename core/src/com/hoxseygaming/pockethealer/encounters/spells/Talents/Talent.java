@@ -76,10 +76,7 @@ public class Talent extends Actor{
     }
 
     public boolean hasPreReq()  {
-        if(preReq != null)
-            return true;
-        else
-            return false;
+        return preReq != null;
     }
 
     public Talent getPreReq() {

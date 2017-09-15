@@ -29,4 +29,9 @@ public class BanditLeader extends Boss {
         backStab = new BackStab(this);
         loadMechanics(autoAttack, backStab);
     }
+
+    @Override
+    public void reward() {
+        rewardPoint();
+    }
 }

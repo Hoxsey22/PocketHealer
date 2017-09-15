@@ -33,4 +33,9 @@ public class CrazyProfessor extends Boss {
         fireball = new Fireball(this, 3f);
         loadMechanics(outbreak, poisonPotion,fireball);
     }
+
+    @Override
+    public void reward() {
+
+    }
 }

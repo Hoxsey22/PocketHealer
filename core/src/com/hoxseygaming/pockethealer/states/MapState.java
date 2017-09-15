@@ -62,7 +62,7 @@ public class MapState extends State {
     public void nextPage()  {
         if(player.getLevel() >= page + 1 && page + 1 <= maxPage) {
             page++;
-            mapFrame = new MapFrame(page, assets);
+            mapFrame = new MapFrame(player,page, assets);
             stage.addActor(mapFrame);
             loadPage();
         }
@@ -133,6 +133,7 @@ public class MapState extends State {
                         mapFrame.setTitle(bi.getName());
                         mapFrame.setBody(bi.getDescription());
                         bi.select();
+                        mapFrame.startButton.setHighlight(true);
                     }
                 }
                 if(coord.y < mapFrame.talentButton.getY() + mapFrame.talentButton.getHeight())    {

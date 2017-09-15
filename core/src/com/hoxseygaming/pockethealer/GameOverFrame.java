@@ -1,10 +1,14 @@
 package com.hoxseygaming.pockethealer;
 
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 import java.util.ArrayList;
 
@@ -21,14 +25,18 @@ public class GameOverFrame extends Group {
     public ImageButton finishImageButton;
     public ImageButton resetImageButton;
     public ImageButton leaveImageButton;
+    public Text text;
+    public Table table;
     public Image results;
     public Music endingMusic;   // maybe later
+    public Boss boss;
     public Assets assets;
     public boolean won;
 
-    public GameOverFrame(boolean won, Assets assets)  {
+    public GameOverFrame(boolean won, Boss boss, Assets assets)  {
         this.assets = assets;
         this.won = won;
+        this.boss = boss;
         create();
     }
 
@@ -50,9 +58,7 @@ public class GameOverFrame extends Group {
             finishImageButton.setPosition(frame.getX() + frame.getWidth()/2 - finishImageButton.getWidth()/2, frame.getY() - finishImageButton.getHeight()/2);
 
             addActor(finishImageButton);
-            results = new Image(assets.getTexture(assets.youWin));
-            results.setName("results");
-            results.setPosition(frame.getX(),frame.getY());
+            createText(won);
         }
         else {
             resetImageButton = new ImageButton("reset", new Image(assets.getTexture(assets.resetButton)));
@@ -65,16 +71,32 @@ public class GameOverFrame extends Group {
 
             addActor(resetImageButton);
             addActor(leaveImageButton);
-            results = new Image(assets.getTexture(assets.youWiped));
-            results.setName("results");
-            results.setPosition(frame.getX(),frame.getY());
+            createText(won);
         }
-        addActor(results);
+        //addActor(results);
 
     }
 
-    public void createFont()    {
+    public void createText(boolean won)    {
+        table = new Table();
+        table.setBounds(frame.getX(),frame.getY(), frame.getWidth(), frame.getHeight());
 
+        text = new Text("",24, Color.WHITE, true, assets);
+        text.setWrap(true);
+        text.setAlignment(Align.top);
+
+        if(won)    {
+            text.setText("Congratulations!" +
+                    "\n"+boss.getName()+" is defeated!\n" +boss.rewardDescription);
+        }
+        else    {
+            text.setText("You have wiped!" +
+                    "\n"+boss.getName()+" has defeated you!");
+        }
+
+        //table.top();
+        table.add(text.getLabel());
+        addActor(table);
     }
 
     public String hitButton(float x, float y)   {

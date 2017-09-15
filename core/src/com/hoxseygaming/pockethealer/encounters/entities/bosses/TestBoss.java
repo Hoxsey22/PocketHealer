@@ -25,4 +25,9 @@ public class TestBoss extends Boss {
         super.create();
         damage = 0;
     }
+
+    @Override
+    public void reward() {
+
+    }
 }

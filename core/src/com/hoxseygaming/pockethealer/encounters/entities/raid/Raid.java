@@ -38,7 +38,7 @@ public class Raid extends Group {
         final Boss target = t;
         final boolean healerChannel = target.getPlayer().talentTree.getTalent("Healer Channel").isSelected();
 
-        raidDamageTimer.schedule(new Timer.Task() {
+        Timer.schedule(new Timer.Task() {
 
             @Override
             public void run() {

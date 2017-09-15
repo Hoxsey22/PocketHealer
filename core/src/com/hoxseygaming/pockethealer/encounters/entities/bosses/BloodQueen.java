@@ -43,4 +43,9 @@ public class BloodQueen extends Boss {
 
         loadMechanics(autoAttack, tankSwap, cleave, bloodBite, bloodBoil, bloodBolts);
     }
+
+    @Override
+    public void reward() {
+
+    }
 }

@@ -113,6 +113,7 @@ public class Assets {
     public String mapOuterFrame = "map_state/map_outer_frame.png";
     public String mapInnerFrame = "map_state/map_inner_frame.png";
     public String button = "button.png";
+    public String buttonHighlight = "button_select.png";
     public String title = "title.png";
     public String poisonIcon = "icons/poison_icon.png";
 
@@ -302,6 +303,7 @@ public class Assets {
         manager.load(selectedLine, Texture.class);
         manager.load(shadowIcon, Texture.class);
         manager.load(talentCalculatorFrame, Texture.class);
+        manager.load(buttonHighlight, Texture.class);
 
 
 

@@ -29,4 +29,9 @@ public class GiantHornet extends Boss {
         beeSting = new BeeSting(this);
         loadMechanics(autoAttack, beeSting);
     }
+
+    @Override
+    public void reward() {
+        rewardPoint();
+    }
 }

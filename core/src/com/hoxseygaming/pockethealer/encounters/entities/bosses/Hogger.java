@@ -31,4 +31,8 @@ public class Hogger extends Boss {
         loadMechanics(autoAttack,cleave);
 
     }
+
+    @Override
+    public void reward() {
+    }
 }

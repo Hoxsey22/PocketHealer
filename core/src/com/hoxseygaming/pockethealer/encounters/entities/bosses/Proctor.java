@@ -11,7 +11,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
  * Created by Hoxsey on 7/20/2017.
  */
 
-public class Proctor extends Boss {
+        public class Proctor extends Boss {
 
     public AutoAttack autoAttack;
     public BullCharge bullCharge;
@@ -36,5 +36,9 @@ public class Proctor extends Boss {
         tankSwap = new TankSwap(this);
 
         loadMechanics(autoAttack, tankSwap, bullCharge, fireBreath);
+    }
+
+    @Override
+    public void reward() {
     }
 }

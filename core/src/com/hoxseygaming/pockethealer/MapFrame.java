@@ -24,12 +24,14 @@ public class MapFrame extends Group {
     public Text title;
     public Text body;
     public int page;
+    public Player player;
     public Assets assets;
 
-    public MapFrame(int page, Assets assets)    {
+    public MapFrame(Player player, int page, Assets assets)    {
         this.page = page;
         this.assets = assets;
         table = new Table();
+        this.player = player;
         table.setName("lowerTable");
         setName("Map "+page);
         create();
@@ -57,6 +59,11 @@ public class MapFrame extends Group {
 
         talentButton = new Button("TALENTS", assets);
         talentButton.setPosition(innerFrame.getX(), innerFrame.getY() - talentButton.getHeight()-1);
+        if(player.getTalentTree().getUnusedPoints() > 1)    {
+            talentButton.setHighlight(true);
+        } else {
+            talentButton.setHighlight(false);
+        }
         addActor(talentButton);
 
         startButton = new Button("START", assets);

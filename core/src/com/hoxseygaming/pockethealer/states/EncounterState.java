@@ -262,14 +262,18 @@ public class EncounterState extends State {
         if(!isDone) {
             handleInput();
             if (boss.isDead()) {
-                gameOverFrame = new GameOverFrame(true, assets);
+                if(!boss.isDefeated())    {
+                    boss.reward();
+                    boss.setDefeated(true);
+                }
+                gameOverFrame = new GameOverFrame(true, boss, assets);
                 stage.addActor(gameOverFrame);
                 gameOverFrame.setDebug(true);
                 boss.stop();
                 raid.stop();
                 isDone = true;
             } else if (raid.isRaidDead()) {
-                gameOverFrame = new GameOverFrame(false, assets);
+                gameOverFrame = new GameOverFrame(false, boss, assets);
                 gameOverFrame.setDebug(true);
                 stage.addActor(gameOverFrame);
                 boss.stop();

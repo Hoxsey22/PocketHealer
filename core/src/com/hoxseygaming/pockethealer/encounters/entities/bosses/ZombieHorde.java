@@ -33,4 +33,9 @@ public class ZombieHorde extends Boss {
 
         loadMechanics(zombieAttack, zombieBite, consume);
     }
+
+    @Override
+    public void reward() {
+
+    }
 }

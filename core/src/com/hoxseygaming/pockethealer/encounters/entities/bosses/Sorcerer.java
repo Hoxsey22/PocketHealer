@@ -36,4 +36,9 @@ public class Sorcerer extends Boss {
         fireBreath = new FireBreath(this);
         loadMechanics(outbreak, poisonPotion,fireball,fireBreath);
     }
+
+    @Override
+    public void reward() {
+        rewardPoint();
+    }
 }

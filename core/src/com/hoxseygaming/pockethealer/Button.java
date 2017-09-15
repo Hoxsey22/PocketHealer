@@ -12,8 +12,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class Button extends Actor {
 
     public Image image;
+    public Image highlightImage;
     public Text text;
     public Assets assets;
+    public boolean isHighlight;
     public boolean isHit;
 
     public Button(String name, Assets assets) {
@@ -22,10 +24,12 @@ public class Button extends Actor {
         this.assets = assets;
 
         image = new Image(assets.getTexture(assets.button));
+        highlightImage = new Image(assets.getTexture(assets.buttonHighlight));
 
         setBounds(0,0,image.getWidth(), image.getHeight());
 
         isHit = false;
+        isHighlight = false;
 
         setupText();
     }
@@ -35,6 +39,7 @@ public class Button extends Actor {
         setBounds(x,y,width,height);
         this.image = image;
         image.setBounds(x,y,width,height);
+        isHighlight = false;
         isHit = false;
     }
 
@@ -56,17 +61,29 @@ public class Button extends Actor {
         return isHit;
     }
 
+    public boolean isHighlight() {
+        return isHighlight;
+    }
+
+    public void setHighlight(boolean highlight) {
+        isHighlight = highlight;
+    }
+
     @Override
     public void setPosition(float x, float y) {
         super.setPosition(x, y);
         //lowerTable.setPosition(x,y);
         image.setPosition(x,y);
+        highlightImage.setPosition(x,y);
         text.setPosition(x+getWidth()/2-text.getXCenter(),y+ getHeight()/2 - text.getYCenter());
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        image.draw(batch, parentAlpha);
+        if(!isHighlight)
+            image.draw(batch, parentAlpha);
+        else
+            highlightImage.draw(batch, parentAlpha);
         text.draw(batch, parentAlpha);
     }
 

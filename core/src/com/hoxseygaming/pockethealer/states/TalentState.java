@@ -90,7 +90,7 @@ public class TalentState extends State {
         title.setWrap(true);
         title.setAlignment(top);
 
-        lowerTable.setBounds(talentTree.getLeft(), talentTree.getButtom() - 20 - 100, talentTree.getRight() - talentTree.getLeft(), 100);
+        lowerTable.setBounds(talentTree.getLeft(), talentTree.getBottom() - 20 - 100, talentTree.getRight() - talentTree.getLeft(), 100);
         lowerTable.top();
         lowerTable.add(title.getLabel());
         lowerTable.row();
@@ -138,7 +138,7 @@ public class TalentState extends State {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
-                if(coord.y > talentTree.getButtom() - 10) {
+                if(coord.y > talentTree.getBottom() - 10) {
                     Talent hit = talentTree.hit(coord.x, coord.y);
                     if (hit != null) {
                         selectedTalent = hit;

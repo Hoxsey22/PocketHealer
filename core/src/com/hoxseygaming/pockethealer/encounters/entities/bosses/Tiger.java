@@ -30,4 +30,9 @@ public class Tiger extends Boss {
 
         loadMechanics(autoAttack, pounce);
     }
+
+    @Override
+    public void reward() {
+
+    }
 }

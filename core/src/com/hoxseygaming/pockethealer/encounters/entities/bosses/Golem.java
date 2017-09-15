@@ -33,4 +33,8 @@ public class Golem extends Boss {
         loadMechanics(autoAttack,rockThrow);
 
     }
+
+    @Override
+    public void reward() {
+    }
 }
