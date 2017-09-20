@@ -24,7 +24,7 @@ import static com.badlogic.gdx.utils.Align.top;
 /**
  * Created by Hoxsey on 7/2/2017.
  */
-public class TalentState extends State {
+public class TalentSelectionState extends State {
 
     public Stage stage;
     public Player player;
@@ -41,7 +41,7 @@ public class TalentState extends State {
     public Talent selectedTalent;
     public Text pointTracker;
 
-    public TalentState(StateManager sm, Player player) {
+    public TalentSelectionState(StateManager sm, Player player) {
         super(sm);
         assets = player.getAssets();
 

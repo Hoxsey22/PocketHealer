@@ -5,13 +5,9 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.player.bars.SpellBar;
 import com.hoxseygaming.pockethealer.encounters.spells.Heal;
-import com.hoxseygaming.pockethealer.encounters.spells.Lightwell;
 import com.hoxseygaming.pockethealer.encounters.spells.Renew;
-import com.hoxseygaming.pockethealer.encounters.spells.Smite;
-import com.hoxseygaming.pockethealer.encounters.spells.Spell;
+import com.hoxseygaming.pockethealer.encounters.spells.SpellBook;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
-
-import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 6/18/2017.
@@ -27,28 +23,29 @@ public class Player {
     public Raid raid;
     private Boss eTarget;
     public SpellBar spellBar;
-    public ArrayList<Spell> spells;
     public float spellCastPercent;
     public boolean isCasting;
     public Assets assets;
     public TalentTree talentTree;
+    public SpellBook spellBook;
     public int criticalChance;
     public int level;
 
     public Player(Assets assets) {
-        level = 1;
+        level = 15;
         maxMana = 1000;
         mana = 1000;
         spellCastPercent = 0;
-        spells = new ArrayList<>();
         setAssets(assets);
         //addDebuggingSpell();
         isCasting = false;
         //talentBook = new TalentBook(this);
         talentTree = new TalentTree(this,15);
+        spellBook = new SpellBook(this);
+        createSpellBar();
         criticalChance = originCritical;
     }
-
+    /*
     public void addDebuggingSpell() {
         spells.add(new Heal(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
@@ -62,10 +59,8 @@ public class Player {
         spells.add(new Smite(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
-        /*
         spells.add(new HolyNova(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
-        */
         spells.add(new Lightwell(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
@@ -74,10 +69,11 @@ public class Player {
             System.out.println(spellBar.getSpell(i).name+" added to spell bar!");
         }
     }
+    */
 
     public void loadTalents()   {
-        for (int i = 0; i <  spells.size(); i++)    {
-            spells.get(i).checkTalents();
+        for (int i = 0; i <  spellBar.spells.size(); i++)    {
+            spellBar.spells.get(i).checkTalents();
         }
     }
 
@@ -85,27 +81,6 @@ public class Player {
         if(level > this.level)    {
             this.level = level;
         }
-    }
-
-    public void addSpell(int index, Spell newSpell)  {
-        spells.add(index, newSpell);
-    }
-
-    public void addSpell(Spell newSpell)  {
-        spells.add(newSpell);
-    }
-
-    public Spell getSpell(int pos) {
-        return spells.get(pos);
-    }
-
-    public Spell getSpell(String name) {
-        for(int i = 0; i < spells.size(); i++)   {
-            if(name.equals(spells.get(i).name))    {
-                return spells.get(i);
-            }
-        }
-        return null;
     }
 
     public void setLevel(int level)  {
@@ -182,20 +157,22 @@ public class Player {
     }
 
     public void createSpellBar()    {
-        spellBar = new SpellBar(assets);
+        spellBar = new SpellBar(this);
+        spellBar.addSpell(3,new Heal(this,0,assets));
+        spellBar.addSpell(1, new Renew(this, 0, assets));
     }
 
     public void reset() {
         mana = maxMana;
         stop();
-        for (int i = 0; i < spells.size(); i++) {
-            spells.get(i).resetCD();
+        for (int i = 0; i < spellBar.spells.size(); i++) {
+            spellBar.spells.get(i).resetCD();
         }
     }
 
     public void stop()  {
-        for (int i = 0; i < spells.size(); i++) {
-            spells.get(i).stop();
+        for (int i = 0; i < spellBar.spells.size(); i++) {
+            spellBar.spells.get(i).stop();
         }
     }
 
@@ -225,6 +202,22 @@ public class Player {
 
     public TalentTree getTalentTree() {
         return talentTree;
+    }
+
+    public SpellBook getSpellBook() {
+        return spellBook;
+    }
+
+    public void setSpellBook(SpellBook spellBook) {
+        this.spellBook = spellBook;
+    }
+
+    public SpellBar getSpellBar() {
+        return spellBar;
+    }
+
+    public void setSpellBar(SpellBar spellBar) {
+        this.spellBar = spellBar;
     }
 
     public int getCriticalChance() {

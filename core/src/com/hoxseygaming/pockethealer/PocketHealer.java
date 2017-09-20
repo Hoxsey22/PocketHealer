@@ -23,7 +23,7 @@ public class PocketHealer extends ApplicationAdapter {
 		sm = new StateManager();
 		music = Gdx.audio.newMusic(Gdx.files.internal("mm_music.ogg"));
 		music.setLooping(true);
-		music.setVolume(0.3f);
+		music.setVolume(0.0f);
 		music.play();
 		sm.push(new LoadingState(sm));
 	}

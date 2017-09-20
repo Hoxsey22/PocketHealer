@@ -17,7 +17,7 @@ public class Heal extends Castable {
     public boolean isSelectedResurgence;
 
     public Heal(Player player, int index, Assets assets) {
-        super(player, "Heal","An efficient slow powerful single target heal.",1.5f, EffectType.HEAL,
+        super(player, "Heal","An efficient slow powerful single target heal.", 0,1.5f, EffectType.HEAL,
                 40, 10, 0.5f,assets.getSound(assets.healSFX), index, assets);
         setImage(assets.getTexture(assets.healIcon));
         isSelectedCriticalHealerII = false;
@@ -65,7 +65,7 @@ public class Heal extends Castable {
             isSelectedCriticalHealerII = true;
         }
         if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
-            castTime = castTime - 0.5f;
+            castTime = castTime - 0.25f;
         }
         if(owner.getTalentTree().getTalent(TalentTree.RESURGENCE).isSelected())    {
             isSelectedResurgence = true;

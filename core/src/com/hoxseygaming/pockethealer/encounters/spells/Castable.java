@@ -32,9 +32,9 @@ public abstract class Castable extends Spell {
      * @param index
      * @param assets
      */
-    public Castable(Player player, String name, String description, float castTime, EffectType effectType,
+    public Castable(Player player, String name, String description, int levelRequirement, float castTime, EffectType effectType,
                     int output, int cost, float cooldown, Sound spellSFX, int index, Assets assets) {
-        super(player, name, description, effectType, output, cost, cooldown, index, assets);
+        super(player, name, description, levelRequirement,effectType, output, cost, cooldown, index, assets);
         this.spellSFX = spellSFX;
         this.castTime = castTime;
         MIN_CAST_TIME = castTime;

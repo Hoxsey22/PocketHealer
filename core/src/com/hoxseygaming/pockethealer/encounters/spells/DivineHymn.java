@@ -12,7 +12,7 @@ public class DivineHymn extends ChannelCast {
     public boolean isSelectedHolyFocus;
 
     public DivineHymn(Player player, int index, Assets assets) {
-        super(player, "Divine Hymn", "", 4f, 5, EffectType.HEALALL, 25, 150, 45f, index, assets);
+        super(player, "Divine Hymn", "", 7,4f, 5, EffectType.HEALALL, 25, 150, 45f, index, assets);
         image = assets.getTexture(assets.divineHymnIcon);
         isSelectedHolyFocus = false;
     }

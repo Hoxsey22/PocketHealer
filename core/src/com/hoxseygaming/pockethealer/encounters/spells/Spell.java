@@ -43,6 +43,7 @@ public abstract class Spell extends Actor {
     public RaidMember target;
     public CriticalChance criticalChance;
     public int MIN_CRITICAL;
+    public int levelRequirement;
 //
     /**
      * @param player
@@ -55,14 +56,16 @@ public abstract class Spell extends Actor {
      * @param index
      * @param assets
      */
-    public Spell(Player player, String name, String description, EffectType effectType, int output,
+    public Spell(Player player, String name, String description, int levelRequirement, EffectType effectType, int output,
                  int cost, float cooldown, int index, Assets assets) {
         setBounds(SpellData.positions[index].x,SpellData.positions[index].y,80,80);
         owner = player;
         this.assets = assets;
         this.index = index;
         this.name = name;
+        setName(name);
         this.description = description;
+        this.levelRequirement = levelRequirement;
         this.output = output;
         MIN_OUTPUT = output;
         this.cost = cost;
@@ -209,6 +212,14 @@ public abstract class Spell extends Actor {
 
     public void setCriticalChance(int chance)  {
         criticalChance.setChanceThreshold(chance);
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public boolean isCastable() {

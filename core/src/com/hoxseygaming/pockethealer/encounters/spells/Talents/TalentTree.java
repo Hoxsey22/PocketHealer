@@ -42,8 +42,8 @@ public class TalentTree extends Group{
         assets = owner.getAssets();
         createTalents();
         placeTalentPosition();
-        //setBounds(talents.get(3).getX(), talents.get(3).getY(),(talents.get(11).getX() + talents.get(11).getWidth())-talents.get(3).getX(),
-                //(talents.get(0).getX() +talents.get(0).getHeight())-talents.get(3).getY());
+        //setBounds(spells.get(3).getX(), spells.get(3).getY(),(spells.get(11).getX() + spells.get(11).getWidth())-spells.get(3).getX(),
+                //(spells.get(0).getX() +spells.get(0).getHeight())-spells.get(3).getY());
     }
 
     public TalentTree(Player player, int addedPoints) {
@@ -54,8 +54,8 @@ public class TalentTree extends Group{
         assets = owner.getAssets();
         createTalents();
         placeTalentPosition();
-        //setBounds(talents.get(3).getX(), talents.get(3).getY(),(talents.get(11).getX() + talents.get(11).getWidth())-talents.get(3).getX(),
-                //(talents.get(0).getX() +talents.get(0).getHeight())-talents.get(3).getY());
+        //setBounds(spells.get(3).getX(), spells.get(3).getY(),(spells.get(11).getX() + spells.get(11).getWidth())-spells.get(3).getX(),
+                //(spells.get(0).getX() +spells.get(0).getHeight())-spells.get(3).getY());
     }
 
     public void createTalents()  {
@@ -76,7 +76,7 @@ public class TalentTree extends Group{
         talents.add(new Talent(this, 8,CRITICAL_HEALER_II, "Any spells that are critical will place a barrier for 50% of the amount healed. Smite's barrier increase as well.",
                 talents.get(talents.size()-1), assets.getTexture(assets.criticalHealer2Icon), assets));
 
-        talents.add(new Talent(this, 9,HASTE_BUILD,"All spell 0.5 seconds faster.", assets.getTexture(assets.flashIcon), assets));
+        talents.add(new Talent(this, 9,HASTE_BUILD,"All spell 0.25 seconds faster.", assets.getTexture(assets.flashIcon), assets));
         talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova now heals one additional target.", talents.get(talents.size()-1),
                 assets.getTexture(assets.superNovaIcon), assets));
         talents.add(new Talent(this, 11,RESURGENCE,"All critical single target heals will now give mana back (Cost will be half).",talents.get(talents.size()-1),

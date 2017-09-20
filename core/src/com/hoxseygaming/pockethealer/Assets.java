@@ -135,6 +135,7 @@ public class Assets {
     public String selectedLine = "icons/selected_line.png";
     public String shadowIcon = "icons/shadow_icon.png";
     public String talentCalculatorFrame = "talent_calculator_frame.png";
+    public String blankIcon = "icons/blank_icon.png";
 
 
 
@@ -304,6 +305,7 @@ public class Assets {
         manager.load(shadowIcon, Texture.class);
         manager.load(talentCalculatorFrame, Texture.class);
         manager.load(buttonHighlight, Texture.class);
+        manager.load(blankIcon, Texture.class);
 
 
 

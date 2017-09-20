@@ -60,7 +60,8 @@ public class MapState extends State {
     }
 
     public void nextPage()  {
-        if(player.getLevel() >= page + 1 && page + 1 <= maxPage) {
+        //needs to change
+        if(player.getLevel() >= page) {
             page++;
             mapFrame = new MapFrame(player,page, assets);
             stage.addActor(mapFrame);
@@ -141,7 +142,7 @@ public class MapState extends State {
                     if(hit != null)    {
                         switch (hit.getName())   {
                             case "TALENTS":
-                                sm.set(new TalentState(sm, player));
+                                sm.set(new TalentSelectionState(sm, player));
                                 break;
                             case "START":
                                 if(selectedLevel != null)    {
@@ -150,7 +151,7 @@ public class MapState extends State {
                                 }
                                 break;
                             case "SPELLS":
-                                //sm.set(new SpellState(sm, player));
+                                sm.set(new SpellSelectionState(sm, player));
                                 break;
                         }
 

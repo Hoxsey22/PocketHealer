@@ -33,9 +33,9 @@ public abstract class ChannelCast extends Spell {
      * @param index
      * @param assets
      */
-    public ChannelCast(Player player, String name, String description, float castTime, int ticksPerCast, EffectType effectType,
+    public ChannelCast(Player player, String name, String description, int levelRequirement, float castTime, int ticksPerCast, EffectType effectType,
                        int output, int cost, float cooldown, int index, Assets assets) {
-        super(player, name, description, effectType, output, cost, cooldown, index, assets);
+        super(player, name, description, levelRequirement,effectType, output, cost, cooldown, index, assets);
         //this.spellSFX = spellSFX;
         this.castTime = castTime;
         MIN_CAST_TIME = castTime;

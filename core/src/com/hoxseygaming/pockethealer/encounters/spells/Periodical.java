@@ -31,9 +31,9 @@ public abstract class Periodical extends InstantCast {
      * @param index
      * @param assets
      */
-    public Periodical(Player player, String name, String description, EffectType effectType, int numOfTargets,
+    public Periodical(Player player, String name, String description, int levelRequirement, EffectType effectType, int numOfTargets,
                       int output, int cost, float cooldown, float duration, float speed, Sound spellSFX, int index, Assets assets) {
-        super(player, name, description, effectType, numOfTargets, output, cost, cooldown, spellSFX, index, assets);
+        super(player, name, description, levelRequirement, effectType, numOfTargets, output, cost, cooldown, spellSFX, index, assets);
         this.duration = duration;
         MIN_DURATION = duration;
         this.speed = speed;

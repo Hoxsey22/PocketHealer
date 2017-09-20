@@ -52,8 +52,8 @@ public class MainMenuState extends State{
         stage.addActor(animatedBackground);
         stage.addActor(text);
 
-        player.createSpellBar();
-        player.addDebuggingSpell();
+        //player.createSpellBar();
+        //player.addDebuggingSpell();
 
         /*music = assets.getMusic(assets.mmMusic);
         music.setLooping(true);

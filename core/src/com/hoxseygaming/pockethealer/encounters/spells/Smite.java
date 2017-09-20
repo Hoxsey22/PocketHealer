@@ -24,7 +24,7 @@ public class Smite extends Castable {
      * @param assets
      */
     public Smite(Player player, int index, Assets assets) {
-        super(player, "Smite", "", 0.5f, EffectType.DAMAGEHEAL, 5, 5, 1f, assets.getSound(assets.healSFX), index, assets);
+        super(player, "Smite", "", 5,0.5f, EffectType.DAMAGEHEAL, 5, 5, 1f, assets.getSound(assets.healSFX), index, assets);
         image = assets.getTexture(assets.smiteIcon);
         barriers = new ArrayList<>();
     }
@@ -44,7 +44,7 @@ public class Smite extends Castable {
             isSelectedCriticalHealerII = true;
         }
         if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
-            castTime = castTime - 0.5f;
+            castTime = castTime - 0.25f;
         }
     }
 
