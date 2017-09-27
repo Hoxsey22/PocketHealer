@@ -20,7 +20,7 @@ public class TutorialFrame extends Group {
     public Text text;
     public Table table;
     public Assets assets;
-    public Image pointer;
+    public BlinkingImage pointer;
     public int stage;
     public Player player;
     public Boss boss;
@@ -30,7 +30,7 @@ public class TutorialFrame extends Group {
         this.assets = assets;
         this.player = player;
         this.boss = boss;
-        pointer = new Image(assets.getTexture(assets.arrowPointer));
+        pointer = new BlinkingImage(assets.getTexture(assets.arrowPointer));
         pointer.setBounds(-100, -100,50,50);
         stage = 1;
         isComplete = false;
@@ -76,6 +76,8 @@ public class TutorialFrame extends Group {
                 text.setText("This is the boss frame. \nWhen the boss frame is empty, you have defeated the boss.");
 
                 pointer.setPosition(0,boss.getY());
+                pointer.start();
+
                 break;
             case 4:
                 text.setText("These are the raid frames. These frames you need to pay close attention to." +

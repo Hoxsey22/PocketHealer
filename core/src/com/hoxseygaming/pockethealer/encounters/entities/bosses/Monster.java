@@ -32,6 +32,6 @@ public class Monster extends Boss {
 
     @Override
     public void reward() {
-        rewardPoint();
+
     }
 }
