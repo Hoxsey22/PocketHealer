@@ -28,7 +28,7 @@ public class Raid extends Group {
         setName("Raid");
         raidMembers = new ArrayList<>();
         healers = new ArrayList<>();
-        premade(size);
+        preMade(size);
         raidDamageTimer = new Timer();
         isRaidAlive = true;
     }
@@ -63,7 +63,7 @@ public class Raid extends Group {
         raidDamageTimer.clear();
     }
 
-    public void premade(int size)   {
+    public void preMade(int size)   {
         switch(size) {
             case 5:
                 addTank(1);

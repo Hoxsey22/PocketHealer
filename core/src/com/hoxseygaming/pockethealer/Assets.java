@@ -325,7 +325,7 @@ public class Assets {
         for(int i = 0; i < 6; i++) {
             for(int j = 0; j < 3; j++) {
                 //raidPositions.add(new Vector2(20+(j*154), 660-(i*79)));
-                raidPositions.add(new Vector2(20+(j*147), 660-(i*70)));
+                raidPositions.add(new Vector2(20+(j*147), 650-(i*70)));
             }
         }
 

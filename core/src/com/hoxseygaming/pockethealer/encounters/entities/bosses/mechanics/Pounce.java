@@ -31,7 +31,7 @@ public class Pounce extends Mechanic {
     @Override
     public void start() {
         super.start();
-
+        startAnnouncementTimer();
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
@@ -49,8 +49,6 @@ public class Pounce extends Mechanic {
 
             }
         },speed, speed);
-
-        startAnnouncementTimer();
     }
 
     @Override

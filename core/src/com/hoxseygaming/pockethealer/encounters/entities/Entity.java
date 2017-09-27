@@ -37,7 +37,7 @@ public class Entity extends Actor{
      */
     public Entity(int id, String role, Assets assets) {
         this.assets = assets;
-        this.setBounds(assets.raidPositions.get(id).x,
+        setBounds(assets.raidPositions.get(id).x,
                 assets.raidPositions.get(id).y,147,70);
 
         System.out.println("ID: "+id+", x:"+getX()+" y:"+getY()+", width:"+getWidth()+", height:"+getHeight());

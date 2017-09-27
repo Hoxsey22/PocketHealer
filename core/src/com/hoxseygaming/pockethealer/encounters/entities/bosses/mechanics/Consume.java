@@ -24,6 +24,8 @@ public class Consume extends Mechanic {
     public void start() {
         super.start();
 
+        startAnnouncementTimer();
+
         timer.scheduleTask(new Timer.Task() {
             ArrayList<RaidMember> diseasedTargets;
             @Override

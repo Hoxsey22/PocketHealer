@@ -23,6 +23,8 @@ public class CatForm extends Mechanic{
         super.start();
         pounce.start();
 
+        startAnnouncementTimer();
+
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {

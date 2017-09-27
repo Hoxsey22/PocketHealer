@@ -51,7 +51,7 @@ public abstract class Boss extends Entity {
         nameText.setPosition(getX()+(getWidth()/2) - nameText.getWidth()/2 ,getY() + getHeight()/2 - nameText.getHeight()/2);
 
         announcement = new Text("",16,Color.RED, false, assets);
-        announcement.setPosition(getX(), getY() - announcement.getHeight()-announcement.getHeight()/2);
+        announcement.setPosition(getX(), enemies.getRaidMember(0).getY()+enemies.getRaidMember(0).getHeight()+10);
         announcement.setWrap(true);
         announcement.setAlignment(Align.left);
         rewardDescription = "";

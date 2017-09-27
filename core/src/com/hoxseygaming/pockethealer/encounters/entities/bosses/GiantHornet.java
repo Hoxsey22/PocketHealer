@@ -2,7 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BeeSting;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Sting;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -12,7 +12,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 public class GiantHornet extends Boss {
 
     public AutoAttack autoAttack;
-    public BeeSting beeSting;
+    public Sting sting;
 
     public GiantHornet(Assets assets) {
         super("Giant Hornet", 2500, new Raid(5, assets), assets);
@@ -26,8 +26,8 @@ public class GiantHornet extends Boss {
         damage = 5;
 
         autoAttack = new AutoAttack(this, 0.5f);
-        beeSting = new BeeSting(this);
-        loadMechanics(autoAttack, beeSting);
+        sting = new Sting(this);
+        loadMechanics(autoAttack, sting);
     }
 
     @Override

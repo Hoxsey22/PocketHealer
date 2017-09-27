@@ -14,12 +14,13 @@ public class FireBreath extends Mechanic{
 
     public FireBreath(Boss owner) {
         super("Fire Breath", 10, 20f, owner);
-        announcementString = owner.getName()+" is about breath fire!";
     }
 
     @Override
     public void start() {
         super.start();
+
+        startAnnouncementTimer();
 
         timer.scheduleTask(new Timer.Task() {
             @Override
@@ -28,7 +29,7 @@ public class FireBreath extends Mechanic{
                 stop();
             }
         },speed, speed);
-        startAnnouncementTimer();
+
     }
 
     public void startChannel()  {

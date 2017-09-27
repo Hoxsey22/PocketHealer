@@ -26,6 +26,7 @@ public class BloodBolts extends Mechanic{
     @Override
     public void start() {
         super.start();
+        startAnnouncementTimer();
 
         timer.scheduleTask(new Timer.Task() {
             @Override
@@ -34,7 +35,6 @@ public class BloodBolts extends Mechanic{
                 stop();
             }
         },speed, speed);
-        startAnnouncementTimer();
     }
 
     public void startChannel()  {

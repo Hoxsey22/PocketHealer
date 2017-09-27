@@ -28,6 +28,8 @@ public class Cleave extends Mechanic {
     public void start() {
         super.start();
 
+        startAnnouncementTimer();
+
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {

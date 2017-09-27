@@ -41,13 +41,12 @@ public class Mechanic {
 
         target = owner.getTarget();
         isActive = false;
-        announcementString = "";
+        announcementString = owner.getName()+" is about to "+name+".";
         create();
     }
 
     public void create()    {
         System.out.println("Mechanic created");
-        //timer = new Timer();
     }
 
     public void start()    {

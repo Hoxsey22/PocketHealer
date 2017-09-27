@@ -16,13 +16,11 @@ public class BullCharge extends Mechanic {
     public BullCharge(Boss owner) {
         super("Bull Charge", 50, 6f, owner);
         id = 8;
-        announcementString = owner.getName()+" is about to charge someone!";
     }
 
     public BullCharge(Boss owner, float speed) {
         super("Bull Charge", 50, speed, owner);
         id = 8;
-        announcementString = owner.getName()+" is about to charge someone!";
     }
 
     @Override
@@ -38,6 +36,5 @@ public class BullCharge extends Mechanic {
                 }
             }
         },speed,speed);
-        startAnnouncementTimer();
     }
 }

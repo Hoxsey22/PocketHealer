@@ -10,14 +10,13 @@ import java.util.ArrayList;
  * Created by Hoxsey on 8/21/2017.
  */
 
-public class BeeSting extends Mechanic {
+public class Sting extends Mechanic {
 
     public ArrayList<Poison> poisons;
     int numOfTargets;
 
-    public BeeSting(Boss owner) {
-        super("Bee String", 20, 10f, owner);
-        announcementString = owner.getName()+" is about to string someone!";
+    public Sting(Boss owner) {
+        super("Sting", 20, 10f, owner);
         poisons = new ArrayList<>();
         numOfTargets = 1;
     }
@@ -25,7 +24,7 @@ public class BeeSting extends Mechanic {
     @Override
     public void start() {
         super.start();
-
+        startAnnouncementTimer();
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
@@ -44,7 +43,6 @@ public class BeeSting extends Mechanic {
             }
         },speed, speed);
 
-        startAnnouncementTimer();
     }
 
     @Override
