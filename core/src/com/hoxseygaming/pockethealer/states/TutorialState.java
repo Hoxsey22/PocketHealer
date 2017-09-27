@@ -205,7 +205,7 @@ public class TutorialState extends State {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
                 String buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
-                if(buttonHit != "") {
+                if(buttonHit != "" && buttonHit != null) {
                     switch (buttonHit) {
                         case "finish":
                             player.newLevel(boss.getLevel());

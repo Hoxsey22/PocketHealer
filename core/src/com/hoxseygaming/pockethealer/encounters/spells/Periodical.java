@@ -48,11 +48,12 @@ public abstract class Periodical extends InstantCast {
     public void startDurationTimer()  {
         if (!getTarget().containsEffects(effectType)) {
             getTarget().applyEffect(effectType);
-            durationTimer = new Timer();
         }
         else {
-                durationTimer.clear();
+            durationTimer.clear();
+
         }
+        durationTimer = new Timer();
 
         final RaidMember target = owner.getTarget();
 
