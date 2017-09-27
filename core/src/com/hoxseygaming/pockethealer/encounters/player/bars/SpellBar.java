@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.player.bars;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
@@ -85,6 +86,16 @@ public class SpellBar extends Group {
 
     public void clearSpells()   {
         spells.clear();
+    }
+
+    @Override
+    public Actor hit(float x, float y, boolean touchable) {
+        for(int i = 0; i < spells.size(); i++)   {
+            if(positions.get(i).contains(x,y))  {
+                return spells.get(i);
+            }
+        }
+        return null;
     }
 
     @Override

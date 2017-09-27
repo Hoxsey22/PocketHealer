@@ -276,6 +276,8 @@ public abstract class Spell extends Actor {
         batch.draw(image, getX(),getY(),getWidth(), getHeight());
         batch.draw(assets.getTexture("cooldown_bar.png"), getX(),getY(),getWidth(), getHeight()*getCdPercentage());
         text.setText(String.format("%.1f",cdCounter));
+        text.setPosition(getX()+getWidth()/2 - text.getXCenter(), getY() + getHeight()/2 -
+                text.getYCenter());
         if(!isReady)
             text.draw(batch, parentAlpha);
     }
