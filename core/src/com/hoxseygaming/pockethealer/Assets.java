@@ -136,6 +136,7 @@ public class Assets {
     public String shadowIcon = "icons/shadow_icon.png";
     public String talentCalculatorFrame = "talent_calculator_frame.png";
     public String blankIcon = "icons/blank_icon.png";
+    public String arrowPointer = "arrow.png";
 
 
 
@@ -306,9 +307,7 @@ public class Assets {
         manager.load(talentCalculatorFrame, Texture.class);
         manager.load(buttonHighlight, Texture.class);
         manager.load(blankIcon, Texture.class);
-
-
-
+        manager.load(arrowPointer, Texture.class);
     }
 
     public void loadSounds() {

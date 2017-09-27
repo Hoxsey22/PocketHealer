@@ -2,6 +2,9 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+
+import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 8/20/2017.
@@ -10,11 +13,11 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 public class Bite extends Mechanic {
 
     public Bite(Boss owner) {
-        super("Bite", 30, 2f, owner);
+        super("Bite", 20, 2f, owner);
     }
 
-    public Bite(String name, int damage, float speed, Boss owner)   {
-        super(name, damage, speed, owner);
+    public Bite(Boss owner, float speed)   {
+        super("Bite", 20, speed, owner);
     }
 
     @Override
@@ -24,8 +27,9 @@ public class Bite extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                target.takeDamage(damage);
+                ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
+                random.get(0).takeDamage(damage);
             }
-        },speed, speed);
+        },speed,speed);
     }
 }

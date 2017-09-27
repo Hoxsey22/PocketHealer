@@ -3,6 +3,8 @@ package com.hoxseygaming.pockethealer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.player.bars.CastBar;
+import com.hoxseygaming.pockethealer.encounters.player.bars.ManaBar;
 import com.hoxseygaming.pockethealer.encounters.player.bars.SpellBar;
 import com.hoxseygaming.pockethealer.encounters.spells.Heal;
 import com.hoxseygaming.pockethealer.encounters.spells.Renew;
@@ -19,6 +21,8 @@ public class Player {
 
     public int maxMana;
     public int mana;
+    public ManaBar manaBar;
+    public CastBar castBar;
     public RaidMember target;
     public Raid raid;
     private Boss eTarget;
@@ -44,6 +48,11 @@ public class Player {
         spellBook = new SpellBook(this);
         createSpellBar();
         criticalChance = originCritical;
+
+        manaBar = new ManaBar(this, assets);
+
+        castBar = new CastBar(this, assets);
+        castBar.anchor(manaBar);
     }
     /*
     public void addDebuggingSpell() {
@@ -226,5 +235,21 @@ public class Player {
 
     public void setCriticalChance(int criticalChance) {
         this.criticalChance = criticalChance;
+    }
+
+    public ManaBar getManaBar() {
+        return manaBar;
+    }
+
+    public void setManaBar(ManaBar manaBar) {
+        this.manaBar = manaBar;
+    }
+
+    public CastBar getCastBar() {
+        return castBar;
+    }
+
+    public void setCastBar(CastBar castBar) {
+        this.castBar = castBar;
     }
 }
