@@ -18,7 +18,7 @@ public class Apprentice extends Boss {
 
     public Apprentice(Assets assets) {
         super("Apprentice", 15000,new Raid(10,assets), assets);
-        setId(9);
+        setId(10);
         create();
     }
 

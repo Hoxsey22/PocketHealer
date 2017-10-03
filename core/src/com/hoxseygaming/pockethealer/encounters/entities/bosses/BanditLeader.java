@@ -16,7 +16,7 @@ public class BanditLeader extends Boss {
 
     public BanditLeader(Assets assets) {
         super("Bandit Leader", 3000,new Raid(5, assets), assets);
-        setId(5);
+        setId(6);
         create();
     }
 

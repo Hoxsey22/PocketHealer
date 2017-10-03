@@ -73,20 +73,20 @@ public class MapState extends State {
 
         switch (page)   {
             case 1:
-                mapFrame.getMap().add(new BossIcon(assets, new WildBoar(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new Tiger(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new GiantHornet(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new Golem(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new BanditLeader(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new Hogger(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new Proctor(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new WampusCat(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new Apprentice(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new Sorcerer(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new MotherSpider(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new ZombieHorde(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new BloodQueen(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new TestBoss(assets)));
+                mapFrame.add(new BossIcon(assets, new WildBoar(assets)));
+                mapFrame.add(new BossIcon(assets, new Tiger(assets)));
+                mapFrame.add(new BossIcon(assets, new GiantHornet(assets)));
+                mapFrame.add(new BossIcon(assets, new Golem(assets)));
+                mapFrame.add(new BossIcon(assets, new BanditLeader(assets)));
+                mapFrame.add(new BossIcon(assets, new Hogger(assets)));
+                mapFrame.add(new BossIcon(assets, new Proctor(assets)));
+                mapFrame.add(new BossIcon(assets, new WampusCat(assets)));
+                mapFrame.add(new BossIcon(assets, new Apprentice(assets)));
+                mapFrame.add(new BossIcon(assets, new Sorcerer(assets)));
+                mapFrame.add(new BossIcon(assets, new MotherSpider(assets)));
+                mapFrame.add(new BossIcon(assets, new ZombieHorde(assets)));
+                mapFrame.add(new BossIcon(assets, new BloodQueen(assets)));
+                mapFrame.add(new BossIcon(assets, new TestBoss(assets)));
                 /*
                 mapFrame.getMap().add(new BossIcon(assets, new CrazyProfessor(assets)));
                 mapFrame.getMap().add(new BossIcon(assets, new BloodQueen(assets)));

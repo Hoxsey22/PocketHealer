@@ -14,7 +14,7 @@ public class ZombieHorde extends Boss {
 
     public ZombieHorde(Assets assets) {
         super("Zombie Horde", 20000,new Raid(15,assets), assets);
-        setId(12);
+        setId(13);
         create();
     }
 

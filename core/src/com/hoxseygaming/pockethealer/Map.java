@@ -33,8 +33,8 @@ public class Map extends Group {
 
     public void add(BossIcon bossIcon)   {
         BossIcon biTemp = bossIcon;
-        biTemp.setPosition(image.getX()+ assets.bossIconPosition.get(bossIcon.getBoss().getId()-1).x-25,
-                image.getY()+image.getHeight() + assets.bossIconPosition.get(bossIcon.getBoss().getId()-1).y-25);
+        biTemp.setPosition(image.getX()+ assets.bossIconPosition.get(bossIcon.getBoss().getId()-2).x-25,
+                image.getY()+image.getHeight() + assets.bossIconPosition.get(bossIcon.getBoss().getId()-2).y-25);
         addActor(biTemp);
         selects.add(biTemp);
     }

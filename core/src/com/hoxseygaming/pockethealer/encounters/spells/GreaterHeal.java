@@ -12,6 +12,7 @@ public class GreaterHeal extends Heal {
     public GreaterHeal(Player player, int index, Assets assets) {
         super(player, index, assets);
         setName("Greater Heal");
+        setDescription("");
         setImage(assets.getTexture(assets.greaterHealerIcon));
         setCost(25);
         setCastTime(2f);

@@ -16,7 +16,7 @@ public class GiantHornet extends Boss {
 
     public GiantHornet(Assets assets) {
         super("Giant Hornet", 2500, new Raid(5, assets), assets);
-        setId(3);
+        setId(4);
         create();
     }
 

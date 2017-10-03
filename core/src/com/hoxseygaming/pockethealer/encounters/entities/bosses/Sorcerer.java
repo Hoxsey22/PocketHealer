@@ -20,7 +20,7 @@ public class Sorcerer extends Boss {
 
     public Sorcerer(Assets assets) {
         super("Sorcerer", 20000,new Raid(15,assets), assets);
-        setId(10);
+        setId(11);
         create();
     }
 

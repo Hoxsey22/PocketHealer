@@ -20,7 +20,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
     public Proctor(Assets assets) {
         super("Proctor", 12000, new Raid(10, assets), assets);
-        setId(8);
+        setId(9);
         level = 3;
         damage = 20;
         create();

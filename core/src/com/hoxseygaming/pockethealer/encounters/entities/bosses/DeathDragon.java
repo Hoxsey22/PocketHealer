@@ -18,7 +18,7 @@ public class DeathDragon extends Boss {
 
     public DeathDragon(Assets assets) {
         super("Apprentice", 15000,new Raid(10,assets), assets);
-        setId(15);
+        setId(16);
         create();
     }
 

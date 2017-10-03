@@ -15,7 +15,7 @@ public class MotherSpider extends Boss {
 
     public MotherSpider(Assets assets) {
         super("Mother Spider", 20000,new Raid(15,assets), assets);
-        setId(11);
+        setId(12);
         create();
     }
 

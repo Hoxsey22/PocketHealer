@@ -14,7 +14,7 @@ public class Hogger extends Boss {
 
     public Hogger(Assets assets) {
         super("Hogger", 3000, new Raid(10,assets), assets);
-        setId(6);
+        setId(7);
         create();
     }
 

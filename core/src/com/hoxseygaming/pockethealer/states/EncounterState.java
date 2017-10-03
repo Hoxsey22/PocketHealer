@@ -265,6 +265,8 @@ public class EncounterState extends State {
                 if(!boss.isDefeated())    {
                     boss.reward();
                     boss.setDefeated(true);
+                    player.setLevel(boss.getId());
+                    player.save();
                 }
                 gameOverFrame = new GameOverFrame(true, boss, assets);
                 stage.addActor(gameOverFrame);

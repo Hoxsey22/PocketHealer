@@ -99,6 +99,11 @@ public class MapFrame extends Group {
 
     }
 
+    public void add(BossIcon bossIcon) {
+        bossIcon.getBoss().setDefeated(player.getLevel() > bossIcon.getBoss().getId());
+        map.add(bossIcon);
+    }
+
     public Button hitButton(float x, float y)   {
         Actor hit = hit(x,y, false);
 

@@ -152,9 +152,11 @@ public class TalentSelectionState extends State {
                     if(hit != null) {
                         switch (hit.getName())  {
                             case "SELECT":
-                                talentTree.usePoint(selectedTalent);
+                                if(selectedTalent != null)
+                                    talentTree.usePoint(selectedTalent);
                                 break;
                             case "DONE":
+                                player.save();
                                 sm.set(new MapState(sm, player));
                                 break;
                         }

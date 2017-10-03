@@ -16,7 +16,7 @@ public class Golem extends Boss {
 
     public Golem(Assets assets) {
         super("Golem", 3000, new Raid(5,assets), assets);
-        setId(4);
+        setId(5);
         create();
     }
 

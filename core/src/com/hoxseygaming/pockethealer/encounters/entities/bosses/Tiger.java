@@ -16,7 +16,7 @@ public class Tiger extends Boss {
 
     public Tiger(Assets assets) {
         super("Tiger", 2500, new Raid(5,assets), assets);
-        setId(2);
+        setId(3);
         create();
     }
 

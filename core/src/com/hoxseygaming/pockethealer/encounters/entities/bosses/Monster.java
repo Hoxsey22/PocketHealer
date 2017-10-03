@@ -16,7 +16,7 @@ public class Monster extends Boss {
 
     public Monster(Assets assets) {
         super("Monster", 1500, new Raid(5,assets), assets);
-        setId(0);
+        setId(1);
         create();
     }
 

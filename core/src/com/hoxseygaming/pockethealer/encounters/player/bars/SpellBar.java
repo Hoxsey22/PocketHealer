@@ -7,6 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
+import com.hoxseygaming.pockethealer.encounters.spells.Heal;
+import com.hoxseygaming.pockethealer.encounters.spells.Renew;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 import java.util.ArrayList;
@@ -80,6 +82,21 @@ public class SpellBar extends Group {
         }
     }
 
+    public void loadSpells(ArrayList<String> spellNames)    {
+        clearSpells();
+        if(spellNames.size() == 0)    {
+            addSpell(0,new Heal(owner,0, assets));
+            addSpell(1,new Renew(owner, 0,assets));
+        }
+        else {
+
+            for (int i = 0; i < spellNames.size(); i++) {
+                addSpell(i,owner.getSpellBook().getCopySpell(owner.getSpellBook().getSpell(spellNames.get(i))));
+            }
+        }
+        System.out.println("-- Spells loaded.");
+    }
+
     public Spell getSpell(int index)  {
         return spells.get(index);
     }
@@ -96,6 +113,14 @@ public class SpellBar extends Group {
             }
         }
         return null;
+    }
+
+    public ArrayList<String> getData()  {
+        ArrayList<String> spellData = new ArrayList<>();
+        for (int i = 0; i < spells.size(); i++) {
+            spellData.add(spells.get(i).getName());
+        }
+        return spellData;
     }
 
     @Override

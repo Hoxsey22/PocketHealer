@@ -19,7 +19,7 @@ public class WampusCat extends Boss {
     public WampusCat(Assets assets) {
         super("Wampus Cat", 6000 , new Raid(10, assets), assets);
 
-        setId(7);
+        setId(8);
         damage = 20;
         level = 4;
         namePlate = assets.getTexture(assets.wampusCatName);

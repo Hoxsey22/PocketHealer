@@ -6,19 +6,42 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.player.bars.CastBar;
 import com.hoxseygaming.pockethealer.encounters.player.bars.ManaBar;
 import com.hoxseygaming.pockethealer.encounters.player.bars.SpellBar;
-import com.hoxseygaming.pockethealer.encounters.spells.Heal;
-import com.hoxseygaming.pockethealer.encounters.spells.Renew;
 import com.hoxseygaming.pockethealer.encounters.spells.SpellBook;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
+
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 6/18/2017.
  */
 public class Player {
 
+    public static class PlayerData implements Serializable{
+        public int level;
+        public int totalPoints;
+        public int unusedPoints;
+        public ArrayList<String> talents;
+        public ArrayList<String> spells;
+
+        public PlayerData() {
+            level = 0;
+            totalPoints = 0;
+            unusedPoints = 0;
+            talents = new ArrayList<>();
+            spells = new ArrayList<>();
+        }
+
+        public void setData(int level, int totalPoints, int usedPoints, ArrayList<String> talents, ArrayList<String> spells){
+            this.level = level;
+            this.totalPoints = totalPoints;
+            this.unusedPoints = usedPoints;
+            this.talents = talents;
+            this.spells = spells;
+        }
+    }
+
     private final int originCritical = 10;
-
-
     public int maxMana;
     public int mana;
     public ManaBar manaBar;
@@ -34,9 +57,12 @@ public class Player {
     public SpellBook spellBook;
     public int criticalChance;
     public int level;
+    private PlayerData playerData;
+
+
 
     public Player(Assets assets) {
-        level = 15;
+        level = 0;
         maxMana = 1000;
         mana = 1000;
         spellCastPercent = 0;
@@ -53,6 +79,7 @@ public class Player {
 
         castBar = new CastBar(this, assets);
         castBar.anchor(manaBar);
+        playerData = new PlayerData();
     }
     /*
     public void addDebuggingSpell() {
@@ -93,7 +120,8 @@ public class Player {
     }
 
     public void setLevel(int level)  {
-        this.level = level;
+        if(level > this.level)
+            this.level = level;
     }
 
     public int getLevel()   {
@@ -167,8 +195,6 @@ public class Player {
 
     public void createSpellBar()    {
         spellBar = new SpellBar(this);
-        spellBar.addSpell(3,new Heal(this,0,assets));
-        spellBar.addSpell(1, new Renew(this, 0, assets));
     }
 
     public void reset() {
@@ -251,5 +277,27 @@ public class Player {
 
     public void setCastBar(CastBar castBar) {
         this.castBar = castBar;
+    }
+
+    public void save()  {
+        GameData.save(this);
+    }
+
+    public void load()  {
+        GameData.load(this);
+    }
+
+    public PlayerData getData()   {
+        playerData.setData(getLevel(), talentTree.getTotalPoints(), talentTree.getUnusedPoints(), talentTree.getData(), spellBar.getData());
+        return playerData;
+    }
+
+    public void setData(PlayerData data)   {
+        setLevel(data.level);
+        talentTree.setTotalPoints(data.totalPoints);
+        talentTree.setUnusedPoints(data.unusedPoints);
+        talentTree.loadTalents(data.talents);
+        spellBar.loadSpells(data.spells);
+        System.out.println("- Player loaded.");
     }
 }

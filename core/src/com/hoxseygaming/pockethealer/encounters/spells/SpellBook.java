@@ -115,7 +115,7 @@ public class SpellBook extends Group{
         return false;
     }
 
-    private Spell getCopySpell(Spell spell)    {
+    public Spell getCopySpell(Spell spell)    {
         switch (spell.getName())    {
             case HEAL:
                 return new Heal(owner,0,assets);

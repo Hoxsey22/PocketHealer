@@ -259,6 +259,8 @@ public class TutorialState extends State {
                 if(!boss.isDefeated())    {
                     boss.reward();
                     boss.setDefeated(true);
+                    player.setLevel(1);
+                    player.save();
                 }
                 gameOverFrame = new GameOverFrame(true, boss, assets);
                 stage.addActor(gameOverFrame);

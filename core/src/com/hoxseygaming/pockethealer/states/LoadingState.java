@@ -91,10 +91,8 @@ public class LoadingState extends State {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if(isReady) {
-                    //sm.push(new TalentSelectionState(sm,assets, player));
-                    //sm.push(new EncounterState(sm,assets));
-                    //sm.push(new TestState(sm,assets));
                     player = new Player(assets);
+                    player.load();
                     sm.push(new MainMenuState(sm, player));
                 }
                 return false;

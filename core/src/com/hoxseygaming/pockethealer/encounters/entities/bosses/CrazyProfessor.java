@@ -18,7 +18,7 @@ public class CrazyProfessor extends Boss {
 
     public CrazyProfessor(Assets assets) {
         super("Apprentice", 15000,new Raid(10,assets), assets);
-        setId(13);
+        setId(14);
         create();
     }
 

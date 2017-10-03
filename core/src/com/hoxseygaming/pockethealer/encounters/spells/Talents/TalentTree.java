@@ -166,6 +166,14 @@ public class TalentTree extends Group{
         this.talents = talents;
     }
 
+    public void loadTalents(ArrayList<String> talentNames)    {
+        clearTalents();
+        for(int i = 0; i < talentNames.size(); i++)   {
+            getTalent(talentNames.get(i)).setSelected(true);
+        }
+        System.out.println("-- Talents loaded.");
+    }
+
     public int getUnusedPoints() {
         return unusedPoints;
     }
@@ -242,12 +250,31 @@ public class TalentTree extends Group{
         return smallest;
     }
 
+    /**
+     * All talents will no longer be selected.
+     */
+    public void clearTalents()  {
+        for (int i = 0; i <  talents.size(); i++)   {
+            talents.get(i).setSelected(false);
+        }
+    }
+
     public int getTotalPoints() {
         return totalPoints;
     }
 
     public void setTotalPoints(int totalPoints) {
         this.totalPoints = totalPoints;
+    }
+
+    public ArrayList<String> getData()  {
+        ArrayList<String> talentData = new ArrayList<>();
+        for(int i = 0; i < talents.size(); i++)   {
+            if(talents.get(i).isSelected())    {
+                talentData.add(talents.get(i).getName());
+            }
+        }
+        return talentData;
     }
 
     @Override

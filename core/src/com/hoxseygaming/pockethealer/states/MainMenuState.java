@@ -90,8 +90,11 @@ public class MainMenuState extends State{
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 animatedBackground.stop();
-                sm.push(new TutorialState(sm, player));
-                //sm.push(new MapState(sm, player));
+                if(player.getLevel() > 0)
+                    sm.push(new MapState(sm, player));
+
+                else
+                    sm.push(new TutorialState(sm, player));
                 return false;
             }
 

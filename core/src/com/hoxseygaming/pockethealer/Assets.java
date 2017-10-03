@@ -137,6 +137,8 @@ public class Assets {
     public String talentCalculatorFrame = "talent_calculator_frame.png";
     public String blankIcon = "icons/blank_icon.png";
     public String arrowPointer = "arrow.png";
+    public String defeatedBossIcon = "map_state/defeated_boss.png";
+    public String spellBG = "spell_bg.png";
 
 
 
@@ -308,6 +310,10 @@ public class Assets {
         manager.load(buttonHighlight, Texture.class);
         manager.load(blankIcon, Texture.class);
         manager.load(arrowPointer, Texture.class);
+        manager.load(defeatedBossIcon, Texture.class);
+        manager.load(spellBG, Texture.class);
+
+
     }
 
     public void loadSounds() {

@@ -53,7 +53,7 @@ public class SpellSelectionState extends State {
         done = new Button("DONE", assets);
         done.setPosition((spellBook.getRight() - spellBook.getLeft())/2 + spellBook.getLeft()-done.getWidth()/2, spellBar.getY()+spellBar.getHeight()+ 10);
 
-        background = new Image(assets.getTexture(assets.talentBg));
+        background = new Image(assets.getTexture(assets.spellBG));
         background.setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
         background.setName("bg");
 
@@ -138,6 +138,7 @@ public class SpellSelectionState extends State {
                     Actor hit = stage.hit(coords.x, coords.y, false);
                     if(hit != null) {
                         if(hit.getName().equalsIgnoreCase("done"))  {
+                            player.save();
                             sm.set(new MapState(sm, player));
                         }
                     }

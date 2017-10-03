@@ -16,7 +16,7 @@ public class WildBoar extends Boss {
 
     public WildBoar(Assets assets) {
         super("Wild Boar", 2200, new Raid(5,assets), assets);
-        setId(1);
+        setId(2);
         create();
     }
 
