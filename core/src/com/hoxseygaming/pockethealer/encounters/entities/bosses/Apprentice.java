@@ -17,7 +17,8 @@ public class Apprentice extends Boss {
     public Fireball fireball;
 
     public Apprentice(Assets assets) {
-        super("Apprentice", 15000,new Raid(10,assets), assets);
+        super("Apprentice"," The Sorcerer is cornered with no where to go, but his apprentice next in so his master can escape. He very " +
+                        "skilled with giving his enemies diseases and poisoning, all while casting fireballs.", 15000,new Raid(10,assets), assets);
         setId(10);
         create();
     }

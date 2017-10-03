@@ -14,13 +14,13 @@ public class Barrier extends InstantCast {
     public Sound sfx;
 
     public Barrier(Player player, int index, Assets assets) {
-        super(player,"Barrier", "An absorption shield.",2, EffectType.SHIELD, 1, 60, 35, 4f,assets.getSound(assets.barrierSFX), index,assets);
+        super(player,"Barrier", "An absorption shield that will prevent the target from taking damage to its health.",2, EffectType.SHIELD, 1, 60, 35, 4f,assets.getSound(assets.barrierSFX), index,assets);
         image = this.assets.getTexture(assets.barrierIcon);
         checkTalents();
     }
 
     public Barrier(Player player, int output, int index, Assets assets) {
-        super(player,"Barrier", "An absorption shield.", 2,EffectType.SHIELD, 1, output, 35, 4f,assets.getSound(assets.barrierSFX), index,assets);
+        super(player,"Barrier", "An absorption shield that will prevent the target from taking damage to its health.", 2,EffectType.SHIELD, 1, output, 35, 4f,assets.getSound(assets.barrierSFX), index,assets);
         image = this.assets.getTexture(assets.barrierIcon);
     }
 

@@ -15,7 +15,9 @@ public class WildBoar extends Boss {
     public AutoAttack autoAttack;
 
     public WildBoar(Assets assets) {
-        super("Wild Boar", 2200, new Raid(5,assets), assets);
+        super("Wild Boar","A wild boar is rampaging through the town and hurting innocent " +
+                "people.\n The wild boar will do moderate damage to the tank and will charge a random " +
+                "raid member every once in a while.", 2200, new Raid(5,assets), assets);
         setId(2);
         create();
     }

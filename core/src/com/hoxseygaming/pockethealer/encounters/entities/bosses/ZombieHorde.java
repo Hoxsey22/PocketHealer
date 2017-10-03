@@ -13,7 +13,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 public class ZombieHorde extends Boss {
 
     public ZombieHorde(Assets assets) {
-        super("Zombie Horde", 20000,new Raid(15,assets), assets);
+        super("Zombie Horde"," After the cave a horde of zombies are drifting around. The only through is through them. Luckily, " +
+                "each zombie defeated is one less to deal with. Be careful for their bites or your team will become apart of their army.", 20000,new Raid(15,assets), assets);
         setId(13);
         create();
     }

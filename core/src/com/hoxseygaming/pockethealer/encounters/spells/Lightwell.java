@@ -17,7 +17,7 @@ public class Lightwell extends Periodical {
      * @param player
      */
     public Lightwell(Player player, int index, Assets assets)  {
-        super(player, "Lightwell", "A lightwell that will heal the lowest raid member every second.", 6, EffectType.HEALOVERTIME, 1, 5, 15,
+        super(player, "Lightwell", "This spell will heal the lowest health raid member over time.", 6, EffectType.HEALOVERTIME, 1, 5, 15,
                 70f, 60f, 1.5f, assets.getSound(assets.hotSFX), index, assets);
         image = this.assets.getTexture(assets.lightWellIcon);
     }

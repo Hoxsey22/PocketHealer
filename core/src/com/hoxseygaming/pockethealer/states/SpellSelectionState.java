@@ -88,8 +88,8 @@ public class SpellSelectionState extends State {
         descriptionTable.setBounds(spellBook.getLeft(), spellBook.getBottom() - 20 - 100, spellBook.getRight() - spellBook.getLeft(), 100);
         descriptionTable.top();
 
-        spellDescriptionName = new Text("", 24, Color.BLACK, false, assets);
-        spellDescription = new Text("", 16, Color.SKY, false, assets);
+        spellDescriptionName = new Text("", 32, Color.BLACK, false, assets);
+        spellDescription = new Text("", 24, Color.SKY, false, assets);
         spellDescription.setWrap(true);
 
         descriptionTable.add(spellDescriptionName.getLabel()).center();

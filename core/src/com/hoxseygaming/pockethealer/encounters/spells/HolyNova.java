@@ -21,7 +21,7 @@ public class HolyNova extends InstantCast {
     public ArrayList<Barrier> barriers;
 
     public HolyNova(Player player, int index,Assets assets) {
-        super(player, "Holy Nova", "", 3, EffectType.HEALMULTIPLE, 3, 30, 35, 3f,assets.getSound(assets.healSFX), index,assets);
+        super(player, "Holy Nova", "Heals multiple targets with the lowest health. Great for getting the raid healed up.", 3, EffectType.HEALMULTIPLE, 3, 30, 35, 3f,assets.getSound(assets.healSFX), index,assets);
         image = assets.getTexture(assets.holyNovaIcon);
         sfx = assets.getSound(assets.hotSFX);
         lifebooms = new ArrayList<>();

@@ -19,7 +19,8 @@ public class Sorcerer extends Boss {
     public FireBreath fireBreath;
 
     public Sorcerer(Assets assets) {
-        super("Sorcerer", 20000,new Raid(15,assets), assets);
+        super("Sorcerer","The time has come, the Sorcerer is finally taking a stand. The Sorcerer is very similar to his " +
+                "apprentice, but has one more trick up his sleeve.", 20000,new Raid(15,assets), assets);
         setId(11);
         create();
     }

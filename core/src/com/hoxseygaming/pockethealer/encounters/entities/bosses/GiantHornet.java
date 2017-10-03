@@ -15,7 +15,10 @@ public class GiantHornet extends Boss {
     public Sting sting;
 
     public GiantHornet(Assets assets) {
-        super("Giant Hornet", 2500, new Raid(5, assets), assets);
+        super("Giant Hornet","A sorcerer has put a spell on a hornet causing it to grow into " +
+                "a giant. It needs to be stopped before someone gets hurt.\nThe giant hornet is fast, but does" +
+                "small damage to the tanks and will sting a random raid member causing the target to be " +
+                "poisoned. ", 2500, new Raid(5, assets), assets);
         setId(4);
         create();
     }

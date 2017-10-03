@@ -13,7 +13,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 public class Hogger extends Boss {
 
     public Hogger(Assets assets) {
-        super("Hogger", 3000, new Raid(10,assets), assets);
+        super("Hogger","Hogger, the predecessor of the bandit leader, finds out that his replacement has been defeated. So Hogger has stepped back in his role" +
+                " and is ready to extract his revenge. He carries a mighty axe that allows him to cleave so be careful.\n ", 3000, new Raid(10,assets), assets);
         setId(7);
         create();
     }

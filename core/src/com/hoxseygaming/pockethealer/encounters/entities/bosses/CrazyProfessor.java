@@ -17,7 +17,7 @@ public class CrazyProfessor extends Boss {
     public Fireball fireball;
 
     public CrazyProfessor(Assets assets) {
-        super("Apprentice", 15000,new Raid(10,assets), assets);
+        super("Apprentice","", 15000,new Raid(10,assets), assets);
         setId(14);
         create();
     }

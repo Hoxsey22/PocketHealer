@@ -15,7 +15,7 @@ public class TestBoss extends Boss {
     public RockThrow rockThrow;
 
     public TestBoss(Assets assets) {
-        super("TEST BOSS", 3000000, new Raid(5,assets), assets);
+        super("TEST BOSS","", 3000000, new Raid(5,assets), assets);
         setId(16);
         create();
     }

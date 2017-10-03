@@ -30,18 +30,21 @@ public abstract class Boss extends Entity {
     public Text announcement;
     public String rewardDescription;
     public boolean isDefeated;
+    public String description;
 
-    public Boss(String name, int maxHp, Assets assets) {
+    public Boss(String name, String description, int maxHp, Assets assets) {
         super(name, maxHp, assets);
+        this.description = description;
         setBounds(20, 740, 445, 40);
         target = getMainTank();
         mechanics = new ArrayList<>();
         rewardDescription = "";
     }
 
-    public Boss(String name, int maxHp, Raid enemies, Assets assets) {
+    public Boss(String name, String description, int maxHp, Raid enemies, Assets assets) {
         super(name, maxHp, assets);
         setBounds(20, 740, 445, 40);
+        this.description = description;
         this.enemies = enemies;
         raidSize = enemies.raidMembers.size();
         target = getMainTank();
@@ -178,6 +181,14 @@ public abstract class Boss extends Entity {
     public void rewardSpell(String spell)   {
         //give player spell
         rewardDescription = rewardDescription +"\n"+spell+" rewarded";
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

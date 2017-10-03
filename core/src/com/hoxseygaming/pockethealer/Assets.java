@@ -154,30 +154,6 @@ public class Assets {
     public String healSFX ="sfx/heal_sfx.mp3";
     public String hotSFX ="sfx/hot_sfx.mp3";
 
-    // info strings
-    public String wildBoarInfo = "A wild boar is rampaging through the town and hurting innocent " +
-            "people.\n The wild boar will do moderate damage to the tank and will charge a random " +
-            "raid member every once in a while.";
-    public String tigerInfo = "A tiger is eating all the live stock and harming some people that " +
-            "try to stop him.\nThe tiger will do moderate damage to the tank and will pounce on raid" +
-            " members doing moderate damage and leaving behind a bleed.";
-    public String giantHornetInfo = "A sorcerer has put a spell on a hornet causing it to grow into " +
-            "a giant. It needs to be stopped before someone gets hurt.\nThe giant hornet is fast, but does" +
-            "small damage to the tanks and will sting a random raid member causing the target to be " +
-            "poisoned. ";
-    public String golemInfo = "The sorcerer is at it again and has summoned a Golem to stop anyone " +
-            "from reaching her.\nThe golem does heavy damage to the tank and will throw rocks at " +
-            "two raid members dealing heavy damage.";
-    public String banditLeaderInfor = "The sorcerer is partnering up the bandit leader and is having" +
-            " him steal precious materials for her.\nThe bandit leader moderate damage to the tank " +
-            "and will back stab a random raid member dealing heavy damage and leaving behind a bleed.";
-    public String hoggerInfo = "Hogger does tank swapping and cleaves the raid every once in a while.";
-    public String proctorInfo = "Proctor does heavy tank damage. While sundering random raid members which increase damage taken. Lastly, the Proctor does a roar" +
-            "that damages the entire raid.";
-    public String wampusCatInfo = "Wampus Cat, has two phases, cat and human form. While in cat, she pounces around giving bleeds. While in human form, she just auto attacks.";
-    public String laLechuzaInfo = "La Lechuza will a tank swap and grab random raid members to suck their soul out, healing unless dispelled. After will drop the target" +
-            " from great heights. She does a powerful screech and will summon storms to randomly hit raid.";
-
     public Assets() {
         manager = new AssetManager();
         raidPositions = new ArrayList<>();
@@ -424,30 +400,6 @@ public class Assets {
 
         return manager.get(filename, BitmapFont.class);
     }*/
-
-    public String getBossDescription(String name)  {
-        switch (name)   {
-            case "Wild Boar":
-                return wildBoarInfo;
-            case "Tiger":
-                return tigerInfo;
-            case "Giant Hornet":
-                return giantHornetInfo;
-            case "Golem":
-                return golemInfo;
-            case "Bandit Leader":
-                return banditLeaderInfor;
-            case "Hogger":
-                return hoggerInfo;
-            case "Proctor":
-                return proctorInfo;
-            case "Wampus Cat":
-                return wampusCatInfo;
-            case "La Luchuza":
-                return laLechuzaInfo;
-        }
-        return "";
-    }
 
     public Texture getEffectImage(Spell.EffectType effectType) {
         switch (effectType) {

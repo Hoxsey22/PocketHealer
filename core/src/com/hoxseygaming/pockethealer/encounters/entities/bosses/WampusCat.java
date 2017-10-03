@@ -17,7 +17,8 @@ public class WampusCat extends Boss {
     public AutoAttack autoAttack;
 
     public WampusCat(Assets assets) {
-        super("Wampus Cat", 6000 , new Raid(10, assets), assets);
+        super("Wampus Cat","The Sorcerer has given an evil woman the power of the Wampus Cat. " +
+                "Her Cat form is fierce and not to be taken lightly, but her human form is nothing to worry about.", 6000 , new Raid(10, assets), assets);
 
         setId(8);
         damage = 20;

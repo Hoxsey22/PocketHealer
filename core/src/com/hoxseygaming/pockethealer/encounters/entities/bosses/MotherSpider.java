@@ -14,7 +14,10 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 public class MotherSpider extends Boss {
 
     public MotherSpider(Assets assets) {
-        super("Mother Spider", 20000,new Raid(15,assets), assets);
+        super("Mother Spider"," The Sorcerer is now defeated, but his powers were coming from another source and it" +
+                " has to be stopped and through the cave is getting one step closer. In the middle of the cave is " +
+                "The Mother Spider and she is upset about her children being stepped on. She has a poisonous bite and " +
+                "will web her victims before she eats them.", 20000,new Raid(15,assets), assets);
         setId(12);
         create();
     }

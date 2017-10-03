@@ -19,7 +19,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
     public TankSwap tankSwap;
 
     public Proctor(Assets assets) {
-        super("Proctor", 12000, new Raid(10, assets), assets);
+        super("Proctor","A long dirt trail leading to the Sorcerer's castle is being protected by the Proctor." +
+                " A giant monster with heavy hand and with running speeds hard to dodge. He also has a fire breath that can be very devastating.", 12000, new Raid(10, assets), assets);
         setId(9);
         level = 3;
         damage = 20;

@@ -79,6 +79,7 @@ public class GameOverFrame extends Group {
 
     public void createText(boolean won)    {
         table = new Table();
+        table.setName("table");
         table.setBounds(frame.getX(),frame.getY(), frame.getWidth(), frame.getHeight());
 
         text = new Text("",24, Color.WHITE, true, assets);
@@ -94,7 +95,6 @@ public class GameOverFrame extends Group {
                     "\n"+boss.getName()+" has defeated you!");
         }
 
-        //table.top();
         table.add(text.getLabel());
         addActor(table);
     }
@@ -103,7 +103,9 @@ public class GameOverFrame extends Group {
         Actor hit = hit(x,y,false);
 
         if(hit !=  null)    {
-            return hit.getName();
+            if(hit.getName().equalsIgnoreCase("finish")|| hit.getName().equalsIgnoreCase("reset")) {
+                return hit.getName();
+            }
         }
         return "";
     }

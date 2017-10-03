@@ -24,7 +24,7 @@ public class Smite extends Castable {
      * @param assets
      */
     public Smite(Player player, int index, Assets assets) {
-        super(player, "Smite", "", 5,0.5f, EffectType.DAMAGEHEAL, 5, 5, 1f, assets.getSound(assets.healSFX), index, assets);
+        super(player, "Smite", "A spell that will inflict damage onto the boss and will heal the lowest raid member for half the damage done to the boss.", 5,0.5f, EffectType.DAMAGEHEAL, 5, 5, 1f, assets.getSound(assets.healSFX), index, assets);
         image = assets.getTexture(assets.smiteIcon);
         barriers = new ArrayList<>();
     }

@@ -15,7 +15,9 @@ public class BanditLeader extends Boss {
     public BackStab backStab;
 
     public BanditLeader(Assets assets) {
-        super("Bandit Leader", 3000,new Raid(5, assets), assets);
+        super("Bandit Leader","The sorcerer is partnering up the bandit leader and is having" +
+                " him steal precious materials for her.\nThe bandit leader does moderate damage to the tank " +
+                "and will back stab a random raid member dealing heavy damage and leaving behind a bleed.", 3000,new Raid(5, assets), assets);
         setId(6);
         create();
     }
