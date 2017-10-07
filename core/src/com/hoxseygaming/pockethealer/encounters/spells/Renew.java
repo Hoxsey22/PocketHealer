@@ -31,9 +31,9 @@ public class Renew extends Periodical {
     @Override
     public void checkLifeboom() {
         if(isSelectedLifeboom)    {
-            ArrayList<RaidMember> randRM = owner.raid.getRandomRaidMember(3, owner.raid.getBuffLessRaidMembers(EffectType.LBHEAL));
+            ArrayList<RaidMember> randRM = owner.getRaid().getRandomRaidMember(3, owner.getRaid().getBuffLessRaidMembers(EffectType.LBHEAL));
 
-            for (int i = 0; i < randRM.size(); i++) {
+            for (int i = 0; i < randRM.size(); i++) { 
                 if(!isTargetLifeboom(randRM.get(i)))    {
                     lifebooms.add(new Lifeboom(owner,this, assets));
                     lifebooms.get(lifebooms.size()-1).startDurationTimer(randRM.get(i));

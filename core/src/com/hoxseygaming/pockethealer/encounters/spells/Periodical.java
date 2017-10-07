@@ -73,7 +73,7 @@ public abstract class Periodical extends InstantCast {
                     raidMember.removeEffect(EffectType.HEALOVERTIME);
                     System.out.println(name+" expired");
                     checkLifeboom();
-                    stop();
+                    //stop();
                 }
                 raidMember.receiveHealing(output,criticalChance.isCritical());
             }

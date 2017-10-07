@@ -55,8 +55,8 @@ public class Pounce extends Mechanic {
         super.applyMechanic();
     }
 
-    @Override
-    public void stop() {
+
+    public void stopBleeds() {
         super.stop();
         for(int i = 0; i < bleeds.size(); i++)   {
             bleeds.get(i).stop();
