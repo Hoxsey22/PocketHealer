@@ -27,7 +27,6 @@ public class PoisonPotion extends Mechanic {
     @Override
     public void start() {
         super.start();
-        startAnnouncementTimer();
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {

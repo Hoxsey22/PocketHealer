@@ -122,7 +122,7 @@ public class MapState extends State {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float) screenX, (float) screenY));
-                System.out.println("x:" + coord.x + " y:" + coord.y);
+
 
                 if(coord.y > mapFrame.innerFrame.getY())    {
                     BossIcon bi = mapFrame.getMap().hit(coord.x, coord.y);

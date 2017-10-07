@@ -28,6 +28,7 @@ public class Mechanic {
     public int damage;
     public float speed;
     public int duration;
+    public boolean announce;
     public boolean isActive;
     public String announcementString;
     public Timer announcementTimer;
@@ -53,6 +54,9 @@ public class Mechanic {
         System.out.println("Timer started!");
         timer = new Timer();
         isActive = true;
+        if(announce)    {
+            startAnnouncementTimer();
+        }
     }
 
     public void startAnnouncementTimer()  {
@@ -145,6 +149,11 @@ public class Mechanic {
     }
 
     public void setSpeed(float speed) {
+        if(timer != null)   {
+            timer.stop();
+            timer.delay((long)speed);
+            timer.start();
+        }
         this.speed = speed;
     }
 
@@ -162,5 +171,73 @@ public class Mechanic {
 
     public void setRaid(Raid raid) {
         this.raid = raid;
+    }
+
+    public boolean isAnnounce() {
+        return announce;
+    }
+
+    public void setAnnounce(boolean announce) {
+        this.announce = announce;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setOwner(Boss owner) {
+        this.owner = owner;
+    }
+
+    public RaidMember getMainTank() {
+        return mainTank;
+    }
+
+    public void setMainTank(RaidMember mainTank) {
+        this.mainTank = mainTank;
+    }
+
+    public RaidMember getOffTank() {
+        return offTank;
+    }
+
+    public void setOffTank(RaidMember offTank) {
+        this.offTank = offTank;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public String getAnnouncementString() {
+        return announcementString;
+    }
+
+    public void setAnnouncementString(String announcementString) {
+        this.announcementString = announcementString;
+    }
+
+    public Timer getAnnouncementTimer() {
+        return announcementTimer;
+    }
+
+    public void setAnnouncementTimer(Timer announcementTimer) {
+        this.announcementTimer = announcementTimer;
     }
 }

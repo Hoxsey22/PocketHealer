@@ -37,8 +37,7 @@ public class Raid extends Group {
 
         final Boss target = t;
         final boolean healerChannel = target.getPlayer().talentTree.getTalent("Healer Channel").isSelected();
-
-        Timer.schedule(new Timer.Task() {
+        raidDamageTimer.schedule(new Timer.Task() {
 
             @Override
             public void run() {
@@ -46,7 +45,7 @@ public class Raid extends Group {
                 for (int i = 0; i < raidMembers.size(); i++) {
                     if(!raidMembers.get(i).isDead()) {
                         if( raidMembers.get(i).getRole().equalsIgnoreCase("Healer") && healerChannel) {
-                            getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).damage);
+                            getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).damage,false);
                         }
                         else {
                             target.takeDamage(raidMembers.get(i).getDamage());
@@ -174,7 +173,6 @@ public class Raid extends Group {
         temp.addAll(raidMembers);
 
         Collections.sort(temp);
-        System.out.println(temp.toString());
         int counter = 0;
         for(int i = 0; i < temp.size(); i++) {
             if (!temp.get(i).isSelected()) {
@@ -193,7 +191,6 @@ public class Raid extends Group {
         temp.addAll(raidMembers);
         Collections.sort(temp);
 
-        System.out.println(temp.toString());
         for(int i = 0; i <  temp.size(); i++)   {
             if(!temp.get(i).isDead())    {
                 return temp.get(i);
@@ -209,7 +206,6 @@ public class Raid extends Group {
         temp.addAll(raidMembers);
 
         Collections.sort(temp);
-        System.out.println(temp.toString());
         int counter = 0;
         for(int i = 0; i < temp.size(); i++) {
             if (!temp.get(i).isSelected()) {

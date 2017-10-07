@@ -31,14 +31,27 @@ public class Renew extends Periodical {
     @Override
     public void checkLifeboom() {
         if(isSelectedLifeboom)    {
-            ArrayList<RaidMember> randRM = owner.raid.getRandomRaidMember(3, owner.raid.getBuffLessRaidMembers(effectType));
+            ArrayList<RaidMember> randRM = owner.raid.getRandomRaidMember(3, owner.raid.getBuffLessRaidMembers(EffectType.LBHEAL));
 
             for (int i = 0; i < randRM.size(); i++) {
-                lifebooms.add(new Lifeboom(owner,this, assets));
-                lifebooms.get(lifebooms.size()-1).startDurationTimer(randRM.get(i));
+                if(!isTargetLifeboom(randRM.get(i)))    {
+                    lifebooms.add(new Lifeboom(owner,this, assets));
+                    lifebooms.get(lifebooms.size()-1).startDurationTimer(randRM.get(i));
+                }
             }
 
         }
+    }
+
+    public boolean isTargetLifeboom(RaidMember t)  {
+        for(int i = 0; i < lifebooms.size(); i++)   {
+            if(t.getId() == lifebooms.get(i).target.getId())    {
+                lifebooms.get(i).startDurationTimer(t);
+                return true;
+            }
+        }
+        return false;
+
     }
 
     @Override
@@ -82,6 +95,7 @@ public class Renew extends Periodical {
             lifebooms.get(i).stop();
             lifebooms.get(i).clear();
         }
+        lifebooms.clear();
     }
 
 

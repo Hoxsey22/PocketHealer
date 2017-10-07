@@ -2,7 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.RockThrow;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Earthquake;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -12,7 +12,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 public class Golem extends Boss {
 
     public AutoAttack autoAttack;
-    public RockThrow rockThrow;
+    public Earthquake earthquake;
 
     public Golem(Assets assets) {
         super("Golem","The sorcerer is at it again and has summoned a Golem to stop anyone " +
@@ -29,10 +29,11 @@ public class Golem extends Boss {
         damage = 50;
 
         autoAttack = new AutoAttack(this, 3f);
-        rockThrow = new RockThrow(this, 5f);
-        rockThrow.setNumOfTargets(2);
+        earthquake = new Earthquake(this, 5f);
+        earthquake.setAnnounce(true);
 
-        loadMechanics(autoAttack,rockThrow);
+
+        loadMechanics(autoAttack, earthquake);
 
     }
 

@@ -15,14 +15,13 @@ public class BackStab extends Mechanic {
     public ArrayList<Bleed> bleeds;
 
     public BackStab(Boss owner) {
-        super("Back Stab", 60, 10f, owner);
+        super("Back Stab", owner.damage*3, 10f, owner);
         bleeds = new ArrayList<>();
     }
 
     @Override
     public void start() {
         super.start();
-        startAnnouncementTimer();
 
         timer.scheduleTask(new Timer.Task() {
             @Override
@@ -41,8 +40,6 @@ public class BackStab extends Mechanic {
 
             }
         },speed, speed);
-
-        startAnnouncementTimer();
     }
 
     @Override

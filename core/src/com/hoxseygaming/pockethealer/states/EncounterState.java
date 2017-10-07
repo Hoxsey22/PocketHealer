@@ -261,6 +261,7 @@ public class EncounterState extends State {
     public void update(float dt) {
         if(!isDone) {
             handleInput();
+            boss.update();
             if (boss.isDead()) {
                 if(!boss.isDefeated())    {
                     boss.reward();
@@ -273,6 +274,7 @@ public class EncounterState extends State {
                 gameOverFrame.setDebug(true);
                 boss.stop();
                 raid.stop();
+                player.stop();
                 isDone = true;
             } else if (raid.isRaidDead()) {
                 gameOverFrame = new GameOverFrame(false, boss, assets);
@@ -280,6 +282,7 @@ public class EncounterState extends State {
                 stage.addActor(gameOverFrame);
                 boss.stop();
                 raid.stop();
+                player.stop();
                 isDone = true;
 
             }

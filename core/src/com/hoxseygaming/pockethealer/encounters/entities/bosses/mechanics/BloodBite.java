@@ -30,7 +30,7 @@ public class BloodBite extends Mechanic {
     @Override
     public void start() {
         super.start();
-        startAnnouncementTimer();
+
         bleeds = new ArrayList<>();
         timer.scheduleTask(new Timer.Task() {
             @Override

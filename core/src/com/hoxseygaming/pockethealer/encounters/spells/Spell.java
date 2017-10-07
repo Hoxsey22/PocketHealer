@@ -18,7 +18,7 @@ public abstract class Spell extends Actor {
 
 
     public enum EffectType  {
-        HEAL,HEALALL,HEALMULTIPLE,SHIELD,HEALOVERTIME,DAMAGEHEAL, TEMPHEAL
+        HEAL,HEALALL,HEALMULTIPLE,SHIELD,HEALOVERTIME,DAMAGEHEAL, LBHEAL,RNHEAL
     }
 
     public int index;
@@ -99,7 +99,6 @@ public abstract class Spell extends Actor {
                 @Override
                 public void run() {
                     cdCount();
-                    System.out.println(name + " " + cdCounter);
                     if(getCdPercentage() <= 0f) {
                         cdTimer.clear();
                         isReady = true;

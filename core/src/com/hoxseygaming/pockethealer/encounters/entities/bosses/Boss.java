@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.Text;
@@ -64,6 +65,10 @@ public abstract class Boss extends Entity {
         System.out.println("boss created!");
     }
 
+    public void update()    {
+        // checks if there are any additional phases
+    }
+
     public RaidMember getMainTank() {
        return enemies.getRaidMember(0);
     }
@@ -76,6 +81,30 @@ public abstract class Boss extends Entity {
         for(Mechanic mech: mechs)   {
             mechanics.add(mech);
         }
+    }
+
+    public void displayAnnouncementTimer(final String text)  {
+        final Timer announcementTimer = new Timer();
+
+        announcementTimer.scheduleTask(new Timer.Task() {
+
+            int counter = 0;
+
+            @Override
+            public void run() {
+
+                counter++;
+                if(counter == 1)    {
+                    announcement.setText(text);
+                }
+                if(counter == 2)    {
+                    announcement.setText("");
+                    announcementTimer.clear();
+                    announcementTimer.stop();
+                }
+
+            }
+        },0.1f, 2f);
     }
 
     public void start() {

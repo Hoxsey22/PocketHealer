@@ -407,8 +407,10 @@ public class Assets {
                 return getTexture(barrierIcon);
             case HEALOVERTIME:
                 return getTexture(renewIcon);
-            case TEMPHEAL:
+            case LBHEAL:
                 return getTexture(lifeboomIcon);
+            case RNHEAL:
+                return getTexture(renewingNovaIcon);
         }
         return null;
     }

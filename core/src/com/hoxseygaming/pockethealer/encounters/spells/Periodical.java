@@ -43,6 +43,7 @@ public abstract class Periodical extends InstantCast {
     @Override
     public void applySpell(RaidMember target) {
         startDurationTimer();
+        System.out.println(name+" applied.");
     }
 
     public void startDurationTimer()  {
@@ -51,13 +52,12 @@ public abstract class Periodical extends InstantCast {
         }
         else {
             durationTimer.clear();
-
         }
         durationTimer = new Timer();
 
-        final RaidMember target = owner.getTarget();
+        final RaidMember raidMember = owner.getTarget();
 
-        durationTimer.scheduleTask(new Timer.Task() {
+        durationTimer.schedule(new Timer.Task() {
             float currentTime = 0;
 
             @Override
@@ -65,29 +65,34 @@ public abstract class Periodical extends InstantCast {
 
                 currentTime = currentTime + speed;
 
-                if(target.isDead())
+                if(raidMember.isDead()) {
                     durationTimer.stop();
+                    durationTimer.clear();
+                }
                 if(currentTime >= duration )    {
-                    target.removeEffect(EffectType.HEALOVERTIME);
+                    raidMember.removeEffect(EffectType.HEALOVERTIME);
                     System.out.println(name+" expired");
                     checkLifeboom();
-                    durationTimer.stop();
+                    stop();
                 }
-                target.receiveHealing(output,criticalChance.isCritical());
+                raidMember.receiveHealing(output,criticalChance.isCritical());
             }
-        }, speed, speed);
+        }, speed, speed,(int)(duration/speed)-1);
 
     }
 
     public void startDurationTimer(RaidMember tar) {
+        target = tar;
         if (!tar.containsEffects(effectType)) {
             tar.applyEffect(effectType);
-            durationTimer = new Timer();
         }
-        else
+        else {
             durationTimer.clear();
 
-        final RaidMember target = tar;
+        }
+        durationTimer = new Timer();
+
+        final RaidMember raidMember = tar;
 
         durationTimer.scheduleTask(new Timer.Task() {
             float currentTime = 0;
@@ -97,16 +102,17 @@ public abstract class Periodical extends InstantCast {
 
                 currentTime = currentTime + speed;
 
-                if (target.isDead())
+                if (raidMember.isDead())
                     durationTimer.stop();
                 if (currentTime >= duration) {
-                    target.removeEffect(effectType);
+                    raidMember.removeEffect(effectType);
                     System.out.println(name + " expired");
                     durationTimer.stop();
+                    durationTimer.clear();
                 }
-                target.receiveHealing(output);
+                raidMember.receiveHealing(output, criticalChance.isCritical());
             }
-        }, speed, speed);
+        }, speed, speed,(int)(duration/speed)-1);
     }
 
     public abstract void checkLifeboom();
@@ -117,5 +123,4 @@ public abstract class Periodical extends InstantCast {
             durationTimer.clear();
         }
     }
-
 }

@@ -11,8 +11,9 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class BanditLeader extends Boss {
 
-    public AutoAttack autoAttack;
-    public BackStab backStab;
+    private AutoAttack autoAttack;
+    private BackStab backStab;
+    private boolean isEnrage;
 
     public BanditLeader(Assets assets) {
         super("Bandit Leader","The sorcerer is partnering up the bandit leader and is having" +
@@ -30,6 +31,17 @@ public class BanditLeader extends Boss {
         autoAttack = new AutoAttack(this, 1f);
         backStab = new BackStab(this);
         loadMechanics(autoAttack, backStab);
+    }
+
+    @Override
+    public void update() {
+        if(getHpPercent() < 0.25 && !isEnrage)    {
+            setDamage(30);
+            autoAttack.setDamage(damage);
+            backStab.setDamage(damage*3);
+            isEnrage = true;
+            displayAnnouncementTimer(name+" is now enraged!");
+        }
     }
 
     @Override

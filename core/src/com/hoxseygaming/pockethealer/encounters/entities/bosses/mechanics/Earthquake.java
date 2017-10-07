@@ -4,16 +4,20 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 /**
- * Created by Hoxsey on 8/2/2017.
+ * Created by Hoxsey on 8/18/2017.
  */
 
-public class FireBreath extends Mechanic{
+public class Earthquake extends Mechanic {
 
-
+    public int numOfTargets;
     public Timer channel;
 
-    public FireBreath(Boss owner) {
-        super("Fire Breath", 10, 20f, owner);
+    public Earthquake(Boss owner) {
+        super("Earthquake", 5, 15f, owner);
+    }
+
+    public Earthquake(Boss owner, float speed) {
+        super("Earthquake", 5, speed, owner);
     }
 
     @Override
@@ -48,6 +52,14 @@ public class FireBreath extends Mechanic{
                     timer.start();
                 }
             }
-        },0.5f,0.5f,3);
+        },0.5f,0.5f,5);
+    }
+
+    public int getNumOfTargets() {
+        return numOfTargets;
+    }
+
+    public void setNumOfTargets(int numOfTargets) {
+        this.numOfTargets = numOfTargets;
     }
 }

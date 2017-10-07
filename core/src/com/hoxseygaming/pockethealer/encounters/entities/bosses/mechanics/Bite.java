@@ -23,7 +23,6 @@ public class Bite extends Mechanic {
     @Override
     public void start() {
         super.start();
-        startAnnouncementTimer();
 
         timer.scheduleTask(new Timer.Task() {
             @Override

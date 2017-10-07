@@ -21,7 +21,8 @@ public class HolyNova extends InstantCast {
     public ArrayList<Barrier> barriers;
 
     public HolyNova(Player player, int index,Assets assets) {
-        super(player, "Holy Nova", "Heals multiple targets with the lowest health. Great for getting the raid healed up.", 3, EffectType.HEALMULTIPLE, 3, 30, 35, 3f,assets.getSound(assets.healSFX), index,assets);
+        super(player, "Holy Nova", "Heals multiple targets with the lowest health. Great for getting the raid healed up.",
+                3, EffectType.HEALMULTIPLE, 3, 30, 40, 3f,assets.getSound(assets.healSFX), index,assets);
         image = assets.getTexture(assets.holyNovaIcon);
         sfx = assets.getSound(assets.hotSFX);
         lifebooms = new ArrayList<>();
@@ -93,8 +94,14 @@ public class HolyNova extends InstantCast {
      */
     public boolean isRenewingNova(RaidMember target) {
         if(isSelectedRenewingNova)    {
-                lifebooms.add(new Lifeboom(owner, assets));
-                lifebooms.get(lifebooms.size()-1).startDurationTimer(target);
+            for(int i  = 0; i < lifebooms.size(); i++)   {
+                if(lifebooms.get(i).target.getId() == target.getId())    {
+                    lifebooms.get(i).startDurationTimer(target);
+                    return true;
+                }
+            }
+            lifebooms.add(new Lifeboom(owner, assets));
+            lifebooms.get(lifebooms.size()-1).startDurationTimer(target);
             return true;
         }
         return false;
@@ -112,7 +119,9 @@ public class HolyNova extends InstantCast {
         super.stop();
         for(int i = 0; i < lifebooms.size(); i++)   {
             lifebooms.get(i).stop();
+            lifebooms.get(i).clear();
         }
+        lifebooms.clear();
         barriers.removeAll(barriers);
     }
 }

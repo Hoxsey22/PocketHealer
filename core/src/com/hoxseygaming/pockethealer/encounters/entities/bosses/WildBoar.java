@@ -27,6 +27,7 @@ public class WildBoar extends Boss {
         super.create();
         damage = 10;
         bullCharge = new BullCharge(this, 5f);
+        bullCharge.setAnnounce(true);
         autoAttack = new AutoAttack(this, 1f);
 
         loadMechanics(autoAttack, bullCharge);

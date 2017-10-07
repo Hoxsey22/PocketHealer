@@ -40,8 +40,6 @@ public class Entity extends Actor{
         setBounds(assets.raidPositions.get(id).x,
                 assets.raidPositions.get(id).y,147,70);
 
-        System.out.println("ID: "+id+", x:"+getX()+" y:"+getY()+", width:"+getWidth()+", height:"+getHeight());
-
         this.id = id;
         this.role = role;
         setRoleStats(role);
@@ -150,7 +148,6 @@ public class Entity extends Actor{
     }
 
     public void receiveHealing(int output) {
-        System.out.println("\n\n ID:"+id+" Role:"+role+" is receiving heals!");
         if (!isDead)   {
             if (hp < maxHp) {
                 hp = hp + output;
@@ -169,7 +166,6 @@ public class Entity extends Actor{
             reduceHealingAbsorb(newOutput);
         }
         else {
-            System.out.println("NEW OUTPUT:" + newOutput);
             receiveHealing(newOutput);
         }
         return newOutput;
