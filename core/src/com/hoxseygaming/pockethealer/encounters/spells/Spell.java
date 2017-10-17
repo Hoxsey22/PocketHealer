@@ -250,12 +250,20 @@ public abstract class Spell extends Actor {
         this.assets = assets;
     }
 
-    public RaidMember getTarget() {
+    public RaidMember getOwnerTarget() {
         return owner.getTarget();
     }
 
-    public void setTarget(RaidMember newTarget) {
+    public RaidMember getTarget() {
+        return target;
+    }
+
+    public void setOwnerTarget(RaidMember newTarget) {
         owner.setTarget(newTarget);
+    }
+
+    public void setTarget(RaidMember newTarget) {
+        target = newTarget;
     }
 
     public void resetCD()   {

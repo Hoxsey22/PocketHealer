@@ -11,22 +11,25 @@ import java.util.ArrayList;
 /**
  * Created by Hoxsey on 6/18/2017.
  */
-public class HolyNova extends InstantCast {
+public class HolyNova extends Castable {
 
     public boolean isSelectedCriticalHealerII;
     public boolean isSelectedRenewingNova;
+    public int numOfTargets;
+    public ArrayList<RaidMember> targets;
 
     public Sound sfx;
     public ArrayList<Lifeboom> lifebooms;
     public ArrayList<Barrier> barriers;
 
-    public HolyNova(Player player, int index,Assets assets) {
+    public HolyNova(Player player, int index, Assets assets) {
         super(player, "Holy Nova", "Heals multiple targets with the lowest health. Great for getting the raid healed up.",
-                3, EffectType.HEALMULTIPLE, 3, 30, 40, 3f,assets.getSound(assets.healSFX), index,assets);
+                3, 1.5f, EffectType.HEALMULTIPLE, 30, 30, 5f,assets.getSound(assets.healSFX), index,assets);
         image = assets.getTexture(assets.holyNovaIcon);
         sfx = assets.getSound(assets.hotSFX);
         lifebooms = new ArrayList<>();
         barriers = new ArrayList<>();
+        numOfTargets = 3;
     }
 
     @Override
@@ -51,14 +54,17 @@ public class HolyNova extends InstantCast {
     }
 
     @Override
-    public void applySpell(RaidMember target)    {
+    public void applySpell(RaidMember tar)    {
 
-        // main target
-        isCriticalHealerII(target);
-        isRenewingNova(target);
+        // main tar
+        isCriticalHealerII(tar);
+        System.out.println("checking renew");
+        isRenewingNova(tar);
 
         if(numOfTargets > 1) {
             getRandomTargets();
+            System.out.println("Number of random targets: "+targets.size());
+            System.out.println(targets.toString());
             for (int i = 0; i < targets.size(); i++) {
                 isCriticalHealerII(targets.get(i));
                 isRenewingNova(targets.get(i));
@@ -94,24 +100,28 @@ public class HolyNova extends InstantCast {
      */
     public boolean isRenewingNova(RaidMember target) {
         if(isSelectedRenewingNova)    {
+            System.out.println("lb size: "+lifebooms.size());
             for(int i  = 0; i < lifebooms.size(); i++)   {
+                System.out.println("lb target: "+lifebooms.get(i).getTarget().getId()+" vs target: "+target.getId());
                 if(lifebooms.get(i).target.getId() == target.getId())    {
                     lifebooms.get(i).startDurationTimer(target);
                     return true;
                 }
             }
+
             lifebooms.add(new Lifeboom(owner, assets));
             lifebooms.get(lifebooms.size()-1).startDurationTimer(target);
+
             return true;
         }
         return false;
     }
 
     public void resetDefault()  {
-            isSelectedRenewingNova = false;
-            setCriticalChance(MIN_CRITICAL);
-            isSelectedCriticalHealerII = false;
-            numOfTargets = MIN_NUM_OF_TARGETS;
+        isSelectedRenewingNova = false;
+        setCriticalChance(MIN_CRITICAL);
+        isSelectedCriticalHealerII = false;
+        numOfTargets = 3;
     }
 
     @Override
@@ -123,5 +133,9 @@ public class HolyNova extends InstantCast {
         }
         lifebooms.clear();
         barriers.removeAll(barriers);
+    }
+
+    public void getRandomTargets()  {
+        targets = getOwner().raid.getRaidMembersWithLowestHp(numOfTargets);
     }
 }

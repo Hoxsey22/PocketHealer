@@ -33,18 +33,18 @@ public class ZombieAttack extends Mechanic {
 
     public int getZombieDamage()    {
         if(owner.getHpPercent() > 0.79f)    {
-            return 10 + owner.getDamage();
+            return 10;
         }
         if(owner.getHpPercent() > 0.59f)    {
-            return 8 + owner.getDamage();
+            return 8;
         }
         if(owner.getHpPercent() > 0.39f)    {
-            return 6 + owner.getDamage();
+            return 6;
         }
         if(owner.getHpPercent() > 0.19f)    {
-            return 4 + owner.getDamage();
+            return 4;
         }
-        return 2 + owner.getDamage();
+        return 2;
     }
 
 }

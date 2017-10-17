@@ -69,7 +69,7 @@ public abstract class ChannelCast extends Spell {
         castingSFX.loop(0.3f);
         final float tickTime = (castTime/ticksPerCast)-0.01f;
 
-        final RaidMember sTarget = getTarget();
+        final RaidMember sTarget = getOwnerTarget();
 
         castTimer.scheduleTask(new Timer.Task() {
             int counter = 0;

@@ -45,7 +45,7 @@ public abstract class InstantCast extends Spell {
             useMana();
             startCooldownTimer();
             spellSFX.play(0.3f);
-            applySpell(getTarget());
+            applySpell(getOwnerTarget());
 
         }
 

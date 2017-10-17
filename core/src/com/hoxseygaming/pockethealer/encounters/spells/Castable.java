@@ -54,6 +54,7 @@ public abstract class Castable extends Spell {
     @Override
     public void applySpell(RaidMember target)    {
         target.receiveHealing(output, criticalChance.isCritical());
+
     }
 
     public void startCastTimer()    {
@@ -62,7 +63,7 @@ public abstract class Castable extends Spell {
         owner.isCasting = isCasting;
         castingSFX.loop(0.3f);
 
-        final RaidMember sTarget = getTarget();
+        final RaidMember sTarget = getOwnerTarget();
 
         castTimer.scheduleTask(new Timer.Task() {
             int counter = 0;
@@ -74,13 +75,13 @@ public abstract class Castable extends Spell {
                 if(counter * 0.01f >= castTime)    {
                     castingSFX.stop();
                     spellSFX.play(0.3f);
+                    System.out.println("applying spell");
                     applySpell(sTarget);
                     isCasting = false;
                     owner.isCasting = isCasting;
-                    stop();
                 }
             }
-        },0.01f, 0.01f);
+        },0.01f, 0.01f,(int)(castTime/0.01f)-1);
     }
 
     public void stop()  {

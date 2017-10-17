@@ -33,7 +33,7 @@ public class Renew extends Periodical {
         if(isSelectedLifeboom)    {
             ArrayList<RaidMember> randRM = owner.getRaid().getRandomRaidMember(3, owner.getRaid().getBuffLessRaidMembers(EffectType.LBHEAL));
 
-            for (int i = 0; i < randRM.size(); i++) { 
+            for (int i = 0; i < randRM.size(); i++) {
                 if(!isTargetLifeboom(randRM.get(i)))    {
                     lifebooms.add(new Lifeboom(owner,this, assets));
                     lifebooms.get(lifebooms.size()-1).startDurationTimer(randRM.get(i));
@@ -66,6 +66,7 @@ public class Renew extends Periodical {
             output = 10;
             duration = 12;
             speed = 1.5f;
+            cost = 9;
         }
         if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER).isSelected())    {
             setCriticalChance(30);

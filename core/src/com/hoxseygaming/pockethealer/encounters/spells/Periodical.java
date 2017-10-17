@@ -47,15 +47,16 @@ public abstract class Periodical extends InstantCast {
     }
 
     public void startDurationTimer()  {
-        if (!getTarget().containsEffects(effectType)) {
-            getTarget().applyEffect(effectType);
+        if (!getOwnerTarget().containsEffects(effectType)) {
+            getOwnerTarget().applyEffect(effectType);
         }
         else {
-            durationTimer.clear();
+            if(durationTimer != null)
+                durationTimer.clear();
         }
         durationTimer = new Timer();
 
-        final RaidMember raidMember = owner.getTarget();
+        final RaidMember raidMember = getOwnerTarget();
 
         durationTimer.schedule(new Timer.Task() {
             float currentTime = 0;
@@ -82,17 +83,16 @@ public abstract class Periodical extends InstantCast {
     }
 
     public void startDurationTimer(RaidMember tar) {
-        target = tar;
-        if (!tar.containsEffects(effectType)) {
-            tar.applyEffect(effectType);
+        setTarget(tar);
+        if (!getTarget().containsEffects(effectType)) {
+            getTarget().applyEffect(effectType);
         }
         else {
             durationTimer.clear();
-
         }
         durationTimer = new Timer();
 
-        final RaidMember raidMember = tar;
+        final RaidMember raidMember = getTarget();
 
         durationTimer.scheduleTask(new Timer.Task() {
             float currentTime = 0;

@@ -194,7 +194,7 @@ public class Mechanic {
     }
 
     public RaidMember getMainTank() {
-        return mainTank;
+        return owner.getMainTank();
     }
 
     public void setMainTank(RaidMember mainTank) {
@@ -202,7 +202,7 @@ public class Mechanic {
     }
 
     public RaidMember getOffTank() {
-        return offTank;
+        return owner.getOffTank();
     }
 
     public void setOffTank(RaidMember offTank) {

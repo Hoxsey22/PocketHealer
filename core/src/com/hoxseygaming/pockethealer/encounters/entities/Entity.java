@@ -214,6 +214,7 @@ public class Entity extends Actor{
     }
 
     public boolean containsEffects(Spell.EffectType buff)   {
+        System.out.println("Contains ID: "+id);
         return effects.indexOf(assets.getEffectImage(buff)) > -1;
     }
     public boolean containsEffects(Mechanic.Debuff debuff)   {
