@@ -38,7 +38,7 @@ public class FireBreath extends Mechanic{
             int count =  0;
             @Override
             public void run() {
-                if(count != 3) {
+                if(count != 4) {
                     count++;
                     getRaid().takeDamage(damage);
                 }
@@ -48,6 +48,6 @@ public class FireBreath extends Mechanic{
                     timer.start();
                 }
             }
-        },0.5f,0.5f,3);
+        },0.5f,0.5f,4);
     }
 }

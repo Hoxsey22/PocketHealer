@@ -17,7 +17,7 @@ public class BloodQueen extends Boss {
 
     public BloodQueen(Assets assets) {
         super("Blood Queen","", 20000,new Raid(15,assets), assets);
-        setId(15);
+        setId(14);
         create();
     }
 

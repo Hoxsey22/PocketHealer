@@ -20,7 +20,7 @@ public class Hydra extends Boss {
     public Hydra(Assets assets) {
         super("Ion, The Hydra", "A monstrous hydra is blocking the way to the top of castle. " +
                 "This hydra has been altered for mass destruction. \nDon't let the raid drop below 10% or they die.", 30000,new Raid(15, assets), assets);
-        setId(14);
+        setId(15);
         create();
     }
 

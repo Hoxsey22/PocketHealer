@@ -31,7 +31,8 @@ public class Apprentice extends Boss {
         outbreak = new Outbreak(this, 10f);
         poisonPotion = new PoisonPotion(this, 9f);
         poisonPotion.setNumOfTargets(3);
-        fireball = new Fireball(this, 3f);
+        fireball = new Fireball(this, 1.5f);
+
         loadMechanics(outbreak, poisonPotion,fireball);
     }
 

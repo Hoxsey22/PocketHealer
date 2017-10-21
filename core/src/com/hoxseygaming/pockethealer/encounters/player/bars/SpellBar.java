@@ -68,18 +68,51 @@ public class SpellBar extends Group {
     }
 
     public void addSpell(int index, Spell spell)  {
-        if(index >= spells.size()-1)   {
+        if(index > spells.size()-1)   {
+
+            for(int i = 0; i < spells.size(); i++)   {
+                if(spell.getName().equalsIgnoreCase(spells.get(i).getName()))    {
+                    removeActor(spells.get(i));
+                    spells.remove(i);
+                    spells.add(spell);
+                    addActor(spells.get(spells.size()-1));
+                    resetSpellPosition();
+                    return;
+                }
+            }
             spells.add(spell);
-            spells.get(spells.size()-1).setPosition(positions.get(spells.size()-1).getX(),
-                    positions.get(spells.size()-1).getY());
             addActor(spells.get(spells.size()-1));
+            resetSpellPosition();
         }
         else    {
+            swapSpell(index, spell);
+            resetSpellPosition();
+            /*
             removeActor(spells.get(index));
-            spells.add(index,spell);
+            spells.set(index,spell);
             spells.get(index).setPosition(positions.get(index).getX(), positions.get(index).getY());
             addActor(spells.get(index));
+            */
         }
+    }
+
+    public void swapSpell(int index, Spell spell) {
+
+        for(int i = 0; i < spells.size(); i++)   {
+
+            if(spell.getName().equalsIgnoreCase(spells.get(i).getName()))    {
+                removeActor(spells.get(i));
+                spells.set(i, spells.get(index));
+                spells.set(index, spell);
+                addActor(spells.get(index));
+                return;
+            }
+
+        }
+        removeActor(spells.get(index));
+        spells.set(index, spell);
+        addActor(spells.get(index));
+
     }
 
     public void loadSpells(ArrayList<String> spellNames)    {
@@ -95,6 +128,13 @@ public class SpellBar extends Group {
             }
         }
         System.out.println("-- Spells loaded.");
+    }
+
+
+    public void resetSpellPosition()    {
+        for(int i = 0; i < spells.size(); i++)   {
+            spells.get(i).setPosition(positions.get(i).getX(), positions.get(i).getY());
+        }
     }
 
     public Spell getSpell(int index)  {
