@@ -1,8 +1,8 @@
 package com.hoxseygaming.pockethealer;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 /**
  * Created by Hoxsey on 7/20/2017.
@@ -10,21 +10,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class ImageButton extends Actor {
 
-    public Image image;
+    public Texture texture;
     public boolean isHit;
+    private boolean flipX;
+    private boolean isHidden;
 
-    public ImageButton(String name, Image image) {
+    public ImageButton(String name, Texture texture) {
         setName(name);
-        this.image = image;
-        setBounds(0,0,image.getWidth(), image.getHeight());
+        this.texture = texture;
+        setBounds(0,0, texture.getWidth(), texture.getHeight());
         isHit = false;
     }
 
-    public ImageButton(String name, Image image, int x, int y, int width, int height) {
+    public ImageButton(String name, Texture texture, int x, int y, int width, int height) {
         setName(name);
         setBounds(x,y,width,height);
-        this.image = image;
-        image.setBounds(x,y,width,height);
+        this.texture = texture;
         isHit = false;
     }
 
@@ -39,11 +40,22 @@ public class ImageButton extends Actor {
     @Override
     public void setPosition(float x, float y) {
         super.setPosition(x, y);
-        image.setPosition(x,y);
+    }
+
+    public void enable()    {
+        isHidden = false;
+    }
+
+    public void disable()   {
+        isHidden = true;
+    }
+
+    public void flipX() {
+        flipX = true;
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        image.draw(batch, parentAlpha);
+        batch.draw(texture, getX(), getY(), getWidth(), getHeight(), 0, 0, texture.getWidth(), texture.getWidth(), flipX, false);
     }
 }

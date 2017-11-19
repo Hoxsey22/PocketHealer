@@ -140,6 +140,11 @@ public class Assets {
     public String defeatedBossIcon = "map_state/defeated_boss.png";
     public String spellBG = "spell_bg.png";
 
+    public String map1 = "map_state/map_level_1.png";
+    public String map2 = "map_state/map_level_2.png";
+    public String map3 = "map_state/map_level_3.png";
+    public String pageTurn = "map_state/page_turn.png";
+
 
 
     public ArrayList<String> maps;
@@ -160,7 +165,9 @@ public class Assets {
         bossIconPosition = new ArrayList<>();
         talentPositions = new ArrayList<>();
         maps = new ArrayList<>();
-        maps.add(mapBg1);
+        maps.add(map1);
+        maps.add(map2);
+        maps.add(map3);
     }
 
     public void load()  {
@@ -290,6 +297,12 @@ public class Assets {
         manager.load(spellBG, Texture.class);
 
 
+        manager.load(map1, Texture.class);
+        manager.load(map2, Texture.class);
+        manager.load(map3, Texture.class);
+        manager.load(pageTurn, Texture.class);
+
+
     }
 
     public void loadSounds() {
@@ -318,24 +331,24 @@ public class Assets {
         }
 
         // boss icon position
-        bossIconPosition.add(new Vector2(30,-47)); // wild boar
-        bossIconPosition.add(new Vector2(90,-47)); // tiger
-        bossIconPosition.add(new Vector2(150,-47)); // giant bee
-        bossIconPosition.add(new Vector2(210,-47)); // golem
-        bossIconPosition.add(new Vector2(270,-47)); // bandit leader
+        bossIconPosition.add(new Vector2(50,270)); // wild boar
+        bossIconPosition.add(new Vector2(85,47)); // tiger
+        bossIconPosition.add(new Vector2(300,70)); // giant bee
+        bossIconPosition.add(new Vector2(190,240)); // golem
+        bossIconPosition.add(new Vector2(350,250)); // bandit leader
 
-        bossIconPosition.add(new Vector2(30,-200)); // hogger
-        bossIconPosition.add(new Vector2(90,-200)); // wampus
-        bossIconPosition.add(new Vector2(150,-200)); // proctor
-        bossIconPosition.add(new Vector2(210,-200)); // apprentice
-        bossIconPosition.add(new Vector2(270,-200)); // sorcerer
+        bossIconPosition.add(new Vector2(40,60)); // hogger
+        bossIconPosition.add(new Vector2(60,230)); // wampus
+        bossIconPosition.add(new Vector2(180,220)); // proctor
+        bossIconPosition.add(new Vector2(310,220)); // apprentice
+        bossIconPosition.add(new Vector2(315,40)); // sorcerer
 
-        bossIconPosition.add(new Vector2(30,-300)); // mother spider
-        bossIconPosition.add(new Vector2(90,-300)); // zombie horde
-        bossIconPosition.add(new Vector2(150,-300)); // crazy professor
-        bossIconPosition.add(new Vector2(210,-300)); // blood queen
-        bossIconPosition.add(new Vector2(270,-300)); // death dragon
-        bossIconPosition.add(new Vector2(30,-400)); // test boss
+        bossIconPosition.add(new Vector2(180,30)); // mother spider
+        bossIconPosition.add(new Vector2(180,150)); // zombie horde
+        bossIconPosition.add(new Vector2(220,250)); // blood queen
+        bossIconPosition.add(new Vector2(160,250)); // Ion
+        bossIconPosition.add(new Vector2(180,300)); // death dragon
+        bossIconPosition.add(new Vector2(180,400)); // test boss
 
     }
 

@@ -26,15 +26,16 @@ public class Map extends Group {
         setDebug(true);
 
         image = new Image(assets.getTexture(assets.maps.get(page-1)));
-        image.setPosition(frame.getX()+15, frame.getY()+frame.getHeight()- image.getHeight()-12);
-        //setBounds(image.getX(), image.getY(), image.getWidth(), image.getHeight());
-        //addActor(image);
+        //texture.setPosition(frame.getX()+15, frame.getY()+frame.getHeight()- texture.getHeight()-12);
+        image.setBounds(frame.getX()+15, frame.getY()+frame.getHeight()- 388-12, 407, 388);
+        //setBounds(texture.getX(), texture.getY(), texture.getWidth(), texture.getHeight());
+        //addActor(texture);
     }
 
     public void add(BossIcon bossIcon)   {
         BossIcon biTemp = bossIcon;
-        biTemp.setPosition(image.getX()+ assets.bossIconPosition.get(bossIcon.getBoss().getId()-2).x-25,
-                image.getY()+image.getHeight() + assets.bossIconPosition.get(bossIcon.getBoss().getId()-2).y-25);
+        biTemp.setPosition(image.getX()+ assets.bossIconPosition.get(bossIcon.getBoss().getId()-2).x,
+                image.getY() + assets.bossIconPosition.get(bossIcon.getBoss().getId()-2).y);
         addActor(biTemp);
         selects.add(biTemp);
     }

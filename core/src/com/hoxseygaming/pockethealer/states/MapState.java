@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.BossIcon;
 import com.hoxseygaming.pockethealer.Button;
+import com.hoxseygaming.pockethealer.ImageButton;
 import com.hoxseygaming.pockethealer.MapFrame;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
@@ -23,7 +24,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hydra;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.MotherSpider;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Proctor;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Sorcerer;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.TestBoss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Tiger;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.WampusCat;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.WildBoar;
@@ -41,33 +41,70 @@ public class MapState extends State {
     public Assets assets;
     public MapFrame mapFrame;
     public BossIcon selectedLevel;
+    public ImageButton pageLeft;
+    public ImageButton pageRight;
 
 
     public MapState(StateManager sm, Player player) {
         super(sm);
 
         stage = new Stage(viewport);
+        assets = player.getAssets();
 
-        page = 0;
+        pageLeft = new ImageButton("pageleft", assets.getTexture(assets.pageTurn), 40, 550, 30,30);
+        pageLeft.flipX();
+        pageRight = new ImageButton("pageRight", assets.getTexture(assets.pageTurn), 410, 550, 30,30);
+
+
+        page = 1;
         maxPage = 1;
 
         this.player = player;
-        assets = player.getAssets();
 
-        nextPage();
-
-
-
+        turnPage();
     }
 
-    public void nextPage()  {
-        //needs to change
-        if(player.getLevel() >= page) {
-            page++;
-            mapFrame = new MapFrame(player,page, assets);
-            stage.addActor(mapFrame);
-            loadPage();
+    public void previousPage()  {
+        mapFrame.remove();
+
+        page--;
+        mapFrame = new MapFrame(player, page, assets);
+
+        stage.addActor(mapFrame);
+
+        loadPage();
+    }
+
+
+
+    public void turnPage()  {
+
+        pageLeft.remove();
+        pageRight.remove();
+
+        mapFrame = new MapFrame(player, page, assets);
+        mapFrame.remove();
+
+        switch (page)   {
+            case 1:
+                stage.addActor(mapFrame);
+
+                if(player.getLevel() > 4)
+                    stage.addActor(pageRight);
+                break;
+            case 2:
+                stage.addActor(mapFrame);
+
+                if(player.getLevel() > 9)
+                    stage.addActor(pageRight);
+                stage.addActor(pageLeft);
+                break;
+            case 3:
+                stage.addActor(mapFrame);
+                stage.addActor(pageLeft);
+                break;
         }
+        loadPage();
     }
 
     public void loadPage()  {
@@ -79,26 +116,19 @@ public class MapState extends State {
                 mapFrame.add(new BossIcon(assets, new GiantHornet(assets)));
                 mapFrame.add(new BossIcon(assets, new Golem(assets)));
                 mapFrame.add(new BossIcon(assets, new BanditLeader(assets)));
+                break;
+            case 2:
                 mapFrame.add(new BossIcon(assets, new Hogger(assets)));
                 mapFrame.add(new BossIcon(assets, new Proctor(assets)));
                 mapFrame.add(new BossIcon(assets, new WampusCat(assets)));
                 mapFrame.add(new BossIcon(assets, new Apprentice(assets)));
                 mapFrame.add(new BossIcon(assets, new Sorcerer(assets)));
+                break;
+            case 3:
                 mapFrame.add(new BossIcon(assets, new MotherSpider(assets)));
                 mapFrame.add(new BossIcon(assets, new ZombieHorde(assets)));
                 mapFrame.add(new BossIcon(assets, new BloodQueen(assets)));
                 mapFrame.add(new BossIcon(assets, new Hydra(assets)));
-                mapFrame.add(new BossIcon(assets, new TestBoss(assets)));
-                /*
-                mapFrame.getMap().add(new BossIcon(assets, new CrazyProfessor(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new BloodQueen(assets)));
-                mapFrame.getMap().add(new BossIcon(assets, new DeathDragon(assets)));
-                */
-
-                break;
-            case 2:
-                break;
-            case 3:
                 break;
         }
     }
@@ -124,7 +154,6 @@ public class MapState extends State {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float) screenX, (float) screenY));
-
 
                 if(coord.y > mapFrame.innerFrame.getY())    {
                     BossIcon bi = mapFrame.getMap().hit(coord.x, coord.y);
@@ -158,6 +187,18 @@ public class MapState extends State {
                         }
 
                     }
+                }
+
+                if(stage.hit(coord.x, coord.y,false).getName().equalsIgnoreCase("pageLeft"))    {
+                    page--;
+                    turnPage();
+                    return false;
+                }
+
+                if(stage.hit(coord.x, coord.y,false).getName().equalsIgnoreCase("pageRight"))    {
+                    page++;
+                    turnPage();
+                    return false;
                 }
 
 

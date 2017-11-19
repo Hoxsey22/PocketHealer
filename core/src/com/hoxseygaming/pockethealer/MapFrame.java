@@ -28,6 +28,7 @@ public class MapFrame extends Group {
     public Assets assets;
 
     public MapFrame(Player player, int page, Assets assets)    {
+        setName("map frame "+page);
         this.page = page;
         this.assets = assets;
         table = new Table();
@@ -49,7 +50,7 @@ public class MapFrame extends Group {
                 bgFrame.getY() + bgFrame.getHeight() - innerFrame.getHeight() - 20);
         addActor(innerFrame);
 
-        //image
+        //texture
         map = new Map(page, innerFrame,assets);
         addActor(map);
 

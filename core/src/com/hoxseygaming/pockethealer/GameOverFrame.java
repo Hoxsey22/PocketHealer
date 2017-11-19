@@ -53,7 +53,7 @@ public class GameOverFrame extends Group {
         addActor(frame);
 
         if(won) {
-            finishImageButton = new ImageButton("finish", new Image(assets.getTexture(assets.finishButton)));
+            finishImageButton = new ImageButton("finish", assets.getTexture(assets.finishButton));
             finishImageButton.setName("finish");
             finishImageButton.setPosition(frame.getX() + frame.getWidth()/2 - finishImageButton.getWidth()/2, frame.getY() - finishImageButton.getHeight()/2);
 
@@ -61,11 +61,11 @@ public class GameOverFrame extends Group {
             createText(won);
         }
         else {
-            resetImageButton = new ImageButton("reset", new Image(assets.getTexture(assets.resetButton)));
+            resetImageButton = new ImageButton("reset", assets.getTexture(assets.resetButton));
             resetImageButton.setName("reset");
             resetImageButton.setPosition(frame.getX() + frame.getWidth()/2 - resetImageButton.getWidth(), frame.getY() - resetImageButton.getHeight()/2);
 
-            leaveImageButton = new ImageButton("leave", new Image(assets.getTexture(assets.leaveButton)));
+            leaveImageButton = new ImageButton("leave",assets.getTexture(assets.leaveButton));
             leaveImageButton.setName("leave");
             leaveImageButton.setPosition(resetImageButton.getX() + resetImageButton.getWidth(), frame.getY() - leaveImageButton.getHeight()/2);
 
