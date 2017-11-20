@@ -113,6 +113,7 @@ public class Assets {
     public String mapOuterFrame = "map_state/map_outer_frame.png";
     public String mapInnerFrame = "map_state/map_inner_frame.png";
     public String button = "button.png";
+    public String smallButton = "small_button.png";
     public String buttonHighlight = "button_select.png";
     public String title = "title.png";
     public String poisonIcon = "icons/poison_icon.png";
@@ -265,6 +266,7 @@ public class Assets {
         manager.load(mapOuterFrame, Texture.class);
 
         manager.load(button, Texture.class);
+        manager.load(smallButton, Texture.class);
 
         manager.load(title, Texture.class);
 

@@ -58,7 +58,7 @@ public class MapFrame extends Group {
                 innerFrame.getHeight()- map.getImage().getHeight() - 30);
         table.align(Align.topLeft);
 
-        talentButton = new Button("TALENTS", assets);
+        talentButton = new Button("TALENTS", true, assets);
         talentButton.setPosition(innerFrame.getX(), innerFrame.getY() - talentButton.getHeight()-1);
         if(player.getTalentTree().getUnusedPoints() > 1)    {
             talentButton.setHighlight(true);
@@ -67,11 +67,11 @@ public class MapFrame extends Group {
         }
         addActor(talentButton);
 
-        startButton = new Button("START", assets);
+        startButton = new Button("START", true, assets);
         startButton.setPosition(talentButton.getX() + talentButton.getWidth() + 6, talentButton.getY());
         addActor(startButton);
 
-        spellButton = new Button("SPELLS", assets);
+        spellButton = new Button("SPELLS", true, assets);
         spellButton.setPosition(startButton.getX() + startButton.getWidth() + 6, startButton.getY());
         addActor(spellButton);
 

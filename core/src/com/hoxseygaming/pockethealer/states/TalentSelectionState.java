@@ -38,6 +38,7 @@ public class TalentSelectionState extends State {
     public Image background;
     public Button select;
     public Button done;
+    public Button reset;
     public Talent selectedTalent;
     public Text pointTracker;
 
@@ -54,10 +55,10 @@ public class TalentSelectionState extends State {
         pointTracker.setName("Point tracker");
         //pointTracker.setPosition(talentTree.getRight()-talentTree.getLeft()-pointTracker.getWidth()/2, talentTree.getTop() + 20 );
 
-        select = new Button("SELECT", assets);
+        select = new Button("RESET", true, assets);
         select.setPosition(talentTree.getLeft(), 50);
 
-        done = new Button("DONE", assets);
+        done = new Button("DONE", true, assets);
         done.setPosition(talentTree.getRight() - done.getWidth(), 50);
 
         talentTreeTitle = new Text("Talent Tree", 45, Color.SKY, true, assets);
@@ -141,6 +142,9 @@ public class TalentSelectionState extends State {
                 if(coord.y > talentTree.getBottom() - 10) {
                     Talent hit = talentTree.hit(coord.x, coord.y);
                     if (hit != null) {
+                        if(selectedTalent != null && selectedTalent.getName().equalsIgnoreCase(hit.getName()) && !selectedTalent.isSelected())    {
+                            talentTree.usePoint(selectedTalent);
+                        }
                         selectedTalent = hit;
                         title.setText(hit.getName());
                         body.setText(hit.getDescription());
@@ -151,9 +155,8 @@ public class TalentSelectionState extends State {
                     Actor hit = stage.hit(coord.x, coord.y, false);
                     if(hit != null) {
                         switch (hit.getName())  {
-                            case "SELECT":
-                                if(selectedTalent != null)
-                                    talentTree.usePoint(selectedTalent);
+                            case "RESET":
+                                player.getTalentTree().reset();
                                 break;
                             case "DONE":
                                 player.save();

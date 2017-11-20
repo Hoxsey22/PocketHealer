@@ -2,7 +2,6 @@ package com.hoxseygaming.pockethealer;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -22,9 +21,9 @@ public class GameOverFrame extends Group {
     public Image frame;
     public Label boxLabel;  //maybe for a later time
     public ArrayList<Label> chat;   // maybe for a later time
-    public ImageButton finishImageButton;
-    public ImageButton resetImageButton;
-    public ImageButton leaveImageButton;
+    public Button finishButton;
+    public Button resetButton;
+    public Button leaveButton;
     public Text text;
     public Table table;
     public Image results;
@@ -53,24 +52,21 @@ public class GameOverFrame extends Group {
         addActor(frame);
 
         if(won) {
-            finishImageButton = new ImageButton("finish", assets.getTexture(assets.finishButton));
-            finishImageButton.setName("finish");
-            finishImageButton.setPosition(frame.getX() + frame.getWidth()/2 - finishImageButton.getWidth()/2, frame.getY() - finishImageButton.getHeight()/2);
-
-            addActor(finishImageButton);
+            finishButton = new Button("FINISH", false, assets);
+            finishButton.setPosition(frame.getX() + frame.getWidth()/2 - finishButton.getWidth()/2, frame.getY() - finishButton.getHeight()/2);
+            addActor(finishButton);
             createText(won);
         }
         else {
-            resetImageButton = new ImageButton("reset", assets.getTexture(assets.resetButton));
-            resetImageButton.setName("reset");
-            resetImageButton.setPosition(frame.getX() + frame.getWidth()/2 - resetImageButton.getWidth(), frame.getY() - resetImageButton.getHeight()/2);
+            resetButton = new Button("RESET", false,assets);
+            resetButton.setPosition(frame.getX() + frame.getWidth()/2 - resetButton.getWidth(), frame.getY() - resetButton.getHeight()/2);
 
-            leaveImageButton = new ImageButton("leave",assets.getTexture(assets.leaveButton));
-            leaveImageButton.setName("leave");
-            leaveImageButton.setPosition(resetImageButton.getX() + resetImageButton.getWidth(), frame.getY() - leaveImageButton.getHeight()/2);
+            leaveButton = new Button("LEAVE", false, assets);
+            leaveButton.setPosition(resetButton.getX() + resetButton.getWidth(), frame.getY() - leaveButton.getHeight()/2);
+            leaveButton.setDebug(true);
 
-            addActor(resetImageButton);
-            addActor(leaveImageButton);
+            addActor(resetButton);
+            addActor(leaveButton);
             createText(won);
         }
         //addActor(results);
@@ -83,6 +79,7 @@ public class GameOverFrame extends Group {
         table.setBounds(frame.getX(),frame.getY(), frame.getWidth(), frame.getHeight());
 
         text = new Text("",24, Color.WHITE, true, assets);
+        text.setName("Text");
         text.setWrap(true);
         text.setAlignment(Align.top);
 
@@ -95,19 +92,22 @@ public class GameOverFrame extends Group {
                     "\n"+boss.getName()+" has defeated you!");
         }
 
-        table.add(text.getLabel());
+        table.add(text.getLabel()).width(table.getWidth());
         addActor(table);
     }
 
-    public String hitButton(float x, float y)   {
-        Actor hit = hit(x,y,false);
+    public int hitButton(float x, float y)   {
 
-        if(hit !=  null)    {
-            if(hit.getName().equalsIgnoreCase("finish")|| hit.getName().equalsIgnoreCase("reset")) {
-                return hit.getName();
-            }
+
+        if(leaveButton != null && leaveButton.pressed(x,y))    {
+            return 0;
         }
-        return "";
+        if(finishButton != null && finishButton.pressed(x,y))    {
+            return 1;
+        }
+        if(resetButton != null && resetButton.pressed(x,y))    {
+            return 2;
+        }
+        return -1;
     }
-
 }

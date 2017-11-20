@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
+import java.awt.Rectangle;
+
 /**
  * Created by Hoxsey on 7/30/2017.
  */
@@ -18,12 +20,16 @@ public class Button extends Actor {
     public boolean isHighlight;
     public boolean isHit;
 
-    public Button(String name, Assets assets) {
+    public Button(String name, boolean isTrue, Assets assets) {
         setName(name);
 
         this.assets = assets;
 
-        image = new Image(assets.getTexture(assets.button));
+        if(isTrue)
+            image = new Image(assets.getTexture(assets.button));
+        else
+            image = new Image(assets.getTexture(assets.smallButton));
+
         highlightImage = new Image(assets.getTexture(assets.buttonHighlight));
 
         setBounds(0,0,image.getWidth(), image.getHeight());
@@ -31,11 +37,13 @@ public class Button extends Actor {
         isHit = false;
         isHighlight = false;
 
-        setupText();
+        setupText(isTrue);
     }
 
-    public Button(String name, Image image, int x, int y, int width, int height) {
+    public Button(String name, Image image, int x, int y, int width, int height, Assets assets) {
         setName(name);
+
+        this.assets = assets;
         setBounds(x,y,width,height);
         this.image = image;
         image.setBounds(x,y,width,height);
@@ -43,14 +51,26 @@ public class Button extends Actor {
         isHit = false;
     }
 
-    private void setupText()   {
-
-        text = new Text(getName(),32, Color.BLACK, false, assets);
+    private void setupText(boolean isTrue)   {
+        if(isTrue)
+            text = new Text(getName(),32, Color.BLACK, false, assets);
+        else
+            text = new Text(getName(),24, Color.BLACK, false, assets);
         //text.setFontSize(32);
         //text.setColor(Color.BLACK);
         text.setWrap(true);
 
         text.setPosition(getX()+getWidth()/2-text.getWidth()/2,getY()+ getHeight()/2 - text.getHeight()/2);
+    }
+
+    public boolean pressed(float x, float y) {
+
+        Rectangle bounds = new Rectangle((int)getX(), (int)getY(),(int)getWidth(), (int)getHeight());
+
+        if(bounds.contains((int)x, (int)y)) {
+            return true;
+        }
+        return false;
     }
 
     public void hit()   {

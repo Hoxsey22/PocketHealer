@@ -64,19 +64,6 @@ public class MapState extends State {
         turnPage();
     }
 
-    public void previousPage()  {
-        mapFrame.remove();
-
-        page--;
-        mapFrame = new MapFrame(player, page, assets);
-
-        stage.addActor(mapFrame);
-
-        loadPage();
-    }
-
-
-
     public void turnPage()  {
 
         pageLeft.remove();
@@ -189,6 +176,21 @@ public class MapState extends State {
                     }
                 }
 
+                if(pageLeft.hit(coord.x, coord.y,false) != null)    {
+                    page--;
+                    turnPage();
+                    return false;
+                }
+
+                if(pageRight.hit(coord.x, coord.y,false) != null)    {
+                    page++;
+                    turnPage();
+                    return false;
+                }
+
+
+
+                /*
                 if(stage.hit(coord.x, coord.y,false).getName().equalsIgnoreCase("pageLeft"))    {
                     page--;
                     turnPage();
@@ -199,7 +201,7 @@ public class MapState extends State {
                     page++;
                     turnPage();
                     return false;
-                }
+                }*/
 
 
                 return false;

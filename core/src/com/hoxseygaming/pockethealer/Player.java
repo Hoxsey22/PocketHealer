@@ -70,7 +70,7 @@ public class Player {
         //addDebuggingSpell();
         isCasting = false;
         //talentBook = new TalentBook(this);
-        talentTree = new TalentTree(this,15);
+        talentTree = new TalentTree(this,15,15);
         spellBook = new SpellBook(this);
         createSpellBar();
         criticalChance = originCritical;

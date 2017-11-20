@@ -29,6 +29,7 @@ public class GameData {
         }
         else {
             save(player);
+            load(player);
             return false;
         }
     }

@@ -204,22 +204,25 @@ public class TutorialState extends State {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
-                String buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
-                if(buttonHit != "" && buttonHit != null) {
+
+                int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
+
+                if(buttonHit != -1) {
                     switch (buttonHit) {
-                        case "finish":
+                        case 0:
+                            bgMusic.stop();
+                            sm.set(new MapState(sm, player));
+                            break;
+                        case 1:
                             player.newLevel(boss.getLevel());
                             bgMusic.stop();
                             sm.set(new MapState(sm, player));
                             break;
-                        case "leave":
-                            bgMusic.stop();
-                            sm.set(new MapState(sm, player));
-                            break;
-                        case "reset":
+
+                        case 2:
                             System.out.println("reset");
                             bgMusic.stop();
-                            sm.set(new TutorialState(sm, player));
+                            sm.set(new EncounterState(sm, player, boss));
                             break;
                     }
 

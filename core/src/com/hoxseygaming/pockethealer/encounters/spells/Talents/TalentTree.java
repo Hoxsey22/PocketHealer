@@ -46,11 +46,11 @@ public class TalentTree extends Group{
                 //(spells.get(0).getX() +spells.get(0).getHeight())-spells.get(3).getY());
     }
 
-    public TalentTree(Player player, int addedPoints) {
+    public TalentTree(Player player, int unusedPoints, int totalPoints) {
         owner = player;
         talents = new ArrayList<>();
-        unusedPoints = addedPoints;
-        totalPoints = 0;
+        this.unusedPoints = unusedPoints;
+        this.totalPoints = totalPoints;
         assets = owner.getAssets();
         createTalents();
         placeTalentPosition();
@@ -94,7 +94,7 @@ public class TalentTree extends Group{
     public void placeTalentPosition()   {
 
         for(int i = 0; i < talents.size(); i++)   {
-            talents.get(i).setBounds(assets.talentPositions.get(i).x,assets.talentPositions.get(i).y,80,80);
+            talents.get(i).setBounds(assets.talentPositions.get(i).x,assets.talentPositions.get(i).y, 75, 75);
         }
 
     }
@@ -121,7 +121,6 @@ public class TalentTree extends Group{
     public boolean usePoint(Talent selectedTalent)  {
         if(isTalentSelectable(selectedTalent))    {
             selectedTalent.setSelected(true);
-            totalPoints++;
             unusedPoints--;
             return true;
         }
@@ -156,6 +155,7 @@ public class TalentTree extends Group{
 
     public void addPoint()  {
         unusedPoints++;
+        totalPoints++;
     }
 
     public ArrayList<Talent> getTalents() {
@@ -257,6 +257,11 @@ public class TalentTree extends Group{
         for (int i = 0; i <  talents.size(); i++)   {
             talents.get(i).setSelected(false);
         }
+    }
+
+    public void reset() {
+        clearTalents();
+        unusedPoints = totalPoints;
     }
 
     public int getTotalPoints() {
