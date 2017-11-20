@@ -17,6 +17,8 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
     public Texture frame;
     public HealthBar healthBar;
     public FloatingTextManager floatingTextManager;
+    public int totalHealingDone;
+    public int overHealingDone;
 
 
     public RaidMember(int id, String role, Assets assets)  {

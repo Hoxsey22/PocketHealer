@@ -38,6 +38,7 @@ public abstract class Periodical extends InstantCast {
         MIN_DURATION = duration;
         this.speed = speed;
         MIN_SPEED = speed;
+
     }
 
     @Override
@@ -51,14 +52,15 @@ public abstract class Periodical extends InstantCast {
             getOwnerTarget().applyEffect(effectType);
         }
         else {
-            if(durationTimer != null)
+            //if(durationTimer != null)
                 durationTimer.clear();
+                System.out.println("timer clear");
         }
         durationTimer = new Timer();
 
         final RaidMember raidMember = getOwnerTarget();
 
-        durationTimer.schedule(new Timer.Task() {
+        durationTimer.scheduleTask(new Timer.Task() {
             float currentTime = 0;
 
             @Override

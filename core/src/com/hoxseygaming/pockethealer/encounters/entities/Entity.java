@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.HealingTracker;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
@@ -29,6 +30,7 @@ public class Entity extends Actor{
     public boolean selected;
     public Assets assets;
     public int amountAbsorbed;
+    public HealingTracker healingTracker;
 
     /**
      * RaidMember param
@@ -49,6 +51,7 @@ public class Entity extends Actor{
         isDead = false;
         effects = new ArrayList<Texture>();
         selected = false;
+        healingTracker = new HealingTracker();
     }
 
     /**
@@ -124,13 +127,18 @@ public class Entity extends Actor{
     }
 
     public void reduceHealingAbsorb(int output)   {
+        int oldHealingAbsorb = healingAbsorb;
         healingAbsorb = healingAbsorb - output;
+
         if(healingAbsorb <= 0) {
+            healingTracker.addHealingDone(oldHealingAbsorb);
             receiveHealing(Math.abs(healingAbsorb));
             removeEffect(Mechanic.Debuff.DISEASE);
             healingAbsorb = 0;
             getHpPercent();
+            return;
         }
+        healingTracker.addHealingDone(output);
     }
 
     public void dealDamage(Entity target)    {
@@ -149,17 +157,26 @@ public class Entity extends Actor{
 
     public void receiveHealing(int output) {
         if (!isDead)   {
+
             if (hp < maxHp) {
                 hp = hp + output;
-                if (hp > maxHp)
+                if (hp > maxHp) {
+                    healingTracker.addHealingDone(output - (hp - maxHp));
                     hp = maxHp;
+                    return;
+                }
+                healingTracker.addHealingDone(output);
             }
+
         }
 
     }
 
     public int receiveHealing(int output, boolean isCritical)    {
         int newOutput = output;
+
+        healingTracker.addTotalHealingDone(newOutput);
+
         if(isCritical)
             newOutput = newOutput + (newOutput/2);
         if(healingAbsorb > 0) {
@@ -340,5 +357,9 @@ public class Entity extends Actor{
 
     public boolean equals(Entity entity) {
         return (this.getId() == entity.getId());
+    }
+
+    public HealingTracker getHealingTracker() {
+        return healingTracker;
     }
 }

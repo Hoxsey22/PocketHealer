@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.HealingTracker;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
@@ -21,6 +22,7 @@ public class Raid extends Group {
     public Timer raidDamageTimer;
     private Assets assets;
     public boolean isRaidAlive;
+    public HealingTracker healingTracker;
 
     public Raid(int size, Assets assets)   {
         //super();
@@ -31,6 +33,7 @@ public class Raid extends Group {
         preMade(size);
         raidDamageTimer = new Timer();
         isRaidAlive = true;
+        healingTracker = new HealingTracker();
     }
 
     public void start(final Boss t)   {
@@ -290,6 +293,16 @@ public class Raid extends Group {
             }
         }
         return  buffLess;
+    }
+
+    public void loadHealingStats()   {
+        for(int i = 0; i < raidMembers.size(); i++)   {
+            healingTracker.addHealingTracker(raidMembers.get(i).getHealingTracker());
+        }
+    }
+
+    public HealingTracker getHealingTracker()   {
+        return healingTracker;
     }
 
 

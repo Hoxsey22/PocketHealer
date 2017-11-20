@@ -275,6 +275,10 @@ public class EncounterState extends State {
                 }
                 gameOverFrame = new GameOverFrame(true, boss, assets);
                 stage.addActor(gameOverFrame);
+                raid.loadHealingStats();
+                System.out.println("Effective Healing Done: "+raid.getHealingTracker().healingDone);
+                System.out.println("Total Healing Done: "+raid.getHealingTracker().totalHealingDone);
+                System.out.println("Over Healing Done: "+raid.getHealingTracker().getOverHealing()+"%");
                 gameOverFrame.setDebug(true);
                 boss.stop();
                 raid.stop();
