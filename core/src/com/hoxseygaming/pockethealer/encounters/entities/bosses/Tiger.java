@@ -36,6 +36,6 @@ public class Tiger extends Boss {
 
     @Override
     public void reward() {
-
+        rewardPackage = new RewardPackage(assets.getTexture(assets.barrierIcon),"New Spell!\nLevel up!");
     }
 }

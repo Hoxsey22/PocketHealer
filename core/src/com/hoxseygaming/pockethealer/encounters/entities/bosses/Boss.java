@@ -32,6 +32,7 @@ public abstract class Boss extends Entity {
     public String rewardDescription;
     public boolean isDefeated;
     public String description;
+    public RewardPackage rewardPackage;
 
     public Boss(String name, String description, int maxHp, Assets assets) {
         super(name, maxHp, assets);

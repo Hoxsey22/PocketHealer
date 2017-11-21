@@ -51,7 +51,7 @@ public class MotherSpider extends Boss {
 
     @Override
     public void reward() {
-        rewardPoint();
+        rewardPackage = new RewardPackage("New Talent Point\nLevel up!");
     }
 
     @Override

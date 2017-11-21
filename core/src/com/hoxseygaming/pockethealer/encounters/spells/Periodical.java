@@ -52,9 +52,7 @@ public abstract class Periodical extends InstantCast {
             getOwnerTarget().applyEffect(effectType);
         }
         else {
-            //if(durationTimer != null)
-                durationTimer.clear();
-                System.out.println("timer clear");
+            durationTimer.clear();
         }
         durationTimer = new Timer();
 

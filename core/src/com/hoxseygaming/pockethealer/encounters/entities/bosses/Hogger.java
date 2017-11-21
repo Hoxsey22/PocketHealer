@@ -60,5 +60,6 @@ public class Hogger extends Boss {
 
     @Override
     public void reward() {
+        rewardPackage = new RewardPackage(assets.getTexture(assets.lifeboomIcon),"New Spell!\nLevel up!");
     }
 }

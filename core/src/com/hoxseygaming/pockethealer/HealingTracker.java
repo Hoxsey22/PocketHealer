@@ -26,6 +26,10 @@ public class HealingTracker {
         return totalHealingDone - healingDone;
     }
 
+    public int getEffectiveHealingPercent() {
+        return (int)(100*((float)healingDone/(float)totalHealingDone));
+    }
+
     public int getOverHealingPercent()  {
         return (int)(100*(float)(getOverHealing()/totalHealingDone));
     }

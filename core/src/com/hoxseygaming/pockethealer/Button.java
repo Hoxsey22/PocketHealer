@@ -56,8 +56,8 @@ public class Button extends Actor {
             text = new Text(getName(),32, Color.BLACK, false, assets);
         else
             text = new Text(getName(),24, Color.BLACK, false, assets);
-        //text.setFontSize(32);
-        //text.setColor(Color.BLACK);
+        //title.setFontSize(32);
+        //title.setColor(Color.BLACK);
         text.setWrap(true);
 
         text.setPosition(getX()+getWidth()/2-text.getWidth()/2,getY()+ getHeight()/2 - text.getHeight()/2);

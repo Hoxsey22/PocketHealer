@@ -46,6 +46,6 @@ public class BloodQueen extends Boss {
 
     @Override
     public void reward() {
-
+        rewardPackage = new RewardPackage("Level up!");
     }
 }

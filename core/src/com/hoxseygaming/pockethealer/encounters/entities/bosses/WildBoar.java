@@ -35,6 +35,6 @@ public class WildBoar extends Boss {
 
     @Override
     public void reward() {
-        rewardPoint();
+        rewardPackage = new RewardPackage(assets.getTexture(assets.flashIcon), "New Spell!\nNew Talent Point!\nLevel up!");
     }
 }

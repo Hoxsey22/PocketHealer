@@ -65,6 +65,6 @@ public class WampusCat extends Boss {
 
     @Override
     public void reward() {
-        rewardPoint();
+        rewardPackage = new RewardPackage(assets.getTexture(assets.divineHymnIcon),"New Spell\nNew Talent Point!\nLevel up!");
     }
 }

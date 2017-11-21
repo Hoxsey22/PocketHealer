@@ -36,6 +36,7 @@ public class EncounterState extends State {
     public Assets assets;
     public GameOverFrame gameOverFrame;
     public boolean isDone;
+    public int page;
 
 
     public EncounterState(StateManager sm, Player player, Boss boss) {
@@ -211,30 +212,49 @@ public class EncounterState extends State {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
 
-                int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
-                System.out.println(buttonHit);
-
-                if(buttonHit != -1) {
-                    switch (buttonHit) {
-                        case 0:
-                            bgMusic.stop();
-                            sm.set(new MapState(sm, player));
-                            break;
+                if(gameOverFrame.won)   {
+                    switch (page)   {
                         case 1:
-                            player.newLevel(boss.getLevel());
-                            bgMusic.stop();
-                            sm.set(new MapState(sm, player));
+                            gameOverFrame.showReward();
+                            page = 2;
                             break;
 
                         case 2:
-                            System.out.println("reset");
-                            bgMusic.stop();
-                            sm.set(new EncounterState(sm, player, boss));
+                            int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
+                            System.out.println(buttonHit);
+
+                            if(buttonHit != -1) {
+                                if(buttonHit == 1) {
+                                    player.newLevel(boss.getLevel());
+                                    bgMusic.stop();
+                                    sm.set(new MapState(sm, player));
+                                    break;
+                                }
+                            }
                             break;
                     }
-
-
                 }
+                else    {
+                    int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
+                    System.out.println(buttonHit);
+
+                    if(buttonHit != -1) {
+                        switch (buttonHit) {
+                            case 0:
+                                bgMusic.stop();
+                                sm.set(new MapState(sm, player));
+                                break;
+
+                            case 2:
+                                System.out.println("reset");
+                                bgMusic.stop();
+                                sm.set(new EncounterState(sm, player, boss));
+                                break;
+                        }
+                    }
+                }
+
+
                 return false;
             }
 
@@ -267,26 +287,25 @@ public class EncounterState extends State {
             handleInput();
             boss.update();
             if (boss.isDead()) {
+
                 if(!boss.isDefeated())    {
                     boss.reward();
                     boss.setDefeated(true);
                     player.setLevel(boss.getId());
                     player.save();
                 }
-                gameOverFrame = new GameOverFrame(true, boss, assets);
-                stage.addActor(gameOverFrame);
                 raid.loadHealingStats();
-                System.out.println("Effective Healing Done: "+raid.getHealingTracker().healingDone);
-                System.out.println("Total Healing Done: "+raid.getHealingTracker().totalHealingDone);
-                System.out.println("Over Healing Done: "+raid.getHealingTracker().getOverHealing()+"%");
-                gameOverFrame.setDebug(true);
+                gameOverFrame = new GameOverFrame(true, boss, assets);
+                gameOverFrame.showHealingStats();
+                page = 1;
+                stage.addActor(gameOverFrame);
                 boss.stop();
                 raid.stop();
                 player.stop();
                 isDone = true;
             } else if (raid.isRaidDead()) {
                 gameOverFrame = new GameOverFrame(false, boss, assets);
-                gameOverFrame.setDebug(true);
+                gameOverFrame.showLose();
                 stage.addActor(gameOverFrame);
                 boss.stop();
                 raid.stop();

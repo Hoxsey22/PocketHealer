@@ -46,6 +46,6 @@ public class BanditLeader extends Boss {
 
     @Override
     public void reward() {
-        rewardPoint();
+        rewardPackage = new RewardPackage(assets.getTexture(assets.smiteIcon), "New Spell!\nNew Talent Point\nLevel up!");
     }
 }

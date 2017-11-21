@@ -24,13 +24,15 @@ public class GameOverFrame extends Group {
     public Button finishButton;
     public Button resetButton;
     public Button leaveButton;
-    public Text text;
+    public Text title;
+    public Text body;
     public Table table;
     public Image results;
     public Music endingMusic;   // maybe later
     public Boss boss;
     public Assets assets;
     public boolean won;
+    public int page;
 
     public GameOverFrame(boolean won, Boss boss, Assets assets)  {
         this.assets = assets;
@@ -50,50 +52,72 @@ public class GameOverFrame extends Group {
 
         addActor(disableBG);
         addActor(frame);
-
-        if(won) {
-            finishButton = new Button("FINISH", false, assets);
-            finishButton.setPosition(frame.getX() + frame.getWidth()/2 - finishButton.getWidth()/2, frame.getY() - finishButton.getHeight()/2);
-            addActor(finishButton);
-            createText(won);
-        }
-        else {
-            resetButton = new Button("RESET", false,assets);
-            resetButton.setPosition(frame.getX() + frame.getWidth()/2 - resetButton.getWidth(), frame.getY() - resetButton.getHeight()/2);
-
-            leaveButton = new Button("LEAVE", false, assets);
-            leaveButton.setPosition(resetButton.getX() + resetButton.getWidth(), frame.getY() - leaveButton.getHeight()/2);
-            leaveButton.setDebug(true);
-
-            addActor(resetButton);
-            addActor(leaveButton);
-            createText(won);
-        }
-        //addActor(results);
+        createText();
 
     }
 
-    public void createText(boolean won)    {
+    public void createText()    {
         table = new Table();
         table.setName("table");
-        table.setBounds(frame.getX(),frame.getY(), frame.getWidth(), frame.getHeight());
+        table.setBounds(frame.getX(),frame.getY(), frame.getWidth()-5, frame.getHeight()-10);
 
-        text = new Text("",24, Color.WHITE, true, assets);
-        text.setName("Text");
-        text.setWrap(true);
-        text.setAlignment(Align.top);
+        title = new Text("",32, Color.WHITE, true, assets);
+        title.setName("title");
+        title.setWrap(true);
+        title.setAlignment(Align.top);
 
-        if(won)    {
-            text.setText("Congratulations!" +
-                    "\n"+boss.getName()+" is defeated!\n" +boss.rewardDescription);
-        }
-        else    {
-            text.setText("You have wiped!" +
-                    "\n"+boss.getName()+" has defeated you!");
-        }
+        body = new Text("", 24, Color.WHITE, false, assets);
+        body.setName("body");
+        body.setWrap(true);
+        body.setAlignment(Align.center);
 
-        table.add(text.getLabel()).width(table.getWidth());
         addActor(table);
+    }
+
+    public void showHealingStats()  {
+        title.setText("Healing");
+
+        table.add(title.getLabel()).width(table.getWidth());
+        table.row();
+
+        body.setText("Effective Healing: "+boss.getEnemies().healingTracker.getEffectiveHealingPercent()+"%\n"+
+                "Overhealing: "+boss.getEnemies().healingTracker.getOverHealingPercent()+"%");
+
+        table.add(body.getLabel()).width(table.getWidth());
+    }
+
+    public void showReward()    {
+        table.clear();
+
+        title.setText("Reward");
+        table.add(title.getLabel()).width(table.getWidth());
+        table.row();
+        if(boss.rewardPackage.getSpellImage() != null) {
+            boss.rewardPackage.getSpellImage().setAlign(Align.center);
+            table.add(boss.rewardPackage.getSpellImage());
+            table.row();
+        }
+        body.setText(boss.rewardPackage.getReward());
+        table.add(body.getLabel()).width(table.getWidth());
+
+        finishButton = new Button("FINISH", false, assets);
+        finishButton.setPosition(frame.getX() + frame.getWidth()/2 - finishButton.getWidth()/2, frame.getY() - finishButton.getHeight()/2);
+        addActor(finishButton);
+    }
+
+    public void showLose()  {
+        title.setText("You have wiped!");
+        table.add(title.getLabel()).width(table.getWidth());
+
+        resetButton = new Button("RESET", false,assets);
+        resetButton.setPosition(frame.getX() + frame.getWidth()/2 - resetButton.getWidth(), frame.getY() - resetButton.getHeight()/2);
+
+        leaveButton = new Button("QUIT", false, assets);
+        leaveButton.setPosition(resetButton.getX() + resetButton.getWidth(), frame.getY() - leaveButton.getHeight()/2);
+        leaveButton.setDebug(true);
+
+        addActor(resetButton);
+        addActor(leaveButton);
     }
 
     public int hitButton(float x, float y)   {

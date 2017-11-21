@@ -36,6 +36,6 @@ public class GiantHornet extends Boss {
 
     @Override
     public void reward() {
-        rewardPoint();
+        rewardPackage = new RewardPackage(assets.getTexture(assets.holyNovaIcon), "New Spell!\nNew Talent Point!\nLevel up!");
     }
 }

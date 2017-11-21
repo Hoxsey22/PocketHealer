@@ -44,10 +44,10 @@ public class MainMenuState extends State{
         animatedBackground.setDebug(true);
 
         text = new Text("Press screen to continue...", 32, Color.WHITE, false, assets);
-        //text.setFontColor(Color.WHITE);
+        //title.setFontColor(Color.WHITE);
         text.setPosition(PocketHealer.WIDTH/2 - text.getXCenter(), 50);
         text.setAlignment(Align.center);
-        //text.setFontSize(32);
+        //title.setFontSize(32);
 
         stage.addActor(animatedBackground);
         stage.addActor(text);
