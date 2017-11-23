@@ -80,8 +80,8 @@ public class GameOverFrame extends Group {
         table.add(title.getLabel()).width(table.getWidth());
         table.row();
 
-        body.setText("Effective Healing: "+boss.getEnemies().healingTracker.getEffectiveHealingPercent()+"%\n"+
-                "Overhealing: "+boss.getEnemies().healingTracker.getOverHealingPercent()+"%");
+        body.setText("Effective Healing\n"+boss.getEnemies().healingTracker.getEffectiveHealingPercent()+"%\n"+
+                "Overhealing\n"+boss.getEnemies().healingTracker.getOverHealingPercent()+"%");
 
         table.add(body.getLabel()).width(table.getWidth());
     }
