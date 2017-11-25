@@ -300,4 +300,6 @@ public class Player {
         spellBar.loadSpells(data.spells);
         System.out.println("- Player loaded.");
     }
+
+
 }

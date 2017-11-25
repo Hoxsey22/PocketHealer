@@ -51,7 +51,7 @@ public class MapState extends State {
         stage = new Stage(viewport);
         assets = player.getAssets();
 
-        pageLeft = new ImageButton("pageleft", assets.getTexture(assets.pageTurn), 40, 550, 30,30);
+        pageLeft = new ImageButton("pageLeft", assets.getTexture(assets.pageTurn), 40, 550, 30,30);
         pageLeft.flipX();
         pageRight = new ImageButton("pageRight", assets.getTexture(assets.pageTurn), 410, 550, 30,30);
 
@@ -60,6 +60,7 @@ public class MapState extends State {
         maxPage = 1;
 
         this.player = player;
+        stage.setDebugAll(true);
 
         turnPage();
     }
@@ -143,6 +144,22 @@ public class MapState extends State {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float) screenX, (float) screenY));
 
                 if(coord.y > mapFrame.innerFrame.getY())    {
+
+                    if(pageLeft.pressed(coord.x, coord.y))    {
+                        page--;
+                        turnPage();
+                        System.out.println("Page Left");
+                        return false;
+                    }
+
+                    if(pageRight.pressed(coord.x, coord.y))    {
+                        page++;
+                        turnPage();
+                        System.out.println("Page Right");
+                        return false;
+                    }
+
+
                     BossIcon bi = mapFrame.getMap().hit(coord.x, coord.y);
                     if(bi != null)    {
                         if(selectedLevel != null)    {
@@ -176,17 +193,6 @@ public class MapState extends State {
                     }
                 }
 
-                if(pageLeft.hit(coord.x, coord.y,false) != null)    {
-                    page--;
-                    turnPage();
-                    return false;
-                }
-
-                if(pageRight.hit(coord.x, coord.y,false) != null)    {
-                    page++;
-                    turnPage();
-                    return false;
-                }
 
 
 

@@ -2,7 +2,7 @@ package com.hoxseygaming.pockethealer;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.utils.Json;
 import com.hoxseygaming.pockethealer.Player.PlayerData;
 
@@ -12,19 +12,14 @@ import com.hoxseygaming.pockethealer.Player.PlayerData;
 
 public class GameData {
 
-    private static final String SAVE_PATH = "data/saved_data.sav";
+    private static Preferences prefs = Gdx.app.getPreferences("save");
 
     public static boolean load(Player player)   {
 
-        if(Gdx.files.internal(SAVE_PATH).exists()) {
+        if(prefs.contains("save"))  {
             Json json = new Json();
-
-            FileHandle fileHandle = new FileHandle(SAVE_PATH);
-
-            player.setData(json.fromJson(PlayerData.class, fileHandle.readString()));
-
-            System.out.println(player.getLevel());
-
+            player.setData(json.fromJson(PlayerData.class, prefs.getString("save")));
+            System.out.println("save point found!");
             return true;
         }
         else {
@@ -39,10 +34,10 @@ public class GameData {
         json.toJson(player.getData());
         System.out.println(json.prettyPrint(player.getData()));
 
-        FileHandle fileHandle = new FileHandle(SAVE_PATH);
-        fileHandle.writeString(json.toJson(player.getData()),false);
+        prefs.putString("save", json.toJson(player.getData()));
+        prefs.flush();
 
-
+        System.out.println("save successful!");
         return true;
     }
 

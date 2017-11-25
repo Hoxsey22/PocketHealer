@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+import java.awt.Rectangle;
+
 /**
  * Created by Hoxsey on 7/20/2017.
  */
@@ -52,6 +54,16 @@ public class ImageButton extends Actor {
 
     public void flipX() {
         flipX = true;
+    }
+
+    public boolean pressed(float x, float y) {
+
+        Rectangle bounds = new Rectangle((int)getX(), (int)getY(),(int)getWidth(), (int)getHeight());
+
+        if(bounds.contains((int)x, (int)y)) {
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -291,7 +291,7 @@ public class EncounterState extends State {
                 if(!boss.isDefeated())    {
                     boss.reward();
                     boss.setDefeated(true);
-                    player.setLevel(boss.getId());
+                    player.setLevel(boss.getId()+1);
                     player.save();
                 }
                 raid.loadHealingStats();
