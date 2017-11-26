@@ -41,12 +41,10 @@ public class MapState extends State {
         pageLeft.flipX();
         pageRight = new ImageButton("pageRight", assets.getTexture(assets.pageTurn), 410, 550, 30,30);
 
-
         page = 1;
         maxPage = 1;
 
         this.player = player;
-        stage.setDebugAll(true);
 
         turnPage();
     }
