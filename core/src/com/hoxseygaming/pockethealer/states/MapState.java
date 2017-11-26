@@ -14,20 +14,6 @@ import com.hoxseygaming.pockethealer.ImageButton;
 import com.hoxseygaming.pockethealer.MapFrame;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Apprentice;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.BanditLeader;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.BloodQueen;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.GiantHornet;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Golem;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hogger;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hydra;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.MotherSpider;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Proctor;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Sorcerer;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Tiger;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.WampusCat;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.WildBoar;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.ZombieHorde;
 
 /**
  * Created by Hoxsey on 7/11/2017.
@@ -77,13 +63,13 @@ public class MapState extends State {
             case 1:
                 stage.addActor(mapFrame);
 
-                if(player.getLevel() > 4)
+                if(player.getLevel() > 6)
                     stage.addActor(pageRight);
                 break;
             case 2:
                 stage.addActor(mapFrame);
 
-                if(player.getLevel() > 9)
+                if(player.getLevel() > 11)
                     stage.addActor(pageRight);
                 stage.addActor(pageLeft);
                 break;
@@ -96,28 +82,10 @@ public class MapState extends State {
     }
 
     public void loadPage()  {
-
-        switch (page)   {
-            case 1:
-                mapFrame.add(new BossIcon(assets, new WildBoar(assets)));
-                mapFrame.add(new BossIcon(assets, new Tiger(assets)));
-                mapFrame.add(new BossIcon(assets, new GiantHornet(assets)));
-                mapFrame.add(new BossIcon(assets, new Golem(assets)));
-                mapFrame.add(new BossIcon(assets, new BanditLeader(assets)));
-                break;
-            case 2:
-                mapFrame.add(new BossIcon(assets, new Hogger(assets)));
-                mapFrame.add(new BossIcon(assets, new Proctor(assets)));
-                mapFrame.add(new BossIcon(assets, new WampusCat(assets)));
-                mapFrame.add(new BossIcon(assets, new Apprentice(assets)));
-                mapFrame.add(new BossIcon(assets, new Sorcerer(assets)));
-                break;
-            case 3:
-                mapFrame.add(new BossIcon(assets, new MotherSpider(assets)));
-                mapFrame.add(new BossIcon(assets, new ZombieHorde(assets)));
-                mapFrame.add(new BossIcon(assets, new BloodQueen(assets)));
-                mapFrame.add(new BossIcon(assets, new Hydra(assets)));
-                break;
+        for(int i = 2 + (page-1)*5; i <= page*5+1; i++)   {
+            if(player.getLevel() < i)
+                return;
+            mapFrame.setBoss(i);
         }
     }
 

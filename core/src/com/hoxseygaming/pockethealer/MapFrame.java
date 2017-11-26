@@ -7,6 +7,20 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Apprentice;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.BanditLeader;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.BloodQueen;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.GiantHornet;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Golem;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hogger;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hydra;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.MotherSpider;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Proctor;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Sorcerer;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Tiger;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.WampusCat;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.WildBoar;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.ZombieHorde;
 
 /**
  * Created by Hoxsey on 7/30/2017.
@@ -138,6 +152,54 @@ public class MapFrame extends Group {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
+    }
+
+    public void setBoss(int index)   {
+
+        switch (index) {
+            case 2:
+                add(new BossIcon(assets, new WildBoar(assets)));
+                break;
+            case 3:
+                add(new BossIcon(assets, new Tiger(assets)));
+                break;
+            case 4:
+                add(new BossIcon(assets, new GiantHornet(assets)));
+                break;
+            case 5:
+                add(new BossIcon(assets, new Golem(assets)));
+                break;
+            case 6:
+                add(new BossIcon(assets, new BanditLeader(assets)));
+                break;
+            case 7:
+                add(new BossIcon(assets, new Hogger(assets)));
+                break;
+            case 8:
+                add(new BossIcon(assets, new WampusCat(assets)));
+                break;
+            case 9:
+                add(new BossIcon(assets, new Proctor(assets)));
+                break;
+            case 10:
+                add(new BossIcon(assets, new Apprentice(assets)));
+                break;
+            case 11:
+                add(new BossIcon(assets, new Sorcerer(assets)));
+                break;
+            case 12:
+                add(new BossIcon(assets, new MotherSpider(assets)));
+                break;
+            case 13:
+                add(new BossIcon(assets, new ZombieHorde(assets)));
+                break;
+            case 14:
+                add(new BossIcon(assets, new BloodQueen(assets)));
+                break;
+            case 15:
+                add(new BossIcon(assets, new Hydra(assets)));
+                break;
+        }
     }
 
     public void dispose()   {
