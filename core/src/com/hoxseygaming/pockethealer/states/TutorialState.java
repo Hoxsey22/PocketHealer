@@ -214,17 +214,9 @@ public class TutorialState extends State {
                             break;
 
                         case 2:
-                            int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
-                            System.out.println(buttonHit);
-
-                            if(buttonHit != -1) {
-                                if(buttonHit == 1) {
-                                    player.newLevel(boss.getLevel());
-                                    bgMusic.stop();
-                                    sm.set(new MapState(sm, player));
-                                    break;
-                                }
-                            }
+                            player.newLevel(boss.getLevel());
+                            bgMusic.stop();
+                            sm.set(new MapState(sm, player));
                             break;
                     }
                 }

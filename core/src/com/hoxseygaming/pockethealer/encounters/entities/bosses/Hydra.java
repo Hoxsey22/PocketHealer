@@ -50,6 +50,6 @@ public class Hydra extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage = new RewardPackage("Level up!");
+        rewardPackage.addRewardText(3);
     }
 }

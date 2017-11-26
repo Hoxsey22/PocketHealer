@@ -219,18 +219,18 @@ public class EncounterState extends State {
                             page = 2;
                             break;
 
-                        case 2:
+                        case 2:/*
                             int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
                             System.out.println(buttonHit);
 
                             if(buttonHit != -1) {
-                                if(buttonHit == 1) {
+                                if(buttonHit == 1) {*/
                                     player.newLevel(boss.getLevel());
                                     bgMusic.stop();
                                     sm.set(new MapState(sm, player));
-                                    break;
+                                    /*break;
                                 }
-                            }
+                            }*/
                             break;
                     }
                 }
@@ -287,17 +287,18 @@ public class EncounterState extends State {
             handleInput();
             boss.update();
             if (boss.isDead()) {
-
+                page = 2;
                 if(!boss.isDefeated())    {
                     boss.reward();
                     boss.setDefeated(true);
                     player.setLevel(boss.getId()+1);
                     player.save();
+                    page = 1;
                 }
                 raid.loadHealingStats();
                 gameOverFrame = new GameOverFrame(true, boss, assets);
                 gameOverFrame.showHealingStats();
-                page = 1;
+
                 stage.addActor(gameOverFrame);
                 boss.stop();
                 raid.stop();

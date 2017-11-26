@@ -41,6 +41,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
     @Override
     public void reward() {
-        rewardPackage = new RewardPackage("Level up!");
+        rewardPackage.addRewardText(1);
     }
 }

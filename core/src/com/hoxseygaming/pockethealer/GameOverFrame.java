@@ -22,7 +22,6 @@ public class GameOverFrame extends Group {
     public Image frame;
     public Label boxLabel;  //maybe for a later time
     public ArrayList<Label> chat;   // maybe for a later time
-    public Button finishButton;
     public Button resetButton;
     public Button leaveButton;
     public Text title;
@@ -93,17 +92,15 @@ public class GameOverFrame extends Group {
         title.setText("Reward");
         table.add(title.getLabel()).width(table.getWidth());
         table.row();
-        if(boss.rewardPackage.getSpellImage() != null) {
-            boss.rewardPackage.getSpellImage().setAlign(Align.center);
-            table.add(boss.rewardPackage.getSpellImage());
+
+        if(boss.getRewardPackage().getSpellImage() != null) {
+            boss.getRewardPackage().getSpellImage().setAlign(Align.center);
+            table.add(boss.getRewardPackage().getSpellImage());
             table.row();
         }
-        body.setText(boss.rewardPackage.getReward());
-        table.add(body.getLabel()).width(table.getWidth());
 
-        finishButton = new Button("FINISH", false, assets);
-        finishButton.setPosition(frame.getX() + frame.getWidth()/2 - finishButton.getWidth()/2, frame.getY() - finishButton.getHeight()/2);
-        addActor(finishButton);
+        body.setText(boss.getRewardPackage().getReward());
+        table.add(body.getLabel()).width(table.getWidth());
     }
 
     public void showLose()  {
@@ -126,9 +123,6 @@ public class GameOverFrame extends Group {
 
         if(leaveButton != null && leaveButton.pressed(x,y))    {
             return 0;
-        }
-        if(finishButton != null && finishButton.pressed(x,y))    {
-            return 1;
         }
         if(resetButton != null && resetButton.pressed(x,y))    {
             return 2;

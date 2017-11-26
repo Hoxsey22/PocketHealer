@@ -12,6 +12,10 @@ public class RewardPackage {
     private Image spellImage;
     private String reward;
 
+    public RewardPackage()  {
+        this.reward = "Reward is empty";
+    }
+
     public RewardPackage(String reward)  {
         this.reward = reward;
     }
@@ -21,12 +25,30 @@ public class RewardPackage {
         this.reward = reward;
     }
 
+    public void addRewardText(int...texts) {
+        reward = "";
+        for (int text:texts) {
+            switch (text)   {
+                case 1: reward+="New Spell!\n";
+                    break;
+                case 2: reward+="New Talent Point!\n";
+                    break;
+                case 3: reward+="Level up!";
+                    break;
+            }
+        }
+    }
+
     public Image getSpellImage() {
         return spellImage;
     }
 
     public void setSpellImage(Image spellImage) {
         this.spellImage = spellImage;
+    }
+
+    public void setSpellImage(Texture texture) {
+        spellImage = new Image(texture);
     }
 
     public String getReward() {

@@ -40,6 +40,6 @@ public class Sorcerer extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage = new RewardPackage("New Talent Point\nLevel up!");
+        rewardPackage.addRewardText(2,3);
     }
 }

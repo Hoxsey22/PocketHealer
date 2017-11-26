@@ -33,6 +33,6 @@ public class Monster extends Boss {
 
     @Override
     public void reward() {
-
+        rewardPackage.addRewardText(3);
     }
 }
