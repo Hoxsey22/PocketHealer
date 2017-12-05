@@ -89,7 +89,7 @@ public class Player {
         //spells.add(new FlashHeal(this, spells.size(), assets));
         //spellBar.addSpell(spells.get(spells.size()-1));
 
-        spells.add(new Renew(this, spells.size(), assets));
+        spells.add(new RenewEffect(this, spells.size(), assets));
         spellBar.addSpell(spells.get(spells.size()-1));
 
         spells.add(new Smite(this, spells.size(), assets));

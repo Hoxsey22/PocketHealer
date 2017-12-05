@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.spells;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.BarrierEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 import java.util.ArrayList;
@@ -62,9 +63,11 @@ public class Smite extends Castable {
                 lowest.receiveHealing(newOutput, false);
                 if(isSelectedCriticalHealerII) {
                     lowest.applyShield(newOutput);
+                    lowest.addStatusEffect(new BarrierEffect(owner));
                 }
                 else    {
                     lowest.applyShield(output);
+                    lowest.addStatusEffect(new BarrierEffect(owner));
                 }
 
             }

@@ -11,12 +11,12 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 public class Bleed extends Mechanic {
 
     public Bleed( Boss owner) {
-        super("Bleed", 5, 3f, owner);
+        super("BleedEffect", 5, 3f, owner);
         debuff = Debuff.BLEED;
     }
 
     public Bleed(Boss owner, float speed) {
-        super("Bleed", 5, speed, owner);
+        super("BleedEffect", 5, speed, owner);
         debuff = Debuff.BLEED;
     }
 

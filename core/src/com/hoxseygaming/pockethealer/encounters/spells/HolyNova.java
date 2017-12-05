@@ -4,6 +4,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.RenewingNovaEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 import java.util.ArrayList;
@@ -100,6 +101,8 @@ public class HolyNova extends Castable {
      */
     public boolean isRenewingNova(RaidMember target) {
         if(isSelectedRenewingNova)    {
+            target.addStatusEffect(new RenewingNovaEffect(owner));
+            /*
             System.out.println("lb size: "+lifebooms.size());
             for(int i  = 0; i < lifebooms.size(); i++)   {
                 System.out.println("lb target: "+lifebooms.get(i).getTarget().getId()+" vs target: "+target.getId());
@@ -113,7 +116,9 @@ public class HolyNova extends Castable {
             lifebooms.get(lifebooms.size()-1).startDurationTimer(target);
 
             return true;
+            */
         }
+
         return false;
     }
 

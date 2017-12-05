@@ -123,6 +123,7 @@ public class Assets {
     public String boilIcon = "icons/boil_icon.png";
     public String smiteIcon = "icons/smite_icon.png";
     public String holyNovaIcon = "icons/holy_nova_icon.png";
+    public String prayerOfMendingIcon = "icons/prayer_of_mending_icon.png";
     public String greaterHealerIcon = "icons/greater_heal_icon.png";
     public String lightWellIcon = "icons/light_well_icon.png";
     public String divineHymnIcon = "icons/divine_hymn_icon.png";
@@ -298,12 +299,11 @@ public class Assets {
         manager.load(defeatedBossIcon, Texture.class);
         manager.load(spellBG, Texture.class);
 
-
         manager.load(map1, Texture.class);
         manager.load(map2, Texture.class);
         manager.load(map3, Texture.class);
         manager.load(pageTurn, Texture.class);
-
+        manager.load(prayerOfMendingIcon, Texture.class);
 
     }
 

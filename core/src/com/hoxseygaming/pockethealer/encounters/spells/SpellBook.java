@@ -23,6 +23,7 @@ public class SpellBook extends Group{
     public static final String HOLY_NOVA = "Holy Nova";
     public static final String LIGHTWELL = "Lightwell";
     public static final String SMITE = "Smite";
+    public static final String PRAYER_OF_MENDING = "Prayer of Mending";
 
     public Player owner;
     public ArrayList<Spell> spells;
@@ -54,7 +55,7 @@ public class SpellBook extends Group{
 
         // add spell to list
         spells.add(new Heal(owner, 0, assets));
-        spells.add(new Renew(owner, 0, assets));
+        spells.add(new Renew2(owner, 0, assets));
         spells.add(new FlashHeal(owner, 0, assets));
         spells.add(new Barrier(owner, 0, assets));
         spells.add(new HolyNova(owner, 0, assets));
@@ -62,6 +63,7 @@ public class SpellBook extends Group{
         spells.add(new Smite(owner, 0, assets));
         spells.add(new Lightwell(owner, 0, assets));
         spells.add(new DivineHymn(owner, 0, assets));
+        spells.add(new PrayerOfMending(owner, 0, assets));
         // add spell to group
         for(int i = 0; i < spells.size(); i++)   {
             addActor(spells.get(i));
@@ -126,7 +128,7 @@ public class SpellBook extends Group{
             case HOLY_NOVA:
                 return new HolyNova(owner,0,assets);
             case RENEW:
-                return new Renew(owner,0,assets);
+                return new Renew2(owner,0,assets);
             case BARRIER:
                 return new Barrier(owner,0,assets);
             case DIVINE_HYMN:
@@ -135,6 +137,8 @@ public class SpellBook extends Group{
                 return new Lightwell(owner,0,assets);
             case SMITE:
                 return new Smite(owner,0,assets);
+            case PRAYER_OF_MENDING:
+                return new PrayerOfMending(owner,0, assets);
         }
         return null;
     }

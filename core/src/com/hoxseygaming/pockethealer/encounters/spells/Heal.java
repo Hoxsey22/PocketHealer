@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.spells;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.BarrierEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class Heal extends Castable {
 
             if(isSelectedCriticalHealerII)  {
                 target.applyShield((int)(output/2f));
+                target.addStatusEffect(new BarrierEffect(owner));
             }
 
             if(isSelectedResurgence) {

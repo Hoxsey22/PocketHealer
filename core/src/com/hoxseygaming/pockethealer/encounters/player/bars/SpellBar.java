@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.spells.Heal;
-import com.hoxseygaming.pockethealer.encounters.spells.Renew;
+import com.hoxseygaming.pockethealer.encounters.spells.PrayerOfMending;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 import java.util.ArrayList;
@@ -119,7 +119,7 @@ public class SpellBar extends Group {
         clearSpells();
         if(spellNames.size() == 0)    {
             addSpell(0,new Heal(owner,0, assets));
-            addSpell(1,new Renew(owner, 0,assets));
+            addSpell(1,new PrayerOfMending(owner, 0,assets));
         }
         else {
 

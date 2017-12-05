@@ -21,7 +21,7 @@ public class Renew extends Periodical {
      * @param player
      */
     public Renew(Player player, int index, Assets assets)  {
-        super(player, "Renew", "A small heal that is healed over time.", 0, EffectType.HEALOVERTIME, 1, 7, 15,
+        super(player, "Renew2", "A small heal that is healed over time.", 0, EffectType.HEALOVERTIME, 1, 7, 15,
                 0.8f, 10f, 2f, assets.getSound(assets.hotSFX), index, assets);
         image = this.assets.getTexture(assets.renewIcon);
         lifebooms = new ArrayList<>();

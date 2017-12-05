@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -97,6 +96,7 @@ public class SpellSelectionState extends State {
         descriptionTable.add(spellDescription.getLabel()).width(descriptionTable.getWidth());
 
         stage.addActor(descriptionTable);
+        stage.setDebugAll(true);
     }
 
     @Override
@@ -121,6 +121,11 @@ public class SpellSelectionState extends State {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coords = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
 
+                if(done.pressed(coords.x, coords.y))    {
+                    player.save();
+                    sm.set(new MapState(sm, player));
+                    return false;
+                }
                 // check if the user to selecting a spell from the spell book
                 if(coords.y > spellBook.getBottom() - 10 && coords.y < spellBook.getTop()+10) {
                         Spell hit = spellBook.selectSpell(coords.x, coords.y);
@@ -133,16 +138,8 @@ public class SpellSelectionState extends State {
                         }
                         return false;
                 }
-                // check if the button done is pressed
-                if(coords.y > done.getY() && coords.y < done.getY() + done.getHeight())    {
-                    Actor hit = stage.hit(coords.x, coords.y, false);
-                    if(hit != null) {
-                        if(hit.getName().equalsIgnoreCase("done"))  {
-                            player.save();
-                            sm.set(new MapState(sm, player));
-                        }
-                    }
-                }
+
+
                 return false;
             }
 

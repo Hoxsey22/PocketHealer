@@ -4,6 +4,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.BarrierEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 /**
@@ -46,5 +47,6 @@ public class Barrier extends InstantCast {
     @Override
     public void applySpell(RaidMember target) {
         target.applyShield(output);
+        target.addStatusEffect(new BarrierEffect(owner));
     }
 }

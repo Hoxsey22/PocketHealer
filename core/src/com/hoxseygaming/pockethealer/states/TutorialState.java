@@ -277,7 +277,7 @@ public class TutorialState extends State {
                 if(!boss.isDefeated())    {
                     boss.reward();
                     boss.setDefeated(true);
-                    player.setLevel(boss.getId());
+                    player.setLevel(2);
                     player.save();
                 }
                 raid.loadHealingStats();
