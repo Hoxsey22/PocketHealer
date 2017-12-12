@@ -8,7 +8,7 @@ import com.hoxseygaming.pockethealer.HealingTracker;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
-import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.Buff;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect;
+package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff;
 
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.spells.CriticalDice;
@@ -18,6 +18,7 @@ public class LifeboomEffect extends Buff {
      */
     public LifeboomEffect(Player owner, float duration, float speed, int modValue) {
         super(owner, 1, "Lifeboom","Renew is a periodic heal.", owner.getAssets().getTexture(owner.getAssets().lifeboomIcon), duration, speed, modValue, false);
+        totalBoom = 0;
     }
 
     @Override
@@ -27,12 +28,17 @@ public class LifeboomEffect extends Buff {
 
     @Override
     public void applyEffect() {
-        totalBoom =+ getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().criticalChance));
+        totalBoom = totalBoom + getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().criticalChance));
+    }
+
+    @Override
+    public int modifyOutput(int output) {
+        return output;
     }
 
     @Override
     public void remove() {
-        getTarget().receiveHealing((int)((float)totalBoom/3f), CriticalDice.roll(getOwner().criticalChance));
+        getTarget().receiveHealing(totalBoom, CriticalDice.roll(getOwner().criticalChance));
         super.remove();
     }
 }

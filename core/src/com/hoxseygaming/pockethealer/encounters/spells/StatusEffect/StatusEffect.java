@@ -11,6 +11,11 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 public abstract class StatusEffect {
 
+    public static final int NONE = 0;
+    public static final int DAMAGE_AMPLIFIER = 1;
+    public static final int HEALING_REDUCTION = 2;
+
+
     private String name;
     private int id;
     private String description;
@@ -26,6 +31,7 @@ public abstract class StatusEffect {
     private Timer timer;
     private Assets assets;
     private StatusEffectList parent;
+    private int type;
 
     /**
      * @param id: ID of the status effect and should be unique.
@@ -94,6 +100,8 @@ public abstract class StatusEffect {
     public abstract void additionalConditions();
 
     public abstract void applyEffect();
+
+    public abstract int modifyOutput(int output);
 
     /*****************************************************************
      *
@@ -211,6 +219,14 @@ public abstract class StatusEffect {
 
     public void setParent(StatusEffectList parent) {
         this.parent = parent;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public String toString()    {

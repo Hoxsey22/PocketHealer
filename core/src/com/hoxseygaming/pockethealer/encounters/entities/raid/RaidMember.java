@@ -39,8 +39,9 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     @Override
     public void takeDamage(int output) {
-        super.takeDamage(output);
-        floatingTextManager.add(output, FloatingText.DAMAGE);
+        int newOutput = statusEffects.getStatusEffectModifucation(output,false);
+        super.takeDamage(newOutput);
+        floatingTextManager.add(newOutput, FloatingText.DAMAGE);
         if(statusEffects.contains("Prayer of Mending"))    {
             statusEffects.getStatusEffect("Prayer of Mending").applyEffect();
         }
@@ -53,7 +54,8 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     @Override
     public int receiveHealing(int output, boolean isCritical) {
-        int newOutput = super.receiveHealing(output, isCritical);
+        int newOutput = statusEffects.getStatusEffectModifucation(output,true);
+        newOutput = super.receiveHealing(newOutput, isCritical);
         floatingTextManager.add(newOutput,FloatingText.HEAL, isCritical);
         return newOutput;
     }

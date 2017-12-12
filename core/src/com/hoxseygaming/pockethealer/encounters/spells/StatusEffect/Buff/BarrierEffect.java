@@ -1,4 +1,4 @@
-package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect;
+package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff;
 
 import com.hoxseygaming.pockethealer.Player;
 
@@ -24,5 +24,10 @@ public class BarrierEffect extends Buff {
         if(getTarget().getShield() < 1)   {
             remove();
         }
+    }
+
+    @Override
+    public int modifyOutput(int output) {
+        return output;
     }
 }

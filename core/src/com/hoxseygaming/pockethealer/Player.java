@@ -58,6 +58,7 @@ public class Player {
     public int criticalChance;
     public int level;
     private PlayerData playerData;
+    public boolean holyShockIncrease;
 
 
 

@@ -141,6 +141,8 @@ public class Assets {
     public String arrowPointer = "arrow.png";
     public String defeatedBossIcon = "map_state/defeated_boss.png";
     public String spellBG = "spell_bg.png";
+    public String dispelIcon = "icons/dispel_icon.png";
+    public String burnIcon = "icons/burn_icon.png";
 
     public String map1 = "map_state/map_level_1.png";
     public String map2 = "map_state/map_level_2.png";
@@ -304,6 +306,8 @@ public class Assets {
         manager.load(map3, Texture.class);
         manager.load(pageTurn, Texture.class);
         manager.load(prayerOfMendingIcon, Texture.class);
+        manager.load(dispelIcon, Texture.class);
+        manager.load(burnIcon, Texture.class);
 
     }
 

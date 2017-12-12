@@ -47,8 +47,6 @@ public abstract class ChannelCast extends Spell {
     @Override
     public void castSpell() {
         if(isCastable())    {
-            useMana();
-            startCooldownTimer();
             startCastTimer();
         }
 
@@ -90,6 +88,8 @@ public abstract class ChannelCast extends Spell {
                     castingSFX.stop();
                     isCasting = false;
                     owner.isCasting = isCasting;
+                    useMana();
+                    startCooldownTimer();
                     stop();
                 }
             }

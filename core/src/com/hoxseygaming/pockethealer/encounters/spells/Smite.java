@@ -3,7 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.spells;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
-import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.BarrierEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.BarrierEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 import java.util.ArrayList;

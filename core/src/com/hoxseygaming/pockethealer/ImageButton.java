@@ -2,9 +2,10 @@ package com.hoxseygaming.pockethealer;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-import java.awt.Rectangle;
+
 
 /**
  * Created by Hoxsey on 7/20/2017.

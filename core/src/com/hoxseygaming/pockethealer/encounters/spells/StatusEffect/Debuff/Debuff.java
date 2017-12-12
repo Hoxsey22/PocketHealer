@@ -1,7 +1,8 @@
-package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect;
+package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.StatusEffect;
 
 /**
  * Created by Hoxsey on 12/1/2017.
@@ -41,4 +42,6 @@ public abstract class Debuff extends StatusEffect {
     public void setOwner(Boss owner) {
         this.owner = owner;
     }
+
+
 }

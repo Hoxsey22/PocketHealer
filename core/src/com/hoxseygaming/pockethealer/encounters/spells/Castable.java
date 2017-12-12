@@ -44,8 +44,6 @@ public abstract class Castable extends Spell {
     @Override
     public void castSpell() {
         if(isCastable())    {
-            useMana();
-            startCooldownTimer();
             startCastTimer();
         }
 
@@ -79,6 +77,8 @@ public abstract class Castable extends Spell {
                     applySpell(sTarget);
                     isCasting = false;
                     owner.isCasting = isCasting;
+                    useMana();
+                    startCooldownTimer();
                 }
             }
         },0.01f, 0.01f,(int)(castTime/0.01f)-1);
@@ -88,6 +88,10 @@ public abstract class Castable extends Spell {
         if(castTimer != null) {
             castTimer.stop();
             castTimer.clear();
+            owner.setSpellCastPercent(0);
+            isCasting = false;
+            owner.isCasting = isCasting;
+            castingSFX.stop();
         }
     }
 

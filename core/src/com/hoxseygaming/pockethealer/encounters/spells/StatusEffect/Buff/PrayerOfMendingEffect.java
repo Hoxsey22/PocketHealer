@@ -1,8 +1,10 @@
-package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect;
+package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff;
 
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.CriticalDice;
+
+import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 12/1/2017.
@@ -36,7 +38,11 @@ public class PrayerOfMendingEffect extends Buff{
 
         jumpCount--;
         if(jumpCount > 1) {
-            RaidMember newTarget = getOwner().getRaid().getRandomRaidMember(1, getOwner().getRaid().getBuffLessRaidMembers(this)).get(0);
+            ArrayList<RaidMember> temp = getOwner().getRaid().getRandomRaidMember(1, getOwner().getRaid().getBuffLessRaidMembers(this));
+            if(temp.size() < 1)    {
+                return;
+            }
+            RaidMember newTarget = temp.get(0);
             removeFromParent();
 
             setTarget(newTarget);
@@ -46,5 +52,10 @@ public class PrayerOfMendingEffect extends Buff{
         else {
             remove();
         }
+    }
+
+    @Override
+    public int modifyOutput(int output) {
+        return output;
     }
 }

@@ -59,7 +59,7 @@ public class TalentTree extends Group{
     }
 
     public void createTalents()  {
-        talents.add(new Talent(this, 1, LIFEBOOM, "After Renew expires, two more Renew will spawn.", assets.getTexture(assets.lifeboomIcon), assets));
+        talents.add(new Talent(this, 1, LIFEBOOM, "After Renew expires, a 3rd of renew's healing will heal the target.", assets.getTexture(assets.lifeboomIcon), assets));
         talents.add(new Talent(this, 2, HEALER_CHANNEL, "Healers in the raid will no longer deal damage, but will instead heal.", talents.get(talents.size()-1),
                 assets.getTexture(assets.workTogetherIcon), assets));
         talents.add(new Talent(this, 3, RENEWING_NOVA, "Holy Nova now put a Renew on each target that was healed.", talents.get(talents.size()-1),

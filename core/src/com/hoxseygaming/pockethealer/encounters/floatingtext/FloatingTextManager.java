@@ -33,12 +33,6 @@ public class FloatingTextManager {
 
     public void add(int damage, int type, boolean isCritical)   {
         floatingTexts.add(new FloatingText(idCounter, owner, damage, type,isCritical, assets));
-        /*
-        if(isCritical)    {
-            floatingTexts.get(getIndex(idCounter)).setFontSize(32);
-        }
-        else
-            floatingTexts.get(getIndex(idCounter)).setFontSize(24);*/
         floatingTexts.get(getIndex(idCounter)).startAnimation();
         idCounter++;
     }

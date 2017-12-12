@@ -115,7 +115,7 @@ public class EncounterState extends State {
                         }
                         break;
                     case Input.Keys.NUM_3:
-                        raid.raidMembers.get(0).takeDamage(50);
+                        player.getTarget().takeDamage(10);
                         break;
                     case Input.Keys.NUM_0:
                         for (int i = 0; i < raid.raidMembers.size(); i++)

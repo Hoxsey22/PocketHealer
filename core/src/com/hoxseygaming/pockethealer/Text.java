@@ -101,6 +101,10 @@ public class Text extends Actor{
         return label;
     }
 
+    public void setAlpha(float newAlpha)  {
+        label.setColor(label.getColor().r,label.getColor().g,label.getColor().b,newAlpha);
+    }
+
     public float getXCenter()    {
         return label.getWidth()/2;
     }

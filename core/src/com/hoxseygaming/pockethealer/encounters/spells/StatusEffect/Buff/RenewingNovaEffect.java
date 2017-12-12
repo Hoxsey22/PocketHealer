@@ -1,4 +1,4 @@
-package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect;
+package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff;
 
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.spells.CriticalDice;
@@ -33,5 +33,10 @@ public class RenewingNovaEffect extends Buff {
     @Override
     public void applyEffect() {
         getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().criticalChance));
+    }
+
+    @Override
+    public int modifyOutput(int output) {
+        return output;
     }
 }

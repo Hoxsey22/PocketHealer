@@ -87,6 +87,7 @@ public class FloatingText {
             public void run() {
                 currentTimer++;
                 setPosition(floatingText.getX(), floatingText.getY()+(currentTimer/2));
+                floatingText.setAlpha(((float)(duration-currentTimer)/(float)duration));
                 if(currentTimer == duration)    {
                     isAnimating = false;
                     timer.stop();

@@ -1,7 +1,8 @@
-package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect;
+package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.hoxseygaming.pockethealer.Player;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.StatusEffect;
 
 /**
  * Created by Hoxsey on 12/1/2017.

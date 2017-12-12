@@ -4,7 +4,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
-import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.RenewingNovaEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.RenewingNovaEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 import java.util.ArrayList;

@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
 
 import java.util.ArrayList;
 
@@ -39,10 +40,13 @@ public class Pounce extends Mechanic {
                 for (int i = 0; i < temp.size(); i++)   {
                     if(temp.get(i) != null) {
                         temp.get(i).takeDamage(damage);
+                        temp.get(i).addStatusEffect(new BleedEffect(owner));
+                        /*
                         Bleed bleed = new Bleed(owner);
                         bleed.setTarget(temp.get(i));
                         bleeds.add(bleed);
                         bleed.start();
+                        */
                     }
                 }
 
@@ -51,8 +55,7 @@ public class Pounce extends Mechanic {
     }
 
     @Override
-    public void applyMechanic() {
-        super.applyMechanic();
+    public void applyMechanic(){
     }
 
 

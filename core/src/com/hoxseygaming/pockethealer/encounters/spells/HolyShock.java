@@ -6,51 +6,55 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.BarrierEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
-import java.util.ArrayList;
-
 /**
- * Created by Hoxsey on 6/18/2017.
+ * Created by Hoxsey on 12/6/2017.
  */
-public class Heal extends Castable {
 
-    public ArrayList<Barrier> barriers;
+public class HolyShock extends InstantCast {
+
     public boolean isSelectedCriticalHealerII;
     public boolean isSelectedResurgence;
+    /**
+     * @param player
+     * @param assets
+     */
+    public HolyShock(Player player, Assets assets) {
+        super(player, "Holy Shock",
+                "A strong instant heal that also increase the next single target heal by 50%.",
+                0,
+                EffectType.HEAL,
+                1,
+                50,
+                25,
+                12f,
+                assets.getSound(assets.healSFX),
+                0,
+                assets);
 
-
-    public Heal(Player player, int index, Assets assets) {
-        super(player, "Heal","An efficient slow powerful single target heal.", 0,1.5f, EffectType.HEAL,
-                40, 10, 0.5f,assets.getSound(assets.healSFX), index, assets);
-        setImage(assets.getTexture(assets.healIcon));
-        isSelectedCriticalHealerII = false;
-        isSelectedResurgence = false;
-        barriers = new ArrayList<>();
+        setImage(assets.getTexture(assets.criticalHealer2Icon));
     }
 
     @Override
     public void applySpell(RaidMember target) {
-        int currentOutput = output;
-        if(owner.holyShockIncrease)   {
-            currentOutput = output + (int)(output*0.5);
-            owner.holyShockIncrease = false;
-        }
 
         if(criticalChance.isCritical()){
 
             if(isSelectedCriticalHealerII)  {
-                target.applyShield((int)(currentOutput/2f));
+                target.applyShield((int)(output/2f));
                 target.addStatusEffect(new BarrierEffect(owner));
             }
 
             if(isSelectedResurgence) {
                 owner.mana = owner.getMana() + (int)(getCost()/2f);
             }
-            target.receiveHealing(currentOutput, true);
+            target.receiveHealing(output, true);
             return;
         }
         else {
-            target.receiveHealing(currentOutput, false);
+            target.receiveHealing(output, false);
         }
+
+        owner.holyShockIncrease = true;
 
     }
 
@@ -58,7 +62,6 @@ public class Heal extends Castable {
         isSelectedResurgence = false;
         isSelectedCriticalHealerII = false;
         setCriticalChance(MIN_CRITICAL);
-        setCastTime(MIN_CAST_TIME);
     }
 
 
@@ -71,9 +74,6 @@ public class Heal extends Castable {
         }
         if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
             isSelectedCriticalHealerII = true;
-        }
-        if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
-            castTime = castTime - 0.25f;
         }
         if(owner.getTalentTree().getTalent(TalentTree.RESURGENCE).isSelected())    {
             isSelectedResurgence = true;

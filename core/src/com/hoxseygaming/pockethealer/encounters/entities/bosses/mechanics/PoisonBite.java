@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.PoisonEffect;
 
 import java.util.ArrayList;
 
@@ -33,9 +34,12 @@ public class PoisonBite extends Mechanic {
                 ArrayList<RaidMember> temp = getRaid().getRandomRaidMember(numOfTargets);
                 for(int i = 0; i < temp.size(); i++) {
                     temp.get(i).takeDamage(damage);
+                    temp.get(i).addStatusEffect(new PoisonEffect(owner));
+                    /*
                     Poison poison = new Poison(owner);
                     poison.setTarget(temp.get(i));
                     poison.start();
+                    */
                 }
             }
         },speed,speed);

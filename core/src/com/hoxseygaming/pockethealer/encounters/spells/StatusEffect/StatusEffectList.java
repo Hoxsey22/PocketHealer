@@ -41,7 +41,7 @@ public class StatusEffectList {
 
         for(int i = 0; i < statusEffects.size(); i++)   {
             if(statusEffects.get(i).isDispellable())    {
-                statusEffects.remove(i);
+                statusEffects.get(i).remove();
             }
         }
     }
@@ -82,6 +82,28 @@ public class StatusEffectList {
         }
         return false;
     }
+
+    public int getStatusEffectModifucation(int output, boolean isHealing) {
+        int newOutput = output;
+        for (int i = 0; i < statusEffects.size(); i++) {
+            switch (statusEffects.get(i).getType()) {
+                case StatusEffect.NONE:
+                    break;
+                case StatusEffect.DAMAGE_AMPLIFIER:
+                    if (!isHealing) {
+                        newOutput = statusEffects.get(i).modifyOutput(newOutput);
+                    }
+                    break;
+                case StatusEffect.HEALING_REDUCTION:
+                    if (isHealing) {
+                        newOutput = statusEffects.get(i).modifyOutput(newOutput);
+                    }
+                    break;
+            }
+        }
+        return newOutput;
+    }
+
 
     public void draw(Batch batch, float alpha)  {
 
