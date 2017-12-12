@@ -61,19 +61,25 @@ public class MapState extends State {
             case 1:
                 stage.addActor(mapFrame);
 
-                if(player.getLevel() > 6)
-                    stage.addActor(pageRight);
+                if(player.getLevel() > 6) {
+                    pageRight.addToStage(stage);
+                    //stage.addActor(pageRight);
+                }
                 break;
             case 2:
                 stage.addActor(mapFrame);
 
-                if(player.getLevel() > 11)
-                    stage.addActor(pageRight);
-                stage.addActor(pageLeft);
+                if(player.getLevel() > 11) {
+                    pageRight.addToStage(stage);
+                    //stage.addActor(pageRight);
+                }
+                pageLeft.addToStage(stage);
+                //stage.addActor(pageLeft);
                 break;
             case 3:
                 stage.addActor(mapFrame);
-                stage.addActor(pageLeft);
+                pageLeft.addToStage(stage);
+                //stage.addActor(pageLeft);
                 break;
         }
         loadPage();
