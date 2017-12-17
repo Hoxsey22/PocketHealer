@@ -94,7 +94,7 @@ public abstract class ChannelCast extends Spell {
                     stop();
                 }
             }
-        },0.01f, 0.01f);
+        },0.01f, 0.01f,(int)(castTime/0.01f)-1);
     }
 
     public void stop()  {

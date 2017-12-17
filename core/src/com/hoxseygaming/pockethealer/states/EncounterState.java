@@ -50,6 +50,7 @@ public class EncounterState extends State {
         this.boss.reset();
 
         raid = this.boss.getEnemies();
+        raid.setPlayer(player);
 
         player.setBoss(this.boss);
 

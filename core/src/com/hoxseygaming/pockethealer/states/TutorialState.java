@@ -53,6 +53,7 @@ public class TutorialState extends State {
         tutorialFrame = new TutorialFrame(player, boss, player.assets);
 
         player.setBoss(this.boss);
+        raid.setPlayer(player);
 
         create();
     }

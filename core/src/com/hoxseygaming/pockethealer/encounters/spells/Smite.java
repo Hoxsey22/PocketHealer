@@ -32,7 +32,7 @@ public class Smite extends Castable {
                 0.5f,
                 EffectType.DAMAGEHEAL,
                 10,
-                5,
+                0.5f,
                 0.5f,
                 assets.getSound(assets.healSFX),
                 index,
@@ -57,14 +57,15 @@ public class Smite extends Castable {
             isSelectedCriticalHealerII = true;
         }
         if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
-            castTime = castTime - 0.25f;
-            cooldown = cooldown - 0.25f;
+            castTime = MIN_CAST_TIME - 0.25f;
+            cooldown = MIN_COOLDOWN - 0.25f;
         }
     }
 
-    private void resetDefault() {
+    public void resetDefault()  {
         isSelectedCriticalHealerII = false;
-        isSelectedDiscipline = false;
+        setCriticalChance(MIN_CRITICAL);
+        setCastTime(MIN_CAST_TIME);
     }
 
     @Override

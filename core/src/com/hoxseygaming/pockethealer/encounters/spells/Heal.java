@@ -74,7 +74,7 @@ public class Heal extends Castable {
             isSelectedCriticalHealerII = true;
         }
         if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
-            castTime = castTime - 0.25f;
+            castTime = MIN_CAST_TIME - 0.25f;
         }
         if(owner.getTalentTree().getTalent(TalentTree.RESURGENCE).isSelected())    {
             isSelectedResurgence = true;

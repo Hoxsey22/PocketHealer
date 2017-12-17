@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.HealingTracker;
+import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
@@ -24,6 +25,7 @@ public class Raid extends Group {
     private Assets assets;
     public boolean isRaidAlive;
     public HealingTracker healingTracker;
+    public Player player;
 
     public Raid(int size, Assets assets)   {
         //super();
@@ -48,10 +50,16 @@ public class Raid extends Group {
 
                 for (int i = 0; i < raidMembers.size(); i++) {
                     if(!raidMembers.get(i).isDead()) {
-                        if( raidMembers.get(i).getRole().equalsIgnoreCase("Healer") && healerChannel) {
-                            getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).damage,false);
+                        if(raidMembers.get(i).getRole().equalsIgnoreCase("Healer"))    {
+                            player.receiveMana(2);
+                            if(healerChannel) {
+                                getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).damage,false);
+                            }
+                            else {
+                                target.takeDamage(raidMembers.get(i).getDamage());
+                            }
                         }
-                        else {
+                        else    {
                             target.takeDamage(raidMembers.get(i).getDamage());
                         }
                     }
@@ -328,6 +336,14 @@ public class Raid extends Group {
             totalDamage = totalDamage + raidMembers.get(i).getDamage();
         }
         return totalDamage;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public HealingTracker getHealingTracker()   {

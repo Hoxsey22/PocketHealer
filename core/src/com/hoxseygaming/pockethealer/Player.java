@@ -280,6 +280,13 @@ public class Player {
         this.castBar = castBar;
     }
 
+    public void receiveMana(int amount)   {
+        mana = mana +amount;
+        if(mana > maxMana)    {
+            mana = maxMana;
+        }
+    }
+
     public void save()  {
         GameData.save(this);
     }

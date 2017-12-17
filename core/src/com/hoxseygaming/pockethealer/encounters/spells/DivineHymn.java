@@ -31,7 +31,7 @@ public class DivineHymn extends ChannelCast {
     @Override
     public void useMana() {
         if (isSelectedHolyFocus)
-            owner.mana = owner.getMana() + getCost();
+            owner.receiveMana(getCost());
         else {
             super.useMana();
         }

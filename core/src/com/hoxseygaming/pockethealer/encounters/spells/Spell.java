@@ -68,7 +68,7 @@ public abstract class Spell extends Actor {
         this.levelRequirement = levelRequirement;
         this.output = output;
         MIN_OUTPUT = output;
-        this.cost = (int)(owner.getMaxMana()*costPercentage);
+        this.cost = (int)((float)owner.getMaxMana()*(costPercentage/100f));
         MIN_COST = cost;
         this.cooldown = cooldown;
         MIN_COOLDOWN = cooldown;
@@ -91,22 +91,23 @@ public abstract class Spell extends Actor {
      * This starts the cooldown timer for the spell
      */
     public void startCooldownTimer()    {
-            cdTimer = new Timer();
-            isReady = false;
-            setCdCounter(cooldown);
-
-            Timer.schedule(new Timer.Task() {
-                @Override
-                public void run() {
-                    cdCount();
-                    if(getCdPercentage() <= 0f) {
-                        cdTimer.clear();
-                        isReady = true;
-                        setCdCounter(0);
-                    }
-
+        cdTimer = new Timer();
+        isReady = false;
+        setCdCounter(cooldown);
+        System.out.println("start cd");
+        cdTimer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                System.out.println("cd...");
+                cdCount();
+                if(getCdPercentage() <= 0f) {
+                    cdTimer.clear();
+                    isReady = true;
+                    setCdCounter(0);
                 }
-            },0.1f,0.1f, (int)(cooldown/0.1));
+
+            }
+        },0.1f,0.1f, (int)(cooldown/0.1));
     }
 
     public void setupText() {
@@ -198,7 +199,7 @@ public abstract class Spell extends Actor {
     }
 
     public void setCostPercentage(float costPercentage) {
-        cost = (int)(owner.getMaxMana() * costPercentage);
+        cost = (int)((float)owner.getMaxMana()*(costPercentage/100f));
     }
 
     public float getCdPercentage() {
