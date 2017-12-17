@@ -5,6 +5,7 @@ import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.BarrierEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
+import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class Heal extends Castable {
 
     public Heal(Player player, int index, Assets assets) {
         super(player, "Heal","An efficient slow powerful single target heal.", 0,1.5f, EffectType.HEAL,
-                40, 10, 0.5f,assets.getSound(assets.healSFX), index, assets);
+                40, 1f, 0.5f,assets.getSound(assets.healSFX), index, assets);
         setImage(assets.getTexture(assets.healIcon));
         isSelectedCriticalHealerII = false;
         isSelectedResurgence = false;

@@ -1,6 +1,7 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FireBreath;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Outbreak;
@@ -20,7 +21,10 @@ public class Sorcerer extends Boss {
 
     public Sorcerer(Assets assets) {
         super("Sorcerer","The time has come, the Sorcerer is finally taking a stand. The Sorcerer is very similar to his " +
-                "apprentice, but has one more trick up his sleeve.", 20000,new Raid(15,assets), assets);
+                "apprentice, but has one more trick up his sleeve.",
+                240,
+                new Raid(15,assets),
+                assets);
         setId(11);
         create();
     }

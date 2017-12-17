@@ -51,13 +51,13 @@ public abstract class Spell extends Actor {
      * @param description
      * @param effectType
      * @param output
-     * @param cost
+     * @param costPercentage
      * @param cooldown
      * @param index
      * @param assets
      */
     public Spell(Player player, String name, String description, int levelRequirement, EffectType effectType, int output,
-                 int cost, float cooldown, int index, Assets assets) {
+                 float costPercentage, float cooldown, int index, Assets assets) {
         setBounds(SpellData.positions[index].x,SpellData.positions[index].y,80,80);
         owner = player;
         this.assets = assets;
@@ -68,7 +68,7 @@ public abstract class Spell extends Actor {
         this.levelRequirement = levelRequirement;
         this.output = output;
         MIN_OUTPUT = output;
-        this.cost = cost;
+        this.cost = (int)(owner.getMaxMana()*costPercentage);
         MIN_COST = cost;
         this.cooldown = cooldown;
         MIN_COOLDOWN = cooldown;
@@ -195,6 +195,10 @@ public abstract class Spell extends Actor {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    public void setCostPercentage(float costPercentage) {
+        cost = (int)(owner.getMaxMana() * costPercentage);
     }
 
     public float getCdPercentage() {

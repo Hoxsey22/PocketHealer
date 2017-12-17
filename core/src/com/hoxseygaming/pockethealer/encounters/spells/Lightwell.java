@@ -5,6 +5,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
+import com.hoxseygaming.pockethealer.encounters.spells.Types.Periodical;
 
 /**
  * Created by Hoxsey on 6/18/2017.
@@ -17,8 +18,18 @@ public class Lightwell extends Periodical {
      * @param player
      */
     public Lightwell(Player player, int index, Assets assets)  {
-        super(player, "Lightwell", "This spell will heal the lowest health raid member over time.", 6, EffectType.HEALOVERTIME, 1, 5, 15,
-                70f, 60f, 1.5f, assets.getSound(assets.hotSFX), index, assets);
+        super(player, "Lightwell", "This spell will heal the lowest health raid member over time.",
+                6,
+                EffectType.HEALOVERTIME,
+                1,
+                5,
+                5f,
+                70f,
+                60f,
+                1.5f,
+                assets.getSound(assets.hotSFX),
+                index,
+                assets);
         image = this.assets.getTexture(assets.lightWellIcon);
     }
 

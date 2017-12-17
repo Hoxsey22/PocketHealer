@@ -1,8 +1,11 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BackStab;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Cleave;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -18,7 +21,11 @@ public class BanditLeader extends Boss {
     public BanditLeader(Assets assets) {
         super("Bandit Leader","The sorcerer is partnering up the bandit leader and is having" +
                 " him steal precious materials for her.\nThe bandit leader does moderate damage to the tank " +
-                "and will back stab a random raid member dealing heavy damage and leaving behind a bleed.", 3000,new Raid(5, assets), assets);
+                "and will back stab a random raid member dealing heavy damage and leaving behind a bleed.",
+                180,
+                new Raid(9, assets),
+                assets);
+        System.out.println(name+" hp: "+getHp());
         setId(6);
         create();
     }
@@ -26,11 +33,14 @@ public class BanditLeader extends Boss {
     @Override
     public void create() {
         super.create();
-        damage = 20;
+        setDamage(20);
 
         autoAttack = new AutoAttack(this, 1f);
         backStab = new BackStab(this);
-        loadMechanics(autoAttack, backStab);
+        TankSwap tankSwap = new TankSwap(this, 8f);
+        Cleave cleave = new Cleave(this, 5f);
+        cleave.setNumOfTargets(3);
+        loadMechanics(autoAttack, backStab,tankSwap, cleave);
     }
 
     @Override
@@ -38,7 +48,7 @@ public class BanditLeader extends Boss {
         if(getHpPercent() < 0.25 && !isEnrage)    {
             //setDamage(30);
             autoAttack.setDamage((int)((float)damage*1.5f));
-            backStab.setDamage((int)((float)damage*1.5f));
+            backStab.setDamage((int)((float)damage*3));
             isEnrage = true;
             displayAnnouncementTimer(name+" is now enraged!");
         }
@@ -48,7 +58,7 @@ public class BanditLeader extends Boss {
     public void reset() {
         super.reset();
         autoAttack.setDamage(damage);
-        backStab.setDamage(damage);
+        backStab.setDamage(damage*2);
         isEnrage = false;
     }
 

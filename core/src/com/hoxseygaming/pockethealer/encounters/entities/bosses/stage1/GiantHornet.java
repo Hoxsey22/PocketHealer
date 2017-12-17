@@ -1,6 +1,7 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Sting;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
@@ -18,7 +19,9 @@ public class GiantHornet extends Boss {
         super("Giant Hornet","A sorcerer has put a spell on a hornet causing it to grow into " +
                 "a giant. It needs to be stopped before someone gets hurt.\nThe giant hornet is fast, but does" +
                 "small damage to the tanks and will sting a random raid member causing the target to be " +
-                "poisoned. ", 2500, new Raid(5, assets), assets);
+                "poisoned. ", 150,
+                new Raid(6, assets),
+                assets);
         setId(4);
         create();
     }

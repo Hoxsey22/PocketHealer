@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.spells;
 
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
+import com.hoxseygaming.pockethealer.encounters.spells.Types.Periodical;
 
 /**
  * Created by Hoxsey on 6/18/2017.

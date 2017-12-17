@@ -33,7 +33,7 @@ public class BleedEffect extends Debuff {
     @Override
     public void applyEffect() {
         getTarget().takeDamage(getModValue());
-        //setModValue(getModValue()+5);
+        setModValue(getModValue()+5);
     }
 
     @Override

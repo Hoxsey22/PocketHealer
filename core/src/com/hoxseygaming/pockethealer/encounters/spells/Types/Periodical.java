@@ -1,4 +1,4 @@
-package com.hoxseygaming.pockethealer.encounters.spells;
+package com.hoxseygaming.pockethealer.encounters.spells.Types;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.utils.Timer;
@@ -25,15 +25,15 @@ public abstract class Periodical extends InstantCast {
      * @param effectType
      * @param numOfTargets
      * @param output
-     * @param cost
+     * @param costPercentage
      * @param cooldown
      * @param spellSFX
      * @param index
      * @param assets
      */
     public Periodical(Player player, String name, String description, int levelRequirement, EffectType effectType, int numOfTargets,
-                      int output, int cost, float cooldown, float duration, float speed, Sound spellSFX, int index, Assets assets) {
-        super(player, name, description, levelRequirement, effectType, numOfTargets, output, cost, cooldown, spellSFX, index, assets);
+                      int output, float costPercentage, float cooldown, float duration, float speed, Sound spellSFX, int index, Assets assets) {
+        super(player, name, description, levelRequirement, effectType, numOfTargets, output, costPercentage, cooldown, spellSFX, index, assets);
         this.duration = duration;
         MIN_DURATION = duration;
         this.speed = speed;

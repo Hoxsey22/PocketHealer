@@ -1,6 +1,7 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BullCharge;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FireBreath;
@@ -20,7 +21,10 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
     public Proctor(Assets assets) {
         super("Proctor","A long dirt trail leading to the Sorcerer's castle is being protected by the Proctor." +
-                " A giant monster with heavy hand and with running speeds hard to dodge. He also has a fire breath that can be very devastating.", 12000, new Raid(10, assets), assets);
+                " A giant monster with heavy hand and with running speeds hard to dodge. He also has a fire breath that can be very devastating.",
+                210,
+                new Raid(12, assets),
+                assets);
         setId(9);
         level = 3;
         damage = 20;
@@ -33,7 +37,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
         autoAttack = new AutoAttack(this);
         bullCharge = new BullCharge(this);
-        fireBreath = new FireBreath(this);
+        fireBreath = new FireBreath(this,8,20f);
         tankSwap = new TankSwap(this);
 
         loadMechanics(autoAttack, tankSwap, bullCharge, fireBreath);

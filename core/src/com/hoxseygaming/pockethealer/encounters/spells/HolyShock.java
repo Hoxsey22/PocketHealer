@@ -5,6 +5,7 @@ import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.BarrierEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
+import com.hoxseygaming.pockethealer.encounters.spells.Types.InstantCast;
 
 /**
  * Created by Hoxsey on 12/6/2017.
@@ -24,8 +25,8 @@ public class HolyShock extends InstantCast {
                 0,
                 EffectType.HEAL,
                 1,
-                50,
-                25,
+                35,
+                2f,
                 12f,
                 assets.getSound(assets.healSFX),
                 0,

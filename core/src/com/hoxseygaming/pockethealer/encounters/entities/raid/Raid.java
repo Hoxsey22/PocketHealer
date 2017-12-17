@@ -68,25 +68,35 @@ public class Raid extends Group {
 
     public void preMade(int size)   {
         switch(size) {
-            case 5:
+            case 3:
                 addTank(1);
                 addHealer(1);
-                addDps(3);
+                addDps(1);
                 break;
-            case 10:
+            case 6:
+                addTank(1);
+                addHealer(1);
+                addDps(4);
+                break;
+            case 9:
                 addTank(2);
                 addHealer(2);
-                addDps(6);
+                addDps(5);
+                break;
+            case 12:
+                addTank(2);
+                addHealer(3);
+                addDps(7);
                 break;
             case 15:
                 addTank(2);
-                addHealer(3);
-                addDps(10);
-                break;
-            case 20:
-                addTank(2);
                 addHealer(4);
-                addDps(14);
+                addDps(9);
+                break;
+            case 18:
+                addTank(2);
+                addHealer(5);
+                addDps(11);
                 break;
         }
     }
@@ -310,6 +320,14 @@ public class Raid extends Group {
         for(int i = 0; i < raidMembers.size(); i++)   {
             healingTracker.addHealingTracker(raidMembers.get(i).getHealingTracker());
         }
+    }
+
+    public int getRaidDamage()  {
+        int totalDamage = 0;
+        for(int i = 0; i < raidMembers.size(); i++)   {
+            totalDamage = totalDamage + raidMembers.get(i).getDamage();
+        }
+        return totalDamage;
     }
 
     public HealingTracker getHealingTracker()   {

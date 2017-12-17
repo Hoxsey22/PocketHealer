@@ -1,10 +1,11 @@
-package com.hoxseygaming.pockethealer.encounters.spells;
+package com.hoxseygaming.pockethealer.encounters.spells.Types;
 
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 /**
  * Created by Hoxsey on 8/31/2017.
@@ -28,14 +29,14 @@ public abstract class ChannelCast extends Spell {
      * @param castTime
      * @param effectType
      * @param output
-     * @param cost
+     * @param costPercentage
      * @param cooldown
      * @param index
      * @param assets
      */
     public ChannelCast(Player player, String name, String description, int levelRequirement, float castTime, int ticksPerCast, EffectType effectType,
-                       int output, int cost, float cooldown, int index, Assets assets) {
-        super(player, name, description, levelRequirement,effectType, output, cost, cooldown, index, assets);
+                       int output, float costPercentage, float cooldown, int index, Assets assets) {
+        super(player, name, description, levelRequirement,effectType, output, costPercentage, cooldown, index, assets);
         //this.spellSFX = spellSFX;
         this.castTime = castTime;
         MIN_CAST_TIME = castTime;

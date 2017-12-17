@@ -1,6 +1,7 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Outbreak;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonPotion;
@@ -18,7 +19,10 @@ public class Apprentice extends Boss {
 
     public Apprentice(Assets assets) {
         super("Apprentice"," The Sorcerer is cornered with no where to go, but his apprentice steps in so his master can escape. He very " +
-                        "skilled with giving his enemies diseases and poisoning, all while casting fireballs.", 15000,new Raid(10,assets), assets);
+                        "skilled with giving his enemies diseases and poisoning, all while casting fireballs.",
+                240,
+                new Raid(12,assets),
+                assets);
         setId(10);
         create();
     }

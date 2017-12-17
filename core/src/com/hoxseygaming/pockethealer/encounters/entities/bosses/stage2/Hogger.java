@@ -1,6 +1,7 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Cleave;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
@@ -18,7 +19,11 @@ public class Hogger extends Boss {
 
     public Hogger(Assets assets) {
         super("Hogger","Hogger, the predecessor of the bandit leader, finds out that his replacement has been defeated. So Hogger has stepped back in his role" +
-                " and is ready to extract his revenge. He carries a mighty axe that allows him to cleave so be careful.\n ", 3000, new Raid(10,assets), assets);
+                " and is ready to extract his revenge. He carries a mighty axe that allows him to cleave so be careful.\n ",
+                210,
+                new Raid(12,assets),
+                assets);
+
         setId(7);
         create();
     }

@@ -1,6 +1,7 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Outbreak;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonPotion;
@@ -17,7 +18,7 @@ public class DeathDragon extends Boss {
     public Fireball fireball;
 
     public DeathDragon(Assets assets) {
-        super("Death Dragon","", 15000,new Raid(12,assets), assets);
+        super("Death Dragon","", 240,new Raid(12,assets), assets);
         setId(16);
         create();
     }

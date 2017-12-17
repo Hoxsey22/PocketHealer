@@ -7,20 +7,20 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Apprentice;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.BanditLeader;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.BloodQueen;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.GiantHornet;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Golem;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hogger;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Hydra;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.MotherSpider;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Proctor;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Sorcerer;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Tiger;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.WampusCat;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.WildBoar;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.ZombieHorde;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Apprentice;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.BanditLeader;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.BloodQueen;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.GiantHornet;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Golem;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Hogger;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.Hydra;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.MotherSpider;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Proctor;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Sorcerer;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Tiger;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.WampusCat;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.WildBoar;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.ZombieHorde;
 
 /**
  * Created by Hoxsey on 7/30/2017.

@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.spells;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.Types.InstantCast;
 
 /**
  * Created by Hoxsey on 12/6/2017.
@@ -20,7 +21,7 @@ public class Dispel extends InstantCast {
                 EffectType.HEAL,
                 1,
                 0,
-                50,
+                4f,
                 8f,
                 assets.getSound(assets.healSFX),
                 0,

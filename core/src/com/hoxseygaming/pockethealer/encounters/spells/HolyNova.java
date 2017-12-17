@@ -6,6 +6,7 @@ import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.RenewingNovaEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
+import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class HolyNova extends Castable {
 
     public HolyNova(Player player, int index, Assets assets) {
         super(player, "Holy Nova", "Heals multiple targets with the lowest health. Great for getting the raid healed up.",
-                3, 1.5f, EffectType.HEALMULTIPLE, 30, 30, 5f,assets.getSound(assets.healSFX), index,assets);
+                3, 2f, EffectType.HEALMULTIPLE, 45, 4.5f, 1f,assets.getSound(assets.healSFX), index,assets);
         image = assets.getTexture(assets.holyNovaIcon);
         sfx = assets.getSound(assets.hotSFX);
         lifebooms = new ArrayList<>();

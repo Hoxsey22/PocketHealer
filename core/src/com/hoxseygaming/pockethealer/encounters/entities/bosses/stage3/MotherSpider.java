@@ -1,6 +1,7 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Consume;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonBite;
@@ -24,7 +25,10 @@ public class MotherSpider extends Boss {
         super("Mother Spider"," The Sorcerer is now defeated, but his powers were coming from another source and it" +
                 " has to be stopped and through the cave is getting one step closer. In the middle of the cave is " +
                 "The Mother Spider and she is upset about her children being stepped on. She has a poisonous bite and " +
-                "will web her victims before she eats them.", 20000,new Raid(10,assets), assets);
+                "will web her victims before she eats them.",
+                240,
+                new Raid(15,assets),
+                assets);
         setId(12);
         create();
     }

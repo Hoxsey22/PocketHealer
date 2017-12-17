@@ -7,6 +7,7 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.Buff;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.LifeboomEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.RenewEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
+import com.hoxseygaming.pockethealer.encounters.spells.Types.Periodical;
 
 /**
  * Created by Hoxsey on 12/2/2017.
@@ -23,8 +24,14 @@ public class Renew2 extends Periodical {
      * @param assets
      */
     public Renew2(Player player, int index, Assets assets) {
-        super(player, "Renew", "A small heal that is healed over time.", 0, EffectType.HEALOVERTIME, 1, 7, 12,
-                1f, 10f, 2f, assets.getSound(assets.hotSFX), index, assets);
+        super(player, "Renew", "A small heal that is healed over time.",
+                0, EffectType.HEALOVERTIME,
+                1,
+                7,
+                1f,
+                0.5f,
+                10f,
+                2f, assets.getSound(assets.hotSFX), index, assets);
         image = this.assets.getTexture(assets.renewIcon);
 
     }
@@ -46,7 +53,7 @@ public class Renew2 extends Periodical {
             output = 10;
             duration = 12;
             speed = 1.5f;
-            cost = 9;
+            setCostPercentage(1.5f);
         }
         if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER).isSelected())    {
             setCriticalChance(30);

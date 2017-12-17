@@ -1,9 +1,10 @@
-package com.hoxseygaming.pockethealer.encounters.spells;
+package com.hoxseygaming.pockethealer.encounters.spells.Types;
 
 import com.badlogic.gdx.audio.Sound;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 import java.util.ArrayList;
 
@@ -25,15 +26,15 @@ public abstract class InstantCast extends Spell {
      * @param description
      * @param effectType
      * @param output
-     * @param cost
+     * @param costPercentage
      * @param cooldown
      * @param spellSFX
      * @param index
      * @param assets
      */
     public InstantCast(Player player, String name, String description, int levelRequirement, EffectType effectType,
-                       int numOfTargets, int output, int cost, float cooldown, Sound spellSFX, int index, Assets assets) {
-        super(player, name, description,levelRequirement, effectType, output, cost, cooldown, index, assets);
+                       int numOfTargets, int output, float costPercentage, float cooldown, Sound spellSFX, int index, Assets assets) {
+        super(player, name, description,levelRequirement, effectType, output, costPercentage, cooldown, index, assets);
         this.spellSFX = spellSFX;
         this.numOfTargets = numOfTargets;
         MIN_NUM_OF_TARGETS = numOfTargets;

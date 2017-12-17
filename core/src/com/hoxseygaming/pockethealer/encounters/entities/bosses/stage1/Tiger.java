@@ -1,6 +1,7 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Pounce;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
@@ -17,7 +18,10 @@ public class Tiger extends Boss {
     public Tiger(Assets assets) {
         super("Tiger","A tiger is eating all the live stock and harming some people that " +
                 "try to stop him.\nThe tiger will do moderate damage to the tank and will pounce on raid" +
-                " members doing moderate damage and leaving behind a bleed.", 2500, new Raid(5,assets), assets);
+                " members doing moderate damage and leaving behind a bleed.",
+                150,
+                new Raid(6,assets),
+                assets);
         setId(3);
         create();
     }
@@ -27,6 +31,7 @@ public class Tiger extends Boss {
         super.create();
         damage = 15;
         pounce = new Pounce(this, 2);
+        pounce.setNumOfTargets(2);
         pounce.setSpeed(15f);
         pounce.setAnnounce(true);
         autoAttack = new AutoAttack(this, 1f);

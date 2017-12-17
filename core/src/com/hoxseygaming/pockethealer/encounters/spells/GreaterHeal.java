@@ -8,13 +8,12 @@ import com.hoxseygaming.pockethealer.Player;
  */
 public class GreaterHeal extends Heal {
 
-
     public GreaterHeal(Player player, int index, Assets assets) {
         super(player, index, assets);
         setName("Greater Heal");
         setDescription("A very strong heal, but very slow cast time. Should be used to preemptively heal a target taking heavy damage. ");
         setImage(assets.getTexture(assets.greaterHealerIcon));
-        setCost(20);
+        setCdPercentage(3.2f);
         setCastTime(2f);
         MIN_CAST_TIME = 2f;
         setOutput(60);

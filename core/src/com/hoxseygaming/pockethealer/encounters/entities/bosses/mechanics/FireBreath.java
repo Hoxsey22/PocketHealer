@@ -21,6 +21,11 @@ public class FireBreath extends Mechanic{
         dice = new Random();
     }
 
+    public FireBreath(Boss owner, int damage, float speed) {
+        super("Fire Breath", damage, speed, owner);
+        dice = new Random();
+    }
+
     @Override
     public void start() {
         super.start();

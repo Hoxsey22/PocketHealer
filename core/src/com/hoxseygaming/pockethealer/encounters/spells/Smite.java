@@ -5,6 +5,7 @@ import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.BarrierEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
+import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,18 @@ public class Smite extends Castable {
      * @param assets
      */
     public Smite(Player player, int index, Assets assets) {
-        super(player, "Smite", "A spell that will inflict damage onto the boss and will heal the lowest raid member for half the damage done to the boss.", 5,0.5f, EffectType.DAMAGEHEAL, 5, 5, 1f, assets.getSound(assets.healSFX), index, assets);
+        super(player, "Smite",
+                "A spell that will inflict damage onto the boss and will heal the lowest raid member for half the damage done to the boss.",
+                5,
+                0.5f,
+                EffectType.DAMAGEHEAL,
+                10,
+                5,
+                0.5f,
+                assets.getSound(assets.healSFX),
+                index,
+                assets);
+
         image = assets.getTexture(assets.smiteIcon);
         barriers = new ArrayList<>();
     }
@@ -46,6 +58,7 @@ public class Smite extends Castable {
         }
         if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
             castTime = castTime - 0.25f;
+            cooldown = cooldown - 0.25f;
         }
     }
 

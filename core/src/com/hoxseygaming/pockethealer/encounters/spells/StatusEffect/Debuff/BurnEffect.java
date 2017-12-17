@@ -16,17 +16,14 @@ public class BurnEffect extends Debuff {
                 "BurnEffect",
                 "Burn the target increasing in damage each tick and will remain until the target is over 90% health",
                 owner.assets.getTexture(owner.assets.burnIcon), //need to change the icon
-                300f,
+                10f,
                 2f,
                 10,
-                false);
+                true);
     }
 
     @Override
     public void additionalConditions() {
-        if(getTarget().getHealthPercent() > 0.89)   {
-            remove();
-        }
     }
 
     @Override

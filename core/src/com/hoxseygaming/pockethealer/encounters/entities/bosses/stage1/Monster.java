@@ -1,6 +1,7 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Bite;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
@@ -15,7 +16,7 @@ public class Monster extends Boss {
     public AutoAttack autoAttack;
 
     public Monster(Assets assets) {
-        super("Monster","", 1500, new Raid(5,assets), assets);
+        super("Monster","", 1500, new Raid(3,assets), assets);
         setId(1);
         create();
     }

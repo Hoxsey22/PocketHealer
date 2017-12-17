@@ -5,6 +5,7 @@ import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.PrayerOfMendingEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
+import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ public class PrayerOfMending extends Castable {
 
     public PrayerOfMending(Player player, int index, Assets assets) {
         super(player, "Prayer of Mending","When the target takes damage, the target will be healed and Prayer of Mending", 0,1.5f, EffectType.HEAL,
-                30, 20, 12,assets.getSound(assets.healSFX), index, assets);
+                35, 2f, 8,assets.getSound(assets.healSFX), index, assets);
         setImage(assets.getTexture(assets.prayerOfMendingIcon));
         isSelectedCriticalHealerII = false;
         isSelectedResurgence = false;

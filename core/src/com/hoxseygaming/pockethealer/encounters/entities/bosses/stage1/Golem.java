@@ -1,6 +1,7 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Earthquake;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
@@ -17,7 +18,7 @@ public class Golem extends Boss {
     public Golem(Assets assets) {
         super("Golem","The sorcerer is at it again and has summoned a Golem to stop anyone " +
                 "from reaching her.\nThe golem does heavy damage to the tank and will throw rocks at " +
-                "two raid members dealing heavy damage.", 3000, new Raid(5,assets), assets);
+                "two raid members dealing heavy damage.", 180, new Raid(6,assets), assets);
         setId(5);
         create();
     }

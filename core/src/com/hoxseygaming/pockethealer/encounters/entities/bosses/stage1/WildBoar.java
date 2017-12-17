@@ -1,6 +1,7 @@
-package com.hoxseygaming.pockethealer.encounters.entities.bosses;
+package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BullCharge;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
@@ -17,7 +18,10 @@ public class WildBoar extends Boss {
     public WildBoar(Assets assets) {
         super("Wild Boar","A wild boar is rampaging through the town and hurting innocent " +
                 "people.\n The wild boar will do moderate damage to the tank and will charge a random " +
-                "raid member every once in a while.", 2200, new Raid(5,assets), assets);
+                "raid member every once in a while.",
+                120,
+                new Raid(6,assets),
+                assets);
         setId(2);
         create();
     }

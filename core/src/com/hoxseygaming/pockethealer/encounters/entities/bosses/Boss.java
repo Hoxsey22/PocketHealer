@@ -43,8 +43,8 @@ public abstract class Boss extends Entity {
         rewardPackage = new RewardPackage();
     }
 
-    public Boss(String name, String description, int maxHp, Raid enemies, Assets assets) {
-        super(name, maxHp, assets);
+    public Boss(String name, String description, int bossLength, Raid enemies, Assets assets) {
+        super(name, enemies.getRaidDamage()*bossLength, assets);
         setBounds(20, 740, 445, 40);
         this.description = description;
         this.enemies = enemies;
