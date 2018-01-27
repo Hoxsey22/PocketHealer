@@ -12,7 +12,7 @@ public class BurnEffect extends Debuff {
      */
     public BurnEffect(Boss owner) {
         super(owner,
-                5,
+                2,
                 "BurnEffect",
                 "Burn the target increasing in damage each tick and will remain until the target is over 90% health",
                 owner.assets.getTexture(owner.assets.burnIcon), //need to change the icon
@@ -23,13 +23,18 @@ public class BurnEffect extends Debuff {
     }
 
     @Override
+    public void startConditions() {
+
+    }
+
+    @Override
     public void additionalConditions() {
     }
 
     @Override
     public void applyEffect() {
         getTarget().takeDamage(getModValue());
-        setModValue(getModValue()+5);
+        //setModValue(getModValue()+5);
     }
 
     @Override

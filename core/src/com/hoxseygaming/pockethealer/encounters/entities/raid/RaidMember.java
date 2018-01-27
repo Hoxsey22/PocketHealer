@@ -29,7 +29,8 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     public RaidMember(int id, String role, Assets assets)  {
         super(id,role,assets);
-        healthBar = new HealthBar(this,(int)getX(),(int)getY(),(int)getWidth(),(int) getHeight());
+        //healthBar = new HealthBar(this,(int)getX(),(int)getY(),(int)getWidth(),(int) getHeight());
+        healthBar = new HealthBar(this);
         frame = assets.getTexture("raid_frame_idle.png");
         setRoleImage();
         floatingTextManager = new FloatingTextManager(this, assets);
@@ -45,6 +46,10 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         if(statusEffects.contains("Prayer of Mending"))    {
             statusEffects.getStatusEffect("Prayer of Mending").applyEffect();
         }
+        if(isDead)    {
+            statusEffects.clear();
+        }
+
     }
 
     @Override
@@ -106,7 +111,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     @Override
     public String toString() {
-        return id+":"+role+" hp:"+getHealthPercent();
+        return id+":"+role+" hp:"+getHp();
     }
 
     public void addStatusEffect(StatusEffect newStatusEffect)   {
@@ -120,6 +125,22 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     public void setStatusEffects(StatusEffectList statusEffects) {
         this.statusEffects = statusEffects;
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        switch (role)   {
+            case "Tank":
+                damage = 5;
+                break;
+            case "Healer":
+                damage = 2;
+                break;
+            case "Dps":
+                damage = 10;
+                break;
+        }
     }
 
     @Override

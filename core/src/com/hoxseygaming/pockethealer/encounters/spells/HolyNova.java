@@ -26,7 +26,7 @@ public class HolyNova extends Castable {
 
     public HolyNova(Player player, int index, Assets assets) {
         super(player, "Holy Nova", "Heals multiple targets with the lowest health. Great for getting the raid healed up.",
-                3, 2f, EffectType.HEALMULTIPLE, 45, 4.5f, 1f,assets.getSound(assets.healSFX), index,assets);
+                3, 2f, EffectType.HEALMULTIPLE, 25, 4.5f, 1f,assets.getSound(assets.healSFX), index,assets);
         image = assets.getTexture(assets.holyNovaIcon);
         sfx = assets.getSound(assets.hotSFX);
         lifebooms = new ArrayList<>();
@@ -65,8 +65,6 @@ public class HolyNova extends Castable {
 
         if(numOfTargets > 1) {
             getRandomTargets();
-            System.out.println("Number of random targets: "+targets.size());
-            System.out.println(targets.toString());
             for (int i = 0; i < targets.size(); i++) {
                 isCriticalHealerII(targets.get(i));
                 isRenewingNova(targets.get(i));

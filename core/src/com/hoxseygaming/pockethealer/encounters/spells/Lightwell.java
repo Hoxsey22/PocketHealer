@@ -22,7 +22,7 @@ public class Lightwell extends Periodical {
                 6,
                 EffectType.HEALOVERTIME,
                 1,
-                5,
+                3,
                 5f,
                 70f,
                 60f,
@@ -47,7 +47,6 @@ public class Lightwell extends Periodical {
                 currentTime = currentTime + speed;
 
                 if(currentTime >= duration )    {
-                    System.out.println(name+" expired");
                     durationTimer.stop();
                 }
                 lowest.receiveHealing(output,criticalChance.isCritical());

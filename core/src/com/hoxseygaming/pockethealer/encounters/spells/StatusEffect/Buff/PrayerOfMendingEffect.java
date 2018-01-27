@@ -28,6 +28,11 @@ public class PrayerOfMendingEffect extends Buff{
     }
 
     @Override
+    public void startConditions() {
+
+    }
+
+    @Override
     public void additionalConditions() {
 
     }
@@ -38,7 +43,7 @@ public class PrayerOfMendingEffect extends Buff{
 
         jumpCount--;
         if(jumpCount > 1) {
-            ArrayList<RaidMember> temp = getOwner().getRaid().getRandomRaidMember(1, getOwner().getRaid().getBuffLessRaidMembers(this));
+            ArrayList<RaidMember> temp = getOwner().getRaid().getRandomRaidMember(1, getOwner().getRaid().getBuffLessRaidMembers(this.getName()));
             if(temp.size() < 1)    {
                 return;
             }

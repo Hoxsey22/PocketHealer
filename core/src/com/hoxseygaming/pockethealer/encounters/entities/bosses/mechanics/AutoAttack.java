@@ -33,17 +33,13 @@ public class AutoAttack extends Mechanic {
                     owner.nextThreat();
                 if(!owner.getTarget().isDead()) {
                     owner.getTarget().takeDamage(damage);
-                    System.out.println("AUTO ATTACK! "+owner.getTarget().getId()+"taking "+damage);
                     if(owner.getTarget().isDead())
                         owner.nextThreat();
                 }
                 if (owner.getEnemies().isRaidDead()) {
-                    System.out.println("RAID IS DEAD!");
-                    System.out.println("Auto Attack Timer has stopped");
                     stop();
                     return;
                 }
-                System.out.println("AUTO ATTACK! Done.");
             }
         },speed,speed);
     }

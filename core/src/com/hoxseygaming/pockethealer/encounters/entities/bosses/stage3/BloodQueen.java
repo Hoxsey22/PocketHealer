@@ -2,12 +2,12 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BloodBite;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BloodBoil;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BloodBolts;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BloodLink;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Cleave;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.ConsumingShadow;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.SwarmingShadow;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.VampiricBite;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -16,41 +16,57 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class BloodQueen extends Boss {
 
+    private BloodLink bloodLink;
+    private Cleave cleave;
+    private SwarmingShadow swarmingShadow;
+    private ConsumingShadow consumingShadow;
+    private VampiricBite vampiricBite;
+
     public BloodQueen(Assets assets) {
         super("Blood Queen",
                 "",
-                240,
-                new Raid(15,assets),
+                480,
+                new Raid(12,assets),
                 assets);
         setId(14);
         create();
     }
 
     @Override
+    public void update() {
+
+    }
+
+    @Override
     public void create() {
         super.create();
-        damage = 3;
+        setDamage(5);
 
-        AutoAttack autoAttack = new AutoAttack(this, 0.5f);
-
-        TankSwap tankSwap = new TankSwap(this, 10f);
-
-        Cleave cleave = new Cleave(this, 3f);
+        bloodLink = new BloodLink(this, 2f);
+        cleave = new Cleave(this, 4f);
         cleave.setNumOfTargets(4);
+        vampiricBite = new VampiricBite(this);
+        consumingShadow = new ConsumingShadow(this, 8f);
 
-        BloodBite bloodBite = new BloodBite(this, 15f);
+        swarmingShadow = new SwarmingShadow(this, 6, 8f);
 
-        BloodBoil bloodBoil = new BloodBoil(this, 12f);
-        bloodBoil.setNumOfTargets(4);
-
-        BloodBolts bloodBolts = new BloodBolts(this, 45f);
-
-
-        loadMechanics(autoAttack, tankSwap, cleave, bloodBite, bloodBoil, bloodBolts);
+        phaseManager.addPhase(new Phase(this, 70f, bloodLink, cleave, vampiricBite));
+        phaseManager.addPhase(new Phase(this, 32f, consumingShadow,swarmingShadow));
     }
 
     @Override
     public void reward() {
         rewardPackage.addRewardText(3);
+    }
+
+    @Override
+    public void start() {
+        enemies.start(this);
+        phaseManager.startPhase();
+    }
+
+    @Override
+    public void stop() {
+        phaseManager.cleanPhases();
     }
 }

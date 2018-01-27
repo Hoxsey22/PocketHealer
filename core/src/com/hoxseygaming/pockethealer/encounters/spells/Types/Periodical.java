@@ -72,7 +72,6 @@ public abstract class Periodical extends InstantCast {
                 }
                 if(currentTime >= duration && currentTime < duration + speed)    {
                     raidMember.removeEffect(EffectType.HEALOVERTIME);
-                    System.out.println(name+" expired");
                     checkLifeboom();
                     //stop();
                 }
@@ -106,7 +105,6 @@ public abstract class Periodical extends InstantCast {
                     durationTimer.stop();
                 if (currentTime >= duration) {
                     raidMember.removeEffect(effectType);
-                    System.out.println(name + " expired");
                     durationTimer.stop();
                     durationTimer.clear();
                 }

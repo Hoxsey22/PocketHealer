@@ -21,8 +21,8 @@ public class Dispel extends InstantCast {
                 EffectType.HEAL,
                 1,
                 0,
-                4f,
-                8f,
+                1.5f,
+                1f,
                 assets.getSound(assets.healSFX),
                 0,
                 assets);

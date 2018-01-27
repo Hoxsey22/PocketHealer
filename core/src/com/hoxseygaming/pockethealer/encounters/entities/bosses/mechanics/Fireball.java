@@ -35,7 +35,7 @@ public class Fireball extends Mechanic {
             public void run() {
                 ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
                 random.get(0).takeDamage(damage);
-                if(dice.nextInt(100)+0 > 70)    {
+                if(dice.nextInt(100)+0 > 95)    {
                     random.get(0).addStatusEffect(new BurnEffect(owner));
                 }
 

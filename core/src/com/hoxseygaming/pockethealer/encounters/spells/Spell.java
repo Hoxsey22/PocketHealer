@@ -98,7 +98,6 @@ public abstract class Spell extends Actor {
         cdTimer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                System.out.println("cd...");
                 cdCount();
                 if(getCdPercentage() <= 0f) {
                     cdTimer.clear();

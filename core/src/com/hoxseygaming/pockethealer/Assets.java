@@ -117,6 +117,10 @@ public class Assets {
     public String buttonHighlight = "button_select.png";
     public String title = "title.png";
     public String poisonIcon = "icons/poison_icon.png";
+    public String agonyIcon = "icons/agony_icon.png";
+    public String corruptionIcon = "icons/corruption_icon.png";
+    public String seedOfCorruptionIcon = "icons/seed_of_corruption_icon.png";
+    public String venomIcon = "icons/venom_icon.png";
 
     public String mapBg1 = "map_state/map.png";
     public String biteIcon = "icons/bite_icon.png";
@@ -143,6 +147,11 @@ public class Assets {
     public String spellBG = "spell_bg.png";
     public String dispelIcon = "icons/dispel_icon.png";
     public String burnIcon = "icons/burn_icon.png";
+
+    public String healingAbsorbIcon = "icons/healing_absorb_icon.png";
+    public String webIcon = "icons/web_icon.png";
+    public String swarmingShadowIcon = "icons/swarming_shadow_icon.png";
+
 
     public String map1 = "map_state/map_level_1.png";
     public String map2 = "map_state/map_level_2.png";
@@ -308,6 +317,15 @@ public class Assets {
         manager.load(prayerOfMendingIcon, Texture.class);
         manager.load(dispelIcon, Texture.class);
         manager.load(burnIcon, Texture.class);
+        manager.load(agonyIcon, Texture.class);
+        manager.load(corruptionIcon, Texture.class);
+        manager.load(seedOfCorruptionIcon, Texture.class);
+
+        manager.load(healingAbsorbIcon, Texture.class);
+        manager.load(webIcon, Texture.class);
+        manager.load(swarmingShadowIcon, Texture.class);
+        manager.load(venomIcon, Texture.class);
+
 
     }
 

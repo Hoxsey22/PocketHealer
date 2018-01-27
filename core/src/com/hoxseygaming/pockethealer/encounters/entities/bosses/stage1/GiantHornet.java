@@ -34,6 +34,8 @@ public class GiantHornet extends Boss {
         autoAttack = new AutoAttack(this, 0.5f);
         sting = new Sting(this);
         sting.setAnnounce(true);
+        sting.setSpeed(5f);
+        sting.setNumOfTargets(3);
         loadMechanics(autoAttack, sting);
     }
 

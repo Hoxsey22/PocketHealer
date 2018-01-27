@@ -4,7 +4,6 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
-import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.PoisonEffect;
 
 import java.util.ArrayList;
 
@@ -14,12 +13,10 @@ import java.util.ArrayList;
 
 public class BackStab extends Mechanic {
 
-    public ArrayList<Bleed> bleeds;
     public int numOfTargets;
 
     public BackStab(Boss owner) {
-        super("Back Stab", owner.damage*3, 10f, owner);
-        bleeds = new ArrayList<>();
+        super("Back Stab", owner.damage*3, 15f, owner);
         numOfTargets = 1;
     }
 
@@ -33,14 +30,11 @@ public class BackStab extends Mechanic {
                 ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
 
                 for (int i = 0; i < temp.size(); i++)   {
-                    if(temp.get(i) != null) {
-                        PoisonEffect poisonEffect = new PoisonEffect(owner);
-                        poisonEffect.setModValue(0);
+                    BleedEffect bleedEffect = new BleedEffect(owner);
+                    bleedEffect.setModValue(5);
 
-                        temp.get(i).takeDamage(damage);
-                        temp.get(i).addStatusEffect(new BleedEffect(owner));
-                        temp.get(i).addStatusEffect(poisonEffect);
-                    }
+                    temp.get(i).takeDamage(damage);
+                    temp.get(i).addStatusEffect(bleedEffect);
                 }
 
             }
@@ -50,9 +44,6 @@ public class BackStab extends Mechanic {
     @Override
     public void stop() {
         super.stop();
-        for(int i = 0; i < bleeds.size(); i++)   {
-            bleeds.get(i).stop();
-        }
     }
 
     public int getNumOfTargets() {

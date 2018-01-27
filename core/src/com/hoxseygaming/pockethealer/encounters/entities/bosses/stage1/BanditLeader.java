@@ -4,7 +4,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BackStab;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Cleave;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonStab;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
@@ -16,6 +16,7 @@ public class BanditLeader extends Boss {
 
     private AutoAttack autoAttack;
     private BackStab backStab;
+    private PoisonStab poisonStab;
     private boolean isEnrage;
 
     public BanditLeader(Assets assets) {
@@ -35,12 +36,17 @@ public class BanditLeader extends Boss {
         super.create();
         setDamage(20);
 
-        autoAttack = new AutoAttack(this, 1f);
+        autoAttack = new AutoAttack(this, 1.5f);
+
         backStab = new BackStab(this);
-        TankSwap tankSwap = new TankSwap(this, 8f);
-        Cleave cleave = new Cleave(this, 5f);
-        cleave.setNumOfTargets(3);
-        loadMechanics(autoAttack, backStab,tankSwap, cleave);
+        backStab.setNumOfTargets(2);
+
+        poisonStab = new PoisonStab(this);
+        poisonStab.setNumOfTargets(1);
+
+        TankSwap tankSwap = new TankSwap(this, 12f);
+
+        loadMechanics(autoAttack, backStab, poisonStab,tankSwap);
     }
 
     @Override
@@ -49,6 +55,7 @@ public class BanditLeader extends Boss {
             //setDamage(30);
             autoAttack.setDamage((int)((float)damage*1.5f));
             backStab.setDamage((int)((float)damage*3));
+            poisonStab.setDamage((int)((float)damage*3));
             isEnrage = true;
             displayAnnouncementTimer(name+" is now enraged!");
         }

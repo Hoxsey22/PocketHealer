@@ -29,7 +29,7 @@ public class Consume extends Mechanic {
             ArrayList<RaidMember> diseasedTargets;
             @Override
             public void run() {
-                diseasedTargets = findDisease();
+                diseasedTargets = findHealingAbsorb();
                 for(int i = 0; i <  diseasedTargets.size(); i++)   {
                     diseasedTargets.get(i).takeDamage(200);
                     owner.receiveHealing(diseasedTargets.get(i).getMaxHp());
@@ -41,7 +41,7 @@ public class Consume extends Mechanic {
         },speed,speed);
     }
 
-    public ArrayList<RaidMember> findDisease()   {
+    public ArrayList<RaidMember> findHealingAbsorb()   {
         ArrayList<RaidMember> diseasedTargets = new ArrayList<>();
         for(int i = 0; i < getRaid().raidMembers.size(); i++)   {
             if(getRaid().raidMembers.get(i).containsEffects(Debuff.DISEASE))   {

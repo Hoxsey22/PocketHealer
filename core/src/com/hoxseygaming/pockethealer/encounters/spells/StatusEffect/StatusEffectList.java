@@ -47,6 +47,16 @@ public class StatusEffectList {
     }
 
     /**
+     * This method will remove any status effects that can be dispel.
+     */
+    public void clear()    {
+
+        for(int i = 0; i < statusEffects.size(); i++)   {
+            statusEffects.get(i).remove();
+        }
+    }
+
+    /**
      * Finds the status effect based on the name.
      * @param name
      * @return
@@ -102,6 +112,15 @@ public class StatusEffectList {
             }
         }
         return newOutput;
+    }
+
+    public boolean contains(int id)   {
+        for (int i = 0; i < statusEffects.size(); i++){
+            if(statusEffects.get(i).getId() == id)  {
+                return true;
+            }
+        }
+        return false;
     }
 
 

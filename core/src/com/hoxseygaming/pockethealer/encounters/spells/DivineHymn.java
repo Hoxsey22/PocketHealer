@@ -21,7 +21,7 @@ public class DivineHymn extends ChannelCast {
                 EffectType.HEALALL,
                 25,
                 5f,
-                45f,
+                60f,
                 index,
                 assets);
         image = assets.getTexture(assets.divineHymnIcon);

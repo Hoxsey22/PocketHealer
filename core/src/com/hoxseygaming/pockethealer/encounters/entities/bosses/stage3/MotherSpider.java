@@ -3,10 +3,10 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Consume;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonBite;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FeedingTime;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Leap;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.WebTrap;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -16,18 +16,14 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 public class MotherSpider extends Boss {
 
     private AutoAttack autoAttack;
-    private PoisonBite poisonBite;
-    private WebTrap webTrap;
-    private Consume consume;
     private TankSwap tankSwap;
+    private Leap leap;
+    private FeedingTime feedingTime;
 
     public MotherSpider(Assets assets) {
-        super("Mother Spider"," The Sorcerer is now defeated, but his powers were coming from another source and it" +
-                " has to be stopped and through the cave is getting one step closer. In the middle of the cave is " +
-                "The Mother Spider and she is upset about her children being stepped on. She has a poisonous bite and " +
-                "will web her victims before she eats them.",
+        super("Mother Spider","",
                 240,
-                new Raid(15,assets),
+                new Raid(12,assets),
                 assets);
         setId(12);
         create();
@@ -38,19 +34,19 @@ public class MotherSpider extends Boss {
         super.create();
         damage = 20;
 
-        autoAttack= new AutoAttack(this, 2f);
+        autoAttack = new AutoAttack(this, 2f);
+        tankSwap = new TankSwap(this, 12f);
+        leap = new Leap(this,50,15f,5);
+        feedingTime = new FeedingTime(this,5f, 20f);
 
-        tankSwap = new TankSwap(this, 8f);
+        phaseManager.addPhase(new Phase(this, 70f, autoAttack,tankSwap,leap));
+        phaseManager.addPhase(new Phase(this, 30f, feedingTime));
+    }
 
-        poisonBite = new PoisonBite(this, 8f);
-        poisonBite.setNumOfTargets(4);
-
-        webTrap = new WebTrap(this, 16f);
-        webTrap.setNumOfTarget(4);
-
-        consume = new Consume(this, 15f);
-
-        loadMechanics(autoAttack, tankSwap, poisonBite, webTrap, consume);
+    @Override
+    public void start() {
+        enemies.start(this);
+        phaseManager.startPhase();
     }
 
     @Override

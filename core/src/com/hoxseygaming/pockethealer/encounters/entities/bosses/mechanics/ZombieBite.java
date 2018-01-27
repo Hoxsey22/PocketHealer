@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.ZombieBiteEffect;
 
 import java.util.ArrayList;
 
@@ -33,9 +34,7 @@ public class ZombieBite extends Mechanic {
                 ArrayList<RaidMember> temp = getRaid().getRandomRaidMember(numOfTargets);
                 for(int i = 0; i < temp.size(); i++) {
                     temp.get(i).takeDamage(damage);
-                    Disease disease = new Disease(owner);
-                    disease.setTarget(temp.get(i));
-                    disease.start();
+                    temp.get(i).addStatusEffect(new ZombieBiteEffect(owner));
                 }
             }
         },speed,speed);

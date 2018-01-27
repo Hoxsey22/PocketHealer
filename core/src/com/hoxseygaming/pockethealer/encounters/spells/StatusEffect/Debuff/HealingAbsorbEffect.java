@@ -1,0 +1,57 @@
+package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff;
+
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
+
+/**
+ * Created by Hoxsey on 12/10/2017.
+ */
+
+public class HealingAbsorbEffect extends Debuff {
+
+    /**
+     * A debuff is a negative status effect that is commonly from a boss and is
+     * put on a raid member.
+     *
+     * @param owner: The owner of the debuff.
+     * @param modValue: The value of the debuff.
+     */
+    public HealingAbsorbEffect(Boss owner, int modValue) {
+        super(owner,
+                3,
+                "Healing Absorb Effect",
+                "A healing absorb shield that diminishes when healed. A member cannot be healed " +
+                        "until the healing absorb shield is removed.",
+                owner.assets.getTexture(owner.assets.healingAbsorbIcon),
+                300f,
+                0.1f,
+                modValue,
+                false);
+    }
+
+    @Override
+    public void startConditions() {
+        getTarget().applyHealingAbsorb(getModValue());
+    }
+
+    @Override
+    public void additionalConditions() {
+        if(getTarget().healingAbsorb < 1)   {
+            remove();
+        }
+    }
+
+    @Override
+    public void applyEffect() {
+
+    }
+
+    @Override
+    public int modifyOutput(int output) {
+        return output;
+    }
+
+    public void stopTimer() {
+        getTimer().stop();
+        getTimer().clear();
+    }
+}

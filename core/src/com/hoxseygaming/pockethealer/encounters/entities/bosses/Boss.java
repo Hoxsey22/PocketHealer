@@ -10,6 +10,7 @@ import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.Text;
 import com.hoxseygaming.pockethealer.encounters.entities.Entity;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PhaseManager;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
@@ -24,6 +25,7 @@ public abstract class Boss extends Entity {
     public RaidMember target;
     public Player player;
     public ArrayList<Mechanic> mechanics;
+    public PhaseManager phaseManager;
     public Texture namePlate;
     public int level;
     public int raidSize;
@@ -51,6 +53,7 @@ public abstract class Boss extends Entity {
         raidSize = enemies.raidMembers.size();
         target = getMainTank();
         mechanics = new ArrayList<>();
+        phaseManager = new PhaseManager();
 
         nameText = new Text(name, 45, Color.BLACK,false, assets);
         nameText.setPosition(getX()+(getWidth()/2) - nameText.getWidth()/2 ,getY() + getHeight()/2 - nameText.getHeight()/2);
@@ -124,18 +127,62 @@ public abstract class Boss extends Entity {
     }
 
     public void nextThreat() {
-        RaidMember temp = null;
+
+        ArrayList<RaidMember> tanks = enemies.tanksAlive();
+
         if (!enemies.isRaidDead()) {
+
+            switch (tanks.size())   {
+                case 0:
+                    target = enemies.getRandomRaidMember(1).get(0);
+                    break;
+                case 1:
+                    target = tanks.get(0);
+                    break;
+                case 2:
+                    if(target == tanks.get(0))  {
+                        target = tanks.get(1);
+                    }
+                    else {
+                        target = tanks.get(0);
+                    }
+                    break;
+            }
+
+
+            /*
             for (int i = 0; i < enemies.raidMembers.size(); i++) {
                 if (enemies.getRaidMember(i).getRole() == "Tank" && !enemies.getRaidMember(i).isDead()) {
-                    target =enemies.getRaidMember(i);
+                    target = enemies.getRaidMember(i);
                     return;
                 }
             }
             System.out.println("New threat is random!");
             target = enemies.getRandomRaidMember(1).get(0);
+            */
         }
 
+    }
+
+    public RaidMember getNextThreat()   {
+        ArrayList<RaidMember> tanks = enemies.tanksAlive();
+
+        if (!enemies.isRaidDead()) {
+
+            switch (tanks.size()) {
+                case 0:
+                    return enemies.getRandomRaidMember(1).get(0);
+                case 1:
+                    return tanks.get(0);
+                case 2:
+                    if (target == tanks.get(0)) {
+                        return tanks.get(1);
+                    } else {
+                        return tanks.get(0);
+                    }
+            }
+        }
+        return null;
     }
 
     public abstract void reward();

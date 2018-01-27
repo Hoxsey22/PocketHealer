@@ -26,6 +26,11 @@ public class RenewingNovaEffect extends Buff {
     }
 
     @Override
+    public void startConditions() {
+
+    }
+
+    @Override
     public void additionalConditions() {
 
     }

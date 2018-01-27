@@ -7,9 +7,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.HealingTracker;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
-import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.Buff;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -197,7 +195,7 @@ public class Raid extends Group {
         Collections.sort(temp);
         int counter = 0;
         for(int i = 0; i < temp.size(); i++) {
-            if (!temp.get(i).isSelected()) {
+            if (!temp.get(i).isSelected() && !temp.get(i).isDead) {
                 lowest.add(temp.get(i));
                 counter++;
                 if(counter == cap)    {
@@ -205,7 +203,7 @@ public class Raid extends Group {
                 }
             }
         }
-        return null;
+        return lowest;
     }
 
     public RaidMember getRaidMemberWithLowestHp()    {
@@ -223,14 +221,16 @@ public class Raid extends Group {
     }
 
     public ArrayList<RaidMember> getRaidMembersWithLowestHp(int cap, RaidMember target)    {
-        ArrayList<RaidMember> lowest = new ArrayList<>(cap);
+        ArrayList<RaidMember> lowest = new ArrayList<>();
         ArrayList<RaidMember> temp = new ArrayList<>();
+
         temp.addAll(raidMembers);
 
         Collections.sort(temp);
+
         int counter = 0;
         for(int i = 0; i < temp.size(); i++) {
-            if (!temp.get(i).isSelected()) {
+            if (!temp.get(i).isSelected()&& !temp.get(i).isDead) {
                 lowest.add(temp.get(i));
                 counter++;
                 if(counter == cap)    {
@@ -238,7 +238,7 @@ public class Raid extends Group {
                 }
             }
         }
-        return null;
+        return lowest;
     }
 
     public void receiveHealing(int output)    {
@@ -253,31 +253,33 @@ public class Raid extends Group {
         }
     }
 
-    public boolean tanksAlive() {
-
+    public ArrayList<RaidMember> tanksAlive() {
+        ArrayList<RaidMember> tanks = new ArrayList<>();
         for(int i = 0; i < raidMembers.size(); i++)   {
-            if(raidMembers.get(i).getRole() == "tank" && !raidMembers.get(i).isDead());
-            return true;
+            if(raidMembers.get(i).getRole().equalsIgnoreCase("tank") && !raidMembers.get(i).isDead())  {
+                tanks.add(raidMembers.get(i));
+            }
         }
-        return false;
+        return tanks;
+
     }
 
-    public int healersAlive() {
-        int counter = 0;
+    public ArrayList<RaidMember> healersAlive() {
+        ArrayList<RaidMember> healers = new ArrayList<>();
         for(int i = 0; i < raidMembers.size(); i++)   {
-            if(raidMembers.get(i).getRole() == "healer");
-            counter++;
+            if(raidMembers.get(i).getRole().equalsIgnoreCase("healer") && !raidMembers.get(i).isDead())
+                healers.add(raidMembers.get(i));
         }
-        return counter;
+        return healers;
     }
 
-    public int dpsAlive() {
-        int counter = 0;
+    public ArrayList<RaidMember> dpsAlive() {
+        ArrayList<RaidMember> dps = new ArrayList<>();
         for(int i = 0; i < raidMembers.size(); i++)   {
-            if(raidMembers.get(i).getRole() == "dps");
-            counter++;
+            if(raidMembers.get(i).getRole().equalsIgnoreCase("dps") && !raidMembers.get(i).isDead())
+                dps.add(raidMembers.get(i));
         }
-        return counter;
+        return dps;
     }
 
     public boolean isRaidDead() {
@@ -294,14 +296,24 @@ public class Raid extends Group {
         }
     }
 
-    public ArrayList<RaidMember> getDebuffLessRaidMembers(Mechanic.Debuff debuff)    {
+    public ArrayList<RaidMember> getDebuffLessRaidMembers(String name)    {
         ArrayList<RaidMember> debuffLess = new ArrayList<>();
         for(int i = 0; i <  raidMembers.size(); i++)   {
-            if(!raidMembers.get(i).containsEffects(debuff))    {
+            if(!raidMembers.get(i).getStatusEffectList().contains(name))    {
                 debuffLess.add(raidMembers.get(i));
             }
         }
         return  debuffLess;
+    }
+
+    public ArrayList<RaidMember> getDebuffRaidMembers(String name)    {
+        ArrayList<RaidMember> debuffed = new ArrayList<>();
+        for(int i = 0; i <  raidMembers.size(); i++)   {
+            if(raidMembers.get(i).getStatusEffectList().contains(name))    {
+                debuffed.add(raidMembers.get(i));
+            }
+        }
+        return debuffed;
     }
 
     public ArrayList<RaidMember> getBuffLessRaidMembers(Spell.EffectType buff)    {
@@ -314,10 +326,10 @@ public class Raid extends Group {
         return  buffLess;
     }
 
-    public ArrayList<RaidMember> getBuffLessRaidMembers(Buff buff)    {
+    public ArrayList<RaidMember> getBuffLessRaidMembers(String name)    {
         ArrayList<RaidMember> buffLess = new ArrayList<>();
         for(int i = 0; i <  raidMembers.size(); i++)   {
-            if(!raidMembers.get(i).getStatusEffectList().contains(buff.getName()))    {
+            if(!raidMembers.get(i).getStatusEffectList().contains(name))    {
                 buffLess.add(raidMembers.get(i));
             }
         }

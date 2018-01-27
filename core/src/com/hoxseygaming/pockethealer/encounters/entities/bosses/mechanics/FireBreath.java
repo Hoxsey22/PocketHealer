@@ -46,13 +46,14 @@ public class FireBreath extends Mechanic{
 
         channel.schedule(new Timer.Task() {
             int count =  0;
+
             @Override
             public void run() {
                 if(count != 4) {
                     count++;
                     for(int i = 0; i <  owner.getEnemies().raidMembers.size(); i++)   {
                         owner.getEnemies().getRaidMember(i).takeDamage(damage);
-                        if(dice.nextInt(100)+0 > 90)    {
+                        if(dice.nextInt(100)+0 > 94)    {
                             owner.getEnemies().getRaidMember(i).addStatusEffect(new BurnEffect(owner));
                         }
                     }

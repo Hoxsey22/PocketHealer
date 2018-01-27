@@ -9,10 +9,10 @@ import com.hoxseygaming.pockethealer.Assets;
  */
 public class HealthBar {
 
-    public int x;
-    public int y;
-    public int width;
-    public int height;
+    public float x;
+    public float y;
+    public float width;
+    public float height;
     private Assets assets;
     private Texture healthBar;
     private RaidMember owner;
@@ -25,6 +25,19 @@ public class HealthBar {
         this.y = y + 7;
         this.width = width - 19;
         this.height = height / 4;
+
+        healthBar = assets.getTexture(assets.hpManaBar);
+
+    }
+
+    public HealthBar(RaidMember owner) {
+        this.owner = owner;
+        assets = owner.assets;
+
+        x = owner.getX() + 10;
+        y = owner.getY() + 5;
+        width = owner.getWidth() - 20;
+        height = owner.getHeight() / 4f;
 
         healthBar = assets.getTexture(assets.hpManaBar);
 

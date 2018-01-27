@@ -37,6 +37,11 @@ public class LifeboomEffect extends Buff {
     }
 
     @Override
+    public void startConditions() {
+
+    }
+
+    @Override
     public void remove() {
         getTarget().receiveHealing(totalBoom, CriticalDice.roll(getOwner().criticalChance));
         super.remove();

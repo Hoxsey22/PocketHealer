@@ -76,7 +76,7 @@ public class Renew2 extends Periodical {
     @Override
     public void checkLifeboom() {
         if(isSelectedLifeboom)  {
-            buff = new LifeboomEffect(owner,duration,speed,output-2);
+            buff = new LifeboomEffect(owner,duration,speed,output-3);
         }
         else    {
             buff = new RenewEffect(owner,duration,speed,output);

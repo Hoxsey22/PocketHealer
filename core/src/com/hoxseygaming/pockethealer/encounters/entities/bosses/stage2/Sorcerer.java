@@ -2,10 +2,10 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Agony;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BlanketCorruption;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FireBreath;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Outbreak;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonPotion;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -14,8 +14,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class Sorcerer extends Boss {
 
-    public Outbreak outbreak;
-    public PoisonPotion poisonPotion;
+    public Agony agony;
+    public BlanketCorruption blanketCorruption;
     public Fireball fireball;
     public FireBreath fireBreath;
 
@@ -23,7 +23,7 @@ public class Sorcerer extends Boss {
         super("Sorcerer","The time has come, the Sorcerer is finally taking a stand. The Sorcerer is very similar to his " +
                 "apprentice, but has one more trick up his sleeve.",
                 240,
-                new Raid(15,assets),
+                new Raid(12,assets),
                 assets);
         setId(11);
         create();
@@ -34,12 +34,12 @@ public class Sorcerer extends Boss {
         super.create();
         damage = 0;
 
-        outbreak = new Outbreak(this, 10f);
-        poisonPotion = new PoisonPotion(this, 9f);
-        poisonPotion.setNumOfTargets(3);
+        agony = new Agony(this);
+        blanketCorruption = new BlanketCorruption(this);
         fireball = new Fireball(this, 3f);
         fireBreath = new FireBreath(this);
-        loadMechanics(outbreak, poisonPotion,fireball,fireBreath);
+        fireBreath.setSpeed(35f);
+        loadMechanics(agony,blanketCorruption,fireball,fireBreath);
     }
 
     @Override

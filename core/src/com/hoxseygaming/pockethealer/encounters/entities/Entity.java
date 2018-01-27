@@ -40,7 +40,7 @@ public class Entity extends Actor{
     public Entity(int id, String role, Assets assets) {
         this.assets = assets;
         setBounds(assets.raidPositions.get(id).x,
-                assets.raidPositions.get(id).y,147,70);
+                assets.raidPositions.get(id).y,146,70);
 
         this.id = id;
         this.role = role;
@@ -66,6 +66,7 @@ public class Entity extends Actor{
         hp = maxHp;
         shield = 0;
         isDead = false;
+        healingTracker = new HealingTracker();
     }
 
     public void setRoleStats(String role)    {

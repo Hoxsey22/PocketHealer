@@ -19,6 +19,11 @@ public class RenewEffect extends Buff {
     }
 
     @Override
+    public void startConditions() {
+
+    }
+
+    @Override
     public void additionalConditions() {
 
     }

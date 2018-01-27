@@ -59,11 +59,16 @@ public abstract class StatusEffect {
         //this.parent = parent;
     }
 
+    public abstract void startConditions();
+
     public void start() {
+        startConditions();
+
         timer.scheduleTask(new Timer.Task() {
             int currentCount;
             int tickCount = (int)(speed/0.1f);
             int durationCount = (int)(duration/0.1f);
+
             @Override
             public void run() {
                 additionalConditions();

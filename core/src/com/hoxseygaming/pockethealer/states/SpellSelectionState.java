@@ -96,7 +96,6 @@ public class SpellSelectionState extends State {
         descriptionTable.add(spellDescription.getLabel()).width(descriptionTable.getWidth());
 
         stage.addActor(descriptionTable);
-        stage.setDebugAll(true);
     }
 
     @Override
