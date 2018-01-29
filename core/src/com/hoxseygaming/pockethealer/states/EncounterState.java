@@ -38,6 +38,8 @@ public class EncounterState extends State {
     public boolean isDone;
     public int page;
 
+    // merge
+
 
     public EncounterState(StateManager sm, Player player, Boss boss) {
         super(sm);
