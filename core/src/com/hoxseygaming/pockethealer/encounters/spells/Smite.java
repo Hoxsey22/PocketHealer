@@ -70,7 +70,7 @@ public class Smite extends Castable {
 
     @Override
     public void applySpell(RaidMember target) {
-        RaidMember lowest = owner.getRaid().getRaidMemberWithLowestHp();
+        RaidMember lowest = target;//owner.getRaid().getRaidMemberWithLowestHp();
         if(criticalChance.isCritical()) {
             int newOutput = owner.getBoss().takeDamage(output, true);
             if(isSelectedDiscipline)    {

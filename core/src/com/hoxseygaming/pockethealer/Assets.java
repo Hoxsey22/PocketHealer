@@ -147,10 +147,13 @@ public class Assets {
     public String spellBG = "spell_bg.png";
     public String dispelIcon = "icons/dispel_icon.png";
     public String burnIcon = "icons/burn_icon.png";
+    public String penanceIcon = "icons/penance_icon.png";
 
     public String healingAbsorbIcon = "icons/healing_absorb_icon.png";
     public String webIcon = "icons/web_icon.png";
     public String swarmingShadowIcon = "icons/swarming_shadow_icon.png";
+    public String divineProtectionIcon = "icons/divine_protection_icon.png";
+    public String blessedGardenIcon = "icons/blessed_garden_icon.png";
 
 
     public String map1 = "map_state/map_level_1.png";
@@ -325,6 +328,9 @@ public class Assets {
         manager.load(webIcon, Texture.class);
         manager.load(swarmingShadowIcon, Texture.class);
         manager.load(venomIcon, Texture.class);
+        manager.load(penanceIcon, Texture.class);
+        manager.load(divineProtectionIcon, Texture.class);
+        manager.load(blessedGardenIcon, Texture.class);
 
 
     }

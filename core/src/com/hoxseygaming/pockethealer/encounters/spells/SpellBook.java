@@ -26,6 +26,9 @@ public class SpellBook extends Group{
     public static final String PRAYER_OF_MENDING = "Prayer of Mending";
     public static final String DISPEL = "Dispel";
     public static final String HOLY_SHOCK = "Holy Shock";
+    public static final String PENANCE = "Penance";
+    public static final String DIVINE_PROTECTION = "Divine Protection";
+    public static final String BLESSED_GARDEN = "Blessed Garden";
 
     public Player owner;
     public ArrayList<Spell> spells;
@@ -64,10 +67,13 @@ public class SpellBook extends Group{
         spells.add(new GreaterHeal(owner, 0, assets));
         spells.add(new Smite(owner, 0, assets));
         spells.add(new Lightwell(owner, 0, assets));
-        spells.add(new DivineHymn(owner, 0, assets));
         spells.add(new PrayerOfMending(owner, 0, assets));
         spells.add(new Dispel(owner, assets));
         spells.add(new HolyShock(owner, assets));
+        spells.add(new Penance(owner, assets));
+        spells.add(new DivineHymn(owner, 0, assets));
+        spells.add(new DivineProtection(owner, assets));
+        spells.add(new BlessedGarden(owner, assets));
         // add spell to group
         for(int i = 0; i < spells.size(); i++)   {
             addActor(spells.get(i));
@@ -77,9 +83,8 @@ public class SpellBook extends Group{
     public void placeSpellPosition()   {
 
         for(int i = 0; i < 3; i++)   {
-            for(int j = 0; j < 4; j++)   {
-                //spells.get(i*3+j).setBounds(60+80*j+60*j,610-80*i-40*i,80,80);
-                spells.get(i*4+j).setBounds(48+spells.get(i).getWidth()*j+48*j,610-spells.get(i).getWidth()*i-48*i,60,60);
+            for(int j = 0; j < 5; j++)   {
+                spells.get(i*5+j).setBounds(30+spells.get(i).getWidth()*j+30*j,610-spells.get(i).getWidth()*i-30*i,60,60);
 
             }
         }
@@ -137,8 +142,6 @@ public class SpellBook extends Group{
                 return new Renew2(owner,0,assets);
             case BARRIER:
                 return new Barrier(owner,0,assets);
-            case DIVINE_HYMN:
-                return new DivineHymn(owner,0,assets);
             case LIGHTWELL:
                 return new Lightwell(owner,0,assets);
             case SMITE:
@@ -149,6 +152,21 @@ public class SpellBook extends Group{
                 return new Dispel(owner, assets);
             case HOLY_SHOCK:
                 return new HolyShock(owner, assets);
+            case PENANCE:
+                return new Penance(owner, assets);
+            case DIVINE_HYMN:
+                if(owner.getTalentTree().getTalent(owner.getTalentTree().HOLY_FOCUS).isSelected()) {
+                    return new DivineHymn(owner, 0, assets);
+                }
+            case DIVINE_PROTECTION:
+                if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
+                    return new DivineProtection(owner, assets);
+                }
+            case BLESSED_GARDEN:
+                if(owner.getTalentTree().getTalent(owner.getTalentTree().AOD).isSelected()) {
+                    return new BlessedGarden(owner, assets);
+                }
+
         }
         return null;
     }

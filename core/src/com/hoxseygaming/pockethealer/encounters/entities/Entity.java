@@ -190,23 +190,44 @@ public class Entity extends Actor{
     }
 
     public void applyShield(int output)   {
-        if(output + shield > maxHp) {
+
+        int newOutput = output;
+        if(healingAbsorb > 0)    {
+            healingAbsorb = healingAbsorb - newOutput;
+            if(healingAbsorb >= 0)    {
+                return;
+            }
+            newOutput = newOutput + healingAbsorb;
+            healingAbsorb = 0;
+        }
+
+        if(newOutput + shield > maxHp) {
             shield = maxHp;
             return;
         }
-        shield = shield + output;
+        shield = shield + newOutput;
 
-        if(!containsEffects(Spell.EffectType.SHIELD))
-            applyEffect(Spell.EffectType.SHIELD);
+
         System.out.println("SHIELD APPLIED!");
     }
 
     public void applyHealingAbsorb(int output) {
-        if(output + healingAbsorb > maxHp) {
-            healingAbsorb = maxHp;
-            return;
+        int newOutput = output;
+        if(shield > 0)    {
+            shield = shield - newOutput;
+            if(shield >= 0)    {
+                return;
+            }
+            newOutput = newOutput + shield;
+            shield = 0;
         }
-        healingAbsorb = healingAbsorb + output;
+
+        if(newOutput + healingAbsorb > maxHp) {
+            healingAbsorb = maxHp;
+        }
+        else {
+            healingAbsorb = healingAbsorb + newOutput;
+        }
     }
 
     public void applyEffect(Spell.EffectType buff) {

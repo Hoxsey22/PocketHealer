@@ -17,11 +17,11 @@ public class DivineHymn extends ChannelCast {
                 "A godly heal that heals the entire party. Best time to use this is when the raid is taking heavy damage.",
                 7,
                 4f,
-                5,
+                4,
                 EffectType.HEALALL,
-                25,
+                20,
                 5f,
-                60f,
+                90f,
                 index,
                 assets);
         image = assets.getTexture(assets.divineHymnIcon);

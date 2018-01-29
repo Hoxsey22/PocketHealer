@@ -32,7 +32,7 @@ public class ZombieHorde extends Boss {
 
         zombieAttack = new ZombieAttack(this, 2.5f);
         zombieBite = new ZombieBite(this, 9f);
-        zombieBite.setNumOfTargets(4);
+        zombieBite.setNumOfTargets(2);
 
         loadMechanics(zombieAttack, zombieBite);
     }

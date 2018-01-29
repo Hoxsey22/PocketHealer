@@ -40,6 +40,12 @@ public class ZombieBiteEffect extends HealingAbsorbEffect {
     }
 
     @Override
+    public void startConditions() {
+        super.startConditions();
+        startDamage();
+    }
+
+    @Override
     public void additionalConditions() {
         super.additionalConditions();
 
