@@ -66,6 +66,5 @@ public class Hogger extends Boss {
     @Override
     public void reward() {
         rewardPackage.addRewardText(2,3);
-        rewardPackage.setSpellImage(assets.getTexture(assets.lifeboomIcon));
     }
 }

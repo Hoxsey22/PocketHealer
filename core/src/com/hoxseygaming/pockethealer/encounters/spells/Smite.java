@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.spells;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.AtonementEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.BarrierEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
@@ -27,7 +28,8 @@ public class Smite extends Castable {
      */
     public Smite(Player player, int index, Assets assets) {
         super(player, "Smite",
-                "A spell that will inflict damage onto the boss and will heal the lowest raid member for half the damage done to the boss.",
+                "A spell that will inflict damage onto the boss and will heal the lowest raid member for a fourth of the damage done to the boss. If talented, " +
+                        "smite will apply atonement. Atonement will duplicate a fourth of the heal from Smite, Penance, Holy Nova, and Heal.",
                 5,
                 0.5f,
                 EffectType.DAMAGEHEAL,
@@ -70,8 +72,20 @@ public class Smite extends Castable {
 
     @Override
     public void applySpell(RaidMember target) {
-        RaidMember lowest = target;//owner.getRaid().getRaidMemberWithLowestHp();
-        if(criticalChance.isCritical()) {
+        RaidMember lowest = owner.getRaid().getRaidMemberWithLowestHp();
+
+        int newOutput = owner.getBoss().takeDamage(output, criticalChance.isCritical());
+
+        if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
+            lowest.addStatusEffect(new AtonementEffect(owner));
+            ArrayList<RaidMember> smiteBuffedMembers = owner.getRaid().getStatusEffectedRaidMembers("Atonement Effect");
+
+            for(int i = 0; i < smiteBuffedMembers.size(); i++)   {
+                criticalHelper(smiteBuffedMembers.get(i), (int)(newOutput*0.4f));
+            }
+        }
+
+        /*if(criticalChance.isCritical()) {
             int newOutput = owner.getBoss().takeDamage(output, true);
             if(isSelectedDiscipline)    {
                 lowest.receiveHealing(newOutput, false);
@@ -86,7 +100,24 @@ public class Smite extends Castable {
 
             }
         }
-        lowest.receiveHealing(output, false);
+        lowest.receiveHealing(output, false);*/
     }
+
+    public void criticalHelper(RaidMember member, int output)    {
+        if(criticalChance.isCritical()) {
+            int newOutput = member.receiveHealing(output, true);
+            if(isSelectedCriticalHealerII)    {
+                if(isSelectedCriticalHealerII) {
+                    member.applyShield((int)((float)newOutput/2f));
+                    member.addStatusEffect(new BarrierEffect(owner));
+                }
+
+            }
+        }
+        else {
+            member.receiveHealing(output, false);
+        }
+    }
+
 
 }

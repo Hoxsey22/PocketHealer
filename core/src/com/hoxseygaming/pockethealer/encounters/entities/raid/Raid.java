@@ -211,6 +211,10 @@ public class Raid extends Group {
         temp.addAll(raidMembers);
         Collections.sort(temp);
 
+        for(int i = 0; i < temp.size(); i++)   {
+            System.out.println(temp.get(i).id+": "+((float)(temp.get(i).hp-temp.get(i).healingAbsorb)/(float)temp.get(i).maxHp)*100);
+        }
+
         for(int i = 0; i <  temp.size(); i++)   {
             if(!temp.get(i).isDead())    {
                 return temp.get(i);
@@ -306,14 +310,14 @@ public class Raid extends Group {
         return  debuffLess;
     }
 
-    public ArrayList<RaidMember> getDebuffRaidMembers(String name)    {
-        ArrayList<RaidMember> debuffed = new ArrayList<>();
+    public ArrayList<RaidMember> getStatusEffectedRaidMembers(String name)    {
+        ArrayList<RaidMember> statusEffectedMembers = new ArrayList<>();
         for(int i = 0; i <  raidMembers.size(); i++)   {
             if(raidMembers.get(i).getStatusEffectList().contains(name))    {
-                debuffed.add(raidMembers.get(i));
+                statusEffectedMembers.add(raidMembers.get(i));
             }
         }
-        return debuffed;
+        return statusEffectedMembers;
     }
 
     public ArrayList<RaidMember> getBuffLessRaidMembers(Spell.EffectType buff)    {

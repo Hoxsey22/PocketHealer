@@ -93,7 +93,7 @@ public class StatusEffectList {
         return false;
     }
 
-    public int getStatusEffectModifucation(int output, boolean isHealing) {
+    public int getStatusEffectModification(int output, boolean isHealing) {
         int newOutput = output;
         for (int i = 0; i < statusEffects.size(); i++) {
             switch (statusEffects.get(i).getType()) {

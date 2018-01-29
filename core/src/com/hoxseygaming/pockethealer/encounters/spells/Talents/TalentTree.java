@@ -73,7 +73,7 @@ public class TalentTree extends Group{
                 assets.getTexture(assets.tankIcon), assets));
         talents.add(new Talent(this, 7, DISCIPLINE, "Barrier absorbs more damage. Smite does more healing and damage. Also when Smite is critical," +
                         " it will place a small barrier on the target.",talents.get(talents.size()-1), assets.getTexture(assets.disciplineIcon), assets));
-        talents.add(new Talent(this, 8,CRITICAL_HEALER_II, "Any spells that are critical will place a barrier for 50% of the amount healed. Smite's barrier increase as well.",
+        talents.add(new Talent(this, 8,CRITICAL_HEALER_II, "Any spells that are critical will place a barrier for 50% of the amount healed. Smite's barrier increase as well. Smite will now apply atonement.",
                 talents.get(talents.size()-1), assets.getTexture(assets.criticalHealer2Icon), assets));
 
         talents.add(new Talent(this, 9,HASTE_BUILD,"All spell 0.25 seconds faster.", assets.getTexture(assets.flashIcon), assets));

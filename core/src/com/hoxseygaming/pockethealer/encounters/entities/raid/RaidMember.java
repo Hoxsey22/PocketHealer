@@ -40,7 +40,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     @Override
     public void takeDamage(int output) {
-        int newOutput = statusEffects.getStatusEffectModifucation(output,false);
+        int newOutput = statusEffects.getStatusEffectModification(output,false);
         super.takeDamage(newOutput);
         floatingTextManager.add(newOutput, FloatingText.DAMAGE);
         if(statusEffects.contains("Prayer of Mending"))    {
@@ -59,7 +59,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     @Override
     public int receiveHealing(int output, boolean isCritical) {
-        int newOutput = statusEffects.getStatusEffectModifucation(output,true);
+        int newOutput = statusEffects.getStatusEffectModification(output,true);
         newOutput = super.receiveHealing(newOutput, isCritical);
         floatingTextManager.add(newOutput,FloatingText.HEAL, isCritical);
         return newOutput;
@@ -97,16 +97,20 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     @Override
     public int compareTo(RaidMember rm) {
-        return (int)(getHealthPercent()*100) - (int)(rm.getHealthPercent()*100);
+        return (int)(getFullHealthPercent()*100) - (int)(rm.getFullHealthPercent()*100);
     }
 
     @Override
     public int compare(RaidMember rm1, RaidMember rm2) {
-        return (int)(rm1.getHealthPercent()*100) - (int)(rm2.getHealthPercent()*100);
+        return (int)(rm1.getFullHealthPercent()*100) - (int)(rm2.getFullHealthPercent()*100);
     }
 
     public float getHealthPercent() {
         return (float)hp/(float)maxHp;
+    }
+
+    public float getFullHealthPercent() {
+        return (float)(hp-healingAbsorb)/(float)maxHp;
     }
 
     @Override

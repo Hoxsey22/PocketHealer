@@ -43,7 +43,7 @@ public class FeedingTime extends Mechanic {
 
             }
             else    {
-                ArrayList<RaidMember> targets = owner.getEnemies().getDebuffRaidMembers("Web Effect");
+                ArrayList<RaidMember> targets = owner.getEnemies().getStatusEffectedRaidMembers("Web Effect");
                 for(int i = 0; i < targets.size(); i++)   {
                     targets.get(i).takeDamage(targets.get(i).getHp());
                     owner.receiveHealing(100);

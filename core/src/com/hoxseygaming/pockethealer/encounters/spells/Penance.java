@@ -7,6 +7,8 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.Barrier
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 import com.hoxseygaming.pockethealer.encounters.spells.Types.ChannelCast;
 
+import java.util.ArrayList;
+
 /**
  * Created by Hoxsey on 6/18/2017.
  */
@@ -23,9 +25,9 @@ public class Penance extends ChannelCast {
                 2.5f,
                 4,
                 EffectType.HEALALL,
-                35,
-                3f,
-                5f,
+                25,
+                4f,
+                6f,
                 0,
                 assets);
         image = assets.getTexture(assets.penanceIcon);
@@ -33,6 +35,23 @@ public class Penance extends ChannelCast {
 
     @Override
     public void applySpell(RaidMember target) {
+
+        RaidMember lowest = owner.getRaid().getRaidMemberWithLowestHp();
+        int newOutput = owner.getBoss().takeDamage(output, criticalChance.isCritical());
+        criticalHelper(lowest, newOutput);
+
+
+        if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
+            ArrayList<RaidMember> smiteBuffedMembers = owner.getRaid().getStatusEffectedRaidMembers("Atonement Effect");
+
+            for(int i = 0; i < smiteBuffedMembers.size(); i++)   {
+                criticalHelper(smiteBuffedMembers.get(i), (int)((float)newOutput*0.4f));
+            }
+        }
+
+
+
+        /*
         if(criticalChance.isCritical()) {
             if(isSelectedResurgence){
                 owner.receiveMana((int)((float)getCost()/(float)ticksPerCast));
@@ -48,6 +67,26 @@ public class Penance extends ChannelCast {
         }
         else {
             target.receiveHealing(output, false);
+        }
+        */
+    }
+
+    public void criticalHelper(RaidMember member, int output)    {
+        if(criticalChance.isCritical()) {
+            if(isSelectedResurgence){
+                owner.receiveMana((int)((float)getCost()/(float)ticksPerCast));
+            }
+            int newOutput = member.receiveHealing(output, true);
+            if(isSelectedCriticalHealerII)    {
+                if(isSelectedCriticalHealerII) {
+                    member.applyShield((int)((float)newOutput/2f));
+                    member.addStatusEffect(new BarrierEffect(owner));
+                }
+
+            }
+        }
+        else {
+            member.receiveHealing(output, false);
         }
     }
 

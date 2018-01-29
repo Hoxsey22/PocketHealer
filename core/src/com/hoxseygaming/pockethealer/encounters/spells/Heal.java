@@ -47,12 +47,35 @@ public class Heal extends Castable {
                 owner.mana = owner.getMana() + (int)(getCost()/2f);
             }
             target.receiveHealing(currentOutput, true);
-            return;
         }
         else {
             target.receiveHealing(currentOutput, false);
         }
 
+        if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
+            ArrayList<RaidMember> smiteBuffedMembers = owner.getRaid().getStatusEffectedRaidMembers("Atonement Effect");
+
+            for(int i = 0; i < smiteBuffedMembers.size(); i++)   {
+                criticalHelper(smiteBuffedMembers.get(i), (int)((float)currentOutput*0.4f));
+            }
+        }
+
+    }
+
+    public void criticalHelper(RaidMember member, int output)    {
+        if(criticalChance.isCritical()) {
+            int newOutput = member.receiveHealing(output, true);
+            if(isSelectedCriticalHealerII)    {
+                if(isSelectedCriticalHealerII) {
+                    member.applyShield((int)((float)newOutput/2f));
+                    member.addStatusEffect(new BarrierEffect(owner));
+                }
+
+            }
+        }
+        else {
+            member.receiveHealing(output, false);
+        }
     }
 
     public void resetDefault()  {

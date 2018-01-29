@@ -4,6 +4,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.BarrierEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.RenewingNovaEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
@@ -69,6 +70,30 @@ public class HolyNova extends Castable {
                 isCriticalHealerII(targets.get(i));
                 isRenewingNova(targets.get(i));
             }
+        }
+
+        if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
+            ArrayList<RaidMember> smiteBuffedMembers = owner.getRaid().getStatusEffectedRaidMembers("Atonement Effect");
+
+            for(int i = 0; i < smiteBuffedMembers.size(); i++)   {
+                criticalHelper(smiteBuffedMembers.get(i), (int)((float)output*0.4f));
+            }
+        }
+    }
+
+    public void criticalHelper(RaidMember member, int output)    {
+        if(criticalChance.isCritical()) {
+            int newOutput = member.receiveHealing(output, true);
+            if(isSelectedCriticalHealerII)    {
+                if(isSelectedCriticalHealerII) {
+                    member.applyShield((int)((float)newOutput/2f));
+                    member.addStatusEffect(new BarrierEffect(owner));
+                }
+
+            }
+        }
+        else {
+            member.receiveHealing(output, false);
         }
     }
 
