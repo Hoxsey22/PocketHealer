@@ -6,21 +6,21 @@ import com.hoxseygaming.pockethealer.Player;
  * Created by Hoxsey on 12/1/2017.
  */
 
-public class BlessedGardenEffect extends Buff {
+public class DivineProtectionEffect extends Buff {
     /**
      * @param owner       : The player that owns this status effect.
      */
-    public BlessedGardenEffect(Player owner) {
+    public DivineProtectionEffect(Player owner) {
         super(owner,
                 1,
-                "Blessed Garden Effect",
-                "Renew is a periodic heal.",
-                owner.getAssets().getTexture(owner.getAssets().blessedGardenIcon),
+                "Divine Protection Effect",
+                "Reduces all damage by 40% for 15 seconds.",
+                owner.getAssets().getTexture(owner.getAssets().divineProtectionIcon),
                 15f,
                 0.1f,
                 0,
                 false);
-        setType(HEALING_REDUCTION);
+        setType(DAMAGE_AMPLIFIER);
     }
 
     @Override
@@ -39,6 +39,6 @@ public class BlessedGardenEffect extends Buff {
 
     @Override
     public int modifyOutput(int output) {
-        return output + (int)((float)output*0.4f);
+        return output - (int)((float)output*0.4f);
     }
 }

@@ -6,28 +6,21 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.BlessedGardenEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
 
-import java.util.ArrayList;
-
 /**
  * Created by Hoxsey on 6/18/2017.
  */
 public class BlessedGarden extends Castable {
 
-    public ArrayList<Barrier> barriers;
-    public boolean isSelectedCriticalHealerII;
-    public boolean isSelectedResurgence;
-
-
     public BlessedGarden(Player player, Assets assets) {
         super(player,
                 "Blessed Garden",
-                "Blankets the raid in renews.",
+                "Increase all healing output by 40% for 15 seconds.",
                 0,
-                4f,
+                2f,
                 EffectType.HEAL,
                 0,
                 10f,
-                90f,
+                70f,
                 assets.getSound(assets.healSFX),
                 0,
                 assets);

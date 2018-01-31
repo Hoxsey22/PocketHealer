@@ -3,7 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.spells;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
-import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.BarrierEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.DivineProtectionEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
 
 import java.util.ArrayList;
@@ -21,14 +21,14 @@ public class DivineProtection extends Castable {
     public DivineProtection(Player player, Assets assets) {
         super(player,
                 "Divine Protection",
-                "A massive shield  that covers the raid.",
+                "A massive shield  that covers the raid, reducing all damage by 40%.",
                 0,
-                4f,
+                2f,
                 EffectType.HEAL,
-                60,
+                0,
                 10f,
-                90f,
-                assets.getSound(assets.healSFX),
+                70f,
+                assets.getSound(assets.hotSFX),
                 0,
                 assets);
         setImage(assets.getTexture(assets.divineProtectionIcon));
@@ -37,8 +37,7 @@ public class DivineProtection extends Castable {
     @Override
     public void applySpell(RaidMember target) {
         for(int i = 0; i < owner.getRaid().raidMembers.size(); i++)   {
-            owner.getRaid().raidMembers.get(i).applyShield(output);
-            owner.getRaid().raidMembers.get(i).addStatusEffect(new BarrierEffect(owner));
+            owner.getRaid().raidMembers.get(i).addStatusEffect(new DivineProtectionEffect(owner));
         }
     }
 
