@@ -44,7 +44,7 @@ public class Renew2 extends Periodical {
     @Override
     public void checkTalents() {
         resetDefault();
-        
+
         checkAoD();
         checkCriticalHealer();
         checkHasteBuild();
