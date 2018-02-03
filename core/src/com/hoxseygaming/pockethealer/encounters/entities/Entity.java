@@ -192,14 +192,6 @@ public class Entity extends Actor{
     public void applyShield(int output)   {
 
         int newOutput = output;
-        if(healingAbsorb > 0)    {
-            healingAbsorb = healingAbsorb - newOutput;
-            if(healingAbsorb >= 0)    {
-                return;
-            }
-            newOutput = newOutput + healingAbsorb;
-            healingAbsorb = 0;
-        }
 
         if(newOutput + shield > maxHp) {
             shield = maxHp;
@@ -213,14 +205,6 @@ public class Entity extends Actor{
 
     public void applyHealingAbsorb(int output) {
         int newOutput = output;
-        if(shield > 0)    {
-            shield = shield - newOutput;
-            if(shield >= 0)    {
-                return;
-            }
-            newOutput = newOutput + shield;
-            shield = 0;
-        }
 
         if(newOutput + healingAbsorb > maxHp) {
             healingAbsorb = maxHp;

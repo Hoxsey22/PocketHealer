@@ -13,9 +13,9 @@ public class GreaterHeal extends Heal {
         setName("Greater Heal");
         setDescription("A very strong heal, but very slow cast time. Should be used to preemptively heal a target taking heavy damage. ");
         setImage(assets.getTexture(assets.greaterHealerIcon));
-        setCdPercentage(3.2f);
-        setCastTime(2f);
+        setCostPercentage(2.2f);
         MIN_CAST_TIME = 2f;
+        setCastTime(MIN_CAST_TIME);
         setOutput(60);
         levelRequirement = 4;
     }

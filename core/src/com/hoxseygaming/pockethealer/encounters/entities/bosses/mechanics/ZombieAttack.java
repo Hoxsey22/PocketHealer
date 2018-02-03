@@ -10,7 +10,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 public class ZombieAttack extends Mechanic {
 
     public ZombieAttack(Boss owner) {
-        super("Auto Attack", 0, 2f, owner);
+        super("Auto Attack", 0, 2.5f, owner);
         id = 1;
     }
 

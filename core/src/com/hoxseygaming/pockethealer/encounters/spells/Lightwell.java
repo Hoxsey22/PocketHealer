@@ -4,7 +4,6 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
-import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 import com.hoxseygaming.pockethealer.encounters.spells.Types.Periodical;
 
 /**
@@ -57,32 +56,14 @@ public class Lightwell extends Periodical {
 
     @Override
     public void checkTalents() {
-
         resetDefault();
 
-        if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER).isSelected())    {
-            setCriticalChance(30);
-        }
-        if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
-            speed = speed - 0.25f;
-        }
-
-
-    }
-
-    public void resetDefault()  {
-
-        numOfTargets = MIN_NUM_OF_TARGETS;
-        output = MIN_OUTPUT;
-        cost = MIN_COST;
-        cooldown = MIN_COOLDOWN;
-        duration = MIN_DURATION;
-        speed = MIN_SPEED;
+        checkCriticalHealer();
+        checkHasteBuild();
     }
 
     @Override
     public void checkLifeboom() {
-
     }
 
 }

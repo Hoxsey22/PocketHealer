@@ -97,6 +97,13 @@ public abstract class ChannelCast extends Spell {
         },0.01f, 0.01f,(int)(castTime/0.01f)-1);
     }
 
+    @Override
+    public void resetDefault() {
+        super.resetDefault();
+        castTime = MIN_CAST_TIME;
+        ticksPerCast = MIN_TICK_PER_CAST;
+    }
+
     public void stop()  {
         if(castTimer != null) {
             castTimer.stop();

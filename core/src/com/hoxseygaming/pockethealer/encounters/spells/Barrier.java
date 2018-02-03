@@ -45,12 +45,6 @@ public class Barrier extends InstantCast {
         image = this.assets.getTexture(assets.barrierIcon);
     }
 
-    public void resetDefault()  {
-        cooldown = MIN_COOLDOWN;
-        cost =  MIN_COST;
-        output = MIN_OUTPUT;
-    }
-
     @Override
     public void checkTalents() {
         resetDefault();
@@ -68,5 +62,11 @@ public class Barrier extends InstantCast {
     public void applySpell(RaidMember target) {
         target.applyShield(output);
         target.addStatusEffect(new BarrierEffect(owner));
+
+        if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
+            applyAtonement(target);
+        }
+
+
     }
 }

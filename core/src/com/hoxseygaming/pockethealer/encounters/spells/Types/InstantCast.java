@@ -6,8 +6,6 @@ import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
-import java.util.ArrayList;
-
 /**
  * Created by Hoxsey on 8/31/2017.
  */
@@ -15,9 +13,6 @@ import java.util.ArrayList;
 public abstract class InstantCast extends Spell {
 
     public Sound spellSFX;
-    public int numOfTargets;
-    public int MIN_NUM_OF_TARGETS;
-    public ArrayList<RaidMember> targets;
 
     /**
      *
@@ -37,7 +32,6 @@ public abstract class InstantCast extends Spell {
         super(player, name, description,levelRequirement, effectType, output, costPercentage, cooldown, index, assets);
         this.spellSFX = spellSFX;
         this.numOfTargets = numOfTargets;
-        MIN_NUM_OF_TARGETS = numOfTargets;
     }
 
     @Override

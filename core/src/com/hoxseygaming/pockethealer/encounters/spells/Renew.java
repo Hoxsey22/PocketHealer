@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 6/18/2017.
+ *    NEED TO DELETE
  */
 public class Renew extends Periodical {
 
@@ -89,8 +90,6 @@ public class Renew extends Periodical {
 
     public void resetDefault()  {
         isSelectedLifeboom = false;
-
-        numOfTargets = MIN_NUM_OF_TARGETS;
         output = MIN_OUTPUT;
         cost = MIN_COST;
         cooldown = MIN_COOLDOWN;

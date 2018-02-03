@@ -58,4 +58,9 @@ public class MotherSpider extends Boss {
     public void update() {
 
     }
+
+    @Override
+    public void stop() {
+        phaseManager.cleanPhases();
+    }
 }

@@ -10,8 +10,6 @@ import com.hoxseygaming.pockethealer.encounters.spells.Types.ChannelCast;
  */
 public class DivineHymn extends ChannelCast {
 
-    public boolean isSelectedHolyFocus;
-
     public DivineHymn(Player player, int index, Assets assets) {
         super(player, "Divine Hymn",
                 "A godly heal that heals the entire party. Best time to use this is when the raid is taking heavy damage.",
@@ -25,22 +23,15 @@ public class DivineHymn extends ChannelCast {
                 index,
                 assets);
         image = assets.getTexture(assets.divineHymnIcon);
-        isSelectedHolyFocus = false;
     }
 
     @Override
     public void useMana() {
-        if (isSelectedHolyFocus)
+        if (owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected())
             owner.receiveMana(getCost());
-        else {
-            super.useMana();
-        }
     }
 
     @Override
     public void checkTalents() {
-        if(owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected())    {
-            isSelectedHolyFocus = true;
-        }
     }
 }

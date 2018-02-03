@@ -6,6 +6,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
+import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 /**
  * Created by Hoxsey on 8/31/2017.
@@ -85,6 +86,12 @@ public abstract class Castable extends Spell {
         },0.01f, 0.01f,(int)(castTime/0.01f)-1);
     }
 
+    @Override
+    public void resetDefault() {
+        super.resetDefault();
+        castTime = MIN_CAST_TIME;
+    }
+
     public void stop()  {
         if(castTimer != null) {
             castTimer.stop();
@@ -93,6 +100,12 @@ public abstract class Castable extends Spell {
             isCasting = false;
             owner.isCasting = isCasting;
             castingSFX.stop();
+        }
+    }
+
+    public void checkHasteBuild()   {
+        if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
+            castTime = MIN_CAST_TIME - 0.25f;
         }
     }
 

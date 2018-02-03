@@ -12,7 +12,15 @@ public class RenewingNovaEffect extends Buff {
      * @param owner       : The player that owns this status effect.
      */
     public RenewingNovaEffect(Player owner) {
-        super(owner, 1, "Renewing Nova","A periodic heal.", owner.getAssets().getTexture(owner.getAssets().renewIcon), 6f, 2f, 5, false);
+        super(owner,
+                1,
+                "Renewing Nova",
+                "A periodic heal.",
+                owner.getAssets().getTexture(owner.getAssets().renewIcon),
+                5f,
+                1f,
+                3,
+                false);
     }
 
     /**
@@ -22,7 +30,15 @@ public class RenewingNovaEffect extends Buff {
      * @param modValue    : The mod value that will change a specific stat.
      */
     public RenewingNovaEffect(Player owner, float duration, float speed, int modValue) {
-        super(owner, 1, "Renewing Nova","A periodic heal.", owner.getAssets().getTexture(owner.getAssets().renewIcon), duration, speed, modValue, false);
+        super(owner,
+                1,
+                "Renewing Nova",
+                "A periodic heal.",
+                owner.getAssets().getTexture(owner.getAssets().renewIcon),
+                duration,
+                speed,
+                modValue,
+                false);
     }
 
     @Override

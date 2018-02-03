@@ -14,10 +14,10 @@ public class FlashHeal extends Heal {
         setName("Flash Heal");
         setDescription("A fast, but inefficient heal. Great for emergencies.");
         setImage(assets.getTexture(assets.flashIcon));
-        setCostPercentage(3.2f);
-        setCastTime(0.7f);
         MIN_CAST_TIME = 0.7f;
-        setCriticalChance(player.criticalChance);
+        setCostPercentage(2.2f);
+        setCastTime(MIN_CAST_TIME);
+        setCriticalChance(MIN_CRITICAL);
         levelRequirement = 1;
     }
 }

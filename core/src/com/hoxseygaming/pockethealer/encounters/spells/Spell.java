@@ -10,6 +10,12 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.Text;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.AtonementEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.BarrierEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.RenewingNovaEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
+
+import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 6/17/2017.
@@ -44,6 +50,8 @@ public abstract class Spell extends Actor {
     public CriticalChance criticalChance;
     public int MIN_CRITICAL;
     public int levelRequirement;
+    public int numOfTargets;
+    public ArrayList<RaidMember> targets;
 //
     /**
      * @param player
@@ -280,6 +288,60 @@ public abstract class Spell extends Actor {
     }
 
     public abstract void stop();
+
+    /*
+    Talents
+     */
+
+    public int applyCriticalHealerII(RaidMember target, int output)   {
+        if (criticalChance.isCritical()) {
+            BarrierEffect barrier = new BarrierEffect(owner);
+            target.applyShield(output);
+            target.addStatusEffect(barrier);
+            return target.receiveHealing(output, true);
+        }
+        else    {
+            return target.receiveHealing(output, false);
+        }
+    }
+
+    /**
+     * @param target
+     * @description Checks and applies renewing nova talent if not nothing.
+     */
+    public void applyRenewingNova(RaidMember target) {
+        target.addStatusEffect(new RenewingNovaEffect(owner));
+    }
+
+    public void triggerAtonement(int output) {
+        // Atonement
+        ArrayList<RaidMember> smiteBuffedMembers = owner.getRaid().getStatusEffectedRaidMembers("Atonement Effect");
+
+        for (int i = 0; i < smiteBuffedMembers.size(); i++) {
+            applyCriticalHealerII(smiteBuffedMembers.get(i), (int) ((float) output * 0.4f));
+        }
+    }
+
+    public void applyAtonement(RaidMember target)    {
+        target.addStatusEffect(new AtonementEffect(owner));
+    }
+
+    public void checkCriticalHealer()   {
+        if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER).isSelected())    {
+            setCriticalChance(30);
+        }
+    }
+
+    public void getRandomTargets()  {
+        targets = getOwner().raid.getRaidMembersWithLowestHp(numOfTargets);
+    }
+
+    public void resetDefault()  {
+        output = MIN_OUTPUT;
+        cost = MIN_COST;
+        cooldown = MIN_COOLDOWN;
+        setCriticalChance(MIN_CRITICAL);
+    }
 
 
     @Override

@@ -158,14 +158,17 @@ public class SpellBook extends Group{
                 if(owner.getTalentTree().getTalent(owner.getTalentTree().HOLY_FOCUS).isSelected()) {
                     return new DivineHymn(owner, 0, assets);
                 }
+                break;
             case DIVINE_PROTECTION:
                 if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
                     return new DivineProtection(owner, assets);
                 }
+                break;
             case BLESSED_GARDEN:
                 if(owner.getTalentTree().getTalent(owner.getTalentTree().AOD).isSelected()) {
                     return new BlessedGarden(owner, assets);
                 }
+                break;
 
         }
         return null;

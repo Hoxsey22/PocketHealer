@@ -211,10 +211,6 @@ public class Raid extends Group {
         temp.addAll(raidMembers);
         Collections.sort(temp);
 
-        for(int i = 0; i < temp.size(); i++)   {
-            System.out.println(temp.get(i).id+": "+((float)(temp.get(i).hp-temp.get(i).healingAbsorb)/(float)temp.get(i).maxHp)*100);
-        }
-
         for(int i = 0; i <  temp.size(); i++)   {
             if(!temp.get(i).isDead())    {
                 return temp.get(i);

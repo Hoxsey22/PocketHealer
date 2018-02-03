@@ -3,7 +3,6 @@ package com.hoxseygaming.pockethealer.encounters.spells;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
-import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.BarrierEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 import com.hoxseygaming.pockethealer.encounters.spells.Types.InstantCast;
 
@@ -12,9 +11,6 @@ import com.hoxseygaming.pockethealer.encounters.spells.Types.InstantCast;
  */
 
 public class HolyShock extends InstantCast {
-
-    public boolean isSelectedCriticalHealerII;
-    public boolean isSelectedResurgence;
     /**
      * @param player
      * @param assets
@@ -38,31 +34,12 @@ public class HolyShock extends InstantCast {
     @Override
     public void applySpell(RaidMember target) {
 
-        if(criticalChance.isCritical()){
-
-            if(isSelectedCriticalHealerII)  {
-                target.applyShield((int)(output/2f));
-                target.addStatusEffect(new BarrierEffect(owner));
-            }
-
-            if(isSelectedResurgence) {
-                owner.mana = owner.getMana() + (int)(getCost()/2f);
-            }
-            target.receiveHealing(output, true);
-            return;
-        }
-        else {
-            target.receiveHealing(output, false);
+        if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
+            applyCriticalHealerII(target, output);
         }
 
         owner.holyShockIncrease = true;
 
-    }
-
-    public void resetDefault()  {
-        isSelectedResurgence = false;
-        isSelectedCriticalHealerII = false;
-        setCriticalChance(MIN_CRITICAL);
     }
 
 
@@ -70,14 +47,6 @@ public class HolyShock extends InstantCast {
     public void checkTalents() {
         resetDefault();
 
-        if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER).isSelected())    {
-            setCriticalChance(30);
-        }
-        if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
-            isSelectedCriticalHealerII = true;
-        }
-        if(owner.getTalentTree().getTalent(TalentTree.RESURGENCE).isSelected())    {
-            isSelectedResurgence = true;
-        }
+        checkCriticalHealer();
     }
 }

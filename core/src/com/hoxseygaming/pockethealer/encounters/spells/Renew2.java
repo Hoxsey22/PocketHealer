@@ -16,7 +16,6 @@ import com.hoxseygaming.pockethealer.encounters.spells.Types.Periodical;
 public class Renew2 extends Periodical {
 
     private Buff buff;
-    private boolean isSelectedLifeboom;
 
     /**
      * @param player
@@ -45,41 +44,19 @@ public class Renew2 extends Periodical {
     @Override
     public void checkTalents() {
         resetDefault();
-
-        if(owner.getTalentTree().getTalent(TalentTree.LIFEBOOM).isSelected())    {
-            isSelectedLifeboom = true;
-        }
-        if(owner.getTalentTree().getTalent(TalentTree.AOD).isSelected())    {
-            output = 10;
-            duration = 12;
-            speed = 1.5f;
-            setCostPercentage(1.5f);
-        }
-        if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER).isSelected())    {
-            setCriticalChance(30);
-        }
-        if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
-            speed = speed - 0.25f;
-        }
-    }
-
-    public void resetDefault()  {
-        isSelectedLifeboom = false;
-        numOfTargets = MIN_NUM_OF_TARGETS;
-        output = MIN_OUTPUT;
-        cost = MIN_COST;
-        cooldown = MIN_COOLDOWN;
-        duration = MIN_DURATION;
-        speed = MIN_SPEED;
+        
+        checkAoD();
+        checkCriticalHealer();
+        checkHasteBuild();
     }
 
     @Override
     public void checkLifeboom() {
-        if(isSelectedLifeboom)  {
-            buff = new LifeboomEffect(owner,duration,speed,output-3);
+        if(owner.getTalentTree().getTalent(TalentTree.LIFEBOOM).isSelected())  {
+            buff = new LifeboomEffect(owner, duration, speed,output-3);
         }
         else    {
-            buff = new RenewEffect(owner,duration,speed,output);
+            buff = new RenewEffect(owner, duration, speed, output);
         }
     }
 }

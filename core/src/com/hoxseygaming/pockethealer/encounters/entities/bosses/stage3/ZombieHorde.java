@@ -30,8 +30,8 @@ public class ZombieHorde extends Boss {
         super.create();
         damage = 0;
 
-        zombieAttack = new ZombieAttack(this, 2.5f);
-        zombieBite = new ZombieBite(this, 9f);
+        zombieAttack = new ZombieAttack(this, 2f);
+        zombieBite = new ZombieBite(this, 11f);
         zombieBite.setNumOfTargets(2);
 
         loadMechanics(zombieAttack, zombieBite);

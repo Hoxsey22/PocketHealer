@@ -34,10 +34,6 @@ public class Dispel extends InstantCast {
         target.getStatusEffectList().dispel();
     }
 
-    public void resetDefault()  {
-    }
-
-
     @Override
     public void checkTalents() {
     }
