@@ -13,7 +13,7 @@ import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
 public class HolyNova extends Castable {
 
     public Sound sfx;
-    public final int MIN_NUMOFTARGETS = 4;
+    public final int MIN_NUMOFTARGETS = 3;
 
     public HolyNova(Player player, int index, Assets assets) {
         super(player,
@@ -23,7 +23,7 @@ public class HolyNova extends Castable {
                 2f,
                 EffectType.HEALMULTIPLE,
                 25,
-                4f,
+                3.5f,
                 1f,assets.getSound(assets.healSFX), index,assets);
         image = assets.getTexture(assets.holyNovaIcon);
         sfx = assets.getSound(assets.hotSFX);
@@ -33,12 +33,10 @@ public class HolyNova extends Castable {
     @Override
     public void checkTalents() {
         resetDefault();
-        if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER).isSelected())    {
-            setCriticalChance(30);
-        }
 
+        checkCriticalHealer();
         if(owner.getTalentTree().getTalent(TalentTree.SUPER_NOVA).isSelected())    {
-            numOfTargets = 5;
+            numOfTargets = 4;
         }
     }
 
@@ -52,15 +50,19 @@ public class HolyNova extends Castable {
             for(int i = 0; i < numOfTargets; i++) {
                 applyCriticalHealerII(targets.get(i),output);
             }
+            applyCriticalHealerII(target, output);
             for(int i = 0; i < numOfTargets; i++) {
                 applyAtonement(targets.get(i));
             }
+            applyAtonement(target);
         }
         if(owner.getTalentTree().getTalent(owner.getTalentTree().RENEWING_NOVA).isSelected())  {
             for(int i = 0; i < numOfTargets; i++) {
                 applyRenewingNova(targets.get(i));
                 targets.get(i).receiveHealing(output, criticalChance.isCritical());
             }
+            applyRenewingNova(target);
+            target.receiveHealing(output, criticalChance.isCritical());
         }
 
     }

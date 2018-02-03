@@ -19,7 +19,7 @@ public class Penance extends ChannelCast {
                 4,
                 EffectType.HEALALL,
                 20,
-                4f,
+                3f,
                 8f,
                 0,
                 assets);

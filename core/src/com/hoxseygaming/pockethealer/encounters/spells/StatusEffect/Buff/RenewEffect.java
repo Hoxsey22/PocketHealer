@@ -15,7 +15,15 @@ public class RenewEffect extends Buff {
      * @param modValue    : The mod value that will change a specific stat.
      */
     public RenewEffect(Player owner, float duration, float speed, int modValue) {
-        super(owner, 1, "Renew","Renew is a periodic heal.", owner.getAssets().getTexture(owner.getAssets().renewIcon), duration, speed, modValue, false);
+        super(owner,
+                1,
+                "Renew",
+                "Renew is a periodic heal.",
+                owner.getAssets().getTexture(owner.getAssets().renewIcon),
+                duration,
+                speed,
+                modValue,
+                false);
     }
 
     @Override

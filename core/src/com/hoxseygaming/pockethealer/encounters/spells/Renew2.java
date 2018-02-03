@@ -53,7 +53,7 @@ public class Renew2 extends Periodical {
     @Override
     public void checkLifeboom() {
         if(owner.getTalentTree().getTalent(TalentTree.LIFEBOOM).isSelected())  {
-            buff = new LifeboomEffect(owner, duration, speed,output-3);
+            buff = new LifeboomEffect(owner, duration, speed,output);
         }
         else    {
             buff = new RenewEffect(owner, duration, speed, output);

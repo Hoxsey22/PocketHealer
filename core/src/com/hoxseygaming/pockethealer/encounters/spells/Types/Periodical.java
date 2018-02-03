@@ -127,7 +127,6 @@ public abstract class Periodical extends InstantCast {
             output = 10;
             duration = 12;
             speed = 1.5f;
-            setCostPercentage(1.5f);
         }
     }
 

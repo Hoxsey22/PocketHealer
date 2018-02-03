@@ -25,7 +25,7 @@ public class Smite extends Castable {
                 0.5f,
                 EffectType.DAMAGEHEAL,
                 10,
-                0.7f,
+                0.5f,
                 0.5f,
                 assets.getSound(assets.healSFX),
                 index,
