@@ -21,10 +21,10 @@ public class PrayerOfMendingEffect extends Buff{
         jumpCount = 5;
     }
 
-    public PrayerOfMendingEffect(Player owner, int modValue) {
+    public PrayerOfMendingEffect(Player owner, int modValue, int numOfTargets) {
         super(owner, 4, "Prayer of Mending", "When the target takes damage, the target will be healed and Prayer of Mending" +
                 "will jump to a new target.", owner.getAssets().getTexture(owner.getAssets().prayerOfMendingIcon), 45f, 46f, modValue, false);
-        jumpCount = 5;
+        jumpCount = numOfTargets;
     }
 
     @Override

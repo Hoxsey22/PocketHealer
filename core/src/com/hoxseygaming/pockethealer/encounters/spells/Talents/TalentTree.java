@@ -77,7 +77,7 @@ public class TalentTree extends Group{
                 talents.get(talents.size()-1), assets.getTexture(assets.criticalHealer2Icon), assets));
 
         talents.add(new Talent(this, 9,HASTE_BUILD,"All spell 0.25 seconds faster.", assets.getTexture(assets.flashIcon), assets));
-        talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova now heals one additional target.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova and Prayer of Mending now heals one additional target.", talents.get(talents.size()-1),
                 assets.getTexture(assets.superNovaIcon), assets));
         talents.add(new Talent(this, 11,RESURGENCE,"All critical single target heals will now give mana back (Cost will be half).",talents.get(talents.size()-1),
                 assets.getTexture(assets.resurgenceIcon), assets));
