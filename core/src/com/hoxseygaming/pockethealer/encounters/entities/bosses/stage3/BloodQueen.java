@@ -25,7 +25,7 @@ public class BloodQueen extends Boss {
     public BloodQueen(Assets assets) {
         super("Blood Queen",
                 "",
-                480,
+                600,
                 new Raid(12,assets),
                 assets);
         setId(14);
@@ -45,6 +45,7 @@ public class BloodQueen extends Boss {
         bloodLink = new BloodLink(this, 2f);
         cleave = new Cleave(this, 4f);
         cleave.setNumOfTargets(4);
+        cleave.setDamage(35);
         vampiricBite = new VampiricBite(this);
         consumingShadow = new ConsumingShadow(this, 8f);
 

@@ -18,7 +18,7 @@ public class Penance extends ChannelCast {
                 2.5f,
                 4,
                 EffectType.HEALALL,
-                20,
+                15,
                 3f,
                 8f,
                 0,
@@ -28,13 +28,17 @@ public class Penance extends ChannelCast {
 
     @Override
     public void applySpell(RaidMember target) {
+        if(!owner.getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
+            target.receiveHealing(output, criticalChance.isCritical());
+        }
+        else {
+            RaidMember lowest = owner.getRaid().getRaidMemberWithLowestHp();
+            int newOutput = owner.getBoss().takeDamage(output, criticalChance.isCritical());
 
-        RaidMember lowest = owner.getRaid().getRaidMemberWithLowestHp();
-        int newOutput = owner.getBoss().takeDamage(output, criticalChance.isCritical());
-
-        if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
-            applyCriticalHealerII(lowest, newOutput);
-            triggerAtonement(newOutput);
+            if (owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
+                applyCriticalHealerII(lowest, newOutput);
+                triggerAtonement(newOutput);
+            }
         }
     }
 

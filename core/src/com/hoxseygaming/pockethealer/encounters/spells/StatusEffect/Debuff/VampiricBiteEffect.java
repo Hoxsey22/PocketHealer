@@ -21,9 +21,9 @@ public class VampiricBiteEffect extends Debuff {
                 "Vampiric Bite will do moderate damage and will increase the target's damage " +
                         " by 200%.",
                 owner.assets.getTexture(owner.assets.biteIcon),
-                300f,
-                2f,
-                7,
+                600f,
+                5f,
+                1,
                 false);
     }
 
@@ -47,6 +47,7 @@ public class VampiricBiteEffect extends Debuff {
     @Override
     public void applyEffect() {
         getTarget().takeDamage(getModValue());
+        setModValue(getModValue()+1);
     }
 
     @Override

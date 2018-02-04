@@ -155,10 +155,10 @@ public class SpellBook extends Group{
             case PENANCE:
                 return new Penance(owner, assets);
             case DIVINE_HYMN:
-                if(owner.getTalentTree().getTalent(owner.getTalentTree().HOLY_FOCUS).isSelected()) {
+                //if(owner.getTalentTree().getTalent(owner.getTalentTree().HOLY_FOCUS).isSelected()) {
                     return new DivineHymn(owner, 0, assets);
-                }
-                break;
+               // }
+                //break;
             case DIVINE_PROTECTION:
                 if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
                     return new DivineProtection(owner, assets);

@@ -22,9 +22,9 @@ public class Smite extends Castable {
                 "A spell that will inflict damage onto the boss and will heal the lowest raid member for a fourth of the damage done to the boss. If talented, " +
                         "40% of smite damage will heal all ally units affected by atonement.",
                 5,
-                0.5f,
+                1.25f,
                 EffectType.DAMAGEHEAL,
-                10,
+                5,
                 0.5f,
                 0.5f,
                 assets.getSound(assets.healSFX),
@@ -55,6 +55,9 @@ public class Smite extends Castable {
         if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
             applyCriticalHealerII(lowest, newOutput);
             triggerAtonement(newOutput);
+        }
+        else {
+            lowest.receiveHealing(newOutput,criticalChance.isCritical());
         }
     }
 

@@ -17,9 +17,9 @@ public class RenewingNovaEffect extends Buff {
                 "Renewing Nova",
                 "A periodic heal.",
                 owner.getAssets().getTexture(owner.getAssets().renewIcon),
-                5f,
-                1f,
-                3,
+                10f,
+                2f,
+                5,
                 false);
     }
 

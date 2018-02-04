@@ -29,6 +29,8 @@ public class DivineHymn extends ChannelCast {
     public void useMana() {
         if (owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected())
             owner.receiveMana(getCost());
+        else
+            super.useMana();
     }
 
     @Override

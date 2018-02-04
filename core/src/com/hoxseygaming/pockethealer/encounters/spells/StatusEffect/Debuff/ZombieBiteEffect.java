@@ -62,7 +62,7 @@ public class ZombieBiteEffect extends HealingAbsorbEffect {
         damageTimer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                progressiveDamage += 5;
+                progressiveDamage += 2;
                 getTarget().takeDamage(progressiveDamage);
 
             }

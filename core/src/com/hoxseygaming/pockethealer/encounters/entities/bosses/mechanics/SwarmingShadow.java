@@ -2,10 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
-import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.ConsumingShadowEffect;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -64,25 +61,8 @@ public class SwarmingShadow extends Mechanic{
         },0.5f,0.5f,4);
     }
 
-    public void startConsumingShadowTimer() {
-
-        consumingShadowTimer = new Timer();
-
-        consumingShadowTimer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                ArrayList<RaidMember> targets = owner.getEnemies().getRandomRaidMember(4, owner.getEnemies().getDebuffLessRaidMembers("Consuming Shadow"));
-                for(int i = 0; i < targets.size(); i++){
-                    targets.get(i).addStatusEffect(new ConsumingShadowEffect(owner));
-                }
-            }
-        }, 2f,8f);
-    }
-
     @Override
     public void stop() {
         super.stop();
-        consumingShadowTimer.stop();
-        consumingShadowTimer.clear();
     }
 }
