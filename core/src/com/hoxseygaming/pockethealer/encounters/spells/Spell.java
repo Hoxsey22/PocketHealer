@@ -328,7 +328,7 @@ public abstract class Spell extends Actor {
 
     public void checkCriticalHealer()   {
         if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER).isSelected())    {
-            setCriticalChance(30);
+            setCriticalChance(35);
         }
     }
 
