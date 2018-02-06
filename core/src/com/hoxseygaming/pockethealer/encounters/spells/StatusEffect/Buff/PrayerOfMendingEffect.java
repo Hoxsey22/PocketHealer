@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.CriticalDice;
+import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 import java.util.ArrayList;
 
@@ -39,8 +40,12 @@ public class PrayerOfMendingEffect extends Buff{
 
     @Override
     public void applyEffect() {
-        getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().criticalChance));
-
+        if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())    {
+            getOwner().spellBar.getSpell(0).applyMasteringHealing(getTarget(), getModValue());
+        }
+        else {
+            getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().criticalChance));
+        }
         jumpCount--;
         if(jumpCount > 1) {
             ArrayList<RaidMember> temp = getOwner().getRaid().getRandomRaidMember(1, getOwner().getRaid().getBuffLessRaidMembers(this.getName()));

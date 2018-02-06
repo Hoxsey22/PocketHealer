@@ -37,6 +37,9 @@ public class HolyShock extends InstantCast {
         if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
             applyCriticalHealerII(target, output);
         }
+        else if(owner.getTalentTree().getTalent(owner.getTalentTree().MASTERING_HEALING).isSelected())   {
+            applyMasteringHealing(target, output);
+        }
 
         owner.holyShockIncrease = true;
 

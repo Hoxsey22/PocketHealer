@@ -332,6 +332,26 @@ public abstract class Spell extends Actor {
         }
     }
 
+    public void applyMasteringHealing(RaidMember target, int output) {
+        if(CriticalDice.roll(40, 100,1)) {
+            int newOutput = output;
+            float missingHpPercentage = 1f - target.getHealthPercent();
+
+            newOutput = newOutput + (int) ((float) newOutput * missingHpPercentage);
+
+            target.receiveHealing(newOutput, criticalChance.isCritical());
+        }
+        else    {
+            target.receiveHealing(output, criticalChance.isCritical());
+        }
+
+        if (this.name.equalsIgnoreCase("Heal")) {
+            RaidMember raidMember = owner.getRaid().getRaidMembersWithLowestHp(1).get(0);
+            raidMember.receiveHealing((int) ((float) output / 2f), criticalChance.isCritical());
+        }
+
+    }
+
     public void getRandomTargets()  {
         targets = getOwner().raid.getRaidMembersWithLowestHp(numOfTargets);
     }

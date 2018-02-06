@@ -24,7 +24,7 @@ public class TalentTree extends Group{
     public static final String CRITICAL_HEALER_II = "Critical Healer II";
     public static final String HASTE_BUILD = "Haste Build";
     public static final String SUPER_NOVA = "Super Nova";
-    public static final String RESURGENCE = "Resurgence";
+    public static final String MASTERING_HEALING = "Mastering Healing";
     public static final String HOLY_FOCUS = "Holy Focus";
 
 
@@ -59,7 +59,7 @@ public class TalentTree extends Group{
     }
 
     public void createTalents()  {
-        talents.add(new Talent(this, 1, LIFEBOOM, "After Renew expires, a 3rd of renew's healing will heal the target.", assets.getTexture(assets.lifeboomIcon), assets));
+        talents.add(new Talent(this, 1, LIFEBOOM, "After Renew expires, half of renew's healing will heal the ally unit.", assets.getTexture(assets.lifeboomIcon), assets));
         talents.add(new Talent(this, 2, HEALER_CHANNEL, "Healers in the raid will no longer deal damage, but will instead heal.", talents.get(talents.size()-1),
                 assets.getTexture(assets.workTogetherIcon), assets));
         talents.add(new Talent(this, 3, RENEWING_NOVA, "Holy Nova now put a Renew on each target that was healed.", talents.get(talents.size()-1),
@@ -69,20 +69,20 @@ public class TalentTree extends Group{
 
         talents.add(new Talent(this, 5,CRITICAL_HEALER,"Increase the critical strike chance of all spells.",
                 assets.getTexture(assets.smiteIcon), assets));
-        talents.add(new Talent(this, 6, BARRIER_MASTER, "The cooldown of Barrier is now 1.0 seconds and the cost is reduced to 15.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 6, BARRIER_MASTER, "The cooldown of Barrier is now 1.0 second and the cost is reduced to 15.", talents.get(talents.size()-1),
                 assets.getTexture(assets.tankIcon), assets));
         talents.add(new Talent(this, 7, DISCIPLINE, "Barrier absorbs more damage. Smite does more healing and damage. Also when Smite is critical," +
                         " it will place a small barrier on the target.",talents.get(talents.size()-1), assets.getTexture(assets.disciplineIcon), assets));
         talents.add(new Talent(this, 8,CRITICAL_HEALER_II, "Any spells that are critical will place a barrier for 50% of the amount healed. Smite's barrier increase as well. Smite will now apply atonement.",
                 talents.get(talents.size()-1), assets.getTexture(assets.criticalHealer2Icon), assets));
 
-        talents.add(new Talent(this, 9,HASTE_BUILD,"All spell 0.25 seconds faster.", assets.getTexture(assets.flashIcon), assets));
-        talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova and Prayer of Mending now heals one additional target.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 9,HASTE_BUILD,"All spell are 0.25 seconds faster.", assets.getTexture(assets.flashIcon), assets));
+        talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova and Prayer of Mending now heal one additional target.", talents.get(talents.size()-1),
                 assets.getTexture(assets.superNovaIcon), assets));
-        talents.add(new Talent(this, 11,RESURGENCE,"All critical single target heals will now give mana back (Cost will be half).",talents.get(talents.size()-1),
-                assets.getTexture(assets.resurgenceIcon), assets));
-        talents.add(new Talent(this, 12, HOLY_FOCUS,"Divine Hymn gives 15% mana back and Lightwell will be available",
-                talents.get(talents.size()-1), assets.getTexture(assets.divineHymnIcon), assets));
+        talents.add(new Talent(this, 11,HOLY_FOCUS,"Divine Hymn gives 15% mana back and Lightwell will be available",talents.get(talents.size()-1),
+                assets.getTexture(assets.divineHymnIcon), assets));
+        talents.add(new Talent(this, 12, MASTERING_HEALING,"All heal now have a 40% chance of increase it output based on missing health. In addition, Heal will now heal a second ally unit.",
+                talents.get(talents.size()-1), assets.getTexture(assets.innerFocusIcon), assets));
 
         for(int i = 0; i < talents.size(); i++)   {
             addActor(talents.get(i));

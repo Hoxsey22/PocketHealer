@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff;
 
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.spells.CriticalDice;
+import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 /**
  * Created by Hoxsey on 12/1/2017.
@@ -51,7 +52,11 @@ public class LifeboomEffect extends Buff {
 
     @Override
     public void remove() {
-        getTarget().receiveHealing((int)((float)totalBoom/2f), CriticalDice.roll(getOwner().criticalChance));
+        if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())    {
+            getOwner().spellBar.getSpell(0).applyMasteringHealing(getTarget(), getModValue());
+        }
+        else
+            getTarget().receiveHealing((int)((float)totalBoom/2f), CriticalDice.roll(getOwner().criticalChance));
         super.remove();
     }
 }

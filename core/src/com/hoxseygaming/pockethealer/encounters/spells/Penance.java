@@ -29,7 +29,12 @@ public class Penance extends ChannelCast {
     @Override
     public void applySpell(RaidMember target) {
         if(!owner.getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
-            target.receiveHealing(output, criticalChance.isCritical());
+            if(owner.getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
+                applyMasteringHealing(target, output);
+            }
+            else
+                target.receiveHealing(output, criticalChance.isCritical());
+
         }
         else {
             RaidMember lowest = owner.getRaid().getRaidMemberWithLowestHp();

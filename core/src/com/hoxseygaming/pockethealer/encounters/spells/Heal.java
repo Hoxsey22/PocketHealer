@@ -35,6 +35,9 @@ public class Heal extends Castable {
             applyCriticalHealerII(target, currentOutput);
             applyAtonement(target);
         }
+        else if(owner.getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
+            applyMasteringHealing(target, currentOutput);
+        }
         else    {
             target.receiveHealing(currentOutput, criticalChance.isCritical());
         }

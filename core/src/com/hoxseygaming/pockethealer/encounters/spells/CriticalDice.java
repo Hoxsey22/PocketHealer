@@ -23,4 +23,16 @@ public class CriticalDice {
         }
 
     }
+
+    public static boolean roll(int critical, int max, int min)    {
+        int roll = diceRoll.nextInt(max)+min;
+
+        if(roll < critical)   {
+            System.out.println("CRITICAL!");
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

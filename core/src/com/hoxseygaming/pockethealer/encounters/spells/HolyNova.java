@@ -43,28 +43,36 @@ public class HolyNova extends Castable {
     @Override
     public void applySpell(RaidMember target)    {
         // main tar
-        System.out.println("checking renew");
         getRandomTargets();
 
         if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected())    {
-            for(int i = 0; i < numOfTargets; i++) {
+            for(int i = 0; i < targets.size(); i++) {
                 applyCriticalHealerII(targets.get(i),output);
             }
             applyCriticalHealerII(target, output);
-            for(int i = 0; i < numOfTargets; i++) {
+
+            for(int i = 0; i < targets.size(); i++) {
                 applyAtonement(targets.get(i));
             }
             applyAtonement(target);
         }
-        if(owner.getTalentTree().getTalent(owner.getTalentTree().RENEWING_NOVA).isSelected())  {
-            for(int i = 0; i < numOfTargets; i++) {
+        else if(owner.getTalentTree().getTalent(owner.getTalentTree().RENEWING_NOVA).isSelected())  {
+            for(int i = 0; i < targets.size(); i++) {
                 applyRenewingNova(targets.get(i));
                 targets.get(i).receiveHealing(output, criticalChance.isCritical());
             }
             applyRenewingNova(target);
             target.receiveHealing(output, criticalChance.isCritical());
         }
+        else if(owner.getTalentTree().getTalent(owner.getTalentTree().MASTERING_HEALING).isSelected())   {
+            for(int i = 0; i < targets.size(); i++) {
+                applyMasteringHealing(targets.get(i),output);
+            }
+            applyMasteringHealing(target, output);
+        }
 
+
+        System.out.println("checking renew");
     }
 
     @Override
