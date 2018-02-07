@@ -64,7 +64,7 @@ public class TalentTree extends Group{
                 assets.getTexture(assets.workTogetherIcon), assets));
         talents.add(new Talent(this, 3, RENEWING_NOVA, "Holy Nova now put a Renew on each target that was healed.", talents.get(talents.size()-1),
                 assets.getTexture(assets.renewingNovaIcon), assets));
-        talents.add(new Talent(this, 4, AOD,"Renew now does more healing and faster ticks.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 4, AOD,"Renew now does more healing and faster ticks and will be able to apply additional Renew.", talents.get(talents.size()-1),
                 assets.getTexture(assets.aodIcon), assets));
 
         talents.add(new Talent(this, 5,CRITICAL_HEALER,"Increase the critical strike chance of all spells.",

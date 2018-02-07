@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.spells;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.AoDEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.Buff;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.LifeboomEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.RenewEffect;
@@ -38,7 +39,15 @@ public class Renew2 extends Periodical {
     @Override
     public void applySpell(RaidMember target) {
         checkLifeboom();
-        target.addStatusEffect(buff);
+        if (target.getStatusEffectList().contains("Lifeboom Effect")
+                && !target.getStatusEffectList().contains("AoD Effect")
+                && owner.getTalentTree().getTalent(TalentTree.AOD).isSelected()) {
+
+            target.addStatusEffect(new AoDEffect(owner, duration, speed, output));
+        }
+        else {
+            target.addStatusEffect(buff);
+        }
     }
 
     @Override

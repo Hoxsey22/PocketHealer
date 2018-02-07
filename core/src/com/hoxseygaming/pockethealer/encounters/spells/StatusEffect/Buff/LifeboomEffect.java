@@ -20,7 +20,7 @@ public class LifeboomEffect extends Buff {
     public LifeboomEffect(Player owner, float duration, float speed, int modValue) {
         super(owner,
                 1,
-                "Lifeboom",
+                "Lifeboom Effect",
                 "Renew is a periodic heal.",
                 owner.getAssets().getTexture(owner.getAssets().lifeboomIcon),
                 duration,
