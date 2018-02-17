@@ -2,6 +2,9 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+
+import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 7/26/2017.
@@ -26,7 +29,10 @@ public class ZombieAttack extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                owner.getEnemies().takeDamage(getZombieDamage());
+                ArrayList<RaidMember> targets = owner.getEnemies().getRandomRaidMember(8);
+                for (int i = 0; i < targets.size() ;i++)
+                    targets.get(i).takeDamage(getZombieDamage());
+                    //owner.getEnemies().takeDamage(getZombieDamage());
             }
         },speed,speed);
     }

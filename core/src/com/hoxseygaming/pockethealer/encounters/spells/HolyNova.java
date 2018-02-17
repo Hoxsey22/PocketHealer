@@ -18,7 +18,7 @@ public class HolyNova extends Castable {
     public HolyNova(Player player, int index, Assets assets) {
         super(player,
                 "Holy Nova",
-                "Heals multiple targets with the lowest health. Great for getting the raid healed up.",
+                "An explosion of holy light that heals several ally units for a moderate amount.",
                 3,
                 2f,
                 EffectType.HEALMULTIPLE,

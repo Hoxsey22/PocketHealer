@@ -14,7 +14,7 @@ public class BlessedGarden extends Castable {
     public BlessedGarden(Player player, Assets assets) {
         super(player,
                 "Blessed Garden",
-                "Increase all healing output by 40% for 15 seconds.",
+                "Blossoms a beautiful garden around the entire raid, increasing all heals by 40%.",
                 0,
                 2f,
                 EffectType.HEAL,

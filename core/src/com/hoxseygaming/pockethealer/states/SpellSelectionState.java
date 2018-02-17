@@ -84,14 +84,14 @@ public class SpellSelectionState extends State {
 
         // setting up the description of the selected spell
         descriptionTable = new Table();
-        descriptionTable.setBounds(spellBook.getLeft(), spellBook.getBottom() - 20 - 100, spellBook.getRight() - spellBook.getLeft(), 100);
+        descriptionTable.setBounds(spellBook.getLeft(), spellBook.getBottom() - 30 - 100, spellBook.getRight() - spellBook.getLeft(), 100);
         descriptionTable.top();
 
         spellDescriptionName = new Text("", 32, Color.BLACK, false, assets);
-        spellDescription = new Text("", 24, Color.SKY, false, assets);
+        spellDescription = new Text("", 24, Color.WHITE, true, assets);
         spellDescription.setWrap(true);
 
-        descriptionTable.add(spellDescriptionName.getLabel()).center();
+        descriptionTable.add(spellDescriptionName.getLabel()).left();
         descriptionTable.row();
         descriptionTable.add(spellDescription.getLabel()).width(descriptionTable.getWidth());
 
@@ -130,7 +130,7 @@ public class SpellSelectionState extends State {
                         Spell hit = spellBook.selectSpell(coords.x, coords.y);
                         if(hit != null) {
                             spellDescriptionName.setText(hit.getName());
-                            spellDescription.setText(hit.getDescription());
+                            spellDescription.setText(hit.toString());
                             selectedSpell = hit;
                             selectedSpell.setPosition(coords.x-selectedSpell.getWidth()/2, coords.y-selectedSpell.getHeight()/2);
                             isSpellSelected = true;

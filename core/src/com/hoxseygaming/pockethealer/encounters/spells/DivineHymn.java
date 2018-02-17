@@ -12,7 +12,7 @@ public class DivineHymn extends ChannelCast {
 
     public DivineHymn(Player player, int index, Assets assets) {
         super(player, "Divine Hymn",
-                "A godly heal that heals the entire party. Best time to use this is when the raid is taking heavy damage.",
+                "A glorious hymn is rang throughout the raid, healing all ally units several times.",
                 7,
                 4f,
                 4,

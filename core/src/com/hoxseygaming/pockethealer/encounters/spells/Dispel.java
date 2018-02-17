@@ -16,7 +16,7 @@ public class Dispel extends InstantCast {
      */
     public Dispel(Player player, Assets assets) {
         super(player, "Dispel",
-                "Dispels all magical effects off the target.",
+                "Dispels all dispellable debuffs from the targeted ally unit. ",
                 0,
                 EffectType.HEAL,
                 1,

@@ -17,7 +17,9 @@ public class Lightwell extends Periodical {
      * @param player
      */
     public Lightwell(Player player, int index, Assets assets)  {
-        super(player, "Lightwell", "This spell will heal the lowest health raid member over time.",
+        super(player,
+                "Lightwell",
+                "Summons a magical lightwell that will send holy light at the most injured ally unit.",
                 6,
                 EffectType.HEALOVERTIME,
                 1,

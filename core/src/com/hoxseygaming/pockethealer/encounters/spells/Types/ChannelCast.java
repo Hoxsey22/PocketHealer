@@ -38,6 +38,7 @@ public abstract class ChannelCast extends Spell {
                        int output, float costPercentage, float cooldown, int index, Assets assets) {
         super(player, name, description, levelRequirement,effectType, output, costPercentage, cooldown, index, assets);
         //this.spellSFX = spellSFX;
+        spellType = "Channeled";
         this.castTime = castTime;
         MIN_CAST_TIME = castTime;
         this.ticksPerCast = ticksPerCast;

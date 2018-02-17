@@ -12,7 +12,7 @@ public class FlashHeal extends Heal {
     public FlashHeal(Player player,int index, Assets assets) {
         super(player, index, assets);
         setName("Flash Heal");
-        setDescription("A fast, but inefficient heal. Great for emergencies.");
+        setDescription("A flash of light that heals an ally unit and great speeds.");
         setImage(assets.getTexture(assets.flashIcon));
         MIN_CAST_TIME = 0.7f;
         setCostPercentage(2.2f);

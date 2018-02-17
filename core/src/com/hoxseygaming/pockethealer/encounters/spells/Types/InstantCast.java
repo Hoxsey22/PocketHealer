@@ -30,6 +30,7 @@ public abstract class InstantCast extends Spell {
     public InstantCast(Player player, String name, String description, int levelRequirement, EffectType effectType,
                        int numOfTargets, int output, float costPercentage, float cooldown, Sound spellSFX, int index, Assets assets) {
         super(player, name, description,levelRequirement, effectType, output, costPercentage, cooldown, index, assets);
+        spellType = "Instant";
         this.spellSFX = spellSFX;
         this.numOfTargets = numOfTargets;
     }

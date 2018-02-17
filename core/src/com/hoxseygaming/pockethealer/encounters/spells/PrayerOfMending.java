@@ -15,9 +15,7 @@ public class PrayerOfMending extends Castable {
     public PrayerOfMending(Player player, int index, Assets assets) {
         super(player,
                 "Prayer of Mending",
-                "When an ally unit has this buff, taking damage will heal the unit for a moderate " +
-                        "amount. Once healed, the buff will jump to the next lowest ally. This will occur 5 times or" +
-                        " 6 if talented.",
+                "A ward is placed on an ally unit that heals the ally unit when damaged and will jump to a new target.",
                 0,
                 1.5f,
                 EffectType.HEAL,

@@ -16,7 +16,7 @@ public class Barrier extends InstantCast {
     public Sound sfx;
 
     public Barrier(Player player, int index, Assets assets) {
-        super(player,"Barrier", "An absorption shield that will prevent the target from taking damage to its health.",
+        super(player,"Barrier", "Places a barrier around the ally unit, absorbing incoming damage.",
                 2,
                 EffectType.SHIELD,
                 1,
@@ -32,12 +32,12 @@ public class Barrier extends InstantCast {
 
     public Barrier(Player player, int output, int index, Assets assets) {
         super(player,"Barrier",
-                "An absorption shield that will prevent the target from taking damage to its health.",
+                "Places a barrier around the ally unit, absorbing incoming damage.",
                 2,
                 EffectType.SHIELD,
                 1,
                 output,
-                40,
+                2.8f,
                 4f,
                 assets.getSound(assets.barrierSFX),
                 index,
@@ -66,7 +66,5 @@ public class Barrier extends InstantCast {
         if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
             applyAtonement(target);
         }
-
-
     }
 }

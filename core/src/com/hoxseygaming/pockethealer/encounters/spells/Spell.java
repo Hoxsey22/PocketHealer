@@ -31,6 +31,7 @@ public abstract class Spell extends Actor {
     public Player owner;
     public String name;
     public String description;
+    public String spellType;
     public EffectType effectType;
     public int output;
     public int MIN_OUTPUT;
@@ -270,6 +271,14 @@ public abstract class Spell extends Actor {
         return target;
     }
 
+    public String getSpellType() {
+        return spellType;
+    }
+
+    public void setSpellType(String spellType) {
+        this.spellType = spellType;
+    }
+
     public void setOwnerTarget(RaidMember newTarget) {
         owner.setTarget(newTarget);
     }
@@ -361,6 +370,14 @@ public abstract class Spell extends Actor {
         cost = MIN_COST;
         cooldown = MIN_COOLDOWN;
         setCriticalChance(MIN_CRITICAL);
+    }
+
+    public String toString()    {
+        String string = 100*(float)cost/owner.getMaxMana()+"% of base mana\n"+
+                spellType+"\n"+
+                cooldown+" second cooldown\n"+
+                description;
+        return string;
     }
 
 

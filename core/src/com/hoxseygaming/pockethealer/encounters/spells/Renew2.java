@@ -24,7 +24,7 @@ public class Renew2 extends Periodical {
      * @param assets
      */
     public Renew2(Player player, int index, Assets assets) {
-        super(player, "Renew", "A small heal that is healed over time.",
+        super(player, "Renew", "A renewing amount of holy light is place on an ally unit.",
                 0, EffectType.HEALOVERTIME,
                 1,
                 7,

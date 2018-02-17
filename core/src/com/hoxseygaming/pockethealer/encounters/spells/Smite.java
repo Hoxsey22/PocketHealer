@@ -19,8 +19,7 @@ public class Smite extends Castable {
      */
     public Smite(Player player, int index, Assets assets) {
         super(player, "Smite",
-                "A spell that will inflict damage onto the boss and will heal the lowest raid member for a fourth of the damage done to the boss. If talented, " +
-                        "40% of smite damage will heal all ally units affected by atonement.",
+                "Smites a boss for a small amount of damage that will heal the most injured ally unit for a faction of the damage.",
                 5,
                 1.25f,
                 EffectType.DAMAGEHEAL,

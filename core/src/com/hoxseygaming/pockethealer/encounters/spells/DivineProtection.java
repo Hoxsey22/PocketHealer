@@ -21,7 +21,7 @@ public class DivineProtection extends Castable {
     public DivineProtection(Player player, Assets assets) {
         super(player,
                 "Divine Protection",
-                "A massive shield  that covers the raid, reducing all damage by 40%.",
+                "Calls the beyond for protection, reducing all damage by 20%.",
                 0,
                 2f,
                 EffectType.HEAL,

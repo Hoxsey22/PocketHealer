@@ -38,7 +38,7 @@ public class Leap extends Mechanic{
             public void run() {
                 announcementTimer.stop();
 
-                targets = owner.getEnemies().getRandomRaidMember(numOfTargets);
+
 
                 startChannel();
                 timer.stop();
@@ -50,13 +50,13 @@ public class Leap extends Mechanic{
     public void startChannel()  {
         leapTimer = new Timer();
 
-
+        targets = owner.getEnemies().getRandomRaidMember(numOfTargets);
         leapTimer.schedule(new Timer.Task() {
             int count =  0;
 
             @Override
             public void run() {
-                if(count != numOfTargets) {
+                if(count != targets.size()) {
                     targets.get(count).takeDamage(damage);
                     targets.get(count).addStatusEffect(new VenomEffect(owner));
                 }
@@ -68,6 +68,6 @@ public class Leap extends Mechanic{
                 }
                 count++;
             }
-        },0.5f,0.5f,numOfTargets);
+        },0.5f,0.5f,targets.size());
     }
 }
