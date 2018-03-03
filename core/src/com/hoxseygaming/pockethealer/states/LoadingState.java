@@ -92,7 +92,6 @@ public class LoadingState extends State {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 if(isReady) {
                     player = new Player(assets);
-                    player.load();
                     sm.push(new MainMenuState(sm, player));
                 }
                 return false;

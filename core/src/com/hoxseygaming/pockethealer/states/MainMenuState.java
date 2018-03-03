@@ -6,15 +6,24 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.hoxseygaming.pockethealer.AnimatedBackground;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.AudioManager;
+import com.hoxseygaming.pockethealer.Button;
+import com.hoxseygaming.pockethealer.GameData;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.ScrollImage;
 import com.hoxseygaming.pockethealer.Text;
+import com.hoxseygaming.pockethealer.WindowFrame;
 
 /**
  * Created by Hoxsey on 7/11/2017.
@@ -25,16 +34,69 @@ public class MainMenuState extends State{
     public Image title;
     public AnimatedBackground animatedBackground;
     public Text text;
+    public Button newGameButton;
+    public Button continueButton;
+    public TextButton settingsButton;
+    // window and window components
+    WindowFrame window;
+    Label windowTitleText;
+    Label musicText;
+    Label sfxText;
+    Slider musicSlider;
+    Label musicSliderValueText;
+    Slider sfxSlider;
+    Label sfxSliderValueText;
+    TextButton okButton;
+
+    boolean settingFrameActive;
+    public Table buttonTable;
     public Assets assets;
-    private Player player;
+    public Player player;
 
     public MainMenuState(StateManager sm, Player player) {
         super(sm);
-
         this.player = player;
+        init();
+    }
+
+    private void init()   {
         stage = new Stage(viewport);
 
+        Gdx.input.setInputProcessor(stage);
+
         assets = player.getAssets();
+
+        buttonTable = new Table();
+        buttonTable.setName("button table");
+        buttonTable.setBounds(PocketHealer.WIDTH/2 - 150,10,300,110);
+
+        newGameButton = new Button("New", false, assets);
+        newGameButton.setParent(buttonTable);
+        buttonTable.add(newGameButton);
+
+        if(GameData.doesDataExist("save")) {
+            continueButton = new Button("Continue", false, assets);
+            continueButton.setParent(buttonTable);
+            buttonTable.add(continueButton);
+        }
+
+        settingsButton = new TextButton("Setting", PocketHealer.ui);
+        settingsButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                window.show(stage);
+            }
+        });
+
+        buttonTable.add(settingsButton);
+
+        initWindowFrame();
+
+        //buttonTable.row();
+
+        //buttonTable.row();
+
+
 
         animatedBackground = new AnimatedBackground();
         animatedBackground.add(new ScrollImage(assets.getTexture(assets.mmBG),false, new Vector2(0,0),1f,assets));
@@ -43,17 +105,14 @@ public class MainMenuState extends State{
         animatedBackground.add(new ScrollImage(assets.getTexture(assets.mmBG4),false, new Vector2(0,0),4f,assets));
         animatedBackground.setDebug(true);
 
+        /*
         text = new Text("Press screen to continue...", 32, Color.WHITE, false, assets);
-        //title.setFontColor(Color.WHITE);
         text.setPosition(PocketHealer.WIDTH/2 - text.getXCenter(), 50);
         text.setAlignment(Align.center);
-        //title.setFontSize(32);
+        */
 
         stage.addActor(animatedBackground);
-        stage.addActor(text);
-
-        //player.createSpellBar();
-        //player.addDebuggingSpell();
+        //stage.addActor(text);
 
         /*music = assets.getMusic(assets.mmMusic);
         music.setLooping(true);
@@ -65,7 +124,9 @@ public class MainMenuState extends State{
         title.setName("title");
 
         stage.addActor(title);
-        //stage.addActor(playButton);
+
+        stage.addActor(buttonTable);
+
         animatedBackground.start();
     }
 
@@ -89,12 +150,23 @@ public class MainMenuState extends State{
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                animatedBackground.stop();
-                if(player.getLevel() > 0)
-                    sm.push(new MapState(sm, player));
-
-                else
+                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float) screenX, (float) screenY));
+                if(newGameButton.pressed(coord.x, coord.y))    {
+                    animatedBackground.stop();
+                    player.newGame();
                     sm.push(new TutorialState(sm, player));
+                    return false;
+                }
+                if(continueButton != null && continueButton.pressed(coord.x, coord.y))    {
+                    animatedBackground.stop();
+                    sm.push(new MapState(sm, player));
+                    return false;
+                }
+                /*
+                if(settingsButton.pressed(coord.x, coord.y))    {
+                    window.show(stage);
+                    return false;
+                }*/
                 return false;
             }
 
@@ -120,9 +192,126 @@ public class MainMenuState extends State{
         });
     }
 
+    protected void settingsHandleInput() {
+        Gdx.input.setInputProcessor(new InputProcessor() {
+            @Override
+            public boolean keyDown(int keycode) {
+                return false;
+            }
+
+            @Override
+            public boolean keyUp(int keycode) {
+                return false;
+            }
+
+            @Override
+            public boolean keyTyped(char character) {
+                return false;
+            }
+
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float) screenX, (float) screenY));
+                return false;
+
+            }
+
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float) screenX, (float) screenY));
+                return false;
+            }
+
+            @Override
+            public boolean touchDragged(int screenX, int screenY, int pointer) {
+                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float) screenX, (float) screenY));
+                return false;
+            }
+
+            @Override
+            public boolean mouseMoved(int screenX, int screenY) {
+                return false;
+            }
+
+            @Override
+            public boolean scrolled(int amount) {
+                return false;
+            }
+        });
+    }
+
     @Override
     public void update(float dt) {
-        handleInput();
+        /*
+        if(settingFrameActive)
+            settingsHandleInput();
+        else {
+            handleInput();
+        }
+        */
+    }
+
+    public void initWindowFrame()   {
+        window = new WindowFrame(PocketHealer.ui);
+        GameData.loadAudioSettings();
+
+        //window.setDebug(true);
+        windowTitleText = new Label("Settings", PocketHealer.ui, "title");
+
+        musicText = new Label("MUSIC", PocketHealer.ui);
+        musicText.getStyle().fontColor = Color.WHITE;
+
+        musicSlider = new Slider(0.0f, 100f,1f, false, PocketHealer.ui);
+        musicSlider.setValue(AudioManager.musicVolume*100);
+        musicSlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.musicVolume = musicSlider.getValue()/100f;
+                System.out.println("AM Music: " + AudioManager.musicVolume);
+                System.out.println("Music Slider: " + musicSlider.getValue());
+            }
+        });
+
+        sfxText = new Label("SFX", PocketHealer.ui);
+        sfxText.getStyle().fontColor = Color.WHITE;
+
+        sfxSlider = new Slider(0.0f, 100f,1f, false, PocketHealer.ui);
+        sfxSlider.setValue(AudioManager.sfxVolume*100);
+        sfxSlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                AudioManager.sfxVolume = sfxSlider.getValue()/100f;
+                System.out.println("AM SFX: " + AudioManager.sfxVolume);
+                System.out.println("SFX Slider: " + sfxSlider.getValue());
+            }
+        });
+
+        okButton = new TextButton("OK", PocketHealer.ui);
+        okButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                GameData.saveAudioSettings();
+                window.hide();
+            }
+        });
+
+        window.add(windowTitleText).width(window.getWidth()*0.6f).center().fillX().padTop(10);
+        window.row();
+
+        window.add(musicText).expandX().left().padLeft(10).padTop(10);
+        window.row();
+
+        window.add(musicSlider).fillX().pad(5f,10f,0,10f).left();
+        window.row();
+
+        window.add(sfxText).expandX().left().padLeft(10).padTop(5f);
+        window.row();
+
+        window.add(sfxSlider).fillX().pad(5f,10f,0,10f).left();
+        window.row();
+
+        window.add(okButton).expandX().center().bottom().width(window.getWidth()*0.5f).height(window.getHeight()*0.2f).padBottom(10).padTop(5);
+
     }
 
     @Override

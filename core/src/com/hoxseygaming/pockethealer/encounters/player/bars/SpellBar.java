@@ -115,6 +115,12 @@ public class SpellBar extends Group {
 
     }
 
+    public void resetToDefault()    {
+        clearSpells();
+        addSpell(0,new Heal(owner,0, assets));
+        addSpell(1,new Renew2(owner, 0,assets));
+    }
+
     public void loadSpells(ArrayList<String> spellNames)    {
         clearSpells();
         if(spellNames.size() == 0)    {

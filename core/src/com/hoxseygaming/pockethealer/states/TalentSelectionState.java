@@ -55,10 +55,10 @@ public class TalentSelectionState extends State {
         pointTracker.setName("Point tracker");
         //pointTracker.setPosition(talentTree.getRight()-talentTree.getLeft()-pointTracker.getWidth()/2, talentTree.getTop() + 20 );
 
-        select = new Button("RESET", true, assets);
+        select = new Button("RESET", false, assets);
         select.setPosition(talentTree.getLeft(), 50);
 
-        done = new Button("DONE", true, assets);
+        done = new Button("DONE", false, assets);
         done.setPosition(talentTree.getRight() - done.getWidth(), 50);
 
         talentTreeTitle = new Text("Talent Tree", 45, Color.SKY, true, assets);

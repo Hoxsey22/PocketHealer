@@ -49,7 +49,7 @@ public class SpellSelectionState extends State {
         spellBook = player.getSpellBook();
         spellBar = player.getSpellBar();
 
-        done = new Button("DONE", true,assets);
+        done = new Button("DONE", false,assets);
         done.setPosition((spellBook.getRight() - spellBook.getLeft())/2 + spellBook.getLeft()-done.getWidth()/2, spellBar.getY()+spellBar.getHeight()+ 10);
 
         background = new Image(assets.getTexture(assets.spellBG));

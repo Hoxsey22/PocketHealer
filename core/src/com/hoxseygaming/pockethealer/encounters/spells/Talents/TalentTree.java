@@ -259,6 +259,12 @@ public class TalentTree extends Group{
         }
     }
 
+    public void resetToDefault()    {
+        clearTalents();
+        unusedPoints = 0;
+        totalPoints = 0;
+    }
+
     public void reset() {
         clearTalents();
         unusedPoints = totalPoints;

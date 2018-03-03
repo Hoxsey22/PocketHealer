@@ -291,8 +291,15 @@ public class Player {
         GameData.save(this);
     }
 
-    public void load()  {
-        GameData.load(this);
+    public boolean load()  {
+        return GameData.load(this);
+    }
+
+    public void newGame()   {
+        GameData.remove("save");
+        resetData();
+        GameData.save(this);
+
     }
 
     public PlayerData getData()   {
@@ -307,6 +314,13 @@ public class Player {
         talentTree.loadTalents(data.talents);
         spellBar.loadSpells(data.spells);
         System.out.println("- Player loaded.");
+    }
+
+    public void resetData()   {
+        setLevel(0);
+        talentTree.resetToDefault();
+        spellBar.resetToDefault();
+        System.out.println("- Player reset");
     }
 
 
