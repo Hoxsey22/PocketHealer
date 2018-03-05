@@ -46,7 +46,7 @@ public class Assets {
     public String lifeboomIcon = "icons/lifeboom.png";
     public String perseveranceIcon = "talent_state/perseverance.png";
     public String burstHealerIcon = "talent_state/burst_healer.png";
-    public String innerFocusIcon = "talent_state/inner_focus.png";
+    public String innerFocusIcon = "icons/inner_focus.png";
     public String diseaseIcon = "icons/disease_icon.png";
     public String workTogetherIcon = "icons/work_together.png";
     public String selectedTalent = "icons/selected.png";
