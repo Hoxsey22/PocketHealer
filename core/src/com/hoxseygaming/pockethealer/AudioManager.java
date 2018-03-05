@@ -1,7 +1,5 @@
 package com.hoxseygaming.pockethealer;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
@@ -13,7 +11,6 @@ import java.util.ArrayList;
  */
 
 public class AudioManager {
-
 
     public static class AudioData implements Serializable {
 
@@ -31,18 +28,26 @@ public class AudioManager {
         }
     }
 
-    public static final float MIN_VOLUME = 0.0f;
-    public static final float MAX_VOLUME = 1.0f;
-    private static Preferences prefs = Gdx.app.getPreferences("settings");
-    public static float musicVolume = 0.5f;
-    public static float sfxVolume = 0.5f;
-    private static Music music;
-    private static ArrayList<Sound> soundEffects = new ArrayList<>();
-    public static AudioData audioData = new AudioData();
-    private static Assets assets;
+    public float musicVolume = 0.5f;
+    public float sfxVolume = 0.5f;
+    public Music music;
+    private ArrayList<Sound> soundEffects;
+    public AudioData audioData;
+    private Assets assets;
+
+    public AudioManager()   {
+        soundEffects = new ArrayList<>();
+        audioData = new AudioData();
+    }
+
+    public AudioManager(AudioData audioData)   {
+        this.musicVolume = audioData.musicVolume;
+        this.sfxVolume = audioData.sfxVolume;
+        soundEffects = new ArrayList<>();
+    }
 
 
-    public static void loadAssets(Assets _assets) {
+    public void loadAssets(Assets _assets) {
         assets = _assets;
     }
 
@@ -51,7 +56,7 @@ public class AudioManager {
      * @param sfx
      * @param looping
      */
-    public static void playSFX(Sound sfx, boolean looping)   {
+    public  void playSFX(Sound sfx, boolean looping)   {
         if(sfx != null) {
 
             if(soundEffects.contains(sfx))   {
@@ -76,7 +81,7 @@ public class AudioManager {
      * Stops the sfx.
      * @param sfx
      */
-    public static void stopSFX(Sound sfx)    {
+    public void stopSFX(Sound sfx)    {
         if(sfx != null)    {
             sfx.stop();
         }
@@ -86,10 +91,19 @@ public class AudioManager {
      * Puases the sfx.
      * @param sfx
      */
-    public static void pauseSFX(Sound sfx)   {
+    public void pauseSFX(Sound sfx)   {
         if(sfx != null)    {
             sfx.pause();
         }
+    }
+
+    public void updateSFXVolume(float newsfxVolume)   {
+        sfxVolume = newsfxVolume;
+        /*for(int i = 0; i < soundEffects.size(); i++)   {
+            if(soundEffects.get(i) != null){
+                soundEffects.get(i).setVolume(sfxVolume,soundEffects.get(i));
+            }
+        }*/
     }
 
     /**
@@ -97,19 +111,23 @@ public class AudioManager {
      * @param newMusic
      * @param looping
      */
-    public static void playMusic(Music newMusic, boolean looping) {
-        if(music != null) {
-            setMusic(newMusic);
-            music.setLooping(looping);
-            music.setVolume(musicVolume);
-            music.play();
+    public void playMusic(Music newMusic, boolean looping) {
+        if(music == null) {
+            music = newMusic;
         }
+        else    {
+            disposeMusic();
+            music = newMusic;
+        }
+        music.setLooping(looping);
+        music.setVolume(musicVolume);
+        music.play();
     }
 
     /**
      * Plays the music object if not null.
      */
-    public static void playMusic() {
+    public void playMusic() {
         if(music != null) {
             music.setLooping(true);
             music.setVolume(musicVolume);
@@ -120,52 +138,52 @@ public class AudioManager {
     /**
      * Stops the music object if not null.
      */
-    public static void stopMusic() {
+    public Music stopMusic() {
         if(music != null)
             music.stop();
+        return music;
     }
 
     /**
      * Pauses music object if not null.
      */
-    public static void pauseMusic()    {
+    public void pauseMusic()    {
         if(music != null)
             music.pause();
     }
 
-    public static void setData(AudioData data)   {
-        audioData.setData(data.musicVolume, data.sfxVolume);
-        musicVolume = audioData.musicVolume;
-        sfxVolume = audioData.sfxVolume;
+    public void updateMusicVolume(float newVolume) {
+        musicVolume = newVolume;
+        if(music != null && music.isPlaying()) {
+            music.setVolume(newVolume);
+        }
     }
 
-    public static AudioData getData() {
-        audioData.setData(musicVolume, sfxVolume);
-        return audioData;
-    }
+
+
 
     /**
      * Disposes the music object.
      */
-    public static void disposeMusic()  {
-        try {
+    public void disposeMusic()  {
+        if(music != null) {
+            music.stop();
             music.dispose();
-        } catch (NullPointerException e)  {
-            System.out.println(e);
         }
+        System.out.println("Music has been disposed.");
     }
 
     /**
      * Disposes all Sound objects.
      */
-    public static void disposeSFX()    {
-        try {
-            for(int i = 0; i < soundEffects.size(); i++)   {
+    public void disposeSFX()    {
+        for(int i = 0; i < soundEffects.size(); i++)   {
+            if(soundEffects.get(i) != null) {
+                soundEffects.get(i).stop();
                 soundEffects.get(i).dispose();
             }
-        }catch (NullPointerException e) {
-            System.out.println(e);
         }
+        System.out.println("All SFX have been disposed.");
     }
 
     /*
@@ -176,7 +194,7 @@ public class AudioManager {
      * Sets Music objects.
      * @param newMusic
      */
-    public static void setMusic(Music newMusic)  {
+    public void setMusic(Music newMusic)  {
         music = newMusic;
     }
 
@@ -184,7 +202,7 @@ public class AudioManager {
      * Gets current Music object.
      * @return
      */
-    public static Music getMusic() {
+    public Music getMusic() {
         return music;
     }
 
@@ -192,7 +210,7 @@ public class AudioManager {
      * Gets current list of SFX objects.
      * @return
      */
-    public static ArrayList<Sound> getSoundEffects() {
+    public ArrayList<Sound> getSoundEffects() {
         return soundEffects;
     }
 
@@ -200,7 +218,7 @@ public class AudioManager {
      * Adds new Sound Object to SFX list.
      * @param sound
      */
-    public static void addSFX(Sound sound) {
+    public void addSFX(Sound sound) {
         soundEffects.add(sound);
     }
 
@@ -208,7 +226,7 @@ public class AudioManager {
      * Gets music volume.
      * @return musicVolume
      */
-    public static float getMusicVolume() {
+    public float getMusicVolume() {
         return musicVolume;
     }
 
@@ -216,7 +234,7 @@ public class AudioManager {
      * Sets the music volume.
      * @param volume range 0.0f - 1.0f
      */
-    public static void setMusicVolume(float volume) {
+    public void setMusicVolume(float volume) {
         musicVolume = volume;
     }
 
@@ -224,7 +242,7 @@ public class AudioManager {
      * Gets the Sound effects volume.
      * @return sfxVolume
      */
-    public static float getSfxVolume() {
+    public float getSfxVolume() {
         return sfxVolume;
     }
 
@@ -232,14 +250,26 @@ public class AudioManager {
      * Sets the Sound effect's volume.
      * @param volume range 0.0f - 1.0f
      */
-    public static void setSfxVolume(float volume) {
+    public void setSfxVolume(float volume) {
         sfxVolume = volume;
+    }
+
+
+    public void setData(AudioData data)   {
+        audioData.setData(data.musicVolume, data.sfxVolume);
+        musicVolume = audioData.musicVolume;
+        sfxVolume = audioData.sfxVolume;
+    }
+
+    public AudioData getData() {
+        audioData.setData(musicVolume, sfxVolume);
+        return audioData;
     }
 
     /**
      * Disposes all the music and sound effects.
      */
-    public static void disposeAll()    {
+    public void disposeAll()    {
         disposeMusic();
         disposeSFX();
     }

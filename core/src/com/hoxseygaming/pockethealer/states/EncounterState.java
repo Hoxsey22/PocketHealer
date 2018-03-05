@@ -3,7 +3,6 @@ package com.hoxseygaming.pockethealer.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -31,7 +30,7 @@ public class EncounterState extends State {
     public Stage stage;
     public Raid raid;
     public Boss boss;
-    public Music bgMusic;
+    //public Music bgMusic;
     public Image bgImage;
     public Assets assets;
     public GameOverFrame gameOverFrame;
@@ -74,11 +73,14 @@ public class EncounterState extends State {
 
         //hogger = new Hogger(assets);
 
+        PocketHealer.audioManager.playMusic(assets.getMusic(assets.battleMusic), true);
+
+        /* DELETE
         bgMusic = assets.getMusic("sfx/battle_music.ogg");
         bgMusic.setLooping(true);
         bgMusic.setVolume(0.3f);
         bgMusic.play();
-
+        */
         bgImage = new Image(assets.getTexture("battle_bg1.png"));
 
 
@@ -227,7 +229,6 @@ public class EncounterState extends State {
                             if(buttonHit != -1) {
                                 if(buttonHit == 1) {*/
                                     player.newLevel(boss.getLevel());
-                                    bgMusic.stop();
                                     sm.set(new MapState(sm, player));
                                     /*break;
                                 }
@@ -242,13 +243,11 @@ public class EncounterState extends State {
                     if(buttonHit != -1) {
                         switch (buttonHit) {
                             case 0:
-                                bgMusic.stop();
                                 sm.set(new MapState(sm, player));
                                 break;
 
                             case 2:
                                 System.out.println("reset");
-                                bgMusic.stop();
                                 sm.set(new EncounterState(sm, player, boss));
                                 break;
                         }
@@ -341,6 +340,7 @@ public class EncounterState extends State {
 
     @Override
     public void dispose() {
+        PocketHealer.audioManager.disposeAll();
     }
 }
 

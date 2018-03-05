@@ -306,6 +306,22 @@ atlasData: {
 			minWidth: 0
 			minHeight: 0
 		}
+		{
+			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/title_font.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			visible: false
+			tint: null
+			tintName: null
+			name: title_font
+			tiled: false
+			minWidth: 0
+			minHeight: 0
+		}
 	]
 }
 jsonData: {
@@ -416,6 +432,11 @@ jsonData: {
 			class: com.ray3k.skincomposer.data.FontData
 			name: game_title_font
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/game_title_font.fnt
+		}
+		{
+			class: com.ray3k.skincomposer.data.FontData
+			name: title_font
+			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/title_font.fnt
 		}
 	]
 	classStyleMap: {
@@ -1044,7 +1065,7 @@ jsonData: {
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
-				name: title
+				name: header2
 				clazz: com.badlogic.gdx.scenes.scene2d.ui.Label
 				properties: {
 					font: {
@@ -1089,6 +1110,35 @@ jsonData: {
 						name: fontColor
 						optional: true
 						value: Red
+					}
+					background: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: background
+						optional: true
+						value: null
+					}
+				}
+				deletable: true
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: title
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.Label
+				properties: {
+					font: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.g2d.BitmapFont
+						name: font
+						optional: false
+						value: title_font
+					}
+					fontColor: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.graphics.Color
+						name: fontColor
+						optional: true
+						value: White
 					}
 					background: {
 						class: com.ray3k.skincomposer.data.StyleProperty

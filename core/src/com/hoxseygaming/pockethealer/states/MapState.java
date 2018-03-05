@@ -36,6 +36,8 @@ public class MapState extends State {
 
         stage = new Stage(viewport);
         assets = player.getAssets();
+        if(PocketHealer.audioManager.getMusic() == null)
+            PocketHealer.audioManager.playMusic(assets.getMusic(assets.mmMusic), true);
 
         pageLeft = new ImageButton("pageLeft", assets.getTexture(assets.pageTurn), 40, 550, 30,30);
         pageLeft.flipX();
@@ -153,7 +155,6 @@ public class MapState extends State {
                                 break;
                             case "START":
                                 if(selectedLevel != null)    {
-                                    PocketHealer.music.dispose();
                                     sm.set(new EncounterState(sm, player, selectedLevel.boss));
                                 }
                                 break;

@@ -60,27 +60,27 @@ public class GameData {
         return true;
     }
 
-    public static boolean loadAudioSettings()   {
+    public static AudioManager loadAudioSettings()   {
 
         if(prefs.contains("audio_settings"))  {
-            Json json = new Json();
-            AudioManager.setData(json.fromJson(AudioManager.AudioData.class, prefs.getString("audio_settings")));
             System.out.println("save point found!");
-            return true;
+            Json json = new Json();
+            AudioManager audioManager = new AudioManager();
+            audioManager.setData(json.fromJson(AudioManager.AudioData.class, prefs.getString("audio_settings")));
+            return audioManager;
         }
         else {
             saveAudioSettings();
-            loadAudioSettings();
-            return false;
+            return loadAudioSettings();
         }
     }
 
     public static boolean saveAudioSettings()   {
         Json json = new Json();
-        json.toJson(AudioManager.getData());
-        System.out.println(json.prettyPrint(AudioManager.getData()));
+        json.toJson(PocketHealer.audioManager.getData());
+        System.out.println(json.prettyPrint(PocketHealer.audioManager.getData()));
 
-        prefs.putString("audio_settings", json.toJson(AudioManager.getData()));
+        prefs.putString("audio_settings", json.toJson(PocketHealer.audioManager.getData()));
         prefs.flush();
 
         System.out.println("save successful!");

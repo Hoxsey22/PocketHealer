@@ -134,6 +134,19 @@ size: 1024,1024
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+game_title_font
+  rotate: false
+  xy: 1, 1
+  size: 512, 512
+  orig: 512, 512
+  offset: 0, 0
+  index: -1
+
+pocket_healer_ui12.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
 button
   rotate: false
   xy: 1, 166
@@ -162,7 +175,7 @@ end_game_frame
   orig: 252, 235
   offset: 0, 0
   index: -1
-game_title_font
+title_font
   rotate: false
   xy: 1, 500
   size: 512, 512
