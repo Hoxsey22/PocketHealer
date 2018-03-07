@@ -8,12 +8,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.BossIcon;
 import com.hoxseygaming.pockethealer.Button;
 import com.hoxseygaming.pockethealer.ImageButton;
 import com.hoxseygaming.pockethealer.MapFrame;
 import com.hoxseygaming.pockethealer.Player;
-import com.hoxseygaming.pockethealer.PocketHealer;
 
 /**
  * Created by Hoxsey on 7/11/2017.
@@ -36,8 +36,8 @@ public class MapState extends State {
 
         stage = new Stage(viewport);
         assets = player.getAssets();
-        if(PocketHealer.audioManager.getMusic() == null)
-            PocketHealer.audioManager.playMusic(assets.getMusic(assets.mmMusic), true);
+        if(AudioManager.getMusic() == null)
+            AudioManager.playMusic(assets.getMusic(assets.mmMusic), true);
 
         pageLeft = new ImageButton("pageLeft", assets.getTexture(assets.pageTurn), 40, 550, 30,30);
         pageLeft.flipX();

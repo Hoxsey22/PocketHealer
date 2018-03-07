@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.hoxseygaming.pockethealer.AnimatedBackground;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.GameData;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
@@ -176,12 +177,12 @@ public class MainMenuState extends State{
         musicText.getStyle().fontColor = Color.WHITE;
 
         musicSlider = new Slider(0.0f, 100f,1f, false, PocketHealer.ui);
-        musicSlider.setValue(PocketHealer.audioManager.musicVolume*100);
+        musicSlider.setValue(AudioManager.musicVolume*100);
         musicSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                PocketHealer.audioManager.updateMusicVolume(musicSlider.getValue()/100f);//  musicVolume = musicSlider.getValue()/100f;
-                System.out.println("AM Music: " + PocketHealer.audioManager.musicVolume);
+                AudioManager.updateMusicVolume(musicSlider.getValue()/100f);//  musicVolume = musicSlider.getValue()/100f;
+                System.out.println("AM Music: " + AudioManager.musicVolume);
                 System.out.println("Music Slider: " + musicSlider.getValue());
             }
         });
@@ -190,12 +191,12 @@ public class MainMenuState extends State{
         sfxText.getStyle().fontColor = Color.WHITE;
 
         sfxSlider = new Slider(0.0f, 100f,1f, false, PocketHealer.ui);
-        sfxSlider.setValue(PocketHealer.audioManager.sfxVolume*100);
+        sfxSlider.setValue(AudioManager.sfxVolume*100);
         sfxSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                PocketHealer.audioManager.updateSFXVolume(sfxSlider.getValue()/100f);
-                System.out.println("AM SFX: " + PocketHealer.audioManager.sfxVolume);
+                AudioManager.updateSFXVolume(sfxSlider.getValue()/100f);
+                System.out.println("AM SFX: " + AudioManager.sfxVolume);
                 System.out.println("SFX Slider: " + sfxSlider.getValue());
             }
         });

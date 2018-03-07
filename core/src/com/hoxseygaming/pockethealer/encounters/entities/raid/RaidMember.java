@@ -2,7 +2,6 @@ package com.hoxseygaming.pockethealer.encounters.entities.raid;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.Entity;
 import com.hoxseygaming.pockethealer.encounters.floatingtext.FloatingText;
@@ -20,18 +19,13 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
     public Texture frame;
     public HealthBar healthBar;
     public FloatingTextManager floatingTextManager;
-    public EventListener eventListener;
-    public int totalHealingDone;
-    public int overHealingDone;
     public StatusEffectList statusEffects;
-    public boolean isDamaged;
 
 
     public RaidMember(int id, String role, Assets assets)  {
         super(id,role,assets);
-        //healthBar = new HealthBar(this,(int)getX(),(int)getY(),(int)getWidth(),(int) getHeight());
         healthBar = new HealthBar(this);
-        frame = assets.getTexture("raid_frame_idle.png");
+        frame = assets.getTexture(assets.raidFrameIdle);
         setRoleImage();
         floatingTextManager = new FloatingTextManager(this, assets);
         statusEffects = new StatusEffectList(this);
@@ -92,7 +86,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     public void selected()  {
         selected = true;
-        frame = assets.getTexture("raid_frame_selected.png");
+        frame = assets.getTexture(assets.raidFrameSelected);
     }
 
     @Override

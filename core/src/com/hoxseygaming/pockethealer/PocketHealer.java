@@ -12,8 +12,7 @@ import com.hoxseygaming.pockethealer.states.StateManager;
 public class PocketHealer extends ApplicationAdapter {
     public static final int WIDTH = 480;
     public static final int HEIGHT = 800;
-    public static final String TITLE = "POCKET HEALER";
-    public static AudioManager audioManager;
+	public static final String TITLE = "POCKET HEALER";
 	public static Music music;
 	public static Skin ui;
 
@@ -25,8 +24,8 @@ public class PocketHealer extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		sm = new StateManager();
 		ui = new Skin(Gdx.files.internal("pocket_healer_ui.json"));
-		audioManager = GameData.loadAudioSettings();
-		audioManager.playMusic(Gdx.audio.newMusic(Gdx.files.internal("mm_music.ogg")), true);
+		GameData.loadAudioSettings();
+		AudioManager.playMusic(Gdx.audio.newMusic(Gdx.files.internal("mm_music.ogg")), true);
 		//System.out.println(audioManager.music.getVolume());
 		sm.push(new LoadingState(sm));
 	}

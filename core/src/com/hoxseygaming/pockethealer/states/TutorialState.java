@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.GameOverFrame;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
@@ -64,7 +65,7 @@ public class TutorialState extends State {
 
         player.setRaid(boss.getEnemies());
 
-        PocketHealer.audioManager.playMusic(assets.getMusic(assets.battleMusic), true);
+        AudioManager.playMusic(assets.getMusic(assets.battleMusic), true);
 
         /* DELETE
         bgMusic = assets.getMusic("sfx/battle_music.ogg");
@@ -325,7 +326,7 @@ public class TutorialState extends State {
 
     @Override
     public void dispose() {
-        PocketHealer.audioManager.disposeAll();
+        AudioManager.disposeAll();
     }
 }
 

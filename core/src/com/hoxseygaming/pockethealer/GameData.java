@@ -60,14 +60,13 @@ public class GameData {
         return true;
     }
 
-    public static AudioManager loadAudioSettings()   {
+    public static boolean loadAudioSettings()   {
 
         if(prefs.contains("audio_settings"))  {
             System.out.println("save point found!");
             Json json = new Json();
-            AudioManager audioManager = new AudioManager();
-            audioManager.setData(json.fromJson(AudioManager.AudioData.class, prefs.getString("audio_settings")));
-            return audioManager;
+            AudioManager.setData(json.fromJson(AudioManager.AudioData.class, prefs.getString("audio_settings")));
+            return true;
         }
         else {
             saveAudioSettings();
@@ -77,10 +76,10 @@ public class GameData {
 
     public static boolean saveAudioSettings()   {
         Json json = new Json();
-        json.toJson(PocketHealer.audioManager.getData());
-        System.out.println(json.prettyPrint(PocketHealer.audioManager.getData()));
+        json.toJson(AudioManager.getData());
+        System.out.println(json.prettyPrint(AudioManager.getData()));
 
-        prefs.putString("audio_settings", json.toJson(PocketHealer.audioManager.getData()));
+        prefs.putString("audio_settings", json.toJson(AudioManager.getData()));
         prefs.flush();
 
         System.out.println("save successful!");

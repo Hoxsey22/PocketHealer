@@ -86,8 +86,8 @@ public class Assets {
     public String redFill = "red_hp_fill.png";
     public String greenFill = "green_hp_fill.png";
     public String purpleFill = "purple_fill.png";
-    public String raidFrameIdle = "raid_frame_idle.png";
-    public String raidFrameSelected = "raid_frame_selected.png";
+    public String raidFrameIdle = "raid_frame_idle_v2.png";
+    public String raidFrameSelected = "raid_frame_selected_v2.png";
     public String hpManaBar = "hp_mana_bar.png";
     public String manaFill = "mana_fill.png";
     public String castBar = "casting_bar.png";

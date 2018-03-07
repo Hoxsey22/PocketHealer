@@ -17,6 +17,7 @@ public class AudioManager {
         public float musicVolume;
         public float sfxVolume;
 
+
         public AudioData() {
             musicVolume = 0.5f;
             sfxVolume = 0.5f;
@@ -28,14 +29,14 @@ public class AudioManager {
         }
     }
 
-    public float musicVolume = 0.5f;
-    public float sfxVolume = 0.5f;
-    public Music music;
-    private ArrayList<Sound> soundEffects;
-    public AudioData audioData;
-    private Assets assets;
+    public static float musicVolume = 0.5f;
+    public static float sfxVolume = 0.5f;
+    public static Music music;
+    private static ArrayList<Sound> soundEffects;
+    public static AudioData audioData = new AudioData();
+    private static Assets assets;
 
-    public AudioManager()   {
+    /*public AudioManager()   {
         soundEffects = new ArrayList<>();
         audioData = new AudioData();
     }
@@ -44,10 +45,10 @@ public class AudioManager {
         this.musicVolume = audioData.musicVolume;
         this.sfxVolume = audioData.sfxVolume;
         soundEffects = new ArrayList<>();
-    }
+    }*/
 
 
-    public void loadAssets(Assets _assets) {
+    public static void loadAssets(Assets _assets) {
         assets = _assets;
     }
 
@@ -56,7 +57,7 @@ public class AudioManager {
      * @param sfx
      * @param looping
      */
-    public  void playSFX(Sound sfx, boolean looping)   {
+    public static void playSFX(Sound sfx, boolean looping)   {
         if(sfx != null) {
 
             if(soundEffects.contains(sfx))   {
@@ -81,7 +82,7 @@ public class AudioManager {
      * Stops the sfx.
      * @param sfx
      */
-    public void stopSFX(Sound sfx)    {
+    public static void stopSFX(Sound sfx)    {
         if(sfx != null)    {
             sfx.stop();
         }
@@ -91,13 +92,13 @@ public class AudioManager {
      * Puases the sfx.
      * @param sfx
      */
-    public void pauseSFX(Sound sfx)   {
+    public static void pauseSFX(Sound sfx)   {
         if(sfx != null)    {
             sfx.pause();
         }
     }
 
-    public void updateSFXVolume(float newsfxVolume)   {
+    public static void updateSFXVolume(float newsfxVolume)   {
         sfxVolume = newsfxVolume;
         /*for(int i = 0; i < soundEffects.size(); i++)   {
             if(soundEffects.get(i) != null){
@@ -111,7 +112,7 @@ public class AudioManager {
      * @param newMusic
      * @param looping
      */
-    public void playMusic(Music newMusic, boolean looping) {
+    public static void playMusic(Music newMusic, boolean looping) {
         if(music == null) {
             music = newMusic;
         }
@@ -127,7 +128,7 @@ public class AudioManager {
     /**
      * Plays the music object if not null.
      */
-    public void playMusic() {
+    public static void playMusic() {
         if(music != null) {
             music.setLooping(true);
             music.setVolume(musicVolume);
@@ -138,7 +139,7 @@ public class AudioManager {
     /**
      * Stops the music object if not null.
      */
-    public Music stopMusic() {
+    public static Music stopMusic() {
         if(music != null)
             music.stop();
         return music;
@@ -147,12 +148,12 @@ public class AudioManager {
     /**
      * Pauses music object if not null.
      */
-    public void pauseMusic()    {
+    public static void pauseMusic()    {
         if(music != null)
             music.pause();
     }
 
-    public void updateMusicVolume(float newVolume) {
+    public static void updateMusicVolume(float newVolume) {
         musicVolume = newVolume;
         if(music != null && music.isPlaying()) {
             music.setVolume(newVolume);
@@ -165,7 +166,7 @@ public class AudioManager {
     /**
      * Disposes the music object.
      */
-    public void disposeMusic()  {
+    public static void disposeMusic()  {
         if(music != null) {
             music.stop();
             music.dispose();
@@ -176,7 +177,7 @@ public class AudioManager {
     /**
      * Disposes all Sound objects.
      */
-    public void disposeSFX()    {
+    public static void disposeSFX()    {
         for(int i = 0; i < soundEffects.size(); i++)   {
             if(soundEffects.get(i) != null) {
                 soundEffects.get(i).stop();
@@ -194,7 +195,7 @@ public class AudioManager {
      * Sets Music objects.
      * @param newMusic
      */
-    public void setMusic(Music newMusic)  {
+    public static void setMusic(Music newMusic)  {
         music = newMusic;
     }
 
@@ -202,7 +203,7 @@ public class AudioManager {
      * Gets current Music object.
      * @return
      */
-    public Music getMusic() {
+    public static Music getMusic() {
         return music;
     }
 
@@ -210,7 +211,7 @@ public class AudioManager {
      * Gets current list of SFX objects.
      * @return
      */
-    public ArrayList<Sound> getSoundEffects() {
+    public static ArrayList<Sound> getSoundEffects() {
         return soundEffects;
     }
 
@@ -218,7 +219,7 @@ public class AudioManager {
      * Adds new Sound Object to SFX list.
      * @param sound
      */
-    public void addSFX(Sound sound) {
+    public static void addSFX(Sound sound) {
         soundEffects.add(sound);
     }
 
@@ -226,7 +227,7 @@ public class AudioManager {
      * Gets music volume.
      * @return musicVolume
      */
-    public float getMusicVolume() {
+    public static float getMusicVolume() {
         return musicVolume;
     }
 
@@ -234,7 +235,7 @@ public class AudioManager {
      * Sets the music volume.
      * @param volume range 0.0f - 1.0f
      */
-    public void setMusicVolume(float volume) {
+    public static void setMusicVolume(float volume) {
         musicVolume = volume;
     }
 
@@ -242,7 +243,7 @@ public class AudioManager {
      * Gets the Sound effects volume.
      * @return sfxVolume
      */
-    public float getSfxVolume() {
+    public static float getSfxVolume() {
         return sfxVolume;
     }
 
@@ -250,18 +251,18 @@ public class AudioManager {
      * Sets the Sound effect's volume.
      * @param volume range 0.0f - 1.0f
      */
-    public void setSfxVolume(float volume) {
+    public static void setSfxVolume(float volume) {
         sfxVolume = volume;
     }
 
 
-    public void setData(AudioData data)   {
+    public static void setData(AudioData data)   {
         audioData.setData(data.musicVolume, data.sfxVolume);
         musicVolume = audioData.musicVolume;
         sfxVolume = audioData.sfxVolume;
     }
 
-    public AudioData getData() {
+    public static AudioData getData() {
         audioData.setData(musicVolume, sfxVolume);
         return audioData;
     }
@@ -269,7 +270,7 @@ public class AudioManager {
     /**
      * Disposes all the music and sound effects.
      */
-    public void disposeAll()    {
+    public static void disposeAll()    {
         disposeMusic();
         disposeSFX();
     }

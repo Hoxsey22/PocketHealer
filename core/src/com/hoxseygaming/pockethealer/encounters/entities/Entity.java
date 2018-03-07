@@ -4,10 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.HealingTracker;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
-import com.hoxseygaming.pockethealer.encounters.spells.Spell;
-
-import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 6/16/2017.
@@ -25,8 +21,6 @@ public class Entity extends Actor{
     public int damage;
     public boolean isDead;
     public Texture roleImage;
-    public Texture deathImage;
-    public ArrayList<Texture> effects;
     public boolean selected;
     public Assets assets;
     public int amountAbsorbed;
@@ -49,7 +43,6 @@ public class Entity extends Actor{
         hpPercent = getHpPercent();
         shield = 0;
         isDead = false;
-        effects = new ArrayList<Texture>();
         selected = false;
         healingTracker = new HealingTracker();
     }
@@ -97,8 +90,6 @@ public class Entity extends Actor{
                 isDead = true;
                 hp = 0;
                 shield = 0;
-                if(effects != null)
-                    effects.clear();
             }
             getHpPercent();
         }
@@ -117,7 +108,6 @@ public class Entity extends Actor{
         shield = shield - damage;
         if(shield <= 0) {
             hp = hp - Math.abs(shield);
-            removeEffect(Spell.EffectType.SHIELD);
             shield = 0;
             getHpPercent();
             amountAbsorbed = oldShield;
@@ -134,7 +124,6 @@ public class Entity extends Actor{
         if(healingAbsorb <= 0) {
             healingTracker.addHealingDone(oldHealingAbsorb);
             receiveHealing(Math.abs(healingAbsorb));
-            removeEffect(Mechanic.Debuff.DISEASE);
             healingAbsorb = 0;
             getHpPercent();
             return;
@@ -213,38 +202,6 @@ public class Entity extends Actor{
             healingAbsorb = healingAbsorb + newOutput;
         }
     }
-
-    public void applyEffect(Spell.EffectType buff) {
-        effects.add(assets.getEffectImage(buff));
-    }
-
-    public void applyEffect(Mechanic.Debuff debuff)   {
-        effects.add(assets.getEffectImage(debuff));
-    }
-
-    public void removeEffect(Spell.EffectType buff)    {
-        if(effects.indexOf(assets.getEffectImage(buff)) != -1) {
-            effects.remove(effects.indexOf(assets.getEffectImage(buff)));
-            System.out.println(buff.toString() + " REMOVED");
-        }
-    }
-
-    public void removeEffect(Mechanic.Debuff debuff)    {
-        if(effects.indexOf(assets.getEffectImage(debuff)) != -1) {
-            effects.remove(effects.indexOf(assets.getEffectImage(debuff)));
-            System.out.println(debuff.toString() + " REMOVED");
-        }
-    }
-
-    public boolean containsEffects(Spell.EffectType buff)   {
-        System.out.println("Contains ID: "+id);
-        return effects.indexOf(assets.getEffectImage(buff)) > -1;
-    }
-    public boolean containsEffects(Mechanic.Debuff debuff)   {
-        return effects.indexOf(assets.getEffectImage(debuff)) > -1;
-    }
-
-
     /*Getters and Setters*/
 
     public int getId() {
@@ -338,11 +295,6 @@ public class Entity extends Actor{
     public void setRoleImage(Texture roleImage) {
         this.roleImage = roleImage;
     }
-
-    public ArrayList<Texture> getEffects() {
-        return effects;
-    }
-
 
 
     public boolean isSelected() {
