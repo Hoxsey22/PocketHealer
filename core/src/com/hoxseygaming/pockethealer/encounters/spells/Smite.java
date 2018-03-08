@@ -14,20 +14,17 @@ public class Smite extends Castable {
 
     /**
      * @param player
-     * @param index
      * @param assets
      */
-    public Smite(Player player, int index, Assets assets) {
+    public Smite(Player player, Assets assets) {
         super(player, "Smite",
                 "Smites a boss for a small amount of damage that will heal the most injured ally unit for a faction of the damage.",
                 5,
                 1.25f,
-                EffectType.DAMAGEHEAL,
                 5,
                 0.5f,
                 0.5f,
                 assets.getSound(assets.healSFX),
-                index,
                 assets);
 
         image = assets.getTexture(assets.smiteIcon);

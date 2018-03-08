@@ -16,12 +16,11 @@ public class Lightwell extends Periodical {
      * @param index
      * @param player
      */
-    public Lightwell(Player player, int index, Assets assets)  {
+    public Lightwell(Player player, Assets assets)  {
         super(player,
                 "Lightwell",
                 "Summons a magical lightwell that will send holy light at the most injured ally unit.",
                 6,
-                EffectType.HEALOVERTIME,
                 1,
                 3,
                 5f,
@@ -29,7 +28,6 @@ public class Lightwell extends Periodical {
                 60f,
                 1.5f,
                 assets.getSound(assets.hotSFX),
-                index,
                 assets);
         image = this.assets.getTexture(assets.lightWellIcon);
     }

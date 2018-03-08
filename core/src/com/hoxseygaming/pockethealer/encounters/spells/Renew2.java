@@ -23,15 +23,15 @@ public class Renew2 extends Periodical {
      * @param index
      * @param assets
      */
-    public Renew2(Player player, int index, Assets assets) {
+    public Renew2(Player player, Assets assets) {
         super(player, "Renew", "A renewing amount of holy light is place on an ally unit.",
-                0, EffectType.HEALOVERTIME,
+                0,
                 1,
                 7,
                 1f,
                 0.5f,
                 10f,
-                2f, assets.getSound(assets.hotSFX), index, assets);
+                2f, assets.getSound(assets.hotSFX), assets);
         image = this.assets.getTexture(assets.renewIcon);
 
     }
@@ -48,6 +48,11 @@ public class Renew2 extends Periodical {
         else {
             target.addStatusEffect(buff);
         }
+    }
+
+    @Override
+    public void startDurationTimer() {
+
     }
 
     @Override

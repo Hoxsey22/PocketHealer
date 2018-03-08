@@ -8,8 +8,8 @@ import com.hoxseygaming.pockethealer.Player;
  */
 public class GreaterHeal extends Heal {
 
-    public GreaterHeal(Player player, int index, Assets assets) {
-        super(player, index, assets);
+    public GreaterHeal(Player player, Assets assets) {
+        super(player, assets);
         setName("Greater Heal");
         setDescription("A focused powerful heal that heals an ally unit for a massive amount.");
         setImage(assets.getTexture(assets.greaterHealerIcon));

@@ -27,12 +27,10 @@ public abstract class Spell extends Actor {
         HEAL,HEALALL,HEALMULTIPLE,SHIELD,HEALOVERTIME,DAMAGEHEAL, LBHEAL,RNHEAL
     }
 
-    public int index;
     public Player owner;
     public String name;
     public String description;
     public String spellType;
-    public EffectType effectType;
     public int output;
     public int MIN_OUTPUT;
     public int cost;
@@ -58,19 +56,16 @@ public abstract class Spell extends Actor {
      * @param player
      * @param name
      * @param description
-     * @param effectType
      * @param output
      * @param costPercentage
      * @param cooldown
-     * @param index
      * @param assets
      */
-    public Spell(Player player, String name, String description, int levelRequirement, EffectType effectType, int output,
-                 float costPercentage, float cooldown, int index, Assets assets) {
-        setBounds(SpellData.positions[index].x,SpellData.positions[index].y,80,80);
+    public Spell(Player player, String name, String description, int levelRequirement, int output,
+                 float costPercentage, float cooldown, Assets assets) {
+        setBounds(SpellData.positions[0].x,SpellData.positions[0].y,80,80);
         owner = player;
         this.assets = assets;
-        this.index = index;
         this.name = name;
         setName(name);
         this.description = description;
@@ -81,7 +76,6 @@ public abstract class Spell extends Actor {
         MIN_COST = cost;
         this.cooldown = cooldown;
         MIN_COOLDOWN = cooldown;
-        this.effectType = effectType;
         isReady = true;
         isCasting = false;
         cdCounter = 0f;
@@ -188,14 +182,6 @@ public abstract class Spell extends Actor {
 
     public void setOutput(int output) {
         this.output = output;
-    }
-
-    public EffectType getEffectType() {
-        return effectType;
-    }
-
-    public void setEffectType(EffectType effectType) {
-        this.effectType = effectType;
     }
 
     public int getCost() {

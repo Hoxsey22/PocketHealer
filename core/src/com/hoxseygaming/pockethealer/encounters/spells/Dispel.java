@@ -18,13 +18,11 @@ public class Dispel extends InstantCast {
         super(player, "Dispel",
                 "Dispels all dispellable debuffs from the targeted ally unit. ",
                 0,
-                EffectType.HEAL,
                 1,
                 0,
                 1.5f,
                 1f,
                 assets.getSound(assets.healSFX),
-                0,
                 assets);
         setImage(assets.getTexture(assets.dispelIcon));
     }

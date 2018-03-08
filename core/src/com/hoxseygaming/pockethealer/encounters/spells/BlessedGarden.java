@@ -17,12 +17,10 @@ public class BlessedGarden extends Castable {
                 "Blossoms a beautiful garden around the entire raid, increasing all heals by 40%.",
                 0,
                 2f,
-                EffectType.HEAL,
                 0,
                 10f,
                 70f,
                 assets.getSound(assets.healSFX),
-                0,
                 assets);
         setImage(assets.getTexture(assets.blessedGardenIcon));
     }

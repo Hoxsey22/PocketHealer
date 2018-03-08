@@ -15,16 +15,15 @@ public class HolyNova extends Castable {
     public Sound sfx;
     public final int MIN_NUMOFTARGETS = 3;
 
-    public HolyNova(Player player, int index, Assets assets) {
+    public HolyNova(Player player, Assets assets) {
         super(player,
                 "Holy Nova",
                 "An explosion of holy light that heals several ally units for a moderate amount.",
                 3,
                 2f,
-                EffectType.HEALMULTIPLE,
                 25,
                 3.5f,
-                1f,assets.getSound(assets.healSFX), index,assets);
+                1f,assets.getSound(assets.healSFX),assets);
         image = assets.getTexture(assets.holyNovaIcon);
         sfx = assets.getSound(assets.hotSFX);
         numOfTargets = MIN_NUMOFTARGETS;

@@ -12,18 +12,16 @@ import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
  */
 public class PrayerOfMending extends Castable {
 
-    public PrayerOfMending(Player player, int index, Assets assets) {
+    public PrayerOfMending(Player player, Assets assets) {
         super(player,
                 "Prayer of Mending",
                 "A ward is placed on an ally unit that heals the ally unit when damaged and will jump to a new target.",
                 0,
                 1.5f,
-                EffectType.HEAL,
                 35,
                 2f,
                 8,
                 assets.getSound(assets.healSFX),
-                index,
                 assets);
         setImage(assets.getTexture(assets.prayerOfMendingIcon));
         numOfTargets = 5;

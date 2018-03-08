@@ -19,13 +19,11 @@ public class HolyShock extends InstantCast {
         super(player, "Holy Shock",
                 "Instantly shocks an ally unit with holy light for a moderate amount and also empowers the next Heal by 50%.",
                 0,
-                EffectType.HEAL,
                 1,
                 35,
                 2f,
                 12f,
                 assets.getSound(assets.healSFX),
-                0,
                 assets);
 
         setImage(assets.getTexture(assets.criticalHealer2Icon));

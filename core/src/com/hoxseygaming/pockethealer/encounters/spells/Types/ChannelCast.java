@@ -27,17 +27,14 @@ public abstract class ChannelCast extends Spell {
      * @param name
      * @param description
      * @param castTime
-     * @param effectType
      * @param output
      * @param costPercentage
      * @param cooldown
-     * @param index
      * @param assets
      */
-    public ChannelCast(Player player, String name, String description, int levelRequirement, float castTime, int ticksPerCast, EffectType effectType,
-                       int output, float costPercentage, float cooldown, int index, Assets assets) {
-        super(player, name, description, levelRequirement,effectType, output, costPercentage, cooldown, index, assets);
-        //this.spellSFX = spellSFX;
+    public ChannelCast(Player player, String name, String description, int levelRequirement, float castTime, int ticksPerCast,
+                       int output, float costPercentage, float cooldown, Assets assets) {
+        super(player, name, description, levelRequirement, output, costPercentage, cooldown, assets);
         spellType = "Channeled";
         this.castTime = castTime;
         MIN_CAST_TIME = castTime;
@@ -56,10 +53,7 @@ public abstract class ChannelCast extends Spell {
 
     @Override
     public void applySpell(RaidMember target)    {
-        if(effectType == EffectType.HEAL)
-            target.receiveHealing(output, criticalChance.isCritical());
-        if(effectType == EffectType.HEALALL)
-            owner.raid.receiveHealing(output);
+        target.receiveHealing(output, criticalChance.isCritical());
     }
 
     public void startCastTimer()    {

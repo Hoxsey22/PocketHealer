@@ -16,9 +16,9 @@ public class Heal extends Castable {
     public ArrayList<Barrier> barriers;
 
 
-    public Heal(Player player, int index, Assets assets) {
-        super(player, "Heal","An efficient heal that heal an ally unit for a moderate amount.", 0,1.5f, EffectType.HEAL,
-                40, 1f, 0.5f,assets.getSound(assets.healSFX), index, assets);
+    public Heal(Player player, Assets assets) {
+        super(player, "Heal","An efficient heal that heal an ally unit for a moderate amount.", 0,1.5f,
+                40, 1f, 0.5f,assets.getSound(assets.healSFX), assets);
         setImage(assets.getTexture(assets.healIcon));
         barriers = new ArrayList<>();
     }

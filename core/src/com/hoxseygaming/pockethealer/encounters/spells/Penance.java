@@ -17,11 +17,9 @@ public class Penance extends ChannelCast {
                 7,
                 2.5f,
                 4,
-                EffectType.HEALALL,
                 15,
                 3f,
                 8f,
-                0,
                 assets);
         image = assets.getTexture(assets.penanceIcon);
     }

@@ -15,34 +15,17 @@ public class Barrier extends InstantCast {
 
     public Sound sfx;
 
-    public Barrier(Player player, int index, Assets assets) {
+    public Barrier(Player player, Assets assets) {
         super(player,"Barrier", "Places a barrier around the ally unit, absorbing incoming damage.",
                 2,
-                EffectType.SHIELD,
                 1,
                 60,
                 2.3f,
                 4f,
                 assets.getSound(assets.barrierSFX),
-                index,
                 assets);
         image = this.assets.getTexture(assets.barrierIcon);
         checkTalents();
-    }
-
-    public Barrier(Player player, int output, int index, Assets assets) {
-        super(player,"Barrier",
-                "Places a barrier around the ally unit, absorbing incoming damage.",
-                2,
-                EffectType.SHIELD,
-                1,
-                output,
-                2.8f,
-                4f,
-                assets.getSound(assets.barrierSFX),
-                index,
-                assets);
-        image = this.assets.getTexture(assets.barrierIcon);
     }
 
     @Override

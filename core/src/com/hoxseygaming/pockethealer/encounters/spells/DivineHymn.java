@@ -10,17 +10,15 @@ import com.hoxseygaming.pockethealer.encounters.spells.Types.ChannelCast;
  */
 public class DivineHymn extends ChannelCast {
 
-    public DivineHymn(Player player, int index, Assets assets) {
+    public DivineHymn(Player player, Assets assets) {
         super(player, "Divine Hymn",
                 "A glorious hymn is rang throughout the raid, healing all ally units several times.",
                 7,
                 4f,
                 4,
-                EffectType.HEALALL,
                 20,
                 5f,
                 70f,
-                index,
                 assets);
         image = assets.getTexture(assets.divineHymnIcon);
     }

@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
+import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 import java.util.ArrayList;
 
@@ -59,19 +60,19 @@ public class SpellBook extends Group{
     public void createSpells()  {
 
         // add spell to list
-        spells.add(new Heal(owner, 0, assets));
-        spells.add(new Renew2(owner, 0, assets));
-        spells.add(new FlashHeal(owner, 0, assets));
-        spells.add(new Barrier(owner, 0, assets));
-        spells.add(new HolyNova(owner, 0, assets));
-        spells.add(new GreaterHeal(owner, 0, assets));
-        spells.add(new Smite(owner, 0, assets));
-        spells.add(new Lightwell(owner, 0, assets));
-        spells.add(new PrayerOfMending(owner, 0, assets));
+        spells.add(new Heal(owner, assets));
+        spells.add(new Renew2(owner, assets));
+        spells.add(new FlashHeal(owner, assets));
+        spells.add(new Barrier(owner, assets));
+        spells.add(new HolyNova(owner, assets));
+        spells.add(new GreaterHeal(owner, assets));
+        spells.add(new Smite(owner, assets));
+        spells.add(new Lightwell(owner, assets));
+        spells.add(new PrayerOfMending(owner, assets));
         spells.add(new Dispel(owner, assets));
         spells.add(new HolyShock(owner, assets));
         spells.add(new Penance(owner, assets));
-        spells.add(new DivineHymn(owner, 0, assets));
+        spells.add(new DivineHymn(owner, assets));
         spells.add(new DivineProtection(owner, assets));
         spells.add(new BlessedGarden(owner, assets));
         // add spell to group
@@ -125,29 +126,46 @@ public class SpellBook extends Group{
         if(owner.getLevel() >= spell.levelRequirement)    {
             return true;
         }
+        switch (spell.getName())    {
+            case BLESSED_GARDEN:
+                if(owner.getTalentTree().getTalent(TalentTree.AOD).isSelected())    {
+                    return true;
+                }
+                return false;
+            case DIVINE_PROTECTION:
+                if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
+                    return true;
+                }
+                return false;
+            case DIVINE_HYMN:
+                if(owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected())    {
+                    return true;
+                }
+                return false;
+        }
         return false;
     }
 
     public Spell getCopySpell(Spell spell)    {
         switch (spell.getName())    {
             case HEAL:
-                return new Heal(owner,0,assets);
+                return new Heal(owner,assets);
             case FLASH_HEAL:
-                return new FlashHeal(owner,0,assets);
+                return new FlashHeal(owner,assets);
             case GREATER_HEAL:
-                return new GreaterHeal(owner,0,assets);
+                return new GreaterHeal(owner,assets);
             case HOLY_NOVA:
-                return new HolyNova(owner,0,assets);
+                return new HolyNova(owner,assets);
             case RENEW:
-                return new Renew2(owner,0,assets);
+                return new Renew2(owner,assets);
             case BARRIER:
-                return new Barrier(owner,0,assets);
+                return new Barrier(owner,assets);
             case LIGHTWELL:
-                return new Lightwell(owner,0,assets);
+                return new Lightwell(owner,assets);
             case SMITE:
-                return new Smite(owner,0,assets);
+                return new Smite(owner,assets);
             case PRAYER_OF_MENDING:
-                return new PrayerOfMending(owner,0, assets);
+                return new PrayerOfMending(owner, assets);
             case DISPEL:
                 return new Dispel(owner, assets);
             case HOLY_SHOCK:
@@ -156,7 +174,7 @@ public class SpellBook extends Group{
                 return new Penance(owner, assets);
             case DIVINE_HYMN:
                 //if(owner.getTalentTree().getTalent(owner.getTalentTree().HOLY_FOCUS).isSelected()) {
-                    return new DivineHymn(owner, 0, assets);
+                    return new DivineHymn(owner, assets);
                // }
                 //break;
             case DIVINE_PROTECTION:

@@ -9,8 +9,8 @@ import com.hoxseygaming.pockethealer.Player;
 public class FlashHeal extends Heal {
 
 
-    public FlashHeal(Player player,int index, Assets assets) {
-        super(player, index, assets);
+    public FlashHeal(Player player, Assets assets) {
+        super(player, assets);
         setName("Flash Heal");
         setDescription("A flash of light that heals an ally unit and great speeds.");
         setImage(assets.getTexture(assets.flashIcon));

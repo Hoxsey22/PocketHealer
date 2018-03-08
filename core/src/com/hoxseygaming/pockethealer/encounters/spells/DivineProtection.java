@@ -24,12 +24,10 @@ public class DivineProtection extends Castable {
                 "Calls the beyond for protection, reducing all damage by 20%.",
                 0,
                 2f,
-                EffectType.HEAL,
                 0,
                 10f,
                 70f,
                 assets.getSound(assets.hotSFX),
-                0,
                 assets);
         setImage(assets.getTexture(assets.divineProtectionIcon));
     }
