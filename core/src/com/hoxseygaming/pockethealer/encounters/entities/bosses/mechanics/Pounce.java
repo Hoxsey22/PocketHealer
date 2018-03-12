@@ -13,20 +13,17 @@ import java.util.ArrayList;
 
 public class Pounce extends Mechanic {
 
-    ArrayList<Bleed> bleeds;
     int numOfTargets;
 
     public Pounce(Boss owner) {
         super("Pounce",30,4f,owner);
         id = 4;
         numOfTargets = 3;
-        bleeds = new ArrayList<>();
     }
 
     public Pounce(Boss owner, float speed) {
         super("Pounce",30,speed,owner);
         id = 4;
-        bleeds = new ArrayList<>();
     }
 
     @Override
@@ -41,12 +38,6 @@ public class Pounce extends Mechanic {
                     if(temp.get(i) != null) {
                         temp.get(i).takeDamage(damage);
                         temp.get(i).addStatusEffect(new BleedEffect(owner));
-                        /*
-                        Bleed bleed = new Bleed(owner);
-                        bleed.setTarget(temp.get(i));
-                        bleeds.add(bleed);
-                        bleed.start();
-                        */
                     }
                 }
 
@@ -61,9 +52,6 @@ public class Pounce extends Mechanic {
 
     public void stopBleeds() {
         super.stop();
-        for(int i = 0; i < bleeds.size(); i++)   {
-            bleeds.get(i).stop();
-        }
     }
 
     public int getNumOfTargets() {

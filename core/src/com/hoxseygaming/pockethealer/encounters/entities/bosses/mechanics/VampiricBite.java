@@ -4,8 +4,6 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.VampiricBiteEffect;
 
-import java.util.ArrayList;
-
 /**
  * Created by Hoxsey on 8/26/2017.
  */
@@ -13,7 +11,6 @@ import java.util.ArrayList;
 public class VampiricBite extends Mechanic {
 
     public int numOfTargets;
-    public ArrayList<Bleed> bleeds;
 
     public VampiricBite(Boss owner) {
         super("Vampiric Bite", 20, 5f, owner);
@@ -29,7 +26,6 @@ public class VampiricBite extends Mechanic {
     public void start() {
         super.start();
 
-        bleeds = new ArrayList<>();
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {

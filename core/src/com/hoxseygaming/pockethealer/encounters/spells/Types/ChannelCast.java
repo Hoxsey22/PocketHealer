@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.spells.Types;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
@@ -60,7 +61,8 @@ public abstract class ChannelCast extends Spell {
         castTimer = new Timer();
         isCasting = true;
         owner.isCasting = isCasting;
-        castingSFX.loop(0.3f);
+        AudioManager.playSFX(castingSFX, true);
+        //castingSFX.loop(0.3f);
         final float tickTime = (castTime/ticksPerCast)-0.01f;
 
         final RaidMember sTarget = getOwnerTarget();
@@ -81,7 +83,8 @@ public abstract class ChannelCast extends Spell {
                     applySpell(sTarget);
                 }
                 if(counter * 0.01f >= castTime)    {
-                    castingSFX.stop();
+                    AudioManager.stopSFX(castingSFX);
+                    //castingSFX.stop();
                     isCasting = false;
                     owner.isCasting = isCasting;
                     useMana();

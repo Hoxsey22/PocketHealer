@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
@@ -22,8 +23,10 @@ public class GameOverFrame extends Group {
     public Image frame;
     public Label boxLabel;  //maybe for a later time
     public ArrayList<Label> chat;   // maybe for a later time
-    public Button resetButton;
-    public Button leaveButton;
+    //public Button resetButton;
+    public TextButton resetButton;
+    //public Button leaveButton;
+    public TextButton leaveButton;
     public Text title;
     public Text body;
     public Table table;
@@ -34,21 +37,21 @@ public class GameOverFrame extends Group {
     public boolean won;
     public int page;
 
-    public GameOverFrame(boolean won, Boss boss, Assets assets)  {
+    public GameOverFrame(boolean won, Boss boss, Assets assets) {
         this.assets = assets;
         this.won = won;
         this.boss = boss;
         create();
     }
 
-    public void create()    {
+    public void create() {
         disableBG = new Image(assets.getTexture(assets.disableBG));
         disableBG.setName("disable bg");
-        disableBG.setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
+        disableBG.setBounds(0, 0, PocketHealer.WIDTH, PocketHealer.HEIGHT);
 
         frame = new Image(assets.getTexture(assets.endGameFrame));
         frame.setName("frame");
-        frame.setPosition(PocketHealer.WIDTH/2 - frame.getWidth()/2, PocketHealer.HEIGHT/2 - frame.getWidth()/2);
+        frame.setPosition(PocketHealer.WIDTH / 2 - frame.getWidth() / 2, PocketHealer.HEIGHT / 2 - frame.getWidth() / 2);
 
         addActor(disableBG);
         addActor(frame);
@@ -56,12 +59,12 @@ public class GameOverFrame extends Group {
 
     }
 
-    public void createText()    {
+    public void createText() {
         table = new Table();
         table.setName("table");
-        table.setBounds(frame.getX(),frame.getY(), frame.getWidth()-5, frame.getHeight()-10);
+        table.setBounds(frame.getX(), frame.getY(), frame.getWidth() - 10, frame.getHeight() - 10);
 
-        title = new Text("",32, Color.WHITE, true, assets);
+        title = new Text("", 32, Color.WHITE, true, assets);
         title.setName("title");
         title.setWrap(true);
         title.setAlignment(Align.top);
@@ -74,59 +77,66 @@ public class GameOverFrame extends Group {
         addActor(table);
     }
 
-    public void showHealingStats()  {
+    public void showHealingStats() {
         title.setText("Healing");
 
-        table.add(title.getLabel()).width(table.getWidth());
+        table.add(title.getLabel()).fillX();
         table.row();
 
-        body.setText("Effective Healing\n"+boss.getEnemies().healingTracker.getEffectiveHealingPercent()+"%\n"+
-                "Overhealing\n"+boss.getEnemies().healingTracker.getOverHealingPercent()+"%");
+        body.setText("Effective Healing\n" + boss.getEnemies().healingTracker.getEffectiveHealingPercent() + "%\n" +
+                "Overhealing\n" + boss.getEnemies().healingTracker.getOverHealingPercent() + "%");
 
-        table.add(body.getLabel()).width(table.getWidth());
+        table.add(body.getLabel()).fillX();
     }
 
-    public void showReward()    {
+    public void showReward() {
         table.clear();
 
         title.setText("Reward");
-        table.add(title.getLabel()).width(table.getWidth());
+        table.add(title.getLabel()).colspan(2);
         table.row();
 
-        if(boss.getRewardPackage().getSpellImage() != null) {
-            boss.getRewardPackage().getSpellImage().setAlign(Align.center);
-            table.add(boss.getRewardPackage().getSpellImage());
+        if (boss.getRewardPackage().spell) {
+            for (int i = 0; i < boss.getRewardPackage().images.size(); i++) {
+                table.add(boss.getRewardPackage().images.get(i));
+            }
             table.row();
         }
 
         body.setText(boss.getRewardPackage().getReward());
-        table.add(body.getLabel()).width(table.getWidth());
+        table.add(body.getLabel()).colspan(2);
     }
 
-    public void showLose()  {
+    public void showLose() {
         title.setText("You have wiped!");
-        table.add(title.getLabel()).width(table.getWidth());
+        table.add(title.getLabel()).width(table.getWidth()).colspan(2).expand().top().center();
+        table.row();
 
-        resetButton = new Button("RESET", false,assets);
-        resetButton.setPosition(frame.getX() + frame.getWidth()/2 - resetButton.getWidth(), frame.getY() - resetButton.getHeight()/2);
+        //resetButton = new Button("RESET", false,assets);
+        resetButton = new TextButton("RESET", assets.getSkin(),"small_button");
+        resetButton.setName("reset");
+        //resetButton.setPosition(frame.getX() + frame.getWidth()/2 - resetButton.getWidth(), frame.getY() - resetButton.getHeight()/2);
+        table.add(resetButton).bottom().padBottom(10);
+        //leaveButton = new Button("QUIT", false, assets);
+        leaveButton = new TextButton("QUIT", assets.getSkin(), "small_button");
+        leaveButton.setName("quit");
+        //leaveButton.setPosition(resetButton.getX() + resetButton.getWidth(), frame.getY() - leaveButton.getHeight()/2);
+        table.add(leaveButton).bottom().padBottom(10);
 
-        leaveButton = new Button("QUIT", false, assets);
-        leaveButton.setPosition(resetButton.getX() + resetButton.getWidth(), frame.getY() - leaveButton.getHeight()/2);
-        leaveButton.setDebug(true);
-
-        addActor(resetButton);
-        addActor(leaveButton);
+        //addActor(resetButton);
+        //addActor(leaveButton);
     }
 
-    public int hitButton(float x, float y)   {
+    public int hitButton(float x, float y) {
+        /*TEMP FIX*/
 
-
-        if(leaveButton != null && leaveButton.pressed(x,y))    {
+        if (leaveButton != null && leaveButton.isPressed()) {
             return 0;
         }
-        if(resetButton != null && resetButton.pressed(x,y))    {
+        if (resetButton != null && resetButton.isPressed()) {
             return 2;
         }
         return -1;
     }
+
 }

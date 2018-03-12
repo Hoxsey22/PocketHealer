@@ -1,7 +1,8 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+
+import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 11/21/2017.
@@ -9,46 +10,33 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class RewardPackage {
 
-    private Image spellImage;
+    public ArrayList<Image> images;
     private String reward;
+    public boolean spell;
+    public boolean talent;
+    public boolean level;
 
     public RewardPackage()  {
-        this.reward = "Reward is empty";
+        this.reward = "";
+        images = new ArrayList<>();
     }
 
-    public RewardPackage(String reward)  {
-        this.reward = reward;
+    public void addNewSpellText()  {
+        spell = true;
+        reward+="New Spell!\n";
     }
 
-    public RewardPackage(Texture texture, String reward)  {
-        spellImage = new Image(texture);
-        this.reward = reward;
+    public void addNewTalentText()  {
+        talent = true;
+        reward+="New Talent Point!\n";
+    }
+    public void addNewLevelText()  {
+        level = true;
+        reward+="Level up!\n";
     }
 
-    public void addRewardText(int...texts) {
-        reward = "";
-        for (int text:texts) {
-            switch (text)   {
-                case 1: reward+="New Spell!\n";
-                    break;
-                case 2: reward+="New Talent Point!\n";
-                    break;
-                case 3: reward+="Level up!";
-                    break;
-            }
-        }
-    }
-
-    public Image getSpellImage() {
-        return spellImage;
-    }
-
-    public void setSpellImage(Image spellImage) {
-        this.spellImage = spellImage;
-    }
-
-    public void setSpellImage(Texture texture) {
-        spellImage = new Image(texture);
+    public void addImage(Image image)   {
+        images.add(image);
     }
 
     public String getReward() {

@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
@@ -299,6 +301,7 @@ public class EncounterState extends State {
                 raid.loadHealingStats();
                 gameOverFrame = new GameOverFrame(true, boss, assets);
                 gameOverFrame.showHealingStats();
+                gameOverFrame.addListener(getEndGameListener());
 
                 stage.addActor(gameOverFrame);
                 boss.stop();
@@ -308,6 +311,7 @@ public class EncounterState extends State {
             } else if (raid.isRaidDead()) {
                 gameOverFrame = new GameOverFrame(false, boss, assets);
                 gameOverFrame.showLose();
+                gameOverFrame.addListener(getEndGameListener());
                 stage.addActor(gameOverFrame);
                 boss.stop();
                 raid.stop();
@@ -317,9 +321,54 @@ public class EncounterState extends State {
             }
         }
         else {
-            endGameHandleInput();
+            Gdx.input.setInputProcessor(stage);
+            //endGameHandleInput();
         }
 
+    }
+
+    public InputListener getEndGameListener()   {
+        return new InputListener()   {
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)x,(float)y));
+
+                if(gameOverFrame.won)   {
+                    switch (page)   {
+                        case 1:
+                            gameOverFrame.showReward();
+                            page = 2;
+                            break;
+
+                        case 2:
+                            player.newLevel(boss.getLevel());
+                            sm.set(new MapState(sm, player));
+                            break;
+                    }
+                }
+                else    {
+                    int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
+                    System.out.println(buttonHit);
+
+                    if(buttonHit != -1) {
+                        switch (buttonHit) {
+                            case 0:
+                                sm.set(new MapState(sm, player));
+                                break;
+
+                            case 2:
+                                System.out.println("reset");
+                                sm.set(new EncounterState(sm, player, boss));
+                                break;
+                        }
+                    }
+                }
+
+
+                return false;
+            }
+        };
     }
 
     @Override
@@ -341,7 +390,6 @@ public class EncounterState extends State {
 
     @Override
     public void dispose() {
-        AudioManager.disposeAll();
     }
 
 

@@ -28,7 +28,6 @@ public abstract class Periodical extends InstantCast {
      * @param costPercentage
      * @param cooldown
      * @param spellSFX
-     * @param index
      * @param assets
      */
     public Periodical(Player player, String name, String description, int levelRequirement, int numOfTargets,

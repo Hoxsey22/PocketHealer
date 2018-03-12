@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.spells.Types;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
@@ -60,7 +61,8 @@ public abstract class Castable extends Spell {
         castTimer = new Timer();
         isCasting = true;
         owner.isCasting = isCasting;
-        castingSFX.loop(0.3f);
+        AudioManager.playSFX(castingSFX,true);
+        //castingSFX.loop(0.3f);
 
         final RaidMember sTarget = getOwnerTarget();
 
@@ -72,8 +74,10 @@ public abstract class Castable extends Spell {
                 owner.setSpellCastPercent((counter*0.01f)/castTime);
 
                 if(counter * 0.01f >= castTime)    {
-                    castingSFX.stop();
-                    spellSFX.play(0.3f);
+                    AudioManager.stopSFX(castingSFX);
+                    //castingSFX.stop();
+                    AudioManager.playSFX(spellSFX, false);
+                    //spellSFX.play(0.3f);
                     System.out.println("applying spell");
                     applySpell(sTarget);
                     isCasting = false;

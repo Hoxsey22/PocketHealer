@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
@@ -71,7 +72,9 @@ public class BanditLeader extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage.addRewardText(1,2,3);
-        rewardPackage.setSpellImage(assets.getTexture(assets.smiteIcon));
+        rewardPackage.addNewLevelText();
+        rewardPackage.addNewTalentText();
+        rewardPackage.addNewSpellText();
+        rewardPackage.addImage(new Image(assets.getTexture(assets.smiteIcon)));
     }
 }

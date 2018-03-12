@@ -45,6 +45,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
     @Override
     public void reward() {
-        rewardPackage.addRewardText(1);
+        rewardPackage.addNewLevelText();
     }
 }

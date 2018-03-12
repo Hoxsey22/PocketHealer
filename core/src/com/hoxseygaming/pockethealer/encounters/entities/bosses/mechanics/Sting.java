@@ -12,13 +12,10 @@ import java.util.ArrayList;
  */
 
 public class Sting extends Mechanic {
-
-    public ArrayList<Poison> poisons;
     int numOfTargets;
 
     public Sting(Boss owner) {
         super("Sting", 20, 10f, owner);
-        poisons = new ArrayList<>();
         numOfTargets = 1;
     }
 
@@ -34,12 +31,6 @@ public class Sting extends Mechanic {
                     if(temp.get(i) != null) {
                         temp.get(i).takeDamage(damage);
                         temp.get(i).addStatusEffect(new PoisonEffect(owner));
-                        /*
-                        Poison poison = new Poison(owner);
-                        poison.setTarget(temp.get(i));
-                        poisons.add(poison);
-                        poison.start();
-                        */
                     }
                 }
 
@@ -51,9 +42,6 @@ public class Sting extends Mechanic {
     @Override
     public void stop() {
         super.stop();
-        for (int i = 0; i < poisons.size(); i++)  {
-            poisons.get(i).stop();
-        }
     }
 
     public int getNumOfTargets() {

@@ -3,8 +3,6 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
-import java.util.Random;
-
 /**
  * Created by Hoxsey on 8/2/2017.
  */
@@ -13,8 +11,6 @@ public class SwarmingShadow extends Mechanic{
 
 
     public Timer channel;
-    public Timer consumingShadowTimer;
-    private Random dice;
 
     public SwarmingShadow(Boss owner) {
         super("Swarming Shadow", 10, 15f, owner);
@@ -50,7 +46,6 @@ public class SwarmingShadow extends Mechanic{
                     for(int i = 0; i <  owner.getEnemies().raidMembers.size(); i++)   {
                         owner.getEnemies().getRaidMember(i).takeDamage(damage);
                     }
-                    //getRaid().takeDamage(damage);
                 }
                 else    {
                     channel.stop();

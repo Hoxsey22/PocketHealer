@@ -15,7 +15,7 @@ public class BlessedGarden extends Castable {
         super(player,
                 "Blessed Garden",
                 "Blossoms a beautiful garden around the entire raid, increasing all heals by 40%.",
-                0,
+                7,
                 2f,
                 0,
                 10f,

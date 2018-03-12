@@ -36,8 +36,8 @@ public class MapState extends State {
 
         stage = new Stage(viewport);
         assets = player.getAssets();
-        if(AudioManager.getMusic() == null)
-            AudioManager.playMusic(assets.getMusic(assets.mmMusic), true);
+
+        AudioManager.playMusic(assets.getMusic(assets.mmMusic), true);
 
         pageLeft = new ImageButton("pageLeft", assets.getTexture(assets.pageTurn), 40, 550, 30,30);
         pageLeft.flipX();
@@ -165,24 +165,6 @@ public class MapState extends State {
 
                     }
                 }
-
-
-
-
-                /*
-                if(stage.hit(coord.x, coord.y,false).getName().equalsIgnoreCase("pageLeft"))    {
-                    page--;
-                    turnPage();
-                    return false;
-                }
-
-                if(stage.hit(coord.x, coord.y,false).getName().equalsIgnoreCase("pageRight"))    {
-                    page++;
-                    turnPage();
-                    return false;
-                }*/
-
-
                 return false;
             }
 

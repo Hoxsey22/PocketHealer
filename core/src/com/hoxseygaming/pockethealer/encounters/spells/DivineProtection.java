@@ -22,7 +22,7 @@ public class DivineProtection extends Castable {
         super(player,
                 "Divine Protection",
                 "Calls the beyond for protection, reducing all damage by 20%.",
-                0,
+                7,
                 2f,
                 0,
                 10f,

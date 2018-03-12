@@ -101,6 +101,11 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 		up: button
 		down: button_select
 	}
+	small_button: {
+		font: game_font_medium
+		fontColor: Black
+		up: small_button
+	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
 	default: {

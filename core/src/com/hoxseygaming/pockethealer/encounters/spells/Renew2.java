@@ -20,7 +20,6 @@ public class Renew2 extends Periodical {
 
     /**
      * @param player
-     * @param index
      * @param assets
      */
     public Renew2(Player player, Assets assets) {

@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
@@ -65,6 +66,8 @@ public class Hogger extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage.addRewardText(2,3);
+        rewardPackage.addNewLevelText();
+        rewardPackage.addNewSpellText();
+        rewardPackage.addImage(new Image(assets.getTexture(assets.criticalHealer2Icon)));
     }
 }

@@ -25,7 +25,6 @@ public class PocketHealer extends ApplicationAdapter {
 		sm = new StateManager();
 		ui = new Skin(Gdx.files.internal("pocket_healer_ui.json"));
 		GameData.loadAudioSettings();
-		AudioManager.playMusic(Gdx.audio.newMusic(Gdx.files.internal("mm_music.ogg")), true);
 		//System.out.println(audioManager.music.getVolume());
 		sm.push(new LoadingState(sm));
 	}

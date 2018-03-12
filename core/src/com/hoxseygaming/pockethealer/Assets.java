@@ -6,6 +6,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
@@ -175,6 +176,9 @@ public class Assets {
     public String healSFX ="sfx/heal_sfx.mp3";
     public String hotSFX ="sfx/hot_sfx.mp3";
 
+    // skin
+    public String uiSkin = "pocket_healer_ui.json";
+
     public Assets() {
         manager = new AssetManager();
         raidPositions = new ArrayList<>();
@@ -191,6 +195,7 @@ public class Assets {
         loadSounds();
         loadFonts();
         loadPositions();
+        loadSkin();
     }
 
     public void loadImages() {
@@ -337,7 +342,7 @@ public class Assets {
 
     public void loadSounds() {
         manager.load(battleMusic, Music.class);
-        //manager.load(mmMusic, Music.class);
+        manager.load(mmMusic, Music.class);
         manager.load(barrierSFX, Sound.class);
         manager.load(castingSFX, Sound.class);
         manager.load(healSFX, Sound.class);
@@ -400,6 +405,10 @@ public class Assets {
         manager.load(gameFontB45,BitmapFont.class);
     }
 
+    public void loadSkin()  {
+        manager.load(uiSkin, Skin.class);
+    }
+
     public Texture getTexture(String filename)   {
         return manager.get(filename, Texture.class);
     }
@@ -425,24 +434,9 @@ public class Assets {
         }
     }
 
-    /*
-    public BitmapFont getFont(int fontSize, Color fontColor, int borderSize, Color borderColor)   {
-
-        FreeTypeFontLoaderParameter font = new FreetypeFontLoader.FreeTypeFontLoaderParameter();
-        font.fontFileName = gameFont;
-        font.fontParameters.size = fontSize;
-        font.fontParameters.color = fontColor;
-        font.fontParameters.borderWidth = borderSize;
-        font.fontParameters.borderColor = borderColor;
-        man
-
-
-
-
-
-
-        return manager.get(filename, BitmapFont.class);
-    }*/
+    public Skin getSkin()   {
+        return manager.get(uiSkin, Skin.class);
+    }
 
     public Texture getEffectImage(Spell.EffectType effectType) {
         switch (effectType) {

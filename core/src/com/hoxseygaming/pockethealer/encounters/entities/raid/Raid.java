@@ -7,7 +7,6 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.HealingTracker;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -314,16 +313,6 @@ public class Raid extends Group {
             }
         }
         return statusEffectedMembers;
-    }
-
-    public ArrayList<RaidMember> getBuffLessRaidMembers(Spell.EffectType buff)    {
-        ArrayList<RaidMember> buffLess = new ArrayList<>();
-        for(int i = 0; i <  raidMembers.size(); i++)   {
-            if(!raidMembers.get(i).containsEffects(buff))    {
-                buffLess.add(raidMembers.get(i));
-            }
-        }
-        return  buffLess;
     }
 
     public ArrayList<RaidMember> getBuffLessRaidMembers(String name)    {

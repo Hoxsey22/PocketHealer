@@ -61,10 +61,13 @@ public class MainMenuState extends State{
 
     private void init()   {
         stage = new Stage(viewport);
-
         Gdx.input.setInputProcessor(stage);
 
         assets = player.getAssets();
+
+        AudioManager.playMusic(assets.getMusic(assets.mmMusic), true);
+
+
 
         buttonTable = new Table();
         buttonTable.setName("button table");

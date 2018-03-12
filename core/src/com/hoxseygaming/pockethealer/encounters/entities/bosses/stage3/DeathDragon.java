@@ -3,8 +3,6 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Outbreak;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonPotion;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -13,8 +11,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class DeathDragon extends Boss {
 
-    public Outbreak outbreak;
-    public PoisonPotion poisonPotion;
     public Fireball fireball;
 
     public DeathDragon(Assets assets) {
@@ -28,11 +24,7 @@ public class DeathDragon extends Boss {
         super.create();
         damage = 0;
 
-        outbreak = new Outbreak(this, 10f);
-        poisonPotion = new PoisonPotion(this, 9f);
-        poisonPotion.setNumOfTargets(3);
         fireball = new Fireball(this, 3f);
-        loadMechanics(outbreak, poisonPotion,fireball);
     }
 
     @Override

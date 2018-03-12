@@ -3,7 +3,6 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Massacre;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonSpit;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Swipe;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
@@ -11,10 +10,11 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
  * Created by Hoxsey on 10/11/2017.
  */
 
+
+/*Need to add another mech*/
 public class Hydra extends Boss {
 
     private Massacre massacre;
-    private PoisonSpit poisonSpit;
     private Swipe swipe;
 
 
@@ -36,12 +36,9 @@ public class Hydra extends Boss {
 
         massacre = new Massacre(this, 32f);
 
-        poisonSpit = new PoisonSpit(this, 11f);
-        poisonSpit.setNumOfTargets(5);
-
         swipe = new Swipe(this, 2f);
 
-        loadMechanics(massacre, poisonSpit, swipe);
+        loadMechanics(massacre, swipe);
 
 
 
@@ -54,6 +51,6 @@ public class Hydra extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage.addRewardText(3);
+        rewardPackage.addNewLevelText();
     }
 }

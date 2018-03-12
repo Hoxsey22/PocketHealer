@@ -13,14 +13,13 @@ public class Lightwell extends Periodical {
 
 
     /**
-     * @param index
      * @param player
      */
     public Lightwell(Player player, Assets assets)  {
         super(player,
-                "Lightwell",
-                "Summons a magical lightwell that will send holy light at the most injured ally unit.",
-                6,
+                "Light Well",
+                "Summons a magical Light Well that will send holy light at the most injured ally unit.",
+                7,
                 1,
                 3,
                 5f,

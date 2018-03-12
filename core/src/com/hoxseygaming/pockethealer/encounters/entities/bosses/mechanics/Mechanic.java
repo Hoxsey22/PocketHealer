@@ -96,7 +96,6 @@ public class Mechanic {
 
     public void applyMechanic()  {
         System.out.println("Mechanic applied");
-        target.applyEffect(debuff);
     }
 
 

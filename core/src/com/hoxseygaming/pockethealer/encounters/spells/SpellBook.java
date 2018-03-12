@@ -64,14 +64,14 @@ public class SpellBook extends Group{
         spells.add(new Renew2(owner, assets));
         spells.add(new FlashHeal(owner, assets));
         spells.add(new Barrier(owner, assets));
+        spells.add(new Dispel(owner, assets));
         spells.add(new HolyNova(owner, assets));
+        spells.add(new PrayerOfMending(owner, assets));
         spells.add(new GreaterHeal(owner, assets));
         spells.add(new Smite(owner, assets));
-        spells.add(new Lightwell(owner, assets));
-        spells.add(new PrayerOfMending(owner, assets));
-        spells.add(new Dispel(owner, assets));
-        spells.add(new HolyShock(owner, assets));
         spells.add(new Penance(owner, assets));
+        spells.add(new HolyShock(owner, assets));
+        spells.add(new Lightwell(owner, assets));
         spells.add(new DivineHymn(owner, assets));
         spells.add(new DivineProtection(owner, assets));
         spells.add(new BlessedGarden(owner, assets));
@@ -86,7 +86,6 @@ public class SpellBook extends Group{
         for(int i = 0; i < 3; i++)   {
             for(int j = 0; j < 5; j++)   {
                 spells.get(i*5+j).setBounds(30+spells.get(i).getWidth()*j+30*j,610-spells.get(i).getWidth()*i-30*i,60,60);
-
             }
         }
 
@@ -123,9 +122,7 @@ public class SpellBook extends Group{
     }
 
     private boolean isSpellSelectable(Spell spell)    {
-        if(owner.getLevel() >= spell.levelRequirement)    {
-            return true;
-        }
+
         switch (spell.getName())    {
             case BLESSED_GARDEN:
                 if(owner.getTalentTree().getTalent(TalentTree.AOD).isSelected())    {
@@ -143,6 +140,11 @@ public class SpellBook extends Group{
                 }
                 return false;
         }
+
+        if(owner.getLevel() >= spell.levelRequirement)    {
+            return true;
+        }
+
         return false;
     }
 

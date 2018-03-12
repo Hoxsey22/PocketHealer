@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.spells.Types;
 
 import com.badlogic.gdx.audio.Sound;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
@@ -19,12 +20,10 @@ public abstract class InstantCast extends Spell {
      * @param player
      * @param name
      * @param description
-     * @param effectType
      * @param output
      * @param costPercentage
      * @param cooldown
      * @param spellSFX
-     * @param index
      * @param assets
      */
     public InstantCast(Player player, String name, String description, int levelRequirement,
@@ -40,7 +39,8 @@ public abstract class InstantCast extends Spell {
         if(isCastable())    {
             useMana();
             startCooldownTimer();
-            spellSFX.play(0.3f);
+            AudioManager.playSFX(spellSFX, false);
+            //spellSFX.play(0.3f);
             applySpell(getOwnerTarget());
 
         }

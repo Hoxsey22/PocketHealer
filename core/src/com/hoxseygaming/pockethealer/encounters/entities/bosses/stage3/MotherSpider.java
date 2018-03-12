@@ -51,7 +51,8 @@ public class MotherSpider extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage.addRewardText(2,3);
+        rewardPackage.addNewLevelText();
+        rewardPackage.addNewTalentText();
     }
 
     @Override

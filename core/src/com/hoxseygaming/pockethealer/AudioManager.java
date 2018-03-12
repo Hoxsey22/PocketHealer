@@ -32,7 +32,7 @@ public class AudioManager {
     public static float musicVolume = 0.5f;
     public static float sfxVolume = 0.5f;
     public static Music music;
-    private static ArrayList<Sound> soundEffects;
+    private static ArrayList<Sound> soundEffects = new ArrayList<>();
     public static AudioData audioData = new AudioData();
     private static Assets assets;
 
@@ -113,12 +113,17 @@ public class AudioManager {
      * @param looping
      */
     public static void playMusic(Music newMusic, boolean looping) {
-        if(music == null) {
-            music = newMusic;
+
+
+
+        if (music == null) {
+            setMusic(newMusic);
         }
-        else    {
-            disposeMusic();
-            music = newMusic;
+        else {
+            if(music.equals(newMusic))
+                return;
+            clearMusic();
+            setMusic(newMusic);
         }
         music.setLooping(looping);
         music.setVolume(musicVolume);
@@ -166,25 +171,25 @@ public class AudioManager {
     /**
      * Disposes the music object.
      */
-    public static void disposeMusic()  {
+    public static void clearMusic()  {
         if(music != null) {
             music.stop();
-            music.dispose();
+            //music = null;
         }
-        System.out.println("Music has been disposed.");
+        System.out.println("Music has been cleared.");
     }
 
     /**
      * Disposes all Sound objects.
      */
-    public static void disposeSFX()    {
+    public static void clearSFX()    {
         for(int i = 0; i < soundEffects.size(); i++)   {
             if(soundEffects.get(i) != null) {
                 soundEffects.get(i).stop();
-                soundEffects.get(i).dispose();
+                soundEffects.remove(i);
             }
         }
-        System.out.println("All SFX have been disposed.");
+        System.out.println("All SFX have been cleared.");
     }
 
     /*
@@ -270,8 +275,8 @@ public class AudioManager {
     /**
      * Disposes all the music and sound effects.
      */
-    public static void disposeAll()    {
-        disposeMusic();
-        disposeSFX();
+    public static void clearAll()    {
+        clearMusic();
+        clearSFX();
     }
 }
