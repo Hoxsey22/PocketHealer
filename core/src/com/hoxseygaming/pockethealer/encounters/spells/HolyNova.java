@@ -68,6 +68,13 @@ public class HolyNova extends Castable {
                 applyMasteringHealing(targets.get(i),output);
             }
             applyMasteringHealing(target, output);
+
+        }
+        else    {
+            target.receiveHealing(output, criticalChance.isCritical());
+            for(int i = 0; i < targets.size(); i++) {
+                targets.get(i).receiveHealing(output, criticalChance.isCritical());
+            }
         }
 
 

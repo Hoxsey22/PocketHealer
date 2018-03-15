@@ -18,6 +18,7 @@ public class Phase {
     public PhaseManager parent;
     public Boss owner;
     public float length;
+    float delay;
     public boolean isActive;
     public Timer timer;
     public ArrayList<Mechanic> mechanics;
@@ -32,6 +33,24 @@ public class Phase {
         this.length = length;
         isActive = false;
         this.mechanics = new ArrayList<>();
+        delay = 0f;
+
+        for (Mechanic mech:mechanics) {
+            this.mechanics.add(mech);
+        }
+    }
+
+    /**
+     * @param owner: The Boss which owns the phase.
+     * @param length: The length of which the phase last.
+     * @param mechanics: List of all the mechanics that exist in the phase.
+     */
+    public Phase(Boss owner, float length, float delay, Mechanic...mechanics) {
+        this.owner = owner;
+        this.length = length;
+        isActive = false;
+        this.mechanics = new ArrayList<>();
+        this.delay = delay;
 
         for (Mechanic mech:mechanics) {
             this.mechanics.add(mech);

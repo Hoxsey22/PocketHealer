@@ -32,30 +32,42 @@ public class Swipe extends Mechanic {
 
                 if(getMainTank().isDead() && getOffTank().isDead())    {
                     ArrayList<RaidMember> randoms = getRaid().getRandomRaidMember(2);
-                    checkDeathProtection(randoms.get(0), damage);
-                    checkDeathProtection(randoms.get(1), (int)(damage * 0.5f));
+                    randoms.get(0).takeDamage(damage);
+                    randoms.get(1).takeDamage((int)(damage/2));
+                    //checkDeathProtection(randoms.get(0), damage);
+                    //checkDeathProtection(randoms.get(1), (int)(damage * 0.5f));
                     return;
                 }
 
                 if(getMainTank().isDead())    {
-                    checkDeathProtection(getOffTank(), damage);
-                    checkDeathProtection(getRaid().getRandomRaidMember(1).get(0), (int)(damage * 0.5f));
+
+                    getOffTank().takeDamage(damage);
+                    getRaid().getRandomRaidMember(1).get(0).takeDamage((int)(damage/2));
+
+                    //checkDeathProtection(getOffTank(), damage);
+                    //checkDeathProtection(getRaid().getRandomRaidMember(1).get(0), (int)(damage * 0.5f));
                     return;
                 }
 
                 if(getOffTank().isDead())    {
-                    checkDeathProtection(getMainTank(), damage);
-                    checkDeathProtection(getRaid().getRandomRaidMember(1).get(0), (int)(damage * 0.5f));
+                    getMainTank().takeDamage(damage);
+                    getRaid().getRandomRaidMember(1).get(0).takeDamage((int)(damage/2));
+
+                    //checkDeathProtection(getMainTank(), damage);
+                    //checkDeathProtection(getRaid().getRandomRaidMember(1).get(0), (int)(damage * 0.5f));
                     return;
                 }
+                getMainTank().takeDamage(damage);
+                getOffTank().takeDamage((int)(damage/2));
 
-                checkDeathProtection(getMainTank(), damage);
-                checkDeathProtection(getOffTank(), (int)(damage * 0.5f));
+
+                //checkDeathProtection(getMainTank(), damage);
+                //checkDeathProtection(getOffTank(), (int)(damage * 0.5f));
 
             }
         },speed,speed);
     }
-
+    /*
     private void checkDeathProtection(RaidMember target, int dmg) {
 
         if(target.getHpPercent() > 0.1) {
@@ -67,4 +79,5 @@ public class Swipe extends Mechanic {
         target.takeDamage(dmg);
 
     }
+    */
 }
