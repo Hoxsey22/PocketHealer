@@ -67,8 +67,6 @@ public class MainMenuState extends State{
 
         AudioManager.playMusic(assets.getMusic(assets.mmMusic), true);
 
-
-
         buttonTable = new Table();
         buttonTable.setName("button table");
         buttonTable.setBounds(0,0,PocketHealer.WIDTH,PocketHealer.HEIGHT);
@@ -86,11 +84,6 @@ public class MainMenuState extends State{
         });
         buttonTable.add(newGameButton);
 
-        /*
-        newGameButton = new Button("New", false, assets);
-        newGameButton.setParent(buttonTable);
-        */
-
         if(GameData.doesDataExist("save")) {
             continueButton = new TextButton("Continue", PocketHealer.ui);
             continueButton.addListener(new ChangeListener() {
@@ -102,11 +95,6 @@ public class MainMenuState extends State{
                     System.out.println("Continued Game has been started.");
                 }
             });
-            /* DELETE
-            continueButton = new Button("Continue", false, assets);
-            continueButton.setParent(buttonTable);
-            buttonTable.add(continueButton);
-            */
             buttonTable.add(continueButton);
         }
 
@@ -122,12 +110,6 @@ public class MainMenuState extends State{
 
         initWindowFrame();
 
-        //buttonTable.row();
-
-        //buttonTable.row();
-
-
-
         animatedBackground = new AnimatedBackground();
         animatedBackground.add(new ScrollImage(assets.getTexture(assets.mmBG),false, new Vector2(0,0),1f,assets));
         animatedBackground.add(new ScrollImage(assets.getTexture(assets.mmBG2),false, new Vector2(0,0),2f,assets));
@@ -135,19 +117,7 @@ public class MainMenuState extends State{
         animatedBackground.add(new ScrollImage(assets.getTexture(assets.mmBG4),false, new Vector2(0,0),4f,assets));
         animatedBackground.setDebug(true);
 
-        /*
-        text = new Text("Press screen to continue...", 32, Color.WHITE, false, assets);
-        text.setPosition(PocketHealer.WIDTH/2 - text.getXCenter(), 50);
-        text.setAlignment(Align.center);
-        */
-
         stage.addActor(animatedBackground);
-        //stage.addActor(text);
-
-        /*music = assets.getMusic(assets.mmMusic);
-        music.setLooping(true);
-        music.setVolume(0.4f);
-        music.play();*/
 
         title = new Image(assets.getTexture(assets.title));
         title.setPosition(PocketHealer.WIDTH/2-title.getWidth()/2,PocketHealer.HEIGHT - title.getHeight());

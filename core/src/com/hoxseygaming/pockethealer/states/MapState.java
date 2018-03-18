@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -27,6 +28,7 @@ public class MapState extends State {
     public Assets assets;
     public MapFrame mapFrame;
     public BossIcon selectedLevel;
+
     public ImageButton pageLeft;
     public ImageButton pageRight;
 
@@ -105,6 +107,9 @@ public class MapState extends State {
 
             @Override
             public boolean keyUp(int keycode) {
+                if(Input.Keys.BACK == keycode || Input.Keys.BACKSPACE == keycode)    {
+                    sm.set(new MainMenuState(sm, player));
+                }
                 return false;
             }
 
