@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Align;
 import com.hoxseygaming.pockethealer.AnimatedBackground;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.AudioManager;
@@ -20,7 +21,6 @@ import com.hoxseygaming.pockethealer.GameData;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.ScrollImage;
-import com.hoxseygaming.pockethealer.Text;
 import com.hoxseygaming.pockethealer.WindowFrame;
 
 /**
@@ -31,7 +31,6 @@ public class MainMenuState extends State{
     public Stage stage;
     public Image title;
     public AnimatedBackground animatedBackground;
-    public Text text;
     //public Button newGameButton;
     TextButton newGameButton;
     //public Button continueButton;
@@ -43,10 +42,14 @@ public class MainMenuState extends State{
     Label musicText;
     Label sfxText;
     Slider musicSlider;
-    Label musicSliderValueText;
     Slider sfxSlider;
-    Label sfxSliderValueText;
     TextButton okButton;
+    // confirmation window for create a new game
+    WindowFrame ngConfirmationWindow;
+    Label ngConfirmationText;
+    TextButton confirmButton;
+    TextButton backButton;
+
 
     boolean settingFrameActive;
     public Table buttonTable;
@@ -76,10 +79,7 @@ public class MainMenuState extends State{
         newGameButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                animatedBackground.stop();
-                player.newGame();
-                sm.push(new TutorialState(sm, player));
-                System.out.println("A New Game has been started.");
+                ngConfirmationWindow.show(stage);
             }
         });
         buttonTable.add(newGameButton);
@@ -91,7 +91,7 @@ public class MainMenuState extends State{
                 public void changed(ChangeEvent event, Actor actor) {
                     animatedBackground.stop();
                     GameData.load(player);
-                    sm.push(new MapState(sm, player));
+                    sm.set(new MapState(sm, player));
                     System.out.println("Continued Game has been started.");
                 }
             });
@@ -109,6 +109,7 @@ public class MainMenuState extends State{
         buttonTable.add(settingsButton);
 
         initWindowFrame();
+        initNewGameConfirmationWindow();
 
         animatedBackground = new AnimatedBackground();
         animatedBackground.add(new ScrollImage(assets.getTexture(assets.mmBG),false, new Vector2(0,0),1f,assets));
@@ -137,6 +138,37 @@ public class MainMenuState extends State{
 
     @Override
     public void update(float dt) {
+    }
+
+    public void initNewGameConfirmationWindow() {
+        ngConfirmationWindow = new WindowFrame(PocketHealer.ui);
+        //ngConfirmationWindow.setDebug(true);
+
+        ngConfirmationText = new Label("Are you sure you want to start a new game?", PocketHealer.ui);
+        ngConfirmationText.setWrap(true);
+        ngConfirmationText.setAlignment(Align.center);
+        confirmButton = new TextButton("Confirm",PocketHealer.ui, "small_button");
+
+        confirmButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                animatedBackground.stop();
+                player.newGame();
+                sm.set(new TutorialState(sm, player));
+                System.out.println("A New Game has been started.");
+            }
+        });
+        backButton = new TextButton("Back",PocketHealer.ui, "small_button");
+        backButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                ngConfirmationWindow.hide();
+            }
+        });
+        ngConfirmationWindow.center();
+        ngConfirmationWindow.add(ngConfirmationText).width(ngConfirmationWindow.getWidth()).center().colspan(2).pad(10).row();
+        ngConfirmationWindow.add(confirmButton).center();
+        ngConfirmationWindow.add(backButton).center();
     }
 
     public void initWindowFrame()   {
@@ -216,6 +248,5 @@ public class MainMenuState extends State{
     @Override
     public void dispose() {
         System.out.println("DISPOSE MM!");
-        text.dispose();
     }
 }
