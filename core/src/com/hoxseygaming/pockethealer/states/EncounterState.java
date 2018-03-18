@@ -11,11 +11,14 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.GameOverFrame;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
+import com.hoxseygaming.pockethealer.WindowFrame;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
@@ -39,6 +42,11 @@ public class EncounterState extends State {
     public GameOverFrame gameOverFrame;
     public boolean isDone;
     public int page;
+    // window frame to confirm quit
+    WindowFrame quitWindow;
+    Label quitWindowText;
+    TextButton yesButton;
+    TextButton noButton;
 
     //commit
     public EncounterState(StateManager sm, Player player, Boss boss) {
@@ -126,6 +134,10 @@ public class EncounterState extends State {
                     case Input.Keys.NUM_0:
                         for (int i = 0; i < raid.raidMembers.size(); i++)
                             System.out.println("ID:"+raid.raidMembers.get(i).id+", role:"+raid.raidMembers.get(i).role);
+                        break;
+                    case Input.Keys.BACK:
+                        break;
+                    case Input.Keys.BACKSPACE:
                         break;
                 }
                 return false;
