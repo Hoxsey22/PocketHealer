@@ -70,9 +70,11 @@ public class WampusCat extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage.addNewLevelText();
-        rewardPackage.addNewTalentText();
-        rewardPackage.addNewSpellText();
-        rewardPackage.addImage(new Image(assets.getTexture(assets.penanceIcon)));
+        if(player.getLevel() >= getId()) {
+            rewardPackage.addNewLevelText();
+            rewardPackage.addNewTalentText();
+            rewardPackage.addNewSpellText();
+            rewardPackage.addImage(new Image(assets.getTexture(assets.penanceIcon)));
+        }
     }
 }

@@ -17,7 +17,7 @@ public class Barrier extends InstantCast {
 
     public Barrier(Player player, Assets assets) {
         super(player,"Barrier", "Places a barrier around the ally unit, absorbing incoming damage.",
-                4,
+                6,
                 1,
                 60,
                 2.3f,

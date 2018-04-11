@@ -40,19 +40,23 @@ public class PrayerOfMendingEffect extends Buff{
 
     @Override
     public void applyEffect() {
+        System.out.println("Before - PoM Taraget: m["+getTarget().getId()+"] hp: "+getTarget().getHp());
         if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())    {
             getOwner().spellBar.getSpell(0).applyMasteringHealing(getTarget(), getModValue());
         }
         else {
             getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().criticalChance));
         }
+        System.out.println("After - PoM Taraget: m["+getTarget().getId()+"] hp: "+getTarget().getHp());
+        System.out.println("PoM Count: "+jumpCount);
         jumpCount--;
-        if(jumpCount > 1) {
+        if(jumpCount > 0) {
             ArrayList<RaidMember> temp = getOwner().getRaid().getRandomRaidMember(1, getOwner().getRaid().getBuffLessRaidMembers(this.getName()));
             if(temp.size() < 1)    {
                 return;
             }
             RaidMember newTarget = temp.get(0);
+
             removeFromParent();
 
             setTarget(newTarget);

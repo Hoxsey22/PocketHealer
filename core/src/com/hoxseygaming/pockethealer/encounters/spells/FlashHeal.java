@@ -18,6 +18,6 @@ public class FlashHeal extends Heal {
         setCostPercentage(2.2f);
         setCastTime(MIN_CAST_TIME);
         setCriticalChance(MIN_CRITICAL);
-        levelRequirement = 1;
+        levelRequirement = 2;
     }
 }

@@ -78,6 +78,7 @@ public class Assets {
     public String hoggerName = "hogger_name.png";
     public String battleBg1 = "battle_bg1.png";
     public String battleBg2 = "battle_bg2.png";
+    public String battleBg3 = "battle_bg3.png";
     public String blackBar = "black_bar.png";
     public String whiteBar = "white_bar.png";
     public String redBar = "red_bar.png";
@@ -233,6 +234,7 @@ public class Assets {
 
         manager.load(battleBg1, Texture.class);
         manager.load(battleBg2, Texture.class);
+        manager.load(battleBg3, Texture.class);
 
         manager.load(continuousRenewalIcon, Texture.class);
         manager.load(lifeboomIcon, Texture.class);

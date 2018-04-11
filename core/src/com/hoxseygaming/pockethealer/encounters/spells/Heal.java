@@ -26,6 +26,7 @@ public class Heal extends Castable {
     @Override
     public void applySpell(RaidMember target) {
         int currentOutput = output;
+        System.out.println(getName()+"'s output: "+output);
         if(owner.holyShockIncrease)   {
             currentOutput = output + (int)(output*0.5);
             owner.holyShockIncrease = false;

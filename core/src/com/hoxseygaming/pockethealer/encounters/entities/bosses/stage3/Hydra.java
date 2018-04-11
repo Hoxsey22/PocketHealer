@@ -74,6 +74,7 @@ public class Hydra extends Boss {
 
     @Override
     public void reward() {
+        if(player.getLevel() >= getId())
         rewardPackage.addNewLevelText();
     }
 

@@ -39,6 +39,8 @@ public class ZombieHorde extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage.addNewLevelText();
+        if(player.getLevel() >= getId()) {
+            rewardPackage.addNewLevelText();
+        }
     }
 }

@@ -11,14 +11,16 @@ import java.util.ArrayList;
 public class RewardPackage {
 
     public ArrayList<Image> images;
+    Boss boss;
     private String reward;
     public boolean spell;
     public boolean talent;
     public boolean level;
 
-    public RewardPackage()  {
+    public RewardPackage(Boss boss)  {
         this.reward = "";
         images = new ArrayList<>();
+        this.boss = boss;
     }
 
     public void addNewSpellText()  {
@@ -29,6 +31,8 @@ public class RewardPackage {
     public void addNewTalentText()  {
         talent = true;
         reward+="New Talent Point!\n";
+        boss.rewardPoint();
+
     }
     public void addNewLevelText()  {
         level = true;

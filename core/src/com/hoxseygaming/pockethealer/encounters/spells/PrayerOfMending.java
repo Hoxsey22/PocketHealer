@@ -16,7 +16,7 @@ public class PrayerOfMending extends Castable {
         super(player,
                 "Prayer of Mending",
                 "A ward is placed on an ally unit that heals the ally unit when damaged and will jump to a new target.",
-                3,
+                5,
                 1.5f,
                 35,
                 2f,

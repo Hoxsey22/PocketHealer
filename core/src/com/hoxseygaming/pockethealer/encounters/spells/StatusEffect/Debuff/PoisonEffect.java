@@ -23,7 +23,7 @@ public class PoisonEffect extends Debuff {
                 owner.assets.getTexture(owner.assets.poisonIcon),
                 20f,
                 2f,
-                20,
+                15,
                 true);
         healingReductionPercentage = 0.5f;
         setType(HEALING_REDUCTION);

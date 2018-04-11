@@ -19,7 +19,7 @@ public class HolyNova extends Castable {
         super(player,
                 "Holy Nova",
                 "An explosion of holy light that heals several ally units for a moderate amount.",
-                3,
+                5,
                 2f,
                 25,
                 3.5f,

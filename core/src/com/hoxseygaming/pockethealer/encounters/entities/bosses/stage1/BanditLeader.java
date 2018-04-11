@@ -43,7 +43,7 @@ public class BanditLeader extends Boss {
         backStab.setNumOfTargets(2);
 
         poisonStab = new PoisonStab(this);
-        poisonStab.setNumOfTargets(1);
+        poisonStab.setNumOfTargets(3);
 
         TankSwap tankSwap = new TankSwap(this, 12f);
 
@@ -72,9 +72,11 @@ public class BanditLeader extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage.addNewLevelText();
-        rewardPackage.addNewTalentText();
-        rewardPackage.addNewSpellText();
-        rewardPackage.addImage(new Image(assets.getTexture(assets.smiteIcon)));
+        if(player.getLevel() >= getId()) {
+            rewardPackage.addNewLevelText();
+            rewardPackage.addNewTalentText();
+            rewardPackage.addNewSpellText();
+            rewardPackage.addImage(new Image(assets.getTexture(assets.smiteIcon)));
+        }
     }
 }

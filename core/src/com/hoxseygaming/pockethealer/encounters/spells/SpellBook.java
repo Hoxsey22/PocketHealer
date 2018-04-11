@@ -63,10 +63,10 @@ public class SpellBook extends Group{
         spells.add(new Heal(owner, assets));
         spells.add(new Renew2(owner, assets));
         spells.add(new FlashHeal(owner, assets));
-        spells.add(new Barrier(owner, assets));
         spells.add(new Dispel(owner, assets));
         spells.add(new HolyNova(owner, assets));
         spells.add(new PrayerOfMending(owner, assets));
+        spells.add(new Barrier(owner, assets));
         spells.add(new GreaterHeal(owner, assets));
         spells.add(new Smite(owner, assets));
         spells.add(new Penance(owner, assets));

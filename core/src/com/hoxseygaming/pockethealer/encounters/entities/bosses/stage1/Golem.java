@@ -19,7 +19,7 @@ public class Golem extends Boss {
     public Golem(Assets assets) {
         super("Golem","The sorcerer is at it again and has summoned a Golem to stop anyone " +
                 "from reaching her.\nThe golem does heavy damage to the tank and will throw rocks at " +
-                "two raid members dealing heavy damage.", 180, new Raid(6,assets), assets);
+                "two raid members dealing heavy damage.", 150, new Raid(6,assets), assets);
         setId(5);
         create();
     }
@@ -41,9 +41,11 @@ public class Golem extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage.addNewLevelText();
-        rewardPackage.addNewSpellText();
-        rewardPackage.addImage(new Image(assets.getTexture(assets.barrierIcon)));
-        rewardPackage.addImage(new Image(assets.getTexture(assets.greaterHealerIcon)));
+        if(player.getLevel() >= getId()) {
+            rewardPackage.addNewLevelText();
+            rewardPackage.addNewSpellText();
+            rewardPackage.addImage(new Image(assets.getTexture(assets.barrierIcon)));
+            rewardPackage.addImage(new Image(assets.getTexture(assets.greaterHealerIcon)));
+        }
     }
 }

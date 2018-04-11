@@ -92,7 +92,17 @@ public class EncounterState extends State {
         bgMusic.setVolume(0.3f);
         bgMusic.play();
         */
-        bgImage = new Image(assets.getTexture("battle_bg1.png"));
+        if(boss.id <= 6)    {
+            bgImage = new Image(assets.getTexture(assets.battleBg1));
+        }
+        else if(boss.id >= 7 && boss.id <= 11)    {
+            bgImage = new Image(assets.getTexture(assets.battleBg2));
+        }
+        else    {
+            bgImage = new Image(assets.getTexture(assets.battleBg3));
+        }
+        //bgImage = new Image(assets.getTexture("battle_bg1.png"));
+        bgImage.setX(bgImage.getWidth()/2-PocketHealer.WIDTH/2);
 
 
 

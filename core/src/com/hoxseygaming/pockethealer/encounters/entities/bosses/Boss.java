@@ -42,7 +42,7 @@ public abstract class Boss extends Entity {
         setBounds(20, 740, 445, 40);
         target = getMainTank();
         mechanics = new ArrayList<>();
-        rewardPackage = new RewardPackage();
+        rewardPackage = new RewardPackage(this);
     }
 
     public Boss(String name, String description, int bossLength, Raid enemies, Assets assets) {
@@ -62,7 +62,7 @@ public abstract class Boss extends Entity {
         announcement.setPosition(getX(), enemies.getRaidMember(0).getY()+enemies.getRaidMember(0).getHeight()+10);
         announcement.setWrap(true);
         announcement.setAlignment(Align.left);
-        rewardPackage = new RewardPackage();
+        rewardPackage = new RewardPackage(this);
         rewardDescription = "";
     }
 
@@ -253,7 +253,6 @@ public abstract class Boss extends Entity {
 
     public void rewardPoint()   {
         player.getTalentTree().addPoint();
-        rewardDescription = rewardDescription +"1 point added!";
     }
 
     public void rewardSpell(String spell)   {

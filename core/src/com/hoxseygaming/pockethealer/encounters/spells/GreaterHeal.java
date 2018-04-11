@@ -16,7 +16,8 @@ public class GreaterHeal extends Heal {
         setCostPercentage(2.2f);
         MIN_CAST_TIME = 2f;
         setCastTime(MIN_CAST_TIME);
+        MIN_OUTPUT = 60;
         setOutput(60);
-        levelRequirement = 4;
+        levelRequirement = 6;
     }
 }

@@ -44,7 +44,9 @@ public class Sorcerer extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage.addNewLevelText();
-        rewardPackage.addNewTalentText();
+        if(player.getLevel() >= getId()) {
+            rewardPackage.addNewLevelText();
+            rewardPackage.addNewTalentText();
+        }
     }
 }

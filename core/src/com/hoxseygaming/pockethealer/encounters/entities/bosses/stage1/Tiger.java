@@ -42,8 +42,10 @@ public class Tiger extends Boss {
 
     @Override
     public void reward() {
-        rewardPackage.addNewLevelText();
-        rewardPackage.addNewSpellText();
-        rewardPackage.addImage(new Image(assets.getTexture(assets.dispelIcon)));
+        if(player.getLevel() >= getId()) {
+            rewardPackage.addNewLevelText();
+            rewardPackage.addNewSpellText();
+            rewardPackage.addImage(new Image(assets.getTexture(assets.dispelIcon)));
+        }
     }
 }
