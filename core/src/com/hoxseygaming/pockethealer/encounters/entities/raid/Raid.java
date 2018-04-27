@@ -75,8 +75,8 @@ public class Raid extends Group {
         switch(size) {
             case 3:
                 addTank(1);
-                addHealer(1);
-                addDps(1);
+                //addHealer(1);
+                addDps(2);
                 break;
             case 6:
                 addTank(1);
@@ -85,23 +85,23 @@ public class Raid extends Group {
                 break;
             case 9:
                 addTank(2);
-                addHealer(2);
-                addDps(5);
+                addHealer(1);
+                addDps(6);
                 break;
             case 12:
                 addTank(2);
-                addHealer(3);
-                addDps(7);
+                addHealer(2);
+                addDps(8);
                 break;
             case 15:
                 addTank(2);
-                addHealer(4);
-                addDps(9);
+                addHealer(2);
+                addDps(11);
                 break;
             case 18:
                 addTank(2);
-                addHealer(5);
-                addDps(11);
+                addHealer(3);
+                addDps(13);
                 break;
         }
     }

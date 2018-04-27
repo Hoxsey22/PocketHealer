@@ -16,8 +16,8 @@ public class ZombieHorde extends Boss {
     private ZombieBite zombieBite;
 
     public ZombieHorde(Assets assets) {
-        super("Zombie Horde"," After the cave a horde of zombies are drifting around. The only through is through them. Luckily, " +
-                "each zombie defeated is one less to deal with. Be careful for their bites or your team will become apart of their army.",
+        super("Zombie Horde"," After the cave, a horde of zombies are drifting around. The only through them is through them. Luckily, " +
+                "each zombie defeated is one less to deal with. Be careful for their bites, if not treated then that person becomes part of the horde.",
                 240,
                 new Raid(12,assets),
                 assets);

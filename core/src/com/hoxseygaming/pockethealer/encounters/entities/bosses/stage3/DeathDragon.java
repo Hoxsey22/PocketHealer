@@ -2,19 +2,48 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Agony;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FireBreath;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Flurry;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Ignite;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Pyroblast;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.RipTankSwap;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.UnstableMagic;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.UnstablePyroblast;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
- * Created by Hoxsey on 8/26/2017.
+ * Created by Hoxsey on 10/11/2017.
  */
 
+
+/*Need to add another mech*/
 public class DeathDragon extends Boss {
 
-    public Fireball fireball;
+    Agony agony;
+    Pyroblast pyroblast;
+    AutoAttack autoAttackp1;
+
+    UnstableMagic unstableMagic;
+    UnstablePyroblast unstablePyroblast;
+    AutoAttack autoAttackp2;
+
+    AutoAttack autoAttackp3;
+    RipTankSwap ripTankSwap;
+    Flurry flurry;
+    FireBreath fireBreath;
+    Ignite ignite;
+
 
     public DeathDragon(Assets assets) {
-        super("Death Dragon","", 240,new Raid(12,assets), assets);
+        super("Resurrected Sorcerer",
+                "The Sorcerer has been resurrected and now stronger than ever. He's come to finish what " +
+                        "he has started. ",
+                500,
+                new Raid(12, assets),
+                assets);
         setId(16);
         create();
     }
@@ -22,13 +51,50 @@ public class DeathDragon extends Boss {
     @Override
     public void create() {
         super.create();
-        damage = 0;
 
-        fireball = new Fireball(this, 3f);
+        setDamage(20);
+
+        /*
+        agony = new Agony(this);
+        pyroblast = new Pyroblast(this, 3f);
+        autoAttackp1 = new AutoAttack(this,2f);
+
+        unstableMagic = new UnstableMagic(this);
+        unstablePyroblast = new UnstablePyroblast(this, 3f);
+        autoAttackp2 = new AutoAttack(this,3f);
+        */
+        autoAttackp3 = new AutoAttack(this, 2f);
+        ripTankSwap = new RipTankSwap(this, 10f);
+        flurry = new Flurry(this, 10, 10f);
+        fireBreath = new FireBreath(this, 8, 35f);
+        ignite = new Ignite(this, 8f);
+
+
+        //phaseManager.addPhase(new Phase(this, 75, agony, pyroblast,autoAttackp1));
+        //phaseManager.addPhase(new Phase(this, 60f, unstableMagic,unstablePyroblast, autoAttackp2));
+        phaseManager.addPhase(new Phase(this, 400f, autoAttackp3, ripTankSwap, flurry,fireBreath, ignite));
+
+    }
+
+    @Override
+    public void update() {
+        super.update();
+    }
+
+    @Override
+    public void start() {
+        enemies.start(this);
+        phaseManager.startPhase();
     }
 
     @Override
     public void reward() {
+        if(player.getLevel() >= getId())
+            rewardPackage.addNewLevelText();
+    }
 
+    @Override
+    public void stop() {
+        phaseManager.cleanPhases();
     }
 }

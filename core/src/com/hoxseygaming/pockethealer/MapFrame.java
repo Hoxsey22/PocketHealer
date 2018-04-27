@@ -7,19 +7,20 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Align;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Apprentice;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.BanditLeader;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.BloodQueen;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.GiantHornet;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Golem;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Tiger;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.WildBoar;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Apprentice;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Hogger;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.Hydra;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.MotherSpider;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Proctor;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Sorcerer;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Tiger;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.WampusCat;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.WildBoar;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.BloodQueen;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.DeathDragon;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.Hydra;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.MotherSpider;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.ZombieHorde;
 
 /**
@@ -198,6 +199,9 @@ public class MapFrame extends Group {
                 break;
             case 15:
                 add(new BossIcon(assets, new Hydra(assets)));
+                break;
+            case 16:
+                add(new BossIcon(assets, new DeathDragon(assets)));
                 break;
         }
     }

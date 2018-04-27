@@ -50,7 +50,8 @@ public class MapState extends State {
 
         this.player = player;
 
-        turnPage();
+        //turnPage();
+        startPage();
     }
 
     public void turnPage()  {
@@ -62,6 +63,49 @@ public class MapState extends State {
         mapFrame.remove();
 
         switch (page)   {
+            case 1:
+                stage.addActor(mapFrame);
+
+                if(player.getLevel() > 6) {
+                    pageRight.addToStage(stage);
+                    //stage.addActor(pageRight);
+                }
+                break;
+            case 2:
+                stage.addActor(mapFrame);
+
+                if(player.getLevel() > 11) {
+                    pageRight.addToStage(stage);
+                    //stage.addActor(pageRight);
+                }
+                pageLeft.addToStage(stage);
+                //stage.addActor(pageLeft);
+                break;
+            case 3:
+                stage.addActor(mapFrame);
+                pageLeft.addToStage(stage);
+                //stage.addActor(pageLeft);
+                break;
+        }
+        loadPage();
+    }
+
+    public void startPage()  {
+
+        pageLeft.remove();
+        pageRight.remove();
+
+        if(player.getLevel() <= 6)
+            mapFrame = new MapFrame(player, 1, assets);
+        else if(player.getLevel() <= 11 && player.getLevel() > 6)
+            mapFrame = new MapFrame(player, 2, assets);
+        else
+            mapFrame = new MapFrame(player, 3, assets);
+        page = mapFrame.page;
+        //mapFrame = new MapFrame(player, page, assets);
+        mapFrame.remove();
+
+        switch (mapFrame.page)   {
             case 1:
                 stage.addActor(mapFrame);
 

@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Button;
 import com.hoxseygaming.pockethealer.Player;
@@ -84,16 +85,18 @@ public class SpellSelectionState extends State {
 
         // setting up the description of the selected spell
         descriptionTable = new Table();
+        descriptionTable.debug();
         descriptionTable.setBounds(spellBook.getLeft(), spellBook.getBottom() - 30 - 100, spellBook.getRight() - spellBook.getLeft(), 100);
         descriptionTable.top();
 
         spellDescriptionName = new Text("", 32, Color.BLACK, false, assets);
-        spellDescription = new Text("", 24, Color.WHITE, true, assets);
+        spellDescription = new Text("", 24, Color.WHITE, false, assets);
         spellDescription.setWrap(true);
+        spellDescription.setAlignment(Align.center);
 
-        descriptionTable.add(spellDescriptionName.getLabel()).left();
+        descriptionTable.add(spellDescriptionName.getLabel()).center();
         descriptionTable.row();
-        descriptionTable.add(spellDescription.getLabel()).width(descriptionTable.getWidth());
+        descriptionTable.add(spellDescription.getLabel()).width(descriptionTable.getWidth()).expandX().center();
 
         stage.addActor(descriptionTable);
     }

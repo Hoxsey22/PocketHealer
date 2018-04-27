@@ -70,7 +70,7 @@ public class TutorialFrame extends Group {
         stage++;
         switch(stage)    {
             case 2:
-                text.setText("The object as a healer is to keep everyone alive until your team defeats the boss.");
+                text.setText("The objective as a healer is to keep everyone alive until your team defeats the boss.");
                 break;
             case 3:
                 text.setText("This is the boss frame. \nWhen the boss frame is empty, you have defeated the boss.");

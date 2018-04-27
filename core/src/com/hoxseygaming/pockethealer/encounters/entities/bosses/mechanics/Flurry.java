@@ -2,27 +2,28 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BurnEffect;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Created by Hoxsey on 8/2/2017.
  */
 
-public class FireBreath extends Mechanic{
+public class Flurry extends Mechanic{
 
 
     public Timer channel;
     private Random dice;
 
-    public FireBreath(Boss owner) {
-        super("Fire Breath", 10, 20f, owner);
+    public Flurry(Boss owner) {
+        super("Flurry", 10, 20f, owner);
         dice = new Random();
     }
 
-    public FireBreath(Boss owner, int damage, float speed) {
-        super("Fire Breath", damage, speed, owner);
+    public Flurry(Boss owner, int damage, float speed) {
+        super("Flurry", damage, speed, owner);
         dice = new Random();
     }
 
@@ -46,17 +47,14 @@ public class FireBreath extends Mechanic{
 
         channel.schedule(new Timer.Task() {
             int count =  0;
-
+            ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
             @Override
             public void run() {
-                if(count != 4) {
+                if(count != 10) {
                     count++;
-                    for(int i = 0; i <  owner.getEnemies().raidMembers.size(); i++)   {
-                        owner.getEnemies().getRaidMember(i).takeDamage(damage);
-                        if(dice.nextInt(100)+0 > 94)    {
-                            owner.getEnemies().getRaidMember(i).addStatusEffect(new BurnEffect(owner));
-                        }
-                    }
+                    if(random.get(0).isDead)
+                        random = getRaid().getRandomRaidMember(1);
+                    random.get(0).takeDamage(damage);
                     //getRaid().takeDamage(damage);
                 }
                 else    {
@@ -65,6 +63,8 @@ public class FireBreath extends Mechanic{
                     timer.start();
                 }
             }
-        },0.5f,0.5f,4);
+        },0.5f,0.5f,10);
     }
+
+
 }

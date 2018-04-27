@@ -37,9 +37,6 @@ public class Leap extends Mechanic{
             @Override
             public void run() {
                 announcementTimer.stop();
-
-
-
                 startChannel();
                 timer.stop();
             }

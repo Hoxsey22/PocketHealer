@@ -18,10 +18,12 @@ public class Phase {
     public PhaseManager parent;
     public Boss owner;
     public float length;
+    public float percentage;
     float delay;
     public boolean isActive;
     public Timer timer;
     public ArrayList<Mechanic> mechanics;
+    public boolean isTimed;
 
     /**
      * @param owner: The Boss which owns the phase.
@@ -34,6 +36,24 @@ public class Phase {
         isActive = false;
         this.mechanics = new ArrayList<>();
         delay = 0f;
+        isTimed = true;
+
+        for (Mechanic mech:mechanics) {
+            this.mechanics.add(mech);
+        }
+    }
+
+    /**
+     * @param owner: The Boss which owns the phase.
+     * @param mechanics: List of all the mechanics that exist in the phase.
+     */
+    public Phase(Boss owner, int percentage, Mechanic...mechanics) {
+        this.owner = owner;
+        this.percentage = (float)percentage/100;
+        isActive = false;
+        this.mechanics = new ArrayList<>();
+        delay = 0f;
+        isTimed = false;
 
         for (Mechanic mech:mechanics) {
             this.mechanics.add(mech);
@@ -67,16 +87,32 @@ public class Phase {
 
         startMechanics();
 
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                timer.stop();
-                timer.clear();
-                stopMechanics();
+        if(isTimed) {
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    timer.stop();
+                    timer.clear();
+                    stopMechanics();
 
-                parent.nextPhase();
-            }
-        },length);
+                    parent.nextPhase();
+                }
+            }, length);
+        }
+        else    {
+            timer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    if(owner.getHpPercent() <= percentage ) {
+                        timer.stop();
+                        timer.clear();
+                        stopMechanics();
+
+                        parent.nextPhase();
+                    }
+                }
+            },0.1f,0.1f);
+        }
     }
 
     /**
@@ -90,6 +126,7 @@ public class Phase {
      * Clears the phase.
      */
     public void clear() {
+        stop();
         timer.clear();
     }
 

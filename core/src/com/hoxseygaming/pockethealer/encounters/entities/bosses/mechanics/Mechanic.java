@@ -11,16 +11,10 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 public class Mechanic {
 
-    public enum Debuff  {
-        BLEED, POISON, DISEASE, SUNDER, SOULSTEAL,
-        MAIME, HEALINGABSORB, BITTEN, BOIL
-    }
-
     public int id;
     public String name;
     public Boss owner;
     public Timer timer;
-    public Debuff debuff;
     public RaidMember target;
     public RaidMember mainTank;
     public RaidMember offTank;
@@ -84,8 +78,10 @@ public class Mechanic {
     public void stop()  {
         System.out.println("Timer stopped!");
         isActive = false;
-        timer.stop();
-        timer.clear();
+        if(timer != null)    {
+            timer.stop();
+            timer.clear();
+        }
         if(announcementTimer != null) {
             announcementTimer.stop();
             announcementTimer.clear();
@@ -117,14 +113,6 @@ public class Mechanic {
 
     public void setTimer(Timer timer) {
         this.timer = timer;
-    }
-
-    public Debuff getDebuff() {
-        return debuff;
-    }
-
-    public void setDebuff(Debuff debuff) {
-        this.debuff = debuff;
     }
 
     public RaidMember getTarget() {

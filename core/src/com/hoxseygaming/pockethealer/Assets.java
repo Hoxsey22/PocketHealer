@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechanic;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 import java.util.ArrayList;
@@ -163,6 +162,8 @@ public class Assets {
     public String map2 = "map_state/map_level_2.png";
     public String map3 = "map_state/map_level_3.png";
     public String pageTurn = "map_state/page_turn.png";
+    public String ripIcon = "icons/rip_icon.png";
+    public String igniteIcon = "icons/ignite_icon.png";
 
 
 
@@ -341,6 +342,8 @@ public class Assets {
         manager.load(blessedGardenIcon, Texture.class);
         manager.load(stoneSkinIcon, Texture.class);
 
+        manager.load(ripIcon, Texture.class);
+        manager.load(igniteIcon, Texture.class);
 
     }
 
@@ -386,7 +389,7 @@ public class Assets {
         bossIconPosition.add(new Vector2(180,150)); // zombie horde
         bossIconPosition.add(new Vector2(220,250)); // blood queen
         bossIconPosition.add(new Vector2(160,250)); // Ion
-        bossIconPosition.add(new Vector2(180,300)); // death dragon
+        bossIconPosition.add(new Vector2(185,300)); // death dragon
         bossIconPosition.add(new Vector2(180,400)); // test boss
 
     }
@@ -452,22 +455,6 @@ public class Assets {
                 return getTexture(lifeboomIcon);
             case RNHEAL:
                 return getTexture(renewingNovaIcon);
-        }
-        return null;
-    }
-
-    public Texture getEffectImage(Mechanic.Debuff debuff) {
-        switch (debuff) {
-            case BLEED:
-                return this.getTexture(bleedIcon);
-            case POISON:
-                return this.getTexture(poisonIcon);
-            case DISEASE:
-                return this.getTexture(diseaseIcon);
-            case BITTEN:
-                return this.getTexture(biteIcon);
-            case BOIL:
-                return this.getTexture(boilIcon);
         }
         return null;
     }

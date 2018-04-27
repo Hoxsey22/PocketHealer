@@ -66,6 +66,10 @@ public class WampusCat extends Boss {
     public void stop() {
         super.stop();
         catForm.pounce.stopBleeds();
+        if(catForm !=null)
+            catForm.stop();
+        if (humanForm !=null)
+            humanForm.stop();
     }
 
     @Override

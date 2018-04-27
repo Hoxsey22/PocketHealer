@@ -49,17 +49,17 @@ public class Hogger extends Boss {
     public void update() {
         if(getHpPercent() < 0.75 && getHpPercent() > 0.51 && phase == 0)    {
             cleave.setNumOfTargets(3);
-            cleave.setSpeed(cleave.getSpeed()-0.2f);
+            cleave.setSpeed(cleave.getSpeed()-0.3f);
             phase = 1;
         }
         else if(getHpPercent() < 0.50 && getHpPercent() > 0.26 && phase == 1)    {
             cleave.setNumOfTargets(4);
-            cleave.setSpeed(cleave.getSpeed()-0.2f);
+            cleave.setSpeed(cleave.getSpeed()-0.3f);
             phase = 2;
         }
         else if(getHpPercent() < 0.25 && phase == 2)    {
             cleave.setNumOfTargets(5);
-            cleave.setSpeed(cleave.getSpeed()-0.2f);
+            cleave.setSpeed(cleave.getSpeed()-0.3f);
             phase = 3;
         }
     }

@@ -2,31 +2,22 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Debuff;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.RipEffect;
 
 /**
  * Created by Hoxsey on 8/4/2017.
  */
 
-public class TankSwap extends Mechanic {
+public class RipTankSwap extends Mechanic {
 
-    public Debuff debuff;
-
-    public TankSwap(Boss owner) {
+    public RipTankSwap(Boss owner) {
         super("Tank Swap",0,8f,owner);
         setMainTank();
         setOffTank();
     }
 
-    public TankSwap(Boss owner, float speed) {
+    public RipTankSwap(Boss owner, float speed) {
         super("Tank Swap",0,speed,owner);
-        setMainTank();
-        setOffTank();
-    }
-
-    public TankSwap(Boss owner, float speed, Debuff debuff) {
-        super("Tank Swap",0,speed,owner);
-        this.debuff = debuff;
         setMainTank();
         setOffTank();
     }
@@ -38,9 +29,7 @@ public class TankSwap extends Mechanic {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                if(debuff != null)    {
-                    owner.getTarget().addStatusEffect(debuff);
-                }
+                owner.getTarget().addStatusEffect(new RipEffect(owner,speed));
                 tankSwap();
 
                 System.out.println("TANK SWAP!");
