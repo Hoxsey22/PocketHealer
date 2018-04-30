@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.PoisonEffect;
@@ -18,24 +17,17 @@ public class PoisonStab extends Mechanic {
     public PoisonStab(Boss owner) {
         super("Poison Stab", owner.damage, 18f, owner);
         numOfTargets = 1;
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
+    public void action() {
+        ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
 
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
-
-                for (int i = 0; i < temp.size(); i++)   {
-                    temp.get(i).takeDamage(damage);
-                    temp.get(i).addStatusEffect(new PoisonEffect(owner, 5,0.2f));
-                }
-
-            }
-        },speed, speed);
+        for (int i = 0; i < temp.size(); i++)   {
+            temp.get(i).takeDamage(damage);
+            temp.get(i).addStatusEffect(new PoisonEffect(owner, 5,0.2f));
+        }
     }
 
     @Override

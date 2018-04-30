@@ -44,7 +44,7 @@ public class Assets {
     // pngss
     public String continuousRenewalIcon = "talent_state/continuous_renewal.png";
     public String lifeboomIcon = "icons/lifeboom.png";
-    public String perseveranceIcon = "talent_state/perseverance.png";
+    public String unstableMagicIcon = "icons/unstable_magic_icon.png";
     public String burstHealerIcon = "talent_state/burst_healer.png";
     public String innerFocusIcon = "icons/inner_focus.png";
     public String diseaseIcon = "icons/disease_icon.png";
@@ -239,7 +239,7 @@ public class Assets {
 
         manager.load(continuousRenewalIcon, Texture.class);
         manager.load(lifeboomIcon, Texture.class);
-        manager.load(perseveranceIcon, Texture.class);
+        manager.load(unstableMagicIcon, Texture.class);
         manager.load(burstHealerIcon, Texture.class);
         manager.load(innerFocusIcon, Texture.class);
         manager.load(workTogetherIcon, Texture.class);

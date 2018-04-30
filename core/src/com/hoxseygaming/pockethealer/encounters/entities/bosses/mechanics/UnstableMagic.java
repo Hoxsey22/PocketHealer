@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.UnstableMagicEffect;
@@ -16,30 +15,18 @@ public class UnstableMagic extends Mechanic {
     public int numOfTargets;
 
     public UnstableMagic(Boss owner) {
-        super("Unstable Magic", 0, 10f, owner);
+        super("Unstable Magic", 0, 8f, owner);
         numOfTargets = 1;
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
-        startAnnouncementTimer();
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets,owner.enemies.dpsAlive());
+    public void action() {
+        ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets,owner.getEnemies().getDebuffLessRaidMembers("unstable magic"));
 
-                for (int i = 0; i < temp.size(); i++)   {
-                    temp.get(i).addStatusEffect(new UnstableMagicEffect(owner));
-                }
-
-            }
-        },5f, speed);
-    }
-
-    @Override
-    public void stop() {
-        super.stop();
+        for (int i = 0; i < temp.size(); i++)   {
+            temp.get(i).addStatusEffect(new UnstableMagicEffect(owner));
+        }
     }
 
     public int getNumOfTargets() {

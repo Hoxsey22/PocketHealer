@@ -46,26 +46,10 @@ public class MotherSpider extends Boss {
     }
 
     @Override
-    public void start() {
-        enemies.start(this);
-        phaseManager.startPhase();
-    }
-
-    @Override
     public void reward() {
         if(player.getLevel() >= getId()) {
             rewardPackage.addNewLevelText();
             rewardPackage.addNewTalentText();
         }
-    }
-
-    @Override
-    public void update() {
-
-    }
-
-    @Override
-    public void stop() {
-        phaseManager.cleanPhases();
     }
 }

@@ -62,15 +62,4 @@ public class BloodQueen extends Boss {
         if(player.getLevel() >= getId())
             rewardPackage.addNewLevelText();
     }
-
-    @Override
-    public void start() {
-        enemies.start(this);
-        phaseManager.startPhase();
-    }
-
-    @Override
-    public void stop() {
-        phaseManager.cleanPhases();
-    }
 }

@@ -20,26 +20,21 @@ public class Flurry extends Mechanic{
     public Flurry(Boss owner) {
         super("Flurry", 10, 20f, owner);
         dice = new Random();
+        announce = true;
     }
 
     public Flurry(Boss owner, int damage, float speed) {
         super("Flurry", damage, speed, owner);
         dice = new Random();
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
-        startAnnouncementTimer();
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                startChannel();
-                announcementTimer.stop();
-                timer.stop();
-            }
-        },speed, speed);
-
+    public void action() {
+        //pausePhase();
+        startChannel();
+        //timer.stop();
+        pause();
     }
 
     public void startChannel()  {
@@ -60,7 +55,8 @@ public class Flurry extends Mechanic{
                 else    {
                     channel.stop();
                     channel.clear();
-                    timer.start();
+                    //timer.start();
+                    resume();
                 }
             }
         },0.5f,0.5f,10);

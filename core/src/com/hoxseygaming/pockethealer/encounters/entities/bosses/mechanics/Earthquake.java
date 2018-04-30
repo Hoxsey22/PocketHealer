@@ -14,25 +14,18 @@ public class Earthquake extends Mechanic {
 
     public Earthquake(Boss owner) {
         super("Earthquake", 5, 15f, owner);
+        announce = true;
     }
 
     public Earthquake(Boss owner, float speed) {
         super("Earthquake", 5, speed, owner);
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
-
-
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                startChannel();
-                timer.stop();
-            }
-        },speed, speed);
-
+    public void action() {
+        startChannel();
+        timer.stop();
     }
 
     public void startChannel()  {

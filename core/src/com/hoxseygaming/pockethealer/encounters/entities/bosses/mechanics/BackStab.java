@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
@@ -18,27 +17,20 @@ public class BackStab extends Mechanic {
     public BackStab(Boss owner) {
         super("Back Stab", owner.damage*3, 15f, owner);
         numOfTargets = 1;
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
+    public void action() {
+        ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
 
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
+        for (int i = 0; i < temp.size(); i++)   {
+            BleedEffect bleedEffect = new BleedEffect(owner);
+            bleedEffect.setModValue(5);
 
-                for (int i = 0; i < temp.size(); i++)   {
-                    BleedEffect bleedEffect = new BleedEffect(owner);
-                    bleedEffect.setModValue(5);
-
-                    temp.get(i).takeDamage(damage);
-                    temp.get(i).addStatusEffect(bleedEffect);
-                }
-
-            }
-        },speed, speed);
+            temp.get(i).takeDamage(damage);
+            temp.get(i).addStatusEffect(bleedEffect);
+        }
     }
 
     @Override

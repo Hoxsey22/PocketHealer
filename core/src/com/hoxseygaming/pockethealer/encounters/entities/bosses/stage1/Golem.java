@@ -5,6 +5,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Earthquake;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -34,8 +35,8 @@ public class Golem extends Boss {
         earthquake = new Earthquake(this, 5f);
         earthquake.setAnnounce(true);
 
-
-        loadMechanics(autoAttack, earthquake);
+        phaseManager.addPhase(new Phase(this, 0, autoAttack, earthquake));
+       //loadMechanics(autoAttack, earthquake);
 
     }
 

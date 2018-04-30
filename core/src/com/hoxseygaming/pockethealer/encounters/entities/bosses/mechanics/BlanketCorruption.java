@@ -19,6 +19,7 @@ public class BlanketCorruption extends Mechanic{
     public BlanketCorruption(Boss owner) {
         super("Blanket Corruption", 0, 65f, owner);
         dice = new Random();
+        announce = true;
     }
 
     public BlanketCorruption(Boss owner, int damage, float speed) {
@@ -27,25 +28,12 @@ public class BlanketCorruption extends Mechanic{
     }
 
     @Override
-    public void start() {
-        super.start();
+    public void action() {
+        for(int i = 0; i < owner.getEnemies().raidMembers.size(); i++)   {
+            CorruptionEffect corruptionEffect = new CorruptionEffect(owner);
+            corruptionEffect.setModValue(5);
 
-
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-
-                for(int i = 0; i < owner.getEnemies().raidMembers.size(); i++)   {
-                    CorruptionEffect corruptionEffect = new CorruptionEffect(owner);
-                    corruptionEffect.setModValue(5);
-
-                    owner.getEnemies().raidMembers.get(i).addStatusEffect(corruptionEffect);
-                }
-
-
-
-            }
-        },10f, speed);
-
+            owner.getEnemies().raidMembers.get(i).addStatusEffect(corruptionEffect);
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.SeedOfCorruptionEffect;
@@ -18,25 +17,18 @@ public class SeedOfCorruption extends Mechanic {
     public SeedOfCorruption(Boss owner) {
         super("Seed of Corruption", owner.damage, 0.1f, owner);
         numOfTargets = 1;
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
+    public void action() {
+        if(owner.getEnemies().getDebuffLessRaidMembers("Seed of Corruption Effect").size() == owner.getEnemies().raidMembers.size()) {
+            ArrayList<RaidMember> temp = owner.enemies.getRandomRaidMember(numOfTargets);
 
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                if(owner.getEnemies().getDebuffLessRaidMembers("Seed of Corruption Effect").size() == owner.getEnemies().raidMembers.size()) {
-                    ArrayList<RaidMember> temp = owner.enemies.getRandomRaidMember(numOfTargets);
-
-                    for (int i = 0; i < temp.size(); i++) {
-                        temp.get(i).addStatusEffect(new SeedOfCorruptionEffect(owner));
-                    }
-                }
-
+            for (int i = 0; i < temp.size(); i++) {
+                temp.get(i).addStatusEffect(new SeedOfCorruptionEffect(owner));
             }
-        },5f, speed);
+        }
     }
 
     @Override

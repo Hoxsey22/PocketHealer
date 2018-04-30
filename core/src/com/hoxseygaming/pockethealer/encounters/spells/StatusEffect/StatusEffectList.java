@@ -41,7 +41,7 @@ public class StatusEffectList {
 
         for(int i = 0; i < statusEffects.size(); i++)   {
             if(statusEffects.get(i).isDispellable())    {
-                statusEffects.get(i).remove();
+                statusEffects.get(i).dispel();
             }
         }
     }

@@ -5,6 +5,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Cleave;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
@@ -13,6 +14,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
  */
 
 public class Hogger extends Boss {
+
     private AutoAttack autoAttack;
     private TankSwap tankSwap;
     private Cleave cleave;
@@ -40,7 +42,8 @@ public class Hogger extends Boss {
         cleave = new Cleave(this, 2f);
         cleave.setDamage(damage);
 
-        loadMechanics(autoAttack,tankSwap,cleave);
+        phaseManager.addPhase(new Phase(this, 0, autoAttack, tankSwap, cleave));
+        //loadMechanics(autoAttack,tankSwap,cleave);
         phase = 0;
 
     }

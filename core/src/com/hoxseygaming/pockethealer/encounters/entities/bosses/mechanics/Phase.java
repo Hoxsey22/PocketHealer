@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class Phase {
 
+    public String name;
     public PhaseManager parent;
     public Boss owner;
     public float length;
@@ -39,6 +40,27 @@ public class Phase {
         isTimed = true;
 
         for (Mechanic mech:mechanics) {
+            mech.setParentPhase(this);
+            this.mechanics.add(mech);
+        }
+    }
+
+    /**
+     * @param owner: The Boss which owns the phase.
+     * @param length: The length of which the phase last.
+     * @param mechanics: List of all the mechanics that exist in the phase.
+     */
+    public Phase(Boss owner, String name, float length, Mechanic...mechanics) {
+        this.owner = owner;
+        this.length = length;
+        this.name = name;
+        isActive = false;
+        this.mechanics = new ArrayList<>();
+        delay = 0f;
+        isTimed = true;
+
+        for (Mechanic mech:mechanics) {
+            mech.setParentPhase(this);
             this.mechanics.add(mech);
         }
     }
@@ -50,6 +72,24 @@ public class Phase {
     public Phase(Boss owner, int percentage, Mechanic...mechanics) {
         this.owner = owner;
         this.percentage = (float)percentage/100;
+        isActive = false;
+        this.mechanics = new ArrayList<>();
+        delay = 0f;
+        isTimed = false;
+
+        for (Mechanic mech:mechanics) {
+            this.mechanics.add(mech);
+        }
+    }
+
+    /**
+     * @param owner: The Boss which owns the phase.
+     * @param mechanics: List of all the mechanics that exist in the phase.
+     */
+    public Phase(Boss owner,String name, int percentage, Mechanic...mechanics) {
+        this.owner = owner;
+        this.percentage = (float)percentage/100;
+        this.name = name;
         isActive = false;
         this.mechanics = new ArrayList<>();
         delay = 0f;
@@ -84,7 +124,16 @@ public class Phase {
     public void start() {
         timer = new Timer();
         isActive = true;
-
+        if(name == "") {
+            Timer phaseTitleTimer = new Timer();
+            getOwner().announcement.setText(name);
+            phaseTitleTimer.scheduleTask(new Timer.Task() {
+                @Override
+                public void run() {
+                    getOwner().announcement.setText("");
+                }
+            }, 1f, 1);
+        }
         startMechanics();
 
         if(isTimed) {
@@ -146,6 +195,32 @@ public class Phase {
         for(int i = 0; i < mechanics.size(); i++)   {
             mechanics.get(i).stop();
         }
+    }
+
+    public void pauseMechanics(Mechanic currentMechanic)    {
+        long millis=System.currentTimeMillis();
+        java.util.Date date=new java.util.Date(millis);
+
+        System.out.println(date+" :"+currentMechanic.getName()+" paused the other mechanics.");
+        for(int i = 0; i < mechanics.size(); i++)   {
+            if(!currentMechanic.getName().equalsIgnoreCase(mechanics.get(i).getName()) && !mechanics.get(i).bgMech) {
+                mechanics.get(i).pause();
+            }
+        }
+    }
+
+    public void resumeMechanics()   {
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                for(int i = 0; i < mechanics.size(); i++)   {
+                    if(!mechanics.get(i).bgMech) {
+                        mechanics.get(i).resume();
+                    }
+                }
+            }
+        },1f,1f,1);
+
     }
 
     /*****************************************************************

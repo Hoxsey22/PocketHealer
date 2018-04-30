@@ -14,24 +14,18 @@ public class SwarmingShadow extends Mechanic{
 
     public SwarmingShadow(Boss owner) {
         super("Swarming Shadow", 10, 15f, owner);
+        announce = true;
     }
 
     public SwarmingShadow(Boss owner, int damage, float speed) {
         super("Swarming Shadow", damage, speed, owner);
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
-
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                startChannel();
-                timer.stop();
-            }
-        },5, speed,3);
-
+    public void action() {
+        startChannel();
+        pause();
     }
 
     public void startChannel()  {

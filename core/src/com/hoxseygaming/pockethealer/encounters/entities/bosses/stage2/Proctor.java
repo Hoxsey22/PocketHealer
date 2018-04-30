@@ -5,6 +5,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BullCharge;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FireBreath;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
@@ -12,7 +13,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
  * Created by Hoxsey on 7/20/2017.
  */
 
-        public class Proctor extends Boss {
+public class Proctor extends Boss {
 
     public AutoAttack autoAttack;
     public BullCharge bullCharge;
@@ -40,7 +41,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
         fireBreath = new FireBreath(this,8,20f);
         tankSwap = new TankSwap(this);
 
-        loadMechanics(autoAttack, tankSwap, bullCharge, fireBreath);
+        phaseManager.addPhase(new Phase(this, 0, autoAttack, tankSwap, bullCharge, fireBreath));
+        //loadMechanics(autoAttack, tankSwap, bullCharge, fireBreath);
     }
 
     @Override

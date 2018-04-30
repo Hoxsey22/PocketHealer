@@ -65,8 +65,10 @@ public class PhaseManager {
      */
     public void cleanPhases()  {
         for(int i = 0; i < phases.size(); i++)  {
-            phases.clear();
+            phases.get(i).stop();
+            phases.remove(i);
         }
+        phases.clear();
     }
 
 

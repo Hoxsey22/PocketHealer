@@ -6,6 +6,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Agony;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BlanketCorruption;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FireBreath;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -39,7 +40,9 @@ public class Sorcerer extends Boss {
         fireball = new Fireball(this, 3f);
         fireBreath = new FireBreath(this);
         fireBreath.setSpeed(35f);
-        loadMechanics(agony,blanketCorruption,fireball,fireBreath);
+
+        phaseManager.addPhase(new Phase(this, 0, fireball, agony, blanketCorruption, fireBreath));
+        //loadMechanics(agony,blanketCorruption,fireball,fireBreath);
     }
 
     @Override

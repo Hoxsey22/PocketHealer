@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.IgniteEffect;
@@ -18,28 +17,23 @@ public class Ignite extends Mechanic {
     public Ignite(Boss owner) {
         super("Ignite", 0, 18f, owner);
         numOfTargets = 1;
+        bgMech = true;
     }
 
     public Ignite(Boss owner, float speed) {
         super("Ignite", 0, 18f, owner);
         numOfTargets = 1;
+        bgMech = true;
     }
 
+
     @Override
-    public void start() {
-        super.start();
-        startAnnouncementTimer();
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
+    public void action() {
+        ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
 
-                for (int i = 0; i < temp.size(); i++)   {
-                    temp.get(i).addStatusEffect(new IgniteEffect(owner));
-                }
-
-            }
-        },5f, speed);
+        for (int i = 0; i < temp.size(); i++)   {
+            temp.get(i).addStatusEffect(new IgniteEffect(owner));
+        }
     }
 
     @Override

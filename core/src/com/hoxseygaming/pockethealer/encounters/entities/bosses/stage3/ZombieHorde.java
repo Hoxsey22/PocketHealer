@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.ZombieAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.ZombieBite;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
@@ -34,7 +35,8 @@ public class ZombieHorde extends Boss {
         zombieBite = new ZombieBite(this, 11f);
         zombieBite.setNumOfTargets(2);
 
-        loadMechanics(zombieAttack, zombieBite);
+        phaseManager.addPhase(new Phase(this, 0, zombieAttack, zombieBite));
+        //loadMechanics(zombieAttack, zombieBite);
     }
 
     @Override

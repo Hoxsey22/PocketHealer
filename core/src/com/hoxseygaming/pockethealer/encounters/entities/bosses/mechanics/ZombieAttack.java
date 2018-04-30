@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
@@ -15,26 +14,21 @@ public class ZombieAttack extends Mechanic {
     public ZombieAttack(Boss owner) {
         super("Auto Attack", 0, 2.5f, owner);
         id = 1;
+        bgMech = true;
     }
 
     public ZombieAttack(Boss owner, float speed) {
         super("Auto Attack", 0, speed, owner);
         id = 1;
+        bgMech = true;
     }
 
     @Override
-    public void start() {
-        super.start();
-
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                ArrayList<RaidMember> targets = owner.getEnemies().getRandomRaidMember(8);
-                for (int i = 0; i < targets.size() ;i++)
-                    targets.get(i).takeDamage(getZombieDamage());
-                    //owner.getEnemies().takeDamage(getZombieDamage());
-            }
-        },speed,speed);
+    public void action() {
+        ArrayList<RaidMember> targets = owner.getEnemies().getRandomRaidMember(8);
+        for (int i = 0; i < targets.size() ;i++)
+            targets.get(i).takeDamage(getZombieDamage());
+        //owner.getEnemies().takeDamage(getZombieDamage());
     }
 
     public int getZombieDamage()    {

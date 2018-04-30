@@ -7,8 +7,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
  */
 
 public class IgniteEffect extends Debuff {
-
-    int count = 0;
     /**
      */
     public IgniteEffect(Boss owner) {
@@ -17,9 +15,9 @@ public class IgniteEffect extends Debuff {
                 "Ignite Effect",
                 "Burns the target until dispelled. Once dispelled, the target will combust.",
                 owner.assets.getTexture(owner.assets.igniteIcon), //need to change the icon
-                10f,
-                2f,
-                10,
+                12f,
+                3f,
+                5,
                 true);
     }
 
@@ -35,7 +33,7 @@ public class IgniteEffect extends Debuff {
     @Override
     public void applyEffect() {
         getTarget().takeDamage(getModValue());
-        count++;
+        setModValue(getModValue()+1);
         //setModValue(getModValue()+5);
     }
 
@@ -46,8 +44,12 @@ public class IgniteEffect extends Debuff {
 
     @Override
     public void remove() {
-        if(!getTarget().isDead())
-            getTarget().takeDamage((6-count)*getModValue()/2);
+        if (isDispelled) {
+            getOwner().getEnemies().takeDamage(20);
+        }
+        else {
+            getOwner().getEnemies().takeDamage(40);
+        }
         super.remove();
     }
 }

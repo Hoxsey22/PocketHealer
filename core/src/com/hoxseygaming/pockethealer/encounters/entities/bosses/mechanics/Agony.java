@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.AgonyEffect;
@@ -18,25 +17,18 @@ public class Agony extends Mechanic {
     public Agony(Boss owner) {
         super("Agony", 0, 18f, owner);
         numOfTargets = 1;
+        bgMech = true;
     }
 
     @Override
-    public void start() {
-        super.start();
+    public void action() {
+        ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
 
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
+        for (int i = 0; i < temp.size(); i++)   {
+            AgonyEffect agonyEffect = new AgonyEffect(owner);
 
-                for (int i = 0; i < temp.size(); i++)   {
-                    AgonyEffect agonyEffect = new AgonyEffect(owner);
-
-                    temp.get(i).addStatusEffect(agonyEffect);
-                }
-
-            }
-        },5f, speed);
+            temp.get(i).addStatusEffect(agonyEffect);
+        }
     }
 
     @Override

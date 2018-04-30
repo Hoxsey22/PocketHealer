@@ -14,16 +14,16 @@ public class DoubleAttack extends Mechanic {
 
     public DoubleAttack(Boss owner) {
         super("Double Attack", 20, 2f, owner);
+        announce = true;
     }
 
     public DoubleAttack(Boss owner, float speed)   {
         super("Double Attack", 20, speed, owner);
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
-
+    public void action() {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {

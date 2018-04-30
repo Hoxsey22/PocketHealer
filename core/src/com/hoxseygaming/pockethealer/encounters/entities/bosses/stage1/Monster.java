@@ -4,6 +4,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Bite;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -29,7 +30,8 @@ public class Monster extends Boss {
         bite.setAnnounce(true);
         autoAttack = new AutoAttack(this, 1f);
 
-        loadMechanics(autoAttack, bite);
+        //loadMechanics(autoAttack, bite);
+        phaseManager.addPhase(new Phase(this, 0, autoAttack, bite));
     }
 
     @Override

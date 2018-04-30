@@ -5,6 +5,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BullCharge;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -35,7 +36,7 @@ public class WildBoar extends Boss {
         bullCharge.setAnnounce(true);
         autoAttack = new AutoAttack(this, 1f);
 
-        loadMechanics(autoAttack, bullCharge);
+        phaseManager.addPhase(new Phase(this,0, autoAttack, bullCharge));
     }
 
     @Override

@@ -115,15 +115,20 @@ public abstract class Boss extends Entity {
     public void start() {
         System.out.println("BOSS IS NOW ACTIVE!");
         enemies.start(this);
-        for(int i = 0; i < mechanics.size(); i++)   {
+        phaseManager.startPhase();
+
+       /* for(int i = 0; i < mechanics.size(); i++)   {
             mechanics.get(i).start();
         }
+        */
     }
 
     public void stop()  {
         System.out.println("BOSS IS NOW INACTIVE!");
-        for (int i = 0; i <  mechanics.size(); i++)
+        /*for (int i = 0; i <  mechanics.size(); i++)
             mechanics.get(i).stop();
+            */
+        phaseManager.cleanPhases();
     }
 
     public void nextThreat() {

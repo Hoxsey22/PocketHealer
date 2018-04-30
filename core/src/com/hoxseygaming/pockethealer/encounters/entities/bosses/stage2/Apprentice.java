@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.SeedOfCorruption;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
@@ -35,7 +36,8 @@ public class Apprentice extends Boss {
         fireball.setDamage(10);
         seedOfCorruption = new SeedOfCorruption(this);
 
-        loadMechanics(fireball, seedOfCorruption);
+        phaseManager.addPhase(new Phase(this,0, fireball, seedOfCorruption));
+        //loadMechanics(fireball, seedOfCorruption);
     }
 
     @Override

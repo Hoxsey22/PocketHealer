@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Sting;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
@@ -37,7 +38,9 @@ public class GiantHornet extends Boss {
         sting.setAnnounce(true);
         //sting.setSpeed(8f);
         sting.setNumOfTargets(3);
-        loadMechanics(autoAttack, sting);
+
+        phaseManager.addPhase(new Phase(this, 0, autoAttack, sting));
+        //loadMechanics(autoAttack, sting);
     }
 
     @Override

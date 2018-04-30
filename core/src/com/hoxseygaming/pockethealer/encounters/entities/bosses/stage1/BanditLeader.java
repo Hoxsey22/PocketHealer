@@ -5,6 +5,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BackStab;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonStab;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
@@ -47,7 +48,8 @@ public class BanditLeader extends Boss {
 
         TankSwap tankSwap = new TankSwap(this, 12f);
 
-        loadMechanics(autoAttack, backStab, poisonStab,tankSwap);
+        phaseManager.addPhase(new Phase(this, 0, autoAttack,tankSwap, backStab, poisonStab));
+        //loadMechanics(autoAttack, backStab, poisonStab,tankSwap);
     }
 
     @Override

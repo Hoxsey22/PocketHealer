@@ -4,8 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.CatForm;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.HumanForm;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Pounce;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 /**
@@ -14,8 +14,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class WampusCat extends Boss {
 
-    public HumanForm humanForm;
-    public CatForm catForm;
+    Pounce pounce;
     public AutoAttack autoAttack;
 
     public WampusCat(Assets assets) {
@@ -34,42 +33,17 @@ public class WampusCat extends Boss {
 
     @Override
     public void create()    {
-        humanForm = new HumanForm(this);
-        catForm = new CatForm(this);
 
-
-        //linking the mechs together
-        humanForm.setLinkedMechanic(catForm);
-        catForm.setLinkedMechanic(humanForm);
 
         autoAttack = new AutoAttack(this);
-
-        mechanics.add(humanForm);
+        pounce = new Pounce(this);
+        /*mechanics.add(humanForm);
         mechanics.add(catForm);
         mechanics.add(autoAttack);
-    }
+        */
 
-    @Override
-    public void start() {
-        super.start();
-        create();
-        catForm.start();
-        autoAttack.start();
-    }
-
-    @Override
-    public void update() {
-
-    }
-
-    @Override
-    public void stop() {
-        super.stop();
-        catForm.pounce.stopBleeds();
-        if(catForm !=null)
-            catForm.stop();
-        if (humanForm !=null)
-            humanForm.stop();
+        phaseManager.addPhase(new Phase(this, name+" is in her Cat Form!",30f, pounce, autoAttack));
+        phaseManager.addPhase(new Phase(this,name+"is in her Human Form!", 30f, autoAttack));
     }
 
     @Override

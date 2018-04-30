@@ -59,14 +59,8 @@ public class Hydra extends Boss {
     }
 
     @Override
-    public void update() {
-        super.update();
-    }
-
-    @Override
     public void start() {
-        enemies.start(this);
-        phaseManager.startPhase();
+        super.start();
         for(int i = 0; i < getEnemies().raidMembers.size(); i++)   {
             getEnemies().getRaidMember(i).addStatusEffect(new StoneSkinEffect(this));
         }
@@ -76,10 +70,5 @@ public class Hydra extends Boss {
     public void reward() {
         if(player.getLevel() >= getId())
         rewardPackage.addNewLevelText();
-    }
-
-    @Override
-    public void stop() {
-        phaseManager.cleanPhases();
     }
 }

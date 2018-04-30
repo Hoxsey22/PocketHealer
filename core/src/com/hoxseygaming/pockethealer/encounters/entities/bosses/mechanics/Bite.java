@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
@@ -18,18 +17,12 @@ public class Bite extends Mechanic {
 
     public Bite(Boss owner, float speed)   {
         super("Bite", 20, speed, owner);
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
-
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
-                random.get(0).takeDamage(damage);
-            }
-        },speed,speed);
+    public void action() {
+        ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
+        random.get(0).takeDamage(damage);
     }
 }

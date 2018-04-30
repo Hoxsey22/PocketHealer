@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 /**
@@ -9,31 +8,20 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 public class Massacre extends Mechanic{
 
-
-    public Timer channel;
-
     public Massacre(Boss owner) {
         super("Massacre", 0, 35f, owner);
+        announce = true;
     }
 
     public Massacre(Boss owner, float speed) {
         super("Massacre", 0, speed, owner);
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
-        startAnnouncementTimer();
-
-
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                for(int i = 0; i < getRaid().raidMembers.size(); i++)   {
-                    getRaid().getRaidMember(i).takeDamage(100);
-                }
-            }
-        },speed, speed);
-
+    public void action() {
+        for(int i = 0; i < getRaid().raidMembers.size(); i++)   {
+            getRaid().getRaidMember(i).takeDamage(100);
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
 
 import java.util.ArrayList;
 
@@ -9,20 +10,20 @@ import java.util.ArrayList;
  * Created by Hoxsey on 8/20/2017.
  */
 
-public class Cleave extends Mechanic {
+public class TailSwipe extends Mechanic {
 
     int numOfTargets;
 
-    public Cleave(Boss owner) {
-        super("Cleave", 15, 5f, owner);
+    public TailSwipe(Boss owner) {
+        super("Tail Swipe", 20, 5f, owner);
         numOfTargets = 2;
-        bgMech = true;
+        announce = true;
     }
 
-    public Cleave(Boss owner, float speed) {
-        super("Cleave", 15, speed, owner);
-        numOfTargets = 2;
-        bgMech = true;
+    public TailSwipe(Boss owner, float speed) {
+        super("Tail Swipe", 20, speed, owner);
+        numOfTargets = 5;
+        announce = true;
     }
 
     @Override
@@ -30,6 +31,7 @@ public class Cleave extends Mechanic {
         ArrayList<RaidMember> raidMembers = getRaid().getRandomRaidMember(numOfTargets);
         for(int i = 0; i < raidMembers.size(); i++)   {
             raidMembers.get(i).takeDamage(damage);
+            raidMembers.get(i).addStatusEffect(new BleedEffect(owner));
         }
     }
 

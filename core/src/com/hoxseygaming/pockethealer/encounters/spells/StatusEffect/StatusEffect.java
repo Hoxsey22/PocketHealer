@@ -28,6 +28,7 @@ public abstract class StatusEffect {
     private int modValue;
     private int numOfTicks;
     private boolean dispellable;
+    public boolean isDispelled;
     private Timer timer;
     private Assets assets;
     private StatusEffectList parent;
@@ -83,6 +84,13 @@ public abstract class StatusEffect {
                 }
             }
         },0.1f, 0.1f);
+    }
+
+    public void dispel()    {
+        if(this.isDispellable())    {
+            isDispelled = true;
+            remove();
+        }
     }
 
     public void remove()    {

@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.ConsumingShadowEffect;
@@ -19,22 +18,14 @@ public class ConsumingShadow extends Mechanic{
 
     public ConsumingShadow(Boss owner, float speed) {
         super("Consuming Shadow", 0, speed, owner);
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
-
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-
-                ArrayList<RaidMember> targets = owner.getEnemies().getRandomRaidMember(4, owner.getEnemies().getDebuffLessRaidMembers("Consuming Shadow"));
-                for(int i = 0; i < targets.size(); i++){
-                    targets.get(i).addStatusEffect(new ConsumingShadowEffect(owner));
-                }
-            }
-        },2f, speed);
-
+    public void action() {
+        ArrayList<RaidMember> targets = owner.getEnemies().getRandomRaidMember(4, owner.getEnemies().getDebuffLessRaidMembers("Consuming Shadow"));
+        for(int i = 0; i < targets.size(); i++){
+            targets.get(i).addStatusEffect(new ConsumingShadowEffect(owner));
+        }
     }
 }

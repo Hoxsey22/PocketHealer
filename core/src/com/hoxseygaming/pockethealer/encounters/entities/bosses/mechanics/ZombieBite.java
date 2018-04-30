@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
-import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.ZombieBiteEffect;
@@ -18,26 +17,22 @@ public class ZombieBite extends Mechanic {
     public ZombieBite(Boss owner) {
         super("Zombie Bite", 20, 2f, owner);
         numOfTargets = 1;
+        announce = true;
     }
 
     public ZombieBite(Boss owner, float speed) {
         super("Zombie Bite", 20, speed, owner);
         numOfTargets = 1;
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                ArrayList<RaidMember> temp = getRaid().getRandomRaidMember(numOfTargets);
-                for(int i = 0; i < temp.size(); i++) {
-                    temp.get(i).takeDamage(damage);
-                    temp.get(i).addStatusEffect(new ZombieBiteEffect(owner));
-                }
-            }
-        },speed,speed);
+    public void action() {
+        ArrayList<RaidMember> temp = getRaid().getRandomRaidMember(numOfTargets);
+        for(int i = 0; i < temp.size(); i++) {
+            temp.get(i).takeDamage(damage);
+            temp.get(i).addStatusEffect(new ZombieBiteEffect(owner));
+        }
     }
 
     public int getNumOfTargets() {

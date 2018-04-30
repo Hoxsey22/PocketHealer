@@ -9,7 +9,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
  * Created by Hoxsey on 7/12/2017.
  */
 
-public class Mechanic {
+public abstract class Mechanic {
 
     public int id;
     public String name;
@@ -26,6 +26,8 @@ public class Mechanic {
     public boolean isActive;
     public String announcementString;
     public Timer announcementTimer;
+    public Phase parentPhase;
+    public boolean bgMech;
 
 
     public Mechanic(String name, int damage, float speed, Boss owner)   {
@@ -40,21 +42,80 @@ public class Mechanic {
         create();
     }
 
+    public Mechanic(String name, int damage, float speed, Phase phase, boolean bgMech, Boss owner)   {
+        this.owner = owner;
+        this.name = name;
+        this.damage = damage;
+        this.speed = speed;
+        parentPhase = phase;
+        this.bgMech = bgMech;
+
+        target = owner.getTarget();
+        isActive = false;
+        announcementString = owner.getName()+" is about to "+name+".";
+        create();
+    }
+
     public void create()    {
         System.out.println("Mechanic created");
     }
 
-    public void start()    {
-        System.out.println("Timer started!");
-        timer = new Timer();
-        isActive = true;
-        if(announce)    {
-            startAnnouncementTimer();
+    public void pausePhase()    {
+        if(parentPhase != null)
+            parentPhase.pauseMechanics(this);
+    }
+
+    public void resumePhase()   {
+        if(parentPhase != null) {
+            this.pause();
+            parentPhase.resumeMechanics();
         }
     }
 
+    public abstract void action();
+
+    public void start()    {
+        System.out.println("Timer started!");
+        if(timer == null) {
+            timer = new Timer();
+        }
+        timer.scheduleTask(new Timer.Task() {
+            int msp = 0;
+
+            @Override
+            public void run() {
+                msp++;
+                System.out.println(name+" msp: "+msp);
+                if(msp == (int)(speed-1.5f)*10)    {
+                    if(isActive) {
+                        if (announce)
+                            owner.announcement.setText(owner.getName() + " is about to " + name + ".");
+                        if (!bgMech)
+                            pausePhase();
+                    }
+                    else {
+                        msp= msp-20;
+                    }
+                }
+                else if(msp == (int)speed*10)    {
+                    if(announce)
+                        owner.announcement.setText("");
+                    action();
+                }
+                else if(msp == (int)(speed+1f)*10)   {
+                    if(!bgMech)
+                        resumePhase();
+                    msp = 0;
+                }
+            }
+        },0.1f, 0.1f);
+
+        isActive = true;
+    }
+
     public void startAnnouncementTimer()  {
-        announcementTimer = new Timer();
+        if(announcementTimer == null)
+            announcementTimer = new Timer();
 
         announcementTimer.scheduleTask(new Timer.Task() {
 
@@ -66,9 +127,11 @@ public class Mechanic {
                 counter++;
                 if(counter % (int)(speed *10) == 0)    {
                     owner.announcement.setText("");
+                    resumePhase();
                 }
-                if(counter % (int)((speed-1.5f) *10) == 0)    {
+                if(counter % (int)((speed-1.0f) *10) == 0)    {
                     owner.announcement.setText(announcementString);
+                    pausePhase();
                 }
 
             }
@@ -76,18 +139,50 @@ public class Mechanic {
     }
 
     public void stop()  {
-        System.out.println("Timer stopped!");
         isActive = false;
         if(timer != null)    {
             timer.stop();
             timer.clear();
+            System.out.println(name+" announcement timer stopped");
         }
+        /*
         if(announcementTimer != null) {
             announcementTimer.stop();
             announcementTimer.clear();
+            System.out.println(name+" announcement timer stopped");
         }
+        */
+    }
+
+    public void pause() {
+
+        isActive = false;
+        if(timer != null)   {
+            timer.stop();
+            System.out.println(name+" timer paused");
+        }
+        /*
+        if(announcementTimer != null)   {
+            announcementTimer.stop();
+            System.out.println(name+" announcement timer paused");
+        }
+        */
+    }
+
+    public void resume() {
 
 
+        isActive = true;
+        if(timer != null)   {
+            timer.start();
+            System.out.println(name+" timer resumed");
+        }
+        /*
+        if(announcementTimer != null)   {
+            announcementTimer.start();
+            System.out.println(name+" announcement timer resumed");
+        }
+        */
     }
 
     public void applyMechanic()  {
@@ -226,5 +321,13 @@ public class Mechanic {
 
     public void setAnnouncementTimer(Timer announcementTimer) {
         this.announcementTimer = announcementTimer;
+    }
+
+    public Phase getParentPhase() {
+        return parentPhase;
+    }
+
+    public void setParentPhase(Phase parentPhase) {
+        this.parentPhase = parentPhase;
     }
 }

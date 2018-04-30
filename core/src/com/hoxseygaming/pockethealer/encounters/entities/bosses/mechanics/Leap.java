@@ -21,27 +21,18 @@ public class Leap extends Mechanic{
     public Leap(Boss owner) {
         super("Leap", 40, 15f, owner);
         numOfTargets = 5;
+        announce = true;
     }
 
     public Leap(Boss owner, int damage, float speed, int numOfTargets) {
         super("Leap", damage, speed, owner);
         this.numOfTargets = numOfTargets;
+        announce = true;
     }
 
     @Override
-    public void start() {
-        super.start();
-        startAnnouncementTimer();
-
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                announcementTimer.stop();
-                startChannel();
-                timer.stop();
-            }
-        },speed, speed);
-
+    public void action() {
+        startChannel();
     }
 
     public void startChannel()  {
