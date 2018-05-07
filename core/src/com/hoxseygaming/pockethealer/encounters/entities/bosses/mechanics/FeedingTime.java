@@ -14,6 +14,7 @@ public class FeedingTime extends Mechanic {
 
     float length;
     private boolean isStart;
+    float totalTime;
 
     public FeedingTime(Boss owner) {
         super("Feeding Time", 0, 5f, owner);
@@ -30,6 +31,8 @@ public class FeedingTime extends Mechanic {
 
     @Override
     public void action() {
+        totalTime += speed;
+
         if(!isStart) {
             for (int i = 0; i < owner.getEnemies().raidMembers.size(); i++) {
                 owner.getEnemies().raidMembers.get(i).addStatusEffect(new WebEffect(owner,100));

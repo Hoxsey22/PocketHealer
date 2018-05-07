@@ -52,7 +52,7 @@ public class Leap extends Mechanic{
                     leapTimer.stop();
                     leapTimer.clear();
                     timer.start();
-                    announcementTimer.start();
+   //                 announcementTimer.start();
                 }
                 count++;
             }

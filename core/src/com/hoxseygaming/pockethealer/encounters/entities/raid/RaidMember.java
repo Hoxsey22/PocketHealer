@@ -141,6 +141,14 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         }
     }
 
+    public void stop()  {
+        if(statusEffects != null) {
+            for (int i = 0; i < statusEffects.size(); i++) {
+                statusEffects.clear();
+            }
+        }
+    }
+
     @Override
     public void draw(Batch batch, float alpha) {
         batch.draw(frame, getX(),getY(),getWidth(),getHeight());

@@ -26,7 +26,7 @@ public class PoisonStab extends Mechanic {
 
         for (int i = 0; i < temp.size(); i++)   {
             temp.get(i).takeDamage(damage);
-            temp.get(i).addStatusEffect(new PoisonEffect(owner, 5,0.2f));
+            temp.get(i).addStatusEffect(new PoisonEffect(owner, 15,0.2f));
         }
     }
 

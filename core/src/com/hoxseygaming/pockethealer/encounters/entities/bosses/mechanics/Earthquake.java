@@ -13,12 +13,12 @@ public class Earthquake extends Mechanic {
     public Timer channel;
 
     public Earthquake(Boss owner) {
-        super("Earthquake", 5, 15f, owner);
+        super("Earthquake", 8, 15f, owner);
         announce = true;
     }
 
     public Earthquake(Boss owner, float speed) {
-        super("Earthquake", 5, speed, owner);
+        super("Earthquake", 8, speed, owner);
         announce = true;
     }
 

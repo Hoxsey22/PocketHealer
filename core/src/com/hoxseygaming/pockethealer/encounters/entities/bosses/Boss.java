@@ -114,6 +114,7 @@ public abstract class Boss extends Entity {
 
     public void start() {
         System.out.println("BOSS IS NOW ACTIVE!");
+        create();
         enemies.start(this);
         phaseManager.startPhase();
 
@@ -278,6 +279,7 @@ public abstract class Boss extends Entity {
         super.reset();
         enemies = new Raid(raidSize, assets);
         target = getMainTank();
+        phaseManager.cleanPhases();
     }
 
     public RewardPackage getRewardPackage() {

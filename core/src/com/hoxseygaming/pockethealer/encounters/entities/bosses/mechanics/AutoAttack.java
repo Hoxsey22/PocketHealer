@@ -24,6 +24,7 @@ public class AutoAttack extends Mechanic {
 
     @Override
     public void action() {
+        System.out.println("Owner: "+owner+"\n Target: "+owner.getTarget());
         if(owner.getTarget().isDead())
             owner.nextThreat();
         if(!owner.getTarget().isDead()) {
@@ -33,7 +34,6 @@ public class AutoAttack extends Mechanic {
         }
         if (owner.getEnemies().isRaidDead()) {
             stop();
-            return;
         }
     }
 

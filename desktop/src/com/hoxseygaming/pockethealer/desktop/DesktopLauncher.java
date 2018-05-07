@@ -10,6 +10,7 @@ public class DesktopLauncher {
 		config.width = PocketHealer.WIDTH;
 		config.height = PocketHealer.HEIGHT;
 		config.title = PocketHealer.TITLE;
+		config.resizable = false;
 		new LwjglApplication(new PocketHealer(), config);
 	}
 }

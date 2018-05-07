@@ -59,6 +59,8 @@ public class EncounterState extends State {
         boss.setPlayer(player);
         this.boss.reset();
 
+        //Gdx.input.setCursorCatched(true);
+
         raid = this.boss.getEnemies();
         raid.setPlayer(player);
 
@@ -273,6 +275,7 @@ public class EncounterState extends State {
 
                             case 2:
                                 System.out.println("reset");
+                                boss.reset();
                                 sm.set(new EncounterState(sm, player, boss));
                                 break;
                         }
@@ -326,18 +329,20 @@ public class EncounterState extends State {
                 gameOverFrame.addListener(getEndGameListener());
 
                 stage.addActor(gameOverFrame);
-                boss.stop();
+                stop();
+                /*boss.stop();
                 raid.stop();
-                player.stop();
+                player.stop();*/
                 isDone = true;
             } else if (raid.isRaidDead()) {
                 gameOverFrame = new GameOverFrame(false, boss, assets);
                 gameOverFrame.showLose();
                 gameOverFrame.addListener(getEndGameListener());
                 stage.addActor(gameOverFrame);
-                boss.stop();
+                stop();
+                /*boss.stop();
                 raid.stop();
-                player.stop();
+                player.stop();*/
                 isDone = true;
 
             }
@@ -391,6 +396,15 @@ public class EncounterState extends State {
                 return false;
             }
         };
+    }
+
+    /**
+     * Stops all timers in boss raid and player.
+     */
+    public void stop()  {
+        boss.stop();
+        raid.stop();
+        player.stop();
     }
 
     @Override

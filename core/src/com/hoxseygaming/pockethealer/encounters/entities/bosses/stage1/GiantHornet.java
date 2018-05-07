@@ -14,8 +14,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class GiantHornet extends Boss {
 
-    public AutoAttack autoAttack;
-    public Sting sting;
+    AutoAttack autoAttack;
+    Sting sting;
 
     public GiantHornet(Assets assets) {
         super("Giant Hornet","A sorcerer has put a spell on a hornet causing it to grow into " +

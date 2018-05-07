@@ -97,7 +97,7 @@ public abstract class Mechanic {
                         msp= msp-20;
                     }
                 }
-                else if(msp == (int)speed*10)    {
+                else if(msp == (int)(speed*10))    {
                     if(announce)
                         owner.announcement.setText("");
                     action();

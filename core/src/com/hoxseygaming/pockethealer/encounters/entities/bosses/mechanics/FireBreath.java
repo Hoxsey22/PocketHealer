@@ -44,7 +44,7 @@ public class FireBreath extends Mechanic{
 
             @Override
             public void run() {
-                if(count != 4) {
+                if(count != 8) {
                     count++;
                     for(int i = 0; i <  owner.getEnemies().raidMembers.size(); i++)   {
                         owner.getEnemies().getRaidMember(i).takeDamage(damage);
@@ -61,6 +61,6 @@ public class FireBreath extends Mechanic{
                     resume();
                 }
             }
-        },0.5f,0.5f,4);
+        },0.5f,0.5f,8);
     }
 }

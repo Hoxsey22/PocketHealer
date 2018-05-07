@@ -168,15 +168,30 @@ public class Phase {
      * Stops the phase.
      */
     public void stop()  {
-        timer.stop();
+        if(timer != null)   {
+            timer.stop();
+        }
+        if(mechanics != null)    {
+            for(int i = 0; i < mechanics.size(); i++)   {
+                mechanics.get(i).stop();
+            }
+        }
+
     }
 
     /**
      * Clears the phase.
      */
     public void clear() {
-        stop();
-        timer.clear();
+        if(timer != null) {
+            stop();
+            timer.clear();
+        }
+        if(mechanics != null)   {
+            for(int i = 0; i < mechanics.size(); i++)   {
+                mechanics.remove(i);
+            }
+        }
     }
 
     /**

@@ -14,8 +14,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class Tiger extends Boss {
 
-    public Pounce pounce;
-    public AutoAttack autoAttack;
+    Pounce pounce;
+    AutoAttack autoAttack;
 
     public Tiger(Assets assets) {
         super("Tiger","A tiger is eating all the live stock and harming some people that " +

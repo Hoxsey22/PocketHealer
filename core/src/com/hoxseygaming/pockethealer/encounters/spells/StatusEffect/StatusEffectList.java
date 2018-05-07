@@ -156,4 +156,12 @@ public class StatusEffectList {
     public void setOwner(RaidMember owner) {
         this.owner = owner;
     }
+
+    public int size()   {
+        return statusEffects.size();
+    }
+
+    public StatusEffect get(int index)  {
+        return statusEffects.get(index);
+    }
 }

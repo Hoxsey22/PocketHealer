@@ -69,6 +69,11 @@ public class Raid extends Group {
     public void stop()  {
         raidDamageTimer.stop();
         raidDamageTimer.clear();
+        if(raidMembers != null) {
+            for(int i = 0; i < raidMembers.size(); i++)   {
+                raidMembers.get(i).stop();
+            }
+        }
     }
 
     public void preMade(int size)   {

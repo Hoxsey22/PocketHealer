@@ -39,7 +39,7 @@ public class MotherSpider extends Boss {
         autoAttack = new AutoAttack(this, 2f);
         tankSwap = new TankSwap(this, 12f);
         leap = new Leap(this,50,15f,8);
-        feedingTime = new FeedingTime(this,5f, 20f);
+        feedingTime = new FeedingTime(this,9f, 20f);
 
         phaseManager.addPhase(new Phase(this, 55f, autoAttack,tankSwap,leap));
         phaseManager.addPhase(new Phase(this, 30f, feedingTime));

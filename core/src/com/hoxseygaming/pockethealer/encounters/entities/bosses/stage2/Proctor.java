@@ -28,7 +28,7 @@ public class Proctor extends Boss {
                 assets);
         setId(9);
         level = 3;
-        damage = 20;
+        damage = 30;
         create();
     }
 
@@ -38,7 +38,7 @@ public class Proctor extends Boss {
 
         autoAttack = new AutoAttack(this);
         bullCharge = new BullCharge(this);
-        fireBreath = new FireBreath(this,8,20f);
+        fireBreath = new FireBreath(this,8,18f);
         tankSwap = new TankSwap(this);
 
         phaseManager.addPhase(new Phase(this, 0, autoAttack, tankSwap, bullCharge, fireBreath));

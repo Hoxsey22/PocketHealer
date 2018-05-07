@@ -44,6 +44,8 @@ public class TutorialState extends State {
         this.player.loadTalents();
         this.player.reset();
 
+        Gdx.input.setCursorCatched(true);
+
         boss = new Monster(player.assets);
         boss.setPlayer(player);
         this.boss.reset();

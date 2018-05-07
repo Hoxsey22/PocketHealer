@@ -36,7 +36,7 @@ public class BanditLeader extends Boss {
     @Override
     public void create() {
         super.create();
-        setDamage(15);
+        setDamage(20);
 
         autoAttack = new AutoAttack(this, 1.5f);
 
@@ -56,9 +56,9 @@ public class BanditLeader extends Boss {
     public void update() {
         if(getHpPercent() < 0.25 && !isEnrage)    {
             //setDamage(30);
-            autoAttack.setDamage((int)((float)damage*2f));
-            backStab.setDamage((int)((float)damage*3.5));
-            poisonStab.setDamage((int)((float)damage*3.5));
+            autoAttack.setDamage((int)((float)damage*2.5f));
+            backStab.setDamage((int)((float)damage*4));
+            poisonStab.setDamage((int)((float)damage*4));
             isEnrage = true;
             displayAnnouncementTimer(name+" is now enraged!");
         }
