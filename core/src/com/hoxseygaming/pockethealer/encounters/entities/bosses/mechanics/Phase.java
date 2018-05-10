@@ -210,6 +210,7 @@ public class Phase {
         for(int i = 0; i < mechanics.size(); i++)   {
             mechanics.get(i).stop();
         }
+        owner.announcement.setText("");
     }
 
     public void pauseMechanics(Mechanic currentMechanic)    {

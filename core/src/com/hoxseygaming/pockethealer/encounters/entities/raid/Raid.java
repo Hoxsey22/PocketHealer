@@ -313,7 +313,7 @@ public class Raid extends Group {
     public ArrayList<RaidMember> getStatusEffectedRaidMembers(String name)    {
         ArrayList<RaidMember> statusEffectedMembers = new ArrayList<>();
         for(int i = 0; i <  raidMembers.size(); i++)   {
-            if(raidMembers.get(i).getStatusEffectList().contains(name))    {
+            if(raidMembers.get(i).getStatusEffectList().contains(name) && !raidMembers.get(i).isDead)    {
                 statusEffectedMembers.add(raidMembers.get(i));
             }
         }

@@ -15,16 +15,16 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class MotherSpider extends Boss {
 
-    private AutoAttack autoAttack;
-    private TankSwap tankSwap;
-    private Leap leap;
-    private FeedingTime feedingTime;
+    public AutoAttack autoAttack;
+    TankSwap tankSwap;
+    public Leap leap;
+    FeedingTime feedingTime;
 
     public MotherSpider(Assets assets) {
         super("Mother Spider","In the creepy cave, a giant spider, the mother of all spider is blocking your way to the castle. " +
                         "She does a ferocious leap on a person and injects them with venom. She loves to eat her victims, but only if they are in " +
                         "her web. Be careful!",
-                240,
+                255,
                 new Raid(12,assets),
                 assets);
         setId(12);
@@ -38,9 +38,9 @@ public class MotherSpider extends Boss {
 
         autoAttack = new AutoAttack(this, 2f);
         tankSwap = new TankSwap(this, 12f);
-        leap = new Leap(this,50,15f,8);
-        feedingTime = new FeedingTime(this,9f, 20f);
-
+        leap = new Leap(this,damage*2,16f,8);
+        feedingTime = new FeedingTime(this,6f, 19f);
+        //55
         phaseManager.addPhase(new Phase(this, 55f, autoAttack,tankSwap,leap));
         phaseManager.addPhase(new Phase(this, 30f, feedingTime));
     }

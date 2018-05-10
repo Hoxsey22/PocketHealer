@@ -19,7 +19,7 @@ public class BlessedGarden extends Castable {
                 2f,
                 0,
                 10f,
-                70f,
+                100f,
                 assets.getSound(assets.healSFX),
                 assets);
         setImage(assets.getTexture(assets.blessedGardenIcon));

@@ -19,7 +19,7 @@ public class Leap extends Mechanic{
     private ArrayList<RaidMember> targets;
 
     public Leap(Boss owner) {
-        super("Leap", 40, 15f, owner);
+        super("Leap", owner.damage*2, 15f, owner);
         numOfTargets = 5;
         announce = true;
     }
@@ -58,4 +58,6 @@ public class Leap extends Mechanic{
             }
         },0.5f,0.5f,targets.size());
     }
+
+
 }

@@ -18,7 +18,7 @@ public class DivineHymn extends ChannelCast {
                 4,
                 20,
                 5f,
-                70f,
+                100f,
                 assets);
         image = assets.getTexture(assets.divineHymnIcon);
     }

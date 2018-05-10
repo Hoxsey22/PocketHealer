@@ -132,20 +132,37 @@ public class EncounterState extends State {
             @Override
             public boolean keyDown(int keycode) {
                 switch (keycode)    {
-                    case Input.Keys.NUM_1:
+                    case Input.Keys.NUM_0:
                         boss.takeDamage(1000);
                         break;
-                    case Input.Keys.NUM_2:
+                    case Input.Keys.NUM_9:
                         for(int i = 0; i < raid.raidMembers.size(); i++)   {
                             raid.raidMembers.get(i).takeDamage(50);
                         }
                         break;
-                    case Input.Keys.NUM_3:
-                        player.getTarget().takeDamage(10);
+                    case Input.Keys.NUM_1:
+                        if(player.spellBar.spells.size() > 0)    {
+                            if(!player.isCasting)
+                                player.spellBar.spells.get(0).castSpell();
+                        }
                         break;
-                    case Input.Keys.NUM_0:
-                        for (int i = 0; i < raid.raidMembers.size(); i++)
-                            System.out.println("ID:"+raid.raidMembers.get(i).id+", role:"+raid.raidMembers.get(i).role);
+                    case Input.Keys.NUM_2:
+                        if(player.spellBar.spells.size() > 1)    {
+                            if(!player.isCasting)
+                                player.spellBar.spells.get(1).castSpell();
+                        }
+                        break;
+                    case Input.Keys.NUM_3:
+                        if(player.spellBar.spells.size() > 2)    {
+                            if(!player.isCasting)
+                                player.spellBar.spells.get(2).castSpell();
+                        }
+                        break;
+                    case Input.Keys.NUM_4:
+                        if(player.spellBar.spells.size() > 3)    {
+                            if(!player.isCasting)
+                                player.spellBar.spells.get(3).castSpell();
+                        }
                         break;
                     case Input.Keys.BACK:
                         break;

@@ -26,7 +26,7 @@ public class DivineProtection extends Castable {
                 2f,
                 0,
                 10f,
-                70f,
+                100f,
                 assets.getSound(assets.hotSFX),
                 assets);
         setImage(assets.getTexture(assets.divineProtectionIcon));

@@ -76,16 +76,16 @@ public abstract class Mechanic {
 
     public void start()    {
         System.out.println("Timer started!");
-        if(timer == null) {
+        //if(timer == null) {
             timer = new Timer();
-        }
+        //}
+
         timer.scheduleTask(new Timer.Task() {
             int msp = 0;
 
             @Override
             public void run() {
                 msp++;
-                System.out.println(name+" msp: "+msp);
                 if(msp == (int)(speed-1.5f)*10)    {
                     if(isActive) {
                         if (announce)
@@ -170,7 +170,6 @@ public abstract class Mechanic {
     }
 
     public void resume() {
-
 
         isActive = true;
         if(timer != null)   {

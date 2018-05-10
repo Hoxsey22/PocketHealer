@@ -15,12 +15,14 @@ public class TankSwap extends Mechanic {
         super("Tank Swap",0,8f,owner);
         setMainTank();
         setOffTank();
+        bgMech = true;
     }
 
     public TankSwap(Boss owner, float speed) {
         super("Tank Swap",0,speed,owner);
         setMainTank();
         setOffTank();
+        bgMech = true;
     }
 
     public TankSwap(Boss owner, float speed, Debuff debuff) {
@@ -28,6 +30,7 @@ public class TankSwap extends Mechanic {
         this.debuff = debuff;
         setMainTank();
         setOffTank();
+        bgMech = true;
     }
 
     @Override
