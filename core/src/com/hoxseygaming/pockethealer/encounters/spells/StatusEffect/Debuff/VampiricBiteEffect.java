@@ -4,6 +4,8 @@ import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
+import java.util.ArrayList;
+
 /**
  * Created by Hoxsey on 11/29/2017.
  */
@@ -32,9 +34,12 @@ public class VampiricBiteEffect extends Debuff {
         passTimer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                RaidMember newTarget = getOwner().getEnemies().getRandomRaidMember(1, getOwner().getEnemies().getDebuffLessRaidMembers(getName())).get(0);
-                newTarget.addStatusEffect(new VampiricBiteEffect(getOwner()));
-
+                ArrayList<RaidMember> debuffless = getOwner().getEnemies().getDebuffLessRaidMembers(getName());
+                if(debuffless.size() > 0) {
+                    RaidMember newTarget = getOwner().getEnemies().getRandomRaidMember(1, debuffless).get(0);
+                    newTarget.addStatusEffect(new VampiricBiteEffect(getOwner()));
+                }
+        //30f
             }
         },30f,30f);
     }
@@ -57,7 +62,7 @@ public class VampiricBiteEffect extends Debuff {
 
     @Override
     public void startConditions() {
-        getTarget().setDamage(getTarget().getDamage() * 2);
+        getTarget().setDamage(getTarget().getDamage() * 10);
         startPassTimer();
     }
 

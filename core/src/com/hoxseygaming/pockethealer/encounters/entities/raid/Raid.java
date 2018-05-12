@@ -40,7 +40,7 @@ public class Raid extends Group {
 
         final Boss target = t;
         final boolean healerChannel = target.getPlayer().talentTree.getTalent("Healer Channel").isSelected();
-        raidDamageTimer.schedule(new Timer.Task() {
+        raidDamageTimer.scheduleTask(new Timer.Task() {
 
             @Override
             public void run() {
@@ -303,10 +303,13 @@ public class Raid extends Group {
     public ArrayList<RaidMember> getDebuffLessRaidMembers(String name)    {
         ArrayList<RaidMember> debuffLess = new ArrayList<>();
         for(int i = 0; i <  raidMembers.size(); i++)   {
-            if(!raidMembers.get(i).getStatusEffectList().contains(name))    {
+            if(!raidMembers.get(i).getStatusEffectList().contains(name) && !raidMembers.get(i).isDead)    {
                 debuffLess.add(raidMembers.get(i));
             }
         }
+        System.out.println("Debuffless List: ");
+        for (int i = 0; i < debuffLess.size(); i++){System.out.print(debuffLess.get(i).getId()+",");}
+        System.out.println("\n\n");
         return  debuffLess;
     }
 

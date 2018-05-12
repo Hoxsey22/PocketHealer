@@ -147,7 +147,6 @@ public class Entity extends Actor{
 
     public void receiveHealing(int output) {
         if (!isDead)   {
-
             if (hp < maxHp) {
                 hp = hp + output;
                 if (hp > maxHp) {

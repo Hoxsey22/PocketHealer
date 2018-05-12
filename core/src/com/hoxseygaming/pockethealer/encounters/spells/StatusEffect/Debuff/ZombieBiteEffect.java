@@ -45,20 +45,9 @@ public class ZombieBiteEffect extends HealingAbsorbEffect {
         startDamage();
     }
 
-    @Override
-    public void additionalConditions() {
-        super.additionalConditions();
-
-        if(getTarget().isDead())    {
-            getOwner().setDamage(getOwner().getDamage()+2);
-            getOwner().setHp(getOwner().getHp()+(int)(getOwner().getMaxHp()*0.1f));
-            remove();
-        }
-    }
-
     private void startDamage()  {
         damageTimer = new Timer();
-        progressiveDamage = 5;
+        progressiveDamage = 2;
         damageTimer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
@@ -71,8 +60,9 @@ public class ZombieBiteEffect extends HealingAbsorbEffect {
 
     @Override
     public void remove() {
-        super.remove();
         damageTimer.stop();
         damageTimer.clear();
+        super.remove();
+
     }
 }

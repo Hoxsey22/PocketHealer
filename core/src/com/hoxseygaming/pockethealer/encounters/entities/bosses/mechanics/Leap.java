@@ -58,6 +58,11 @@ public class Leap extends Mechanic{
             }
         },0.5f,0.5f,targets.size());
     }
-
+    @Override
+    public void stop() {
+        super.stop();
+        leapTimer.stop();
+        leapTimer.clear();
+    }
 
 }

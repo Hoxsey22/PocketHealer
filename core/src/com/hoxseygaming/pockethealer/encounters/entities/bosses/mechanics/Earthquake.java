@@ -48,6 +48,13 @@ public class Earthquake extends Mechanic {
         },0.5f,0.5f,5);
     }
 
+    @Override
+    public void stop() {
+        super.stop();
+        channel.stop();
+        channel.clear();
+    }
+
     public int getNumOfTargets() {
         return numOfTargets;
     }

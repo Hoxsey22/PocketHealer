@@ -170,6 +170,7 @@ public class Phase {
     public void stop()  {
         if(timer != null)   {
             timer.stop();
+            System.out.println("phase stopped!");
         }
         if(mechanics != null)    {
             for(int i = 0; i < mechanics.size(); i++)   {

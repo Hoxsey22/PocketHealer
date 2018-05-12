@@ -24,13 +24,8 @@ public class DoubleAttack extends Mechanic {
 
     @Override
     public void action() {
-        timer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {
-                owner.getTarget().takeDamage(100);
-                secondAttack();
-            }
-        },speed,speed);
+        owner.getTarget().takeDamage(100);
+        secondAttack();
     }
 
     public void secondAttack()  {
@@ -43,5 +38,12 @@ public class DoubleAttack extends Mechanic {
                 owner.setTarget(owner.getNextThreat());
             }
         },1f);
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+        secondTimer.stop();
+        secondTimer.clear();
     }
 }
