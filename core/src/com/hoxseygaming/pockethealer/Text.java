@@ -117,7 +117,4 @@ public class Text extends Actor{
     public void draw(Batch batch, float parentAlpha) {
         label.draw(batch,parentAlpha);
     }
-
-    public void dispose()   {
-    }
 }

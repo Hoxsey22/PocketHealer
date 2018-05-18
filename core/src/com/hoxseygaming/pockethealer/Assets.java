@@ -156,6 +156,7 @@ public class Assets {
     public String divineProtectionIcon = "icons/divine_protection_icon.png";
     public String blessedGardenIcon = "icons/blessed_garden_icon.png";
     public String stoneSkinIcon = "icons/stone_skin_icon.png";
+    public String sunderIcon = "icons/sunder_icon.png";
 
 
     public String map1 = "map_state/map_level_1.png";
@@ -344,6 +345,7 @@ public class Assets {
 
         manager.load(ripIcon, Texture.class);
         manager.load(igniteIcon, Texture.class);
+        manager.load(sunderIcon, Texture.class);
 
     }
 

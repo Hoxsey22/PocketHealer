@@ -163,7 +163,6 @@ public class Button extends Actor {
     }
 
     public void dispose()   {
-        text.dispose();
     }
 
 }

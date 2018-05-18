@@ -210,7 +210,5 @@ public class MapFrame extends Group {
         talentButton.dispose();
         spellButton.dispose();
         startButton.dispose();
-        title.dispose();
-        body.dispose();
     }
 }
