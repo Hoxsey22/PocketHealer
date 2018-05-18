@@ -61,8 +61,9 @@ public abstract class Mechanic {
     }
 
     public void pausePhase()    {
-        if(parentPhase != null)
+        if(parentPhase != null) {
             parentPhase.pauseMechanics(this);
+        }
     }
 
     public void resumePhase()   {
@@ -86,56 +87,37 @@ public abstract class Mechanic {
             @Override
             public void run() {
                 msp++;
-                if(msp == (int)(speed-1.5f)*10)    {
+                if(msp == (int)((speed-1.5f)*10) && !bgMech)    {
                     if(isActive) {
+                        pausePhase();
                         if (announce)
                             owner.announcement.setText(owner.getName() + " is about to " + name + ".");
-                        if (!bgMech)
-                            pausePhase();
                     }
                     else {
                         msp= msp-20;
                     }
                 }
                 else if(msp == (int)(speed*10))    {
+                    if(!bgMech)
+                        resumePhase();
+                    else {
+                        msp = 0;
+                    }
+
                     if(announce)
                         owner.announcement.setText("");
                     action();
+
                 }
-                else if(msp == (int)(speed+1f)*10)   {
-                    if(!bgMech)
-                        resumePhase();
+                else if(msp == (int)((speed+1.5f)*10))   {
+                    /*if(!bgMech)
+                        resumePhase();*/
                     msp = 0;
                 }
             }
         },0.1f, 0.1f);
 
         isActive = true;
-    }
-
-    public void startAnnouncementTimer()  {
-        if(announcementTimer == null)
-            announcementTimer = new Timer();
-
-        announcementTimer.scheduleTask(new Timer.Task() {
-
-            int counter = 0;
-
-            @Override
-            public void run() {
-
-                counter++;
-                if(counter % (int)(speed *10) == 0)    {
-                    owner.announcement.setText("");
-                    resumePhase();
-                }
-                if(counter % (int)((speed-1.0f) *10) == 0)    {
-                    owner.announcement.setText(announcementString);
-                    pausePhase();
-                }
-
-            }
-        },0.1f, 0.1f);
     }
 
     public void stop()  {

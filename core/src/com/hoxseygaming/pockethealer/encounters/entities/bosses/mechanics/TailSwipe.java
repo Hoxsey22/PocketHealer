@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.CriticalDice;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
 
 import java.util.ArrayList;
@@ -31,7 +32,9 @@ public class TailSwipe extends Mechanic {
         ArrayList<RaidMember> raidMembers = getRaid().getRandomRaidMember(numOfTargets);
         for(int i = 0; i < raidMembers.size(); i++)   {
             raidMembers.get(i).takeDamage(damage);
-            raidMembers.get(i).addStatusEffect(new BleedEffect(owner));
+            if(CriticalDice.roll(60,100,0)) {
+                raidMembers.get(i).addStatusEffect(new BleedEffect(owner, 3f, 5));
+            }
         }
     }
 

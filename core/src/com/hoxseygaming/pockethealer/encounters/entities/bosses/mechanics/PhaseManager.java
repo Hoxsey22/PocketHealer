@@ -33,7 +33,7 @@ public class PhaseManager {
      * Navigates to the next phase.
      */
     public void nextPhase() {
-        System.out.println("Phase "+index+" stopped!");
+        System.out.println("Phase "+index+" stopped!*************************");
         index++;
         if(index == phases.size())  {
             index = 0;
@@ -48,7 +48,6 @@ public class PhaseManager {
     public void startPhase()    {
         if(phases.size() > 0) {
             phases.get(index).start();
-            System.out.println("Phase "+index+" started!");
         }
     }
 
@@ -64,11 +63,15 @@ public class PhaseManager {
      * Clears all the Phase's timer.
      */
     public void cleanPhases()  {
-        for(int i = 0; i < phases.size(); i++)  {
-            phases.get(i).stop();
-            phases.remove(i);
+        if(phases.size() > 0) {
+            phases.get(index).clear();
+            for (int i = 0; i < phases.size(); i++) {
+                //phases.get(i).stop();
+                phases.get(i).clear();
+                phases.remove(i);
+            }
+            phases.clear();
         }
-        phases.clear();
     }
 
 

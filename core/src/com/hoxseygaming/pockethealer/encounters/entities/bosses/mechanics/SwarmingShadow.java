@@ -53,7 +53,9 @@ public class SwarmingShadow extends Mechanic{
     @Override
     public void stop() {
         super.stop();
-        channel.stop();
-        channel.clear();
+        if(channel != null) {
+            channel.stop();
+            channel.clear();
+        }
     }
 }

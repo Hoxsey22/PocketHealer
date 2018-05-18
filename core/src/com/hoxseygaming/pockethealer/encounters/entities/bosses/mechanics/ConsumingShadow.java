@@ -1,10 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.ConsumingShadowEffect;
-
-import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 8/2/2017.
@@ -23,9 +20,8 @@ public class ConsumingShadow extends Mechanic{
 
     @Override
     public void action() {
-        ArrayList<RaidMember> targets = owner.getEnemies().getRandomRaidMember(4, owner.getEnemies().getDebuffLessRaidMembers("Consuming Shadow"));
-        for(int i = 0; i < targets.size(); i++){
-            targets.get(i).addStatusEffect(new ConsumingShadowEffect(owner));
+        for(int i = 0; i <  owner.getEnemies().raidMembers.size(); i++)   {
+            owner.getEnemies().raidMembers.get(i).addStatusEffect(new ConsumingShadowEffect(owner));
         }
     }
 }

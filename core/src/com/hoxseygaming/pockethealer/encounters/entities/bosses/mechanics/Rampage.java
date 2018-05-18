@@ -2,28 +2,29 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BurnEffect;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Created by Hoxsey on 8/2/2017.
  */
 
-public class FireBreath extends Mechanic{
+public class Rampage extends Mechanic{
 
 
     public Timer channel;
     private Random dice;
 
-    public FireBreath(Boss owner) {
-        super("Fire Breath", 10, 20f, owner);
+    public Rampage(Boss owner) {
+        super("Rampage", 10, 20f, owner);
         dice = new Random();
         announce = true;
     }
 
-    public FireBreath(Boss owner, int damage, float speed) {
-        super("Fire Breath", damage, speed, owner);
+    public Rampage(Boss owner, int damage, float speed) {
+        super("Rampage", damage, speed, owner);
         dice = new Random();
         announce = true;
     }
@@ -33,7 +34,7 @@ public class FireBreath extends Mechanic{
         //pausePhase();
         startChannel();
         //timer.stop();
-        pausePhase();
+        pause();
     }
 
     public void startChannel()  {
@@ -44,32 +45,29 @@ public class FireBreath extends Mechanic{
 
             @Override
             public void run() {
-                if(count != 5) {
+                if(count != 20) {
+                    ArrayList<RaidMember> randoms  = getRaid().getRandomRaidMember(5);
                     count++;
-                    for(int i = 0; i <  owner.getEnemies().raidMembers.size(); i++)   {
-                        owner.getEnemies().getRaidMember(i).takeDamage(damage);
-                        if(dice.nextInt(100)+0 > 94)    {
-                            owner.getEnemies().getRaidMember(i).addStatusEffect(new BurnEffect(owner));
+                    for (int i = 0; i < randoms.size(); i++)    {
+                        if(!randoms.get(i).isDead)    {
+                            randoms.get(i).takeDamage(damage);
                         }
                     }
-                    //getRaid().takeDamage(damage);
                 }
                 else    {
                     channel.stop();
                     channel.clear();
                     //timer.start();
-                    resumePhase();
+                    resume();
                 }
             }
-        },0.5f,0.5f,5);
+        },1f,1f,20);
     }
 
     @Override
     public void stop() {
         super.stop();
-        if(channel != null)    {
-            channel.stop();
-            channel.clear();
-        }
+        channel.stop();
+        channel.clear();
     }
 }

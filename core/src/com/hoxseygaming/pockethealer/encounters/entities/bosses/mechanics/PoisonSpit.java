@@ -30,7 +30,8 @@ public class PoisonSpit extends Mechanic {
 
     @Override
     public void action() {
-        ArrayList<RaidMember> raidMembers = getRaid().getRandomRaidMember(numOfTargets);
+        ArrayList<RaidMember> notTank = getRaid().getRoleLessRaidMembers("tank");
+        ArrayList<RaidMember> raidMembers = getRaid().getRandomRaidMember(numOfTargets,notTank);
         for(int i = 0; i < raidMembers.size(); i++)   {
             raidMembers.get(i).takeDamage(damage);
             if(poisoned)

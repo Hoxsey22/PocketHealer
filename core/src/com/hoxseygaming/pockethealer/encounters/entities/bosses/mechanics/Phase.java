@@ -78,6 +78,7 @@ public class Phase {
         isTimed = false;
 
         for (Mechanic mech:mechanics) {
+            mech.setParentPhase(this);
             this.mechanics.add(mech);
         }
     }
@@ -96,6 +97,7 @@ public class Phase {
         isTimed = false;
 
         for (Mechanic mech:mechanics) {
+            mech.setParentPhase(this);
             this.mechanics.add(mech);
         }
     }
@@ -113,6 +115,7 @@ public class Phase {
         this.delay = delay;
 
         for (Mechanic mech:mechanics) {
+            mech.setParentPhase(this);
             this.mechanics.add(mech);
         }
     }
@@ -138,15 +141,19 @@ public class Phase {
 
         if(isTimed) {
             timer.scheduleTask(new Timer.Task() {
+                int count = 0;
                 @Override
                 public void run() {
-                    timer.stop();
-                    timer.clear();
-                    stopMechanics();
+                    count++;
+                    if(count == length*10) {
+                        timer.stop();
+                        timer.clear();
+                        stopMechanics();
 
-                    parent.nextPhase();
+                        parent.nextPhase();
+                    }
                 }
-            }, length);
+            }, 0.1f,0.1f);
         }
         else    {
             timer.scheduleTask(new Timer.Task() {
@@ -173,9 +180,7 @@ public class Phase {
             System.out.println("phase stopped!");
         }
         if(mechanics != null)    {
-            for(int i = 0; i < mechanics.size(); i++)   {
-                mechanics.get(i).stop();
-            }
+            stopMechanics();
         }
 
     }
@@ -226,18 +231,30 @@ public class Phase {
         }
     }
 
+    public void pauseMechanics()    {
+        long millis=System.currentTimeMillis();
+        java.util.Date date=new java.util.Date(millis);
+
+        for(int i = 0; i < mechanics.size(); i++)   {
+            mechanics.get(i).pause();
+        }
+    }
+
     public void resumeMechanics()   {
-        Timer.schedule(new Timer.Task() {
+       /* Timer resumeTimer = new Timer();
+
+        resumeTimer.scheduleTask(new Timer.Task() {
             @Override
-            public void run() {
+            public void run() {*/
                 for(int i = 0; i < mechanics.size(); i++)   {
                     if(!mechanics.get(i).bgMech) {
                         mechanics.get(i).resume();
                     }
                 }
-            }
-        },1f,1f,1);
-
+            /*}
+            //1.5f
+        },1.5f,1.5f,1);
+        */
     }
 
     /*****************************************************************
