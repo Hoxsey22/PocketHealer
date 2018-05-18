@@ -33,7 +33,7 @@ public class Apprentice extends Boss {
 
 
         fireball = new Fireball(this, 2f);
-        fireball.setDamage(10);
+        fireball.setDamage(25);
         seedOfCorruption = new SeedOfCorruption(this);
 
         phaseManager.addPhase(new Phase(this,0, fireball, seedOfCorruption));

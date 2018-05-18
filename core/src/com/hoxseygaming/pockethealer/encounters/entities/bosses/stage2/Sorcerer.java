@@ -36,7 +36,7 @@ public class Sorcerer extends Boss {
         damage = 0;
 
         agony = new Agony(this);
-        blanketCorruption = new BlanketCorruption(this);
+        blanketCorruption = new BlanketCorruption(this,40f);
         fireball = new Fireball(this, 3f);
         fireBreath = new FireBreath(this);
         fireBreath.setSpeed(35f);

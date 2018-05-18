@@ -44,7 +44,7 @@ public class DeathDragon extends Boss {
                 "The Sorcerer has been resurrected and now stronger than ever. He's come to finish what " +
                         "he has started. ",
                 600,
-                new Raid(12, assets),
+                new Raid(2,3,7, assets),
                 assets);
         setId(16);
         create();
@@ -56,27 +56,27 @@ public class DeathDragon extends Boss {
 
         setDamage(20);
 
-        agony = new Agony(this);
+        agony = new Agony(this, 7f);
         agony.setDamage(25);
-        pyroblast = new Pyroblast(this, 3f);
+        pyroblast = new Pyroblast(this, 2.5f);
         pyroblast.setDamage(40);
         autoAttackp1 = new AutoAttack(this,2f);
 
         unstableMagic = new UnstableMagic(this);
-        unstablePyroblast = new UnstablePyroblast(this, 3f);
+        unstablePyroblast = new UnstablePyroblast(this, 1.5f);
         autoAttackp2 = new AutoAttack(this,3f);
 
         autoAttackp3 = new AutoAttack(this, 2f);
         ripTankSwap = new RipTankSwap(this, 10f);
-        flurry = new Flurry(this, 10, 8f);
-        tailSwipe = new TailSwipe(this, 12f);
-        fireBreath = new FireBreath(this, 8, 20f);
+        flurry = new Flurry(this, 10, 10f);
+        tailSwipe = new TailSwipe(this, 20f);
+        fireBreath = new FireBreath(this, 8, 30f);
 
         ignite = new Ignite(this, 8f);
 
 
         phaseManager.addPhase(new Phase(this, 75, agony, pyroblast,autoAttackp1));
-        phaseManager.addPhase(new Phase(this, 80f, unstableMagic,unstablePyroblast, autoAttackp2));
+        phaseManager.addPhase(new Phase(this, 60f, unstableMagic,unstablePyroblast, autoAttackp2));
         phaseManager.addPhase(new Phase(this, 1, autoAttackp3, ripTankSwap, flurry,tailSwipe,fireBreath, ignite));
         //phaseManager.addPhase(new Phase(this, 600f,fireBreath,flurry,tailSwipe));
 
@@ -88,19 +88,8 @@ public class DeathDragon extends Boss {
     }
 
     @Override
-    public void start() {
-        enemies.start(this);
-        phaseManager.startPhase();
-    }
-
-    @Override
     public void reward() {
         if(player.getLevel() >= getId())
             rewardPackage.addNewLevelText();
-    }
-
-    @Override
-    public void stop() {
-        phaseManager.cleanPhases();
     }
 }

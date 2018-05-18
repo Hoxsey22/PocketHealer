@@ -4,6 +4,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BullCharge;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Cleave;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FireBreath;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
@@ -17,6 +18,7 @@ public class Proctor extends Boss {
 
     public AutoAttack autoAttack;
     public BullCharge bullCharge;
+    Cleave cleave;
     public FireBreath fireBreath;
     public TankSwap tankSwap;
 
@@ -38,10 +40,11 @@ public class Proctor extends Boss {
 
         autoAttack = new AutoAttack(this);
         bullCharge = new BullCharge(this);
+        cleave = new Cleave(this, 5f);
         fireBreath = new FireBreath(this,8,18f);
         tankSwap = new TankSwap(this);
 
-        phaseManager.addPhase(new Phase(this, 0, autoAttack, tankSwap, bullCharge, fireBreath));
+        phaseManager.addPhase(new Phase(this, 0, autoAttack, tankSwap, cleave, bullCharge, fireBreath));
         //loadMechanics(autoAttack, tankSwap, bullCharge, fireBreath);
     }
 

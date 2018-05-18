@@ -92,6 +92,7 @@ public class FloatingText {
                     isAnimating = false;
                     timer.stop();
                     timer.clear();
+                    floatingText.remove();
                 }
 
             }

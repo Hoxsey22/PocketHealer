@@ -42,7 +42,7 @@ public class BloodQueen extends Boss {
     @Override
     public void create() {
         super.create();
-        setDamage(5);
+        setDamage(15);
 
         bloodLink = new BloodLink(this, 2f);
         cleave = new Cleave(this, 4f);
@@ -51,7 +51,7 @@ public class BloodQueen extends Boss {
         vampiricBite = new VampiricBite(this);
         consumingShadow = new ConsumingShadow(this, 8f);
 
-        swarmingShadow = new SwarmingShadow(this, 6, 8f);
+        swarmingShadow = new SwarmingShadow(this, 10, 8f);
 
         phaseManager.addPhase(new Phase(this, 70f, bloodLink, cleave, vampiricBite));
         phaseManager.addPhase(new Phase(this, 32f, consumingShadow,swarmingShadow));

@@ -129,7 +129,7 @@ public abstract class Boss extends Entity {
         /*for (int i = 0; i <  mechanics.size(); i++)
             mechanics.get(i).stop();
             */
-        phaseManager.cleanPhases();
+        phaseManager.reset();
     }
 
     public void nextThreat() {
@@ -257,6 +257,10 @@ public abstract class Boss extends Entity {
         this.rewardDescription = rewardDescription;
     }
 
+    public void setRaid(Raid newRaid)   {
+        enemies = newRaid;
+    }
+
     public void rewardPoint()   {
         player.getTalentTree().addPoint();
     }
@@ -277,9 +281,10 @@ public abstract class Boss extends Entity {
     @Override
     public void reset() {
         super.reset();
-        enemies = new Raid(raidSize, assets);
+        enemies.reset();
+        //enemies = new Raid(raidSize, assets);
         target = getMainTank();
-        phaseManager.cleanPhases();
+        phaseManager.reset();
     }
 
     public RewardPackage getRewardPackage() {
