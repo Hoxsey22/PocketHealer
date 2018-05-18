@@ -22,8 +22,8 @@ public class BlanketCorruption extends Mechanic{
         announce = true;
     }
 
-    public BlanketCorruption(Boss owner, int damage, float speed) {
-        super("Blanket Corruption", damage, speed, owner);
+    public BlanketCorruption(Boss owner, float speed) {
+        super("Blanket Corruption", 0, speed, owner);
         dice = new Random();
     }
 
