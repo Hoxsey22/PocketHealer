@@ -56,8 +56,9 @@ public class EncounterState extends State {
         this.player.reset();
 
         this.boss = boss;
-        boss.setPlayer(player);
         this.boss.reset();
+        boss.setPlayer(player);
+
 
         //Gdx.input.setCursorCatched(true);
 
@@ -165,6 +166,7 @@ public class EncounterState extends State {
                         }
                         break;
                     case Input.Keys.BACK:
+
                         break;
                     case Input.Keys.BACKSPACE:
                         break;
