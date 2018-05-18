@@ -26,10 +26,16 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         super(id,role,assets);
         healthBar = new HealthBar(this);
         frame = assets.getTexture(assets.raidFrameIdle);
+
+
+    }
+
+    public void create()    {
         setRoleImage();
         floatingTextManager = new FloatingTextManager(this, assets);
         statusEffects = new StatusEffectList(this);
-
+        hp = maxHp;
+        isDead = false;
     }
 
     @Override
@@ -139,6 +145,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
                 damage = 10;
                 break;
         }
+        create();
     }
 
     public void stop()  {
@@ -166,8 +173,9 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
             floatingTextManager.clear();
             batch.draw(assets.getTexture(assets.deathIcon), getX()+5, getY() + getHeight()- 39, 34,34);
         }
+    }
 
-
+    public void dispose()   {
 
     }
 }

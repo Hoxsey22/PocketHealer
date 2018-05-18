@@ -31,13 +31,26 @@ public class Raid extends Group {
         raidMembers = new ArrayList<>();
         healers = new ArrayList<>();
         preMade(size);
-        raidDamageTimer = new Timer();
         isRaidAlive = true;
         healingTracker = new HealingTracker();
+    }
+    public Raid(int numOfTanks, int numOfHealers, int numOfDps, Assets assets)   {
+        //super();
+        this.assets = assets;
+        setName("Raid");
+        raidMembers = new ArrayList<>();
+        healers = new ArrayList<>();
+        customRaid(numOfTanks,numOfHealers,numOfDps);
+        isRaidAlive = true;
+        healingTracker = new HealingTracker();
+        for(int i = 0; i < raidMembers.size();i++)   {
+            System.out.println("raid memeber role "+ raidMembers.get(i).getRole());
+        }
     }
 
     public void start(final Boss t)   {
 
+        raidDamageTimer = new Timer();
         final Boss target = t;
         final boolean healerChannel = target.getPlayer().talentTree.getTalent("Healer Channel").isSelected();
         raidDamageTimer.scheduleTask(new Timer.Task() {
@@ -165,17 +178,20 @@ public class Raid extends Group {
 
     public ArrayList<RaidMember> getRandomRaidMember(int amount, ArrayList<RaidMember> group) {
         ArrayList<RaidMember> randomMembers = new ArrayList<>();
-        int counter = 0;
         Collections.shuffle(group);
-        for (int i = 0; i < group.size(); i++) {
-            if(counter != amount) {
+        if(group.size() > amount) {
+            for (int i = 0; i < amount; i++) {
                 if (!group.get(i).isDead()) {
                     randomMembers.add(group.get(i));
-                    counter++;
                 }
             }
-            else
-                return randomMembers;
+        }
+        else   {
+            for (int i = 0; i < group.size(); i++) {
+                if (!group.get(i).isDead()) {
+                    randomMembers.add(group.get(i));
+                }
+            }
         }
         return  randomMembers;
     }
@@ -307,10 +323,18 @@ public class Raid extends Group {
                 debuffLess.add(raidMembers.get(i));
             }
         }
-        System.out.println("Debuffless List: ");
-        for (int i = 0; i < debuffLess.size(); i++){System.out.print(debuffLess.get(i).getId()+",");}
-        System.out.println("\n\n");
         return  debuffLess;
+    }
+
+    public ArrayList<RaidMember> getRoleLessRaidMembers(String role)    {
+        ArrayList<RaidMember> roleLess = new ArrayList<>();
+        for(int i = 0; i <  raidMembers.size(); i++)   {
+            if(!raidMembers.get(i).getRole().equalsIgnoreCase(role) && !raidMembers.get(i).isDead)    {
+                roleLess.add(raidMembers.get(i));
+                System.out.println("Roleless member: "+raidMembers.get(i).id);
+            }
+        }
+        return  roleLess;
     }
 
     public ArrayList<RaidMember> getStatusEffectedRaidMembers(String name)    {
