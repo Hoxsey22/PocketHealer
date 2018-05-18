@@ -22,6 +22,30 @@ public class BleedEffect extends Debuff {
                 false);
     }
 
+    public BleedEffect(Boss owner, int damage) {
+        super(owner,
+                1,
+                "BleedEffect",
+                "A bleed will cause the target to take damage over time and all damage done to the target will be increased.",
+                owner.assets.getTexture(owner.assets.bleedIcon),
+                300f,
+                2f,
+                damage,
+                false);
+    }
+
+    public BleedEffect(Boss owner, float speed, int damage) {
+        super(owner,
+                1,
+                "BleedEffect",
+                "A bleed will cause the target to take damage over time and all damage done to the target will be increased.",
+                owner.assets.getTexture(owner.assets.bleedIcon),
+                300f,
+                speed,
+                damage,
+                false);
+    }
+
     @Override
     public void startConditions() {
 

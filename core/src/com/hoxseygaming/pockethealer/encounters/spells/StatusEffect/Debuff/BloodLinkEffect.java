@@ -6,19 +6,19 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
  * Created by Hoxsey on 11/29/2017.
  */
 
-public class CorruptionEffect extends Debuff {
+public class BloodLinkEffect extends Debuff {
 
     /**
      */
-    public CorruptionEffect(Boss owner) {
+    public BloodLinkEffect(Boss owner) {
         super(owner,
-                4,
-                "Corruption Effect",
-                "Agony will cause the target to take a huge amount of damage over time.",
-                owner.assets.getTexture(owner.assets.corruptionIcon),
-                400f,
-                3f,
-                10,
+                1,
+                "Blood Link Effect",
+                "A bleed will cause the target to take damage over time and all damage done to the target will be increased.",
+                owner.assets.getTexture(owner.assets.bleedIcon),
+                300f,
+                2f,
+                owner.damage,
                 false);
     }
 
@@ -33,7 +33,6 @@ public class CorruptionEffect extends Debuff {
 
     @Override
     public void applyEffect() {
-        getTarget().takeDamage(getModValue());
     }
 
     @Override

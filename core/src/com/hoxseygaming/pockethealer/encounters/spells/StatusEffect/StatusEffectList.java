@@ -95,7 +95,7 @@ public class StatusEffectList {
 
     public int getStatusEffectModification(int output, boolean isHealing) {
         int newOutput = output;
-        for (int i = 0; i < statusEffects.size(); i++) {
+        for (int i = statusEffects.size()-1; i >= 0; i--) {
             switch (statusEffects.get(i).getType()) {
                 case StatusEffect.NONE:
                     break;

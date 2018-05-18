@@ -9,7 +9,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
  * Created by Hoxsey on 11/28/2017.
  */
 
-public abstract class StatusEffect {
+public abstract class StatusEffect{
 
     public static final int NONE = 0;
     public static final int DAMAGE_AMPLIFIER = 1;

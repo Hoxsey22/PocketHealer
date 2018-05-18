@@ -6,7 +6,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
  * Created by Hoxsey on 12/10/2017.
  */
 
-public class RipEffect extends Debuff {
+public class SunderEffect extends Debuff {
 
     /**
      * A debuff is a negative status effect that is commonly from a boss and is
@@ -14,15 +14,15 @@ public class RipEffect extends Debuff {
      *
      * @param owner       : The owner of the buff.
      */
-    public RipEffect(Boss owner) {
+    public SunderEffect(Boss owner) {
         super(owner,
                 3,
-                "Rip Effect",
-                "Rip the target causing them to take periodic damage and increase damage taken.",
-                owner.assets.getTexture(owner.assets.ripIcon),
-                12f,
-                2f,
-                8,
+                "Sunder Effect",
+                "Ally unit's armor is heavily damaged and will take addition damage.",
+                owner.assets.getTexture(owner.assets.sunderIcon),
+                14f,
+                14f,
+                0,
                 false);
         setType(DAMAGE_AMPLIFIER);
     }
@@ -33,15 +33,15 @@ public class RipEffect extends Debuff {
      *
      * @param owner       : The owner of the buff.
      */
-    public RipEffect(Boss owner, float duration) {
+    public SunderEffect(Boss owner, float duration) {
         super(owner,
                 3,
-                "Rip Effect",
-                "Rip the target causing them to take periodic damage and increase damage taken.",
-                owner.assets.getTexture(owner.assets.ripIcon),
+                "Sunder Effect",
+                "Ally unit's armor is heavily damaged and will take addition damage.",
+                owner.assets.getTexture(owner.assets.sunderIcon),
                 duration,
-                2f,
-                10,
+                duration,
+                0,
                 false);
         setType(DAMAGE_AMPLIFIER);
     }

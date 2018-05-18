@@ -40,11 +40,11 @@ public class SeedOfCorruptionEffect extends Debuff {
         super.remove();
         ArrayList<RaidMember> group = getRandomGroup();
 
-        getOwner().getEnemies().takeDamage(15);
+        getOwner().getEnemies().takeDamage(30);
 
         for(int i = 0; i < group.size(); i++)   {
             CorruptionEffect corruptionEffect = new CorruptionEffect(getOwner());
-            corruptionEffect.setModValue(7);
+            corruptionEffect.setModValue(10);
 
             group.get(i).addStatusEffect(corruptionEffect);
         }
