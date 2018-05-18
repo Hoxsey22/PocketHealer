@@ -17,7 +17,13 @@ public class Agony extends Mechanic {
     public Agony(Boss owner) {
         super("Agony", 0, 18f, owner);
         numOfTargets = 1;
-        bgMech = true;
+        announce = true;
+    }
+
+    public Agony(Boss owner, float speed) {
+        super("Agony", 0, speed, owner);
+        numOfTargets = 1;
+        announce = true;
     }
 
     @Override
