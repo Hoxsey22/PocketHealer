@@ -27,6 +27,7 @@ public class GameOverFrame extends Group {
     public TextButton resetButton;
     //public Button leaveButton;
     public TextButton leaveButton;
+    public TextButton okButton;
     public Text title;
     public Text body;
     public Table table;
@@ -52,11 +53,17 @@ public class GameOverFrame extends Group {
         frame = new Image(assets.getTexture(assets.endGameFrame));
         frame.setName("frame");
         frame.setPosition(PocketHealer.WIDTH / 2 - frame.getWidth() / 2, PocketHealer.HEIGHT / 2 - frame.getWidth() / 2);
+        frame.setHeight(frame.getHeight()+30);
+
+        if(won)    {
+            okButton = new TextButton("Ok", assets.getSkin(), "small_button");
+            okButton.setName("ok");
+        }
 
         addActor(disableBG);
         addActor(frame);
-        createText();
 
+        createText();
     }
 
     public void createText() {
@@ -80,13 +87,16 @@ public class GameOverFrame extends Group {
     public void showHealingStats() {
         title.setText("Healing");
 
-        table.add(title.getLabel()).fillX();
+        table.add(title.getLabel()).expandX();
         table.row();
 
         body.setText("Effective Healing\n" + boss.getEnemies().healingTracker.getEffectiveHealingPercent() + "%\n" +
                 "Overhealing\n" + boss.getEnemies().healingTracker.getOverHealingPercent() + "%");
 
-        table.add(body.getLabel()).fillX();
+        table.add(body.getLabel()).expandX().expandY();
+        table.row();
+        table.add(okButton).bottom().padBottom(10);
+
     }
 
     public void showReward() {
@@ -104,7 +114,9 @@ public class GameOverFrame extends Group {
         }
 
         body.setText(boss.getRewardPackage().getReward());
-        table.add(body.getLabel()).colspan(2);
+        table.add(body.getLabel()).colspan(2).expandY();;
+        table.row();
+        table.add(okButton).bottom().padBottom(10);
     }
 
     public void showLose() {
@@ -132,6 +144,9 @@ public class GameOverFrame extends Group {
 
         if (leaveButton != null && leaveButton.isPressed()) {
             return 0;
+        }
+        if (okButton != null && okButton.isPressed()) {
+            return 1;
         }
         if (resetButton != null && resetButton.isPressed()) {
             return 2;

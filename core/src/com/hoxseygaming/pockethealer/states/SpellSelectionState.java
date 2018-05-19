@@ -85,7 +85,7 @@ public class SpellSelectionState extends State {
 
         // setting up the description of the selected spell
         descriptionTable = new Table();
-        descriptionTable.debug();
+        //descriptionTable.debug();
         descriptionTable.setBounds(spellBook.getLeft(), spellBook.getBottom() - 30 - 100, spellBook.getRight() - spellBook.getLeft(), 100);
         descriptionTable.top();
 

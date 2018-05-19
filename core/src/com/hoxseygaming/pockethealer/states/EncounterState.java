@@ -262,6 +262,27 @@ public class EncounterState extends State {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
 
                 if(gameOverFrame.won)   {
+                    int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
+
+                    if(buttonHit != -1)    {
+                        switch (buttonHit)  {
+                            case 1:
+                                switch (page) {
+                                    case 1:
+                                        gameOverFrame.showReward();
+                                        page = 2;
+                                        break;
+
+                                    case 2:
+                                        player.newLevel(boss.getLevel());
+                                        sm.set(new MapState(sm, player));
+                                        break;
+                                }
+                                break;
+                        }
+                    }
+
+                    /*
                     switch (page)   {
                         case 1:
                             gameOverFrame.showReward();
@@ -273,14 +294,15 @@ public class EncounterState extends State {
                             System.out.println(buttonHit);
 
                             if(buttonHit != -1) {
-                                if(buttonHit == 1) {*/
+                                if(buttonHit == 1) {
                                     player.newLevel(boss.getLevel());
                                     sm.set(new MapState(sm, player));
-                                    /*break;
+                                    break;
                                 }
-                            }*/
+                            }
                             break;
                     }
+                    */
                 }
                 else    {
                     int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
