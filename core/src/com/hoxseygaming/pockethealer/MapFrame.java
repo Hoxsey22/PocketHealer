@@ -2,11 +2,12 @@ package com.hoxseygaming.pockethealer;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.BanditLeader;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.GiantHornet;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Golem;
@@ -23,6 +24,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.Hydra;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.MotherSpider;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.ZombieHorde;
 
+import java.util.ArrayList;
+
 /**
  * Created by Hoxsey on 7/30/2017.
  */
@@ -32,9 +35,11 @@ public class MapFrame extends Group {
     public Image bgFrame;
     public Image innerFrame;
     public Map map;
-    public Button talentButton;
-    public Button startButton;
-    public Button spellButton;
+    public TextButton talentButton;
+    public TextButton startButton;
+    public TextButton spellButton;
+    public TextButton infoButton;
+    public ArrayList<BossIcon> bossIconsList;
     public Table table;
     public Text title;
     public Text body;
@@ -59,6 +64,12 @@ public class MapFrame extends Group {
         bgFrame.setPosition(0,0);
         addActor(bgFrame);
 
+        bossIconsList = new ArrayList<>();
+
+        /*
+        infoButton = new TextButton("INFO", assets.getSkin(), "small_button");
+        infoButton.setName("INFO");
+        */
         innerFrame = new Image(assets.getTexture(assets.mapInnerFrame));
         innerFrame.setName("inner frame");
         innerFrame.setPosition(bgFrame.getX() + bgFrame.getWidth()/2 - innerFrame.getWidth()/2,
@@ -72,25 +83,32 @@ public class MapFrame extends Group {
         table.setBounds(map.getImage().getX(), innerFrame.getY()+13, map.getImage().getWidth(),
                 innerFrame.getHeight()- map.getImage().getHeight() - 30);
         table.align(Align.topLeft);
-
-        talentButton = new Button("TALENTS", false, assets);
+        /*
+        talentButton = new TextButton("TALENT", assets.getSkin());
+        talentButton.setName("TALENT");
         talentButton.setPosition(innerFrame.getX(), innerFrame.getY() - talentButton.getHeight()-1);
         if(player.getTalentTree().getUnusedPoints() > 1)    {
-            talentButton.setHighlight(true);
+            //talentButton.setHighlight(true);
+            talentButton.setChecked(true);
         } else {
-            talentButton.setHighlight(false);
+            //talentButton.setHighlight(false);
+            talentButton.setChecked(true);
         }
         addActor(talentButton);
 
-        startButton = new Button("START", false, assets);
+        startButton = new TextButton("START", assets.getSkin());
         startButton.setPosition(talentButton.getX() + talentButton.getWidth() + 6, talentButton.getY());
+        startButton.setName("START");
         addActor(startButton);
 
-        spellButton = new Button("SPELLS", false, assets);
+        spellButton = new TextButton("SPELL", assets.getSkin());
         spellButton.setPosition(startButton.getX() + startButton.getWidth() + 6, startButton.getY());
         addActor(spellButton);
-
+        */
         createFont();
+
+        table.row();
+        table.add(infoButton).bottom().padBottom(10);
     }
 
     public void createFont()    {
@@ -101,7 +119,7 @@ public class MapFrame extends Group {
         title.setWrap(true);
         title.setAlignment(Align.center);
 
-        table.add(title.getLabel());
+        table.add(title.getLabel()).expandX().fillY();
         table.row();
 
         body = new Text("",24, Color.WHITE, false, assets);
@@ -109,18 +127,20 @@ public class MapFrame extends Group {
         //body.setFontColor(Color.WHITE);
         body.setWrap(true);
 
-        table.add(body.getLabel()).width(table.getWidth());
+        table.add(body.getLabel()).width(table.getWidth()).expandX().expandY();
 
         addActor(table);
 
     }
 
-    public void add(BossIcon bossIcon) {
-        bossIcon.getBoss().setDefeated(player.getLevel() > bossIcon.getBoss().getId());
+    public void add(Boss boss) {
+        boss.setDefeated(player.getLevel() > boss.getId());
+        BossIcon bossIcon = new BossIcon(assets,boss);
+        bossIconsList.add(bossIcon);
         map.add(bossIcon);
     }
 
-    public Button hitButton(float x, float y)   {
+  /*  public TextButton hitButton(float x, float y)   {
         Actor hit = hit(x,y, false);
 
         if(hit != null)    {
@@ -132,11 +152,13 @@ public class MapFrame extends Group {
                     return startButton;
                 case "SPELLS":
                     return spellButton;
+                case "INFO":
+                    return infoButton;
             }
 
         }
         return null;
-    }
+    }*/
 
     public void setTitle(String newTitle)  {
         title.setText(newTitle);
@@ -159,56 +181,74 @@ public class MapFrame extends Group {
 
         switch (index) {
             case 2:
-                add(new BossIcon(assets, new WildBoar(assets)));
+                add(new WildBoar(assets));
                 break;
             case 3:
-                add(new BossIcon(assets, new Tiger(assets)));
+                add(new Tiger(assets));
                 break;
             case 4:
-                add(new BossIcon(assets, new GiantHornet(assets)));
+                add(new GiantHornet(assets));
                 break;
             case 5:
-                add(new BossIcon(assets, new Golem(assets)));
+                add(new Golem(assets));
                 break;
             case 6:
-                add(new BossIcon(assets, new BanditLeader(assets)));
+                add(new BanditLeader(assets));
                 break;
             case 7:
-                add(new BossIcon(assets, new Hogger(assets)));
+                add(new Hogger(assets));
                 break;
             case 8:
-                add(new BossIcon(assets, new WampusCat(assets)));
+                add(new WampusCat(assets));
                 break;
             case 9:
-                add(new BossIcon(assets, new Proctor(assets)));
+                add(new Proctor(assets));
                 break;
             case 10:
-                add(new BossIcon(assets, new Apprentice(assets)));
+                add(new Apprentice(assets));
                 break;
             case 11:
-                add(new BossIcon(assets, new Sorcerer(assets)));
+                add(new Sorcerer(assets));
                 break;
             case 12:
-                add(new BossIcon(assets, new MotherSpider(assets)));
+                add(new MotherSpider(assets));
                 break;
             case 13:
-                add(new BossIcon(assets, new ZombieHorde(assets)));
+                add(new ZombieHorde(assets));
                 break;
             case 14:
-                add(new BossIcon(assets, new BloodQueen(assets)));
+                add(new BloodQueen(assets));
                 break;
             case 15:
-                add(new BossIcon(assets, new Hydra(assets)));
+                add(new Hydra(assets));
                 break;
             case 16:
-                add(new BossIcon(assets, new DeathDragon(assets)));
+                add(new DeathDragon(assets));
                 break;
         }
     }
 
+    public void clearBossList() {
+
+        //remove boss icons from their parent
+        for(int i = 0; i < bossIconsList.size(); i++)   {
+            bossIconsList.get(i).remove();
+        }
+        bossIconsList.clear();
+
+    }
+
+    @Override
+    public boolean remove() {
+        clearBossList();
+        return super.remove();
+    }
+
     public void dispose()   {
+        /*
         talentButton.dispose();
         spellButton.dispose();
         startButton.dispose();
+        */
     }
 }
