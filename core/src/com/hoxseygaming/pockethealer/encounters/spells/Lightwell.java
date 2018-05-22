@@ -18,14 +18,14 @@ public class Lightwell extends Periodical {
     public Lightwell(Player player, Assets assets)  {
         super(player,
                 "Light Well",
-                "Summons a magical Light Well that will send holy light at the most injured ally unit.",
+                "Summons a magical Light Well that will send holy light at the most injured ally unit and will give the use a little bit of mana.",
                 7,
                 1,
-                3,
+                7,
                 5f,
                 70f,
                 60f,
-                1.5f,
+                1f,
                 assets.getSound(assets.hotSFX),
                 assets);
         image = this.assets.getTexture(assets.lightWellIcon);
@@ -48,6 +48,7 @@ public class Lightwell extends Periodical {
                     durationTimer.stop();
                 }
                 lowest.receiveHealing(output,criticalChance.isCritical());
+                owner.raid.player.receiveMana(2);
             }
         }, speed, speed);
 
