@@ -81,7 +81,9 @@ public class FeedingTime extends Mechanic {
     @Override
     public void stop() {
         super.stop();
-        feedingTimer.stop();
-        feedingTimer.clear();
+        if (feedingTimer != null) {
+            feedingTimer.stop();
+            feedingTimer.clear();
+        }
     }
 }
