@@ -108,7 +108,7 @@ public abstract class Castable extends Spell {
 
     public void checkHasteBuild()   {
         if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
-            castTime = MIN_CAST_TIME - 0.25f;
+            castTime = MIN_CAST_TIME - 0.5f;
         }
     }
 
