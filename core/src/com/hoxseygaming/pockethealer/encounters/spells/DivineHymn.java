@@ -2,8 +2,11 @@ package com.hoxseygaming.pockethealer.encounters.spells;
 
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 import com.hoxseygaming.pockethealer.encounters.spells.Types.ChannelCast;
+
+import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 6/18/2017.
@@ -21,6 +24,20 @@ public class DivineHymn extends ChannelCast {
                 100f,
                 assets);
         image = assets.getTexture(assets.divineHymnIcon);
+    }
+
+    @Override
+    public void applySpell(RaidMember target) {
+        ArrayList<RaidMember> randoms = owner.getRaid().getRaidMembersWithLowestHp(8/*(int)(owner.getRaid().raidMembers.size()*0.7f)*/);
+
+        for(int i = 0; i < randoms.size(); i++)   {
+            if(owner.getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
+                applyMasteringHealing(randoms.get(i), output);
+            }
+            else {
+                randoms.get(i).receiveHealing(output, criticalChance.isCritical());
+            }
+        }
     }
 
     @Override
