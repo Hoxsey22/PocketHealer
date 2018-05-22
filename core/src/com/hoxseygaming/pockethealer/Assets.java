@@ -162,7 +162,8 @@ public class Assets {
     public String map1 = "map_state/map_level_1.png";
     public String map2 = "map_state/map_level_2.png";
     public String map3 = "map_state/map_level_3.png";
-    public String pageTurn = "map_state/page_turn.png";
+    public String pageRight = "map_state/page_right_icon.png";
+    public String pageLeft = "map_state/page_left_icon.png";
     public String ripIcon = "icons/rip_icon.png";
     public String igniteIcon = "icons/ignite_icon.png";
 
@@ -326,7 +327,8 @@ public class Assets {
         manager.load(map1, Texture.class);
         manager.load(map2, Texture.class);
         manager.load(map3, Texture.class);
-        manager.load(pageTurn, Texture.class);
+        manager.load(pageRight, Texture.class);
+        manager.load(pageLeft, Texture.class);
         manager.load(prayerOfMendingIcon, Texture.class);
         manager.load(dispelIcon, Texture.class);
         manager.load(burnIcon, Texture.class);
