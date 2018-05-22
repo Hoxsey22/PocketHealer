@@ -22,7 +22,7 @@ public class SpellBook extends Group{
     public static final String GREATER_HEAL = "Greater Heal";
     public static final String DIVINE_HYMN = "Divine Hymn";
     public static final String HOLY_NOVA = "Holy Nova";
-    public static final String LIGHTWELL = "Lightwell";
+    public static final String LIGHTWELL = "Light Well";
     public static final String SMITE = "Smite";
     public static final String PRAYER_OF_MENDING = "Prayer of Mending";
     public static final String DISPEL = "Dispel";
@@ -139,6 +139,11 @@ public class SpellBook extends Group{
                     return true;
                 }
                 return false;
+            case LIGHTWELL:
+                if(owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected())    {
+                    return true;
+                }
+                return false;
         }
 
         if(owner.getLevel() >= spell.levelRequirement)    {
@@ -163,7 +168,9 @@ public class SpellBook extends Group{
             case BARRIER:
                 return new Barrier(owner,assets);
             case LIGHTWELL:
-                return new Lightwell(owner,assets);
+                if(owner.getTalentTree().getTalent(owner.getTalentTree().HOLY_FOCUS).isSelected()) {
+                    return new Lightwell(owner, assets);
+                }
             case SMITE:
                 return new Smite(owner,assets);
             case PRAYER_OF_MENDING:
@@ -175,10 +182,10 @@ public class SpellBook extends Group{
             case PENANCE:
                 return new Penance(owner, assets);
             case DIVINE_HYMN:
-                //if(owner.getTalentTree().getTalent(owner.getTalentTree().HOLY_FOCUS).isSelected()) {
+                if(owner.getTalentTree().getTalent(owner.getTalentTree().HOLY_FOCUS).isSelected()) {
                     return new DivineHymn(owner, assets);
-               // }
-                //break;
+                }
+                break;
             case DIVINE_PROTECTION:
                 if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
                     return new DivineProtection(owner, assets);
