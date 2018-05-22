@@ -328,7 +328,7 @@ public abstract class Spell extends Actor {
     }
 
     public void applyMasteringHealing(RaidMember target, int output) {
-        if(CriticalDice.roll(40, 100,1)) {
+        if(CriticalDice.roll(60, 100,1)) {
             int newOutput = output;
             float missingHpPercentage = 1f - target.getHealthPercent();
 
