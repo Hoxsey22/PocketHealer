@@ -295,6 +295,15 @@ public abstract class Boss extends Entity {
         this.rewardPackage = rewardPackage;
     }
 
+    public String getBossIconStyle()    {
+        if(isDefeated())    {
+            return "defeated_boss_icon";
+        }
+        else    {
+            return "new_boss_icon";
+        }
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(assets.getTexture("black_bar.png"), getX(), getY(), getWidth(), getHeight());
