@@ -76,10 +76,10 @@ public class TalentTree extends Group{
         talents.add(new Talent(this, 8,CRITICAL_HEALER_II, "Any spells that are critical will place a barrier for 50% of the amount healed. Smite's barrier increase as well. Smite will now apply atonement.",
                 talents.get(talents.size()-1), assets.getTexture(assets.criticalHealer2Icon), assets));
 
-        talents.add(new Talent(this, 9,HASTE_BUILD,"All spell are 0.25 seconds faster.", assets.getTexture(assets.flashIcon), assets));
+        talents.add(new Talent(this, 9,HASTE_BUILD,"All spell are 0.5 seconds faster.", assets.getTexture(assets.flashIcon), assets));
         talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova and Prayer of Mending now heal one additional target.", talents.get(talents.size()-1),
                 assets.getTexture(assets.superNovaIcon), assets));
-        talents.add(new Talent(this, 11,HOLY_FOCUS,"Divine Hymn gives 15% mana back and Lightwell will be available",talents.get(talents.size()-1),
+        talents.add(new Talent(this, 11,HOLY_FOCUS,"Divine Hymn gives 15% mana back and Light Well will be available",talents.get(talents.size()-1),
                 assets.getTexture(assets.divineHymnIcon), assets));
         talents.add(new Talent(this, 12, MASTERING_HEALING,"All heal now have a 40% chance of increase it output based on missing health. In addition, Heal will now heal a second ally unit.",
                 talents.get(talents.size()-1), assets.getTexture(assets.innerFocusIcon), assets));
