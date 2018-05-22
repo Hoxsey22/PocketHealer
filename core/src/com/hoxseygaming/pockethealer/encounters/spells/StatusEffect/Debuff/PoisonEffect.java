@@ -9,6 +9,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 public class PoisonEffect extends Debuff {
 
     public float healingReductionPercentage;
+
+
     /**
      * A debuff is a negative status effect that is commonly from a boss and is
      * put on a raid member.
