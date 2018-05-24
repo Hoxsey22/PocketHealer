@@ -18,7 +18,7 @@ public class SunderEffect extends Debuff {
         super(owner,
                 3,
                 "Sunder Effect",
-                "Ally unit's armor is heavily damaged and will take addition damage.",
+                "Target's armor is damaged so all damage taken is increased.",
                 owner.assets.getTexture(owner.assets.sunderIcon),
                 14f,
                 14f,

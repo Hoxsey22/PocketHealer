@@ -20,8 +20,8 @@ public class ZombieBiteEffect extends HealingAbsorbEffect {
     public ZombieBiteEffect(Boss owner) {
         super(owner, 100);
         setIcon(owner.assets.getTexture(owner.assets.biteIcon));
-        setDescription("Zombie bite is a healing absorb and if not healed din time, " +
-                "the member will die and become one with the horde of zombies.");
+        setDescription("Zombie bite is a healing absorb and if not healed in time, " +
+                "the target will die and become one with the horde of zombies.");
     }
 
 
@@ -35,8 +35,8 @@ public class ZombieBiteEffect extends HealingAbsorbEffect {
     public ZombieBiteEffect(Boss owner, int modValue) {
         super(owner, modValue);
         setIcon(owner.assets.getTexture(owner.assets.biteIcon));
-        setDescription("Zombie bite is a healing absorb and if not healed din time, " +
-                "the member will die and become one with the horde of zombies.");
+        setDescription("Zombie bite is a healing absorb and if not healed in time, " +
+                "the target will die and become one with the horde of zombies.");
     }
 
     @Override

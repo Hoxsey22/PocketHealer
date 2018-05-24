@@ -13,8 +13,8 @@ public class BleedEffect extends Debuff {
     public BleedEffect(Boss owner) {
         super(owner,
                 1,
-                "BleedEffect",
-                "A bleed will cause the target to take damage over time and all damage done to the target will be increased.",
+                "Bleed Effect",
+                "Bleed causes the target to take damage over time and the damage will increase until the target is above 90% health.",
                 owner.assets.getTexture(owner.assets.bleedIcon),
                 300f,
                 2f,

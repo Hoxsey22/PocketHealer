@@ -14,7 +14,7 @@ public class CorruptionEffect extends Debuff {
         super(owner,
                 4,
                 "Corruption Effect",
-                "Agony will cause the target to take a huge amount of damage over time.",
+                "Corruption will cause the target to take a moderate amount of damage over time.",
                 owner.assets.getTexture(owner.assets.corruptionIcon),
                 400f,
                 3f,

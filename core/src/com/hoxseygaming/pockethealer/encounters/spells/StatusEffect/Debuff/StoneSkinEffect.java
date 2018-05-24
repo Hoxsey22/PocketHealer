@@ -18,7 +18,7 @@ public class StoneSkinEffect extends Debuff {
         super(owner,
                 3,
                 "Stone Skin Effect",
-                "Prevent a target from dying if target is above 10% health.",
+                "Stone Skin prevents the target from dying if their health is above 10%.",
                 owner.assets.getTexture(owner.assets.stoneSkinIcon),
                 600f,
                 0.1f,

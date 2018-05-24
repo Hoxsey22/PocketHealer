@@ -21,7 +21,7 @@ public class InfectedEffect extends Debuff {
         super(owner,
                 3,
                 "Infected Effect",
-                "The ally unit is infected and will increase the zombie horde's damage.",
+                "Infected target increases the damage and the health of the Zombie Horde if the target dies.",
                 owner.assets.getTexture(owner.assets.diseaseIcon),
                 600f,
                 0.1f,

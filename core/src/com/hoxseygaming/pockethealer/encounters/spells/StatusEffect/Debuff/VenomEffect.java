@@ -16,8 +16,8 @@ public class VenomEffect extends Debuff {
     public VenomEffect(Boss owner) {
         super(owner,
                 11,
-                "Venom",
-                "Does very high damage to the target only once.",
+                "Venom Effect",
+                "Envenoms the target causing one massive surge of damage once.",
                 owner.assets.getTexture(owner.assets.venomIcon),
                 9f,
                 9f,

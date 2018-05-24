@@ -20,7 +20,7 @@ public class PoisonEffect extends Debuff {
     public PoisonEffect(Boss owner) {
         super(owner,
                 3,
-                "Poison",
+                "Poison Effect",
                 "Poisons the target taking constant damage until dispel or poison wearing off.",
                 owner.assets.getTexture(owner.assets.poisonIcon),
                 20f,

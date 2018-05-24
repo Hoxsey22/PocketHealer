@@ -13,11 +13,11 @@ public class BurnEffect extends Debuff {
     public BurnEffect(Boss owner) {
         super(owner,
                 2,
-                "BurnEffect",
-                "Burn the target increasing in damage each tick and will remain until the target is over 90% health",
+                "Burn Effect",
+                "Dispellable: Burns the target for moderate damage, but very quickly over time.",
                 owner.assets.getTexture(owner.assets.burnIcon), //need to change the icon
                 10f,
-                2f,
+                1f,
                 10,
                 true);
     }

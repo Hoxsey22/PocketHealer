@@ -18,7 +18,7 @@ public class RipEffect extends Debuff {
         super(owner,
                 3,
                 "Rip Effect",
-                "Rip the target causing them to take periodic damage and increase damage taken.",
+                "Rips the target causing them to take periodic damage and increase damage taken.",
                 owner.assets.getTexture(owner.assets.ripIcon),
                 12f,
                 2f,

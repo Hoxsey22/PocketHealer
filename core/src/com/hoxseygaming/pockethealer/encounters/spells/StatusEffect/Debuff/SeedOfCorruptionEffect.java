@@ -18,9 +18,8 @@ public class SeedOfCorruptionEffect extends Debuff {
         super(owner,
                 6,
                 "Seed of Corruption Effect",
-                "Seed of Corruption will do progressive damage until dispelled. Once dispelled, " +
-                        "a few raid members will take explosion damage and spread corruption to two other " +
-                        "raid members.",
+                "Dispellable: Seed of Corruption's damage will progressively increase until dispelled. Once dispelled, 2 other targets will receive " +
+                        "corruption effects.",
                 owner.assets.getTexture(owner.assets.seedOfCorruptionIcon),
                 300f,
                 1.5f,
