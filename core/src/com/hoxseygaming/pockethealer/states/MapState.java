@@ -6,7 +6,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -52,8 +51,6 @@ public class MapState extends State {
 
         assets = player.getAssets();
 
-        infoFrame = new InfoFrame(assets);
-
         AudioManager.playMusic(assets.getMusic(assets.mmMusic), true);
 
         pageLeft = new ImageButton(assets.getSkin(), "page_left");
@@ -61,12 +58,6 @@ public class MapState extends State {
 
         pageRight = new ImageButton(assets.getSkin(), "page_right");
         pageRight.setBounds(410, 550, 30,30);
-
-        /*
-        pageLeft = new ImageButton("pageLeft", assets.getTexture(assets.pageRight), 40, 550, 30,30);
-        pageLeft.flipX();
-        pageRight = new ImageButton("pageRight", assets.getTexture(assets.pageRight), 410, 550, 30,30);
-        */
 
         page = 1;
         maxPage = 1;
@@ -84,8 +75,9 @@ public class MapState extends State {
         pageLeft.remove();
         pageRight.remove();
 
-        mapFrame = new MapFrame(player, page, assets);
         mapFrame.remove();
+
+        mapFrame.changePage(page);
 
         switch (page)   {
             case 1:
@@ -113,6 +105,7 @@ public class MapState extends State {
                 break;
         }
         loadPage();
+        createBossIconListeners();
         createButtons();
 
     }
@@ -131,7 +124,6 @@ public class MapState extends State {
         pageRight.remove();
 
         page = mapFrame.page;
-        //mapFrame = new MapFrame(player, page, assets);
         mapFrame.remove();
 
         switch (mapFrame.page)   {
@@ -139,7 +131,6 @@ public class MapState extends State {
                 stage.addActor(mapFrame);
 
                 if(player.getLevel() > 6) {
-                    //pageRight.addToStage(stage);
                     stage.addActor(pageRight);
                 }
                 break;
@@ -147,15 +138,12 @@ public class MapState extends State {
                 stage.addActor(mapFrame);
 
                 if(player.getLevel() > 11) {
-                    //pageRight.addToStage(stage);
                     stage.addActor(pageRight);
                 }
-                //pageLeft.addToStage(stage);
                 stage.addActor(pageLeft);
                 break;
             case 3:
                 stage.addActor(mapFrame);
-                //pageLeft.addToStage(stage);
                 stage.addActor(pageLeft);
                 break;
         }
@@ -194,61 +182,6 @@ public class MapState extends State {
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float) screenX, (float) screenY));
-                /*
-                if(coord.y > mapFrame.innerFrame.getY())    {
-
-                    if(pageLeft.pressed(coord.x, coord.y))    {
-                        page--;
-                        turnPage();
-                        System.out.println("Page Left");
-                        return false;
-                    }
-
-                    if(pageRight.pressed(coord.x, coord.y))    {
-                        page++;
-                        turnPage();
-                        System.out.println("Page Right");
-                        return false;
-                    }
-
-
-                    BossIcon bi = mapFrame.getMap().hit(coord.x, coord.y);
-                    if(bi != null)    {
-                        if(selectedLevel != null)    {
-                            selectedLevel.unselect();
-                        }
-                        selectedLevel = bi;
-                        mapFrame.setTitle(bi.getName());
-                        mapFrame.setBody(bi.getDescription());
-                        bi.select();
-//                        mapFrame.startButton.setChecked(true);
-                    }
-                }*/
-                /*
-                if(coord.y < mapFrame.infoButton.getY() + mapFrame.talentButton.getHeight())    {
-                    Actor hit = mapFrame.hit(coord.x, coord.y, false);
-                    if(hit != null)    {
-                        switch (hit.getName())   {
-                            case "TALENTS":
-                                sm.set(new TalentSelectionState(sm, player));
-                                break;
-                            case "START":
-                                if(selectedLevel != null)    {
-                                    sm.set(new EncounterState(sm, player, selectedLevel.boss));
-                                }
-                                break;
-                            case "SPELLS":
-                                sm.set(new SpellSelectionState(sm, player));
-                                break;
-                            case "INFO":
-                                stage.addActor(infoFrame);
-                                break;
-                        }
-
-                    }
-                }
-                */
                 return false;
             }
 
@@ -281,10 +214,6 @@ public class MapState extends State {
         else {
             buttonTable = new Table();
             buttonTable.setBounds(mapFrame.innerFrame.getX(), 20, mapFrame.innerFrame.getWidth(), mapFrame.innerFrame.getY()-15);
-            //buttonTable.debug();
-
-            infoButton = new TextButton("INFO", assets.getSkin(), "small_button");
-            infoButton.setName("INFO");
 
             talentButton = new TextButton("TALENT", assets.getSkin());
 
@@ -358,13 +287,18 @@ public class MapState extends State {
 
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
+
                     if(selectedLevel != null)    {
                         selectedLevel.setChecked(false);
                     }
+
                     selectedLevel = (BossIcon) actor;
+
                     mapFrame.setTitle(selectedLevel.getName());
                     mapFrame.setBody(selectedLevel.getDescription());
-                    //selectedLevel.setChecked(true);
+                    mapFrame.infoFrame.addInfo(selectedLevel.boss);
+                    mapFrame.disableInfoButton();
+                    mapFrame.showInfoButton();
                 }
             });
         }
