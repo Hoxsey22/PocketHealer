@@ -14,22 +14,31 @@ import java.util.ArrayList;
 public class Map extends Group {
 
     public Image image;
-    public ArrayList<BossIcon> selects;
+    public Image frame;
+    public ArrayList<BossIcon> bossPoints;
     public int page;
     public Assets assets;
 
     public Map(int page, Image frame, Assets assets)    {
         setName("image");
-        this.page = page;
+
         this.assets = assets;
-        selects = new ArrayList<>();
+        this.frame = frame;
+        bossPoints = new ArrayList<>();
         setDebug(true);
+        changeMap(page);
+    }
+
+    public void changeMap(int page)    {
+        this.page = page;
+
+        if(image != null) {
+            image.clear();
+        }
 
         image = new Image(assets.getTexture(assets.maps.get(page-1)));
-        //texture.setPosition(frame.getX()+15, frame.getY()+frame.getHeight()- texture.getHeight()-12);
         image.setBounds(frame.getX()+15, frame.getY()+frame.getHeight()- 388-12, 407, 388);
-        //setBounds(texture.getX(), texture.getY(), texture.getWidth(), texture.getHeight());
-        //addActor(texture);
+
     }
 
     public void add(BossIcon bossIcon)   {
@@ -37,7 +46,7 @@ public class Map extends Group {
         biTemp.setPosition(image.getX()+ assets.bossIconPosition.get(bossIcon.getBoss().getId()-2).x,
                 image.getY() + assets.bossIconPosition.get(bossIcon.getBoss().getId()-2).y);
         addActor(biTemp);
-        selects.add(biTemp);
+        bossPoints.add(biTemp);
     }
 
     public BossIcon hit(float x, float y)   {

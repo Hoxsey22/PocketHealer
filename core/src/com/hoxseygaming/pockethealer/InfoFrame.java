@@ -1,0 +1,123 @@
+package com.hoxseygaming.pockethealer;
+
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
+
+import java.util.ArrayList;
+
+/**
+ * Created by Hoxsey on 5/19/2018.
+ */
+
+public class InfoFrame extends Group {
+
+    Assets assets;
+    Image disableBG;
+    Image infoFrame;
+    Text infoTitle;
+    Table debuffListTable;
+    Text debuffDescription;
+    TextButton okButton;
+    ArrayList<DebuffIconButton> debuffButtons;
+    Boss boss;
+
+    public InfoFrame(Assets assets)  {
+        this.assets = assets;
+        debuffButtons = new ArrayList<>();
+
+        infoFrame = new Image(assets.getTexture(assets.endGameFrame));
+        infoFrame.setPosition(PocketHealer.WIDTH/2 - infoFrame.getWidth()/2, PocketHealer.HEIGHT/2 - infoFrame.getHeight()/2 );
+        infoFrame.setSize(infoFrame.getWidth()+30, infoFrame.getHeight()+100);
+
+        okButton = new TextButton("OK", assets.getSkin(), "small_button");
+        createOkButtonListener();
+
+        disableBG = new Image(assets.getTexture(assets.disableBG));
+
+        infoTitle = new Text("Debuff", 32, Color.YELLOW, true, assets);
+
+        debuffDescription = new Text("Click on the debuff icon to see the description of the ability.",24, Color.WHITE, false, assets);
+        debuffDescription.setWrap(true);
+
+        debuffListTable = new Table();
+        debuffListTable.setBounds(infoFrame.getX()+5,infoFrame.getY(),infoFrame.getWidth()-10, infoFrame.getHeight());
+
+        //debug();
+        //loadDebuffs();
+        //create();
+    }
+
+    public InfoFrame(Boss boss, Assets assets)  {
+        this.assets = assets;
+        this.boss = boss;
+        debuffButtons = new ArrayList<>();
+        //debug();
+        loadDebuffs();
+        create();
+    }
+
+    private void loadDebuffs()  {
+
+        for(int i = 0; i < boss.debuffList.size(); i++)   {
+            debuffButtons.add(new DebuffIconButton(boss.debuffList.get(i),assets));
+
+            debuffButtons.get(debuffButtons.size()-1).addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    infoTitle.setText(actor.getName());
+                    debuffDescription.setText(debuffButtons.get(debuffButtons.indexOf(actor)).description);
+                }
+            });
+        }
+
+    }
+
+    private void create()   {
+
+        addActor(disableBG);
+        addActor(infoFrame);
+
+        debuffListTable.top();
+        debuffListTable.add(infoTitle.getLabel()).expandX().padTop(10).colspan(4).top();
+        debuffListTable.row();
+
+        for(int i = 0; i < debuffButtons.size(); i++)   {
+            debuffListTable.add(debuffButtons.get(i)).expandX().height(50).top().pad(10);
+            if((i+1 % 5) == 0)    {
+                debuffListTable.row();
+            }
+        }
+
+        debuffListTable.row();
+        debuffListTable.add(debuffDescription.getLabel()).width(debuffListTable.getWidth()-10).expandX().expandY().pad(5).colspan(4).top();
+        debuffListTable.row();
+        debuffListTable.add(okButton).expandX().bottom().padBottom(10).colspan(4);
+
+        addActor(debuffListTable);
+    }
+
+    public void addInfo(Boss boss)   {
+        this.boss = boss;
+        infoTitle.setText("Debuff");
+        debuffDescription.setText("Click on the debuff icon to see the description of the ability.");
+        debuffButtons.clear();
+        debuffListTable.clearChildren();
+        loadDebuffs();
+        create();
+    }
+
+    public void createOkButtonListener()    {
+        okButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                remove();
+            }
+        });
+    }
+}

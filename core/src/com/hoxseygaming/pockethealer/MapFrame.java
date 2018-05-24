@@ -2,10 +2,12 @@ package com.hoxseygaming.pockethealer;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.BanditLeader;
@@ -39,6 +41,7 @@ public class MapFrame extends Group {
     public TextButton startButton;
     public TextButton spellButton;
     public TextButton infoButton;
+    public InfoFrame infoFrame;
     public ArrayList<BossIcon> bossIconsList;
     public Table table;
     public Text title;
@@ -66,10 +69,13 @@ public class MapFrame extends Group {
 
         bossIconsList = new ArrayList<>();
 
-        /*
+        infoFrame = new InfoFrame(assets);
+        //infoFrame.debug();
+
         infoButton = new TextButton("INFO", assets.getSkin(), "small_button");
-        infoButton.setName("INFO");
-        */
+        createInfoButtonListener();
+        //infoButton.setName("INFO");
+
         innerFrame = new Image(assets.getTexture(assets.mapInnerFrame));
         innerFrame.setName("inner frame");
         innerFrame.setPosition(bgFrame.getX() + bgFrame.getWidth()/2 - innerFrame.getWidth()/2,
@@ -83,32 +89,40 @@ public class MapFrame extends Group {
         table.setBounds(map.getImage().getX(), innerFrame.getY()+13, map.getImage().getWidth(),
                 innerFrame.getHeight()- map.getImage().getHeight() - 30);
         table.align(Align.topLeft);
-        /*
-        talentButton = new TextButton("TALENT", assets.getSkin());
-        talentButton.setName("TALENT");
-        talentButton.setPosition(innerFrame.getX(), innerFrame.getY() - talentButton.getHeight()-1);
-        if(player.getTalentTree().getUnusedPoints() > 1)    {
-            //talentButton.setHighlight(true);
-            talentButton.setChecked(true);
-        } else {
-            //talentButton.setHighlight(false);
-            talentButton.setChecked(true);
-        }
-        addActor(talentButton);
 
-        startButton = new TextButton("START", assets.getSkin());
-        startButton.setPosition(talentButton.getX() + talentButton.getWidth() + 6, talentButton.getY());
-        startButton.setName("START");
-        addActor(startButton);
-
-        spellButton = new TextButton("SPELL", assets.getSkin());
-        spellButton.setPosition(startButton.getX() + startButton.getWidth() + 6, startButton.getY());
-        addActor(spellButton);
-        */
         createFont();
 
         table.row();
         table.add(infoButton).bottom().padBottom(10);
+        //infoButton.setVisible(false);
+    }
+
+    public void changePage(int page)    {
+        this.page = page;
+        title.setText("");
+        body.setText("");
+        map.changeMap(page);
+    }
+
+    public void showInfoButton()    {
+        //table.add(infoButton).bottom().center().padBottom(10);
+        infoButton.setVisible(true);
+    }
+
+    public void disableInfoButton() {
+        infoButton.setVisible(false);
+        //table.removeActor(infoButton);
+        //infoButton.remove();
+    }
+
+    private void createInfoButtonListener() {
+        infoButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                getParent().addActor(infoFrame);
+                System.out.println("-----Info Frame hit");
+            }
+        });
     }
 
     public void createFont()    {
@@ -118,6 +132,7 @@ public class MapFrame extends Group {
         //title.setFontColor(Color.YELLOW);
         title.setWrap(true);
         title.setAlignment(Align.center);
+        title.debug();
 
         table.add(title.getLabel()).expandX().fillY();
         table.row();
@@ -126,6 +141,8 @@ public class MapFrame extends Group {
         //body.setFontSize(24);
         //body.setFontColor(Color.WHITE);
         body.setWrap(true);
+
+        body.debug();
 
         table.add(body.getLabel()).width(table.getWidth()).expandX().expandY();
 
@@ -241,6 +258,7 @@ public class MapFrame extends Group {
     @Override
     public boolean remove() {
         clearBossList();
+        disableInfoButton();
         return super.remove();
     }
 
