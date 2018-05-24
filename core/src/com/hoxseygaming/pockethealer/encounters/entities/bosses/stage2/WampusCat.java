@@ -7,6 +7,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAt
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Pounce;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
 
 /**
  * Created by Hoxsey on 7/20/2017.
@@ -25,16 +26,13 @@ public class WampusCat extends Boss {
                 assets);
 
         setId(8);
-        damage = 20;
-        level = 4;
-        namePlate = assets.getTexture(assets.wampusCatName);
-
+        create();
     }
 
     @Override
     public void create()    {
-
-
+        super.create();
+        damage = 20;
         autoAttack = new AutoAttack(this);
         pounce = new Pounce(this);
         /*mechanics.add(humanForm);
@@ -44,6 +42,7 @@ public class WampusCat extends Boss {
 
         phaseManager.addPhase(new Phase(this, name+" is in her Cat Form!",30f, pounce, autoAttack));
         phaseManager.addPhase(new Phase(this,name+"is in her Human Form!", 30f, autoAttack));
+        loadDebuff(new BleedEffect(this));
     }
 
     @Override

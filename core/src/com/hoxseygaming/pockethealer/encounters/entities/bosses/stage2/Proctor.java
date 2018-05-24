@@ -9,6 +9,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FireBr
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BurnEffect;
 
 /**
  * Created by Hoxsey on 7/20/2017.
@@ -46,6 +47,7 @@ public class Proctor extends Boss {
 
         phaseManager.addPhase(new Phase(this, 0, autoAttack, tankSwap, cleave, bullCharge, fireBreath));
         //loadMechanics(autoAttack, tankSwap, bullCharge, fireBreath);
+        loadDebuff(new BurnEffect(this));
     }
 
     @Override

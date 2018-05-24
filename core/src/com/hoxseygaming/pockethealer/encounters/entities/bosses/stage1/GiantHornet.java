@@ -7,6 +7,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAt
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Sting;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.PoisonEffect;
 
 /**
  * Created by Hoxsey on 8/20/2017.
@@ -41,6 +42,7 @@ public class GiantHornet extends Boss {
 
         phaseManager.addPhase(new Phase(this, 0, autoAttack, sting));
         //loadMechanics(autoAttack, sting);
+        loadDebuff(new PoisonEffect(this));
     }
 
     @Override

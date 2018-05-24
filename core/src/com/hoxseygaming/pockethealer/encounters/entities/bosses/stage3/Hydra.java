@@ -9,6 +9,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Thunde
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonSpit;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.PoisonEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.StoneSkinEffect;
 
 /**
@@ -49,6 +50,8 @@ public class Hydra extends Boss {
 
         phaseManager.addPhase(new Phase(this, 75f, autoAttack, doubleAttack,p1Poison, thunderStorm));
         phaseManager.addPhase(new Phase(this, 25f, rampage));
+
+        loadDebuff(new StoneSkinEffect(this), new PoisonEffect(this));
 
     }
 

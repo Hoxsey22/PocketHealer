@@ -14,6 +14,11 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TailSw
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.UnstableMagic;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.UnstablePyroblast;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.AgonyEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BurnEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.RipEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.UnstableMagicEffect;
 
 /**
  * Created by Hoxsey on 10/11/2017.
@@ -79,6 +84,8 @@ public class DeathDragon extends Boss {
         phaseManager.addPhase(new Phase(this, 60f, unstableMagic,unstablePyroblast, autoAttackp2));
         phaseManager.addPhase(new Phase(this, 1, autoAttackp3, ripTankSwap, flurry,tailSwipe,fireBreath, ignite));
         //phaseManager.addPhase(new Phase(this, 600f,fireBreath,flurry,tailSwipe));
+        loadDebuff(new AgonyEffect(this), new BurnEffect(this), new UnstableMagicEffect(this),
+                new RipEffect(this), new BleedEffect(this));
 
     }
 

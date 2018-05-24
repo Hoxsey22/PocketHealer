@@ -13,6 +13,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Mechan
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PhaseManager;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Debuff;
 
 import java.util.ArrayList;
 
@@ -25,6 +26,7 @@ public abstract class Boss extends Entity {
     public RaidMember target;
     public Player player;
     public ArrayList<Mechanic> mechanics;
+    public ArrayList<Debuff> debuffList;
     public PhaseManager phaseManager;
     public Texture namePlate;
     public int level;
@@ -42,6 +44,7 @@ public abstract class Boss extends Entity {
         setBounds(20, 740, 445, 40);
         target = getMainTank();
         mechanics = new ArrayList<>();
+        debuffList = new ArrayList<>();
         rewardPackage = new RewardPackage(this);
     }
 
@@ -53,6 +56,7 @@ public abstract class Boss extends Entity {
         raidSize = enemies.raidMembers.size();
         target = getMainTank();
         mechanics = new ArrayList<>();
+        debuffList = new ArrayList<>();
         phaseManager = new PhaseManager();
 
         nameText = new Text(name, 45, Color.BLACK,false, assets);
@@ -85,6 +89,12 @@ public abstract class Boss extends Entity {
     public void loadMechanics(Mechanic... mechs) {
         for(Mechanic mech: mechs)   {
             mechanics.add(mech);
+        }
+    }
+
+    public void loadDebuff(Debuff... newDebuff)    {
+        for(Debuff debuff: newDebuff)   {
+            debuffList.add(debuff);
         }
     }
 

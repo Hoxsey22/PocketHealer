@@ -8,6 +8,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Leap;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.VenomEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.WebEffect;
 
 /**
  * Created by Hoxsey on 8/26/2017.
@@ -43,6 +45,7 @@ public class MotherSpider extends Boss {
         //55
         phaseManager.addPhase(new Phase(this, 55f, autoAttack,tankSwap,leap));
         phaseManager.addPhase(new Phase(this, 30f, feedingTime));
+        loadDebuff(new VenomEffect(this), new WebEffect(this));
     }
 
     @Override

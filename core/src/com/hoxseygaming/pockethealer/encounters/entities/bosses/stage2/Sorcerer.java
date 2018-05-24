@@ -8,6 +8,9 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FireBr
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.AgonyEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BurnEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.CorruptionEffect;
 
 /**
  * Created by Hoxsey on 8/26/2017.
@@ -43,6 +46,7 @@ public class Sorcerer extends Boss {
 
         phaseManager.addPhase(new Phase(this, 0, fireball, agony, blanketCorruption, fireBreath));
         //loadMechanics(agony,blanketCorruption,fireball,fireBreath);
+        loadDebuff(new BurnEffect(this), new CorruptionEffect(this), new AgonyEffect(this));
     }
 
     @Override

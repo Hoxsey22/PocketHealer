@@ -7,6 +7,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAt
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Pounce;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
 
 /**
  * Created by Hoxsey on 8/17/2017.
@@ -40,6 +41,8 @@ public class Tiger extends Boss {
 
         //loadMechanics(autoAttack, pounce);
         phaseManager.addPhase(new Phase(this, 0,autoAttack, pounce));
+
+        loadDebuff(new BleedEffect(this));
     }
 
     @Override

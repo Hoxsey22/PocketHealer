@@ -6,6 +6,9 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireba
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.SeedOfCorruption;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BurnEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.CorruptionEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.SeedOfCorruptionEffect;
 
 /**
  * Created by Hoxsey on 8/26/2017.
@@ -38,6 +41,7 @@ public class Apprentice extends Boss {
 
         phaseManager.addPhase(new Phase(this,0, fireball, seedOfCorruption));
         //loadMechanics(fireball, seedOfCorruption);
+        loadDebuff(new BurnEffect(this), new SeedOfCorruptionEffect(this), new CorruptionEffect(this));
     }
 
     @Override

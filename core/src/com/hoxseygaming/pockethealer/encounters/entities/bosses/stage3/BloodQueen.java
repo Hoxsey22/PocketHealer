@@ -9,6 +9,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.SwarmingShadow;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.VampiricBite;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.ConsumingShadowEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.VampiricBiteEffect;
 
 /**
  * Created by Hoxsey on 8/26/2017.
@@ -55,6 +57,8 @@ public class BloodQueen extends Boss {
 
         phaseManager.addPhase(new Phase(this, 70f, bloodLink, cleave, vampiricBite));
         phaseManager.addPhase(new Phase(this, 32f, consumingShadow,swarmingShadow));
+
+        loadDebuff(new VampiricBiteEffect(this), new ConsumingShadowEffect(this));
     }
 
     @Override

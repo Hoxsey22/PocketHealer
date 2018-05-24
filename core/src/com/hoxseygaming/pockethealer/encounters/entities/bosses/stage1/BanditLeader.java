@@ -9,6 +9,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.PoisonStab;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.TankSwap;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.PoisonEffect;
 
 /**
  * Created by Hoxsey on 8/20/2017.
@@ -50,6 +52,8 @@ public class BanditLeader extends Boss {
 
         phaseManager.addPhase(new Phase(this, 0, autoAttack,tankSwap, backStab, poisonStab));
         //loadMechanics(autoAttack, backStab, poisonStab,tankSwap);
+
+        loadDebuff(new BleedEffect(this), new PoisonEffect(this));
     }
 
     @Override

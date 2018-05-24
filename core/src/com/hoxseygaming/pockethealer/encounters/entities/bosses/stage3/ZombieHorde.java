@@ -7,6 +7,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Zombie
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.ZombieBite;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.InfectedEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.ZombieBiteEffect;
 
 /**
  * Created by Hoxsey on 8/26/2017.
@@ -38,6 +39,7 @@ public class ZombieHorde extends Boss {
 
         phaseManager.addPhase(new Phase(this, 0, zombieAttack, zombieBite));
         //loadMechanics(zombieAttack, zombieBite);
+        loadDebuff(new ZombieBiteEffect(this), new InfectedEffect(this));
     }
 
     @Override
