@@ -33,6 +33,7 @@ public class Leap extends Mechanic{
     @Override
     public void action() {
         startChannel();
+        pausePhase();
     }
 
     public void startChannel()  {
@@ -51,7 +52,7 @@ public class Leap extends Mechanic{
                 else    {
                     leapTimer.stop();
                     leapTimer.clear();
-                    timer.start();
+                    resumePhase();
    //                 announcementTimer.start();
                 }
                 count++;
