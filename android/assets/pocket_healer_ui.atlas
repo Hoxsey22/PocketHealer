@@ -182,6 +182,41 @@ title_font
   orig: 512, 512
   offset: 0, 0
   index: -1
+boss_location
+  rotate: false
+  xy: 255, 411
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+defeated_boss
+  rotate: false
+  xy: 144, 174
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+page_left_icon
+  rotate: false
+  xy: 144, 122
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+page_right_icon
+  rotate: false
+  xy: 255, 359
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+selected_level
+  rotate: false
+  xy: 1, 54
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
 small_button
   rotate: false
   xy: 343, 466
@@ -198,7 +233,7 @@ knob
   index: -1
 knob_down
   rotate: false
-  xy: 255, 419
+  xy: 307, 419
   size: 15, 42
   orig: 15, 42
   offset: 0, 0

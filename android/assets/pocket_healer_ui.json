@@ -69,6 +69,22 @@ com.badlogic.gdx.graphics.Color: {
 		a: 1
 	}
 }
+com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+	defeated_boss_icon: {
+		imageUp: defeated_boss
+		imageChecked: selected_level
+	}
+	new_boss_icon: {
+		imageUp: boss_location
+		imageChecked: selected_level
+	}
+	page_right: {
+		imageUp: page_right_icon
+	}
+	page_left: {
+		imageUp: page_left_icon
+	}
+}
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {
 		font: game_font_large
@@ -100,6 +116,7 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 		fontColor: Black
 		up: button
 		down: button_select
+		checked: button_select
 	}
 	small_button: {
 		font: game_font_medium

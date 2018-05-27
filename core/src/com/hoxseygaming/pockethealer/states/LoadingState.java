@@ -37,8 +37,8 @@ public class LoadingState extends State {
         super(sm);
 
         logo = new Image(new Texture("logo_screen.png"));
-        logo.setSize(PocketHealer.WIDTH,PocketHealer.HEIGHT);
-        logo.setPosition(0,0);
+        //logo.setSize(PocketHealer.WIDTH,PocketHealer.HEIGHT);
+        logo.setBounds(0,PocketHealer.HEIGHT/2 - 360/2,480, 360);
 
         createFont();
 
@@ -136,16 +136,17 @@ public class LoadingState extends State {
     @Override
     public void render(SpriteBatch sb) {
 
-        Gdx.gl.glClearColor(Color.TAN.r,Color.TAN.g,Color.TAN.b,Color.TAN.a);
+        Gdx.gl.glClearColor(Color.BLACK.r,Color.BLACK.g,Color.BLACK.b,Color.BLACK.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glEnable(GL20.GL_BLEND);
         stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
         shapeRenderer.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-            shapeRenderer.setColor(Color.WHITE);
-            shapeRenderer.rect(65, 125, 380 * progress, 50);
+        shapeRenderer.setColor(Color.GOLD);
+        shapeRenderer.rect(logo.getWidth()/4, logo.getY()+logo.getHeight()-2, logo.getWidth()/2, 0-progress*logo.getHeight()+10);
         shapeRenderer.end();
+        stage.draw();
+
     }
 
     @Override
