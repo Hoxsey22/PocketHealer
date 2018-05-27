@@ -19,8 +19,7 @@ public class WildBoar extends Boss {
 
     public WildBoar(Assets assets) {
         super("Wild Boar","A wild boar is rampaging through the town and hurting innocent " +
-                "people.\n The wild boar will do moderate damage to the tank and will charge a random " +
-                "raid member every once in a while.",
+                "people. It needs to be stopped.",
                 120,
                 new Raid(6,assets),
                 assets);

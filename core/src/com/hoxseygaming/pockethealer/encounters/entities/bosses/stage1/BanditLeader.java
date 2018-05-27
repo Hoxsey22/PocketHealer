@@ -24,9 +24,9 @@ public class BanditLeader extends Boss {
     private boolean isEnrage;
 
     public BanditLeader(Assets assets) {
-        super("Bandit Leader","The sorcerer is partnering up the bandit leader and is having" +
-                " him steal precious materials for her.\nThe bandit leader does moderate damage to the tank " +
-                "and will back stab a random raid member dealing heavy damage and leaving behind a bleed.",
+        super("Bandit Leader","The sorcerer is partnering up the bandit Leader and is having" +
+                " him steal precious materials for her. If not stopped, the Sorcerer will have all she needs " +
+                        "for her plan. Be careful, this bandit is very sneaky and will stab you in the back.",
                 180,
                 new Raid(9, assets),
                 assets);

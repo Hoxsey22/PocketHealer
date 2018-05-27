@@ -20,8 +20,7 @@ public class Tiger extends Boss {
 
     public Tiger(Assets assets) {
         super("Tiger","A tiger is eating all the live stock and harming some people that " +
-                "try to stop him.\nThe tiger will do moderate damage to the tank and will pounce on raid" +
-                " members doing moderate damage and leaving behind a bleed.",
+                "try to stop it. Something else is causing this animal to act so erratic. ",
                 150,
                 new Raid(6,assets),
                 assets);

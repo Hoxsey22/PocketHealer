@@ -46,8 +46,8 @@ public class DeathDragon extends Boss {
 
     public DeathDragon(Assets assets) {
         super("Resurrected Sorcerer",
-                "The Sorcerer has been resurrected and now stronger than ever. He's come to finish what " +
-                        "he has started. ",
+                "Somehow the Sorcerer has been resurrected! Now stronger than ever, but something is different... She has a " +
+                        "dark force around her. She is overflowing with power. She must be stopped!",
                 600,
                 new Raid(2,3,7, assets),
                 assets);
@@ -79,10 +79,20 @@ public class DeathDragon extends Boss {
 
         ignite = new Ignite(this, 8f);
 
+        Phase phase1 = new Phase(this, 75, agony, pyroblast,autoAttackp1);
 
-        phaseManager.addPhase(new Phase(this, 75, agony, pyroblast,autoAttackp1));
-        phaseManager.addPhase(new Phase(this, 60f, unstableMagic,unstablePyroblast, autoAttackp2));
-        phaseManager.addPhase(new Phase(this, 1, autoAttackp3, ripTankSwap, flurry,tailSwipe,fireBreath, ignite));
+        Phase phase2 = new Phase(this, 60f, unstableMagic,unstablePyroblast, autoAttackp2);
+        phase2.setNameChange(true);
+        phase2.setNameChange("Deformed Sorcerer");
+
+        Phase phase3 = new Phase(this, 1, autoAttackp3, ripTankSwap, flurry,tailSwipe,fireBreath, ignite);
+        phase3.setNameChange(true);
+        phase3.setNameChange("Death Dragon");
+
+
+        phaseManager.addPhase(phase1);
+        phaseManager.addPhase(phase2);
+        phaseManager.addPhase(phase3);
         //phaseManager.addPhase(new Phase(this, 600f,fireBreath,flurry,tailSwipe));
         loadDebuff(new AgonyEffect(this), new BurnEffect(this), new UnstableMagicEffect(this),
                 new RipEffect(this), new BleedEffect(this));

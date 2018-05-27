@@ -243,6 +243,46 @@ public abstract class Boss extends Entity {
         this.raidSize = raidSize;
     }
 
+    public ArrayList<Debuff> getDebuffList() {
+        return debuffList;
+    }
+
+    public void setDebuffList(ArrayList<Debuff> debuffList) {
+        this.debuffList = debuffList;
+    }
+
+    public PhaseManager getPhaseManager() {
+        return phaseManager;
+    }
+
+    public void setPhaseManager(PhaseManager phaseManager) {
+        this.phaseManager = phaseManager;
+    }
+
+    public Texture getNamePlate() {
+        return namePlate;
+    }
+
+    public void setNamePlate(Texture namePlate) {
+        this.namePlate = namePlate;
+    }
+
+    public Text getNameText() {
+        return nameText;
+    }
+
+    public void setNameText(Text nameText) {
+        this.nameText = nameText;
+    }
+
+    public Text getAnnouncement() {
+        return announcement;
+    }
+
+    public void setAnnouncement(Text announcement) {
+        this.announcement = announcement;
+    }
+
     public void setPlayer(Player player) {
         this.player = player;
     }

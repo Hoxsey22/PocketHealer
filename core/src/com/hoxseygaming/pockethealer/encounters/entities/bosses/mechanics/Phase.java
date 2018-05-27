@@ -25,6 +25,8 @@ public class Phase {
     public Timer timer;
     public ArrayList<Mechanic> mechanics;
     public boolean isTimed;
+    private boolean isNameChange;
+    private String nameChange;
 
     /**
      * @param owner: The Boss which owns the phase.
@@ -127,6 +129,9 @@ public class Phase {
     public void start() {
         timer = new Timer();
         isActive = true;
+        if(isNameChange)    {
+            changeBossName();
+        }
         if(name == "") {
             Timer phaseTitleTimer = new Timer();
             getOwner().announcement.setText(name);
@@ -257,6 +262,10 @@ public class Phase {
         */
     }
 
+    public void changeBossName()    {
+        owner.getNameText().setText(nameChange);
+    }
+
     /*****************************************************************
      *
      *                      GETTERS AND SETTERS
@@ -301,5 +310,21 @@ public class Phase {
 
     public void setTimer(Timer timer) {
         this.timer = timer;
+    }
+
+    public String getNameChange() {
+        return nameChange;
+    }
+
+    public void setNameChange(String nameChange) {
+        this.nameChange = nameChange;
+    }
+
+    public boolean isNameChange() {
+        return isNameChange;
+    }
+
+    public void setNameChange(boolean nameChange) {
+        isNameChange = nameChange;
     }
 }

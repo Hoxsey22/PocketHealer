@@ -23,8 +23,8 @@ public class MotherSpider extends Boss {
     FeedingTime feedingTime;
 
     public MotherSpider(Assets assets) {
-        super("Mother Spider","In the creepy cave, a giant spider, the mother of all spider is blocking your way to the castle. " +
-                        "She does a ferocious leap on a person and injects them with venom. She loves to eat her victims, but only if they are in " +
+        super("Mother Spider","Something is still wrong and a huge dark force is coming from the castle. Though the creepy cave, a giant spider, the mother of all spider is blocking the way to the castle. " +
+                        "She does a ferocious leap and injects them with venom. She loves to eat her victims, but only if they are in " +
                         "her web. Be careful!",
                 255,
                 new Raid(12,assets),

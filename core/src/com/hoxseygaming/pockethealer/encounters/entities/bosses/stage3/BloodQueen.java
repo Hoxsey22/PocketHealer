@@ -26,9 +26,8 @@ public class BloodQueen extends Boss {
 
     public BloodQueen(Assets assets) {
         super("Blood Queen",
-                "The queen of all vampires has come to stop you in your tracks. She bites her victims, granted them " +
-                        "immense power at a price. She also links to souls together causing them to share pain. Lastly, in desperate times " +
-                        "she will fly in the air and unleash a wrath of shadow damage and cursing people to take more of this shadow damage. ",
+                "The queen of all vampires has come to stop you in your tracks. She likes to bite her victims " +
+                        "help her army of vampires, but can be a double edge sword. Watch her shadow spells they can be devastating.",
                 600,
                 new Raid(12,assets),
                 assets);

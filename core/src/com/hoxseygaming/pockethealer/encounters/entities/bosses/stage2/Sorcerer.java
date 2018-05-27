@@ -7,6 +7,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Blanke
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FireBreath;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Pyroblast;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.AgonyEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BurnEffect;
@@ -21,11 +22,12 @@ public class Sorcerer extends Boss {
     public Agony agony;
     public BlanketCorruption blanketCorruption;
     public Fireball fireball;
+    private Pyroblast pyroblast;
     public FireBreath fireBreath;
 
     public Sorcerer(Assets assets) {
         super("Sorcerer","The time has come, the Sorcerer is finally taking a stand. The Sorcerer is very similar to his " +
-                "apprentice, but has one more trick up his sleeve.",
+                "apprentice, but has some more tricks up her sleeves.",
                 240,
                 new Raid(12,assets),
                 assets);
@@ -39,8 +41,14 @@ public class Sorcerer extends Boss {
         damage = 0;
 
         agony = new Agony(this);
+
         blanketCorruption = new BlanketCorruption(this,40f);
+
         fireball = new Fireball(this, 3f);
+
+        pyroblast = new Pyroblast(this, 5f);
+        pyroblast.setDamage(60);
+
         fireBreath = new FireBreath(this);
         fireBreath.setSpeed(35f);
 

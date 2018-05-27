@@ -29,7 +29,8 @@ public class Hydra extends Boss {
 
     public Hydra(Assets assets) {
         super("Ion, The Hydra", "A monstrous hydra is blocking the way to the top of castle. " +
-                "This hydra has been altered for mass destruction. \nDon't let the raid drop below 10% or they die.",
+                "This hydra has been altered for mass destruction with electricity. This beast can also go on a blind rage. Luckily," +
+                        " the injured shaman in the monster's room is going to try to help with a strong spell, Stone Skin.",
                 230,
                 new Raid(2,3,7, assets),
                 assets);

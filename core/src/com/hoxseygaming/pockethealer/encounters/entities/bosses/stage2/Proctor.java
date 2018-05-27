@@ -24,7 +24,7 @@ public class Proctor extends Boss {
     public TankSwap tankSwap;
 
     public Proctor(Assets assets) {
-        super("Proctor","A long dirt trail leading to the Sorcerer's castle is being protected by the Proctor." +
+        super("Proctor","A long dirt trail leading to the Sorcerer's hideout is being protected by the Proctor." +
                 " A giant monster with heavy hand and with running speeds hard to dodge. He also has a fire breath that can be very devastating.",
                 210,
                 new Raid(12, assets),
