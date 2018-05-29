@@ -37,7 +37,7 @@ public class LifeboomEffect extends Buff {
 
     @Override
     public void applyEffect() {
-        totalBoom = totalBoom + getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().criticalChance));
+        totalBoom = totalBoom + getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().getCriticalChance()));
     }
 
     @Override
@@ -53,10 +53,10 @@ public class LifeboomEffect extends Buff {
     @Override
     public void remove() {
         if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())    {
-            getOwner().spellBar.getSpell(0).applyMasteringHealing(getTarget(), getModValue());
+            getOwner().getSpellBar().getSpell(0).applyMasteringHealing(getTarget(), getModValue());
         }
         else
-            getTarget().receiveHealing((int)((float)totalBoom/2f), CriticalDice.roll(getOwner().criticalChance));
+            getTarget().receiveHealing((int)((float)totalBoom/2f), CriticalDice.roll(getOwner().getCriticalChance()));
         super.remove();
     }
 }

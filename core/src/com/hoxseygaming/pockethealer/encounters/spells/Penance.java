@@ -21,24 +21,24 @@ public class Penance extends ChannelCast {
                 3f,
                 8f,
                 assets);
-        image = assets.getTexture(assets.penanceIcon);
+        setImage(getAssets().getTexture(getAssets().penanceIcon));
     }
 
     @Override
     public void applySpell(RaidMember target) {
-        if(!owner.getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
-            if(owner.getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
-                applyMasteringHealing(target, output);
+        if(!getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
+            if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
+                applyMasteringHealing(target, getOutput());
             }
             else
-                target.receiveHealing(output, criticalChance.isCritical());
+                target.receiveHealing(getOutput(), getCriticalChance().isCritical());
 
         }
         else {
-            RaidMember lowest = owner.getRaid().getRaidMemberWithLowestHp();
-            int newOutput = owner.getBoss().takeDamage(output, criticalChance.isCritical());
+            RaidMember lowest = getOwner().getRaid().getRaidMemberWithLowestHp();
+            int newOutput = getOwner().getBoss().takeDamage(getOutput(), getCriticalChance().isCritical());
 
-            if (owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
+            if (getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
                 applyCriticalHealerII(lowest, newOutput);
                 triggerAtonement(newOutput);
             }
@@ -50,9 +50,9 @@ public class Penance extends ChannelCast {
         resetDefault();
 
         checkCriticalHealer();
-        if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
-            castTime = MIN_CAST_TIME - 0.25f;
-            ticksPerCast = 5;
+        if(getOwner().getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
+            setCastTime(getMIN_CAST_TIME() - 0.25f);
+            setTicksPerCast(5);
         }
     }
 }

@@ -26,23 +26,23 @@ public class HolyShock extends InstantCast {
                 assets.getSound(assets.healSFX),
                 assets);
 
-        setImage(assets.getTexture(assets.criticalHealer2Icon));
+        setImage(getAssets().getTexture(getAssets().criticalHealer2Icon));
     }
 
     @Override
     public void applySpell(RaidMember target) {
 
-        if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
-            applyCriticalHealerII(target, output);
+        if(getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
+            applyCriticalHealerII(target, getOutput());
         }
-        else if(owner.getTalentTree().getTalent(owner.getTalentTree().MASTERING_HEALING).isSelected())   {
-            applyMasteringHealing(target, output);
+        else if(getOwner().getTalentTree().getTalent(getOwner().getTalentTree().MASTERING_HEALING).isSelected())   {
+            applyMasteringHealing(target, getOutput());
         }
         else    {
-            target.receiveHealing(output, criticalChance.isCritical());
+            target.receiveHealing(getOutput(), getCriticalChance().isCritical());
         }
 
-        owner.holyShockIncrease = true;
+        getOwner().setHolyShockIncrease(true);
 
     }
 
@@ -50,7 +50,6 @@ public class HolyShock extends InstantCast {
     @Override
     public void checkTalents() {
         resetDefault();
-
         checkCriticalHealer();
     }
 }

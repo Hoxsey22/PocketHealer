@@ -10,21 +10,21 @@ import com.hoxseygaming.pockethealer.HealingTracker;
  */
 public class Entity extends Actor{
 
-    public int id;
-    public String name;
-    public int maxHp;
-    public int hp;
-    public float hpPercent;
-    public int shield;
-    public int healingAbsorb;
-    public String role;
-    public int damage;
-    public boolean isDead;
-    public Texture roleImage;
-    public boolean selected;
-    public Assets assets;
-    public int amountAbsorbed;
-    public HealingTracker healingTracker;
+    private int id;
+    private String name;
+    private int maxHp;
+    private int hp;
+    private float hpPercent;
+    private int shield;
+    private int healingAbsorb;
+    private String role;
+    private int damage;
+    private boolean isDead;
+    private Texture roleImage;
+    private boolean selected;
+    private Assets assets;
+    private int amountAbsorbed;
+    private HealingTracker healingTracker;
 
     /**
      * RaidMember param
@@ -318,5 +318,33 @@ public class Entity extends Actor{
 
     public HealingTracker getHealingTracker() {
         return healingTracker;
+    }
+
+    public int getHealingAbsorb() {
+        return healingAbsorb;
+    }
+
+    public void setHealingAbsorb(int healingAbsorb) {
+        this.healingAbsorb = healingAbsorb;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public int getAmountAbsorbed() {
+        return amountAbsorbed;
+    }
+
+    public void setAmountAbsorbed(int amountAbsorbed) {
+        this.amountAbsorbed = amountAbsorbed;
+    }
+
+    public void setHealingTracker(HealingTracker healingTracker) {
+        this.healingTracker = healingTracker;
     }
 }

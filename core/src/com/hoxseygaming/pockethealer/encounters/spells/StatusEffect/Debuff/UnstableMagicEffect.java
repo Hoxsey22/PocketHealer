@@ -15,7 +15,7 @@ public class UnstableMagicEffect extends Debuff {
                 5,
                 "Unstable Magic Effect",
                 "A surge of uncontrollable magic increases the target's damage by 300%, but the target is damage by this uncontrollable magic.",
-                owner.assets.getTexture(owner.assets.unstableMagicIcon),
+                owner.getAssets().getTexture(owner.getAssets().unstableMagicIcon),
                 600f,
                 2f,
                 10,

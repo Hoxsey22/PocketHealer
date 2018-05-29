@@ -69,6 +69,38 @@ public class FloatingTextManager {
         idCounter = 0;
     }
 
+    public RaidMember getOwner() {
+        return owner;
+    }
+
+    public void setOwner(RaidMember owner) {
+        this.owner = owner;
+    }
+
+    public ArrayList<FloatingText> getFloatingTexts() {
+        return floatingTexts;
+    }
+
+    public void setFloatingTexts(ArrayList<FloatingText> floatingTexts) {
+        this.floatingTexts = floatingTexts;
+    }
+
+    public int getIdCounter() {
+        return idCounter;
+    }
+
+    public void setIdCounter(int idCounter) {
+        this.idCounter = idCounter;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
     public void draw(Batch batch, float alpha)  {
 
         for (int i = 0; i < floatingTexts.size(); i++) {

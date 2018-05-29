@@ -19,24 +19,24 @@ import java.util.ArrayList;
 
 public class GameOverFrame extends Group {
 
-    public Image disableBG;
-    public Image frame;
-    public Label boxLabel;  //maybe for a later time
-    public ArrayList<Label> chat;   // maybe for a later time
+    private Image disableBG;
+    private Image frame;
+    private Label boxLabel;  //maybe for a later time
+    private ArrayList<Label> chat;   // maybe for a later time
     //public Button resetButton;
-    public TextButton resetButton;
+    private TextButton resetButton;
     //public Button leaveButton;
-    public TextButton leaveButton;
-    public TextButton okButton;
-    public Text title;
-    public Text body;
-    public Table table;
-    public Image results;
-    public Music endingMusic;   // maybe later
-    public Boss boss;
-    public Assets assets;
-    public boolean won;
-    public int page;
+    private TextButton leaveButton;
+    private TextButton okButton;
+    private Text title;
+    private Text body;
+    private Table table;
+    private Image results;
+    private Music endingMusic;   // maybe later
+    private Boss boss;
+    private Assets assets;
+    private boolean won;
+    private int page;
 
     public GameOverFrame(boolean won, Boss boss, Assets assets) {
         this.assets = assets;
@@ -90,8 +90,8 @@ public class GameOverFrame extends Group {
         table.add(title.getLabel()).expandX();
         table.row();
 
-        body.setText("Effective Healing\n" + boss.getEnemies().healingTracker.getEffectiveHealingPercent() + "%\n" +
-                "Overhealing\n" + boss.getEnemies().healingTracker.getOverHealingPercent() + "%");
+        body.setText("Effective Healing\n" + boss.getEnemies().getHealingTracker().getEffectiveHealingPercent() + "%\n" +
+                "Overhealing\n" + boss.getEnemies().getHealingTracker().getOverHealingPercent() + "%");
 
         table.add(body.getLabel()).expandX().expandY();
         table.row();
@@ -106,9 +106,9 @@ public class GameOverFrame extends Group {
         table.add(title.getLabel()).colspan(2);
         table.row();
 
-        if (boss.getRewardPackage().spell) {
-            for (int i = 0; i < boss.getRewardPackage().images.size(); i++) {
-                table.add(boss.getRewardPackage().images.get(i));
+        if (boss.getRewardPackage().isSpell()) {
+            for (int i = 0; i < boss.getRewardPackage().getImages().size(); i++) {
+                table.add(boss.getRewardPackage().getImages().get(i));
             }
             table.row();
         }
@@ -154,4 +154,131 @@ public class GameOverFrame extends Group {
         return -1;
     }
 
+    public Image getDisableBG() {
+        return disableBG;
+    }
+
+    public void setDisableBG(Image disableBG) {
+        this.disableBG = disableBG;
+    }
+
+    public Image getFrame() {
+        return frame;
+    }
+
+    public void setFrame(Image frame) {
+        this.frame = frame;
+    }
+
+    public Label getBoxLabel() {
+        return boxLabel;
+    }
+
+    public void setBoxLabel(Label boxLabel) {
+        this.boxLabel = boxLabel;
+    }
+
+    public ArrayList<Label> getChat() {
+        return chat;
+    }
+
+    public void setChat(ArrayList<Label> chat) {
+        this.chat = chat;
+    }
+
+    public TextButton getResetButton() {
+        return resetButton;
+    }
+
+    public void setResetButton(TextButton resetButton) {
+        this.resetButton = resetButton;
+    }
+
+    public TextButton getLeaveButton() {
+        return leaveButton;
+    }
+
+    public void setLeaveButton(TextButton leaveButton) {
+        this.leaveButton = leaveButton;
+    }
+
+    public TextButton getOkButton() {
+        return okButton;
+    }
+
+    public void setOkButton(TextButton okButton) {
+        this.okButton = okButton;
+    }
+
+    public Text getTitle() {
+        return title;
+    }
+
+    public void setTitle(Text title) {
+        this.title = title;
+    }
+
+    public Text getBody() {
+        return body;
+    }
+
+    public void setBody(Text body) {
+        this.body = body;
+    }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
+    public Image getResults() {
+        return results;
+    }
+
+    public void setResults(Image results) {
+        this.results = results;
+    }
+
+    public Music getEndingMusic() {
+        return endingMusic;
+    }
+
+    public void setEndingMusic(Music endingMusic) {
+        this.endingMusic = endingMusic;
+    }
+
+    public Boss getBoss() {
+        return boss;
+    }
+
+    public void setBoss(Boss boss) {
+        this.boss = boss;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
+    public boolean isWon() {
+        return won;
+    }
+
+    public void setWon(boolean won) {
+        this.won = won;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
 }

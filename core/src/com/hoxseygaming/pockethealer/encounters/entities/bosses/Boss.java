@@ -22,21 +22,21 @@ import java.util.ArrayList;
  */
 public abstract class Boss extends Entity {
 
-    public Raid enemies;
-    public RaidMember target;
-    public Player player;
-    public ArrayList<Mechanic> mechanics;
-    public ArrayList<Debuff> debuffList;
-    public PhaseManager phaseManager;
-    public Texture namePlate;
-    public int level;
-    public int raidSize;
-    public Text nameText;
-    public Text announcement;
-    public String rewardDescription;
-    public boolean isDefeated;
-    public String description;
-    public RewardPackage rewardPackage;
+    private Raid enemies;
+    private RaidMember target;
+    private Player player;
+    private ArrayList<Mechanic> mechanics;
+    private ArrayList<Debuff> debuffList;
+    private PhaseManager phaseManager;
+    private Texture namePlate;
+    private int level;
+    private int raidSize;
+    private Text nameText;
+    private Text announcement;
+    private String rewardDescription;
+    private boolean isDefeated;
+    private String description;
+    private RewardPackage rewardPackage;
 
     public Boss(String name, String description, int maxHp, Assets assets) {
         super(name, maxHp, assets);
@@ -53,7 +53,7 @@ public abstract class Boss extends Entity {
         setBounds(20, 740, 445, 40);
         this.description = description;
         this.enemies = enemies;
-        raidSize = enemies.raidMembers.size();
+        raidSize = enemies.getRaidMembers().size();
         target = getMainTank();
         mechanics = new ArrayList<>();
         debuffList = new ArrayList<>();
@@ -126,7 +126,7 @@ public abstract class Boss extends Entity {
         System.out.println("BOSS IS NOW ACTIVE!");
         create();
         enemies.start(this);
-        phaseManager.startPhase();
+        getPhaseManager().startPhase();
 
        /* for(int i = 0; i < mechanics.size(); i++)   {
             mechanics.get(i).start();
@@ -139,7 +139,7 @@ public abstract class Boss extends Entity {
         /*for (int i = 0; i <  mechanics.size(); i++)
             mechanics.get(i).stop();
             */
-        phaseManager.reset();
+        getPhaseManager().reset();
     }
 
     public void nextThreat() {
@@ -312,7 +312,7 @@ public abstract class Boss extends Entity {
     }
 
     public void rewardPoint()   {
-        player.getTalentTree().addPoint();
+        getPlayer().getTalentTree().addPoint();
     }
 
     public void rewardSpell(String spell)   {
@@ -334,7 +334,7 @@ public abstract class Boss extends Entity {
         enemies.reset();
         //enemies = new Raid(raidSize, assets);
         target = getMainTank();
-        phaseManager.reset();
+        getPhaseManager().reset();
     }
 
     public RewardPackage getRewardPackage() {
@@ -356,12 +356,11 @@ public abstract class Boss extends Entity {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(assets.getTexture("black_bar.png"), getX(), getY(), getWidth(), getHeight());
-        batch.draw(assets.getTexture("red_bar.png"), getX()+2, getY()+2, (getWidth()-4), getHeight()-4);
-        batch.draw(assets.getTexture("green_bar.png"), getX()+2, getY()+2, (getWidth()-4)*getHpPercent(), getHeight()-4);
+        batch.draw(getAssets().getTexture("black_bar.png"), getX(), getY(), getWidth(), getHeight());
+        batch.draw(getAssets().getTexture("red_bar.png"), getX()+2, getY()+2, (getWidth()-4), getHeight()-4);
+        batch.draw(getAssets().getTexture("green_bar.png"), getX()+2, getY()+2, (getWidth()-4)*getHpPercent(), getHeight()-4);
         if(target != null)
-            batch.draw(assets.getTexture("red_outline_bar.png"), target.getX(), target.getY(), target.getWidth(), target.getHeight());
-        //batch.draw(namePlate, getX()+(getWidth()/2)-((getWidth()/3)/2) ,getY()+2,getWidth()/3,getHeight()-5);
+            batch.draw(getAssets().getTexture("red_outline_bar.png"), target.getX(), target.getY(), target.getWidth(), target.getHeight());
         nameText.draw(batch, parentAlpha);
         announcement.draw(batch, parentAlpha);
 

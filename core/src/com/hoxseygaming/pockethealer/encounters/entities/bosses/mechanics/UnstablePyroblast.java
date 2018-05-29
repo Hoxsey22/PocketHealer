@@ -12,24 +12,24 @@ import java.util.Random;
 
 public class UnstablePyroblast extends Mechanic {
 
-    public int numOfTargets;
+    private int numOfTargets;
 
     public UnstablePyroblast(Boss owner) {
         super("Unstable Pyroblast", 0, 20f, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     public UnstablePyroblast(Boss owner, float speed) {
         super("Unstable Pyroblast", 0, speed, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
         numOfTargets = new Random().nextInt(5)*1;
-        ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
+        ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
 
         for (int i = 0; i < temp.size(); i++)   {
             temp.get(i).takeDamage(new Random().nextInt(70)*1);

@@ -48,7 +48,7 @@ public class TalentSelectionState extends State {
 
         this.player = player;
 
-        talentTree = player.talentTree;
+        talentTree = player.getTalentTree();
         talentTree.setName("Talent Tree");
 
         pointTracker = new Text("POINTS:",24,Color.WHITE,false, assets);
@@ -71,12 +71,12 @@ public class TalentSelectionState extends State {
 
         stage = new Stage(viewport);
         stage.addActor(background);
-        //stage.addActor(talentTreeTitle.getLabel());
+        //stageNumber.addActor(talentTreeTitle.getLabel());
         stage.addActor(talentTree);
-        //stage.addActor(pointTracker.getLabel());
+        //stageNumber.addActor(pointTracker.getLabel());
         stage.addActor(select);
         stage.addActor(done);
-        //stage.setDebugAll(true);
+        //stageNumber.setDebugAll(true);
         createText();
     }
 

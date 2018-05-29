@@ -15,13 +15,13 @@ public class ConsumingShadow extends Mechanic{
 
     public ConsumingShadow(Boss owner, float speed) {
         super("Consuming Shadow", 0, speed, owner);
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
-        for(int i = 0; i <  owner.getEnemies().raidMembers.size(); i++)   {
-            owner.getEnemies().raidMembers.get(i).addStatusEffect(new ConsumingShadowEffect(owner));
+        for(int i = 0; i <  getOwner().getEnemies().getRaidMembers().size(); i++)   {
+            getOwner().getEnemies().getRaidMembers().get(i).addStatusEffect(new ConsumingShadowEffect(getOwner()));
         }
     }
 }

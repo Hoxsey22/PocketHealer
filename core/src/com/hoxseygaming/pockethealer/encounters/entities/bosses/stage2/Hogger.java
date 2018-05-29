@@ -34,16 +34,14 @@ public class Hogger extends Boss {
     @Override
     public void create() {
         super.create();
-
-        damage = 20;
+        setDamage(20);
 
         autoAttack = new AutoAttack(this, 2f);
         tankSwap = new TankSwap(this, 8f);
         cleave = new Cleave(this, 2f);
-        cleave.setDamage(damage);
+        cleave.setDamage(getDamage());
 
-        phaseManager.addPhase(new Phase(this, 0, autoAttack, tankSwap, cleave));
-        //loadMechanics(autoAttack,tankSwap,cleave);
+        getPhaseManager().addPhase(new Phase(this, 0, autoAttack, tankSwap, cleave));
         phase = 0;
 
     }
@@ -69,10 +67,42 @@ public class Hogger extends Boss {
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
-            rewardPackage.addNewSpellText();
-            rewardPackage.addImage(new Image(assets.getTexture(assets.criticalHealer2Icon)));
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
+            getRewardPackage().addNewSpellText();
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().criticalHealer2Icon)));
         }
+    }
+
+    public AutoAttack getAutoAttack() {
+        return autoAttack;
+    }
+
+    public void setAutoAttack(AutoAttack autoAttack) {
+        this.autoAttack = autoAttack;
+    }
+
+    public TankSwap getTankSwap() {
+        return tankSwap;
+    }
+
+    public void setTankSwap(TankSwap tankSwap) {
+        this.tankSwap = tankSwap;
+    }
+
+    public Cleave getCleave() {
+        return cleave;
+    }
+
+    public void setCleave(Cleave cleave) {
+        this.cleave = cleave;
+    }
+
+    public int getPhase() {
+        return phase;
+    }
+
+    public void setPhase(int phase) {
+        this.phase = phase;
     }
 }

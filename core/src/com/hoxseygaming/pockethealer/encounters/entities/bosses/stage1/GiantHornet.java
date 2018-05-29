@@ -15,8 +15,8 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Poiso
 
 public class GiantHornet extends Boss {
 
-    AutoAttack autoAttack;
-    Sting sting;
+    private AutoAttack autoAttack;
+    private Sting sting;
 
     public GiantHornet(Assets assets) {
         super("Giant Hornet","A sorcerer has put a spell on a hornet causing it to grow into " +
@@ -30,27 +30,41 @@ public class GiantHornet extends Boss {
     @Override
     public void create() {
         super.create();
-        damage = 5;
+        setDamage(5);
 
         autoAttack = new AutoAttack(this, 0.5f);
         sting = new Sting(this);
         sting.setAnnounce(true);
-        //sting.setSpeed(8f);
         sting.setNumOfTargets(3);
 
-        phaseManager.addPhase(new Phase(this, 0, autoAttack, sting));
-        //loadMechanics(autoAttack, sting);
+        getPhaseManager().addPhase(new Phase(this, 0, autoAttack, sting));
         loadDebuff(new PoisonEffect(this));
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
-            rewardPackage.addNewTalentText();
-            rewardPackage.addNewSpellText();
-            rewardPackage.addImage(new Image(assets.getTexture(assets.holyNovaIcon)));
-            rewardPackage.addImage(new Image(assets.getTexture(assets.prayerOfMendingIcon)));
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
+            getRewardPackage().addNewTalentText();
+            getRewardPackage().addNewSpellText();
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().holyNovaIcon)));
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().prayerOfMendingIcon)));
         }
+    }
+
+    public AutoAttack getAutoAttack() {
+        return autoAttack;
+    }
+
+    public void setAutoAttack(AutoAttack autoAttack) {
+        this.autoAttack = autoAttack;
+    }
+
+    public Sting getSting() {
+        return sting;
+    }
+
+    public void setSting(Sting sting) {
+        this.sting = sting;
     }
 }

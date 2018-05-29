@@ -13,7 +13,7 @@ import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 public abstract class InstantCast extends Spell {
 
-    public Sound spellSFX;
+    protected Sound spellSFX;
 
     /**
      *
@@ -29,9 +29,9 @@ public abstract class InstantCast extends Spell {
     public InstantCast(Player player, String name, String description, int levelRequirement,
                        int numOfTargets, int output, float costPercentage, float cooldown, Sound spellSFX, Assets assets) {
         super(player, name, description,levelRequirement, output, costPercentage, cooldown, assets);
-        spellType = "Instant";
+        setSpellType("Instant");
         this.spellSFX = spellSFX;
-        this.numOfTargets = numOfTargets;
+        setNumOfTargets(numOfTargets);
     }
 
     @Override
@@ -40,20 +40,18 @@ public abstract class InstantCast extends Spell {
             useMana();
             startCooldownTimer();
             AudioManager.playSFX(spellSFX, false);
-            //spellSFX.play(0.3f);
             applySpell(getOwnerTarget());
-
         }
 
     }
 
     @Override
     public void applySpell(RaidMember target)    {
-        target.receiveHealing(output, criticalChance.isCritical());
-        if(numOfTargets > 1) {
+        target.receiveHealing(getOutput(), getCriticalChance().isCritical());
+        if(getNumOfTargets() > 1) {
             getRandomTargets();
-            for (int i = 0; i < targets.size(); i++) {
-                targets.get(i).receiveHealing(output, criticalChance.isCritical());
+            for (int i = 0; i < getTargets().size(); i++) {
+                getTargets().get(i).receiveHealing(getOutput(), getCriticalChance().isCritical());
             }
         }
     }
@@ -63,8 +61,8 @@ public abstract class InstantCast extends Spell {
 
     }
 
-    public void getRandomTargets()  {
-        targets = getOwner().raid.getRaidMembersWithLowestHp(numOfTargets);
+    public void getRandomTargets() {
+        setTargets(getOwner().getRaid().getRaidMembersWithLowestHp(getNumOfTargets()));
     }
 
     public Sound getSpellSFX() {
@@ -74,4 +72,5 @@ public abstract class InstantCast extends Spell {
     public void setSpellSFX(Sound spellSFX) {
         this.spellSFX = spellSFX;
     }
+
 }

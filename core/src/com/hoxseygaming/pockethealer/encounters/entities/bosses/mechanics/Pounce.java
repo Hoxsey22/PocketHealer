@@ -12,19 +12,19 @@ import java.util.ArrayList;
 
 public class Pounce extends Mechanic {
 
-    int numOfTargets;
+    private int numOfTargets;
 
     public Pounce(Boss owner) {
         super("Pounce",30,4f,owner);
-        id = 4;
+        ;
         numOfTargets = 3;
-        announce = true;
+        setAnnounce(true);
     }
 
     public Pounce(Boss owner, float speed) {
         super("Pounce",30,speed,owner);
-        id = 4;
-        announce = true;
+        ;
+        setAnnounce(true);
     }
 
     @Override
@@ -33,8 +33,8 @@ public class Pounce extends Mechanic {
 
         for (int i = 0; i < temp.size(); i++)   {
             if(temp.get(i) != null) {
-                temp.get(i).takeDamage(damage);
-                temp.get(i).addStatusEffect(new BleedEffect(owner));
+                temp.get(i).takeDamage(getDamage());
+                temp.get(i).addStatusEffect(new BleedEffect(getOwner()));
             }
         }
     }

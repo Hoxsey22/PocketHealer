@@ -16,26 +16,26 @@ import java.util.Comparator;
  */
 public class RaidMember extends Entity implements Comparable<RaidMember>, Comparator<RaidMember> {
 
-    public Texture frame;
-    public HealthBar healthBar;
-    public FloatingTextManager floatingTextManager;
-    public StatusEffectList statusEffects;
+    private Texture frame;
+    private HealthBar healthBar;
+    private FloatingTextManager floatingTextManager;
+    private StatusEffectList statusEffects;
 
 
     public RaidMember(int id, String role, Assets assets)  {
         super(id,role,assets);
         healthBar = new HealthBar(this);
-        frame = assets.getTexture(assets.raidFrameIdle);
+        frame = getAssets().getTexture(getAssets().raidFrameIdle);
 
 
     }
 
     public void create()    {
         setRoleImage();
-        floatingTextManager = new FloatingTextManager(this, assets);
+        floatingTextManager = new FloatingTextManager(this, getAssets());
         statusEffects = new StatusEffectList(this);
-        hp = maxHp;
-        isDead = false;
+        setHp(getMaxHp());
+        setDead(false);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         if(statusEffects.contains("Prayer of Mending"))    {
             statusEffects.getStatusEffect("Prayer of Mending").applyEffect();
         }
-        if(isDead)    {
+        if(isDead())    {
             statusEffects.clear();
         }
 
@@ -72,27 +72,27 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
     }
 
     public void setRoleImage()  {
-        switch (role)   {
+        switch (getRole())   {
             case "Tank":
-                roleImage = assets.getTexture(assets.tankIcon);
+                setRoleImage(getAssets().getTexture(getAssets().tankIcon));
                 break;
             case "Healer":
-                roleImage = assets.getTexture(assets.healerIcon);
+                setRoleImage(getAssets().getTexture(getAssets().healerIcon));
                 break;
             case "Dps":
-                roleImage = assets.getTexture(assets.dpsIcon);
+                setRoleImage(getAssets().getTexture(getAssets().dpsIcon));
                 break;
         }
     }
 
     public void unselected()  {
-        selected = false;
-        frame = assets.getTexture(assets.raidFrameIdle);
+        setSelected(false);
+        frame = getAssets().getTexture(getAssets().raidFrameIdle);
     }
 
     public void selected()  {
-        selected = true;
-        frame = assets.getTexture(assets.raidFrameSelected);
+        setSelected(true);
+        frame = getAssets().getTexture(getAssets().raidFrameSelected);
     }
 
     @Override
@@ -106,16 +106,16 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
     }
 
     public float getHealthPercent() {
-        return (float)hp/(float)maxHp;
+        return (float)getHp()/(float)getMaxHp();
     }
 
     public float getFullHealthPercent() {
-        return (float)(hp-healingAbsorb)/(float)maxHp;
+        return (float)(getHp()-getHealingAbsorb())/(float)getMaxHp();
     }
 
     @Override
     public String toString() {
-        return id+":"+role+" hp:"+getHp();
+        return getId()+":"+getRole()+" hp:"+getHp();
     }
 
     public void addStatusEffect(StatusEffect newStatusEffect)   {
@@ -134,15 +134,15 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
     @Override
     public void reset() {
         super.reset();
-        switch (role)   {
+        switch (getRole())   {
             case "Tank":
-                damage = 5;
+                setDamage(5);
                 break;
             case "Healer":
-                damage = 2;
+                setDamage(2);
                 break;
             case "Dps":
-                damage = 10;
+                setDamage(10);
                 break;
         }
         create();
@@ -156,11 +156,39 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         }
     }
 
+    public Texture getFrame() {
+        return frame;
+    }
+
+    public void setFrame(Texture frame) {
+        this.frame = frame;
+    }
+
+    public HealthBar getHealthBar() {
+        return healthBar;
+    }
+
+    public void setHealthBar(HealthBar healthBar) {
+        this.healthBar = healthBar;
+    }
+
+    public FloatingTextManager getFloatingTextManager() {
+        return floatingTextManager;
+    }
+
+    public void setFloatingTextManager(FloatingTextManager floatingTextManager) {
+        this.floatingTextManager = floatingTextManager;
+    }
+
+    public StatusEffectList getStatusEffects() {
+        return statusEffects;
+    }
+
     @Override
     public void draw(Batch batch, float alpha) {
         batch.draw(frame, getX(),getY(),getWidth(),getHeight());
         if(!isDead()) {
-            batch.draw(roleImage, getX()+8, getY() + getHeight()- 39, 34,34);
+            batch.draw(getRoleImage(), getX()+8, getY() + getHeight()- 39, 34,34);
             /*
             for (int i = 0; i < effects.size(); i++) {
                 batch.draw(effects.get(i), healthBar.x + healthBar.width - 20 * (i) - 20, healthBar.y + healthBar.height + 5, 20, 20);
@@ -171,7 +199,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         }
         else {
             floatingTextManager.clear();
-            batch.draw(assets.getTexture(assets.deathIcon), getX()+5, getY() + getHeight()- 39, 34,34);
+            batch.draw(getAssets().getTexture(getAssets().deathIcon), getX()+5, getY() + getHeight()- 39, 34,34);
         }
     }
 

@@ -12,27 +12,27 @@ import java.util.ArrayList;
 
 public class Ignite extends Mechanic {
 
-    public int numOfTargets;
+    private int numOfTargets;
 
     public Ignite(Boss owner) {
         super("Ignite", 0, 18f, owner);
         numOfTargets = 1;
-        bgMech = true;
+        setBgMech(true);
     }
 
     public Ignite(Boss owner, float speed) {
         super("Ignite", 0, 18f, owner);
         numOfTargets = 1;
-        bgMech = true;
+        setBgMech(true);
     }
 
 
     @Override
     public void action() {
-        ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
+        ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
 
         for (int i = 0; i < temp.size(); i++)   {
-            temp.get(i).addStatusEffect(new IgniteEffect(owner));
+            temp.get(i).addStatusEffect(new IgniteEffect(getOwner()));
         }
     }
 

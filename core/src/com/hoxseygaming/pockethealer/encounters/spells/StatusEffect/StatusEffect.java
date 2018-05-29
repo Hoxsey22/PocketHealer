@@ -242,6 +242,22 @@ public abstract class StatusEffect{
         this.type = type;
     }
 
+    public boolean isDispelled() {
+        return isDispelled;
+    }
+
+    public void setDispelled(boolean dispelled) {
+        isDispelled = dispelled;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
     public String toString()    {
         String s = getName()+"\n" +
                 "ID: "+getId()+"\n" +

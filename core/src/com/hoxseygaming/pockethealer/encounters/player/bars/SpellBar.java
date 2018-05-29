@@ -18,11 +18,11 @@ import java.util.ArrayList;
  */
 public class SpellBar extends Group {
 
-    public ArrayList<Spell> spells;
-    public Image image;
-    public Player owner;
-    public Assets assets;
-    public ArrayList<Rectangle> positions;
+    private ArrayList<Spell> spells;
+    private Image image;
+    private Player owner;
+    private Assets assets;
+    private ArrayList<Rectangle> positions;
 
     public SpellBar(Player owner) {
         setBounds(0,0,480,97);
@@ -32,7 +32,7 @@ public class SpellBar extends Group {
 
         this.owner = owner;
 
-        assets = owner.assets;
+        assets = owner.getAssets();
 
         image = new Image(assets.getTexture(assets.spellBar));
         image.setBounds(0,0,480,97);
@@ -87,12 +87,6 @@ public class SpellBar extends Group {
         else    {
             swapSpell(index, spell);
             resetSpellPosition();
-            /*
-            removeActor(spells.get(index));
-            spells.set(index,spell);
-            spells.get(index).setPosition(positions.get(index).getX(), positions.get(index).getY());
-            addActor(spells.get(index));
-            */
         }
     }
 
@@ -167,6 +161,46 @@ public class SpellBar extends Group {
             spellData.add(spells.get(i).getName());
         }
         return spellData;
+    }
+
+    public ArrayList<Spell> getSpells() {
+        return spells;
+    }
+
+    public void setSpells(ArrayList<Spell> spells) {
+        this.spells = spells;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
+    public ArrayList<Rectangle> getPositions() {
+        return positions;
+    }
+
+    public void setPositions(ArrayList<Rectangle> positions) {
+        this.positions = positions;
     }
 
     @Override

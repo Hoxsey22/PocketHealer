@@ -22,13 +22,13 @@ public class BlessedGarden extends Castable {
                 100f,
                 assets.getSound(assets.healSFX),
                 assets);
-        setImage(assets.getTexture(assets.blessedGardenIcon));
+        setImage(getAssets().getTexture(getAssets().blessedGardenIcon));
     }
 
     @Override
     public void applySpell(RaidMember target) {
-        for(int i = 0; i < owner.getRaid().raidMembers.size(); i++)   {
-            owner.getRaid().raidMembers.get(i).addStatusEffect(new BlessedGardenEffect(owner));
+        for(int i = 0; i < getOwner().getRaid().getRaidMembers().size(); i++)   {
+            getOwner().getRaid().getRaidMembers().get(i).addStatusEffect(new BlessedGardenEffect(getOwner()));
         }
     }
 

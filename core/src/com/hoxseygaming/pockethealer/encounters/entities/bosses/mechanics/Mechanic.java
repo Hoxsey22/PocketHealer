@@ -11,23 +11,22 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 public abstract class Mechanic {
 
-    public int id;
-    public String name;
-    public Boss owner;
-    public Timer timer;
-    public RaidMember target;
-    public RaidMember mainTank;
-    public RaidMember offTank;
-    public Raid raid;
-    public int damage;
-    public float speed;
-    public int duration;
-    public boolean announce;
-    public boolean isActive;
-    public String announcementString;
-    public Timer announcementTimer;
-    public Phase parentPhase;
-    public boolean bgMech;
+    private String name;
+    private Boss owner;
+    private Timer timer;
+    private RaidMember target;
+    private RaidMember mainTank;
+    private RaidMember offTank;
+    private Raid raid;
+    private int damage;
+    private float speed;
+    private int duration;
+    private boolean announce;
+    private boolean isActive;
+    private String announcementString;
+    private Timer announcementTimer;
+    private Phase parentPhase;
+    private boolean bgMech;
 
 
     public Mechanic(String name, int damage, float speed, Boss owner)   {
@@ -36,9 +35,9 @@ public abstract class Mechanic {
         this.damage = damage;
         this.speed = speed;
 
-        target = owner.getTarget();
+        target = getOwner().getTarget();
         isActive = false;
-        announcementString = owner.getName()+" is about to "+name+".";
+        announcementString = getOwner().getName()+" is about to "+name+".";
         create();
     }
 
@@ -50,9 +49,9 @@ public abstract class Mechanic {
         parentPhase = phase;
         this.bgMech = bgMech;
 
-        target = owner.getTarget();
+        target = getOwner().getTarget();
         isActive = false;
-        announcementString = owner.getName()+" is about to "+name+".";
+        announcementString = getOwner().getName()+" is about to "+name+".";
         create();
     }
 
@@ -77,11 +76,9 @@ public abstract class Mechanic {
 
     public void start()    {
         System.out.println("Timer started!");
-        //if(timer == null) {
-            timer = new Timer();
-        //}
+        timer = new Timer();
 
-        timer.scheduleTask(new Timer.Task() {
+        getTimer().scheduleTask(new Timer.Task() {
             int msp = 0;
 
             @Override
@@ -91,7 +88,7 @@ public abstract class Mechanic {
                     if(isActive) {
                         pausePhase();
                         if (announce)
-                            owner.announcement.setText(owner.getName() + " is about to " + name + ".");
+                            getOwner().getAnnouncement().setText(getOwner().getName() + " is about to " + name + ".");
                     }
                     else {
                         msp= msp-20;
@@ -105,13 +102,11 @@ public abstract class Mechanic {
                     }
 
                     if(announce)
-                        owner.announcement.setText("");
+                        getOwner().getAnnouncement().setText("");
                     action();
 
                 }
                 else if(msp == (int)((speed+1.5f)*10))   {
-                    /*if(!bgMech)
-                        resumePhase();*/
                     msp = 0;
                 }
             }
@@ -123,57 +118,34 @@ public abstract class Mechanic {
     public void stop()  {
         isActive = false;
         if(timer != null)    {
-            timer.stop();
-            timer.clear();
+            getTimer().stop();
+            getTimer().clear();
             System.out.println(name+" announcement timer stopped");
         }
-        /*
-        if(announcementTimer != null) {
-            announcementTimer.stop();
-            announcementTimer.clear();
-            System.out.println(name+" announcement timer stopped");
-        }
-        */
     }
 
     public void pause() {
 
         isActive = false;
         if(timer != null)   {
-            timer.stop();
+            getTimer().stop();
             System.out.println(name+" timer paused");
         }
-        /*
-        if(announcementTimer != null)   {
-            announcementTimer.stop();
-            System.out.println(name+" announcement timer paused");
-        }
-        */
     }
 
     public void resume() {
 
         isActive = true;
         if(timer != null)   {
-            timer.start();
+            getTimer().start();
             System.out.println(name+" timer resumed");
         }
-        /*
-        if(announcementTimer != null)   {
-            announcementTimer.start();
-            System.out.println(name+" announcement timer resumed");
-        }
-        */
     }
 
     public void applyMechanic()  {
         System.out.println("Mechanic applied");
     }
 
-
-    public int getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -213,23 +185,23 @@ public abstract class Mechanic {
 
     public void setSpeed(float speed) {
         if(timer != null)   {
-            timer.stop();
-            timer.delay((long)speed);
-            timer.start();
+            getTimer().stop();
+            getTimer().delay((long)speed);
+            getTimer().start();
         }
         this.speed = speed;
     }
 
     public void setMainTank()    {
-        mainTank = owner.getMainTank();
+        mainTank = getOwner().getMainTank();
     }
 
     public void setOffTank()    {
-        offTank = owner.getOffTank();
+        offTank = getOwner().getOffTank();
     }
 
     public Raid getRaid() {
-        return owner.getEnemies();
+        return getOwner().getEnemies();
     }
 
     public void setRaid(Raid raid) {
@@ -244,10 +216,6 @@ public abstract class Mechanic {
         this.announce = announce;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -257,7 +225,7 @@ public abstract class Mechanic {
     }
 
     public RaidMember getMainTank() {
-        return owner.getMainTank();
+        return getOwner().getMainTank();
     }
 
     public void setMainTank(RaidMember mainTank) {
@@ -265,7 +233,7 @@ public abstract class Mechanic {
     }
 
     public RaidMember getOffTank() {
-        return owner.getOffTank();
+        return getOwner().getOffTank();
     }
 
     public void setOffTank(RaidMember offTank) {
@@ -310,5 +278,13 @@ public abstract class Mechanic {
 
     public void setParentPhase(Phase parentPhase) {
         this.parentPhase = parentPhase;
+    }
+
+    public boolean isBgMech() {
+        return bgMech;
+    }
+
+    public void setBgMech(boolean bgMech) {
+        this.bgMech = bgMech;
     }
 }

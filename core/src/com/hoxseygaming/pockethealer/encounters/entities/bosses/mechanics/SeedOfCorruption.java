@@ -12,22 +12,22 @@ import java.util.ArrayList;
 
 public class SeedOfCorruption extends Mechanic {
 
-    public int numOfTargets;
+    private int numOfTargets;
 
     public SeedOfCorruption(Boss owner) {
-        super("Seed of Corruption", owner.damage, 0.1f, owner);
+        super("Seed of Corruption", owner.getDamage(), 0.1f, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
-        if(owner.getEnemies().getDebuffLessRaidMembers("Seed of Corruption Effect").size() == owner.getEnemies().raidMembers.size()) {
-            ArrayList<RaidMember> temp = owner.enemies.getRandomRaidMember(
-                    numOfTargets,owner.getEnemies().getDebuffLessRaidMembers("Seed of Corruption Effect"));
+        if(getOwner().getEnemies().getDebuffLessRaidMembers("Seed of Corruption Effect").size() == getOwner().getEnemies().getRaidMembers().size()) {
+            ArrayList<RaidMember> temp = getOwner().getEnemies().getRandomRaidMember(
+                    numOfTargets,getOwner().getEnemies().getDebuffLessRaidMembers("Seed of Corruption Effect"));
 
             for (int i = 0; i < temp.size(); i++) {
-                SeedOfCorruptionEffect seedOfCorruptionEffect = new SeedOfCorruptionEffect(owner);
+                SeedOfCorruptionEffect seedOfCorruptionEffect = new SeedOfCorruptionEffect(getOwner());
                 temp.get(i).addStatusEffect(seedOfCorruptionEffect);
             }
         }

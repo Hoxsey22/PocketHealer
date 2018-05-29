@@ -15,10 +15,10 @@ public class BloodLinkEffect extends Debuff {
                 1,
                 "Blood Link Effect",
                 "A bleed will cause the target to take damage over time and all damage done to the target will be increased.",
-                owner.assets.getTexture(owner.assets.bleedIcon),
+                owner.getAssets().getTexture(owner.getAssets().bleedIcon),
                 300f,
                 2f,
-                owner.damage,
+                owner.getDamage(),
                 false);
     }
 

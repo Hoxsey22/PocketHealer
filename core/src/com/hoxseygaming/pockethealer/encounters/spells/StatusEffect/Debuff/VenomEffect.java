@@ -18,7 +18,7 @@ public class VenomEffect extends Debuff {
                 11,
                 "Venom Effect",
                 "Envenoms the target causing one massive surge of damage once.",
-                owner.assets.getTexture(owner.assets.venomIcon),
+                owner.getAssets().getTexture(owner.getAssets().venomIcon),
                 9f,
                 9f,
                 80,

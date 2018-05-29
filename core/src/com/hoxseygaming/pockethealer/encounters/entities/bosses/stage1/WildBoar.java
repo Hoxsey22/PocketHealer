@@ -14,8 +14,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class WildBoar extends Boss {
 
-    public BullCharge bullCharge;
-    public AutoAttack autoAttack;
+    private BullCharge bullCharge;
+    private AutoAttack autoAttack;
 
     public WildBoar(Assets assets) {
         super("Wild Boar","A wild boar is rampaging through the town and hurting innocent " +
@@ -30,21 +30,39 @@ public class WildBoar extends Boss {
     @Override
     public void create() {
         super.create();
-        damage = 10;
+        setDamage(10);
+
         bullCharge = new BullCharge(this, 5f);
         bullCharge.setAnnounce(true);
+
         autoAttack = new AutoAttack(this, 1f);
 
-        phaseManager.addPhase(new Phase(this,0, autoAttack, bullCharge));
+        getPhaseManager().addPhase(new Phase(this,0, autoAttack, bullCharge));
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
-            rewardPackage.addNewTalentText();
-            rewardPackage.addNewSpellText();
-            rewardPackage.addImage(new Image(assets.getTexture(assets.flashIcon)));
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
+            getRewardPackage().addNewTalentText();
+            getRewardPackage().addNewSpellText();
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().flashIcon)));
         }
+    }
+
+    public BullCharge getBullCharge() {
+        return bullCharge;
+    }
+
+    public void setBullCharge(BullCharge bullCharge) {
+        this.bullCharge = bullCharge;
+    }
+
+    public AutoAttack getAutoAttack() {
+        return autoAttack;
+    }
+
+    public void setAutoAttack(AutoAttack autoAttack) {
+        this.autoAttack = autoAttack;
     }
 }

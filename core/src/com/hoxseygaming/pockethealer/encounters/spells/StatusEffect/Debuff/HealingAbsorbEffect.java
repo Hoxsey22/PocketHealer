@@ -21,7 +21,7 @@ public class HealingAbsorbEffect extends Debuff {
                 "Healing Absorb Effect",
                 "A healing absorb shield that diminishes when healed. A member cannot be healed " +
                         "until the healing absorb shield is removed.",
-                owner.assets.getTexture(owner.assets.healingAbsorbIcon),
+                owner.getAssets().getTexture(owner.getAssets().healingAbsorbIcon),
                 300f,
                 0.1f,
                 modValue,
@@ -35,7 +35,7 @@ public class HealingAbsorbEffect extends Debuff {
 
     @Override
     public void additionalConditions() {
-        if(getTarget().healingAbsorb < 1)   {
+        if(getTarget().getHealingAbsorb() < 1)   {
             remove();
         }
     }

@@ -13,9 +13,9 @@ import java.util.ArrayList;
  */
 public class DivineProtection extends Castable {
 
-    public ArrayList<Barrier> barriers;
-    public boolean isSelectedCriticalHealerII;
-    public boolean isSelectedResurgence;
+    private ArrayList<Barrier> barriers;
+    private boolean isSelectedCriticalHealerII;
+    private boolean isSelectedResurgence;
 
 
     public DivineProtection(Player player, Assets assets) {
@@ -29,17 +29,40 @@ public class DivineProtection extends Castable {
                 100f,
                 assets.getSound(assets.hotSFX),
                 assets);
-        setImage(assets.getTexture(assets.divineProtectionIcon));
+        setImage(getAssets().getTexture(getAssets().divineProtectionIcon));
     }
 
     @Override
     public void applySpell(RaidMember target) {
-        for(int i = 0; i < owner.getRaid().raidMembers.size(); i++)   {
-            owner.getRaid().raidMembers.get(i).addStatusEffect(new DivineProtectionEffect(owner));
+        for(int i = 0; i < getOwner().getRaid().getRaidMembers().size(); i++)   {
+            getOwner().getRaid().getRaidMembers().get(i).addStatusEffect(new DivineProtectionEffect(getOwner()));
         }
     }
 
-
     @Override
     public void checkTalents() {}
+
+    public ArrayList<Barrier> getBarriers() {
+        return barriers;
+    }
+
+    public void setBarriers(ArrayList<Barrier> barriers) {
+        this.barriers = barriers;
+    }
+
+    public boolean isSelectedCriticalHealerII() {
+        return isSelectedCriticalHealerII;
+    }
+
+    public void setSelectedCriticalHealerII(boolean selectedCriticalHealerII) {
+        isSelectedCriticalHealerII = selectedCriticalHealerII;
+    }
+
+    public boolean isSelectedResurgence() {
+        return isSelectedResurgence;
+    }
+
+    public void setSelectedResurgence(boolean selectedResurgence) {
+        isSelectedResurgence = selectedResurgence;
+    }
 }

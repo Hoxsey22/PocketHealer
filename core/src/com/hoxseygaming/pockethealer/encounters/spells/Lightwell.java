@@ -11,7 +11,6 @@ import com.hoxseygaming.pockethealer.encounters.spells.Types.Periodical;
  */
 public class Lightwell extends Periodical {
 
-
     /**
      * @param player
      */
@@ -28,7 +27,7 @@ public class Lightwell extends Periodical {
                 1f,
                 assets.getSound(assets.hotSFX),
                 assets);
-        image = this.assets.getTexture(assets.lightWellIcon);
+        setImage(this.getAssets().getTexture(getAssets().lightWellIcon));
     }
 
     @Override
@@ -41,16 +40,16 @@ public class Lightwell extends Periodical {
 
             @Override
             public void run() {
-                RaidMember lowest = owner.getRaid().getRaidMemberWithLowestHp();
-                currentTime = currentTime + speed;
+                RaidMember lowest = getOwner().getRaid().getRaidMemberWithLowestHp();
+                currentTime = currentTime + getSpeed();
 
-                if(currentTime >= duration )    {
+                if(currentTime >= getDuration() )    {
                     durationTimer.stop();
                 }
-                lowest.receiveHealing(output,criticalChance.isCritical());
-                owner.raid.player.receiveMana(2);
+                lowest.receiveHealing(getOutput(),getCriticalChance().isCritical());
+                getOwner().getRaid().getPlayer().receiveMana(2);
             }
-        }, speed, speed);
+        }, getSpeed(), getSpeed());
 
     }
 

@@ -23,27 +23,27 @@ public class DivineHymn extends ChannelCast {
                 5f,
                 100f,
                 assets);
-        image = assets.getTexture(assets.divineHymnIcon);
+        setImage(getAssets().getTexture(getAssets().divineHymnIcon));
     }
 
     @Override
     public void applySpell(RaidMember target) {
-        ArrayList<RaidMember> randoms = owner.getRaid().getRaidMembersWithLowestHp(8/*(int)(owner.getRaid().raidMembers.size()*0.7f)*/);
+        ArrayList<RaidMember> randoms = getOwner().getRaid().getRaidMembersWithLowestHp(8/*(int)(owner.getRaid().raidMembers.size()*0.7f)*/);
 
         for(int i = 0; i < randoms.size(); i++)   {
-            if(owner.getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
-                applyMasteringHealing(randoms.get(i), output);
+            if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
+                applyMasteringHealing(randoms.get(i), getOutput());
             }
             else {
-                randoms.get(i).receiveHealing(output, criticalChance.isCritical());
+                randoms.get(i).receiveHealing(getOutput(), getCriticalChance().isCritical());
             }
         }
     }
 
     @Override
     public void useMana() {
-        if (owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected())
-            owner.receiveMana(getCost());
+        if (getOwner().getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected())
+            getOwner().receiveMana(getCost());
         else
             super.useMana();
     }

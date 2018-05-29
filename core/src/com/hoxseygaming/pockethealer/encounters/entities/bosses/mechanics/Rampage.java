@@ -5,7 +5,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by Hoxsey on 8/2/2017.
@@ -13,27 +12,21 @@ import java.util.Random;
 
 public class Rampage extends Mechanic{
 
-
-    public Timer channel;
-    private Random dice;
+    private Timer channel;
 
     public Rampage(Boss owner) {
         super("Rampage", 10, 20f, owner);
-        dice = new Random();
-        announce = true;
+        setAnnounce(true);
     }
 
     public Rampage(Boss owner, int damage, float speed) {
         super("Rampage", damage, speed, owner);
-        dice = new Random();
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
-        //pausePhase();
         startChannel();
-        //timer.stop();
         pause();
     }
 
@@ -49,15 +42,14 @@ public class Rampage extends Mechanic{
                     ArrayList<RaidMember> randoms  = getRaid().getRandomRaidMember(5);
                     count++;
                     for (int i = 0; i < randoms.size(); i++)    {
-                        if(!randoms.get(i).isDead)    {
-                            randoms.get(i).takeDamage(damage);
+                        if(!randoms.get(i).isDead())    {
+                            randoms.get(i).takeDamage(getDamage());
                         }
                     }
                 }
                 else    {
                     channel.stop();
                     channel.clear();
-                    //timer.start();
                     resume();
                 }
             }

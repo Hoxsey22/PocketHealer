@@ -31,9 +31,9 @@ public class SpellBook extends Group{
     public static final String DIVINE_PROTECTION = "Divine Protection";
     public static final String BLESSED_GARDEN = "Blessed Garden";
 
-    public Player owner;
-    public ArrayList<Spell> spells;
-    public Assets assets;
+    private Player owner;
+    private ArrayList<Spell> spells;
+    private Assets assets;
 
     public SpellBook(Player player) {
         owner = player;
@@ -146,7 +146,7 @@ public class SpellBook extends Group{
                 return false;
         }
 
-        if(owner.getLevel() >= spell.levelRequirement)    {
+        if(owner.getLevel() >= spell.getLevelRequirement())    {
             return true;
         }
 

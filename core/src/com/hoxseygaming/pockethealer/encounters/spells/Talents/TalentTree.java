@@ -28,11 +28,11 @@ public class TalentTree extends Group{
     public static final String HOLY_FOCUS = "Holy Focus";
 
 
-    public Player owner;
-    public ArrayList<Talent> talents;
-    public int unusedPoints;
-    public int totalPoints;
-    public Assets assets;
+    private Player owner;
+    private ArrayList<Talent> talents;
+    private int unusedPoints;
+    private int totalPoints;
+    private Assets assets;
 
     public TalentTree(Player player) {
         owner = player;
@@ -42,8 +42,6 @@ public class TalentTree extends Group{
         assets = owner.getAssets();
         createTalents();
         placeTalentPosition();
-        //setBounds(spells.get(3).getX(), spells.get(3).getY(),(spells.get(11).getX() + spells.get(11).getWidth())-spells.get(3).getX(),
-                //(spells.get(0).getX() +spells.get(0).getHeight())-spells.get(3).getY());
     }
 
     public TalentTree(Player player, int unusedPoints, int totalPoints) {
@@ -54,35 +52,33 @@ public class TalentTree extends Group{
         assets = owner.getAssets();
         createTalents();
         placeTalentPosition();
-        //setBounds(spells.get(3).getX(), spells.get(3).getY(),(spells.get(11).getX() + spells.get(11).getWidth())-spells.get(3).getX(),
-                //(spells.get(0).getX() +spells.get(0).getHeight())-spells.get(3).getY());
     }
 
     public void createTalents()  {
-        talents.add(new Talent(this, 1, LIFEBOOM, "After Renew expires, half of renew's healing will heal the ally unit.", assets.getTexture(assets.lifeboomIcon), assets));
+        talents.add(new Talent(this, 1, LIFEBOOM, "After Renew expires, half of renew's healing will heal the ally unit.", getAssets().getTexture(getAssets().lifeboomIcon), assets));
         talents.add(new Talent(this, 2, HEALER_CHANNEL, "Healers in the raid will no longer deal damage, but will instead heal.", talents.get(talents.size()-1),
-                assets.getTexture(assets.workTogetherIcon), assets));
+                getAssets().getTexture(getAssets().workTogetherIcon), assets));
         talents.add(new Talent(this, 3, RENEWING_NOVA, "Holy Nova now put a Renew on each target that was healed.", talents.get(talents.size()-1),
-                assets.getTexture(assets.renewingNovaIcon), assets));
+                getAssets().getTexture(getAssets().renewingNovaIcon), assets));
         talents.add(new Talent(this, 4, AOD,"Renew now does more healing and faster ticks and will be able to apply additional Renew.", talents.get(talents.size()-1),
-                assets.getTexture(assets.aodIcon), assets));
+                getAssets().getTexture(getAssets().aodIcon), assets));
 
         talents.add(new Talent(this, 5,CRITICAL_HEALER,"Increase the critical strike chance of all spells.",
-                assets.getTexture(assets.smiteIcon), assets));
+                getAssets().getTexture(getAssets().smiteIcon), assets));
         talents.add(new Talent(this, 6, BARRIER_MASTER, "The cooldown of Barrier is now 1.0 second and the cost is reduced to 15.", talents.get(talents.size()-1),
-                assets.getTexture(assets.tankIcon), assets));
+                getAssets().getTexture(getAssets().tankIcon), assets));
         talents.add(new Talent(this, 7, DISCIPLINE, "Barrier absorbs more damage. Smite does more healing and damage. Also when Smite is critical," +
-                        " it will place a small barrier on the target.",talents.get(talents.size()-1), assets.getTexture(assets.disciplineIcon), assets));
+                        " it will place a small barrier on the target.",talents.get(talents.size()-1), getAssets().getTexture(getAssets().disciplineIcon), assets));
         talents.add(new Talent(this, 8,CRITICAL_HEALER_II, "Any spells that are critical will place a barrier for 50% of the amount healed. Smite's barrier increase as well. Smite will now apply atonement.",
-                talents.get(talents.size()-1), assets.getTexture(assets.criticalHealer2Icon), assets));
+                talents.get(talents.size()-1), getAssets().getTexture(getAssets().criticalHealer2Icon), assets));
 
-        talents.add(new Talent(this, 9,HASTE_BUILD,"All spell are 0.5 seconds faster.", assets.getTexture(assets.flashIcon), assets));
+        talents.add(new Talent(this, 9,HASTE_BUILD,"All spell are 0.5 seconds faster.", getAssets().getTexture(getAssets().flashIcon), assets));
         talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova and Prayer of Mending now heal one additional target.", talents.get(talents.size()-1),
-                assets.getTexture(assets.superNovaIcon), assets));
+                getAssets().getTexture(getAssets().superNovaIcon), assets));
         talents.add(new Talent(this, 11,HOLY_FOCUS,"Divine Hymn gives 15% mana back and Light Well will be available",talents.get(talents.size()-1),
-                assets.getTexture(assets.divineHymnIcon), assets));
+                getAssets().getTexture(getAssets().divineHymnIcon), assets));
         talents.add(new Talent(this, 12, MASTERING_HEALING,"All heal now have a 40% chance of increase it output based on missing health. In addition, Heal will now heal a second ally unit.",
-                talents.get(talents.size()-1), assets.getTexture(assets.innerFocusIcon), assets));
+                talents.get(talents.size()-1), getAssets().getTexture(getAssets().innerFocusIcon), assets));
 
         for(int i = 0; i < talents.size(); i++)   {
             addActor(talents.get(i));
@@ -94,7 +90,7 @@ public class TalentTree extends Group{
     public void placeTalentPosition()   {
 
         for(int i = 0; i < talents.size(); i++)   {
-            talents.get(i).setBounds(assets.talentPositions.get(i).x,assets.talentPositions.get(i).y, 75, 75);
+            talents.get(i).setBounds(getAssets().talentPositions.get(i).x,getAssets().talentPositions.get(i).y, 75, 75);
         }
 
     }
@@ -129,17 +125,14 @@ public class TalentTree extends Group{
 
     private boolean isTalentSelectable(Talent talent)    {
         if(getUnusedPoints() < 1)    {
-            //System.out.println("Not enough points.");
             return false;
         }
         if(talent.hasPreReq()) {
             if (!talent.getPreReq().isSelected()) {
-               // System.out.println(talent.getPreReq().getName() + " needs to be selected before selecting " + talent.getName());
                 return false;
             }
         }
         if(talent.getTotalPointRequirement() > getTotalPoints())    {
-            //System.out.println("Not enough points in your talent tree.");
             return false;
         }
         return !talent.isSelected();
@@ -288,12 +281,20 @@ public class TalentTree extends Group{
         return talentData;
     }
 
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
         for(int i = 0; i < talents.size(); i++)   {
             if(!isTalentSelectable(talents.get(i)) && !talents.get(i).isSelected()) {
-                batch.draw(assets.getTexture(assets.shadowIcon), talents.get(i).getX(), talents.get(i).getY(),
+                batch.draw(getAssets().getTexture(getAssets().shadowIcon), talents.get(i).getX(), talents.get(i).getY(),
                         talents.get(i).getWidth(), talents.get(i).getHeight());
             }
         }

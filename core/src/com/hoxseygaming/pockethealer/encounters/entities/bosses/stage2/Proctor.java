@@ -17,11 +17,11 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BurnE
 
 public class Proctor extends Boss {
 
-    public AutoAttack autoAttack;
-    public BullCharge bullCharge;
-    Cleave cleave;
-    public FireBreath fireBreath;
-    public TankSwap tankSwap;
+    private AutoAttack autoAttack;
+    private BullCharge bullCharge;
+    private Cleave cleave;
+    private FireBreath fireBreath;
+    private TankSwap tankSwap;
 
     public Proctor(Assets assets) {
         super("Proctor","A long dirt trail leading to the Sorcerer's hideout is being protected by the Proctor." +
@@ -30,14 +30,13 @@ public class Proctor extends Boss {
                 new Raid(12, assets),
                 assets);
         setId(9);
-        level = 3;
-        damage = 30;
         create();
     }
 
     @Override
     public void create() {
         super.create();
+        setDamage(30);
 
         autoAttack = new AutoAttack(this);
         bullCharge = new BullCharge(this);
@@ -45,15 +44,55 @@ public class Proctor extends Boss {
         fireBreath = new FireBreath(this,8,18f);
         tankSwap = new TankSwap(this);
 
-        phaseManager.addPhase(new Phase(this, 0, autoAttack, tankSwap, cleave, bullCharge, fireBreath));
-        //loadMechanics(autoAttack, tankSwap, bullCharge, fireBreath);
+        getPhaseManager().addPhase(new Phase(this, 0, autoAttack, tankSwap, cleave, bullCharge, fireBreath));
+
         loadDebuff(new BurnEffect(this));
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
         }
+    }
+
+    public AutoAttack getAutoAttack() {
+        return autoAttack;
+    }
+
+    public void setAutoAttack(AutoAttack autoAttack) {
+        this.autoAttack = autoAttack;
+    }
+
+    public BullCharge getBullCharge() {
+        return bullCharge;
+    }
+
+    public void setBullCharge(BullCharge bullCharge) {
+        this.bullCharge = bullCharge;
+    }
+
+    public Cleave getCleave() {
+        return cleave;
+    }
+
+    public void setCleave(Cleave cleave) {
+        this.cleave = cleave;
+    }
+
+    public FireBreath getFireBreath() {
+        return fireBreath;
+    }
+
+    public void setFireBreath(FireBreath fireBreath) {
+        this.fireBreath = fireBreath;
+    }
+
+    public TankSwap getTankSwap() {
+        return tankSwap;
+    }
+
+    public void setTankSwap(TankSwap tankSwap) {
+        this.tankSwap = tankSwap;
     }
 }

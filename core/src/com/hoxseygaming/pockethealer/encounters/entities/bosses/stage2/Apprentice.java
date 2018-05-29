@@ -17,9 +17,9 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.SeedO
 
 public class Apprentice extends Boss {
 
-    public SeedOfCorruption seedOfCorruption;
-    public Fireball fireball;
-    public Pyroblast pyroblast;
+    private SeedOfCorruption seedOfCorruption;
+    private Fireball fireball;
+    private Pyroblast pyroblast;
 
     public Apprentice(Assets assets) {
         super("Apprentice"," The Sorcerer is cornered with no where to go, but her apprentice steps in so his master can escape. He very " +
@@ -34,8 +34,7 @@ public class Apprentice extends Boss {
     @Override
     public void create() {
         super.create();
-        damage = 0;
-
+        setDamage(0);
 
         fireball = new Fireball(this, 2f);
         fireball.setDamage(25);
@@ -43,16 +42,40 @@ public class Apprentice extends Boss {
         pyroblast.setDamage(60);
         seedOfCorruption = new SeedOfCorruption(this);
 
-        phaseManager.addPhase(new Phase(this,0, fireball, seedOfCorruption));
-        //loadMechanics(fireball, seedOfCorruption);
+        getPhaseManager().addPhase(new Phase(this,0, fireball, seedOfCorruption));
+
         loadDebuff(new BurnEffect(this), new SeedOfCorruptionEffect(this), new CorruptionEffect(this));
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
-            rewardPackage.addNewTalentText();
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
+            getRewardPackage().addNewTalentText();
         }
+    }
+
+    public SeedOfCorruption getSeedOfCorruption() {
+        return seedOfCorruption;
+    }
+
+    public void setSeedOfCorruption(SeedOfCorruption seedOfCorruption) {
+        this.seedOfCorruption = seedOfCorruption;
+    }
+
+    public Fireball getFireball() {
+        return fireball;
+    }
+
+    public void setFireball(Fireball fireball) {
+        this.fireball = fireball;
+    }
+
+    public Pyroblast getPyroblast() {
+        return pyroblast;
+    }
+
+    public void setPyroblast(Pyroblast pyroblast) {
+        this.pyroblast = pyroblast;
     }
 }

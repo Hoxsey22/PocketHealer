@@ -26,8 +26,7 @@ public class Smite extends Castable {
                 0.5f,
                 assets.getSound(assets.healSFX),
                 assets);
-
-        image = assets.getTexture(assets.smiteIcon);
+        setImage(getAssets().getTexture(getAssets().smiteIcon));
     }
 
     @Override
@@ -36,24 +35,24 @@ public class Smite extends Castable {
 
         checkCriticalHealer();
 
-        if(owner.getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
-            output = output + 2;
+        if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
+            setOutput(getOutput()+2);
         }
         checkHasteBuild();
     }
 
     @Override
     public void applySpell(RaidMember target) {
-        RaidMember lowest = owner.getRaid().getRaidMemberWithLowestHp();
+        RaidMember lowest = getOwner().getRaid().getRaidMemberWithLowestHp();
 
-        int newOutput = owner.getBoss().takeDamage(output, criticalChance.isCritical());
+        int newOutput = getOwner().getBoss().takeDamage(getOutput(), getCriticalChance().isCritical());
 
-        if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
+        if(getOwner().getTalentTree().getTalent(getOwner().getTalentTree().CRITICAL_HEALER_II).isSelected()) {
             applyCriticalHealerII(lowest, newOutput);
             triggerAtonement(newOutput);
         }
         else {
-            lowest.receiveHealing(newOutput,criticalChance.isCritical());
+            lowest.receiveHealing(newOutput,getCriticalChance().isCritical());
         }
     }
 

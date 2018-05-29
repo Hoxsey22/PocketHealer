@@ -13,8 +13,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class Monster extends Boss {
 
-    public Bite bite;
-    public AutoAttack autoAttack;
+    private Bite bite;
+    private AutoAttack autoAttack;
 
     public Monster(Assets assets) {
         super("Monster","", 30, new Raid(3,assets), assets);
@@ -25,17 +25,34 @@ public class Monster extends Boss {
     @Override
     public void create() {
         super.create();
-        damage = 10;
+        setDamage(10);
+
         bite = new Bite(this, 5f);
         bite.setAnnounce(true);
         autoAttack = new AutoAttack(this, 1f);
 
         //loadMechanics(autoAttack, bite);
-        phaseManager.addPhase(new Phase(this, 0, autoAttack, bite));
+        getPhaseManager().addPhase(new Phase(this, 0, autoAttack, bite));
     }
 
     @Override
     public void reward() {
-        rewardPackage.addNewLevelText();
+        getRewardPackage().addNewLevelText();
+    }
+
+    public Bite getBite() {
+        return bite;
+    }
+
+    public void setBite(Bite bite) {
+        this.bite = bite;
+    }
+
+    public AutoAttack getAutoAttack() {
+        return autoAttack;
+    }
+
+    public void setAutoAttack(AutoAttack autoAttack) {
+        this.autoAttack = autoAttack;
     }
 }

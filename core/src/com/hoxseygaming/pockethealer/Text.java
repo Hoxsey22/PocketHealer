@@ -113,6 +113,42 @@ public class Text extends Actor{
         return label.getHeight()/2;
     }
 
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
+    public void setLabel(Label label) {
+        this.label = label;
+    }
+
+    public Label.LabelStyle getLabelStyle() {
+        return labelStyle;
+    }
+
+    public void setLabelStyle(Label.LabelStyle labelStyle) {
+        this.labelStyle = labelStyle;
+    }
+
+    public Color getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(Color textColor) {
+        this.textColor = textColor;
+    }
+
+    public int getFontSize() {
+        return fontSize;
+    }
+
+    public void setFontSize(int fontSize) {
+        this.fontSize = fontSize;
+    }
+
     //@Override
     public void draw(Batch batch, float parentAlpha) {
         label.draw(batch,parentAlpha);

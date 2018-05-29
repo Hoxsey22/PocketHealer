@@ -24,7 +24,7 @@ public class Dispel extends InstantCast {
                 1f,
                 assets.getSound(assets.healSFX),
                 assets);
-        setImage(assets.getTexture(assets.dispelIcon));
+        setImage(getAssets().getTexture(getAssets().dispelIcon));
     }
 
     @Override

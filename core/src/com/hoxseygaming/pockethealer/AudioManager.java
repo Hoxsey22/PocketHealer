@@ -36,17 +36,6 @@ public class AudioManager {
     public static AudioData audioData = new AudioData();
     private static Assets assets;
 
-    /*public AudioManager()   {
-        soundEffects = new ArrayList<>();
-        audioData = new AudioData();
-    }
-
-    public AudioManager(AudioData audioData)   {
-        this.musicVolume = audioData.musicVolume;
-        this.sfxVolume = audioData.sfxVolume;
-        soundEffects = new ArrayList<>();
-    }*/
-
 
     public static void loadAssets(Assets _assets) {
         assets = _assets;

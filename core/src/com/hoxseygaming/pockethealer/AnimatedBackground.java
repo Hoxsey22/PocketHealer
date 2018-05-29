@@ -12,10 +12,8 @@ import java.util.ArrayList;
 
 public class AnimatedBackground extends Actor {
 
-    public ArrayList<ScrollImage> scrollImages;
-    public Timer timer;
-    //
-    //public Assets assets;
+    private ArrayList<ScrollImage> scrollImages;
+    protected Timer timer;
 
     public AnimatedBackground() {
         scrollImages = new ArrayList<>();
@@ -42,6 +40,14 @@ public class AnimatedBackground extends Actor {
     public void stop()  {
         timer.stop();
         timer.clear();
+    }
+
+    public ArrayList<ScrollImage> getScrollImages() {
+        return scrollImages;
+    }
+
+    public void setScrollImages(ArrayList<ScrollImage> scrollImages) {
+        this.scrollImages = scrollImages;
     }
 
     @Override

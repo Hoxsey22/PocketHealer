@@ -12,26 +12,26 @@ import java.util.ArrayList;
 
 public class ZombieBite extends Mechanic {
 
-    int numOfTargets;
+    private int numOfTargets;
 
     public ZombieBite(Boss owner) {
         super("Zombie Bite", 20, 2f, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     public ZombieBite(Boss owner, float speed) {
         super("Zombie Bite", 20, speed, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
         ArrayList<RaidMember> temp = getRaid().getRandomRaidMember(numOfTargets);
         for(int i = 0; i < temp.size(); i++) {
-            temp.get(i).takeDamage(damage);
-            temp.get(i).addStatusEffect(new ZombieBiteEffect(owner));
+            temp.get(i).takeDamage(getDamage());
+            temp.get(i).addStatusEffect(new ZombieBiteEffect(getOwner()));
         }
     }
 

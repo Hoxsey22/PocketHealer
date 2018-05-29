@@ -14,31 +14,26 @@ import java.util.ArrayList;
 
 public class FeedingTime extends Mechanic {
 
-    float length;
-    private boolean isStart;
-    float totalTime;
-    Timer feedingTimer;
+    private float length;
+    private Timer feedingTimer;
 
     public FeedingTime(Boss owner) {
         super("Feeding Time", 0, 5f, owner);
-        isStart = false;
-        announce = true;
+        setAnnounce(true);
     }
 
     public FeedingTime(Boss owner, float speed, float length) {
         super("Feeding Time", 0, speed, owner);
         this.length = length;
-        isStart = false;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
-        for (int i = 0; i < owner.getEnemies().raidMembers.size(); i++) {
-            owner.getEnemies().raidMembers.get(i).addStatusEffect(new WebEffect(owner,100));
+        for (int i = 0; i < getOwner().getEnemies().getRaidMembers().size(); i++) {
+            getOwner().getEnemies().getRaidMembers().get(i).addStatusEffect(new WebEffect(getOwner(),100));
         }
         startFeedingTime();
-        //timer.stop();
         pause();
     }
 
@@ -51,27 +46,26 @@ public class FeedingTime extends Mechanic {
             public void run() {
                 counter++;
                 if(counter == ((length-1.5f)*10))  {
-                    owner.announcement.setText(getOwner().getName()+" is about to consumer her victims!");
+                    getOwner().getAnnouncement().setText(getOwner().getName()+" is about to consumer her victims!");
                 }
                 if(counter == ((length)*10)) {
-                    ArrayList<RaidMember> targets = owner.getEnemies().getStatusEffectedRaidMembers("Web Effect");
+                    ArrayList<RaidMember> targets = getOwner().getEnemies().getStatusEffectedRaidMembers("Web Effect");
                     for (int i = 0; i < targets.size(); i++) {
                         targets.get(i).takeDamage(targets.get(i).getHp());
-                        owner.receiveHealing(100);
+                        getOwner().receiveHealing(100);
                     }
                     if(targets.size() > 0)  {
-                        owner.announcement.setText(getOwner().getName()+" has eaten her victims and has restored health!");
+                        getOwner().getAnnouncement().setText(getOwner().getName()+" has eaten her victims and has restored health!");
                     }
                     else    {
-                        owner.announcement.setText(getOwner().getName()+" is now hangry!");
-                        owner.setDamage(owner.getDamage()+5);
-                        MotherSpider ms = (MotherSpider) owner;
-                        ms.leap.setDamage(owner.getDamage()*2);
-                        ms.autoAttack.setDamage(owner.getDamage());
+                        getOwner().getAnnouncement().setText(getOwner().getName()+" is now hangry!");
+                        getOwner().setDamage(getOwner().getDamage()+5);
+                        MotherSpider ms = (MotherSpider) getOwner();
+                        ms.getLeap().setDamage(getOwner().getDamage()*2);
+                        ms.getAutoAttack().setDamage(getOwner().getDamage());
                     }
                     feedingTimer.stop();
                     feedingTimer.clear();
-                    //timer.start();
                     resume();
                 }
             }

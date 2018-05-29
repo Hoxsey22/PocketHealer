@@ -9,23 +9,23 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 public class Earthquake extends Mechanic {
 
-    public int numOfTargets;
-    public Timer channel;
+    private int numOfTargets;
+    private Timer channel;
 
     public Earthquake(Boss owner) {
         super("Earthquake", 8, 15f, owner);
-        announce = true;
+        setAnnounce(true);
     }
 
     public Earthquake(Boss owner, float speed) {
         super("Earthquake", 8, speed, owner);
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
         startChannel();
-        timer.stop();
+        getTimer().stop();
     }
 
     public void startChannel()  {
@@ -37,12 +37,12 @@ public class Earthquake extends Mechanic {
             public void run() {
                 if(count != 3) {
                     count++;
-                    getRaid().takeDamage(damage);
+                    getRaid().takeDamage(getDamage());
                 }
                 else    {
                     channel.stop();
                     channel.clear();
-                    timer.start();
+                    getTimer().start();
                 }
             }
         },0.5f,0.5f,5);

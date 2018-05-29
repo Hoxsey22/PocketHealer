@@ -42,23 +42,23 @@ public class Player {
     }
 
     private final int originCritical = 10;
-    public int maxMana;
-    public int mana;
-    public ManaBar manaBar;
-    public CastBar castBar;
-    public RaidMember target;
-    public Raid raid;
+    private int maxMana;
+    private int mana;
+    private ManaBar manaBar;
+    private CastBar castBar;
+    private RaidMember target;
+    private Raid raid;
     private Boss eTarget;
-    public SpellBar spellBar;
-    public float spellCastPercent;
-    public boolean isCasting;
-    public Assets assets;
-    public TalentTree talentTree;
-    public SpellBook spellBook;
-    public int criticalChance;
-    public int level;
+    private SpellBar spellBar;
+    private float spellCastPercent;
+    private boolean isCasting;
+    private Assets assets;
+    private TalentTree talentTree;
+    private SpellBook spellBook;
+    private int criticalChance;
+    private int level;
     private PlayerData playerData;
-    public boolean holyShockIncrease;
+    private boolean holyShockIncrease;
 
 
 
@@ -68,9 +68,7 @@ public class Player {
         mana = 1000;
         spellCastPercent = 0;
         setAssets(assets);
-        //addDebuggingSpell();
         isCasting = false;
-        //talentBook = new TalentBook(this);
         talentTree = new TalentTree(this);
         spellBook = new SpellBook(this);
         createSpellBar();
@@ -82,35 +80,10 @@ public class Player {
         castBar.anchor(manaBar);
         playerData = new PlayerData();
     }
-    /*
-    public void addDebuggingSpell() {
-        spells.add(new Heal(this, spells.size(), assets));
-        spellBar.addSpell(spells.get(spells.size()-1));
-
-        //spells.add(new FlashHeal(this, spells.size(), assets));
-        //spellBar.addSpell(spells.get(spells.size()-1));
-
-        spells.add(new RenewEffect(this, spells.size(), assets));
-        spellBar.addSpell(spells.get(spells.size()-1));
-
-        spells.add(new Smite(this, spells.size(), assets));
-        spellBar.addSpell(spells.get(spells.size()-1));
-
-        spells.add(new HolyNova(this, spells.size(), assets));
-        spellBar.addSpell(spells.get(spells.size()-1));
-        spells.add(new Lightwell(this, spells.size(), assets));
-        spellBar.addSpell(spells.get(spells.size()-1));
-
-
-        for(int i = 0; i < spells.size(); i++)   {
-            System.out.println(spellBar.getSpell(i).name+" added to spell bar!");
-        }
-    }
-    */
 
     public void loadTalents()   {
-        for (int i = 0; i <  spellBar.spells.size(); i++)    {
-            spellBar.spells.get(i).checkTalents();
+        for (int i = 0; i <  spellBar.getSpells().size(); i++)    {
+            spellBar.getSpells().get(i).checkTalents();
         }
     }
 
@@ -201,14 +174,14 @@ public class Player {
     public void reset() {
         mana = maxMana;
         stop();
-        for (int i = 0; i < spellBar.spells.size(); i++) {
-            spellBar.spells.get(i).resetCD();
+        for (int i = 0; i < spellBar.getSpells().size(); i++) {
+            spellBar.getSpells().get(i).resetCD();
         }
     }
 
     public void stop()  {
-        for (int i = 0; i < spellBar.spells.size(); i++) {
-            spellBar.spells.get(i).stop();
+        for (int i = 0; i < spellBar.getSpells().size(); i++) {
+            spellBar.getSpells().get(i).stop();
         }
     }
 
@@ -323,5 +296,31 @@ public class Player {
         System.out.println("- Player reset");
     }
 
+    public int getOriginCritical() {
+        return originCritical;
+    }
 
+    public Boss geteTarget() {
+        return eTarget;
+    }
+
+    public void seteTarget(Boss eTarget) {
+        this.eTarget = eTarget;
+    }
+
+    public PlayerData getPlayerData() {
+        return playerData;
+    }
+
+    public void setPlayerData(PlayerData playerData) {
+        this.playerData = playerData;
+    }
+
+    public boolean isHolyShockIncrease() {
+        return holyShockIncrease;
+    }
+
+    public void setHolyShockIncrease(boolean holyShockIncrease) {
+        this.holyShockIncrease = holyShockIncrease;
+    }
 }

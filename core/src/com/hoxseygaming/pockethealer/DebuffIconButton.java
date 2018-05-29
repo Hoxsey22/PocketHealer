@@ -11,9 +11,9 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Debuf
 
 public class DebuffIconButton extends ImageButton {
 
-    public Assets assets;
-    public String description;
-    public String name;
+    private Assets assets;
+    private String description;
+    private String name;
 
     public DebuffIconButton(Debuff debuff, Assets assets)   {
         super(new TextureRegionDrawable(new TextureRegion(debuff.getIcon())));
@@ -28,5 +28,27 @@ public class DebuffIconButton extends ImageButton {
 
     public String getDescription()  {
         return description;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
     }
 }

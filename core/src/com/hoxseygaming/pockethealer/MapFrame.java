@@ -34,92 +34,83 @@ import java.util.ArrayList;
 
 public class MapFrame extends Group {
 
-    public Image bgFrame;
-    public Image innerFrame;
-    public Map map;
-    public TextButton talentButton;
-    public TextButton startButton;
-    public TextButton spellButton;
-    public TextButton infoButton;
-    public InfoFrame infoFrame;
-    public ArrayList<BossIcon> bossIconsList;
-    public Table table;
-    public Text title;
-    public Text body;
-    public int page;
-    public Player player;
-    public Assets assets;
+    private Image bgFrame;
+    private Image innerFrame;
+    private Map map;
+    private TextButton infoButton;
+    private InfoFrame infoFrame;
+    private ArrayList<BossIcon> bossIconsList;
+    private Table table;
+    private Text title;
+    private Text body;
+    private int page;
+    private Player player;
+    private Assets assets;
 
     public MapFrame(Player player, int page, Assets assets)    {
         setName("map frame "+page);
-        this.page = page;
-        this.assets = assets;
-        table = new Table();
-        this.player = player;
-        table.setName("lowerTable");
+        this.setPage(page);
+        this.setAssets(assets);
+        setTable(new Table());
+        this.setPlayer(player);
+        getTable().setName("lowerTable");
         setName("Map "+page);
         create();
     }
 
     public void create()    {
-        bgFrame = new Image(assets.getTexture(assets.mapOuterFrame));
-        bgFrame.setName("bg");
-        bgFrame.setPosition(0,0);
-        addActor(bgFrame);
+        setBgFrame(new Image(getAssets().getTexture(getAssets().mapOuterFrame)));
+        getBgFrame().setName("bg");
+        getBgFrame().setPosition(0,0);
+        addActor(getBgFrame());
 
         bossIconsList = new ArrayList<>();
 
-        infoFrame = new InfoFrame(assets);
-        //infoFrame.debug();
+        setInfoFrame(new InfoFrame(getAssets()));
 
-        infoButton = new TextButton("INFO", assets.getSkin(), "small_button");
+        setInfoButton(new TextButton("INFO", getAssets().getSkin(), "small_button"));
         createInfoButtonListener();
-        //infoButton.setName("INFO");
 
-        innerFrame = new Image(assets.getTexture(assets.mapInnerFrame));
-        innerFrame.setName("inner frame");
-        innerFrame.setPosition(bgFrame.getX() + bgFrame.getWidth()/2 - innerFrame.getWidth()/2,
-                bgFrame.getY() + bgFrame.getHeight() - innerFrame.getHeight() - 20);
-        addActor(innerFrame);
+        setInnerFrame(new Image(getAssets().getTexture(getAssets().mapInnerFrame)));
+        getInnerFrame().setName("inner frame");
+        getInnerFrame().setPosition(getBgFrame().getX() + getBgFrame().getWidth()/2 - getInnerFrame().getWidth()/2,
+                getBgFrame().getY() + getBgFrame().getHeight() - getInnerFrame().getHeight() - 20);
+        addActor(getInnerFrame());
 
         //texture
-        map = new Map(page, innerFrame,assets);
-        addActor(map);
+        setMap(new Map(getPage(), getInnerFrame(), getAssets()));
+        addActor(getMap());
 
-        table.setBounds(map.getImage().getX(), innerFrame.getY()+13, map.getImage().getWidth(),
-                innerFrame.getHeight()- map.getImage().getHeight() - 30);
-        table.align(Align.topLeft);
+        getTable().setBounds(getMap().getImage().getX(), getInnerFrame().getY()+13, getMap().getImage().getWidth(),
+                getInnerFrame().getHeight()- getMap().getImage().getHeight() - 30);
+        getTable().align(Align.topLeft);
 
         createFont();
 
-        table.row();
-        table.add(infoButton).bottom().padBottom(10);
-        //infoButton.setVisible(false);
+        getTable().row();
+        getTable().add(getInfoButton()).bottom().padBottom(10);
     }
 
     public void changePage(int page)    {
-        this.page = page;
-        title.setText("");
-        body.setText("");
-        map.changeMap(page);
+        this.setPage(page);
+        getTitle().setText("");
+        getBody().setText("");
+        getMap().changeMap(page);
     }
 
     public void showInfoButton()    {
-        //table.add(infoButton).bottom().center().padBottom(10);
-        infoButton.setVisible(true);
+        getInfoButton().setVisible(true);
     }
 
     public void disableInfoButton() {
-        infoButton.setVisible(false);
-        //table.removeActor(infoButton);
-        //infoButton.remove();
+        getInfoButton().setVisible(false);
     }
 
     private void createInfoButtonListener() {
-        infoButton.addListener(new ChangeListener() {
+        getInfoButton().addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                getParent().addActor(infoFrame);
+                getParent().addActor(getInfoFrame());
                 System.out.println("-----Info Frame hit");
             }
         });
@@ -127,62 +118,38 @@ public class MapFrame extends Group {
 
     public void createFont()    {
 
-        title = new Text("", 32, Color.YELLOW, false, assets);
-        //title.setFontSize(32);
-        //title.setFontColor(Color.YELLOW);
-        title.setWrap(true);
-        title.setAlignment(Align.center);
-        title.debug();
+        setTitle(new Text("", 32, Color.YELLOW, false, getAssets()));
+        getTitle().setWrap(true);
+        getTitle().setAlignment(Align.center);
+        getTitle().debug();
 
-        table.add(title.getLabel()).expandX().fillY();
-        table.row();
+        getTable().add(getTitle().getLabel()).expandX().fillY();
+        getTable().row();
 
-        body = new Text("",24, Color.WHITE, false, assets);
-        //body.setFontSize(24);
-        //body.setFontColor(Color.WHITE);
-        body.setWrap(true);
+        setBody(new Text("",24, Color.WHITE, false, getAssets()));
+        getBody().setWrap(true);
 
-        body.debug();
+        getBody().debug();
 
-        table.add(body.getLabel()).width(table.getWidth()).expandX().expandY();
+        getTable().add(getBody().getLabel()).width(getTable().getWidth()).expandX().expandY();
 
-        addActor(table);
+        addActor(getTable());
 
     }
 
     public void add(Boss boss) {
-        boss.setDefeated(player.getLevel() > boss.getId());
-        BossIcon bossIcon = new BossIcon(assets,boss);
-        bossIconsList.add(bossIcon);
-        map.add(bossIcon);
+        boss.setDefeated(getPlayer().getLevel() > boss.getId());
+        BossIcon bossIcon = new BossIcon(getAssets(),boss);
+        getBossIconsList().add(bossIcon);
+        getMap().add(bossIcon);
     }
 
-  /*  public TextButton hitButton(float x, float y)   {
-        Actor hit = hit(x,y, false);
-
-        if(hit != null)    {
-
-            switch (hit.getName())   {
-                case "TALENTS":
-                    return talentButton;
-                case "START":
-                    return startButton;
-                case "SPELLS":
-                    return spellButton;
-                case "INFO":
-                    return infoButton;
-            }
-
-        }
-        return null;
-    }*/
-
     public void setTitle(String newTitle)  {
-        title.setText(newTitle);
+        getTitle().setText(newTitle);
     }
 
     public void setBody(String newBody)  {
-        body.setText(newBody);
+        getBody().setText(newBody);
     }
 
     public Map getMap() {
@@ -198,49 +165,49 @@ public class MapFrame extends Group {
 
         switch (index) {
             case 2:
-                add(new WildBoar(assets));
+                add(new WildBoar(getAssets()));
                 break;
             case 3:
-                add(new Tiger(assets));
+                add(new Tiger(getAssets()));
                 break;
             case 4:
-                add(new GiantHornet(assets));
+                add(new GiantHornet(getAssets()));
                 break;
             case 5:
-                add(new Golem(assets));
+                add(new Golem(getAssets()));
                 break;
             case 6:
-                add(new BanditLeader(assets));
+                add(new BanditLeader(getAssets()));
                 break;
             case 7:
-                add(new Hogger(assets));
+                add(new Hogger(getAssets()));
                 break;
             case 8:
-                add(new WampusCat(assets));
+                add(new WampusCat(getAssets()));
                 break;
             case 9:
-                add(new Proctor(assets));
+                add(new Proctor(getAssets()));
                 break;
             case 10:
-                add(new Apprentice(assets));
+                add(new Apprentice(getAssets()));
                 break;
             case 11:
-                add(new Sorcerer(assets));
+                add(new Sorcerer(getAssets()));
                 break;
             case 12:
-                add(new MotherSpider(assets));
+                add(new MotherSpider(getAssets()));
                 break;
             case 13:
-                add(new ZombieHorde(assets));
+                add(new ZombieHorde(getAssets()));
                 break;
             case 14:
-                add(new BloodQueen(assets));
+                add(new BloodQueen(getAssets()));
                 break;
             case 15:
-                add(new Hydra(assets));
+                add(new Hydra(getAssets()));
                 break;
             case 16:
-                add(new DeathDragon(assets));
+                add(new DeathDragon(getAssets()));
                 break;
         }
     }
@@ -248,10 +215,10 @@ public class MapFrame extends Group {
     public void clearBossList() {
 
         //remove boss icons from their parent
-        for(int i = 0; i < bossIconsList.size(); i++)   {
-            bossIconsList.get(i).remove();
+        for(int i = 0; i < getBossIconsList().size(); i++)   {
+            getBossIconsList().get(i).remove();
         }
-        bossIconsList.clear();
+        getBossIconsList().clear();
 
     }
 
@@ -263,10 +230,97 @@ public class MapFrame extends Group {
     }
 
     public void dispose()   {
-        /*
-        talentButton.dispose();
-        spellButton.dispose();
-        startButton.dispose();
-        */
+    }
+
+    public Image getBgFrame() {
+        return bgFrame;
+    }
+
+    public void setBgFrame(Image bgFrame) {
+        this.bgFrame = bgFrame;
+    }
+
+    public Image getInnerFrame() {
+        return innerFrame;
+    }
+
+    public void setInnerFrame(Image innerFrame) {
+        this.innerFrame = innerFrame;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public TextButton getInfoButton() {
+        return infoButton;
+    }
+
+    public void setInfoButton(TextButton infoButton) {
+        this.infoButton = infoButton;
+    }
+
+    public InfoFrame getInfoFrame() {
+        return infoFrame;
+    }
+
+    public void setInfoFrame(InfoFrame infoFrame) {
+        this.infoFrame = infoFrame;
+    }
+
+    public ArrayList<BossIcon> getBossIconsList() {
+        return bossIconsList;
+    }
+
+    public void setBossIconsList(ArrayList<BossIcon> bossIconsList) {
+        this.bossIconsList = bossIconsList;
+    }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
+    public Text getTitle() {
+        return title;
+    }
+
+    public void setTitle(Text title) {
+        this.title = title;
+    }
+
+    public Text getBody() {
+        return body;
+    }
+
+    public void setBody(Text body) {
+        this.body = body;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
     }
 }

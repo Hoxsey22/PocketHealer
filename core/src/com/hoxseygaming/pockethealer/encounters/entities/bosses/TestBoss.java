@@ -11,8 +11,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class TestBoss extends Boss {
 
-    public AutoAttack autoAttack;
-    public Earthquake earthquake;
+    private AutoAttack autoAttack;
+    private Earthquake earthquake;
 
     public TestBoss(Assets assets) {
         super("TEST BOSS","", 3000000, new Raid(15,assets), assets);
@@ -23,7 +23,7 @@ public class TestBoss extends Boss {
     @Override
     public void create() {
         super.create();
-        damage = 0;
+        setDamage(0);
     }
 
     @Override

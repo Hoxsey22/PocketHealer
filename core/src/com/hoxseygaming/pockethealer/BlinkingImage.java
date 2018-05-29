@@ -12,10 +12,10 @@ import com.badlogic.gdx.utils.Timer;
 
 public class BlinkingImage extends Actor {
 
-    public Image image;
-    public boolean isBlink;
-    public Timer timer;
-    public float speed;
+    private Image image;
+    private boolean isBlink;
+    protected Timer timer;
+    private float speed;
 
     public BlinkingImage(Texture texture)   {
         image = new Image(texture);
@@ -51,6 +51,38 @@ public class BlinkingImage extends Actor {
                     isBlink = true;
             }
         },speed, speed);
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public boolean isBlink() {
+        return isBlink;
+    }
+
+    public void setBlink(boolean blink) {
+        isBlink = blink;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
     }
 
     @Override

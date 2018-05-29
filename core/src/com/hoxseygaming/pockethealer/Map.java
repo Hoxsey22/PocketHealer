@@ -13,11 +13,11 @@ import java.util.ArrayList;
 
 public class Map extends Group {
 
-    public Image image;
-    public Image frame;
-    public ArrayList<BossIcon> bossPoints;
-    public int page;
-    public Assets assets;
+    private Image image;
+    private Image frame;
+    private ArrayList<BossIcon> bossPoints;
+    private int page;
+    private Assets assets;
 
     public Map(int page, Image frame, Assets assets)    {
         setName("image");
@@ -60,6 +60,42 @@ public class Map extends Group {
 
     public Image getImage() {
         return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public Image getFrame() {
+        return frame;
+    }
+
+    public void setFrame(Image frame) {
+        this.frame = frame;
+    }
+
+    public ArrayList<BossIcon> getBossPoints() {
+        return bossPoints;
+    }
+
+    public void setBossPoints(ArrayList<BossIcon> bossPoints) {
+        this.bossPoints = bossPoints;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
     }
 
     @Override

@@ -85,22 +85,22 @@ public class MapState extends State {
 
                 if(player.getLevel() > 6) {
                     stage.addActor(pageRight);
-                    //stage.addActor(pageRight);
+                    //stageNumber.addActor(pageRight);
                 }
                 break;
             case 2:
                 stage.addActor(mapFrame);
 
                 if(player.getLevel() > 11) {
-                    //pageRight.addToStage(stage);
+                    //pageRight.addToStage(stageNumber);
                     stage.addActor(pageRight);
                 }
-                //pageLeft.addToStage(stage);
+                //pageLeft.addToStage(stageNumber);
                 stage.addActor(pageLeft);
                 break;
             case 3:
                 stage.addActor(mapFrame);
-                //pageLeft.addToStage(stage);
+                //pageLeft.addToStage(stageNumber);
                 stage.addActor(pageLeft);
                 break;
         }
@@ -123,10 +123,10 @@ public class MapState extends State {
         pageLeft.remove();
         pageRight.remove();
 
-        page = mapFrame.page;
+        page = mapFrame.getPage();
         mapFrame.remove();
 
-        switch (mapFrame.page)   {
+        switch (mapFrame.getPage())   {
             case 1:
                 stage.addActor(mapFrame);
 
@@ -213,7 +213,7 @@ public class MapState extends State {
         }
         else {
             buttonTable = new Table();
-            buttonTable.setBounds(mapFrame.innerFrame.getX(), 20, mapFrame.innerFrame.getWidth(), mapFrame.innerFrame.getY()-15);
+            buttonTable.setBounds(mapFrame.getInnerFrame().getX(), 20, mapFrame.getInnerFrame().getWidth(), mapFrame.getInnerFrame().getY()-15);
 
             talentButton = new TextButton("TALENT", assets.getSkin());
 
@@ -282,8 +282,8 @@ public class MapState extends State {
     }
 
     public void createBossIconListeners()   {
-        for(int i = 0; i < mapFrame.bossIconsList.size(); i++)   {
-            mapFrame.bossIconsList.get(i).addListener(new ChangeListener() {
+        for(int i = 0; i < mapFrame.getBossIconsList().size(); i++)   {
+            mapFrame.getBossIconsList().get(i).addListener(new ChangeListener() {
 
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
@@ -296,7 +296,7 @@ public class MapState extends State {
 
                     mapFrame.setTitle(selectedLevel.getName());
                     mapFrame.setBody(selectedLevel.getDescription());
-                    mapFrame.infoFrame.addInfo(selectedLevel.boss);
+                    mapFrame.getInfoFrame().addInfo(selectedLevel.boss);
                     mapFrame.disableInfoButton();
                     mapFrame.showInfoButton();
                 }

@@ -128,8 +128,8 @@ public class StatusEffectList {
 
         for(int i = 0; i <  statusEffects.size(); i++) {
             batch.draw(statusEffects.get(i).getIcon(),
-                    owner.healthBar.x + owner.healthBar.width - 20 * (i) - 20,
-                    owner.healthBar.y + owner.healthBar.height + 5,
+                    owner.getHealthBar().getX() + owner.getHealthBar().getWidth() - 20 * (i) - 20,
+                    owner.getHealthBar().getY() + owner.getHealthBar().getHeight() + 5,
                     20,
                     20);
         }

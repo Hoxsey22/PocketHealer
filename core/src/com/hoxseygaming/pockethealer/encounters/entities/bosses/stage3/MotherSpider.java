@@ -17,10 +17,10 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.WebEf
 
 public class MotherSpider extends Boss {
 
-    public AutoAttack autoAttack;
-    TankSwap tankSwap;
-    public Leap leap;
-    FeedingTime feedingTime;
+    private AutoAttack autoAttack;
+    private TankSwap tankSwap;
+    private Leap leap;
+    private FeedingTime feedingTime;
 
     public MotherSpider(Assets assets) {
         super("Mother Spider","Something is still wrong and a huge dark force is coming from the castle. Though the creepy cave, a giant spider, the mother of all spider is blocking the way to the castle. " +
@@ -36,23 +36,55 @@ public class MotherSpider extends Boss {
     @Override
     public void create() {
         super.create();
-        damage = 20;
+        setDamage(20);
 
         autoAttack = new AutoAttack(this, 2f);
         tankSwap = new TankSwap(this, 12f);
-        leap = new Leap(this,damage*2,16f,8);
+        leap = new Leap(this,getDamage()*2,16f,8);
         feedingTime = new FeedingTime(this,6f, 19f);
-        //55
-        phaseManager.addPhase(new Phase(this, 55f, autoAttack,tankSwap,leap));
-        phaseManager.addPhase(new Phase(this, 30f, feedingTime));
+
+        getPhaseManager().addPhase(new Phase(this, 55f, autoAttack,tankSwap,leap));
+        getPhaseManager().addPhase(new Phase(this, 30f, feedingTime));
         loadDebuff(new VenomEffect(this), new WebEffect(this));
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
-            rewardPackage.addNewTalentText();
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
+            getRewardPackage().addNewTalentText();
         }
+    }
+
+    public AutoAttack getAutoAttack() {
+        return autoAttack;
+    }
+
+    public void setAutoAttack(AutoAttack autoAttack) {
+        this.autoAttack = autoAttack;
+    }
+
+    public TankSwap getTankSwap() {
+        return tankSwap;
+    }
+
+    public void setTankSwap(TankSwap tankSwap) {
+        this.tankSwap = tankSwap;
+    }
+
+    public Leap getLeap() {
+        return leap;
+    }
+
+    public void setLeap(Leap leap) {
+        this.leap = leap;
+    }
+
+    public FeedingTime getFeedingTime() {
+        return feedingTime;
+    }
+
+    public void setFeedingTime(FeedingTime feedingTime) {
+        this.feedingTime = feedingTime;
     }
 }

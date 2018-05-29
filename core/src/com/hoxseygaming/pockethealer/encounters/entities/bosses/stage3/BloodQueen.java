@@ -36,11 +36,6 @@ public class BloodQueen extends Boss {
     }
 
     @Override
-    public void update() {
-
-    }
-
-    @Override
     public void create() {
         super.create();
         setDamage(15);
@@ -54,15 +49,55 @@ public class BloodQueen extends Boss {
 
         swarmingShadow = new SwarmingShadow(this, 10, 8f);
 
-        phaseManager.addPhase(new Phase(this, 70f, bloodLink, cleave, vampiricBite));
-        phaseManager.addPhase(new Phase(this, 32f, consumingShadow,swarmingShadow));
+        getPhaseManager().addPhase(new Phase(this, 70f, bloodLink, cleave, vampiricBite));
+        getPhaseManager().addPhase(new Phase(this, 32f, consumingShadow,swarmingShadow));
 
         loadDebuff(new VampiricBiteEffect(this), new ConsumingShadowEffect(this));
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId())
-            rewardPackage.addNewLevelText();
+        if(getPlayer().getLevel() >= getId())
+            getRewardPackage().addNewLevelText();
+    }
+
+    public BloodLink getBloodLink() {
+        return bloodLink;
+    }
+
+    public void setBloodLink(BloodLink bloodLink) {
+        this.bloodLink = bloodLink;
+    }
+
+    public Cleave getCleave() {
+        return cleave;
+    }
+
+    public void setCleave(Cleave cleave) {
+        this.cleave = cleave;
+    }
+
+    public SwarmingShadow getSwarmingShadow() {
+        return swarmingShadow;
+    }
+
+    public void setSwarmingShadow(SwarmingShadow swarmingShadow) {
+        this.swarmingShadow = swarmingShadow;
+    }
+
+    public ConsumingShadow getConsumingShadow() {
+        return consumingShadow;
+    }
+
+    public void setConsumingShadow(ConsumingShadow consumingShadow) {
+        this.consumingShadow = consumingShadow;
+    }
+
+    public VampiricBite getVampiricBite() {
+        return vampiricBite;
+    }
+
+    public void setVampiricBite(VampiricBite vampiricBite) {
+        this.vampiricBite = vampiricBite;
     }
 }

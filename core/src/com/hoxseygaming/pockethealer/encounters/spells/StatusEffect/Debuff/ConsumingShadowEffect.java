@@ -19,7 +19,7 @@ public class ConsumingShadowEffect extends Debuff {
                 3,
                 "Consuming Shadow Effect",
                 "Dispellable: Consuming Shadow will increase all damage taken by the target.",
-                owner.assets.getTexture(owner.assets.swarmingShadowIcon),
+                owner.getAssets().getTexture(owner.getAssets().swarmingShadowIcon),
                 300f,
                 0.1f,
                 0,

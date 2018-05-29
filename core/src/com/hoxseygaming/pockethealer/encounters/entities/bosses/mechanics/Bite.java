@@ -17,12 +17,12 @@ public class Bite extends Mechanic {
 
     public Bite(Boss owner, float speed)   {
         super("Bite", 20, speed, owner);
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
         ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
-        random.get(0).takeDamage(damage);
+        random.get(0).takeDamage(getDamage());
     }
 }

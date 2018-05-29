@@ -30,7 +30,7 @@ public class BanditLeader extends Boss {
                 180,
                 new Raid(9, assets),
                 assets);
-        System.out.println(name+" hp: "+getHp());
+        System.out.println(getName()+" hp: "+getHp());
         setId(6);
         create();
     }
@@ -50,8 +50,7 @@ public class BanditLeader extends Boss {
 
         TankSwap tankSwap = new TankSwap(this, 12f);
 
-        phaseManager.addPhase(new Phase(this, 0, autoAttack,tankSwap, backStab, poisonStab));
-        //loadMechanics(autoAttack, backStab, poisonStab,tankSwap);
+        getPhaseManager().addPhase(new Phase(this, 0, autoAttack,tankSwap, backStab, poisonStab));
 
         loadDebuff(new BleedEffect(this), new PoisonEffect(this));
     }
@@ -59,30 +58,61 @@ public class BanditLeader extends Boss {
     @Override
     public void update() {
         if(getHpPercent() < 0.25 && !isEnrage)    {
-            //setDamage(30);
-            autoAttack.setDamage((int)((float)damage*2.5f));
-            backStab.setDamage((int)((float)damage*4));
-            poisonStab.setDamage((int)((float)damage*4));
+            autoAttack.setDamage((int)((float)getDamage()*2.5f));
+            backStab.setDamage((int)((float)getDamage()*4));
+            poisonStab.setDamage((int)((float)getDamage()*4));
             isEnrage = true;
-            displayAnnouncementTimer(name+" is now enraged!");
+            displayAnnouncementTimer(getName()+" is now enraged!");
         }
     }
 
     @Override
     public void reset() {
         super.reset();
-        autoAttack.setDamage(damage);
-        backStab.setDamage(damage*2);
+        autoAttack.setDamage(getDamage());
+        backStab.setDamage(getDamage()*2);
         isEnrage = false;
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
-            rewardPackage.addNewTalentText();
-            rewardPackage.addNewSpellText();
-            rewardPackage.addImage(new Image(assets.getTexture(assets.smiteIcon)));
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
+            getRewardPackage().addNewTalentText();
+            getRewardPackage().addNewSpellText();
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().smiteIcon)));
         }
+    }
+
+    public AutoAttack getAutoAttack() {
+        return autoAttack;
+    }
+
+    public void setAutoAttack(AutoAttack autoAttack) {
+        this.autoAttack = autoAttack;
+    }
+
+    public BackStab getBackStab() {
+        return backStab;
+    }
+
+    public void setBackStab(BackStab backStab) {
+        this.backStab = backStab;
+    }
+
+    public PoisonStab getPoisonStab() {
+        return poisonStab;
+    }
+
+    public void setPoisonStab(PoisonStab poisonStab) {
+        this.poisonStab = poisonStab;
+    }
+
+    public boolean isEnrage() {
+        return isEnrage;
+    }
+
+    public void setEnrage(boolean enrage) {
+        isEnrage = enrage;
     }
 }

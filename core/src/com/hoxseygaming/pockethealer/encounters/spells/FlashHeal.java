@@ -13,11 +13,11 @@ public class FlashHeal extends Heal {
         super(player, assets);
         setName("Flash Heal");
         setDescription("A flash of light that heals an ally unit and great speeds.");
-        setImage(assets.getTexture(assets.flashIcon));
-        MIN_CAST_TIME = 0.7f;
+        setImage(getAssets().getTexture(getAssets().flashIcon));
+        setMIN_CAST_TIME(0.7f);
         setCostPercentage(2.2f);
-        setCastTime(MIN_CAST_TIME);
-        setCriticalChance(MIN_CRITICAL);
-        levelRequirement = 2;
+        setCastTime(getMIN_CAST_TIME());
+        setCriticalChance(getMIN_CRITICAL());
+        setLevelRequirement(2);
     }
 }

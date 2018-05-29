@@ -23,19 +23,19 @@ public class PrayerOfMending extends Castable {
                 8,
                 assets.getSound(assets.healSFX),
                 assets);
-        setImage(assets.getTexture(assets.prayerOfMendingIcon));
-        numOfTargets = 5;
+        setImage(getAssets().getTexture(getAssets().prayerOfMendingIcon));
+        setNumOfTargets(5);
     }
 
     @Override
     public void applySpell(RaidMember target) {
-        target.addStatusEffect(new PrayerOfMendingEffect(owner, 20, numOfTargets));
+        target.addStatusEffect(new PrayerOfMendingEffect(getOwner(), 20, getNumOfTargets()));
     }
 
     @Override
     public void resetDefault() {
         super.resetDefault();
-        numOfTargets = 5;
+        setNumOfTargets(5);
     }
 
     @Override
@@ -47,8 +47,8 @@ public class PrayerOfMending extends Castable {
     }
 
     public void checkSuperNova()    {
-        if(owner.getTalentTree().getTalent(TalentTree.SUPER_NOVA).isSelected())    {
-            numOfTargets = 6;
+        if(getOwner().getTalentTree().getTalent(TalentTree.SUPER_NOVA).isSelected())    {
+            setNumOfTargets(6);
         }
     }
 }

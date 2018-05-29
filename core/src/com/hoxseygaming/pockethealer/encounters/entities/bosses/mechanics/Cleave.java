@@ -11,25 +11,25 @@ import java.util.ArrayList;
 
 public class Cleave extends Mechanic {
 
-    int numOfTargets;
+    private int numOfTargets;
 
     public Cleave(Boss owner) {
         super("Cleave", 15, 5f, owner);
         numOfTargets = 2;
-        bgMech = true;
+        setBgMech(true);
     }
 
     public Cleave(Boss owner, float speed) {
         super("Cleave", 15, speed, owner);
         numOfTargets = 2;
-        bgMech = true;
+        setBgMech(true);
     }
 
     @Override
     public void action() {
         ArrayList<RaidMember> raidMembers = getRaid().getRandomRaidMember(numOfTargets);
         for(int i = 0; i < raidMembers.size(); i++)   {
-            raidMembers.get(i).takeDamage(damage);
+            raidMembers.get(i).takeDamage(getDamage());
         }
     }
 

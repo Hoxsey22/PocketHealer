@@ -5,7 +5,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 /**
  * Created by Hoxsey on 8/2/2017.
@@ -14,26 +13,23 @@ import java.util.Random;
 public class Flurry extends Mechanic{
 
 
-    public Timer channel;
-    private Random dice;
+    private Timer channel;
 
     public Flurry(Boss owner) {
         super("Flurry", 10, 20f, owner);
-        dice = new Random();
-        announce = true;
+        setAnnounce(true);
     }
 
     public Flurry(Boss owner, int damage, float speed) {
         super("Flurry", damage, speed, owner);
-        dice = new Random();
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
         //pausePhase();
         startChannel();
-        //timer.stop();
+        //getTimer().stop();
         pause();
     }
 
@@ -47,18 +43,16 @@ public class Flurry extends Mechanic{
             public void run() {
                 if(count != 10) {
                     count++;
-                    if(random.get(0).isDead) {
+                    if(random.get(0).isDead()) {
                         random = getRaid().getRandomRaidMember(1);
                     }
                     if(random != null) {
-                        random.get(0).takeDamage(damage);
+                        random.get(0).takeDamage(getDamage());
                     }
-                    //getRaid().takeDamage(damage);
                 }
                 else    {
                     channel.stop();
                     channel.clear();
-                    //timer.start();
                     resume();
                 }
             }

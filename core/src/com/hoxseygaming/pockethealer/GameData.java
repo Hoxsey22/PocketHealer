@@ -29,25 +29,6 @@ public class GameData {
         }
     }
 
-    /* UNDER CONSTRUCTION */
-    public static boolean load(String filename)   {
-        /*
-        if(prefs.contains(filename))  {
-            Json json = new Json();
-            player.setData(json.fromJson(PlayerData.class, prefs.getString(filename)));
-            System.out.println(filename+"found!");
-            return true;
-        }
-        else {
-            save(player);
-            load(player);
-            return false;
-        }
-        */
-        return false;
-    }
-
-
     public static boolean save(Player player)   {
         Json json = new Json();
         json.toJson(player.getData());

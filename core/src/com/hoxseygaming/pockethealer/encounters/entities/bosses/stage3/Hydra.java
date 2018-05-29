@@ -16,15 +16,13 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Stone
  * Created by Hoxsey on 10/11/2017.
  */
 
-
-/*Need to add another mech*/
 public class Hydra extends Boss {
 
-    ThunderStorm thunderStorm;
-    DoubleAttack doubleAttack;
-    PoisonSpit p1Poison;
-    Rampage rampage;
-    public AutoAttack autoAttack;
+    private ThunderStorm thunderStorm;
+    private DoubleAttack doubleAttack;
+    private PoisonSpit p1Poison;
+    private Rampage rampage;
+    private AutoAttack autoAttack;
 
 
     public Hydra(Assets assets) {
@@ -49,8 +47,8 @@ public class Hydra extends Boss {
         rampage = new Rampage(this, 15, 5f);
         thunderStorm = new ThunderStorm(this, 15f);
 
-        phaseManager.addPhase(new Phase(this, 75f, autoAttack, doubleAttack,p1Poison, thunderStorm));
-        phaseManager.addPhase(new Phase(this, 25f, rampage));
+        getPhaseManager().addPhase(new Phase(this, 75f, autoAttack, doubleAttack,p1Poison, thunderStorm));
+        getPhaseManager().addPhase(new Phase(this, 25f, rampage));
 
         loadDebuff(new StoneSkinEffect(this), new PoisonEffect(this));
 
@@ -59,15 +57,55 @@ public class Hydra extends Boss {
     @Override
     public void start() {
         super.start();
-        for(int i = 0; i < getEnemies().raidMembers.size(); i++)   {
+        for(int i = 0; i < getEnemies().getRaidMembers().size(); i++)   {
             getEnemies().getRaidMember(i).addStatusEffect(new StoneSkinEffect(this));
         }
-        System.out.println("Phase Manager - number of phases: "+phaseManager.phases.size()+".");
+        System.out.println("Phase Manager - number of phases: "+getPhaseManager().getPhases().size()+".");
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId())
-        rewardPackage.addNewLevelText();
+        if(getPlayer().getLevel() >= getId())
+        getRewardPackage().addNewLevelText();
+    }
+
+    public ThunderStorm getThunderStorm() {
+        return thunderStorm;
+    }
+
+    public void setThunderStorm(ThunderStorm thunderStorm) {
+        this.thunderStorm = thunderStorm;
+    }
+
+    public DoubleAttack getDoubleAttack() {
+        return doubleAttack;
+    }
+
+    public void setDoubleAttack(DoubleAttack doubleAttack) {
+        this.doubleAttack = doubleAttack;
+    }
+
+    public PoisonSpit getP1Poison() {
+        return p1Poison;
+    }
+
+    public void setP1Poison(PoisonSpit p1Poison) {
+        this.p1Poison = p1Poison;
+    }
+
+    public Rampage getRampage() {
+        return rampage;
+    }
+
+    public void setRampage(Rampage rampage) {
+        this.rampage = rampage;
+    }
+
+    public AutoAttack getAutoAttack() {
+        return autoAttack;
+    }
+
+    public void setAutoAttack(AutoAttack autoAttack) {
+        this.autoAttack = autoAttack;
     }
 }

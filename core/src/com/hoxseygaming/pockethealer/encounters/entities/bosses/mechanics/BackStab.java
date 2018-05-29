@@ -12,23 +12,23 @@ import java.util.ArrayList;
 
 public class BackStab extends Mechanic {
 
-    public int numOfTargets;
+    private int numOfTargets;
 
     public BackStab(Boss owner) {
-        super("Back Stab", owner.damage*3, 15f, owner);
+        super("Back Stab", owner.getDamage()*3, 15f, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
-        ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
+        ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
 
         for (int i = 0; i < temp.size(); i++)   {
-            BleedEffect bleedEffect = new BleedEffect(owner);
+            BleedEffect bleedEffect = new BleedEffect(getOwner());
             bleedEffect.setModValue(5);
 
-            temp.get(i).takeDamage(damage);
+            temp.get(i).takeDamage(getDamage());
             temp.get(i).addStatusEffect(bleedEffect);
         }
     }

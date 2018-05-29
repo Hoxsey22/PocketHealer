@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
-import com.badlogic.gdx.audio.Sound;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
@@ -12,8 +11,7 @@ import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
  */
 public class HolyNova extends Castable {
 
-    public Sound sfx;
-    public final int MIN_NUMOFTARGETS = 3;
+    public final int MIN_NUM_OF_TARGETS = 3;
 
     public HolyNova(Player player, Assets assets) {
         super(player,
@@ -23,10 +21,11 @@ public class HolyNova extends Castable {
                 2f,
                 25,
                 3.5f,
-                1f,assets.getSound(assets.healSFX),assets);
-        image = assets.getTexture(assets.holyNovaIcon);
-        sfx = assets.getSound(assets.hotSFX);
-        numOfTargets = MIN_NUMOFTARGETS;
+                1f,
+                assets.getSound(assets.hotSFX),
+                assets);
+        setImage(getAssets().getTexture(getAssets().holyNovaIcon));
+        setNumOfTargets(MIN_NUM_OF_TARGETS);
     }
 
     @Override
@@ -34,8 +33,8 @@ public class HolyNova extends Castable {
         resetDefault();
 
         checkCriticalHealer();
-        if(owner.getTalentTree().getTalent(TalentTree.SUPER_NOVA).isSelected())    {
-            numOfTargets = 4;
+        if(getOwner().getTalentTree().getTalent(TalentTree.SUPER_NOVA).isSelected())    {
+            setNumOfTargets(5);
         }
     }
 
@@ -44,36 +43,36 @@ public class HolyNova extends Castable {
         // main tar
         getRandomTargets();
 
-        if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected())    {
-            for(int i = 0; i < targets.size(); i++) {
-                applyCriticalHealerII(targets.get(i),output);
+        if(getOwner().getTalentTree().getTalent(getOwner().getTalentTree().CRITICAL_HEALER_II).isSelected())    {
+            for(int i = 0; i < getTargets().size(); i++) {
+                applyCriticalHealerII(getTargets().get(i),getOutput());
             }
-            applyCriticalHealerII(target, output);
+            applyCriticalHealerII(target, getOutput());
 
-            for(int i = 0; i < targets.size(); i++) {
-                applyAtonement(targets.get(i));
+            for(int i = 0; i < getTargets().size(); i++) {
+                applyAtonement(getTargets().get(i));
             }
             applyAtonement(target);
         }
-        else if(owner.getTalentTree().getTalent(owner.getTalentTree().RENEWING_NOVA).isSelected())  {
-            for(int i = 0; i < targets.size(); i++) {
-                applyRenewingNova(targets.get(i));
-                targets.get(i).receiveHealing(output, criticalChance.isCritical());
+        else if(getOwner().getTalentTree().getTalent(getOwner().getTalentTree().RENEWING_NOVA).isSelected())  {
+            for(int i = 0; i < getTargets().size(); i++) {
+                applyRenewingNova(getTargets().get(i));
+                getTargets().get(i).receiveHealing(getOutput(), getCriticalChance().isCritical());
             }
             applyRenewingNova(target);
-            target.receiveHealing(output, criticalChance.isCritical());
+            target.receiveHealing(getOutput(), getCriticalChance().isCritical());
         }
-        else if(owner.getTalentTree().getTalent(owner.getTalentTree().MASTERING_HEALING).isSelected())   {
-            for(int i = 0; i < targets.size(); i++) {
-                applyMasteringHealing(targets.get(i),output);
+        else if(getOwner().getTalentTree().getTalent(getOwner().getTalentTree().MASTERING_HEALING).isSelected())   {
+            for(int i = 0; i < getTargets().size(); i++) {
+                applyMasteringHealing(getTargets().get(i),getOutput());
             }
-            applyMasteringHealing(target, output);
+            applyMasteringHealing(target, getOutput());
 
         }
         else    {
-            target.receiveHealing(output, criticalChance.isCritical());
-            for(int i = 0; i < targets.size(); i++) {
-                targets.get(i).receiveHealing(output, criticalChance.isCritical());
+            target.receiveHealing(getOutput(), getCriticalChance().isCritical());
+            for(int i = 0; i < getTargets().size(); i++) {
+                getTargets().get(i).receiveHealing(getOutput(), getCriticalChance().isCritical());
             }
         }
 
@@ -84,6 +83,6 @@ public class HolyNova extends Castable {
     @Override
     public void resetDefault()  {
         super.resetDefault();
-        numOfTargets = MIN_NUMOFTARGETS;
+        setNumOfTargets(MIN_NUM_OF_TARGETS);
     }
 }

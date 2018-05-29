@@ -9,20 +9,20 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 public class BloodLink extends Mechanic {
 
     public BloodLink(Boss owner) {
-        super("Blood Link",owner.damage,2f,owner);
+        super("Blood Link",owner.getDamage(),2f,owner);
     }
 
     public BloodLink(Boss owner, float speed) {
-        super("Blood Link",owner.damage,speed,owner);
-        bgMech = true;
+        super("Blood Link",owner.getDamage(),speed,owner);
+        setBgMech(true);
     }
 
     @Override
     public void action() {
-        if(owner.getTarget().isDead){
-            owner.setTarget(owner.getNextThreat());
+        if(getOwner().getTarget().isDead()){
+            getOwner().setTarget(getOwner().getNextThreat());
         }
-        owner.getTarget().takeDamage(damage);
-        owner.getNextThreat().takeDamage(damage);
+        getOwner().getTarget().takeDamage(getDamage());
+        getOwner().getNextThreat().takeDamage(getDamage());
     }
 }

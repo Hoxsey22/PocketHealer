@@ -19,7 +19,7 @@ public class StoneSkinEffect extends Debuff {
                 3,
                 "Stone Skin Effect",
                 "Stone Skin prevents the target from dying if their health is above 10%.",
-                owner.assets.getTexture(owner.assets.stoneSkinIcon),
+                owner.getAssets().getTexture(owner.getAssets().stoneSkinIcon),
                 600f,
                 0.1f,
                 0,
@@ -45,7 +45,7 @@ public class StoneSkinEffect extends Debuff {
     public int modifyOutput(int output) {
         if(output >= getTarget().getHp())    {
             if(getTarget().getHealthPercent() > 0.1f)    {
-                return getTarget().hp - 1;
+                return getTarget().getHp() - 1;
             }
         }
         return output;

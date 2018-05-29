@@ -12,12 +12,12 @@ public class GreaterHeal extends Heal {
         super(player, assets);
         setName("Greater Heal");
         setDescription("A focused powerful heal that heals an ally unit for a massive amount.");
-        setImage(assets.getTexture(assets.greaterHealerIcon));
+        setImage(getAssets().getTexture(getAssets().greaterHealerIcon));
         setCostPercentage(2.2f);
-        MIN_CAST_TIME = 2f;
-        setCastTime(MIN_CAST_TIME);
-        MIN_OUTPUT = 60;
+        setMIN_CAST_TIME(2f);
+        setCastTime(getMIN_CAST_TIME());
+        setMIN_OUTPUT(60);
         setOutput(60);
-        levelRequirement = 6;
+        setLevelRequirement(6);
     }
 }

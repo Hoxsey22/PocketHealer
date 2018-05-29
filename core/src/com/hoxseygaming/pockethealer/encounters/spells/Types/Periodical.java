@@ -13,11 +13,11 @@ import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
 public abstract class Periodical extends InstantCast {
 
-    public float duration;
-    public float MIN_DURATION;
-    public float speed;
-    public float MIN_SPEED;
-    public Timer durationTimer;
+    private float duration;
+    private float MIN_DURATION;
+    private float speed;
+    private float MIN_SPEED;
+    protected Timer durationTimer;
 
     /**
      * @param player
@@ -26,6 +26,7 @@ public abstract class Periodical extends InstantCast {
      * @param numOfTargets
      * @param output
      * @param costPercentage
+     * @param costPercentage
      * @param cooldown
      * @param spellSFX
      * @param assets
@@ -33,7 +34,7 @@ public abstract class Periodical extends InstantCast {
     public Periodical(Player player, String name, String description, int levelRequirement, int numOfTargets,
                       int output, float costPercentage, float cooldown, float duration, float speed, Sound spellSFX, Assets assets) {
         super(player, name, description, levelRequirement, numOfTargets, output, costPercentage, cooldown, spellSFX, assets);
-        spellType = "Periodical";
+        setSpellType("Periodical");
         this.duration = duration;
         MIN_DURATION = duration;
         this.speed = speed;
@@ -44,21 +45,21 @@ public abstract class Periodical extends InstantCast {
     @Override
     public void applySpell(RaidMember target) {
         startDurationTimer();
-        System.out.println(name+" applied.");
+        System.out.println(getName()+" applied.");
     }
 
     public abstract void startDurationTimer();
     public abstract void checkLifeboom();
 
     public void checkHasteBuild()   {
-        if(owner.getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
+        if(getOwner().getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
             speed = MIN_SPEED - 0.25f;
         }
     }
 
     public void checkAoD()  {
-        if(owner.getTalentTree().getTalent(TalentTree.AOD).isSelected())    {
-            output = 10;
+        if(getOwner().getTalentTree().getTalent(TalentTree.AOD).isSelected())    {
+            setOutput(10);
             duration = 12;
             speed = 1.5f;
         }
@@ -76,5 +77,45 @@ public abstract class Periodical extends InstantCast {
             durationTimer.stop();
             durationTimer.clear();
         }
+    }
+
+    public float getDuration() {
+        return duration;
+    }
+
+    public void setDuration(float duration) {
+        this.duration = duration;
+    }
+
+    public float getMIN_DURATION() {
+        return MIN_DURATION;
+    }
+
+    public void setMIN_DURATION(float MIN_DURATION) {
+        this.MIN_DURATION = MIN_DURATION;
+    }
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public float getMIN_SPEED() {
+        return MIN_SPEED;
+    }
+
+    public void setMIN_SPEED(float MIN_SPEED) {
+        this.MIN_SPEED = MIN_SPEED;
+    }
+
+    public Timer getDurationTimer() {
+        return durationTimer;
+    }
+
+    public void setDurationTimer(Timer durationTimer) {
+        this.durationTimer = durationTimer;
     }
 }

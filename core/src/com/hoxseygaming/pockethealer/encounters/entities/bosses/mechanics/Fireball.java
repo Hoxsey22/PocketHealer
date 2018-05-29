@@ -18,21 +18,21 @@ public class Fireball extends Mechanic {
     public Fireball(Boss owner) {
         super("Fireball", 20, 2f, owner);
         dice = new Random();
-        bgMech = true;
+        setBgMech(true);
     }
 
     public Fireball(Boss owner, float speed) {
         super("Fireball", 20, speed, owner);
         dice = new Random();
-        bgMech = true;
+        setBgMech(true);
     }
 
     @Override
     public void action() {
         ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
-        random.get(0).takeDamage(damage);
+        random.get(0).takeDamage(getDamage());
         if(dice.nextInt(100)+0 > 95)    {
-            random.get(0).addStatusEffect(new BurnEffect(owner));
+            random.get(0).addStatusEffect(new BurnEffect(getOwner()));
         }
     }
 }

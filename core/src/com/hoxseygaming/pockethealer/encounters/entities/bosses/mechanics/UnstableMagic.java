@@ -12,20 +12,20 @@ import java.util.ArrayList;
 
 public class UnstableMagic extends Mechanic {
 
-    public int numOfTargets;
+    private int numOfTargets;
 
     public UnstableMagic(Boss owner) {
         super("Unstable Magic", 0, 8f, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
-        ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets,owner.getEnemies().getDebuffLessRaidMembers("unstable magic"));
+        ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets,getOwner().getEnemies().getDebuffLessRaidMembers("unstable magic"));
 
         for (int i = 0; i < temp.size(); i++)   {
-            temp.get(i).addStatusEffect(new UnstableMagicEffect(owner));
+            temp.get(i).addStatusEffect(new UnstableMagicEffect(getOwner()));
         }
     }
 

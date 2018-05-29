@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
+import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.VampiricBiteEffect;
 
 /**
@@ -9,25 +10,28 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Vampi
 
 public class VampiricBite extends Mechanic {
 
-    public int numOfTargets;
+    private int numOfTargets;
 
     public VampiricBite(Boss owner) {
         super("Vampiric Bite", 20, 5f, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     public VampiricBite(Boss owner, float speed) {
         super("Vampiric Bite", 20, speed, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
-        target = owner.getEnemies().getRandomRaidMember(1).get(0);
-        target.takeDamage(damage);
-        target.addStatusEffect(new VampiricBiteEffect(owner));
+        RaidMember t = getOwner().getEnemies().getRandomRaidMember(1).get(0);
+        if(t != null)    {
+            setTarget(t);
+            getTarget().takeDamage(getDamage());
+            getTarget().addStatusEffect(new VampiricBiteEffect(getOwner()));
+        }
         stop();
     }
 

@@ -15,7 +15,7 @@ public class BurnEffect extends Debuff {
                 2,
                 "Burn Effect",
                 "Dispellable: Burns the target for moderate damage, but very quickly over time.",
-                owner.assets.getTexture(owner.assets.burnIcon), //need to change the icon
+                owner.getAssets().getTexture(owner.getAssets().burnIcon), //need to change the icon
                 10f,
                 1f,
                 10,

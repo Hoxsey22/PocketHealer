@@ -68,9 +68,6 @@ public class FloatingText {
     }
 
     public void create()    {
-       /* Label.LabelStyle labelStyle = new Label.LabelStyle();
-        BitmapFont font = assets.getFont(assets.gameFont16);
-        labelStyle.font = font;*/
         floatingText = new Text("" + damage, fontSize, color, true, assets);
         floatingText.setAlignment(Align.center);
         setPosition(x,y);
@@ -134,6 +131,82 @@ public class FloatingText {
 
     public Text getFloatingText() {
         return floatingText;
+    }
+
+    public RaidMember getOwner() {
+        return owner;
+    }
+
+    public void setOwner(RaidMember owner) {
+        this.owner = owner;
+    }
+
+    public void setFloatingText(Text floatingText) {
+        this.floatingText = floatingText;
+    }
+
+    public Timer getTimer() {
+        return timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public boolean isAnimating() {
+        return isAnimating;
+    }
+
+    public void setAnimating(boolean animating) {
+        isAnimating = animating;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
+    public int getFontSize() {
+        return fontSize;
+    }
+
+    public void setFontSize(int fontSize) {
+        this.fontSize = fontSize;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
+    public void setY(float y) {
+        this.y = y;
     }
 
     public void draw(Batch batch, float alpha)  {

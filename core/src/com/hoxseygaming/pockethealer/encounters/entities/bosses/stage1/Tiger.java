@@ -15,8 +15,8 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Bleed
 
 public class Tiger extends Boss {
 
-    Pounce pounce;
-    AutoAttack autoAttack;
+    private Pounce pounce;
+    private AutoAttack autoAttack;
 
     public Tiger(Assets assets) {
         super("Tiger","A tiger is eating all the live stock and harming some people that " +
@@ -31,25 +31,42 @@ public class Tiger extends Boss {
     @Override
     public void create() {
         super.create();
-        damage = 15;
+        setDamage(15);
+
         pounce = new Pounce(this, 2);
         pounce.setNumOfTargets(2);
         pounce.setSpeed(15f);
         pounce.setAnnounce(true);
+
         autoAttack = new AutoAttack(this, 1f);
 
-        //loadMechanics(autoAttack, pounce);
-        phaseManager.addPhase(new Phase(this, 0,autoAttack, pounce));
+        getPhaseManager().addPhase(new Phase(this, 0,autoAttack, pounce));
 
         loadDebuff(new BleedEffect(this));
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
-            rewardPackage.addNewSpellText();
-            rewardPackage.addImage(new Image(assets.getTexture(assets.dispelIcon)));
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
+            getRewardPackage().addNewSpellText();
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().dispelIcon)));
         }
+    }
+
+    public Pounce getPounce() {
+        return pounce;
+    }
+
+    public void setPounce(Pounce pounce) {
+        this.pounce = pounce;
+    }
+
+    public AutoAttack getAutoAttack() {
+        return autoAttack;
+    }
+
+    public void setAutoAttack(AutoAttack autoAttack) {
+        this.autoAttack = autoAttack;
     }
 }

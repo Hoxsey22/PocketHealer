@@ -8,7 +8,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 public class PoisonEffect extends Debuff {
 
-    public float healingReductionPercentage;
+    private float healingReductionPercentage;
 
 
     /**
@@ -22,7 +22,7 @@ public class PoisonEffect extends Debuff {
                 3,
                 "Poison Effect",
                 "Poisons the target taking constant damage until dispel or poison wearing off.",
-                owner.assets.getTexture(owner.assets.poisonIcon),
+                owner.getAssets().getTexture(owner.getAssets().poisonIcon),
                 20f,
                 2f,
                 15,
@@ -44,7 +44,7 @@ public class PoisonEffect extends Debuff {
                 3,
                 "Poison",
                 "Poisons the target taking constant damage and reduces healing the target takes until dispel or until poison wears off.",
-                owner.assets.getTexture(owner.assets.poisonIcon),
+                owner.getAssets().getTexture(owner.getAssets().poisonIcon),
                 duration,
                 speed,
                 modValue,
@@ -64,7 +64,7 @@ public class PoisonEffect extends Debuff {
                 3,
                 "Poison",
                 "Poisons the target taking constant damage and reduces healing the target takes until dispel or until poison wears off.",
-                owner.assets.getTexture(owner.assets.poisonIcon),
+                owner.getAssets().getTexture(owner.getAssets().poisonIcon),
                 20f,
                 2f,
                 modValue,
@@ -96,5 +96,13 @@ public class PoisonEffect extends Debuff {
     public void stopTimer() {
         getTimer().stop();
         getTimer().clear();
+    }
+
+    public float getHealingReductionPercentage() {
+        return healingReductionPercentage;
+    }
+
+    public void setHealingReductionPercentage(float healingReductionPercentage) {
+        this.healingReductionPercentage = healingReductionPercentage;
     }
 }

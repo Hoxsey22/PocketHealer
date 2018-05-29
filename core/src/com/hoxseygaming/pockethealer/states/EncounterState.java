@@ -74,7 +74,7 @@ public class EncounterState extends State {
     public void create() {
         //super.create();
         isDone = false;
-        assets = player.assets;
+        assets = player.getAssets();
         //player.createSpellBar();
         //player.addDebuggingSpell();
 
@@ -95,10 +95,10 @@ public class EncounterState extends State {
         bgMusic.setVolume(0.3f);
         bgMusic.play();
         */
-        if(boss.id <= 6)    {
+        if(boss.getId() <= 6)    {
             bgImage = new Image(assets.getTexture(assets.battleBg1));
         }
-        else if(boss.id >= 7 && boss.id <= 11)    {
+        else if(boss.getId() >= 7 && boss.getId() <= 11)    {
             bgImage = new Image(assets.getTexture(assets.battleBg2));
         }
         else    {
@@ -113,11 +113,11 @@ public class EncounterState extends State {
         stage = new Stage(viewport);
         bgImage.setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
 
-        // add all actors to the stage
+        // add all actors to the stageNumber
         stage.addActor(bgImage);
         stage.addActor(boss);
         stage.addActor(raid);
-        stage.addActor(player.spellBar);
+        stage.addActor(player.getSpellBar());
         stage.addActor(manaBar);
         stage.addActor(castBar);
         //
@@ -137,32 +137,32 @@ public class EncounterState extends State {
                         boss.takeDamage(1000);
                         break;
                     case Input.Keys.NUM_9:
-                        for(int i = 0; i < raid.raidMembers.size(); i++)   {
-                            raid.raidMembers.get(i).takeDamage(50);
+                        for(int i = 0; i < raid.getRaidMembers().size(); i++)   {
+                            raid.getRaidMembers().get(i).takeDamage(50);
                         }
                         break;
                     case Input.Keys.NUM_1:
-                        if(player.spellBar.spells.size() > 0)    {
-                            if(!player.isCasting)
-                                player.spellBar.spells.get(0).castSpell();
+                        if(player.getSpellBar().getSpells().size() > 0)    {
+                            if(!player.isCasting())
+                                player.getSpellBar().getSpells().get(0).castSpell();
                         }
                         break;
                     case Input.Keys.NUM_2:
-                        if(player.spellBar.spells.size() > 1)    {
-                            if(!player.isCasting)
-                                player.spellBar.spells.get(1).castSpell();
+                        if(player.getSpellBar().getSpells().size() > 1)    {
+                            if(!player.isCasting())
+                                player.getSpellBar().getSpells().get(1).castSpell();
                         }
                         break;
                     case Input.Keys.NUM_3:
-                        if(player.spellBar.spells.size() > 2)    {
-                            if(!player.isCasting)
-                                player.spellBar.spells.get(2).castSpell();
+                        if(player.getSpellBar().getSpells().size() > 2)    {
+                            if(!player.isCasting())
+                                player.getSpellBar().getSpells().get(2).castSpell();
                         }
                         break;
                     case Input.Keys.NUM_4:
-                        if(player.spellBar.spells.size() > 3)    {
-                            if(!player.isCasting)
-                                player.spellBar.spells.get(3).castSpell();
+                        if(player.getSpellBar().getSpells().size() > 3)    {
+                            if(!player.isCasting())
+                                player.getSpellBar().getSpells().get(3).castSpell();
                         }
                         break;
                     case Input.Keys.BACK:
@@ -196,8 +196,8 @@ public class EncounterState extends State {
                     }
                 }
                 else    {
-                    if(!player.isCasting) {
-                        Spell spell = (Spell) player.spellBar.hit(coord.x, coord.y, false);
+                    if(!player.isCasting()) {
+                        Spell spell = (Spell) player.getSpellBar().hit(coord.x, coord.y, false);
                         if (spell != null) {
                             spell.castSpell();
                         }
@@ -261,7 +261,7 @@ public class EncounterState extends State {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
 
-                if(gameOverFrame.won)   {
+                if(gameOverFrame.isWon())   {
                     int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
 
                     if(buttonHit != -1)    {
@@ -281,28 +281,6 @@ public class EncounterState extends State {
                                 break;
                         }
                     }
-
-                    /*
-                    switch (page)   {
-                        case 1:
-                            gameOverFrame.showReward();
-                            page = 2;
-                            break;
-
-                        case 2:/*
-                            int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
-                            System.out.println(buttonHit);
-
-                            if(buttonHit != -1) {
-                                if(buttonHit == 1) {
-                                    player.newLevel(boss.getLevel());
-                                    sm.set(new MapState(sm, player));
-                                    break;
-                                }
-                            }
-                            break;
-                    }
-                    */
                 }
                 else    {
                     int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
@@ -402,7 +380,7 @@ public class EncounterState extends State {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)x,(float)y));
 
-                if(gameOverFrame.won)   {
+                if(gameOverFrame.isWon())   {
                     switch (page)   {
                         case 1:
                             gameOverFrame.showReward();
@@ -450,7 +428,6 @@ public class EncounterState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
-        //System.out.println("render");
         Gdx.gl.glClearColor(Color.TAN.r,Color.TAN.g,Color.TAN.b,Color.TAN.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glEnable(GL20.GL_BLEND);

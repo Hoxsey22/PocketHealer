@@ -27,30 +27,30 @@ public abstract class Spell extends Actor {
         HEAL,HEALALL,HEALMULTIPLE,SHIELD,HEALOVERTIME,DAMAGEHEAL, LBHEAL,RNHEAL
     }
 
-    public Player owner;
-    public String name;
-    public String description;
-    public String spellType;
-    public int output;
-    public int MIN_OUTPUT;
-    public int cost;
-    public int MIN_COST;
-    public float cooldown;
-    public float MIN_COOLDOWN;
-    public float cdCounter;
-    public boolean isReady;
-    public boolean isCasting;
-    public Texture image;
-    public float cdPercentage;
-    public Timer cdTimer;
-    public Assets assets;
+    private Player owner;
+    private String name;
+    private String description;
+    private String spellType;
+    private int output;
+    private int MIN_OUTPUT;
+    private int cost;
+    private int MIN_COST;
+    private float cooldown;
+    private float MIN_COOLDOWN;
+    private float cdCounter;
+    private boolean isReady;
+    private boolean isCasting;
+    private Texture image;
+    private float cdPercentage;
+    protected Timer cdTimer;
+    private Assets assets;
     private Text text;
-    public RaidMember target;
-    public CriticalChance criticalChance;
-    public int MIN_CRITICAL;
-    public int levelRequirement;
-    public int numOfTargets;
-    public ArrayList<RaidMember> targets;
+    private RaidMember target;
+    private CriticalChance criticalChance;
+    private int MIN_CRITICAL;
+    private int levelRequirement;
+    private int numOfTargets;
+    private ArrayList<RaidMember> targets;
 //
     /**
      * @param player
@@ -205,7 +205,7 @@ public abstract class Spell extends Actor {
     }
 
     public void useMana()   {
-        owner.mana = owner.mana - cost;
+        owner.setMana(owner.getMana() - cost);
     }
 
     public void setCriticalChance(int chance)  {
@@ -221,7 +221,7 @@ public abstract class Spell extends Actor {
     }
 
     public boolean isCastable() {
-        if(owner.target == null)    {
+        if(owner.getTarget() == null)    {
             System.out.println("NO TARGET FOUND!");
             return false;
         }
@@ -238,7 +238,7 @@ public abstract class Spell extends Actor {
             return false;
         }
         if(owner.getTarget().isDead())    {
-            System.out.println("ID:"+owner.getTarget().id+" Target is dead!");
+            System.out.println("ID:"+owner.getTarget().getId()+" Target is dead!");
             return false;
         }
 
@@ -348,7 +348,7 @@ public abstract class Spell extends Actor {
     }
 
     public void getRandomTargets()  {
-        targets = getOwner().raid.getRaidMembersWithLowestHp(numOfTargets);
+        targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets);
     }
 
     public void resetDefault()  {
@@ -366,11 +366,104 @@ public abstract class Spell extends Actor {
         return string;
     }
 
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getMIN_OUTPUT() {
+        return MIN_OUTPUT;
+    }
+
+    public void setMIN_OUTPUT(int MIN_OUTPUT) {
+        this.MIN_OUTPUT = MIN_OUTPUT;
+    }
+
+    public int getMIN_COST() {
+        return MIN_COST;
+    }
+
+    public void setMIN_COST(int MIN_COST) {
+        this.MIN_COST = MIN_COST;
+    }
+
+    public float getCooldown() {
+        return cooldown;
+    }
+
+    public void setCooldown(float cooldown) {
+        this.cooldown = cooldown;
+    }
+
+    public float getMIN_COOLDOWN() {
+        return MIN_COOLDOWN;
+    }
+
+    public void setMIN_COOLDOWN(float MIN_COOLDOWN) {
+        this.MIN_COOLDOWN = MIN_COOLDOWN;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public Text getText() {
+        return text;
+    }
+
+    public void setText(Text text) {
+        this.text = text;
+    }
+
+    public CriticalChance getCriticalChance() {
+        return criticalChance;
+    }
+
+    public void setCriticalChance(CriticalChance criticalChance) {
+        this.criticalChance = criticalChance;
+    }
+
+    public int getMIN_CRITICAL() {
+        return MIN_CRITICAL;
+    }
+
+    public void setMIN_CRITICAL(int MIN_CRITICAL) {
+        this.MIN_CRITICAL = MIN_CRITICAL;
+    }
+
+    public int getLevelRequirement() {
+        return levelRequirement;
+    }
+
+    public void setLevelRequirement(int levelRequirement) {
+        this.levelRequirement = levelRequirement;
+    }
+
+    public int getNumOfTargets() {
+        return numOfTargets;
+    }
+
+    public void setNumOfTargets(int numOfTargets) {
+        this.numOfTargets = numOfTargets;
+    }
+
+    public ArrayList<RaidMember> getTargets() {
+        return targets;
+    }
+
+    public void setTargets(ArrayList<RaidMember> targets) {
+        this.targets = targets;
+    }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(image, getX(),getY(),getWidth(), getHeight());
-        batch.draw(assets.getTexture("cooldown_bar.png"), getX(),getY(),getWidth(), getHeight()*getCdPercentage());
+        batch.draw(getAssets().getTexture("cooldown_bar.png"), getX(),getY(),getWidth(), getHeight()*getCdPercentage());
         text.setText(String.format("%.1f",cdCounter));
         text.setPosition(getX()+getWidth()/2 - text.getXCenter(), getY() + getHeight()/2 -
                 text.getYCenter());

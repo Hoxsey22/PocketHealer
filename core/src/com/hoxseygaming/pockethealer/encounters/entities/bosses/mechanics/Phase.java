@@ -15,16 +15,16 @@ import java.util.ArrayList;
 
 public class Phase {
 
-    public String name;
-    public PhaseManager parent;
-    public Boss owner;
-    public float length;
-    public float percentage;
-    float delay;
-    public boolean isActive;
-    public Timer timer;
-    public ArrayList<Mechanic> mechanics;
-    public boolean isTimed;
+    private String name;
+    private PhaseManager parent;
+    private Boss owner;
+    private float length;
+    private float percentage;
+    private float delay;
+    private boolean isActive;
+    private Timer timer;
+    private ArrayList<Mechanic> mechanics;
+    private boolean isTimed;
     private boolean isNameChange;
     private String nameChange;
 
@@ -134,25 +134,25 @@ public class Phase {
         }
         if(name == "") {
             Timer phaseTitleTimer = new Timer();
-            getOwner().announcement.setText(name);
+            getOwner().getAnnouncement().setText(name);
             phaseTitleTimer.scheduleTask(new Timer.Task() {
                 @Override
                 public void run() {
-                    getOwner().announcement.setText("");
+                    getOwner().getAnnouncement().setText("");
                 }
             }, 1f, 1);
         }
         startMechanics();
 
         if(isTimed) {
-            timer.scheduleTask(new Timer.Task() {
+            getTimer().scheduleTask(new Timer.Task() {
                 int count = 0;
                 @Override
                 public void run() {
                     count++;
                     if(count == length*10) {
-                        timer.stop();
-                        timer.clear();
+                        getTimer().stop();
+                        getTimer().clear();
                         stopMechanics();
 
                         parent.nextPhase();
@@ -161,12 +161,12 @@ public class Phase {
             }, 0.1f,0.1f);
         }
         else    {
-            timer.scheduleTask(new Timer.Task() {
+            getTimer().scheduleTask(new Timer.Task() {
                 @Override
                 public void run() {
-                    if(owner.getHpPercent() <= percentage ) {
-                        timer.stop();
-                        timer.clear();
+                    if(getOwner().getHpPercent() <= percentage ) {
+                        getTimer().stop();
+                        getTimer().clear();
                         stopMechanics();
 
                         parent.nextPhase();
@@ -181,7 +181,7 @@ public class Phase {
      */
     public void stop()  {
         if(timer != null)   {
-            timer.stop();
+            getTimer().stop();
             System.out.println("phase stopped!");
         }
         if(mechanics != null)    {
@@ -196,7 +196,7 @@ public class Phase {
     public void clear() {
         if(timer != null) {
             stop();
-            timer.clear();
+            getTimer().clear();
         }
         if(mechanics != null)   {
             for(int i = 0; i < mechanics.size(); i++)   {
@@ -221,7 +221,7 @@ public class Phase {
         for(int i = 0; i < mechanics.size(); i++)   {
             mechanics.get(i).stop();
         }
-        owner.announcement.setText("");
+        getOwner().getAnnouncement().setText("");
     }
 
     public void pauseMechanics(Mechanic currentMechanic)    {
@@ -230,7 +230,7 @@ public class Phase {
 
         System.out.println(date+" :"+currentMechanic.getName()+" paused the other mechanics.");
         for(int i = 0; i < mechanics.size(); i++)   {
-            if(!currentMechanic.getName().equalsIgnoreCase(mechanics.get(i).getName()) && !mechanics.get(i).bgMech) {
+            if(!currentMechanic.getName().equalsIgnoreCase(mechanics.get(i).getName()) && !mechanics.get(i).isBgMech()) {
                 mechanics.get(i).pause();
             }
         }
@@ -246,24 +246,15 @@ public class Phase {
     }
 
     public void resumeMechanics()   {
-       /* Timer resumeTimer = new Timer();
-
-        resumeTimer.scheduleTask(new Timer.Task() {
-            @Override
-            public void run() {*/
-                for(int i = 0; i < mechanics.size(); i++)   {
-                    if(!mechanics.get(i).bgMech) {
-                        mechanics.get(i).resume();
-                    }
-                }
-            /*}
-            //1.5f
-        },1.5f,1.5f,1);
-        */
+        for(int i = 0; i < mechanics.size(); i++)   {
+            if(!mechanics.get(i).isBgMech()) {
+                mechanics.get(i).resume();
+            }
+        }
     }
 
     public void changeBossName()    {
-        owner.getNameText().setText(nameChange);
+        getOwner().getNameText().setText(nameChange);
     }
 
     /*****************************************************************
@@ -326,5 +317,45 @@ public class Phase {
 
     public void setNameChange(boolean nameChange) {
         isNameChange = nameChange;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getPercentage() {
+        return percentage;
+    }
+
+    public void setPercentage(float percentage) {
+        this.percentage = percentage;
+    }
+
+    public float getDelay() {
+        return delay;
+    }
+
+    public void setDelay(float delay) {
+        this.delay = delay;
+    }
+
+    public ArrayList<Mechanic> getMechanics() {
+        return mechanics;
+    }
+
+    public void setMechanics(ArrayList<Mechanic> mechanics) {
+        this.mechanics = mechanics;
+    }
+
+    public boolean isTimed() {
+        return isTimed;
+    }
+
+    public void setTimed(boolean timed) {
+        isTimed = timed;
     }
 }

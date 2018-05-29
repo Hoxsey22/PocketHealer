@@ -6,8 +6,8 @@ package com.hoxseygaming.pockethealer;
 
 public class HealingTracker {
 
-    public int healingDone;
-    public int totalHealingDone;
+    private int healingDone;
+    private int totalHealingDone;
 
     public HealingTracker() {
         healingDone = 0;
@@ -49,6 +49,19 @@ public class HealingTracker {
         totalHealingDone = 0;
     }
 
+    public int getHealingDone() {
+        return healingDone;
+    }
 
+    public void setHealingDone(int healingDone) {
+        this.healingDone = healingDone;
+    }
 
+    public int getTotalHealingDone() {
+        return totalHealingDone;
+    }
+
+    public void setTotalHealingDone(int totalHealingDone) {
+        this.totalHealingDone = totalHealingDone;
+    }
 }

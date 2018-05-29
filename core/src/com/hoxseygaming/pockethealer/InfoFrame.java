@@ -17,15 +17,15 @@ import java.util.ArrayList;
 
 public class InfoFrame extends Group {
 
-    Assets assets;
-    Image disableBG;
-    Image infoFrame;
-    Text infoTitle;
-    Table debuffListTable;
-    Text debuffDescription;
-    TextButton okButton;
-    ArrayList<DebuffIconButton> debuffButtons;
-    Boss boss;
+    private Assets assets;
+    private Image disableBG;
+    private Image infoFrame;
+    private Text infoTitle;
+    private Table debuffListTable;
+    private Text debuffDescription;
+    private TextButton okButton;
+    private ArrayList<DebuffIconButton> debuffButtons;
+    private Boss boss;
 
     public InfoFrame(Assets assets)  {
         this.assets = assets;
@@ -47,10 +47,6 @@ public class InfoFrame extends Group {
 
         debuffListTable = new Table();
         debuffListTable.setBounds(infoFrame.getX()+5,infoFrame.getY(),infoFrame.getWidth()-10, infoFrame.getHeight());
-
-        //debug();
-        //loadDebuffs();
-        //create();
     }
 
     public InfoFrame(Boss boss, Assets assets)  {
@@ -64,14 +60,14 @@ public class InfoFrame extends Group {
 
     private void loadDebuffs()  {
 
-        for(int i = 0; i < boss.debuffList.size(); i++)   {
-            debuffButtons.add(new DebuffIconButton(boss.debuffList.get(i),assets));
+        for(int i = 0; i < boss.getDebuffList().size(); i++)   {
+            debuffButtons.add(new DebuffIconButton(boss.getDebuffList().get(i),assets));
 
             debuffButtons.get(debuffButtons.size()-1).addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
                     infoTitle.setText(actor.getName());
-                    debuffDescription.setText(debuffButtons.get(debuffButtons.indexOf(actor)).description);
+                    debuffDescription.setText(debuffButtons.get(debuffButtons.indexOf(actor)).getDescription());
                 }
             });
         }
@@ -119,5 +115,77 @@ public class InfoFrame extends Group {
                 remove();
             }
         });
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
+    public Image getDisableBG() {
+        return disableBG;
+    }
+
+    public void setDisableBG(Image disableBG) {
+        this.disableBG = disableBG;
+    }
+
+    public Image getInfoFrame() {
+        return infoFrame;
+    }
+
+    public void setInfoFrame(Image infoFrame) {
+        this.infoFrame = infoFrame;
+    }
+
+    public Text getInfoTitle() {
+        return infoTitle;
+    }
+
+    public void setInfoTitle(Text infoTitle) {
+        this.infoTitle = infoTitle;
+    }
+
+    public Table getDebuffListTable() {
+        return debuffListTable;
+    }
+
+    public void setDebuffListTable(Table debuffListTable) {
+        this.debuffListTable = debuffListTable;
+    }
+
+    public Text getDebuffDescription() {
+        return debuffDescription;
+    }
+
+    public void setDebuffDescription(Text debuffDescription) {
+        this.debuffDescription = debuffDescription;
+    }
+
+    public TextButton getOkButton() {
+        return okButton;
+    }
+
+    public void setOkButton(TextButton okButton) {
+        this.okButton = okButton;
+    }
+
+    public ArrayList<DebuffIconButton> getDebuffButtons() {
+        return debuffButtons;
+    }
+
+    public void setDebuffButtons(ArrayList<DebuffIconButton> debuffButtons) {
+        this.debuffButtons = debuffButtons;
+    }
+
+    public Boss getBoss() {
+        return boss;
+    }
+
+    public void setBoss(Boss boss) {
+        this.boss = boss;
     }
 }

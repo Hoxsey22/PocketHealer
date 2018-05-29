@@ -1,6 +1,5 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
-import com.badlogic.gdx.audio.Sound;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
@@ -13,8 +12,6 @@ import com.hoxseygaming.pockethealer.encounters.spells.Types.InstantCast;
  */
 public class Barrier extends InstantCast {
 
-    public Sound sfx;
-
     public Barrier(Player player, Assets assets) {
         super(player,"Barrier", "Places a barrier around the ally unit, absorbing incoming damage.",
                 6,
@@ -24,7 +21,7 @@ public class Barrier extends InstantCast {
                 4f,
                 assets.getSound(assets.barrierSFX),
                 assets);
-        image = this.assets.getTexture(assets.barrierIcon);
+        setImage(this.getAssets().getTexture(getAssets().barrierIcon));
         checkTalents();
     }
 
@@ -32,21 +29,21 @@ public class Barrier extends InstantCast {
     public void checkTalents() {
         resetDefault();
 
-        if(owner.getTalentTree().getTalent(TalentTree.BARRIER_MASTER).isSelected())    {
-            cooldown = 1.0f;
-            cost = 25;
+        if(getOwner().getTalentTree().getTalent(TalentTree.BARRIER_MASTER).isSelected())    {
+            setCooldown(1f);
+            setCost(25);
         }
-        if(owner.getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
-            output = 80;
+        if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
+            setOutput(80);
         }
     }
 
     @Override
     public void applySpell(RaidMember target) {
-        target.applyShield(output);
-        target.addStatusEffect(new BarrierEffect(owner));
+        target.applyShield(getOutput());
+        target.addStatusEffect(new BarrierEffect(getOwner()));
 
-        if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
+        if(getOwner().getTalentTree().getTalent(getOwner().getTalentTree().CRITICAL_HEALER_II).isSelected()) {
             applyAtonement(target);
         }
     }

@@ -14,20 +14,20 @@ import java.util.ArrayList;
 public class Leap extends Mechanic{
 
 
-    public Timer leapTimer;
-    public int numOfTargets;
+    private Timer leapTimer;
+    private int numOfTargets;
     private ArrayList<RaidMember> targets;
 
     public Leap(Boss owner) {
-        super("Leap", owner.damage*2, 15f, owner);
+        super("Leap", owner.getDamage()*2, 15f, owner);
         numOfTargets = 5;
-        announce = true;
+        setAnnounce(true);
     }
 
     public Leap(Boss owner, int damage, float speed, int numOfTargets) {
         super("Leap", damage, speed, owner);
         this.numOfTargets = numOfTargets;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
@@ -39,21 +39,20 @@ public class Leap extends Mechanic{
     public void startChannel()  {
         leapTimer = new Timer();
 
-        targets = owner.getEnemies().getRandomRaidMember(numOfTargets);
+        targets = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
         leapTimer.schedule(new Timer.Task() {
             int count =  0;
 
             @Override
             public void run() {
                 if(count != targets.size()) {
-                    targets.get(count).takeDamage(damage);
-                    targets.get(count).addStatusEffect(new VenomEffect(owner));
+                    targets.get(count).takeDamage(getDamage());
+                    targets.get(count).addStatusEffect(new VenomEffect(getOwner()));
                 }
                 else    {
                     leapTimer.stop();
                     leapTimer.clear();
                     resumePhase();
-   //                 announcementTimer.start();
                 }
                 count++;
             }

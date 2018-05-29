@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class PrayerOfMendingEffect extends Buff{
 
-    public int jumpCount;
+    private int jumpCount;
     /**
      * */
     public PrayerOfMendingEffect(Player owner) {
@@ -42,10 +42,10 @@ public class PrayerOfMendingEffect extends Buff{
     public void applyEffect() {
         System.out.println("Before - PoM Taraget: m["+getTarget().getId()+"] hp: "+getTarget().getHp());
         if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())    {
-            getOwner().spellBar.getSpell(0).applyMasteringHealing(getTarget(), getModValue());
+            getOwner().getSpellBar().getSpell(0).applyMasteringHealing(getTarget(), getModValue());
         }
         else {
-            getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().criticalChance));
+            getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().getCriticalChance()));
         }
         System.out.println("After - PoM Taraget: m["+getTarget().getId()+"] hp: "+getTarget().getHp());
         System.out.println("PoM Count: "+jumpCount);

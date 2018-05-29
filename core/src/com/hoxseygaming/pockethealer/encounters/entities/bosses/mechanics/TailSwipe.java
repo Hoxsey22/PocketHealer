@@ -18,22 +18,22 @@ public class TailSwipe extends Mechanic {
     public TailSwipe(Boss owner) {
         super("Tail Swipe", 20, 5f, owner);
         numOfTargets = 2;
-        announce = true;
+        setAnnounce(true);
     }
 
     public TailSwipe(Boss owner, float speed) {
         super("Tail Swipe", 20, speed, owner);
         numOfTargets = 5;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
         ArrayList<RaidMember> raidMembers = getRaid().getRandomRaidMember(numOfTargets);
         for(int i = 0; i < raidMembers.size(); i++)   {
-            raidMembers.get(i).takeDamage(damage);
+            raidMembers.get(i).takeDamage(getDamage());
             if(CriticalDice.roll(60,100,0)) {
-                raidMembers.get(i).addStatusEffect(new BleedEffect(owner, 3f, 5));
+                raidMembers.get(i).addStatusEffect(new BleedEffect(getOwner(), 3f, 5));
             }
         }
     }

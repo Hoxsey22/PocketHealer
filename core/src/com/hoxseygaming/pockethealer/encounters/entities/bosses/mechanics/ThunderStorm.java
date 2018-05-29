@@ -9,31 +9,31 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 public class ThunderStorm extends Mechanic{
 
-    Timer powerlessTimer;
+    private Timer powerlessTimer;
 
     public ThunderStorm(Boss owner) {
         super("Thunder Storm", 0, 35f, owner);
-        announce = true;
+        setAnnounce(true);
     }
 
     public ThunderStorm(Boss owner, float speed) {
         super("Thunder Storm", 0, speed, owner);
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
-        for(int i = 0; i < getRaid().raidMembers.size(); i++)   {
+        for(int i = 0; i < getRaid().getRaidMembers().size(); i++)   {
             getRaid().getRaidMember(i).takeDamage(100);
         }
         startPowerlessTimer();
-        parentPhase.pauseMechanics();
+        getParentPhase().pauseMechanics();
 
     }
 
     public void startPowerlessTimer()    {
 
-        owner.announcement.setText(owner.getName()+" is powerless for just 7 seconds!");
+        getOwner().getAnnouncement().setText(getOwner().getName()+" is powerless for just 7 seconds!");
         powerlessTimer = new Timer();
 
         powerlessTimer.scheduleTask(new Timer.Task() {
@@ -42,8 +42,7 @@ public class ThunderStorm extends Mechanic{
             public void run() {
                 powerlessTimer.stop();
                 powerlessTimer.clear();
-                owner.announcement.setText("");
-                //timer.start();
+                getOwner().getAnnouncement().setText("");
                 resume();
             }
         },7f,7f,1);

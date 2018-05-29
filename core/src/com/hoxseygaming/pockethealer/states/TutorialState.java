@@ -46,13 +46,13 @@ public class TutorialState extends State {
 
         Gdx.input.setCursorCatched(true);
 
-        boss = new Monster(player.assets);
+        boss = new Monster(player.getAssets());
         boss.setPlayer(player);
         this.boss.reset();
 
         raid = this.boss.getEnemies();
 
-        tutorialFrame = new TutorialFrame(player, boss, player.assets);
+        tutorialFrame = new TutorialFrame(player, boss, player.getAssets());
 
         player.setBoss(this.boss);
         raid.setPlayer(player);
@@ -63,7 +63,7 @@ public class TutorialState extends State {
     @Override
     public void create() {
         isDone = false;
-        assets = player.assets;
+        assets = player.getAssets();
 
         player.setRaid(boss.getEnemies());
 
@@ -82,11 +82,11 @@ public class TutorialState extends State {
 
         bgImage.setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
 
-        // add all actors to the stage
+        // add all actors to the stageNumber
         stage.addActor(bgImage);
         stage.addActor(boss);
         stage.addActor(raid);
-        stage.addActor(player.spellBar);
+        stage.addActor(player.getSpellBar());
         stage.addActor(player.getManaBar());
         stage.addActor(player.getCastBar());
         stage.addActor(tutorialFrame);
@@ -107,16 +107,16 @@ public class TutorialState extends State {
                         boss.takeDamage(1000);
                         break;
                     case Input.Keys.NUM_2:
-                        for(int i = 0; i < raid.raidMembers.size(); i++)   {
-                            raid.raidMembers.get(i).takeDamage(50);
+                        for(int i = 0; i < raid.getRaidMembers().size(); i++)   {
+                            raid.getRaidMembers().get(i).takeDamage(50);
                         }
                         break;
                     case Input.Keys.NUM_3:
-                        raid.raidMembers.get(0).takeDamage(50);
+                        raid.getRaidMembers().get(0).takeDamage(50);
                         break;
                     case Input.Keys.NUM_0:
-                        for (int i = 0; i < raid.raidMembers.size(); i++)
-                            System.out.println("ID:"+raid.raidMembers.get(i).id+", role:"+raid.raidMembers.get(i).role);
+                        for (int i = 0; i < raid.getRaidMembers().size(); i++)
+                            System.out.println("ID:"+raid.getRaidMembers().get(i).getId()+", role:"+raid.getRaidMembers().get(i).getRole());
                         break;
                 }
                 return false;
@@ -135,7 +135,7 @@ public class TutorialState extends State {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float) screenX, (float) screenY));
-                if (tutorialFrame.isComplete) {
+                if (tutorialFrame.isComplete()) {
                     if (coord.y > 300) {
                         RaidMember raidTarget = (RaidMember) raid.hit(coord.x, coord.y, false);
                         if (raidTarget != null) {
@@ -144,8 +144,8 @@ public class TutorialState extends State {
                             player.getTarget().selected();
                         }
                     } else {
-                        if (!player.isCasting) {
-                            Spell spell = (Spell) player.spellBar.hit(coord.x, coord.y, false);
+                        if (!player.isCasting()) {
+                            Spell spell = (Spell) player.getSpellBar().hit(coord.x, coord.y, false);
                             if (spell != null) {
                                 spell.castSpell();
                             }
@@ -213,7 +213,7 @@ public class TutorialState extends State {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
 
-                if(gameOverFrame.won)   {
+                if(gameOverFrame.isWon())   {
                     switch (page)   {
                         case 1:
                             gameOverFrame.showReward();

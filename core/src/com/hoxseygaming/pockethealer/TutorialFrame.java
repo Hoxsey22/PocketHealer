@@ -15,98 +15,98 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 public class TutorialFrame extends Group {
 
-    public Image disableBG;
-    public Image frame;
-    public Text text;
-    public Table table;
-    public Assets assets;
-    public BlinkingImage pointer;
-    public int stage;
-    public Player player;
-    public Boss boss;
-    public boolean isComplete;
+    private Image disableBG;
+    private Image frame;
+    private Text text;
+    private Table table;
+    private Assets assets;
+    private BlinkingImage pointer;
+    private int stageNumber;
+    private Player player;
+    private Boss boss;
+    private boolean isComplete;
 
     public TutorialFrame(Player player, Boss boss, Assets assets)  {
-        this.assets = assets;
-        this.player = player;
-        this.boss = boss;
-        pointer = new BlinkingImage(assets.getTexture(assets.arrowPointer));
-        pointer.setBounds(-100, -100,50,50);
-        stage = 1;
-        isComplete = false;
+        this.setAssets(assets);
+        this.setPlayer(player);
+        this.setBoss(boss);
+        setPointer(new BlinkingImage(assets.getTexture(assets.arrowPointer)));
+        getPointer().setBounds(-100, -100,50,50);
+        setStageNumber(1);
+        setComplete(false);
         create();
     }
 
     public void create()    {
-        disableBG = new Image(assets.getTexture(assets.disableBG));
-        disableBG.setName("disable bg");
-        disableBG.setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
+        setDisableBG(new Image(getAssets().getTexture(getAssets().disableBG)));
+        getDisableBG().setName("disable bg");
+        getDisableBG().setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
 
-        frame = new Image(assets.getTexture(assets.endGameFrame));
-        frame.setName("frame");
-        frame.setPosition(PocketHealer.WIDTH/2 - frame.getWidth()/2, PocketHealer.HEIGHT/2 - frame.getWidth()/2);
+        setFrame(new Image(getAssets().getTexture(getAssets().endGameFrame)));
+        getFrame().setName("frame");
+        getFrame().setPosition(PocketHealer.WIDTH/2 - getFrame().getWidth()/2, PocketHealer.HEIGHT/2 - getFrame().getWidth()/2);
 
-        addActor(disableBG);
-        addActor(frame);
-        addActor(pointer);
+        addActor(getDisableBG());
+        addActor(getFrame());
+        addActor(getPointer());
         createText();
     }
 
     public void createText()    {
-        table = new Table();
-        table.setBounds(frame.getX()+5,frame.getY(), frame.getWidth(), frame.getHeight());
+        setTable(new Table());
+        getTable().setBounds(getFrame().getX()+5, getFrame().getY(), getFrame().getWidth(), getFrame().getHeight());
 
 
-        text = new Text("Welcome to \nPocket Healer!",24, Color.WHITE, false, assets);
-        text.setWrap(true);
-        text.setAlignment(Align.center);
+        setText(new Text("Welcome to \nPocket Healer!",24, Color.WHITE, false, getAssets()));
+        getText().setWrap(true);
+        getText().setAlignment(Align.center);
 
-        table.add(text.getLabel()).width(table.getWidth()-10);
+        getTable().add(getText().getLabel()).width(getTable().getWidth()-10);
 
-        addActor(table);
+        addActor(getTable());
     }
 
     public void nextStage() {
-        stage++;
-        switch(stage)    {
+        setStageNumber(getStageNumber() + 1);
+        switch(getStageNumber())    {
             case 2:
-                text.setText("The objective as a healer is to keep everyone alive until your team defeats the boss.");
+                getText().setText("The objective as a healer is to keep everyone alive until your team defeats the boss.");
                 break;
             case 3:
-                text.setText("This is the boss frame. \nWhen the boss frame is empty, you have defeated the boss.");
+                getText().setText("This is the boss frame. \nWhen the boss frame is empty, you have defeated the boss.");
 
-                pointer.setPosition(0,boss.getY());
-                pointer.start();
+                getPointer().setPosition(0, getBoss().getY());
+                getPointer().start();
 
                 break;
             case 4:
-                text.setText("These are the raid frames. These frames you need to pay close attention to." +
+                getText().setText("These are the raid frames. These frames you need to pay close attention to." +
                         "When a raid member dies, the damage toward the boss is lowered.");
 
-                pointer.setPosition(boss.getEnemies().getRaidMember(1).getX()-pointer.getWidth()-2,
-                        boss.getEnemies().getRaidMember(1).getY());
+                getPointer().setPosition(getBoss().getEnemies().getRaidMember(1).getX()- getPointer().getWidth()-2,
+                        getBoss().getEnemies().getRaidMember(1).getY());
                 break;
             case 5:
-                text.setText("Tanks have more health, but do moderate damage. Damage dealers have moderate health, but high damage." +
+                getText().setText("Tanks have more health, but do moderate damage. Damage dealers have moderate health, but high damage." +
                         "Lastly, healers have moderate health and low damage.");
             case 6:
-                text.setText("This is your spell bar. Each spell has it own benefits. To cast a spell, select a raid member and then press the spell.");
-                pointer.setPosition(player.getSpellBar().getSpell(0).getX()-pointer.getWidth()-2,
-                        player.getSpellBar().getSpell(0).getY());
+                getText().setText("This is your spell bar. Each spell has it own benefits. To cast a spell, select a raid member and then press the spell.");
+                getPointer().setPosition(getPlayer().getSpellBar().getSpell(0).getX()- getPointer().getWidth()-2,
+                        getPlayer().getSpellBar().getSpell(0).getY());
                 break;
             case 7:
-                text.setText("This is your mana bar. Each spell cost mana and once your mana is depleted, you won't be able to use a spell.");
-                pointer.setPosition(player.getManaBar().getX()-pointer.getWidth()-2,
-                        player.getSpellBar().getSpell(0).getY());
+                getText().setText("This is your mana bar. Each spell cost mana and once your mana is depleted, you won't be able to use a spell.");
+                getPointer().setPosition(getPlayer().getManaBar().getX()- getPointer().getWidth()-2,
+                        getPlayer().getSpellBar().getSpell(0).getY());
             case 8:
-                text.setText("To conclude, be mindful of your mana and keep your team alive!");
+                getText().setText("To conclude, be mindful of your mana and keep your team alive!");
                 break;
             case 9:
-                text.setText("Boss is about to begin! Be ready healer!");
+                getText().setText("Boss is about to begin! Be ready healer!");
                 break;
             case 10:
-                isComplete = true;
-                boss.start();
+                setComplete(true);
+                getBoss().start();
                 break;
         }
     }
@@ -122,7 +122,87 @@ public class TutorialFrame extends Group {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        if(!isComplete)
+        if(!isComplete())
             super.draw(batch, parentAlpha);
+    }
+
+    public Image getDisableBG() {
+        return disableBG;
+    }
+
+    public void setDisableBG(Image disableBG) {
+        this.disableBG = disableBG;
+    }
+
+    public Image getFrame() {
+        return frame;
+    }
+
+    public void setFrame(Image frame) {
+        this.frame = frame;
+    }
+
+    public Text getText() {
+        return text;
+    }
+
+    public void setText(Text text) {
+        this.text = text;
+    }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
+    public BlinkingImage getPointer() {
+        return pointer;
+    }
+
+    public void setPointer(BlinkingImage pointer) {
+        this.pointer = pointer;
+    }
+
+    public int getStageNumber() {
+        return stageNumber;
+    }
+
+    public void setStageNumber(int stageNumber) {
+        this.stageNumber = stageNumber;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Boss getBoss() {
+        return boss;
+    }
+
+    public void setBoss(Boss boss) {
+        this.boss = boss;
+    }
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public void setComplete(boolean complete) {
+        isComplete = complete;
     }
 }

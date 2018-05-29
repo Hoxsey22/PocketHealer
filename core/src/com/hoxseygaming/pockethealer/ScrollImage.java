@@ -11,71 +11,71 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class ScrollImage {
 
-    public Assets assets;
-    public Image image1;
-    public Image image2;
+    private Assets assets;
+    private Image image1;
+    private Image image2;
     private float velocity;
     private float originX;
     private float originY;
     private float endX;
     private float endY;
-    public boolean isVertical;
+    private boolean isVertical;
 
     public ScrollImage(Texture texture, boolean isVertical, Vector2 frame, float velocity, Assets assets)    {
-        this.assets = assets;
+        this.setAssets(assets);
 
-        this.isVertical = isVertical;
+        this.setVertical(isVertical);
 
-        image1 = new Image(texture);
-        image1.setBounds(frame.x,frame.y,texture.getWidth(),texture.getHeight());
-        image2 = new Image(texture);
-        image2.setBounds(frame.x,frame.y,texture.getWidth(),texture.getHeight());
+        setImage1(new Image(texture));
+        getImage1().setBounds(frame.x,frame.y,texture.getWidth(),texture.getHeight());
+        setImage2(new Image(texture));
+        getImage2().setBounds(frame.x,frame.y,texture.getWidth(),texture.getHeight());
 
         setPosition(frame.x,frame.y);
 
-        this.velocity = velocity;
+        this.setVelocity(velocity);
 
-        originX = frame.x;
-        originY = frame.y;
+        setOriginX(frame.x);
+        setOriginY(frame.y);
 
-        endX = frame.x;
-        endY = frame.y;
+        setEndX(frame.x);
+        setEndY(frame.y);
     }
 
     public void setPosition(float x, float y)   {
-        image1.setPosition(x,y);
+        getImage1().setPosition(x,y);
         matchPartner();
     }
 
     public void move()    {
-        if(isVertical)    {
+        if(isVertical())    {
             outOfRange();
-            image1.setY(image1.getY() - velocity);
+            getImage1().setY(getImage1().getY() - getVelocity());
             matchPartner();
         }
         else    {
             outOfRange();
-            image1.setX(image1.getX() + velocity);
+            getImage1().setX(getImage1().getX() + getVelocity());
             matchPartner();
 
         }
     }
 
     private void matchPartner() {
-        if(isVertical)
-            image2.setPosition(image1.getX(),image1.getY()+image1.getHeight());
+        if(isVertical())
+            getImage2().setPosition(getImage1().getX(), getImage1().getY()+ getImage1().getHeight());
         else
-            image2.setPosition(image1.getX()-image1.getWidth(),image1.getY());
+            getImage2().setPosition(getImage1().getX()- getImage1().getWidth(), getImage1().getY());
     }
 
     private void outOfRange()   {
-        if(isVertical)    {
-            if(image2.getY()-velocity < endY)   {
+        if(isVertical())    {
+            if(getImage2().getY()- getVelocity() < getEndY())   {
                 reposition();
             }
         }
         else    {
-            if(image2.getX()+velocity > endX)    {
+            if(getImage2().getX()+ getVelocity() > getEndX())    {
                 reposition();
             }
         }
@@ -83,12 +83,83 @@ public class ScrollImage {
     }
 
     private void reposition()   {
-        setPosition(originX,originY);
+        setPosition(getOriginX(), getOriginY());
     }
 
     public void draw(Batch batch, float parent)  {
-        image1.draw(batch, parent);
-        image2.draw(batch, parent);
+        getImage1().draw(batch, parent);
+        getImage2().draw(batch, parent);
     }
 
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
+    public Image getImage1() {
+        return image1;
+    }
+
+    public void setImage1(Image image1) {
+        this.image1 = image1;
+    }
+
+    public Image getImage2() {
+        return image2;
+    }
+
+    public void setImage2(Image image2) {
+        this.image2 = image2;
+    }
+
+    public float getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(float velocity) {
+        this.velocity = velocity;
+    }
+
+    public float getOriginX() {
+        return originX;
+    }
+
+    public void setOriginX(float originX) {
+        this.originX = originX;
+    }
+
+    public float getOriginY() {
+        return originY;
+    }
+
+    public void setOriginY(float originY) {
+        this.originY = originY;
+    }
+
+    public float getEndX() {
+        return endX;
+    }
+
+    public void setEndX(float endX) {
+        this.endX = endX;
+    }
+
+    public float getEndY() {
+        return endY;
+    }
+
+    public void setEndY(float endY) {
+        this.endY = endY;
+    }
+
+    public boolean isVertical() {
+        return isVertical;
+    }
+
+    public void setVertical(boolean vertical) {
+        isVertical = vertical;
+    }
 }

@@ -19,11 +19,11 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Corru
 
 public class Sorcerer extends Boss {
 
-    public Agony agony;
-    public BlanketCorruption blanketCorruption;
-    public Fireball fireball;
+    private Agony agony;
+    private BlanketCorruption blanketCorruption;
+    private Fireball fireball;
     private Pyroblast pyroblast;
-    public FireBreath fireBreath;
+    private FireBreath fireBreath;
 
     public Sorcerer(Assets assets) {
         super("Sorcerer","The time has come, the Sorcerer is finally taking a stand. The Sorcerer is very similar to his " +
@@ -38,7 +38,7 @@ public class Sorcerer extends Boss {
     @Override
     public void create() {
         super.create();
-        damage = 0;
+        setDamage(0);
 
         agony = new Agony(this);
 
@@ -52,16 +52,56 @@ public class Sorcerer extends Boss {
         fireBreath = new FireBreath(this);
         fireBreath.setSpeed(35f);
 
-        phaseManager.addPhase(new Phase(this, 0, fireball, agony, blanketCorruption, fireBreath));
-        //loadMechanics(agony,blanketCorruption,fireball,fireBreath);
+        getPhaseManager().addPhase(new Phase(this, 0, fireball, agony, blanketCorruption, fireBreath));
+
         loadDebuff(new BurnEffect(this), new CorruptionEffect(this), new AgonyEffect(this));
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
-            rewardPackage.addNewTalentText();
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
+            getRewardPackage().addNewTalentText();
         }
+    }
+
+    public Agony getAgony() {
+        return agony;
+    }
+
+    public void setAgony(Agony agony) {
+        this.agony = agony;
+    }
+
+    public BlanketCorruption getBlanketCorruption() {
+        return blanketCorruption;
+    }
+
+    public void setBlanketCorruption(BlanketCorruption blanketCorruption) {
+        this.blanketCorruption = blanketCorruption;
+    }
+
+    public Fireball getFireball() {
+        return fireball;
+    }
+
+    public void setFireball(Fireball fireball) {
+        this.fireball = fireball;
+    }
+
+    public Pyroblast getPyroblast() {
+        return pyroblast;
+    }
+
+    public void setPyroblast(Pyroblast pyroblast) {
+        this.pyroblast = pyroblast;
+    }
+
+    public FireBreath getFireBreath() {
+        return fireBreath;
+    }
+
+    public void setFireBreath(FireBreath fireBreath) {
+        this.fireBreath = fireBreath;
     }
 }

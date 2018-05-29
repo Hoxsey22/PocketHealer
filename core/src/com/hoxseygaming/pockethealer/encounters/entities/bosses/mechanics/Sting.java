@@ -11,22 +11,23 @@ import java.util.ArrayList;
  */
 
 public class Sting extends Mechanic {
-    int numOfTargets;
+
+    private int numOfTargets;
 
     public Sting(Boss owner) {
         super("Sting", 15, 10f, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
-        ArrayList<RaidMember> temp  = owner.getEnemies().getRandomRaidMember(numOfTargets);
+        ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
 
         for (int i = 0; i < temp.size(); i++)   {
             if(temp.get(i) != null) {
-                temp.get(i).takeDamage(damage);
-                temp.get(i).addStatusEffect(new PoisonEffect(owner));
+                temp.get(i).takeDamage(getDamage());
+                temp.get(i).addStatusEffect(new PoisonEffect(getOwner()));
             }
         }
     }

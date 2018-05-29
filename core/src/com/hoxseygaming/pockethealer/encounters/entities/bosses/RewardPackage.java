@@ -10,12 +10,12 @@ import java.util.ArrayList;
 
 public class RewardPackage {
 
-    public ArrayList<Image> images;
-    Boss boss;
+    private ArrayList<Image> images;
+    private Boss boss;
     private String reward;
-    public boolean spell;
-    public boolean talent;
-    public boolean level;
+    private boolean spell;
+    private boolean talent;
+    private boolean level;
 
     public RewardPackage(Boss boss)  {
         this.reward = "";
@@ -49,5 +49,45 @@ public class RewardPackage {
 
     public void setReward(String reward) {
         this.reward = reward;
+    }
+
+    public ArrayList<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        this.images = images;
+    }
+
+    public Boss getBoss() {
+        return boss;
+    }
+
+    public void setBoss(Boss boss) {
+        this.boss = boss;
+    }
+
+    public boolean isSpell() {
+        return spell;
+    }
+
+    public void setSpell(boolean spell) {
+        this.spell = spell;
+    }
+
+    public boolean isTalent() {
+        return talent;
+    }
+
+    public void setTalent(boolean talent) {
+        this.talent = talent;
+    }
+
+    public boolean isLevel() {
+        return level;
+    }
+
+    public void setLevel(boolean level) {
+        this.level = level;
     }
 }

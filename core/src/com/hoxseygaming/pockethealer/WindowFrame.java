@@ -14,7 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 public class WindowFrame extends Table {
 
     private WindowFrameStyle windowFrameStyle;
-    public boolean isHidden = true;
+    private boolean isHidden = true;
 
     public WindowFrame(Skin skin)    {
         this(skin.get(WindowFrameStyle.class));
@@ -28,7 +28,7 @@ public class WindowFrame extends Table {
     }
 
     /**
-     * Initializes bg, stage bg position, size and table alignment.
+     * Initializes bg, stageNumber bg position, size and table alignment.
      */
     private void init() {
         // sets the current wfs bg to the tables(this) bg;
@@ -42,8 +42,8 @@ public class WindowFrame extends Table {
     }
 
     /**
-     * The stage bg and this will be added to the stage in order to start displaying the window frame.
-     * @param stage The stage of which the window frame will be displayed.
+     * The stageNumber bg and this will be added to the stageNumber in order to start displaying the window frame.
+     * @param stage The stageNumber of which the window frame will be displayed.
      */
     public void show(Stage stage)  {
         if(stage != null)   {
@@ -55,7 +55,7 @@ public class WindowFrame extends Table {
     }
 
     /**
-     * Both the stage bg and window frame, remove themselves from the stage in order to stop displaying.
+     * Both the stageNumber bg and window frame, remove themselves from the stageNumber in order to stop displaying.
      */
     public void hide()  {
         isHidden = true;
@@ -98,6 +98,22 @@ public class WindowFrame extends Table {
             this.background = windowFrameStyle.background;
             this.stageBackground = windowFrameStyle.stageBackground;
         }
+    }
+
+    public WindowFrameStyle getWindowFrameStyle() {
+        return windowFrameStyle;
+    }
+
+    public void setWindowFrameStyle(WindowFrameStyle windowFrameStyle) {
+        this.windowFrameStyle = windowFrameStyle;
+    }
+
+    public boolean isHidden() {
+        return isHidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
     }
 }
 

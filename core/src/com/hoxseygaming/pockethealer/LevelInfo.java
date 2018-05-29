@@ -16,15 +16,15 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 public class LevelInfo extends Group {
 
-    public Image frame;
-    public Label bossName;
-    public Label description;
-    public Image exitButton;
-    public boolean isActive;
-    public Assets assets;
-    public Table table;
-    public Image startButton;
-    public Boss boss;
+    private Image frame;
+    private Label bossName;
+    private Label description;
+    private Image exitButton;
+    private boolean isActive;
+    private Assets assets;
+    private Table table;
+    private Image startButton;
+    private Boss boss;
 
     public LevelInfo(Assets assets)  {
         this.assets = assets;
@@ -106,6 +106,74 @@ public class LevelInfo extends Group {
         return boss;
     }
 
+    public Image getFrame() {
+        return frame;
+    }
+
+    public void setFrame(Image frame) {
+        this.frame = frame;
+    }
+
+    public Label getBossName() {
+        return bossName;
+    }
+
+    public void setBossName(Label bossName) {
+        this.bossName = bossName;
+    }
+
+    public Label getDescription() {
+        return description;
+    }
+
+    public void setDescription(Label description) {
+        this.description = description;
+    }
+
+    public Image getExitButton() {
+        return exitButton;
+    }
+
+    public void setExitButton(Image exitButton) {
+        this.exitButton = exitButton;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
+    public Image getStartButton() {
+        return startButton;
+    }
+
+    public void setStartButton(Image startButton) {
+        this.startButton = startButton;
+    }
+
+    public void setBoss(Boss boss) {
+        this.boss = boss;
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         if(isActive)    {
@@ -114,10 +182,6 @@ public class LevelInfo extends Group {
             exitButton.draw(batch, parentAlpha);
             startButton.draw(batch, parentAlpha);
             table.draw(batch,parentAlpha);
-            /*
-            bossName.draw(batch, parentAlpha);
-            description.draw(batch, parentAlpha);
-            */
         }
     }
 }

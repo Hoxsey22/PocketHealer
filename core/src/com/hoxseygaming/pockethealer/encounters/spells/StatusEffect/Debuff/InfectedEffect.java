@@ -9,7 +9,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.ZombieHor
 
 public class InfectedEffect extends Debuff {
 
-    ZombieHorde zombieHorde;
+    private ZombieHorde zombieHorde;
 
     /**
      * A debuff is a negative status effect that is commonly from a boss and is
@@ -22,7 +22,7 @@ public class InfectedEffect extends Debuff {
                 3,
                 "Infected Effect",
                 "Infected target increases the damage and the health of the Zombie Horde if the target dies.",
-                owner.assets.getTexture(owner.assets.diseaseIcon),
+                owner.getAssets().getTexture(owner.getAssets().diseaseIcon),
                 600f,
                 0.1f,
                 0,
@@ -51,10 +51,18 @@ public class InfectedEffect extends Debuff {
 
     @Override
     public void remove() {
-        if(!zombieHorde.isDead) {
+        if(!zombieHorde.isDead()) {
             zombieHorde.setDamage(zombieHorde.getDamage()+1);
             getOwner().receiveHealing(100, false);
         }
         super.remove();
+    }
+
+    public ZombieHorde getZombieHorde() {
+        return zombieHorde;
+    }
+
+    public void setZombieHorde(ZombieHorde zombieHorde) {
+        this.zombieHorde = zombieHorde;
     }
 }

@@ -12,20 +12,20 @@ import java.util.ArrayList;
 
 public class PoisonSpit extends Mechanic {
 
-    int numOfTargets;
-    boolean poisoned;
+    private int numOfTargets;
+    private boolean poisoned;
 
     public PoisonSpit(Boss owner) {
         super("Poison Spit", 20, 5f, owner);
         numOfTargets = 3;
-        announce = true;
+        setAnnounce(true);
     }
 
     public PoisonSpit(Boss owner, float speed, int numOfTargets, boolean poisoned) {
         super("Poison Spit", 20, speed, owner);
         this.poisoned = poisoned;
         this.numOfTargets = numOfTargets;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
@@ -33,9 +33,9 @@ public class PoisonSpit extends Mechanic {
         ArrayList<RaidMember> notTank = getRaid().getRoleLessRaidMembers("tank");
         ArrayList<RaidMember> raidMembers = getRaid().getRandomRaidMember(numOfTargets,notTank);
         for(int i = 0; i < raidMembers.size(); i++)   {
-            raidMembers.get(i).takeDamage(damage);
+            raidMembers.get(i).takeDamage(getDamage());
             if(poisoned)
-                raidMembers.get(i).addStatusEffect(new PoisonEffect(owner, 5, 0.2f));
+                raidMembers.get(i).addStatusEffect(new PoisonEffect(getOwner(), 5, 0.2f));
         }
     }
 

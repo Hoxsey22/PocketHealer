@@ -15,7 +15,7 @@ public class BloodBoilEffect extends Debuff {
                 5,
                 "Blood Boil Effect",
                 "Blood Boil was do little raid damage when the target is healed to full.",
-                owner.assets.getTexture(owner.assets.boilIcon),
+                owner.getAssets().getTexture(owner.getAssets().boilIcon),
                 20f,
                 0.1f,
                 10,

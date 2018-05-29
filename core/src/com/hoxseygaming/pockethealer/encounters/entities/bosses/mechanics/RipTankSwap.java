@@ -13,43 +13,43 @@ public class RipTankSwap extends Mechanic {
         super("Rip Tank Swap",0,8f,owner);
         setMainTank();
         setOffTank();
-        bgMech = true;
+        setBgMech(true);
     }
 
     public RipTankSwap(Boss owner, float speed) {
         super("Rip Tank Swap",0,speed,owner);
         setMainTank();
         setOffTank();
-        bgMech = true;
+        setBgMech(true);
     }
 
     @Override
     public void action() {
-        owner.getTarget().addStatusEffect(new RipEffect(owner,speed));
+        getOwner().getTarget().addStatusEffect(new RipEffect(getOwner(),getSpeed()));
         tankSwap();
 
         System.out.println("TANK SWAP!");
     }
 
     public void tankSwap()  {
-        if(offTank.isDead() || mainTank.isDead())   {
-            if(mainTank.isDead()) {
-                owner.setTarget(owner.getOffTank());
+        if(getOffTank().isDead() || getMainTank().isDead())   {
+            if(getMainTank().isDead()) {
+                getOwner().setTarget(getOwner().getOffTank());
                 stop();
                 return;
             }
             else    {
-                owner.setTarget(owner.getMainTank());
+                getOwner().setTarget(getOwner().getMainTank());
                 stop();
                 return;
             }
         }
 
-        if( owner.getTarget().equals(mainTank)) {
-            owner.setTarget(owner.getOffTank());
+        if( getOwner().getTarget().equals(getMainTank())) {
+            getOwner().setTarget(getOwner().getOffTank());
         }
         else {
-            owner.setTarget(owner.getMainTank());
+            getOwner().setTarget(getOwner().getMainTank());
         }
     }
 }

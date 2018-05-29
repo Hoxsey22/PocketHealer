@@ -15,7 +15,7 @@ public class AgonyEffect extends Debuff {
                 5,
                 "Agony Effect",
                 "Agony will cause the target to take a huge amount of damage over time.",
-                owner.assets.getTexture(owner.assets.agonyIcon),
+                owner.getAssets().getTexture(owner.getAssets().agonyIcon),
                 15f,
                 2f,
                 30,

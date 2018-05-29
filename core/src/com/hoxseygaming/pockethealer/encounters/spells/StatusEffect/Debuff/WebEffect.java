@@ -19,7 +19,7 @@ public class WebEffect extends HealingAbsorbEffect {
         setName("Web Effect");
         setDescription("Webs a target causing healing absorption on the target. Healing will reduce the healing " +
                 "absorption and prevent the target from being dinner.");
-        setIcon(owner.assets.getTexture(owner.assets.webIcon));
+        setIcon(owner.getAssets().getTexture(owner.getAssets().webIcon));
     }
 
 
@@ -33,7 +33,7 @@ public class WebEffect extends HealingAbsorbEffect {
     public WebEffect(Boss owner, int modValue) {
         super(owner, modValue);
         setName("Web Effect");
-        setIcon(owner.assets.getTexture(owner.assets.webIcon));
+        setIcon(owner.getAssets().getTexture(owner.getAssets().webIcon));
         setDescription("Web is a healing absorb place on a member and if not healed in time," +
                 " they will be lunch.");
     }

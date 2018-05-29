@@ -31,44 +31,45 @@ public class ZombieHorde extends Boss {
     @Override
     public void create() {
         super.create();
-        damage = 0;
+        setDamage(0);
 
         zombieAttack = new ZombieAttack(this, 1.5f);
         zombieBite = new ZombieBite(this, 9f);
         zombieBite.setNumOfTargets(2);
 
-        phaseManager.addPhase(new Phase(this, 0, zombieAttack, zombieBite));
-        //loadMechanics(zombieAttack, zombieBite);
+        getPhaseManager().addPhase(new Phase(this, 0, zombieAttack, zombieBite));
+
         loadDebuff(new ZombieBiteEffect(this), new InfectedEffect(this));
     }
 
     @Override
     public void start() {
         super.start();
-        for(int i = 0; i < getEnemies().raidMembers.size(); i++)   {
+        for(int i = 0; i < getEnemies().getRaidMembers().size(); i++)   {
             getEnemies().getRaidMember(i).addStatusEffect(new InfectedEffect(this));
         }
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
         }
     }
 
-    @Override
-    public void receiveHealing(int output) {
-        System.out.println("Before");
-        System.out.println("Zombie Max Health: "+getMaxHp());
-        System.out.println("Zombie Health: "+getHp());
-        System.out.println("Zombie Health %: "+getHpPercent());
+    public ZombieAttack getZombieAttack() {
+        return zombieAttack;
+    }
 
-        super.receiveHealing(output);
+    public void setZombieAttack(ZombieAttack zombieAttack) {
+        this.zombieAttack = zombieAttack;
+    }
 
-        System.out.println("After");
-        System.out.println("Zombie Max Health: "+getMaxHp());
-        System.out.println("Zombie Health: "+getHp());
-        System.out.println("Zombie Health %: "+getHpPercent());
+    public ZombieBite getZombieBite() {
+        return zombieBite;
+    }
+
+    public void setZombieBite(ZombieBite zombieBite) {
+        this.zombieBite = zombieBite;
     }
 }

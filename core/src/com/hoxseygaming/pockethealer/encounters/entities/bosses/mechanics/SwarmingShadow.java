@@ -10,16 +10,16 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 public class SwarmingShadow extends Mechanic{
 
 
-    public Timer channel;
+    private Timer channel;
 
     public SwarmingShadow(Boss owner) {
         super("Swarming Shadow", 10, 15f, owner);
-        announce = true;
+        setAnnounce(true);
     }
 
     public SwarmingShadow(Boss owner, int damage, float speed) {
         super("Swarming Shadow", damage, speed, owner);
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
@@ -37,14 +37,14 @@ public class SwarmingShadow extends Mechanic{
             public void run() {
                 if(count != 4) {
                     count++;
-                    for(int i = 0; i <  owner.getEnemies().raidMembers.size(); i++)   {
-                        owner.getEnemies().getRaidMember(i).takeDamage(damage);
+                    for(int i = 0; i <  getOwner().getEnemies().getRaidMembers().size(); i++)   {
+                        getOwner().getEnemies().getRaidMember(i).takeDamage(getDamage());
                     }
                 }
                 else    {
                     channel.stop();
                     channel.clear();
-                    timer.start();
+                    getTimer().start();
                 }
             }
         },0.5f,0.5f,4);

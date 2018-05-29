@@ -14,8 +14,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 
 public class Golem extends Boss {
 
-    public AutoAttack autoAttack;
-    public Earthquake earthquake;
+    private AutoAttack autoAttack;
+    private Earthquake earthquake;
 
     public Golem(Assets assets) {
         super("Golem","The sorcerer is at it again and has summoned a Golem to stop anyone " +
@@ -27,25 +27,39 @@ public class Golem extends Boss {
     @Override
     public void create() {
         super.create();
-
-        damage = 50;
+        setDamage(50);
 
         autoAttack = new AutoAttack(this, 3f);
         earthquake = new Earthquake(this, 5f);
         earthquake.setAnnounce(true);
 
-        phaseManager.addPhase(new Phase(this, 0, autoAttack, earthquake));
-       //loadMechanics(autoAttack, earthquake);
+        getPhaseManager().addPhase(new Phase(this, 0, autoAttack, earthquake));
 
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
-            rewardPackage.addNewSpellText();
-            rewardPackage.addImage(new Image(assets.getTexture(assets.barrierIcon)));
-            rewardPackage.addImage(new Image(assets.getTexture(assets.greaterHealerIcon)));
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
+            getRewardPackage().addNewSpellText();
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().barrierIcon)));
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().greaterHealerIcon)));
         }
+    }
+
+    public AutoAttack getAutoAttack() {
+        return autoAttack;
+    }
+
+    public void setAutoAttack(AutoAttack autoAttack) {
+        this.autoAttack = autoAttack;
+    }
+
+    public Earthquake getEarthquake() {
+        return earthquake;
+    }
+
+    public void setEarthquake(Earthquake earthquake) {
+        this.earthquake = earthquake;
     }
 }

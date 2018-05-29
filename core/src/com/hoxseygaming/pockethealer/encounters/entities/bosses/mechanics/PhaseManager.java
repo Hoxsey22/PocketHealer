@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class PhaseManager {
 
-    public int index;
-    public ArrayList<Phase> phases;
+    private int index;
+    private ArrayList<Phase> phases;
 
     public PhaseManager()   {
         phases = new ArrayList<>();
@@ -33,7 +33,6 @@ public class PhaseManager {
      * Navigates to the next phase.
      */
     public void nextPhase() {
-        System.out.println("Phase "+index+" stopped!*************************");
         index++;
         if(index == phases.size())  {
             index = 0;
@@ -60,13 +59,12 @@ public class PhaseManager {
     }
 
     /**
-     * Clears all the Phase's timer.
+     * Clears all the Phase's getTimer().
      */
     public void cleanPhases()  {
         if(phases.size() > 0) {
             phases.get(index).clear();
             for (int i = 0; i < phases.size(); i++) {
-                //phases.get(i).stop();
                 phases.get(i).clear();
                 phases.remove(i);
             }
@@ -74,7 +72,19 @@ public class PhaseManager {
         }
     }
 
+    public int getIndex() {
+        return index;
+    }
 
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
+    public ArrayList<Phase> getPhases() {
+        return phases;
+    }
 
+    public void setPhases(ArrayList<Phase> phases) {
+        this.phases = phases;
+    }
 }

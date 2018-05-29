@@ -6,41 +6,44 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
 
-import java.util.ArrayList;
-
 /**
  * Created by Hoxsey on 6/18/2017.
  */
 public class Heal extends Castable {
 
-    public ArrayList<Barrier> barriers;
-
 
     public Heal(Player player, Assets assets) {
-        super(player, "Heal","An efficient heal that heal an ally unit for a moderate amount.", 0,1.5f,
-                40, 1f, 0.5f,assets.getSound(assets.healSFX), assets);
-        setImage(assets.getTexture(assets.healIcon));
-        barriers = new ArrayList<>();
+        super(player,
+                "Heal",
+                "An efficient heal that heal an ally unit for a moderate amount.",
+                0,
+                1.5f,
+                40,
+                1f,
+                0.5f,
+                assets.getSound(assets.healSFX),
+                assets);
+        setImage(getAssets().getTexture(getAssets().healIcon));
     }
 
     @Override
     public void applySpell(RaidMember target) {
-        int currentOutput = output;
-        System.out.println(getName()+"'s output: "+output);
-        if(owner.holyShockIncrease)   {
-            currentOutput = output + (int)(output*0.5);
-            owner.holyShockIncrease = false;
+        int currentOutput = getOutput();
+        System.out.println(getName()+"'s output: "+getOutput());
+        if(getOwner().isHolyShockIncrease())   {
+            currentOutput = getOutput() + (int)(getOutput()*0.5);
+            getOwner().setHolyShockIncrease(false);
         }
 
-        if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
+        if(getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
             applyCriticalHealerII(target, currentOutput);
             applyAtonement(target);
         }
-        else if(owner.getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
+        else if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
             applyMasteringHealing(target, currentOutput);
         }
         else    {
-            target.receiveHealing(currentOutput, criticalChance.isCritical());
+            target.receiveHealing(currentOutput, getCriticalChance().isCritical());
         }
 
     }

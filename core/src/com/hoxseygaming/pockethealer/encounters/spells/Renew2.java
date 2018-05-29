@@ -30,8 +30,9 @@ public class Renew2 extends Periodical {
                 1f,
                 0.5f,
                 10f,
-                2f, assets.getSound(assets.hotSFX), assets);
-        image = this.assets.getTexture(assets.renewIcon);
+                2f,
+                assets.getSound(assets.hotSFX), assets);
+        setImage(this.getAssets().getTexture(getAssets().renewIcon));
 
     }
 
@@ -40,9 +41,9 @@ public class Renew2 extends Periodical {
         checkLifeboom();
         if (target.getStatusEffectList().contains("Lifeboom Effect")
                 && !target.getStatusEffectList().contains("AoD Effect")
-                && owner.getTalentTree().getTalent(TalentTree.AOD).isSelected()) {
+                && getOwner().getTalentTree().getTalent(TalentTree.AOD).isSelected()) {
 
-            target.addStatusEffect(new AoDEffect(owner, duration, speed, output));
+            target.addStatusEffect(new AoDEffect(getOwner(), getDuration(), getSpeed(), getOutput()));
         }
         else {
             target.addStatusEffect(buff);
@@ -65,11 +66,11 @@ public class Renew2 extends Periodical {
 
     @Override
     public void checkLifeboom() {
-        if(owner.getTalentTree().getTalent(TalentTree.LIFEBOOM).isSelected())  {
-            buff = new LifeboomEffect(owner, duration, speed,output);
+        if(getOwner().getTalentTree().getTalent(TalentTree.LIFEBOOM).isSelected())  {
+            buff = new LifeboomEffect(getOwner(), getDuration(), getSpeed(),getOutput());
         }
         else    {
-            buff = new RenewEffect(owner, duration, speed, output);
+            buff = new RenewEffect(getOwner(), getDuration(), getSpeed(), getOutput());
         }
     }
 }

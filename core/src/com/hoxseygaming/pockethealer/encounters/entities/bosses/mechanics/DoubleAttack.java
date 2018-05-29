@@ -11,25 +11,24 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Sunde
 
 public class DoubleAttack extends Mechanic {
 
-    Timer secondTimer;
-    Hydra hydra;
+    private Timer secondTimer;
+    private Hydra hydra;
 
     public DoubleAttack(Boss owner) {
         super("Double Attack", 20, 2f, owner);
-        announce = true;
+        setAnnounce(true);
         hydra = (Hydra) owner;
     }
 
     public DoubleAttack(Boss owner, float speed)   {
         super("Double Attack", 20, speed, owner);
-        announce = true;
+        setAnnounce(true);
         hydra = (Hydra) owner;
     }
 
     @Override
     public void action() {
-        owner.getTarget().takeDamage(200);
-        //hydra.autoAttack.stop();
+        getOwner().getTarget().takeDamage(200);
         secondAttack();
         pausePhase();
     }
@@ -40,15 +39,12 @@ public class DoubleAttack extends Mechanic {
         secondTimer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                System.out.println("Second Attack");
-
-                owner.getTarget().takeDamage(200);
-                owner.getTarget().addStatusEffect(new SunderEffect(owner));
-                owner.setTarget(owner.getNextThreat());
+                getOwner().getTarget().takeDamage(200);
+                getOwner().getTarget().addStatusEffect(new SunderEffect(getOwner()));
+                getOwner().setTarget(getOwner().getNextThreat());
 
                 secondTimer.stop();
                 secondTimer.clear();
-                //hydra.autoAttack.resume();
                 resumePhase();
             }
         },1.5f,1.5f,1);

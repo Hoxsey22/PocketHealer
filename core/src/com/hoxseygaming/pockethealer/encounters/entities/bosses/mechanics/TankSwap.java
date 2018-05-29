@@ -9,20 +9,20 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Debuf
 
 public class TankSwap extends Mechanic {
 
-    public Debuff debuff;
+    private Debuff debuff;
 
     public TankSwap(Boss owner) {
         super("Tank Swap",0,8f,owner);
         setMainTank();
         setOffTank();
-        bgMech = true;
+        setBgMech(true);
     }
 
     public TankSwap(Boss owner, float speed) {
         super("Tank Swap",0,speed,owner);
         setMainTank();
         setOffTank();
-        bgMech = true;
+        setBgMech(true);
     }
 
     public TankSwap(Boss owner, float speed, Debuff debuff) {
@@ -30,13 +30,13 @@ public class TankSwap extends Mechanic {
         this.debuff = debuff;
         setMainTank();
         setOffTank();
-        bgMech = true;
+        setBgMech(true);
     }
 
     @Override
     public void action() {
         if(debuff != null)    {
-            owner.getTarget().addStatusEffect(debuff);
+            getOwner().getTarget().addStatusEffect(debuff);
         }
         tankSwap();
 
@@ -44,24 +44,24 @@ public class TankSwap extends Mechanic {
     }
 
     public void tankSwap()  {
-        if(offTank.isDead() || mainTank.isDead())   {
-            if(mainTank.isDead()) {
-                owner.setTarget(owner.getOffTank());
+        if(getOffTank().isDead() || getMainTank().isDead())   {
+            if(getMainTank().isDead()) {
+                getOwner().setTarget(getOwner().getOffTank());
                 stop();
                 return;
             }
             else    {
-                owner.setTarget(owner.getMainTank());
+                getOwner().setTarget(getOwner().getMainTank());
                 stop();
                 return;
             }
         }
 
-        if( owner.getTarget().equals(mainTank)) {
-            owner.setTarget(owner.getOffTank());
+        if( getOwner().getTarget().equals(getMainTank())) {
+            getOwner().setTarget(getOwner().getOffTank());
         }
         else {
-            owner.setTarget(owner.getMainTank());
+            getOwner().setTarget(getOwner().getMainTank());
         }
     }
 }

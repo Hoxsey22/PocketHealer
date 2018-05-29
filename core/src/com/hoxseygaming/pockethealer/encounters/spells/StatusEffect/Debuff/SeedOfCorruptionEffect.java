@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class SeedOfCorruptionEffect extends Debuff {
 
-    public int numOfTargets;
+    private int numOfTargets;
     /**
      */
     public SeedOfCorruptionEffect(Boss owner) {
@@ -20,7 +20,7 @@ public class SeedOfCorruptionEffect extends Debuff {
                 "Seed of Corruption Effect",
                 "Dispellable: Seed of Corruption's damage will progressively increase until dispelled. Once dispelled, 2 other targets will receive " +
                         "corruption effects.",
-                owner.assets.getTexture(owner.assets.seedOfCorruptionIcon),
+                owner.getAssets().getTexture(owner.getAssets().seedOfCorruptionIcon),
                 300f,
                 1.5f,
                 2,
@@ -67,5 +67,13 @@ public class SeedOfCorruptionEffect extends Debuff {
 
     public ArrayList<RaidMember> getRandomGroup()   {
         return getOwner().getEnemies().getRandomRaidMember(numOfTargets,getOwner().getEnemies().getDebuffLessRaidMembers(this.getName()));
+    }
+
+    public int getNumOfTargets() {
+        return numOfTargets;
+    }
+
+    public void setNumOfTargets(int numOfTargets) {
+        this.numOfTargets = numOfTargets;
     }
 }

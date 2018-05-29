@@ -14,13 +14,13 @@ import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 public abstract class ChannelCast extends Spell {
 
-    public float castTime;
-    public float MIN_CAST_TIME;
-    public int ticksPerCast;
-    public int MIN_TICK_PER_CAST;
-    public Timer castTimer;
-    public Sound castingSFX;
-    public Sound spellSFX;
+    private float castTime;
+    private float MIN_CAST_TIME;
+    private int ticksPerCast;
+    private int MIN_TICK_PER_CAST;
+    protected Timer castTimer;
+    protected Sound castingSFX;
+    protected Sound spellSFX;
 
     /**
      *
@@ -36,12 +36,12 @@ public abstract class ChannelCast extends Spell {
     public ChannelCast(Player player, String name, String description, int levelRequirement, float castTime, int ticksPerCast,
                        int output, float costPercentage, float cooldown, Assets assets) {
         super(player, name, description, levelRequirement, output, costPercentage, cooldown, assets);
-        spellType = "Channeled";
+        setSpellType("Channeled");
         this.castTime = castTime;
         MIN_CAST_TIME = castTime;
         this.ticksPerCast = ticksPerCast;
         MIN_TICK_PER_CAST = ticksPerCast;
-        castingSFX = assets.getSound(assets.castingSFX);
+        castingSFX = getAssets().getSound(getAssets().castingSFX);
     }
 
     @Override
@@ -54,15 +54,14 @@ public abstract class ChannelCast extends Spell {
 
     @Override
     public void applySpell(RaidMember target)    {
-        target.receiveHealing(output, criticalChance.isCritical());
+        target.receiveHealing(getOutput(), getCriticalChance().isCritical());
     }
 
     public void startCastTimer()    {
         castTimer = new Timer();
-        isCasting = true;
-        owner.isCasting = isCasting;
+        setCasting(true);
+        getOwner().setCasting(isCasting());
         AudioManager.playSFX(castingSFX, true);
-        //castingSFX.loop(0.3f);
         final float tickTime = (castTime/ticksPerCast)-0.01f;
 
         final RaidMember sTarget = getOwnerTarget();
@@ -76,7 +75,7 @@ public abstract class ChannelCast extends Spell {
                 counter++;
                 tCounter++;
 
-                owner.setSpellCastPercent(1f-(counter*0.01f)/castTime);
+                getOwner().setSpellCastPercent(1f-(counter*0.01f)/castTime);
 
                 if(tCounter * 0.01f >= tickTime)    {
                     tCounter = 0;
@@ -84,9 +83,8 @@ public abstract class ChannelCast extends Spell {
                 }
                 if(counter * 0.01f >= castTime)    {
                     AudioManager.stopSFX(castingSFX);
-                    //castingSFX.stop();
-                    isCasting = false;
-                    owner.isCasting = isCasting;
+                    setCasting(false);
+                    getOwner().setCasting(isCasting());
                     useMana();
                     startCooldownTimer();
                     stop();
@@ -131,5 +129,37 @@ public abstract class ChannelCast extends Spell {
 
     public void setSpellSFX(Sound spellSFX) {
         this.spellSFX = spellSFX;
+    }
+
+    public float getMIN_CAST_TIME() {
+        return MIN_CAST_TIME;
+    }
+
+    public void setMIN_CAST_TIME(float MIN_CAST_TIME) {
+        this.MIN_CAST_TIME = MIN_CAST_TIME;
+    }
+
+    public int getTicksPerCast() {
+        return ticksPerCast;
+    }
+
+    public void setTicksPerCast(int ticksPerCast) {
+        this.ticksPerCast = ticksPerCast;
+    }
+
+    public int getMIN_TICK_PER_CAST() {
+        return MIN_TICK_PER_CAST;
+    }
+
+    public void setMIN_TICK_PER_CAST(int MIN_TICK_PER_CAST) {
+        this.MIN_TICK_PER_CAST = MIN_TICK_PER_CAST;
+    }
+
+    public Timer getCastTimer() {
+        return castTimer;
+    }
+
+    public void setCastTimer(Timer castTimer) {
+        this.castTimer = castTimer;
     }
 }

@@ -9,30 +9,26 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 public class AutoAttack extends Mechanic {
 
     public AutoAttack(Boss owner) {
-        super("Auto Attack", owner.getDamage(), 2f, owner);
-        id = 1;
-        damage = owner.getDamage();
-        bgMech = true;
+        super("Auto Attack",owner.getDamage(), 2f, owner);
+        setBgMech(true);
     }
 
     public AutoAttack(Boss owner, float speed) {
         super("Auto Attack", owner.getDamage(), speed, owner);
-        id = 1;
-        damage = owner.getDamage();
-        bgMech = true;
+        setBgMech(true);
     }
 
     @Override
     public void action() {
-        System.out.println("Owner: "+owner+"\n Target: "+owner.getTarget());
-        if(owner.getTarget().isDead())
-            owner.nextThreat();
-        if(!owner.getTarget().isDead()) {
-            owner.getTarget().takeDamage(damage);
-            if(owner.getTarget().isDead())
-                owner.nextThreat();
+        System.out.println("Owner: "+getOwner()+"\n Target: "+getOwner().getTarget());
+        if(getOwner().getTarget().isDead())
+            getOwner().nextThreat();
+        if(!getOwner().getTarget().isDead()) {
+            getOwner().getTarget().takeDamage(getDamage());
+            if(getOwner().getTarget().isDead())
+                getOwner().nextThreat();
         }
-        if (owner.getEnemies().isRaidDead()) {
+        if (getOwner().getEnemies().isRaidDead()) {
             stop();
         }
     }

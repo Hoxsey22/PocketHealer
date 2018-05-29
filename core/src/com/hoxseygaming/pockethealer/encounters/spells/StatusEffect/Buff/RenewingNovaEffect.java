@@ -53,7 +53,7 @@ public class RenewingNovaEffect extends Buff {
 
     @Override
     public void applyEffect() {
-        getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().criticalChance));
+        getTarget().receiveHealing(getModValue(), CriticalDice.roll(getOwner().getCriticalChance()));
     }
 
     @Override

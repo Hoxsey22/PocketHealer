@@ -13,26 +13,23 @@ import java.util.ArrayList;
 
 public class Pyroblast extends Mechanic {
 
-
     public Pyroblast(Boss owner) {
         super("Pyroblast", 50, 6f, owner);
-        id = 8;
-        announce = true;
+        setAnnounce(true);
     }
 
     public Pyroblast(Boss owner, float speed) {
         super("Pyroblast", 50, speed, owner);
-        id = 8;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
         ArrayList<RaidMember> selected = getRaid().getRandomRaidMember(1);
         if(selected != null)    {
-            selected.get(0).takeDamage(damage);
+            selected.get(0).takeDamage(getDamage());
             if(CriticalDice.roll(35,100,0))    {
-                selected.get(0).addStatusEffect(new BurnEffect(owner));
+                selected.get(0).addStatusEffect(new BurnEffect(getOwner()));
             }
         }
     }

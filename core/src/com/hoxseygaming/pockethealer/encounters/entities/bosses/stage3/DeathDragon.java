@@ -28,20 +28,20 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Unsta
 /*Need to add another mech*/
 public class DeathDragon extends Boss {
 
-    Agony agony;
-    Pyroblast pyroblast;
-    AutoAttack autoAttackp1;
+    private Agony agony;
+    private Pyroblast pyroblast;
+    private AutoAttack autoAttackp1;
 
-    UnstableMagic unstableMagic;
-    UnstablePyroblast unstablePyroblast;
-    AutoAttack autoAttackp2;
+    private UnstableMagic unstableMagic;
+    private UnstablePyroblast unstablePyroblast;
+    private AutoAttack autoAttackp2;
 
-    AutoAttack autoAttackp3;
-    RipTankSwap ripTankSwap;
-    TailSwipe tailSwipe;
-    Flurry flurry;
-    FireBreath fireBreath;
-    Ignite ignite;
+    private AutoAttack autoAttackp3;
+    private RipTankSwap ripTankSwap;
+    private TailSwipe tailSwipe;
+    private Flurry flurry;
+    private FireBreath fireBreath;
+    private Ignite ignite;
 
 
     public DeathDragon(Assets assets) {
@@ -90,10 +90,10 @@ public class DeathDragon extends Boss {
         phase3.setNameChange("Death Dragon");
 
 
-        phaseManager.addPhase(phase1);
-        phaseManager.addPhase(phase2);
-        phaseManager.addPhase(phase3);
-        //phaseManager.addPhase(new Phase(this, 600f,fireBreath,flurry,tailSwipe));
+        getPhaseManager().addPhase(phase1);
+        getPhaseManager().addPhase(phase2);
+        getPhaseManager().addPhase(phase3);
+
         loadDebuff(new AgonyEffect(this), new BurnEffect(this), new UnstableMagicEffect(this),
                 new RipEffect(this), new BleedEffect(this));
 
@@ -106,7 +106,103 @@ public class DeathDragon extends Boss {
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId())
-            rewardPackage.addNewLevelText();
+        if(getPlayer().getLevel() >= getId())
+            getRewardPackage().addNewLevelText();
+    }
+
+    public Agony getAgony() {
+        return agony;
+    }
+
+    public void setAgony(Agony agony) {
+        this.agony = agony;
+    }
+
+    public Pyroblast getPyroblast() {
+        return pyroblast;
+    }
+
+    public void setPyroblast(Pyroblast pyroblast) {
+        this.pyroblast = pyroblast;
+    }
+
+    public AutoAttack getAutoAttackp1() {
+        return autoAttackp1;
+    }
+
+    public void setAutoAttackp1(AutoAttack autoAttackp1) {
+        this.autoAttackp1 = autoAttackp1;
+    }
+
+    public UnstableMagic getUnstableMagic() {
+        return unstableMagic;
+    }
+
+    public void setUnstableMagic(UnstableMagic unstableMagic) {
+        this.unstableMagic = unstableMagic;
+    }
+
+    public UnstablePyroblast getUnstablePyroblast() {
+        return unstablePyroblast;
+    }
+
+    public void setUnstablePyroblast(UnstablePyroblast unstablePyroblast) {
+        this.unstablePyroblast = unstablePyroblast;
+    }
+
+    public AutoAttack getAutoAttackp2() {
+        return autoAttackp2;
+    }
+
+    public void setAutoAttackp2(AutoAttack autoAttackp2) {
+        this.autoAttackp2 = autoAttackp2;
+    }
+
+    public AutoAttack getAutoAttackp3() {
+        return autoAttackp3;
+    }
+
+    public void setAutoAttackp3(AutoAttack autoAttackp3) {
+        this.autoAttackp3 = autoAttackp3;
+    }
+
+    public RipTankSwap getRipTankSwap() {
+        return ripTankSwap;
+    }
+
+    public void setRipTankSwap(RipTankSwap ripTankSwap) {
+        this.ripTankSwap = ripTankSwap;
+    }
+
+    public TailSwipe getTailSwipe() {
+        return tailSwipe;
+    }
+
+    public void setTailSwipe(TailSwipe tailSwipe) {
+        this.tailSwipe = tailSwipe;
+    }
+
+    public Flurry getFlurry() {
+        return flurry;
+    }
+
+    public void setFlurry(Flurry flurry) {
+        this.flurry = flurry;
+    }
+
+    public FireBreath getFireBreath() {
+        return fireBreath;
+    }
+
+    public void setFireBreath(FireBreath fireBreath) {
+        this.fireBreath = fireBreath;
+    }
+
+    public Ignite getIgnite() {
+        return ignite;
+    }
+
+    public void setIgnite(Ignite ignite) {
+        this.ignite = ignite;
     }
 }

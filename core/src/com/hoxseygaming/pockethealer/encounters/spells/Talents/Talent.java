@@ -11,14 +11,14 @@ import com.hoxseygaming.pockethealer.Assets;
 
 public class Talent extends Actor{
 
-    public int id;
-    public TalentTree talentTree;
-    public String description;
-    public boolean isSelected;
-    public int totalPointRequirement;
-    public Talent preReq;
-    public Texture image;
-    public Assets assets;
+    private int id;
+    private TalentTree talentTree;
+    private String description;
+    private boolean isSelected;
+    private int totalPointRequirement;
+    private Talent preReq;
+    private Texture image;
+    private Assets assets;
 
     public Talent(TalentTree talentTree, int id, String name, String description, Talent pair, Texture image, Assets assets) {
         this.talentTree = talentTree;
@@ -91,20 +91,48 @@ public class Talent extends Actor{
         return getY() + getHeight();
     }
 
+    public TalentTree getTalentTree() {
+        return talentTree;
+    }
+
+    public void setTalentTree(TalentTree talentTree) {
+        this.talentTree = talentTree;
+    }
+
+    public void setPreReq(Talent preReq) {
+        this.preReq = preReq;
+    }
+
+    public Texture getImage() {
+        return image;
+    }
+
+    public void setImage(Texture image) {
+        this.image = image;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(image, getX(), getY(), getWidth(), getHeight());
         if(preReq != null) {
             if (isSelected) {
-                batch.draw(assets.getTexture(assets.selectedLine), getCenterX(), getTop(), assets.getTexture(assets.selectedLine).getWidth(),
+                batch.draw(getAssets().getTexture(getAssets().selectedLine), getCenterX(), getTop(), getAssets().getTexture(getAssets().selectedLine).getWidth(),
                         preReq.getY() - (getY() + getHeight()));
             } else {
-                batch.draw(assets.getTexture(assets.idleLine), getCenterX(), getTop(), assets.getTexture(assets.idleLine).getWidth(),
+                batch.draw(getAssets().getTexture(getAssets().idleLine), getCenterX(), getTop(), getAssets().getTexture(getAssets().idleLine).getWidth(),
                         preReq.getY() - (getY() + getHeight()));
             }
         }
         if(isSelected()) {
-            batch.draw(assets.getTexture(assets.selectedTalent), getX(), getY(), getWidth(), getHeight());
+            batch.draw(getAssets().getTexture(getAssets().selectedTalent), getX(), getY(), getWidth(), getHeight());
         }
     }
 

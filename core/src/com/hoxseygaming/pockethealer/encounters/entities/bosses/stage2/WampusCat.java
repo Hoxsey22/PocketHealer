@@ -15,8 +15,8 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Bleed
 
 public class WampusCat extends Boss {
 
-    Pounce pounce;
-    public AutoAttack autoAttack;
+    private Pounce pounce;
+    private AutoAttack autoAttack;
 
     public WampusCat(Assets assets) {
         super("Wampus Cat","The Sorcerer has given an evil woman the power of the Wampus Cat. " +
@@ -32,26 +32,39 @@ public class WampusCat extends Boss {
     @Override
     public void create()    {
         super.create();
-        damage = 20;
+        setDamage(20);
         autoAttack = new AutoAttack(this);
         pounce = new Pounce(this);
-        /*mechanics.add(humanForm);
-        mechanics.add(catForm);
-        mechanics.add(autoAttack);
-        */
 
-        phaseManager.addPhase(new Phase(this, name+" is in her Cat Form!",30f, pounce, autoAttack));
-        phaseManager.addPhase(new Phase(this,name+"is in her Human Form!", 30f, autoAttack));
+        getPhaseManager().addPhase(new Phase(this, getName()+" is in her Cat Form!",30f, pounce, autoAttack));
+        getPhaseManager().addPhase(new Phase(this,getName()+"is in her Human Form!", 30f, autoAttack));
+
         loadDebuff(new BleedEffect(this));
     }
 
     @Override
     public void reward() {
-        if(player.getLevel() >= getId()) {
-            rewardPackage.addNewLevelText();
-            rewardPackage.addNewTalentText();
-            rewardPackage.addNewSpellText();
-            rewardPackage.addImage(new Image(assets.getTexture(assets.penanceIcon)));
+        if(getPlayer().getLevel() >= getId()) {
+            getRewardPackage().addNewLevelText();
+            getRewardPackage().addNewTalentText();
+            getRewardPackage().addNewSpellText();
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().penanceIcon)));
         }
+    }
+
+    public Pounce getPounce() {
+        return pounce;
+    }
+
+    public void setPounce(Pounce pounce) {
+        this.pounce = pounce;
+    }
+
+    public AutoAttack getAutoAttack() {
+        return autoAttack;
+    }
+
+    public void setAutoAttack(AutoAttack autoAttack) {
+        this.autoAttack = autoAttack;
     }
 }

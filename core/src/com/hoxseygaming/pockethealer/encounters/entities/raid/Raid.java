@@ -16,16 +16,15 @@ import java.util.Collections;
  */
 public class Raid extends Group {
 
-    public ArrayList<RaidMember> raidMembers;
-    public ArrayList<RaidMember> healers;
-    public Timer raidDamageTimer;
+    private ArrayList<RaidMember> raidMembers;
+    private ArrayList<RaidMember> healers;
+    private Timer raidDamageTimer;
     private Assets assets;
-    public boolean isRaidAlive;
-    public HealingTracker healingTracker;
-    public Player player;
+    private boolean isRaidAlive;
+    private HealingTracker healingTracker;
+    private Player player;
 
     public Raid(int size, Assets assets)   {
-        //super();
         this.assets = assets;
         setName("Raid");
         raidMembers = new ArrayList<>();
@@ -35,7 +34,6 @@ public class Raid extends Group {
         healingTracker = new HealingTracker();
     }
     public Raid(int numOfTanks, int numOfHealers, int numOfDps, Assets assets)   {
-        //super();
         this.assets = assets;
         setName("Raid");
         raidMembers = new ArrayList<>();
@@ -52,7 +50,7 @@ public class Raid extends Group {
 
         raidDamageTimer = new Timer();
         final Boss target = t;
-        final boolean healerChannel = target.getPlayer().talentTree.getTalent("Healer Channel").isSelected();
+        final boolean healerChannel = target.getPlayer().getTalentTree().getTalent("Healer Channel").isSelected();
         raidDamageTimer.scheduleTask(new Timer.Task() {
 
             @Override
@@ -63,7 +61,7 @@ public class Raid extends Group {
                         if(raidMembers.get(i).getRole().equalsIgnoreCase("Healer"))    {
                             player.receiveMana(2);
                             if(healerChannel) {
-                                getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).damage,false);
+                                getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).getDamage(),false);
                             }
                             else {
                                 target.takeDamage(raidMembers.get(i).getDamage());
@@ -215,7 +213,7 @@ public class Raid extends Group {
         Collections.sort(temp);
         int counter = 0;
         for(int i = 0; i < temp.size(); i++) {
-            if (!temp.get(i).isSelected() && !temp.get(i).isDead) {
+            if (!temp.get(i).isSelected() && !temp.get(i).isDead()) {
                 lowest.add(temp.get(i));
                 counter++;
                 if(counter == cap)    {
@@ -250,7 +248,7 @@ public class Raid extends Group {
 
         int counter = 0;
         for(int i = 0; i < temp.size(); i++) {
-            if (!temp.get(i).isSelected()&& !temp.get(i).isDead) {
+            if (!temp.get(i).isSelected()&& !temp.get(i).isDead()) {
                 lowest.add(temp.get(i));
                 counter++;
                 if(counter == cap)    {
@@ -319,7 +317,7 @@ public class Raid extends Group {
     public ArrayList<RaidMember> getDebuffLessRaidMembers(String name)    {
         ArrayList<RaidMember> debuffLess = new ArrayList<>();
         for(int i = 0; i <  raidMembers.size(); i++)   {
-            if(!raidMembers.get(i).getStatusEffectList().contains(name) && !raidMembers.get(i).isDead)    {
+            if(!raidMembers.get(i).getStatusEffectList().contains(name) && !raidMembers.get(i).isDead())    {
                 debuffLess.add(raidMembers.get(i));
             }
         }
@@ -329,9 +327,9 @@ public class Raid extends Group {
     public ArrayList<RaidMember> getRoleLessRaidMembers(String role)    {
         ArrayList<RaidMember> roleLess = new ArrayList<>();
         for(int i = 0; i <  raidMembers.size(); i++)   {
-            if(!raidMembers.get(i).getRole().equalsIgnoreCase(role) && !raidMembers.get(i).isDead)    {
+            if(!raidMembers.get(i).getRole().equalsIgnoreCase(role) && !raidMembers.get(i).isDead())    {
                 roleLess.add(raidMembers.get(i));
-                System.out.println("Roleless member: "+raidMembers.get(i).id);
+                System.out.println("Roleless member: "+raidMembers.get(i).getId());
             }
         }
         return  roleLess;
@@ -340,7 +338,7 @@ public class Raid extends Group {
     public ArrayList<RaidMember> getStatusEffectedRaidMembers(String name)    {
         ArrayList<RaidMember> statusEffectedMembers = new ArrayList<>();
         for(int i = 0; i <  raidMembers.size(); i++)   {
-            if(raidMembers.get(i).getStatusEffectList().contains(name) && !raidMembers.get(i).isDead)    {
+            if(raidMembers.get(i).getStatusEffectList().contains(name) && !raidMembers.get(i).isDead())    {
                 statusEffectedMembers.add(raidMembers.get(i));
             }
         }
@@ -383,5 +381,47 @@ public class Raid extends Group {
         return healingTracker;
     }
 
+    public ArrayList<RaidMember> getRaidMembers() {
+        return raidMembers;
+    }
 
+    public void setRaidMembers(ArrayList<RaidMember> raidMembers) {
+        this.raidMembers = raidMembers;
+    }
+
+    public ArrayList<RaidMember> getHealers() {
+        return healers;
+    }
+
+    public void setHealers(ArrayList<RaidMember> healers) {
+        this.healers = healers;
+    }
+
+    public Timer getRaidDamageTimer() {
+        return raidDamageTimer;
+    }
+
+    public void setRaidDamageTimer(Timer raidDamageTimer) {
+        this.raidDamageTimer = raidDamageTimer;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
+    public boolean isRaidAlive() {
+        return isRaidAlive;
+    }
+
+    public void setRaidAlive(boolean raidAlive) {
+        isRaidAlive = raidAlive;
+    }
+
+    public void setHealingTracker(HealingTracker healingTracker) {
+        this.healingTracker = healingTracker;
+    }
 }

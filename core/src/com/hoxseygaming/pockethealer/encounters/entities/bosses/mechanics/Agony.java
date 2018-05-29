@@ -12,26 +12,26 @@ import java.util.ArrayList;
 
 public class Agony extends Mechanic {
 
-    public int numOfTargets;
+    private int numOfTargets;
 
     public Agony(Boss owner) {
         super("Agony", 0, 18f, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     public Agony(Boss owner, float speed) {
         super("Agony", 0, speed, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
-        ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
+        ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
 
         for (int i = 0; i < temp.size(); i++)   {
-            AgonyEffect agonyEffect = new AgonyEffect(owner);
+            AgonyEffect agonyEffect = new AgonyEffect(getOwner());
 
             temp.get(i).addStatusEffect(agonyEffect);
         }

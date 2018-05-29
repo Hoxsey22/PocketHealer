@@ -15,7 +15,7 @@ public class CorruptionEffect extends Debuff {
                 4,
                 "Corruption Effect",
                 "Corruption will cause the target to take a moderate amount of damage over time.",
-                owner.assets.getTexture(owner.assets.corruptionIcon),
+                owner.getAssets().getTexture(owner.getAssets().corruptionIcon),
                 400f,
                 3f,
                 10,

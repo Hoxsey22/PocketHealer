@@ -32,6 +32,22 @@ public class CastBar extends Actor {
         return owner.getSpellCastPercent();
     }
 
+    public Player getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Player owner) {
+        this.owner = owner;
+    }
+
+    public Assets getAssets() {
+        return assets;
+    }
+
+    public void setAssets(Assets assets) {
+        this.assets = assets;
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         if (isActive()) {

@@ -12,21 +12,21 @@ import java.util.ArrayList;
 
 public class PoisonStab extends Mechanic {
 
-    public int numOfTargets;
+    private int numOfTargets;
 
     public PoisonStab(Boss owner) {
-        super("Poison Stab", owner.damage, 18f, owner);
+        super("Poison Stab", owner.getDamage(), 18f, owner);
         numOfTargets = 1;
-        announce = true;
+        setAnnounce(true);
     }
 
     @Override
     public void action() {
-        ArrayList<RaidMember> temp  = owner.enemies.getRandomRaidMember(numOfTargets);
+        ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
 
         for (int i = 0; i < temp.size(); i++)   {
-            temp.get(i).takeDamage(damage);
-            temp.get(i).addStatusEffect(new PoisonEffect(owner, 15,0.2f));
+            temp.get(i).takeDamage(getDamage());
+            temp.get(i).addStatusEffect(new PoisonEffect(getOwner(), 15,0.2f));
         }
     }
 
