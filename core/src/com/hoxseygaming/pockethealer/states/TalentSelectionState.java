@@ -26,21 +26,21 @@ import static com.badlogic.gdx.utils.Align.top;
  */
 public class TalentSelectionState extends State {
 
-    public Stage stage;
-    public Player player;
-    public Assets assets;
-    public Table lowerTable;
-    public Table topTable;
-    public Text talentTreeTitle;
-    public Text title;
-    public Text body;
-    public TalentTree talentTree;
-    public Image background;
-    public Button select;
-    public Button done;
+    private final Stage stage;
+    private final Player player;
+    private final Assets assets;
+    private Table lowerTable;
+    private Table topTable;
+    private final Text talentTreeTitle;
+    private Text title;
+    private Text body;
+    private final TalentTree talentTree;
+    private final Image background;
+    private final Button select;
+    private final Button done;
     public Button reset;
-    public Talent selectedTalent;
-    public Text pointTracker;
+    private Talent selectedTalent;
+    private final Text pointTracker;
 
     public TalentSelectionState(StateManager sm, Player player) {
         super(sm);
@@ -80,15 +80,15 @@ public class TalentSelectionState extends State {
         createText();
     }
 
-    public void createText()    {
+    private void createText()    {
         lowerTable = new Table();
         lowerTable.setName("Lower Table");
 
         title  = new Text("", 24, Color.BLACK, false, assets);
         body  = new Text("", 16, Color.SKY, false, assets);
-        body.setWrap(true);
+        body.setWrap();
 
-        title.setWrap(true);
+        title.setWrap();
         title.setAlignment(top);
 
         lowerTable.setBounds(talentTree.getLeft(), talentTree.getBottom() - 20 - 100, talentTree.getRight() - talentTree.getLeft(), 100);
@@ -101,7 +101,7 @@ public class TalentSelectionState extends State {
         topTable = new Table();
         topTable.setName("Top Table");
 
-        talentTreeTitle.setWrap(true);
+        talentTreeTitle.setWrap();
         talentTreeTitle.setAlignment(center);
 
         pointTracker.setAlignment(center);

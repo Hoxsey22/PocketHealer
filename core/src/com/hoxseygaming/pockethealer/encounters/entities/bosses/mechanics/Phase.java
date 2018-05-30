@@ -132,7 +132,7 @@ public class Phase {
         if(isNameChange)    {
             changeBossName();
         }
-        if(name == "") {
+        if(name.equalsIgnoreCase("")) {
             Timer phaseTitleTimer = new Timer();
             getOwner().getAnnouncement().setText(name);
             phaseTitleTimer.scheduleTask(new Timer.Task() {
@@ -179,7 +179,7 @@ public class Phase {
     /**
      * Stops the phase.
      */
-    public void stop()  {
+    private void stop()  {
         if(timer != null)   {
             getTimer().stop();
             System.out.println("phase stopped!");
@@ -253,7 +253,7 @@ public class Phase {
         }
     }
 
-    public void changeBossName()    {
+    private void changeBossName()    {
         getOwner().getNameText().setText(nameChange);
     }
 
@@ -271,7 +271,7 @@ public class Phase {
         this.parent = parent;
     }
 
-    public Boss getOwner() {
+    private Boss getOwner() {
         return owner;
     }
 
@@ -295,7 +295,7 @@ public class Phase {
         isActive = active;
     }
 
-    public Timer getTimer() {
+    private Timer getTimer() {
         return timer;
     }
 
@@ -315,8 +315,8 @@ public class Phase {
         return isNameChange;
     }
 
-    public void setNameChange(boolean nameChange) {
-        isNameChange = nameChange;
+    public void setNameChange() {
+        isNameChange = true;
     }
 
     public String getName() {

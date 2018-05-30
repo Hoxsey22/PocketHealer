@@ -17,7 +17,7 @@ public class Sting extends Mechanic {
     public Sting(Boss owner) {
         super("Sting", 15, 10f, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override

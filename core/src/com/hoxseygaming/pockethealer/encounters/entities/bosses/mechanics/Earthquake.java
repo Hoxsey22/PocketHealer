@@ -12,14 +12,15 @@ public class Earthquake extends Mechanic {
     private int numOfTargets;
     private Timer channel;
 
+    @SuppressWarnings("unused")
     public Earthquake(Boss owner) {
         super("Earthquake", 8, 15f, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public Earthquake(Boss owner, float speed) {
         super("Earthquake", 8, speed, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
@@ -28,10 +29,10 @@ public class Earthquake extends Mechanic {
         getTimer().stop();
     }
 
-    public void startChannel()  {
+    private void startChannel()  {
         channel = new Timer();
 
-        channel.schedule(new Timer.Task() {
+        channel.scheduleTask(new Timer.Task() {
             int count =  0;
             @Override
             public void run() {
@@ -57,11 +58,4 @@ public class Earthquake extends Mechanic {
         }
     }
 
-    public int getNumOfTargets() {
-        return numOfTargets;
-    }
-
-    public void setNumOfTargets(int numOfTargets) {
-        this.numOfTargets = numOfTargets;
-    }
 }

@@ -15,14 +15,14 @@ public class TankSwap extends Mechanic {
         super("Tank Swap",0,8f,owner);
         setMainTank();
         setOffTank();
-        setBgMech(true);
+        setBgMech();
     }
 
     public TankSwap(Boss owner, float speed) {
         super("Tank Swap",0,speed,owner);
         setMainTank();
         setOffTank();
-        setBgMech(true);
+        setBgMech();
     }
 
     public TankSwap(Boss owner, float speed, Debuff debuff) {
@@ -30,7 +30,7 @@ public class TankSwap extends Mechanic {
         this.debuff = debuff;
         setMainTank();
         setOffTank();
-        setBgMech(true);
+        setBgMech();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class TankSwap extends Mechanic {
         System.out.println("TANK SWAP!");
     }
 
-    public void tankSwap()  {
+    private void tankSwap()  {
         if(getOffTank().isDead() || getMainTank().isDead())   {
             if(getMainTank().isDead()) {
                 getOwner().setTarget(getOwner().getOffTank());

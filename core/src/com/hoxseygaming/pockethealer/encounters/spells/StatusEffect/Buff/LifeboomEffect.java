@@ -25,8 +25,8 @@ public class LifeboomEffect extends Buff {
                 owner.getAssets().getTexture(owner.getAssets().lifeboomIcon),
                 duration,
                 speed,
-                modValue,
-                false);
+                modValue
+        );
         totalBoom = 0;
     }
 

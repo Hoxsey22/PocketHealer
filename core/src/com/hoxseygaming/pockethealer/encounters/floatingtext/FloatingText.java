@@ -67,7 +67,7 @@ public class FloatingText {
         create();
     }
 
-    public void create()    {
+    private void create()    {
         floatingText = new Text("" + damage, fontSize, color, true, assets);
         floatingText.setAlignment(Align.center);
         setPosition(x,y);
@@ -97,7 +97,7 @@ public class FloatingText {
 
     }
 
-    public void setPosition(float x, float y)   {
+    private void setPosition(float x, float y)   {
         this.x = x;
         this.y = y;
         floatingText.setPosition(this.x, this.y);
@@ -108,113 +108,10 @@ public class FloatingText {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDamage() {
-        return damage;
-    }
-
-    public void setDamage(String damage) {
-        this.damage = damage;
-        floatingText.setText(this.damage);
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public Text getFloatingText() {
-        return floatingText;
-    }
-
-    public RaidMember getOwner() {
-        return owner;
-    }
-
-    public void setOwner(RaidMember owner) {
-        this.owner = owner;
-    }
-
-    public void setFloatingText(Text floatingText) {
-        this.floatingText = floatingText;
-    }
-
-    public Timer getTimer() {
-        return timer;
-    }
-
-    public void setTimer(Timer timer) {
-        this.timer = timer;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public boolean isAnimating() {
-        return isAnimating;
-    }
-
-    public void setAnimating(boolean animating) {
-        isAnimating = animating;
-    }
-
-    public Assets getAssets() {
-        return assets;
-    }
-
-    public void setAssets(Assets assets) {
-        this.assets = assets;
-    }
-
-    public int getFontSize() {
-        return fontSize;
-    }
-
-    public void setFontSize(int fontSize) {
-        this.fontSize = fontSize;
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public float getX() {
-        return x;
-    }
-
-    public void setX(float x) {
-        this.x = x;
-    }
-
-    public float getY() {
-        return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
-    }
-
     public void draw(Batch batch, float alpha)  {
         if(isAnimating){
             floatingText.draw(batch,alpha);
         }
     }
 
-    public void dispose()   {
-    }
 }

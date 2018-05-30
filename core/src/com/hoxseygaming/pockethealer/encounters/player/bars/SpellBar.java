@@ -41,7 +41,7 @@ public class SpellBar extends Group {
         createPositions();
     }
 
-    public void createPositions()   {
+    private void createPositions()   {
         for (int i = 0; i < 4; i++) {
             positions.add(new Rectangle(78+80*i,8,80,80));
         }
@@ -67,7 +67,7 @@ public class SpellBar extends Group {
         return false;
     }
 
-    public void addSpell(int index, Spell spell)  {
+    private void addSpell(int index, Spell spell)  {
         if(index > spells.size()-1)   {
 
             for(int i = 0; i < spells.size(); i++)   {
@@ -90,7 +90,7 @@ public class SpellBar extends Group {
         }
     }
 
-    public void swapSpell(int index, Spell spell) {
+    private void swapSpell(int index, Spell spell) {
 
         for(int i = 0; i < spells.size(); i++)   {
 
@@ -131,7 +131,7 @@ public class SpellBar extends Group {
     }
 
 
-    public void resetSpellPosition()    {
+    private void resetSpellPosition()    {
         for(int i = 0; i < spells.size(); i++)   {
             spells.get(i).setPosition(positions.get(i).getX(), positions.get(i).getY());
         }
@@ -141,7 +141,7 @@ public class SpellBar extends Group {
         return spells.get(index);
     }
 
-    public void clearSpells()   {
+    private void clearSpells()   {
         spells.clear();
     }
 

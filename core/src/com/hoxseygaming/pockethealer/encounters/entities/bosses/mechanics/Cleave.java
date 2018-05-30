@@ -13,16 +13,17 @@ public class Cleave extends Mechanic {
 
     private int numOfTargets;
 
+    @SuppressWarnings("unused")
     public Cleave(Boss owner) {
         super("Cleave", 15, 5f, owner);
         numOfTargets = 2;
-        setBgMech(true);
+        setBgMech();
     }
 
     public Cleave(Boss owner, float speed) {
         super("Cleave", 15, speed, owner);
         numOfTargets = 2;
-        setBgMech(true);
+        setBgMech();
     }
 
     @Override
@@ -31,10 +32,6 @@ public class Cleave extends Mechanic {
         for(int i = 0; i < raidMembers.size(); i++)   {
             raidMembers.get(i).takeDamage(getDamage());
         }
-    }
-
-    public int getNumOfTargets() {
-        return numOfTargets;
     }
 
     public void setNumOfTargets(int numOfTargets) {

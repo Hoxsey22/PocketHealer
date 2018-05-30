@@ -16,7 +16,7 @@ public class PocketHealer extends ApplicationAdapter {
 	public static Music music;
 	public static Skin ui;
 
-	SpriteBatch batch;
+	private SpriteBatch batch;
 	private StateManager sm;
 	
 	@Override
@@ -37,8 +37,4 @@ public class PocketHealer extends ApplicationAdapter {
 		sm.render(batch);
 	}
 
-	@Override
-	public void dispose () {
-		super.dispose();
-	}
 }

@@ -13,12 +13,12 @@ public class ThunderStorm extends Mechanic{
 
     public ThunderStorm(Boss owner) {
         super("Thunder Storm", 0, 35f, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public ThunderStorm(Boss owner, float speed) {
         super("Thunder Storm", 0, speed, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ThunderStorm extends Mechanic{
 
     }
 
-    public void startPowerlessTimer()    {
+    private void startPowerlessTimer()    {
 
         getOwner().getAnnouncement().setText(getOwner().getName()+" is powerless for just 7 seconds!");
         powerlessTimer = new Timer();

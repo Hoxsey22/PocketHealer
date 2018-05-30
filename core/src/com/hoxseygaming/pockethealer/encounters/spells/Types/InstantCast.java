@@ -13,7 +13,7 @@ import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 
 public abstract class InstantCast extends Spell {
 
-    protected Sound spellSFX;
+    private Sound spellSFX;
 
     /**
      *
@@ -26,8 +26,8 @@ public abstract class InstantCast extends Spell {
      * @param spellSFX
      * @param assets
      */
-    public InstantCast(Player player, String name, String description, int levelRequirement,
-                       int numOfTargets, int output, float costPercentage, float cooldown, Sound spellSFX, Assets assets) {
+    protected InstantCast(Player player, String name, String description, int levelRequirement,
+                          int numOfTargets, int output, float costPercentage, float cooldown, Sound spellSFX, Assets assets) {
         super(player, name, description,levelRequirement, output, costPercentage, cooldown, assets);
         setSpellType("Instant");
         this.spellSFX = spellSFX;
@@ -63,14 +63,6 @@ public abstract class InstantCast extends Spell {
 
     public void getRandomTargets() {
         setTargets(getOwner().getRaid().getRaidMembersWithLowestHp(getNumOfTargets()));
-    }
-
-    public Sound getSpellSFX() {
-        return spellSFX;
-    }
-
-    public void setSpellSFX(Sound spellSFX) {
-        this.spellSFX = spellSFX;
     }
 
 }

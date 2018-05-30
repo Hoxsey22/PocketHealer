@@ -17,13 +17,13 @@ public class CriticalChance {
         create();
     }
 
-    public void create()    {
+    private void create()    {
         diceRoll = new Random();
         max = 100;
         min = 0;
     }
 
-    public int roll()  {
+    private int roll()  {
         return diceRoll.nextInt(max) + min;
     }
 

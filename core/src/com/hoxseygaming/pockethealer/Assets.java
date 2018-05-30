@@ -16,173 +16,173 @@ import java.util.ArrayList;
  */
 public class Assets {
     //
-    public AssetManager manager;
-    public ArrayList<Vector2> raidPositions;
-    public ArrayList<Vector2> bossIconPosition;
-    public ArrayList<Vector2> talentPositions;
+    private final AssetManager manager;
+    public final ArrayList<Vector2> raidPositions;
+    public final ArrayList<Vector2> bossIconPosition;
+    public final ArrayList<Vector2> talentPositions;
 
 
     // fonts
-    public String floatingFnt = "fonts/floating_font.fnt";
-    public String manaFnt = "fonts/mana_font.fnt";
-    public String cooldownFnt = "fonts/cooldown_font.fnt";
-    public String talentTooltipFont = "fonts/talent_tooltip_font.fnt";
-    public String mapTitle = "map_state/title.fnt";
-    public String mapDescription = "map_state/description.fnt";
-    public String gameFont = "fonts/chela_one_regular.ttf";
+    private final String floatingFnt = "fonts/floating_font.fnt";
+    private final String manaFnt = "fonts/mana_font.fnt";
+    private final String cooldownFnt = "fonts/cooldown_font.fnt";
+    public final String talentTooltipFont = "fonts/talent_tooltip_font.fnt";
+    private final String mapTitle = "map_state/title.fnt";
+    private final String mapDescription = "map_state/description.fnt";
+    // --Commented out by Inspection (5/29/2018 8:13 PM):public String gameFont = "fonts/chela_one_regular.ttf";
 
-    public String gameFont16 = "fonts/game_font_small.fnt";
-    public String gameFont24 = "fonts/game_font_medium.fnt";
-    public String gameFont32 = "fonts/game_font_large.fnt";
-    public String gameFont45 = "fonts/game_font_xlarge.fnt";
-    public String gameFontB16 = "fonts/game_font_small_border.fnt";
-    public String gameFontB24 = "fonts/game_font_medium_border.fnt";
-    public String gameFontB32 = "fonts/game_font_large_border.fnt";
-    public String gameFontB45 = "fonts/game_font_xlarge_border.fnt";
+    public final String gameFont16 = "fonts/game_font_small.fnt";
+    public final String gameFont24 = "fonts/game_font_medium.fnt";
+    public final String gameFont32 = "fonts/game_font_large.fnt";
+    public final String gameFont45 = "fonts/game_font_xlarge.fnt";
+    public final String gameFontB16 = "fonts/game_font_small_border.fnt";
+    public final String gameFontB24 = "fonts/game_font_medium_border.fnt";
+    public final String gameFontB32 = "fonts/game_font_large_border.fnt";
+    public final String gameFontB45 = "fonts/game_font_xlarge_border.fnt";
 
 
     // pngss
-    public String continuousRenewalIcon = "talent_state/continuous_renewal.png";
-    public String lifeboomIcon = "icons/lifeboom.png";
-    public String unstableMagicIcon = "icons/unstable_magic_icon.png";
-    public String burstHealerIcon = "talent_state/burst_healer.png";
-    public String innerFocusIcon = "icons/inner_focus.png";
-    public String diseaseIcon = "icons/disease_icon.png";
-    public String workTogetherIcon = "icons/work_together.png";
-    public String selectedTalent = "icons/selected.png";
-    public String talentWindow = "talent_state/talent_window.png";
-    public String talentBg = "talent_bg.png";
-    public String talentStateBg = "talent_state/bg.png";
-    public String doneButton = "talent_state/done_button.png";
-    public String toolTipFrame = "talent_state/tooltip_frame.png";
-    public String miniBossIcon = "icons/level_mini_boss.png";
-    public String bossIcon = "icons/level_boss.png";
-    public String mmBG = "main_menu_state/bg.png";
-    public String mmBG2 = "main_menu_state/bg2.png";
-    public String mmBG3 = "main_menu_state/bg3.png";
-    public String mmBG4 = "main_menu_state/main.png";
+    private final String continuousRenewalIcon = "talent_state/continuous_renewal.png";
+    public final String lifeboomIcon = "icons/lifeboom.png";
+    public final String unstableMagicIcon = "icons/unstable_magic_icon.png";
+    private final String burstHealerIcon = "talent_state/burst_healer.png";
+    public final String innerFocusIcon = "icons/inner_focus.png";
+    public final String diseaseIcon = "icons/disease_icon.png";
+    public final String workTogetherIcon = "icons/work_together.png";
+    public final String selectedTalent = "icons/selected.png";
+    private final String talentWindow = "talent_state/talent_window.png";
+    public final String talentBg = "talent_bg.png";
+    private final String talentStateBg = "talent_state/bg.png";
+    private final String doneButton = "talent_state/done_button.png";
+    private final String toolTipFrame = "talent_state/tooltip_frame.png";
+    private final String miniBossIcon = "icons/level_mini_boss.png";
+    private final String bossIcon = "icons/level_boss.png";
+    public final String mmBG = "main_menu_state/bg.png";
+    public final String mmBG2 = "main_menu_state/bg2.png";
+    public final String mmBG3 = "main_menu_state/bg3.png";
+    public final String mmBG4 = "main_menu_state/main.png";
 
-    public String mmPlayButtonIdle = "main_menu_state/play_button_idle.png";
-    public String mmPlayButtonHover = "main_menu_state/play_button_hover.png";
-    public String mmContinueButtonIdle = "main_menu_state/play_button_idle.png";
-    public String mmContinueButtonHover = "main_menu_state/play_button_hover.png";
-    public String dpsIcon = "icons/dps_role_icon.png";
-    public String healerIcon = "icons/healer_role_icon.png";
-    public String tankIcon = "icons/tank_role_icon.png";
-    public String healIcon = "icons/heal_icon.png";
-    public String renewIcon = "icons/renew_icon.png";
-    public String barrierIcon = "icons/barrier_icon.png";
-    public String flashIcon = "icons/flash_heal_icon.png";
-    public String deathIcon = "icons/death_icon.png";
-    public String hoggerName = "hogger_name.png";
-    public String battleBg1 = "battle_bg1.png";
-    public String battleBg2 = "battle_bg2.png";
-    public String battleBg3 = "battle_bg3.png";
-    public String blackBar = "black_bar.png";
-    public String whiteBar = "white_bar.png";
-    public String redBar = "red_bar.png";
-    public String redOutlineBar = "red_outline_bar.png";
-    public String greenBar = "green_bar.png";
-    public String yellowFill = "yellow_hp_fill.png";
-    public String redFill = "red_hp_fill.png";
-    public String greenFill = "green_hp_fill.png";
-    public String purpleFill = "purple_fill.png";
-    public String raidFrameIdle = "raid_frame_idle_v2.png";
-    public String raidFrameSelected = "raid_frame_selected_v2.png";
-    public String hpManaBar = "hp_mana_bar.png";
-    public String manaFill = "mana_fill.png";
-    public String castBar = "casting_bar.png";
-    public String cooldownBar = "cooldown_bar.png";
-    public String spellBar = "spell_bar.png";
-    public String exitButton = "map_state/exit_button.png";
-    public String bossLocation = "map_state/boss_location.png";
-    public String infoFrame = "map_state/info_frame.png";
-    public String spellButton = "map_state/spells_button.png";
-    public String talentButton = "map_state/talent_button.png";
-    public String infoButton = "map_state/info_button.png";
-    public String startButton = "map_state/start_button.png";
-    public String selectedLevel = "map_state/selected_level.png";
-    public String bleedIcon = "icons/bleed_icon.png";
-    public String wampusCatName = "wampus_cat_name.png";
-    public String disableBG = "disable_bg.png";
-    public String endGameFrame = "end_game_frame.png";
-    public String finishButton = "finish_button.png";
-    public String resetButton = "reset_button.png";
-    public String leaveButton = "leave_button.png";
-    public String youWin = "you_win_text.png";
-    public String youWiped = "you_wiped_text.png";
-    public String mapOuterFrame = "map_state/map_outer_frame.png";
-    public String mapInnerFrame = "map_state/map_inner_frame.png";
-    public String button = "button.png";
-    public String smallButton = "small_button.png";
-    public String buttonHighlight = "button_select.png";
-    public String title = "title.png";
-    public String poisonIcon = "icons/poison_icon.png";
-    public String agonyIcon = "icons/agony_icon.png";
-    public String corruptionIcon = "icons/corruption_icon.png";
-    public String seedOfCorruptionIcon = "icons/seed_of_corruption_icon.png";
-    public String venomIcon = "icons/venom_icon.png";
+    private final String mmPlayButtonIdle = "main_menu_state/play_button_idle.png";
+    private final String mmPlayButtonHover = "main_menu_state/play_button_hover.png";
+    private final String mmContinueButtonIdle = "main_menu_state/play_button_idle.png";
+    private final String mmContinueButtonHover = "main_menu_state/play_button_hover.png";
+    public final String dpsIcon = "icons/dps_role_icon.png";
+    public final String healerIcon = "icons/healer_role_icon.png";
+    public final String tankIcon = "icons/tank_role_icon.png";
+    public final String healIcon = "icons/heal_icon.png";
+    public final String renewIcon = "icons/renew_icon.png";
+    public final String barrierIcon = "icons/barrier_icon.png";
+    public final String flashIcon = "icons/flash_heal_icon.png";
+    public final String deathIcon = "icons/death_icon.png";
+    private final String hoggerName = "hogger_name.png";
+    public final String battleBg1 = "battle_bg1.png";
+    public final String battleBg2 = "battle_bg2.png";
+    public final String battleBg3 = "battle_bg3.png";
+    private final String blackBar = "black_bar.png";
+    private final String whiteBar = "white_bar.png";
+    private final String redBar = "red_bar.png";
+    private final String redOutlineBar = "red_outline_bar.png";
+    private final String greenBar = "green_bar.png";
+    public final String yellowFill = "yellow_hp_fill.png";
+    public final String redFill = "red_hp_fill.png";
+    public final String greenFill = "green_hp_fill.png";
+    public final String purpleFill = "purple_fill.png";
+    public final String raidFrameIdle = "raid_frame_idle_v2.png";
+    public final String raidFrameSelected = "raid_frame_selected_v2.png";
+    public final String hpManaBar = "hp_mana_bar.png";
+    public final String manaFill = "mana_fill.png";
+    private final String castBar = "casting_bar.png";
+    private final String cooldownBar = "cooldown_bar.png";
+    public final String spellBar = "spell_bar.png";
+    public final String exitButton = "map_state/exit_button.png";
+    private final String bossLocation = "map_state/boss_location.png";
+    public final String infoFrame = "map_state/info_frame.png";
+    private final String spellButton = "map_state/spells_button.png";
+    private final String talentButton = "map_state/talent_button.png";
+    private final String infoButton = "map_state/info_button.png";
+    public final String startButton = "map_state/start_button.png";
+    private final String selectedLevel = "map_state/selected_level.png";
+    public final String bleedIcon = "icons/bleed_icon.png";
+    private final String wampusCatName = "wampus_cat_name.png";
+    public final String disableBG = "disable_bg.png";
+    public final String endGameFrame = "end_game_frame.png";
+    private final String finishButton = "finish_button.png";
+    private final String resetButton = "reset_button.png";
+    private final String leaveButton = "leave_button.png";
+    private final String youWin = "you_win_text.png";
+    private final String youWiped = "you_wiped_text.png";
+    public final String mapOuterFrame = "map_state/map_outer_frame.png";
+    public final String mapInnerFrame = "map_state/map_inner_frame.png";
+    public final String button = "button.png";
+    public final String smallButton = "small_button.png";
+    public final String buttonHighlight = "button_select.png";
+    public final String title = "title.png";
+    public final String poisonIcon = "icons/poison_icon.png";
+    public final String agonyIcon = "icons/agony_icon.png";
+    public final String corruptionIcon = "icons/corruption_icon.png";
+    public final String seedOfCorruptionIcon = "icons/seed_of_corruption_icon.png";
+    public final String venomIcon = "icons/venom_icon.png";
 
-    public String mapBg1 = "map_state/map.png";
-    public String biteIcon = "icons/bite_icon.png";
-    public String boilIcon = "icons/boil_icon.png";
-    public String smiteIcon = "icons/smite_icon.png";
-    public String holyNovaIcon = "icons/holy_nova_icon.png";
-    public String prayerOfMendingIcon = "icons/prayer_of_mending_icon.png";
-    public String greaterHealerIcon = "icons/greater_heal_icon.png";
-    public String lightWellIcon = "icons/light_well_icon.png";
-    public String divineHymnIcon = "icons/divine_hymn_icon.png";
-    public String renewingNovaIcon = "icons/renewing_nova_icon.png";
-    public String disciplineIcon = "icons/discipline_icon.png";
-    public String criticalHealer2Icon = "icons/critical_healerii_icon.png";
-    public String resurgenceIcon = "icons/resurgence_icon.png";
-    public String aodIcon = "icons/aod_icon.png";
-    public String superNovaIcon = "icons/super_nova_icon.png";
-    public String idleLine = "icons/idle_line.png";
-    public String selectedLine = "icons/selected_line.png";
-    public String shadowIcon = "icons/shadow_icon.png";
-    public String talentCalculatorFrame = "talent_calculator_frame.png";
-    public String blankIcon = "icons/blank_icon.png";
-    public String arrowPointer = "arrow.png";
-    public String defeatedBossIcon = "map_state/defeated_boss.png";
-    public String spellBG = "spell_bg.png";
-    public String dispelIcon = "icons/dispel_icon.png";
-    public String burnIcon = "icons/burn_icon.png";
-    public String penanceIcon = "icons/penance_icon.png";
+    private final String mapBg1 = "map_state/map.png";
+    public final String biteIcon = "icons/bite_icon.png";
+    public final String boilIcon = "icons/boil_icon.png";
+    public final String smiteIcon = "icons/smite_icon.png";
+    public final String holyNovaIcon = "icons/holy_nova_icon.png";
+    public final String prayerOfMendingIcon = "icons/prayer_of_mending_icon.png";
+    public final String greaterHealerIcon = "icons/greater_heal_icon.png";
+    public final String lightWellIcon = "icons/light_well_icon.png";
+    public final String divineHymnIcon = "icons/divine_hymn_icon.png";
+    public final String renewingNovaIcon = "icons/renewing_nova_icon.png";
+    public final String disciplineIcon = "icons/discipline_icon.png";
+    public final String criticalHealer2Icon = "icons/critical_healerii_icon.png";
+    private final String resurgenceIcon = "icons/resurgence_icon.png";
+    public final String aodIcon = "icons/aod_icon.png";
+    public final String superNovaIcon = "icons/super_nova_icon.png";
+    public final String idleLine = "icons/idle_line.png";
+    public final String selectedLine = "icons/selected_line.png";
+    public final String shadowIcon = "icons/shadow_icon.png";
+    private final String talentCalculatorFrame = "talent_calculator_frame.png";
+    public final String blankIcon = "icons/blank_icon.png";
+    public final String arrowPointer = "arrow.png";
+    private final String defeatedBossIcon = "map_state/defeated_boss.png";
+    public final String spellBG = "spell_bg.png";
+    public final String dispelIcon = "icons/dispel_icon.png";
+    public final String burnIcon = "icons/burn_icon.png";
+    public final String penanceIcon = "icons/penance_icon.png";
 
-    public String healingAbsorbIcon = "icons/healing_absorb_icon.png";
-    public String webIcon = "icons/web_icon.png";
-    public String swarmingShadowIcon = "icons/swarming_shadow_icon.png";
-    public String divineProtectionIcon = "icons/divine_protection_icon.png";
-    public String blessedGardenIcon = "icons/blessed_garden_icon.png";
-    public String stoneSkinIcon = "icons/stone_skin_icon.png";
-    public String sunderIcon = "icons/sunder_icon.png";
-
-
-    public String map1 = "map_state/map_level_1.png";
-    public String map2 = "map_state/map_level_2.png";
-    public String map3 = "map_state/map_level_3.png";
-    public String pageRight = "map_state/page_right_icon.png";
-    public String pageLeft = "map_state/page_left_icon.png";
-    public String ripIcon = "icons/rip_icon.png";
-    public String igniteIcon = "icons/ignite_icon.png";
+    public final String healingAbsorbIcon = "icons/healing_absorb_icon.png";
+    public final String webIcon = "icons/web_icon.png";
+    public final String swarmingShadowIcon = "icons/swarming_shadow_icon.png";
+    public final String divineProtectionIcon = "icons/divine_protection_icon.png";
+    public final String blessedGardenIcon = "icons/blessed_garden_icon.png";
+    public final String stoneSkinIcon = "icons/stone_skin_icon.png";
+    public final String sunderIcon = "icons/sunder_icon.png";
 
 
+    private final String map1 = "map_state/map_level_1.png";
+    private final String map2 = "map_state/map_level_2.png";
+    private final String map3 = "map_state/map_level_3.png";
+    private final String pageRight = "map_state/page_right_icon.png";
+    private final String pageLeft = "map_state/page_left_icon.png";
+    public final String ripIcon = "icons/rip_icon.png";
+    public final String igniteIcon = "icons/ignite_icon.png";
 
-    public ArrayList<String> maps;
+
+
+    public final ArrayList<String> maps;
 
     // music
-    public String mmMusic = "mm_music.ogg";
-    public String battleMusic = "sfx/battle_music.ogg";
+    public final String mmMusic = "mm_music.ogg";
+    public final String battleMusic = "sfx/battle_music.ogg";
 
     // sounds
-    public String barrierSFX ="sfx/barrier_sfx.mp3";
-    public String castingSFX ="sfx/casting_sfx.mp3";
-    public String healSFX ="sfx/heal_sfx.mp3";
-    public String hotSFX ="sfx/hot_sfx.mp3";
+    public final String barrierSFX ="sfx/barrier_sfx.mp3";
+    public final String castingSFX ="sfx/casting_sfx.mp3";
+    public final String healSFX ="sfx/heal_sfx.mp3";
+    public final String hotSFX ="sfx/hot_sfx.mp3";
 
     // skin
-    public String uiSkin = "pocket_healer_ui.json";
+    private final String uiSkin = "pocket_healer_ui.json";
 
     public Assets() {
         manager = new AssetManager();
@@ -203,7 +203,7 @@ public class Assets {
         loadSkin();
     }
 
-    public void loadImages() {
+    private void loadImages() {
         manager.load(dpsIcon, Texture.class);
         manager.load(healerIcon, Texture.class);
         manager.load(tankIcon, Texture.class);
@@ -351,7 +351,7 @@ public class Assets {
 
     }
 
-    public void loadSounds() {
+    private void loadSounds() {
         manager.load(battleMusic, Music.class);
         manager.load(mmMusic, Music.class);
         manager.load(barrierSFX, Sound.class);
@@ -361,7 +361,7 @@ public class Assets {
 
     }
 
-    public void loadPositions() {
+    private void loadPositions() {
         // raid position
         for(int i = 0; i < 6; i++) {
             for(int j = 0; j < 3; j++) {
@@ -398,7 +398,7 @@ public class Assets {
 
     }
 
-    public void loadFonts() {
+    private void loadFonts() {
         manager.load(floatingFnt, BitmapFont.class);
         manager.load(manaFnt, BitmapFont.class);
         manager.load(cooldownFnt, BitmapFont.class);
@@ -416,7 +416,7 @@ public class Assets {
         manager.load(gameFontB45,BitmapFont.class);
     }
 
-    public void loadSkin()  {
+    private void loadSkin()  {
         manager.load(uiSkin, Skin.class);
     }
 
@@ -447,20 +447,6 @@ public class Assets {
 
     public Skin getSkin()   {
         return manager.get(uiSkin, Skin.class);
-    }
-
-    public Texture getEffectImage(Spell.EffectType effectType) {
-        switch (effectType) {
-            case SHIELD:
-                return getTexture(barrierIcon);
-            case HEALOVERTIME:
-                return getTexture(renewIcon);
-            case LBHEAL:
-                return getTexture(lifeboomIcon);
-            case RNHEAL:
-                return getTexture(renewingNovaIcon);
-        }
-        return null;
     }
 
     public float getProgress()  {

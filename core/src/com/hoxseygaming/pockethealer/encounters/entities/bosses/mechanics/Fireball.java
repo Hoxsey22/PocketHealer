@@ -13,25 +13,26 @@ import java.util.Random;
 
 public class Fireball extends Mechanic {
 
-    private Random dice;
+    private final Random dice;
 
+    @SuppressWarnings("unused")
     public Fireball(Boss owner) {
         super("Fireball", 20, 2f, owner);
         dice = new Random();
-        setBgMech(true);
+        setBgMech();
     }
 
     public Fireball(Boss owner, float speed) {
         super("Fireball", 20, speed, owner);
         dice = new Random();
-        setBgMech(true);
+        setBgMech();
     }
 
     @Override
     public void action() {
         ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
         random.get(0).takeDamage(getDamage());
-        if(dice.nextInt(100)+0 > 95)    {
+        if(dice.nextInt(100) > 95)    {
             random.get(0).addStatusEffect(new BurnEffect(getOwner()));
         }
     }

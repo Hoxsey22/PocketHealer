@@ -42,7 +42,7 @@ public abstract class Spell extends Actor {
     private boolean isCasting;
     private Texture image;
     private float cdPercentage;
-    protected Timer cdTimer;
+    private Timer cdTimer;
     private Assets assets;
     private Text text;
     private RaidMember target;
@@ -61,8 +61,8 @@ public abstract class Spell extends Actor {
      * @param cooldown
      * @param assets
      */
-    public Spell(Player player, String name, String description, int levelRequirement, int output,
-                 float costPercentage, float cooldown, Assets assets) {
+    protected Spell(Player player, String name, String description, int levelRequirement, int output,
+                    float costPercentage, float cooldown, Assets assets) {
         setBounds(SpellData.positions[0].x,SpellData.positions[0].y,80,80);
         owner = player;
         this.assets = assets;
@@ -93,7 +93,7 @@ public abstract class Spell extends Actor {
     /**
      * This starts the cooldown timer for the spell
      */
-    public void startCooldownTimer()    {
+    protected void startCooldownTimer()    {
         cdTimer = new Timer();
         isReady = false;
         setCdCounter(cooldown);
@@ -112,7 +112,7 @@ public abstract class Spell extends Actor {
         },0.1f,0.1f, (int)(cooldown/0.1));
     }
 
-    public void setupText() {
+    private void setupText() {
         text = new Text("", 24, Color.WHITE, true,assets);
         text.setPosition(getX()+getWidth()/2 - text.getXCenter(), getY() + getHeight()/2 -
                 text.getYCenter());
@@ -123,7 +123,7 @@ public abstract class Spell extends Actor {
      * Gets the player that owns the the spell
      * @return Player
      */
-    public Player getOwner() {
+    protected Player getOwner() {
         return owner;
     }
 
@@ -139,11 +139,11 @@ public abstract class Spell extends Actor {
      *
      * @return boolean
      */
-    public boolean isCasting() {
+    protected boolean isCasting() {
         return isCasting;
     }
 
-    public void setCasting(boolean casting) {
+    protected void setCasting(boolean casting) {
         isCasting = casting;
     }
 
@@ -159,11 +159,11 @@ public abstract class Spell extends Actor {
         return cdCounter;
     }
 
-    public void setCdCounter(float cdCounter) {
+    private void setCdCounter(float cdCounter) {
         this.cdCounter = cdCounter;
     }
 
-    public void cdCount()   {
+    private void cdCount()   {
         cdCounter = cdCounter - 0.1f;
         getCdPercentage();
     }
@@ -176,11 +176,11 @@ public abstract class Spell extends Actor {
         this.image = image;
     }
 
-    public int getOutput() {
+    protected int getOutput() {
         return output;
     }
 
-    public void setOutput(int output) {
+    protected void setOutput(int output) {
         this.output = output;
     }
 
@@ -196,7 +196,7 @@ public abstract class Spell extends Actor {
         cost = (int)((float)owner.getMaxMana()*(costPercentage/100f));
     }
 
-    public float getCdPercentage() {
+    private float getCdPercentage() {
         return cdPercentage = cdCounter/cooldown;
     }
 
@@ -204,7 +204,7 @@ public abstract class Spell extends Actor {
         this.cdPercentage = cdPercentage;
     }
 
-    public void useMana()   {
+    protected void useMana()   {
         owner.setMana(owner.getMana() - cost);
     }
 
@@ -220,7 +220,7 @@ public abstract class Spell extends Actor {
         this.description = description;
     }
 
-    public boolean isCastable() {
+    protected boolean isCastable() {
         if(owner.getTarget() == null)    {
             System.out.println("NO TARGET FOUND!");
             return false;
@@ -249,7 +249,7 @@ public abstract class Spell extends Actor {
         this.assets = assets;
     }
 
-    public RaidMember getOwnerTarget() {
+    protected RaidMember getOwnerTarget() {
         return owner.getTarget();
     }
 
@@ -261,7 +261,7 @@ public abstract class Spell extends Actor {
         return spellType;
     }
 
-    public void setSpellType(String spellType) {
+    protected void setSpellType(String spellType) {
         this.spellType = spellType;
     }
 
@@ -347,7 +347,7 @@ public abstract class Spell extends Actor {
 
     }
 
-    public void getRandomTargets()  {
+    protected void getRandomTargets()  {
         targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets);
     }
 
@@ -359,11 +359,10 @@ public abstract class Spell extends Actor {
     }
 
     public String toString()    {
-        String string = 100*(float)cost/owner.getMaxMana()+"% of base mana\n"+
+        return 100*(float)cost/owner.getMaxMana()+"% of base mana\n"+
                 spellType+"\n"+
                 cooldown+" second cooldown\n"+
                 description;
-        return string;
     }
 
     @Override
@@ -408,7 +407,7 @@ public abstract class Spell extends Actor {
         this.MIN_COOLDOWN = MIN_COOLDOWN;
     }
 
-    public Assets getAssets() {
+    protected Assets getAssets() {
         return assets;
     }
 
@@ -420,7 +419,7 @@ public abstract class Spell extends Actor {
         this.text = text;
     }
 
-    public CriticalChance getCriticalChance() {
+    protected CriticalChance getCriticalChance() {
         return criticalChance;
     }
 
@@ -444,21 +443,23 @@ public abstract class Spell extends Actor {
         this.levelRequirement = levelRequirement;
     }
 
-    public int getNumOfTargets() {
+    protected int getNumOfTargets() {
         return numOfTargets;
     }
 
-    public void setNumOfTargets(int numOfTargets) {
+    protected void setNumOfTargets(int numOfTargets) {
         this.numOfTargets = numOfTargets;
     }
 
-    public ArrayList<RaidMember> getTargets() {
+    protected ArrayList<RaidMember> getTargets() {
         return targets;
     }
 
-    public void setTargets(ArrayList<RaidMember> targets) {
+    protected void setTargets(ArrayList<RaidMember> targets) {
         this.targets = targets;
     }
+
+
 
     @Override
     public void draw(Batch batch, float parentAlpha) {

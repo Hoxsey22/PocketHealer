@@ -84,35 +84,4 @@ public class BanditLeader extends Boss {
         }
     }
 
-    public AutoAttack getAutoAttack() {
-        return autoAttack;
-    }
-
-    public void setAutoAttack(AutoAttack autoAttack) {
-        this.autoAttack = autoAttack;
-    }
-
-    public BackStab getBackStab() {
-        return backStab;
-    }
-
-    public void setBackStab(BackStab backStab) {
-        this.backStab = backStab;
-    }
-
-    public PoisonStab getPoisonStab() {
-        return poisonStab;
-    }
-
-    public void setPoisonStab(PoisonStab poisonStab) {
-        this.poisonStab = poisonStab;
-    }
-
-    public boolean isEnrage() {
-        return isEnrage;
-    }
-
-    public void setEnrage(boolean enrage) {
-        isEnrage = enrage;
-    }
 }

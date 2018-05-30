@@ -33,7 +33,7 @@ public class WildBoar extends Boss {
         setDamage(10);
 
         bullCharge = new BullCharge(this, 5f);
-        bullCharge.setAnnounce(true);
+        bullCharge.setAnnounce();
 
         autoAttack = new AutoAttack(this, 1f);
 

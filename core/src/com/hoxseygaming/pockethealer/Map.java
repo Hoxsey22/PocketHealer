@@ -42,11 +42,10 @@ public class Map extends Group {
     }
 
     public void add(BossIcon bossIcon)   {
-        BossIcon biTemp = bossIcon;
-        biTemp.setPosition(image.getX()+ assets.bossIconPosition.get(bossIcon.getBoss().getId()-2).x,
+        bossIcon.setPosition(image.getX()+ assets.bossIconPosition.get(bossIcon.getBoss().getId()-2).x,
                 image.getY() + assets.bossIconPosition.get(bossIcon.getBoss().getId()-2).y);
-        addActor(biTemp);
-        bossPoints.add(biTemp);
+        addActor(bossIcon);
+        bossPoints.add(bossIcon);
     }
 
     public BossIcon hit(float x, float y)   {

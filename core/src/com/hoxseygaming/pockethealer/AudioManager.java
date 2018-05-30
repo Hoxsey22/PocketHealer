@@ -31,15 +31,12 @@ public class AudioManager {
 
     public static float musicVolume = 0.5f;
     public static float sfxVolume = 0.5f;
-    public static Music music;
+    private static Music music;
+    @SuppressWarnings("CanBeFinal")
     private static ArrayList<Sound> soundEffects = new ArrayList<>();
-    public static AudioData audioData = new AudioData();
-    private static Assets assets;
+    @SuppressWarnings("CanBeFinal")
+    private static AudioData audioData = new AudioData();
 
-
-    public static void loadAssets(Assets _assets) {
-        assets = _assets;
-    }
 
     /**
      * Plays the sfx. If the sound effect list contains the sfx then it will not add the sfx to the list.
@@ -81,6 +78,7 @@ public class AudioManager {
      * Puases the sfx.
      * @param sfx
      */
+    @SuppressWarnings("unused")
     public static void pauseSFX(Sound sfx)   {
         if(sfx != null)    {
             sfx.pause();
@@ -99,12 +97,9 @@ public class AudioManager {
     /**
      * Sets music to the new music object given and then plays music based on param values.
      * @param newMusic
-     * @param looping
+     *
      */
-    public static void playMusic(Music newMusic, boolean looping) {
-
-
-
+    public static void playMusic(Music newMusic) {
         if (music == null) {
             setMusic(newMusic);
         }
@@ -114,7 +109,7 @@ public class AudioManager {
             clearMusic();
             setMusic(newMusic);
         }
-        music.setLooping(looping);
+        music.setLooping(true);
         music.setVolume(musicVolume);
         music.play();
     }
@@ -122,6 +117,7 @@ public class AudioManager {
     /**
      * Plays the music object if not null.
      */
+    @SuppressWarnings("unused")
     public static void playMusic() {
         if(music != null) {
             music.setLooping(true);
@@ -133,6 +129,7 @@ public class AudioManager {
     /**
      * Stops the music object if not null.
      */
+    @SuppressWarnings("unused")
     public static Music stopMusic() {
         if(music != null)
             music.stop();
@@ -142,6 +139,7 @@ public class AudioManager {
     /**
      * Pauses music object if not null.
      */
+    @SuppressWarnings("unused")
     public static void pauseMusic()    {
         if(music != null)
             music.pause();
@@ -160,7 +158,7 @@ public class AudioManager {
     /**
      * Disposes the music object.
      */
-    public static void clearMusic()  {
+    private static void clearMusic()  {
         if(music != null) {
             music.stop();
             //music = null;
@@ -171,7 +169,7 @@ public class AudioManager {
     /**
      * Disposes all Sound objects.
      */
-    public static void clearSFX()    {
+    private static void clearSFX()    {
         for(int i = 0; i < soundEffects.size(); i++)   {
             if(soundEffects.get(i) != null) {
                 soundEffects.get(i).stop();
@@ -189,7 +187,7 @@ public class AudioManager {
      * Sets Music objects.
      * @param newMusic
      */
-    public static void setMusic(Music newMusic)  {
+    private static void setMusic(Music newMusic)  {
         music = newMusic;
     }
 
@@ -197,6 +195,7 @@ public class AudioManager {
      * Gets current Music object.
      * @return
      */
+    @SuppressWarnings("unused")
     public static Music getMusic() {
         return music;
     }
@@ -205,6 +204,7 @@ public class AudioManager {
      * Gets current list of SFX objects.
      * @return
      */
+    @SuppressWarnings("unused")
     public static ArrayList<Sound> getSoundEffects() {
         return soundEffects;
     }
@@ -213,7 +213,7 @@ public class AudioManager {
      * Adds new Sound Object to SFX list.
      * @param sound
      */
-    public static void addSFX(Sound sound) {
+    private static void addSFX(Sound sound) {
         soundEffects.add(sound);
     }
 
@@ -221,6 +221,7 @@ public class AudioManager {
      * Gets music volume.
      * @return musicVolume
      */
+    @SuppressWarnings("unused")
     public static float getMusicVolume() {
         return musicVolume;
     }
@@ -229,6 +230,7 @@ public class AudioManager {
      * Sets the music volume.
      * @param volume range 0.0f - 1.0f
      */
+    @SuppressWarnings("unused")
     public static void setMusicVolume(float volume) {
         musicVolume = volume;
     }
@@ -237,6 +239,7 @@ public class AudioManager {
      * Gets the Sound effects volume.
      * @return sfxVolume
      */
+    @SuppressWarnings("unused")
     public static float getSfxVolume() {
         return sfxVolume;
     }
@@ -245,6 +248,7 @@ public class AudioManager {
      * Sets the Sound effect's volume.
      * @param volume range 0.0f - 1.0f
      */
+    @SuppressWarnings("unused")
     public static void setSfxVolume(float volume) {
         sfxVolume = volume;
     }

@@ -15,13 +15,13 @@ public class VampiricBite extends Mechanic {
     public VampiricBite(Boss owner) {
         super("Vampiric Bite", 20, 5f, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public VampiricBite(Boss owner, float speed) {
         super("Vampiric Bite", 20, speed, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override

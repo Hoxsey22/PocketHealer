@@ -18,8 +18,8 @@ public class BlessedGardenEffect extends Buff {
                 owner.getAssets().getTexture(owner.getAssets().blessedGardenIcon),
                 15f,
                 0.1f,
-                0,
-                false);
+                0
+        );
         setType(HEALING_REDUCTION);
     }
 

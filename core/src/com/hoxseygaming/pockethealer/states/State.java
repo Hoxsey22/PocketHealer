@@ -10,13 +10,13 @@ import com.hoxseygaming.pockethealer.PocketHealer;
 /**
  * Created by Hoxsey on 5/27/2017.
  */
-public abstract class State extends ApplicationAdapter {
-    protected OrthographicCamera cam;
-    protected Vector3 mouse;
-    protected com.hoxseygaming.pockethealer.states.StateManager sm;
-    protected StretchViewport viewport;
+abstract class State extends ApplicationAdapter {
+    private final OrthographicCamera cam;
+    private final Vector3 mouse;
+    final com.hoxseygaming.pockethealer.states.StateManager sm;
+    final StretchViewport viewport;
 
-    protected State(com.hoxseygaming.pockethealer.states.StateManager sm)   {
+    State(com.hoxseygaming.pockethealer.states.StateManager sm)   {
         this.sm = sm;
         cam = new OrthographicCamera();
         cam.setToOrtho(false, PocketHealer.WIDTH,PocketHealer.HEIGHT);

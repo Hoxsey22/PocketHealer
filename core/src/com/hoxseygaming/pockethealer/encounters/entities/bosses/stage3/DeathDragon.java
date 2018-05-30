@@ -82,11 +82,11 @@ public class DeathDragon extends Boss {
         Phase phase1 = new Phase(this, 75, agony, pyroblast,autoAttackp1);
 
         Phase phase2 = new Phase(this, 60f, unstableMagic,unstablePyroblast, autoAttackp2);
-        phase2.setNameChange(true);
+        phase2.setNameChange();
         phase2.setNameChange("Deformed Sorcerer");
 
         Phase phase3 = new Phase(this, 1, autoAttackp3, ripTankSwap, flurry,tailSwipe,fireBreath, ignite);
-        phase3.setNameChange(true);
+        phase3.setNameChange();
         phase3.setNameChange("Death Dragon");
 
 
@@ -100,109 +100,9 @@ public class DeathDragon extends Boss {
     }
 
     @Override
-    public void update() {
-        super.update();
-    }
-
-    @Override
     public void reward() {
         if(getPlayer().getLevel() >= getId())
             getRewardPackage().addNewLevelText();
     }
 
-    public Agony getAgony() {
-        return agony;
-    }
-
-    public void setAgony(Agony agony) {
-        this.agony = agony;
-    }
-
-    public Pyroblast getPyroblast() {
-        return pyroblast;
-    }
-
-    public void setPyroblast(Pyroblast pyroblast) {
-        this.pyroblast = pyroblast;
-    }
-
-    public AutoAttack getAutoAttackp1() {
-        return autoAttackp1;
-    }
-
-    public void setAutoAttackp1(AutoAttack autoAttackp1) {
-        this.autoAttackp1 = autoAttackp1;
-    }
-
-    public UnstableMagic getUnstableMagic() {
-        return unstableMagic;
-    }
-
-    public void setUnstableMagic(UnstableMagic unstableMagic) {
-        this.unstableMagic = unstableMagic;
-    }
-
-    public UnstablePyroblast getUnstablePyroblast() {
-        return unstablePyroblast;
-    }
-
-    public void setUnstablePyroblast(UnstablePyroblast unstablePyroblast) {
-        this.unstablePyroblast = unstablePyroblast;
-    }
-
-    public AutoAttack getAutoAttackp2() {
-        return autoAttackp2;
-    }
-
-    public void setAutoAttackp2(AutoAttack autoAttackp2) {
-        this.autoAttackp2 = autoAttackp2;
-    }
-
-    public AutoAttack getAutoAttackp3() {
-        return autoAttackp3;
-    }
-
-    public void setAutoAttackp3(AutoAttack autoAttackp3) {
-        this.autoAttackp3 = autoAttackp3;
-    }
-
-    public RipTankSwap getRipTankSwap() {
-        return ripTankSwap;
-    }
-
-    public void setRipTankSwap(RipTankSwap ripTankSwap) {
-        this.ripTankSwap = ripTankSwap;
-    }
-
-    public TailSwipe getTailSwipe() {
-        return tailSwipe;
-    }
-
-    public void setTailSwipe(TailSwipe tailSwipe) {
-        this.tailSwipe = tailSwipe;
-    }
-
-    public Flurry getFlurry() {
-        return flurry;
-    }
-
-    public void setFlurry(Flurry flurry) {
-        this.flurry = flurry;
-    }
-
-    public FireBreath getFireBreath() {
-        return fireBreath;
-    }
-
-    public void setFireBreath(FireBreath fireBreath) {
-        this.fireBreath = fireBreath;
-    }
-
-    public Ignite getIgnite() {
-        return ignite;
-    }
-
-    public void setIgnite(Ignite ignite) {
-        this.ignite = ignite;
-    }
 }

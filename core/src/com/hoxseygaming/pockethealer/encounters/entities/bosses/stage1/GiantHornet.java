@@ -34,7 +34,7 @@ public class GiantHornet extends Boss {
 
         autoAttack = new AutoAttack(this, 0.5f);
         sting = new Sting(this);
-        sting.setAnnounce(true);
+        sting.setAnnounce();
         sting.setNumOfTargets(3);
 
         getPhaseManager().addPhase(new Phase(this, 0, autoAttack, sting));
@@ -52,19 +52,4 @@ public class GiantHornet extends Boss {
         }
     }
 
-    public AutoAttack getAutoAttack() {
-        return autoAttack;
-    }
-
-    public void setAutoAttack(AutoAttack autoAttack) {
-        this.autoAttack = autoAttack;
-    }
-
-    public Sting getSting() {
-        return sting;
-    }
-
-    public void setSting(Sting sting) {
-        this.sting = sting;
-    }
 }

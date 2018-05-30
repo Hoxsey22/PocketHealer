@@ -13,18 +13,18 @@ import java.util.ArrayList;
 
 public class TailSwipe extends Mechanic {
 
-    int numOfTargets;
+    private int numOfTargets;
 
     public TailSwipe(Boss owner) {
         super("Tail Swipe", 20, 5f, owner);
         numOfTargets = 2;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public TailSwipe(Boss owner, float speed) {
         super("Tail Swipe", 20, speed, owner);
         numOfTargets = 5;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override

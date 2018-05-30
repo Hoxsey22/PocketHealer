@@ -6,7 +6,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.Assets;
@@ -16,9 +15,9 @@ import com.hoxseygaming.pockethealer.Assets;
  */
 public class TestState extends State {
 
-    public Assets assets;
-    public Button frame;
-    public Stage stage;
+    private final Assets assets;
+    private final Button frame;
+    private final Stage stage;
 
     protected TestState(StateManager sm, Assets assets) {
         super(sm);

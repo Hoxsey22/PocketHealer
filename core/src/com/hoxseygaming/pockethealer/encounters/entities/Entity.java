@@ -31,7 +31,7 @@ public class Entity extends Actor{
      * @param id
      * @param role
      */
-    public Entity(int id, String role, Assets assets) {
+    protected Entity(int id, String role, Assets assets) {
         this.assets = assets;
         setBounds(assets.raidPositions.get(id).x,
                 assets.raidPositions.get(id).y,146,70);
@@ -52,7 +52,7 @@ public class Entity extends Actor{
      * @param name
      * @param maxHp
      */
-    public Entity(String name, int maxHp, Assets assets) {
+    protected Entity(String name, int maxHp, Assets assets) {
         this.assets = assets;
         this.name = name;
         this.maxHp = maxHp;
@@ -62,7 +62,7 @@ public class Entity extends Actor{
         healingTracker = new HealingTracker();
     }
 
-    public void setRoleStats(String role)    {
+    private void setRoleStats(String role)    {
         switch (role)   {
             case "Tank":
                 maxHp = 200;
@@ -103,7 +103,7 @@ public class Entity extends Actor{
         return newOutput;
     }
 
-    public void takeShieldDamage(int damage)  {
+    private void takeShieldDamage(int damage)  {
         int oldShield = shield;
         shield = shield - damage;
         if(shield <= 0) {
@@ -117,7 +117,7 @@ public class Entity extends Actor{
         }
     }
 
-    public void reduceHealingAbsorb(int output)   {
+    private void reduceHealingAbsorb(int output)   {
         int oldHealingAbsorb = healingAbsorb;
         healingAbsorb = healingAbsorb - output;
 
@@ -131,11 +131,7 @@ public class Entity extends Actor{
         healingTracker.addHealingDone(output);
     }
 
-    public void dealDamage(Entity target)    {
-        target.receiveDamage(damage);
-        }
-
-    public void receiveDamage(int output) {
+    private void receiveDamage(int output) {
         if(!isDead()) {
             hp = hp - output;
             if(hp <= 0) {
@@ -179,26 +175,23 @@ public class Entity extends Actor{
 
     public void applyShield(int output)   {
 
-        int newOutput = output;
-
-        if(newOutput + shield > maxHp) {
+        if(output + shield > maxHp) {
             shield = maxHp;
             return;
         }
-        shield = shield + newOutput;
+        shield = shield + output;
 
 
         System.out.println("SHIELD APPLIED!");
     }
 
     public void applyHealingAbsorb(int output) {
-        int newOutput = output;
 
-        if(newOutput + healingAbsorb > maxHp) {
+        if(output + healingAbsorb > maxHp) {
             healingAbsorb = maxHp;
         }
         else {
-            healingAbsorb = healingAbsorb + newOutput;
+            healingAbsorb = healingAbsorb + output;
         }
     }
     /*Getters and Setters*/
@@ -207,7 +200,7 @@ public class Entity extends Actor{
         return id;
     }
 
-    public void setId(int id) {
+    protected void setId(int id) {
         this.id = id;
     }
 
@@ -219,10 +212,11 @@ public class Entity extends Actor{
         this.name = name;
     }
 
-    public int getMaxHp() {
+    protected int getMaxHp() {
         return maxHp;
     }
 
+    @SuppressWarnings("unused")
     public void setMaxHp(int maxHp) {
         this.maxHp = maxHp;
     }
@@ -231,7 +225,7 @@ public class Entity extends Actor{
         return hp;
     }
 
-    public void setHp(int hp) {
+    protected void setHp(int hp) {
         this.hp = hp;
     }
 
@@ -239,6 +233,7 @@ public class Entity extends Actor{
         return shield;
     }
 
+    @SuppressWarnings("unused")
     public void setShield(int shield) {
         this.shield = shield;
     }
@@ -247,6 +242,7 @@ public class Entity extends Actor{
         return role;
     }
 
+    @SuppressWarnings("unused")
     public void setRole(String role) {
         this.role = role;
     }
@@ -266,7 +262,7 @@ public class Entity extends Actor{
         return isDead;
     }
 
-    public void setDead(boolean dead) {
+    protected void setDead(boolean dead) {
         isDead = dead;
     }
 
@@ -287,11 +283,11 @@ public class Entity extends Actor{
         return (float)healingAbsorb/(float)maxHp;
     }
 
-    public Texture getRoleImage() {
+    protected Texture getRoleImage() {
         return roleImage;
     }
 
-    public void setRoleImage(Texture roleImage) {
+    protected void setRoleImage(Texture roleImage) {
         this.roleImage = roleImage;
     }
 
@@ -324,11 +320,12 @@ public class Entity extends Actor{
         return healingAbsorb;
     }
 
+    @SuppressWarnings("unused")
     public void setHealingAbsorb(int healingAbsorb) {
         this.healingAbsorb = healingAbsorb;
     }
 
-    public void setSelected(boolean selected) {
+    protected void setSelected(boolean selected) {
         this.selected = selected;
     }
 
@@ -336,6 +333,7 @@ public class Entity extends Actor{
         return assets;
     }
 
+    @SuppressWarnings("unused")
     public int getAmountAbsorbed() {
         return amountAbsorbed;
     }

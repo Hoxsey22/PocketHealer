@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class TalentTree extends Group{
 
     public static final String LIFEBOOM = "Lifeboom";
-    public static final String HEALER_CHANNEL = "Healer Channel";
+    private static final String HEALER_CHANNEL = "Healer Channel";
     public static final String RENEWING_NOVA = "Renewing Nova";
     public static final String AOD = "Aspect of the Druid";
     public static final String CRITICAL_HEALER = "Critical Healer";
@@ -54,7 +54,7 @@ public class TalentTree extends Group{
         placeTalentPosition();
     }
 
-    public void createTalents()  {
+    private void createTalents()  {
         talents.add(new Talent(this, 1, LIFEBOOM, "After Renew expires, half of renew's healing will heal the ally unit.", getAssets().getTexture(getAssets().lifeboomIcon), assets));
         talents.add(new Talent(this, 2, HEALER_CHANNEL, "Healers in the raid will no longer deal damage, but will instead heal.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().workTogetherIcon), assets));
@@ -87,7 +87,7 @@ public class TalentTree extends Group{
 
     }
 
-    public void placeTalentPosition()   {
+    private void placeTalentPosition()   {
 
         for(int i = 0; i < talents.size(); i++)   {
             talents.get(i).setBounds(getAssets().talentPositions.get(i).x,getAssets().talentPositions.get(i).y, 75, 75);
@@ -98,8 +98,7 @@ public class TalentTree extends Group{
     public Talent hit(float x, float y) {
         Actor hit = hit(x,y,false);
         if(hit != null)    {
-            Talent talent = getTalent(hit.getName());
-            return talent;
+            return getTalent(hit.getName());
         }
         return null;
     }
@@ -123,19 +122,16 @@ public class TalentTree extends Group{
         return false;
     }
 
-    private boolean isTalentSelectable(Talent talent)    {
-        if(getUnusedPoints() < 1)    {
+    private boolean isTalentSelectable(Talent talent) {
+        if (getUnusedPoints() < 1) {
             return false;
         }
-        if(talent.hasPreReq()) {
+        if (talent.hasPreReq()) {
             if (!talent.getPreReq().isSelected()) {
                 return false;
             }
         }
-        if(talent.getTotalPointRequirement() > getTotalPoints())    {
-            return false;
-        }
-        return !talent.isSelected();
+        return talent.getTotalPointRequirement() <= getTotalPoints() && !talent.isSelected();
     }
 
     public Player getOwner() {
@@ -246,7 +242,7 @@ public class TalentTree extends Group{
     /**
      * All talents will no longer be selected.
      */
-    public void clearTalents()  {
+    private void clearTalents()  {
         for (int i = 0; i <  talents.size(); i++)   {
             talents.get(i).setSelected(false);
         }
@@ -281,7 +277,7 @@ public class TalentTree extends Group{
         return talentData;
     }
 
-    public Assets getAssets() {
+    private Assets getAssets() {
         return assets;
     }
 

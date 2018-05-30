@@ -9,9 +9,10 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Corru
 
 public class BlanketCorruption extends Mechanic{
 
+    @SuppressWarnings("unused")
     public BlanketCorruption(Boss owner) {
         super("Blanket Corruption", 0, 65f, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public BlanketCorruption(Boss owner, float speed) {

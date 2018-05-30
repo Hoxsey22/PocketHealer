@@ -14,18 +14,18 @@ public class FireBreath extends Mechanic{
 
 
     private Timer channel;
-    private Random dice;
+    private final Random dice;
 
     public FireBreath(Boss owner) {
         super("Fire Breath", 10, 20f, owner);
         dice = new Random();
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public FireBreath(Boss owner, int damage, float speed) {
         super("Fire Breath", damage, speed, owner);
         dice = new Random();
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
@@ -34,10 +34,10 @@ public class FireBreath extends Mechanic{
         pausePhase();
     }
 
-    public void startChannel()  {
+    private void startChannel()  {
         channel = new Timer();
 
-        channel.schedule(new Timer.Task() {
+        channel.scheduleTask(new Timer.Task() {
             int count =  0;
 
             @Override
@@ -46,7 +46,7 @@ public class FireBreath extends Mechanic{
                     count++;
                     for(int i = 0; i <  getOwner().getEnemies().getRaidMembers().size(); i++)   {
                         getOwner().getEnemies().getRaidMember(i).takeDamage(getDamage());
-                        if(dice.nextInt(100)+0 > 94)    {
+                        if(dice.nextInt(100) > 94)    {
                             getOwner().getEnemies().getRaidMember(i).addStatusEffect(new BurnEffect(getOwner()));
                         }
                     }

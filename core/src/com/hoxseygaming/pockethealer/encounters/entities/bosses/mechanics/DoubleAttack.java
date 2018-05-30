@@ -2,7 +2,6 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.Hydra;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.SunderEffect;
 
 /**
@@ -12,18 +11,16 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Sunde
 public class DoubleAttack extends Mechanic {
 
     private Timer secondTimer;
-    private Hydra hydra;
 
+    @SuppressWarnings("unused")
     public DoubleAttack(Boss owner) {
         super("Double Attack", 20, 2f, owner);
-        setAnnounce(true);
-        hydra = (Hydra) owner;
+        setAnnounce();
     }
 
     public DoubleAttack(Boss owner, float speed)   {
         super("Double Attack", 20, speed, owner);
-        setAnnounce(true);
-        hydra = (Hydra) owner;
+        setAnnounce();
     }
 
     @Override
@@ -33,7 +30,7 @@ public class DoubleAttack extends Mechanic {
         pausePhase();
     }
 
-    public void secondAttack()  {
+    private void secondAttack()  {
         secondTimer = new Timer();
 
         secondTimer.scheduleTask(new Timer.Task() {

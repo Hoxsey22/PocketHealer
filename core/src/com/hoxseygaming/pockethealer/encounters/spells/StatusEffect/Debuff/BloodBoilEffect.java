@@ -6,10 +6,12 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
  * Created by Hoxsey on 11/29/2017.
  */
 
+@SuppressWarnings("unused")
 public class BloodBoilEffect extends Debuff {
 
     /**
      */
+    @SuppressWarnings("unused")
     public BloodBoilEffect(Boss owner) {
         super(owner,
                 5,
@@ -23,13 +25,11 @@ public class BloodBoilEffect extends Debuff {
     }
 
     @Override
-    public void startConditions() {
-
+    protected void startConditions() {
     }
 
     @Override
     public void additionalConditions() {
-
     }
 
     @Override

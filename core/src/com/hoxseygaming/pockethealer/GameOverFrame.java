@@ -45,7 +45,7 @@ public class GameOverFrame extends Group {
         create();
     }
 
-    public void create() {
+    private void create() {
         disableBG = new Image(assets.getTexture(assets.disableBG));
         disableBG.setName("disable bg");
         disableBG.setBounds(0, 0, PocketHealer.WIDTH, PocketHealer.HEIGHT);
@@ -66,19 +66,19 @@ public class GameOverFrame extends Group {
         createText();
     }
 
-    public void createText() {
+    private void createText() {
         table = new Table();
         table.setName("table");
         table.setBounds(frame.getX(), frame.getY(), frame.getWidth() - 10, frame.getHeight() - 10);
 
         title = new Text("", 32, Color.WHITE, true, assets);
         title.setName("title");
-        title.setWrap(true);
+        title.setWrap();
         title.setAlignment(Align.top);
 
         body = new Text("", 24, Color.WHITE, false, assets);
         body.setName("body");
-        body.setWrap(true);
+        body.setWrap();
         body.setAlignment(Align.center);
 
         addActor(table);
@@ -114,7 +114,7 @@ public class GameOverFrame extends Group {
         }
 
         body.setText(boss.getRewardPackage().getReward());
-        table.add(body.getLabel()).colspan(2).expandY();;
+        table.add(body.getLabel()).colspan(2).expandY();
         table.row();
         table.add(okButton).bottom().padBottom(10);
     }
@@ -154,131 +154,8 @@ public class GameOverFrame extends Group {
         return -1;
     }
 
-    public Image getDisableBG() {
-        return disableBG;
-    }
-
-    public void setDisableBG(Image disableBG) {
-        this.disableBG = disableBG;
-    }
-
-    public Image getFrame() {
-        return frame;
-    }
-
-    public void setFrame(Image frame) {
-        this.frame = frame;
-    }
-
-    public Label getBoxLabel() {
-        return boxLabel;
-    }
-
-    public void setBoxLabel(Label boxLabel) {
-        this.boxLabel = boxLabel;
-    }
-
-    public ArrayList<Label> getChat() {
-        return chat;
-    }
-
-    public void setChat(ArrayList<Label> chat) {
-        this.chat = chat;
-    }
-
-    public TextButton getResetButton() {
-        return resetButton;
-    }
-
-    public void setResetButton(TextButton resetButton) {
-        this.resetButton = resetButton;
-    }
-
-    public TextButton getLeaveButton() {
-        return leaveButton;
-    }
-
-    public void setLeaveButton(TextButton leaveButton) {
-        this.leaveButton = leaveButton;
-    }
-
-    public TextButton getOkButton() {
-        return okButton;
-    }
-
-    public void setOkButton(TextButton okButton) {
-        this.okButton = okButton;
-    }
-
-    public Text getTitle() {
-        return title;
-    }
-
-    public void setTitle(Text title) {
-        this.title = title;
-    }
-
-    public Text getBody() {
-        return body;
-    }
-
-    public void setBody(Text body) {
-        this.body = body;
-    }
-
-    public Table getTable() {
-        return table;
-    }
-
-    public void setTable(Table table) {
-        this.table = table;
-    }
-
-    public Image getResults() {
-        return results;
-    }
-
-    public void setResults(Image results) {
-        this.results = results;
-    }
-
-    public Music getEndingMusic() {
-        return endingMusic;
-    }
-
-    public void setEndingMusic(Music endingMusic) {
-        this.endingMusic = endingMusic;
-    }
-
-    public Boss getBoss() {
-        return boss;
-    }
-
-    public void setBoss(Boss boss) {
-        this.boss = boss;
-    }
-
-    public Assets getAssets() {
-        return assets;
-    }
-
-    public void setAssets(Assets assets) {
-        this.assets = assets;
-    }
-
     public boolean isWon() {
         return won;
     }
 
-    public void setWon(boolean won) {
-        this.won = won;
-    }
-
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
 }

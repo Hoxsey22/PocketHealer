@@ -13,14 +13,12 @@ public class ZombieAttack extends Mechanic {
 
     public ZombieAttack(Boss owner) {
         super("Auto Attack", 0, 2.5f, owner);
-        ;
-        setBgMech(true);
+        setBgMech();
     }
 
     public ZombieAttack(Boss owner, float speed) {
         super("Auto Attack", 0, speed, owner);
-        ;
-        setBgMech(true);
+        setBgMech();
     }
 
     @Override
@@ -31,7 +29,7 @@ public class ZombieAttack extends Mechanic {
         //getOwner().getEnemies().takeDamage(getZombieDamage());
     }
 
-    public int getZombieDamage()    {
+    private int getZombieDamage()    {
         if(getOwner().getHpPercent() > 0.89f)    {
             return getOwner().getDamage()+10;
         }

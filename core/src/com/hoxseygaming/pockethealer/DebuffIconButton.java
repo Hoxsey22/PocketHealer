@@ -9,7 +9,7 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Debuf
  * Created by Hoxsey on 7/20/2017.
  */
 
-public class DebuffIconButton extends ImageButton {
+class DebuffIconButton extends ImageButton {
 
     private Assets assets;
     private String description;
@@ -28,18 +28,6 @@ public class DebuffIconButton extends ImageButton {
 
     public String getDescription()  {
         return description;
-    }
-
-    public Assets getAssets() {
-        return assets;
-    }
-
-    public void setAssets(Assets assets) {
-        this.assets = assets;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @Override

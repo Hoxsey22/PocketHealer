@@ -12,7 +12,7 @@ import com.hoxseygaming.pockethealer.Player.PlayerData;
 
 public class GameData {
 
-    private static Preferences prefs = Gdx.app.getPreferences("save");
+    private static final Preferences prefs = Gdx.app.getPreferences("save");
 
     public static boolean load(Player player)   {
 

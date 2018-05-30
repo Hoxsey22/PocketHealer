@@ -28,7 +28,7 @@ public abstract class StatusEffect{
     private int modValue;
     private int numOfTicks;
     private boolean dispellable;
-    public boolean isDispelled;
+    protected boolean isDispelled;
     private Timer timer;
     private Assets assets;
     private StatusEffectList parent;
@@ -44,7 +44,7 @@ public abstract class StatusEffect{
      * @param modValue: The mod value that will change a specific stat.
      * @param dispellable : Check if this status effect can be dispel.
      */
-    public StatusEffect(int id, String name, String description, Texture texture, float duration, float speed, int modValue, boolean dispellable, Assets assets)   {
+    protected StatusEffect(int id, String name, String description, Texture texture, float duration, float speed, int modValue, boolean dispellable, Assets assets)   {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -60,7 +60,7 @@ public abstract class StatusEffect{
         //this.parent = parent;
     }
 
-    public abstract void startConditions();
+    protected abstract void startConditions();
 
     public void start() {
         startConditions();
@@ -104,13 +104,13 @@ public abstract class StatusEffect{
         removeFromParent();
     }
 
-    public void removeFromParent()  {
+    protected void removeFromParent()  {
         if(parent != null)  {
             parent.getStatusEffects().remove(this);
         }
     }
 
-    public abstract void additionalConditions();
+    protected abstract void additionalConditions();
 
     public abstract void applyEffect();
 
@@ -126,7 +126,7 @@ public abstract class StatusEffect{
         return name;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
@@ -146,7 +146,7 @@ public abstract class StatusEffect{
         isActive = active;
     }
 
-    public RaidMember getTarget() {
+    protected RaidMember getTarget() {
         return target;
     }
 
@@ -158,7 +158,7 @@ public abstract class StatusEffect{
         return icon;
     }
 
-    public void setIcon(Texture icon) {
+    protected void setIcon(Texture icon) {
         this.icon = icon;
     }
 
@@ -186,7 +186,7 @@ public abstract class StatusEffect{
         this.startTime = startTime;
     }
 
-    public int getModValue() {
+    protected int getModValue() {
         return modValue;
     }
 
@@ -210,7 +210,7 @@ public abstract class StatusEffect{
         this.dispellable = dispellable;
     }
 
-    public Timer getTimer() {
+    protected Timer getTimer() {
         return timer;
     }
 
@@ -222,7 +222,7 @@ public abstract class StatusEffect{
         return description;
     }
 
-    public void setDescription(String description) {
+    protected void setDescription(String description) {
         this.description = description;
     }
 
@@ -238,7 +238,7 @@ public abstract class StatusEffect{
         return type;
     }
 
-    public void setType(int type) {
+    protected void setType(int type) {
         this.type = type;
     }
 
@@ -259,10 +259,9 @@ public abstract class StatusEffect{
     }
 
     public String toString()    {
-        String s = getName()+"\n" +
+        return getName()+"\n" +
                 "ID: "+getId()+"\n" +
                 "Description: "+getDescription()+"\n" +
                 "Target :";
-        return s;
     }
 }

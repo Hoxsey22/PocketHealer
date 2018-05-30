@@ -21,16 +21,14 @@ import com.hoxseygaming.pockethealer.PocketHealer;
  */
 public class LoadingState extends State {
 
-    private Image logo;
+    private final Image logo;
     private float progress;
+    @SuppressWarnings("CanBeFinal")
     private ShapeRenderer shapeRenderer;
     private boolean isReady;
-    private Stage stage;
-    private Assets assets;
+    private final Stage stage;
+    private final Assets assets;
     private Label loadingText;
-    private BitmapFont font;
-    private Label.LabelStyle textStyle;
-    private MainMenuState nextState;
     private Player player;
 
     public LoadingState(StateManager sm) {
@@ -60,11 +58,11 @@ public class LoadingState extends State {
     }
 
     private void createFont()   {
-        textStyle = new Label.LabelStyle();
-        font = new BitmapFont(Gdx.files.internal("fonts/loading_font.fnt"));
+        Label.LabelStyle textStyle = new Label.LabelStyle();
+        BitmapFont font = new BitmapFont(Gdx.files.internal("fonts/loading_font.fnt"));
         textStyle.font = font;
 
-        loadingText = new Label("Loading...",textStyle);
+        loadingText = new Label("Loading...", textStyle);
         loadingText.setSize(1,1);
         loadingText.setPosition((PocketHealer.WIDTH/2)-(loadingText.getWidth()/2),50);
         loadingText.setAlignment(Align.center);

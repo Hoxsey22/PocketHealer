@@ -15,7 +15,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.BossIcon;
-import com.hoxseygaming.pockethealer.InfoFrame;
 import com.hoxseygaming.pockethealer.MapFrame;
 import com.hoxseygaming.pockethealer.Player;
 
@@ -24,18 +23,15 @@ import com.hoxseygaming.pockethealer.Player;
  */
 public class MapState extends State {
 
-    public Player player;
-    public Stage stage;
-    public int page;
-    public int maxPage;
-    public Assets assets;
-    public MapFrame mapFrame;
-    public BossIcon selectedLevel;
-    InfoFrame infoFrame;
+    private final Player player;
+    private final Stage stage;
+    private int page;
+    private final Assets assets;
+    private MapFrame mapFrame;
+    private BossIcon selectedLevel;
 
-    public ImageButton pageLeft;
-    public ImageButton pageRight;
-    private TextButton infoButton;
+    private final ImageButton pageLeft;
+    private final ImageButton pageRight;
     private TextButton talentButton;
     private TextButton startButton;
     private TextButton spellButton;
@@ -51,7 +47,7 @@ public class MapState extends State {
 
         assets = player.getAssets();
 
-        AudioManager.playMusic(assets.getMusic(assets.mmMusic), true);
+        AudioManager.playMusic(assets.getMusic(assets.mmMusic));
 
         pageLeft = new ImageButton(assets.getSkin(), "page_left");
         pageLeft.setBounds(40, 550, 30,30);
@@ -60,17 +56,15 @@ public class MapState extends State {
         pageRight.setBounds(410, 550, 30,30);
 
         page = 1;
-        maxPage = 1;
 
         this.player = player;
 
-        //turnPage();
         startPage();
         createButtons();
         createButtonListeners();
     }
 
-    public void turnPage()  {
+    private void turnPage()  {
 
         pageLeft.remove();
         pageRight.remove();
@@ -85,22 +79,18 @@ public class MapState extends State {
 
                 if(player.getLevel() > 6) {
                     stage.addActor(pageRight);
-                    //stageNumber.addActor(pageRight);
                 }
                 break;
             case 2:
                 stage.addActor(mapFrame);
 
                 if(player.getLevel() > 11) {
-                    //pageRight.addToStage(stageNumber);
                     stage.addActor(pageRight);
                 }
-                //pageLeft.addToStage(stageNumber);
                 stage.addActor(pageLeft);
                 break;
             case 3:
                 stage.addActor(mapFrame);
-                //pageLeft.addToStage(stageNumber);
                 stage.addActor(pageLeft);
                 break;
         }
@@ -110,7 +100,7 @@ public class MapState extends State {
 
     }
 
-    public void startPage()  {
+    private void startPage()  {
 
         if(player.getLevel() <= 6)
             mapFrame = new MapFrame(player, 1, assets);
@@ -151,7 +141,7 @@ public class MapState extends State {
         createBossIconListeners();
     }
 
-    public void loadPage()  {
+    private void loadPage()  {
         for(int i = 2 + (page-1)*5; i <= page*5+1; i++)   {
             if(player.getLevel() < i)
                 return;
@@ -207,7 +197,7 @@ public class MapState extends State {
         });
     }
 
-    public void createButtons() {
+    private void createButtons() {
         if(buttonTable != null) {
             buttonTable.remove();
         }
@@ -237,7 +227,7 @@ public class MapState extends State {
         stage.addActor(buttonTable);
     }
 
-    public void createButtonListeners()   {
+    private void createButtonListeners()   {
 
         talentButton.addListener(new ChangeListener() {
             @Override
@@ -281,7 +271,7 @@ public class MapState extends State {
         });
     }
 
-    public void createBossIconListeners()   {
+    private void createBossIconListeners()   {
         for(int i = 0; i < mapFrame.getBossIconsList().size(); i++)   {
             mapFrame.getBossIconsList().get(i).addListener(new ChangeListener() {
 
@@ -306,7 +296,6 @@ public class MapState extends State {
 
     @Override
     public void update(float dt) {
-        //handleInput();
     }
 
     @Override
@@ -321,6 +310,5 @@ public class MapState extends State {
     @Override
     public void dispose() {
         System.out.println("Map Disposed!");
-        mapFrame.dispose();
     }
 }

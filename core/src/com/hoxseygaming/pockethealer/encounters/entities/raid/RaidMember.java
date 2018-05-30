@@ -30,7 +30,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     }
 
-    public void create()    {
+    private void create()    {
         setRoleImage();
         floatingTextManager = new FloatingTextManager(this, getAssets());
         statusEffects = new StatusEffectList(this);
@@ -53,11 +53,6 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
     }
 
     @Override
-    public void receiveHealing(int output) {
-        super.receiveHealing(output);
-    }
-
-    @Override
     public int receiveHealing(int output, boolean isCritical) {
         int newOutput = statusEffects.getStatusEffectModification(output,true);
         newOutput = super.receiveHealing(newOutput, isCritical);
@@ -71,7 +66,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         floatingTextManager.add(output,FloatingText.SHIELD);
     }
 
-    public void setRoleImage()  {
+    private void setRoleImage()  {
         switch (getRole())   {
             case "Tank":
                 setRoleImage(getAssets().getTexture(getAssets().tankIcon));
@@ -109,7 +104,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         return (float)getHp()/(float)getMaxHp();
     }
 
-    public float getFullHealthPercent() {
+    private float getFullHealthPercent() {
         return (float)(getHp()-getHealingAbsorb())/(float)getMaxHp();
     }
 
@@ -203,7 +198,4 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         }
     }
 
-    public void dispose()   {
-
-    }
 }

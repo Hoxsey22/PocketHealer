@@ -21,7 +21,7 @@ public class WindowFrame extends Table {
         setSkin(skin);
     }
 
-    public WindowFrame(WindowFrameStyle windowFrameStyle) {
+    private WindowFrame(WindowFrameStyle windowFrameStyle) {
         this.windowFrameStyle = windowFrameStyle;
         init();
 

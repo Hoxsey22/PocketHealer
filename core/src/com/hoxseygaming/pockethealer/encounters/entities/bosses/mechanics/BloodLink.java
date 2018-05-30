@@ -6,6 +6,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
  * Created by Hoxsey on 8/4/2017.
  */
 
+@SuppressWarnings("unused")
 public class BloodLink extends Mechanic {
 
     public BloodLink(Boss owner) {
@@ -14,7 +15,7 @@ public class BloodLink extends Mechanic {
 
     public BloodLink(Boss owner, float speed) {
         super("Blood Link",owner.getDamage(),speed,owner);
-        setBgMech(true);
+        setBgMech();
     }
 
     @Override

@@ -23,8 +23,8 @@ public class RenewEffect extends Buff {
                 owner.getAssets().getTexture(owner.getAssets().renewIcon),
                 duration,
                 speed,
-                modValue,
-                false);
+                modValue
+        );
     }
 
     @Override

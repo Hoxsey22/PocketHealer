@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class AnimatedBackground extends Actor {
 
     private ArrayList<ScrollImage> scrollImages;
-    protected Timer timer;
+    private Timer timer;
 
     public AnimatedBackground() {
         scrollImages = new ArrayList<>();
@@ -42,13 +42,17 @@ public class AnimatedBackground extends Actor {
         timer.clear();
     }
 
-    public ArrayList<ScrollImage> getScrollImages() {
-        return scrollImages;
-    }
+// --Commented out by Inspection START (5/29/2018 8:12 PM):
+//    public ArrayList<ScrollImage> getScrollImages() {
+//        return scrollImages;
+//    }
+// --Commented out by Inspection STOP (5/29/2018 8:12 PM)
 
-    public void setScrollImages(ArrayList<ScrollImage> scrollImages) {
-        this.scrollImages = scrollImages;
-    }
+// --Commented out by Inspection START (5/29/2018 8:12 PM):
+//    public void setScrollImages(ArrayList<ScrollImage> scrollImages) {
+//        this.scrollImages = scrollImages;
+//    }
+// --Commented out by Inspection STOP (5/29/2018 8:12 PM)
 
     @Override
     public void draw(Batch batch, float parentAlpha) {

@@ -28,17 +28,18 @@ public abstract class Debuff extends StatusEffect {
      *
      * @
      */
-    public Debuff(Boss owner, int id, String name, String description, Texture texture, float duration, float speed, int modValue, boolean dispellable) {
+    Debuff(Boss owner, int id, String name, String description, Texture texture, float duration, float speed, int modValue, boolean dispellable) {
         super(id, name, description, texture, duration, speed, modValue, dispellable, owner.getAssets());
         this.owner = owner;
     }
 
     public abstract void applyEffect();
 
-    public Boss getOwner() {
+    Boss getOwner() {
         return owner;
     }
 
+    @SuppressWarnings("unused")
     public void setOwner(Boss owner) {
         this.owner = owner;
     }

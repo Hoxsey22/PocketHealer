@@ -17,13 +17,13 @@ public class Agony extends Mechanic {
     public Agony(Boss owner) {
         super("Agony", 0, 18f, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public Agony(Boss owner, float speed) {
         super("Agony", 0, speed, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
@@ -37,16 +37,15 @@ public class Agony extends Mechanic {
         }
     }
 
-    @Override
-    public void stop() {
-        super.stop();
-    }
+// --Commented out by Inspection START (5/29/2018 8:12 PM):
+//    public int getNumOfTargets() {
+//        return numOfTargets;
+//    }
+// --Commented out by Inspection STOP (5/29/2018 8:12 PM)
 
-    public int getNumOfTargets() {
-        return numOfTargets;
-    }
-
-    public void setNumOfTargets(int numOfTargets) {
-        this.numOfTargets = numOfTargets;
-    }
+// --Commented out by Inspection START (5/29/2018 8:12 PM):
+//    public void setNumOfTargets(int numOfTargets) {
+//        this.numOfTargets = numOfTargets;
+//    }
+// --Commented out by Inspection STOP (5/29/2018 8:12 PM)
 }

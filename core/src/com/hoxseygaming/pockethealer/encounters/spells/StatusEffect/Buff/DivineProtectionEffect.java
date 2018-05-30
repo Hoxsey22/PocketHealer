@@ -18,8 +18,8 @@ public class DivineProtectionEffect extends Buff {
                 owner.getAssets().getTexture(owner.getAssets().divineProtectionIcon),
                 15f,
                 0.1f,
-                0,
-                false);
+                0
+        );
         setType(DAMAGE_AMPLIFIER);
     }
 

@@ -17,7 +17,7 @@ public class UnstableMagic extends Mechanic {
     public UnstableMagic(Boss owner) {
         super("Unstable Magic", 0, 8f, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override

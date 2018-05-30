@@ -14,16 +14,10 @@ public class Ignite extends Mechanic {
 
     private int numOfTargets;
 
-    public Ignite(Boss owner) {
-        super("Ignite", 0, 18f, owner);
-        numOfTargets = 1;
-        setBgMech(true);
-    }
-
     public Ignite(Boss owner, float speed) {
         super("Ignite", 0, 18f, owner);
         numOfTargets = 1;
-        setBgMech(true);
+        setBgMech();
     }
 
 
@@ -36,16 +30,4 @@ public class Ignite extends Mechanic {
         }
     }
 
-    @Override
-    public void stop() {
-        super.stop();
-    }
-
-    public int getNumOfTargets() {
-        return numOfTargets;
-    }
-
-    public void setNumOfTargets(int numOfTargets) {
-        this.numOfTargets = numOfTargets;
-    }
 }

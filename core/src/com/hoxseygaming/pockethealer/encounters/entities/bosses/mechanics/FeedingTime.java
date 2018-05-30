@@ -17,15 +17,16 @@ public class FeedingTime extends Mechanic {
     private float length;
     private Timer feedingTimer;
 
+    @SuppressWarnings("unused")
     public FeedingTime(Boss owner) {
         super("Feeding Time", 0, 5f, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public FeedingTime(Boss owner, float speed, float length) {
         super("Feeding Time", 0, speed, owner);
         this.length = length;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
@@ -37,7 +38,7 @@ public class FeedingTime extends Mechanic {
         pause();
     }
 
-    public void startFeedingTime()  {
+    private void startFeedingTime()  {
         feedingTimer = new Timer();
 
         feedingTimer.scheduleTask(new Timer.Task() {

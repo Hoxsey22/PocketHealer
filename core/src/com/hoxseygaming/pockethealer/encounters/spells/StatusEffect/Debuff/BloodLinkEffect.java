@@ -6,6 +6,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
  * Created by Hoxsey on 11/29/2017.
  */
 
+@SuppressWarnings("unused")
 public class BloodLinkEffect extends Debuff {
 
     /**

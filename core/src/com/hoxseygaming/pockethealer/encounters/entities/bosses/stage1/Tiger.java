@@ -36,7 +36,7 @@ public class Tiger extends Boss {
         pounce = new Pounce(this, 2);
         pounce.setNumOfTargets(2);
         pounce.setSpeed(15f);
-        pounce.setAnnounce(true);
+        pounce.setAnnounce();
 
         autoAttack = new AutoAttack(this, 1f);
 

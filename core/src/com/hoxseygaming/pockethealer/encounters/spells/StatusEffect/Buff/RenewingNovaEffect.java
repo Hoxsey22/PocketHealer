@@ -19,8 +19,8 @@ public class RenewingNovaEffect extends Buff {
                 owner.getAssets().getTexture(owner.getAssets().renewIcon),
                 10f,
                 2f,
-                5,
-                false);
+                5
+        );
     }
 
     /**
@@ -37,8 +37,8 @@ public class RenewingNovaEffect extends Buff {
                 owner.getAssets().getTexture(owner.getAssets().renewIcon),
                 duration,
                 speed,
-                modValue,
-                false);
+                modValue
+        );
     }
 
     @Override

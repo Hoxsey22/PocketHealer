@@ -24,24 +24,24 @@ public class Swipe extends Mechanic {
         if(getMainTank().isDead() && getOffTank().isDead())    {
             ArrayList<RaidMember> randoms = getRaid().getRandomRaidMember(2);
             randoms.get(0).takeDamage(getDamage());
-            randoms.get(1).takeDamage((int)(getDamage()/2));
+            randoms.get(1).takeDamage(getDamage()/2);
             return;
         }
 
         if(getMainTank().isDead())    {
 
             getOffTank().takeDamage(getDamage());
-            getRaid().getRandomRaidMember(1).get(0).takeDamage((int)(getDamage()/2));
+            getRaid().getRandomRaidMember(1).get(0).takeDamage(getDamage()/2);
             return;
         }
 
         if(getOffTank().isDead())    {
             getMainTank().takeDamage(getDamage());
-            getRaid().getRandomRaidMember(1).get(0).takeDamage((int)(getDamage()/2));
+            getRaid().getRandomRaidMember(1).get(0).takeDamage(getDamage()/2);
             return;
         }
         getMainTank().takeDamage(getDamage());
-        getOffTank().takeDamage((int)(getDamage()/2));
+        getOffTank().takeDamage(getDamage()/2);
 
     }
 }

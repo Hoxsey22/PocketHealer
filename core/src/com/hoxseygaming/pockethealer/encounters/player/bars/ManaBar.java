@@ -35,48 +35,8 @@ public class ManaBar extends Actor {
 
     }
 
-    public float getPercentage()    {
+    private float getPercentage()    {
         return owner.manaBarPercent();
-    }
-
-    public Player getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Player owner) {
-        this.owner = owner;
-    }
-
-    public Assets getAssets() {
-        return assets;
-    }
-
-    public void setAssets(Assets assets) {
-        this.assets = assets;
-    }
-
-    public Texture getManaBar() {
-        return manaBar;
-    }
-
-    public void setManaBar(Texture manaBar) {
-        this.manaBar = manaBar;
-    }
-
-    public Texture getManaFill() {
-        return manaFill;
-    }
-
-    public void setManaFill(Texture manaFill) {
-        this.manaFill = manaFill;
-    }
-
-    public Text getText() {
-        return text;
-    }
-
-    public void setText(Text text) {
-        this.text = text;
     }
 
     @Override

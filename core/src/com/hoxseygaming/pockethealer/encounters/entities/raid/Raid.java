@@ -49,8 +49,7 @@ public class Raid extends Group {
     public void start(final Boss t)   {
 
         raidDamageTimer = new Timer();
-        final Boss target = t;
-        final boolean healerChannel = target.getPlayer().getTalentTree().getTalent("Healer Channel").isSelected();
+        final boolean healerChannel = t.getPlayer().getTalentTree().getTalent("Healer Channel").isSelected();
         raidDamageTimer.scheduleTask(new Timer.Task() {
 
             @Override
@@ -64,11 +63,11 @@ public class Raid extends Group {
                                 getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).getDamage(),false);
                             }
                             else {
-                                target.takeDamage(raidMembers.get(i).getDamage());
+                                t.takeDamage(raidMembers.get(i).getDamage());
                             }
                         }
                         else    {
-                            target.takeDamage(raidMembers.get(i).getDamage());
+                            t.takeDamage(raidMembers.get(i).getDamage());
                         }
                     }
                 }
@@ -87,7 +86,7 @@ public class Raid extends Group {
         }
     }
 
-    public void preMade(int size)   {
+    private void preMade(int size)   {
         switch(size) {
             case 3:
                 addTank(1);
@@ -122,13 +121,13 @@ public class Raid extends Group {
         }
     }
 
-    public void customRaid(int tanks, int healers, int dps)    {
+    private void customRaid(int tanks, int healers, int dps)    {
         addTank(tanks);
         addHealer(healers);
         addDps(dps);
     }
 
-    public void addTank(int amount)   {
+    private void addTank(int amount)   {
         for(int i = 0; i < amount; i++) {
             raidMembers.add(new RaidMember(raidMembers.size(), "Tank", assets));
             raidMembers.get(raidMembers.size() - 1).setAssets(assets);
@@ -136,7 +135,7 @@ public class Raid extends Group {
         }
     }
 
-    public void addHealer(int amount)   {
+    private void addHealer(int amount)   {
         for(int i = 0; i < amount; i++) {
             raidMembers.add(new RaidMember(raidMembers.size(), "Healer", assets));
             healers.add(raidMembers.get(raidMembers.size()-1));
@@ -144,7 +143,7 @@ public class Raid extends Group {
         }
     }
 
-    public void addDps(int amount)   {
+    private void addDps(int amount)   {
         for(int i = 0; i < amount; i++) {
             raidMembers.add(new RaidMember(raidMembers.size(), "Dps", assets));
             addActor(raidMembers.get(raidMembers.size() - 1));
@@ -195,7 +194,7 @@ public class Raid extends Group {
     }
 
     public Actor getRandomRaidMember()  {
-        ArrayList<RaidMember> temp = new ArrayList<RaidMember>();
+        ArrayList<RaidMember> temp = new ArrayList<>();
         temp.addAll(raidMembers);
         Collections.shuffle(temp);
         for (int i = 0; i < temp.size(); i++) {
@@ -213,7 +212,7 @@ public class Raid extends Group {
         Collections.sort(temp);
         int counter = 0;
         for(int i = 0; i < temp.size(); i++) {
-            if (!temp.get(i).isSelected() && !temp.get(i).isDead()) {
+            if (temp.get(i).isSelected() && !temp.get(i).isDead()) {
                 lowest.add(temp.get(i));
                 counter++;
                 if(counter == cap)    {
@@ -236,27 +235,6 @@ public class Raid extends Group {
         }
         return null;
 
-    }
-
-    public ArrayList<RaidMember> getRaidMembersWithLowestHp(int cap, RaidMember target)    {
-        ArrayList<RaidMember> lowest = new ArrayList<>();
-        ArrayList<RaidMember> temp = new ArrayList<>();
-
-        temp.addAll(raidMembers);
-
-        Collections.sort(temp);
-
-        int counter = 0;
-        for(int i = 0; i < temp.size(); i++) {
-            if (!temp.get(i).isSelected()&& !temp.get(i).isDead()) {
-                lowest.add(temp.get(i));
-                counter++;
-                if(counter == cap)    {
-                    return lowest;
-                }
-            }
-        }
-        return lowest;
     }
 
     public void receiveHealing(int output)    {
@@ -403,14 +381,6 @@ public class Raid extends Group {
 
     public void setRaidDamageTimer(Timer raidDamageTimer) {
         this.raidDamageTimer = raidDamageTimer;
-    }
-
-    public Assets getAssets() {
-        return assets;
-    }
-
-    public void setAssets(Assets assets) {
-        this.assets = assets;
     }
 
     public boolean isRaidAlive() {

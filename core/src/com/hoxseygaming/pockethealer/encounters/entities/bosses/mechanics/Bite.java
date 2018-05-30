@@ -11,13 +11,14 @@ import java.util.ArrayList;
 
 public class Bite extends Mechanic {
 
+    @SuppressWarnings("unused")
     public Bite(Boss owner) {
         super("Bite", 20, 2f, owner);
     }
 
     public Bite(Boss owner, float speed)   {
         super("Bite", 20, speed, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override

@@ -17,7 +17,6 @@ public abstract class Mechanic {
     private RaidMember target;
     private RaidMember mainTank;
     private RaidMember offTank;
-    private Raid raid;
     private int damage;
     private float speed;
     private int duration;
@@ -29,7 +28,7 @@ public abstract class Mechanic {
     private boolean bgMech;
 
 
-    public Mechanic(String name, int damage, float speed, Boss owner)   {
+    Mechanic(String name, int damage, float speed, Boss owner)   {
         this.owner = owner;
         this.name = name;
         this.damage = damage;
@@ -55,24 +54,24 @@ public abstract class Mechanic {
         create();
     }
 
-    public void create()    {
+    private void create()    {
         System.out.println("Mechanic created");
     }
 
-    public void pausePhase()    {
+    void pausePhase()    {
         if(parentPhase != null) {
             parentPhase.pauseMechanics(this);
         }
     }
 
-    public void resumePhase()   {
+    void resumePhase()   {
         if(parentPhase != null) {
             this.pause();
             parentPhase.resumeMechanics();
         }
     }
 
-    public abstract void action();
+    protected abstract void action();
 
     public void start()    {
         System.out.println("Timer started!");
@@ -151,11 +150,11 @@ public abstract class Mechanic {
         return name;
     }
 
-    public Boss getOwner() {
+    Boss getOwner() {
         return owner;
     }
 
-    public Timer getTimer() {
+    Timer getTimer() {
         return timer;
     }
 
@@ -163,15 +162,15 @@ public abstract class Mechanic {
         this.timer = timer;
     }
 
-    public RaidMember getTarget() {
+    RaidMember getTarget() {
         return target;
     }
 
-    public void setTarget(RaidMember target) {
+    void setTarget(RaidMember target) {
         this.target = target;
     }
 
-    public int getDamage() {
+    int getDamage() {
         return damage;
     }
 
@@ -192,11 +191,11 @@ public abstract class Mechanic {
         this.speed = speed;
     }
 
-    public void setMainTank()    {
+    void setMainTank()    {
         mainTank = getOwner().getMainTank();
     }
 
-    public void setOffTank()    {
+    void setOffTank()    {
         offTank = getOwner().getOffTank();
     }
 
@@ -205,15 +204,15 @@ public abstract class Mechanic {
     }
 
     public void setRaid(Raid raid) {
-        this.raid = raid;
+        getOwner().setRaid(raid);
     }
 
     public boolean isAnnounce() {
         return announce;
     }
 
-    public void setAnnounce(boolean announce) {
-        this.announce = announce;
+    public void setAnnounce() {
+        this.announce = true;
     }
 
     public void setName(String name) {
@@ -224,7 +223,7 @@ public abstract class Mechanic {
         this.owner = owner;
     }
 
-    public RaidMember getMainTank() {
+    RaidMember getMainTank() {
         return getOwner().getMainTank();
     }
 
@@ -232,7 +231,7 @@ public abstract class Mechanic {
         this.mainTank = mainTank;
     }
 
-    public RaidMember getOffTank() {
+    RaidMember getOffTank() {
         return getOwner().getOffTank();
     }
 
@@ -272,7 +271,7 @@ public abstract class Mechanic {
         this.announcementTimer = announcementTimer;
     }
 
-    public Phase getParentPhase() {
+    Phase getParentPhase() {
         return parentPhase;
     }
 
@@ -284,7 +283,7 @@ public abstract class Mechanic {
         return bgMech;
     }
 
-    public void setBgMech(boolean bgMech) {
-        this.bgMech = bgMech;
+    void setBgMech() {
+        this.bgMech = true;
     }
 }

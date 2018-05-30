@@ -159,7 +159,7 @@ public class Player {
         this.raid = raid;
     }
 
-    public void setAssets(Assets assets) {
+    private void setAssets(Assets assets) {
         this.assets = assets;
     }
 
@@ -167,7 +167,7 @@ public class Player {
         return assets;
     }
 
-    public void createSpellBar()    {
+    private void createSpellBar()    {
         spellBar = new SpellBar(this);
     }
 
@@ -289,7 +289,7 @@ public class Player {
         System.out.println("- Player loaded.");
     }
 
-    public void resetData()   {
+    private void resetData()   {
         setLevel(0);
         talentTree.resetToDefault();
         spellBar.resetToDefault();

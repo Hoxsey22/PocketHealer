@@ -31,8 +31,8 @@ public abstract class Periodical extends InstantCast {
      * @param spellSFX
      * @param assets
      */
-    public Periodical(Player player, String name, String description, int levelRequirement, int numOfTargets,
-                      int output, float costPercentage, float cooldown, float duration, float speed, Sound spellSFX, Assets assets) {
+    protected Periodical(Player player, String name, String description, int levelRequirement, int numOfTargets,
+                         int output, float costPercentage, float cooldown, float duration, float speed, Sound spellSFX, Assets assets) {
         super(player, name, description, levelRequirement, numOfTargets, output, costPercentage, cooldown, spellSFX, assets);
         setSpellType("Periodical");
         this.duration = duration;
@@ -48,16 +48,16 @@ public abstract class Periodical extends InstantCast {
         System.out.println(getName()+" applied.");
     }
 
-    public abstract void startDurationTimer();
+    protected abstract void startDurationTimer();
     public abstract void checkLifeboom();
 
-    public void checkHasteBuild()   {
+    protected void checkHasteBuild()   {
         if(getOwner().getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
             speed = MIN_SPEED - 0.25f;
         }
     }
 
-    public void checkAoD()  {
+    protected void checkAoD()  {
         if(getOwner().getTalentTree().getTalent(TalentTree.AOD).isSelected())    {
             setOutput(10);
             duration = 12;
@@ -79,7 +79,7 @@ public abstract class Periodical extends InstantCast {
         }
     }
 
-    public float getDuration() {
+    protected float getDuration() {
         return duration;
     }
 
@@ -95,7 +95,7 @@ public abstract class Periodical extends InstantCast {
         this.MIN_DURATION = MIN_DURATION;
     }
 
-    public float getSpeed() {
+    protected float getSpeed() {
         return speed;
     }
 

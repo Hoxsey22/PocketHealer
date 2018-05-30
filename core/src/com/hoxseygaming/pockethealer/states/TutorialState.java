@@ -25,17 +25,17 @@ import com.hoxseygaming.pockethealer.encounters.spells.Spell;
  * Created by Hoxsey on 5/28/2017.
  */
 public class TutorialState extends State {
-    public Player player;
-    public Stage stage;
-    public Raid raid;
-    public Boss boss;
+    private final Player player;
+    private Stage stage;
+    private final Raid raid;
+    private final Boss boss;
     //public Music bgMusic; // Delete
-    public Image bgImage;
-    public Assets assets;
-    public GameOverFrame gameOverFrame;
-    public TutorialFrame tutorialFrame;
-    public boolean isDone;
-    public int page;
+    private Image bgImage;
+    private Assets assets;
+    private GameOverFrame gameOverFrame;
+    private final TutorialFrame tutorialFrame;
+    private boolean isDone;
+    private int page;
 
 
     public TutorialState(StateManager sm, Player player) {
@@ -67,7 +67,7 @@ public class TutorialState extends State {
 
         player.setRaid(boss.getEnemies());
 
-        AudioManager.playMusic(assets.getMusic(assets.battleMusic), true);
+        AudioManager.playMusic(assets.getMusic(assets.battleMusic));
 
         /* DELETE
         bgMusic = assets.getMusic("sfx/battle_music.ogg");
@@ -181,7 +181,7 @@ public class TutorialState extends State {
 
     }
 
-    protected void endGameHandleInput() {
+    private void endGameHandleInput() {
 
         Gdx.input.setInputProcessor(new InputProcessor() {
             @Override

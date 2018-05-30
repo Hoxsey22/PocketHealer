@@ -74,35 +74,4 @@ public class Hogger extends Boss {
         }
     }
 
-    public AutoAttack getAutoAttack() {
-        return autoAttack;
-    }
-
-    public void setAutoAttack(AutoAttack autoAttack) {
-        this.autoAttack = autoAttack;
-    }
-
-    public TankSwap getTankSwap() {
-        return tankSwap;
-    }
-
-    public void setTankSwap(TankSwap tankSwap) {
-        this.tankSwap = tankSwap;
-    }
-
-    public Cleave getCleave() {
-        return cleave;
-    }
-
-    public void setCleave(Cleave cleave) {
-        this.cleave = cleave;
-    }
-
-    public int getPhase() {
-        return phase;
-    }
-
-    public void setPhase(int phase) {
-        this.phase = phase;
-    }
 }

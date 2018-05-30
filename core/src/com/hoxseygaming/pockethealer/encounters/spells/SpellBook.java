@@ -15,25 +15,25 @@ import java.util.ArrayList;
 
 public class SpellBook extends Group{
 
-    public static final String HEAL = "Heal";
-    public static final String FLASH_HEAL = "Flash Heal";
-    public static final String RENEW = "Renew";
-    public static final String BARRIER = "Barrier";
-    public static final String GREATER_HEAL = "Greater Heal";
-    public static final String DIVINE_HYMN = "Divine Hymn";
-    public static final String HOLY_NOVA = "Holy Nova";
-    public static final String LIGHTWELL = "Light Well";
-    public static final String SMITE = "Smite";
-    public static final String PRAYER_OF_MENDING = "Prayer of Mending";
-    public static final String DISPEL = "Dispel";
-    public static final String HOLY_SHOCK = "Holy Shock";
-    public static final String PENANCE = "Penance";
-    public static final String DIVINE_PROTECTION = "Divine Protection";
-    public static final String BLESSED_GARDEN = "Blessed Garden";
+    private static final String HEAL = "Heal";
+    private static final String FLASH_HEAL = "Flash Heal";
+    private static final String RENEW = "Renew";
+    private static final String BARRIER = "Barrier";
+    private static final String GREATER_HEAL = "Greater Heal";
+    private static final String DIVINE_HYMN = "Divine Hymn";
+    private static final String HOLY_NOVA = "Holy Nova";
+    private static final String LIGHTWELL = "Light Well";
+    private static final String SMITE = "Smite";
+    private static final String PRAYER_OF_MENDING = "Prayer of Mending";
+    private static final String DISPEL = "Dispel";
+    private static final String HOLY_SHOCK = "Holy Shock";
+    private static final String PENANCE = "Penance";
+    private static final String DIVINE_PROTECTION = "Divine Protection";
+    private static final String BLESSED_GARDEN = "Blessed Garden";
 
     private Player owner;
     private ArrayList<Spell> spells;
-    private Assets assets;
+    private final Assets assets;
 
     public SpellBook(Player player) {
         owner = player;
@@ -57,7 +57,7 @@ public class SpellBook extends Group{
                 //(spells.get(0).getX() +spells.get(0).getHeight())-spells.get(3).getY());
     }
 
-    public void createSpells()  {
+    private void createSpells()  {
 
         // add spell to list
         spells.add(new Heal(owner, assets));
@@ -81,7 +81,7 @@ public class SpellBook extends Group{
         }
     }
 
-    public void placeSpellPosition()   {
+    private void placeSpellPosition()   {
 
         for(int i = 0; i < 3; i++)   {
             for(int j = 0; j < 5; j++)   {
@@ -102,11 +102,10 @@ public class SpellBook extends Group{
 
     }
 
-    public Spell hit(float x, float y) {
+    private Spell hit(float x, float y) {
         Actor hit = hit(x,y,false);
         if(hit != null)    {
-            Spell spell = getSpell(hit.getName());
-            return spell;
+            return getSpell(hit.getName());
         }
         return null;
     }
@@ -125,32 +124,17 @@ public class SpellBook extends Group{
 
         switch (spell.getName())    {
             case BLESSED_GARDEN:
-                if(owner.getTalentTree().getTalent(TalentTree.AOD).isSelected())    {
-                    return true;
-                }
-                return false;
+                return owner.getTalentTree().getTalent(TalentTree.AOD).isSelected();
             case DIVINE_PROTECTION:
-                if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
-                    return true;
-                }
-                return false;
+                return owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected();
             case DIVINE_HYMN:
-                if(owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected())    {
-                    return true;
-                }
-                return false;
+                return owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected();
             case LIGHTWELL:
-                if(owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected())    {
-                    return true;
-                }
-                return false;
+                return owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected();
         }
 
-        if(owner.getLevel() >= spell.getLevelRequirement())    {
-            return true;
-        }
+        return owner.getLevel() >= spell.getLevelRequirement();
 
-        return false;
     }
 
     public Spell getCopySpell(Spell spell)    {
@@ -168,7 +152,7 @@ public class SpellBook extends Group{
             case BARRIER:
                 return new Barrier(owner,assets);
             case LIGHTWELL:
-                if(owner.getTalentTree().getTalent(owner.getTalentTree().HOLY_FOCUS).isSelected()) {
+                if(owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected()) {
                     return new Lightwell(owner, assets);
                 }
             case SMITE:
@@ -182,17 +166,17 @@ public class SpellBook extends Group{
             case PENANCE:
                 return new Penance(owner, assets);
             case DIVINE_HYMN:
-                if(owner.getTalentTree().getTalent(owner.getTalentTree().HOLY_FOCUS).isSelected()) {
+                if(owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected()) {
                     return new DivineHymn(owner, assets);
                 }
                 break;
             case DIVINE_PROTECTION:
-                if(owner.getTalentTree().getTalent(owner.getTalentTree().CRITICAL_HEALER_II).isSelected()) {
+                if(owner.getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
                     return new DivineProtection(owner, assets);
                 }
                 break;
             case BLESSED_GARDEN:
-                if(owner.getTalentTree().getTalent(owner.getTalentTree().AOD).isSelected()) {
+                if(owner.getTalentTree().getTalent(TalentTree.AOD).isSelected()) {
                     return new BlessedGarden(owner, assets);
                 }
                 break;

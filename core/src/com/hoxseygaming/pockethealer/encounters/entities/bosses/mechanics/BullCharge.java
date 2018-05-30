@@ -14,13 +14,12 @@ public class BullCharge extends Mechanic {
 
     public BullCharge(Boss owner) {
         super("Bull Charge", 30, 6f, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public BullCharge(Boss owner, float speed) {
         super("Bull Charge", 30 , speed, owner);
-        ;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override

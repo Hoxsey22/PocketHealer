@@ -8,15 +8,11 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
  */
 
 public class BossIcon extends ImageButton {
-
-    public Assets assets;
-    public Boss boss;
-    public String description;
+    public final Boss boss;
+    private final String description;
 
     public BossIcon(Assets assets, Boss boss)   {
         super(assets.getSkin(),boss.getBossIconStyle());
-
-        this.assets = assets;
         this.boss = boss;
 
         setName(boss.getName());

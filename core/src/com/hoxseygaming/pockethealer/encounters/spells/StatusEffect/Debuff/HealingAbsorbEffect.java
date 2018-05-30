@@ -15,7 +15,7 @@ public class HealingAbsorbEffect extends Debuff {
      * @param owner: The owner of the debuff.
      * @param modValue: The value of the debuff.
      */
-    public HealingAbsorbEffect(Boss owner, int modValue) {
+    HealingAbsorbEffect(Boss owner, int modValue) {
         super(owner,
                 3,
                 "Healing Absorb Effect",
@@ -50,8 +50,4 @@ public class HealingAbsorbEffect extends Debuff {
         return output;
     }
 
-    public void stopTimer() {
-        getTimer().stop();
-        getTimer().clear();
-    }
 }

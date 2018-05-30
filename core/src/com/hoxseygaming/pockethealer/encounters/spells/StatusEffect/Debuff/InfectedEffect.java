@@ -58,11 +58,4 @@ public class InfectedEffect extends Debuff {
         super.remove();
     }
 
-    public ZombieHorde getZombieHorde() {
-        return zombieHorde;
-    }
-
-    public void setZombieHorde(ZombieHorde zombieHorde) {
-        this.zombieHorde = zombieHorde;
-    }
 }

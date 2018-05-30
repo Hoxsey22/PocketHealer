@@ -37,7 +37,7 @@ public class FloatingTextManager {
         idCounter++;
     }
 
-    public boolean remove(FloatingText floatingText)    {
+    private boolean remove(FloatingText floatingText)    {
         int removeIndex = getIndex(floatingText.getId());
         if(removeIndex != -1) {
             //floatingText.dispose();
@@ -50,13 +50,11 @@ public class FloatingTextManager {
         }
     }
 
-    public boolean removeInActiveText(FloatingText floatingText)    {
-        if(!floatingText.isAnimating)
-            return remove(floatingText);
-        return false;
+    private boolean removeInActiveText(FloatingText floatingText) {
+        return !floatingText.isAnimating && remove(floatingText);
     }
 
-    public int getIndex(int id)    {
+    private int getIndex(int id)    {
         for (int i = 0; i < floatingTexts.size(); i++)  {
             if(floatingTexts.get(i).getId() == id)
                 return i;
@@ -67,38 +65,6 @@ public class FloatingTextManager {
     public void clear() {
         floatingTexts.clear();
         idCounter = 0;
-    }
-
-    public RaidMember getOwner() {
-        return owner;
-    }
-
-    public void setOwner(RaidMember owner) {
-        this.owner = owner;
-    }
-
-    public ArrayList<FloatingText> getFloatingTexts() {
-        return floatingTexts;
-    }
-
-    public void setFloatingTexts(ArrayList<FloatingText> floatingTexts) {
-        this.floatingTexts = floatingTexts;
-    }
-
-    public int getIdCounter() {
-        return idCounter;
-    }
-
-    public void setIdCounter(int idCounter) {
-        this.idCounter = idCounter;
-    }
-
-    public Assets getAssets() {
-        return assets;
-    }
-
-    public void setAssets(Assets assets) {
-        this.assets = assets;
     }
 
     public void draw(Batch batch, float alpha)  {

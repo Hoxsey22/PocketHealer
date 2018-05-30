@@ -61,43 +61,4 @@ public class BloodQueen extends Boss {
             getRewardPackage().addNewLevelText();
     }
 
-    public BloodLink getBloodLink() {
-        return bloodLink;
-    }
-
-    public void setBloodLink(BloodLink bloodLink) {
-        this.bloodLink = bloodLink;
-    }
-
-    public Cleave getCleave() {
-        return cleave;
-    }
-
-    public void setCleave(Cleave cleave) {
-        this.cleave = cleave;
-    }
-
-    public SwarmingShadow getSwarmingShadow() {
-        return swarmingShadow;
-    }
-
-    public void setSwarmingShadow(SwarmingShadow swarmingShadow) {
-        this.swarmingShadow = swarmingShadow;
-    }
-
-    public ConsumingShadow getConsumingShadow() {
-        return consumingShadow;
-    }
-
-    public void setConsumingShadow(ConsumingShadow consumingShadow) {
-        this.consumingShadow = consumingShadow;
-    }
-
-    public VampiricBite getVampiricBite() {
-        return vampiricBite;
-    }
-
-    public void setVampiricBite(VampiricBite vampiricBite) {
-        this.vampiricBite = vampiricBite;
-    }
 }

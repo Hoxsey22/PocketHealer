@@ -15,19 +15,13 @@ public class Leap extends Mechanic{
 
 
     private Timer leapTimer;
-    private int numOfTargets;
+    private final int numOfTargets;
     private ArrayList<RaidMember> targets;
-
-    public Leap(Boss owner) {
-        super("Leap", owner.getDamage()*2, 15f, owner);
-        numOfTargets = 5;
-        setAnnounce(true);
-    }
 
     public Leap(Boss owner, int damage, float speed, int numOfTargets) {
         super("Leap", damage, speed, owner);
         this.numOfTargets = numOfTargets;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
@@ -36,11 +30,11 @@ public class Leap extends Mechanic{
         pausePhase();
     }
 
-    public void startChannel()  {
+    private void startChannel()  {
         leapTimer = new Timer();
 
         targets = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
-        leapTimer.schedule(new Timer.Task() {
+        leapTimer.scheduleTask(new Timer.Task() {
             int count =  0;
 
             @Override

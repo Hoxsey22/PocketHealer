@@ -15,14 +15,15 @@ public class Flurry extends Mechanic{
 
     private Timer channel;
 
+    @SuppressWarnings("unused")
     public Flurry(Boss owner) {
         super("Flurry", 10, 20f, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public Flurry(Boss owner, int damage, float speed) {
         super("Flurry", damage, speed, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
@@ -33,10 +34,10 @@ public class Flurry extends Mechanic{
         pause();
     }
 
-    public void startChannel()  {
+    private void startChannel()  {
         channel = new Timer();
 
-        channel.schedule(new Timer.Task() {
+        channel.scheduleTask(new Timer.Task() {
             int count =  0;
             ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
             @Override

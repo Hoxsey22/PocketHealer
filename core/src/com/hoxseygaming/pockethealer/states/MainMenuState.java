@@ -28,33 +28,32 @@ import com.hoxseygaming.pockethealer.WindowFrame;
  */
 public class MainMenuState extends State{
 
-    public Stage stage;
-    public Image title;
-    public AnimatedBackground animatedBackground;
+    private Stage stage;
+    private Image title;
+    private AnimatedBackground animatedBackground;
     //public Button newGameButton;
-    TextButton newGameButton;
+    private TextButton newGameButton;
     //public Button continueButton;
-    TextButton continueButton;
-    TextButton settingsButton;
+    private TextButton continueButton;
+    private TextButton settingsButton;
     // window and window components
-    WindowFrame window;
-    Label windowTitleText;
-    Label musicText;
-    Label sfxText;
-    Slider musicSlider;
-    Slider sfxSlider;
-    TextButton okButton;
+    private WindowFrame window;
+    private Label windowTitleText;
+    private Label musicText;
+    private Label sfxText;
+    private Slider musicSlider;
+    private Slider sfxSlider;
+    private TextButton okButton;
     // confirmation window for create a new game
-    WindowFrame ngConfirmationWindow;
-    Label ngConfirmationText;
-    TextButton confirmButton;
-    TextButton backButton;
+    private WindowFrame ngConfirmationWindow;
+    private Label ngConfirmationText;
+    private TextButton confirmButton;
+    private TextButton backButton;
 
 
-    boolean settingFrameActive;
-    public Table buttonTable;
-    public Assets assets;
-    public Player player;
+    private Table buttonTable;
+    private Assets assets;
+    private final Player player;
 
     public MainMenuState(StateManager sm, Player player) {
         super(sm);
@@ -68,7 +67,7 @@ public class MainMenuState extends State{
 
         assets = player.getAssets();
 
-        AudioManager.playMusic(assets.getMusic(assets.mmMusic), true);
+        AudioManager.playMusic(assets.getMusic(assets.mmMusic));
 
         buttonTable = new Table();
         buttonTable.setName("button table");
@@ -140,7 +139,7 @@ public class MainMenuState extends State{
     public void update(float dt) {
     }
 
-    public void initNewGameConfirmationWindow() {
+    private void initNewGameConfirmationWindow() {
         ngConfirmationWindow = new WindowFrame(PocketHealer.ui);
         //ngConfirmationWindow.setDebug(true);
 
@@ -171,7 +170,7 @@ public class MainMenuState extends State{
         ngConfirmationWindow.add(backButton).center();
     }
 
-    public void initWindowFrame()   {
+    private void initWindowFrame()   {
         window = new WindowFrame(PocketHealer.ui);
         GameData.loadAudioSettings();
 

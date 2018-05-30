@@ -83,7 +83,7 @@ public class Talent extends Actor{
         return preReq;
     }
 
-    public float getCenterX()   {
+    private float getCenterX()   {
         return getX() + getWidth()/2;
     }
 
@@ -111,7 +111,7 @@ public class Talent extends Actor{
         this.image = image;
     }
 
-    public Assets getAssets() {
+    private Assets getAssets() {
         return assets;
     }
 

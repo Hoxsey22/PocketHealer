@@ -18,8 +18,8 @@ public class AtonementEffect extends Buff {
                 owner.getAssets().getTexture(owner.getAssets().smiteIcon),
                 10f,
                 0.1f,
-                0,
-                false);
+                0
+        );
     }
 
     @Override

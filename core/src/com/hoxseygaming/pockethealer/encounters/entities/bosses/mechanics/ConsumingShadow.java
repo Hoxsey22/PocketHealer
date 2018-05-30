@@ -9,13 +9,14 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Consu
 
 public class ConsumingShadow extends Mechanic{
 
+    @SuppressWarnings("unused")
     public ConsumingShadow(Boss owner) {
         super("Consuming Shadow", 0, 8f, owner);
     }
 
     public ConsumingShadow(Boss owner, float speed) {
         super("Consuming Shadow", 0, speed, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override

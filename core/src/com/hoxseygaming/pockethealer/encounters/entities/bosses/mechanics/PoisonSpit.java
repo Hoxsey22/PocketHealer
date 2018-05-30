@@ -18,14 +18,14 @@ public class PoisonSpit extends Mechanic {
     public PoisonSpit(Boss owner) {
         super("Poison Spit", 20, 5f, owner);
         numOfTargets = 3;
-        setAnnounce(true);
+        setAnnounce();
     }
 
-    public PoisonSpit(Boss owner, float speed, int numOfTargets, boolean poisoned) {
+    public PoisonSpit(Boss owner, float speed, int numOfTargets) {
         super("Poison Spit", 20, speed, owner);
-        this.poisoned = poisoned;
+        this.poisoned = true;
         this.numOfTargets = numOfTargets;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override

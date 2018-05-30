@@ -23,8 +23,8 @@ public class AoDEffect extends Buff {
                 owner.getAssets().getTexture(owner.getAssets().aodIcon),
                 duration,
                 speed,
-                modValue,
-                false);
+                modValue
+        );
     }
 
     @Override

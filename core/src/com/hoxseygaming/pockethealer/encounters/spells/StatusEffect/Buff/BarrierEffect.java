@@ -18,8 +18,8 @@ public class BarrierEffect extends Buff {
                 owner.getAssets().getTexture(owner.getAssets().barrierIcon),
                 45f,
                 0.1f,
-                0,
-                false);
+                0
+        );
     }
 
     @Override

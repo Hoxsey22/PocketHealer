@@ -13,11 +13,12 @@ import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
  * Created by Hoxsey on 8/31/2017.
  */
 
+@SuppressWarnings("ALL")
 public abstract class Castable extends Spell {
 
     private float castTime;
     private float MIN_CAST_TIME;
-    protected Timer castTimer;
+    private Timer castTimer;
     private Sound castingSFX;
     private Sound spellSFX;
 
@@ -33,8 +34,8 @@ public abstract class Castable extends Spell {
      * @param spellSFX
      * @param assets
      */
-    public Castable(Player player, String name, String description, int levelRequirement, float castTime,
-                    int output, float costPercentage, float cooldown, Sound spellSFX, Assets assets) {
+    protected Castable(Player player, String name, String description, int levelRequirement, float castTime,
+                       int output, float costPercentage, float cooldown, Sound spellSFX, Assets assets) {
         super(player, name, description, levelRequirement, output, costPercentage, cooldown, assets);
         setSpellType("Castable");
         this.spellSFX = spellSFX;
@@ -57,7 +58,7 @@ public abstract class Castable extends Spell {
 
     }
 
-    public void startCastTimer()    {
+    private void startCastTimer()    {
         castTimer = new Timer();
         setCasting(true);
         getOwner().setCasting(isCasting());
@@ -106,7 +107,7 @@ public abstract class Castable extends Spell {
         }
     }
 
-    public void checkHasteBuild()   {
+    protected void checkHasteBuild()   {
         if(getOwner().getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
             castTime = MIN_CAST_TIME - 0.5f;
         }
@@ -116,7 +117,7 @@ public abstract class Castable extends Spell {
         return castTime;
     }
 
-    public void setCastTime(float castTime) {
+    protected void setCastTime(float castTime) {
         this.castTime = castTime;
     }
 
@@ -136,11 +137,11 @@ public abstract class Castable extends Spell {
         this.spellSFX = spellSFX;
     }
 
-    public float getMIN_CAST_TIME() {
+    protected float getMIN_CAST_TIME() {
         return MIN_CAST_TIME;
     }
 
-    public void setMIN_CAST_TIME(float MIN_CAST_TIME) {
+    protected void setMIN_CAST_TIME(float MIN_CAST_TIME) {
         this.MIN_CAST_TIME = MIN_CAST_TIME;
     }
 

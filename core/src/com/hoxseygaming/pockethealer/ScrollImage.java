@@ -42,7 +42,7 @@ public class ScrollImage {
         setEndY(frame.y);
     }
 
-    public void setPosition(float x, float y)   {
+    private void setPosition(float x, float y)   {
         getImage1().setPosition(x,y);
         matchPartner();
     }
@@ -95,71 +95,71 @@ public class ScrollImage {
         return assets;
     }
 
-    public void setAssets(Assets assets) {
+    private void setAssets(Assets assets) {
         this.assets = assets;
     }
 
-    public Image getImage1() {
+    private Image getImage1() {
         return image1;
     }
 
-    public void setImage1(Image image1) {
+    private void setImage1(Image image1) {
         this.image1 = image1;
     }
 
-    public Image getImage2() {
+    private Image getImage2() {
         return image2;
     }
 
-    public void setImage2(Image image2) {
+    private void setImage2(Image image2) {
         this.image2 = image2;
     }
 
-    public float getVelocity() {
+    private float getVelocity() {
         return velocity;
     }
 
-    public void setVelocity(float velocity) {
+    private void setVelocity(float velocity) {
         this.velocity = velocity;
     }
 
-    public float getOriginX() {
+    private float getOriginX() {
         return originX;
     }
 
-    public void setOriginX(float originX) {
+    private void setOriginX(float originX) {
         this.originX = originX;
     }
 
-    public float getOriginY() {
+    private float getOriginY() {
         return originY;
     }
 
-    public void setOriginY(float originY) {
+    private void setOriginY(float originY) {
         this.originY = originY;
     }
 
-    public float getEndX() {
+    private float getEndX() {
         return endX;
     }
 
-    public void setEndX(float endX) {
+    private void setEndX(float endX) {
         this.endX = endX;
     }
 
-    public float getEndY() {
+    private float getEndY() {
         return endY;
     }
 
-    public void setEndY(float endY) {
+    private void setEndY(float endY) {
         this.endY = endY;
     }
 
-    public boolean isVertical() {
+    private boolean isVertical() {
         return isVertical;
     }
 
-    public void setVertical(boolean vertical) {
+    private void setVertical(boolean vertical) {
         isVertical = vertical;
     }
 }

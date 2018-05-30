@@ -10,12 +10,12 @@ public class AutoAttack extends Mechanic {
 
     public AutoAttack(Boss owner) {
         super("Auto Attack",owner.getDamage(), 2f, owner);
-        setBgMech(true);
+        setBgMech();
     }
 
     public AutoAttack(Boss owner, float speed) {
         super("Auto Attack", owner.getDamage(), speed, owner);
-        setBgMech(true);
+        setBgMech();
     }
 
     @Override

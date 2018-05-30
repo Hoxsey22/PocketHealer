@@ -17,13 +17,13 @@ public class ZombieBite extends Mechanic {
     public ZombieBite(Boss owner) {
         super("Zombie Bite", 20, 2f, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public ZombieBite(Boss owner, float speed) {
         super("Zombie Bite", 20, speed, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override

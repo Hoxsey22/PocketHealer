@@ -17,7 +17,7 @@ public class BackStab extends Mechanic {
     public BackStab(Boss owner) {
         super("Back Stab", owner.getDamage()*3, 15f, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
@@ -31,11 +31,6 @@ public class BackStab extends Mechanic {
             temp.get(i).takeDamage(getDamage());
             temp.get(i).addStatusEffect(bleedEffect);
         }
-    }
-
-    @Override
-    public void stop() {
-        super.stop();
     }
 
     public int getNumOfTargets() {

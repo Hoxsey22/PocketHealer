@@ -43,19 +43,10 @@ public class InfoFrame extends Group {
         infoTitle = new Text("Debuff", 32, Color.YELLOW, true, assets);
 
         debuffDescription = new Text("Click on the debuff icon to see the description of the ability.",24, Color.WHITE, false, assets);
-        debuffDescription.setWrap(true);
+        debuffDescription.setWrap();
 
         debuffListTable = new Table();
         debuffListTable.setBounds(infoFrame.getX()+5,infoFrame.getY(),infoFrame.getWidth()-10, infoFrame.getHeight());
-    }
-
-    public InfoFrame(Boss boss, Assets assets)  {
-        this.assets = assets;
-        this.boss = boss;
-        debuffButtons = new ArrayList<>();
-        //debug();
-        loadDebuffs();
-        create();
     }
 
     private void loadDebuffs()  {
@@ -108,7 +99,7 @@ public class InfoFrame extends Group {
         create();
     }
 
-    public void createOkButtonListener()    {
+    private void createOkButtonListener()    {
         okButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -117,75 +108,4 @@ public class InfoFrame extends Group {
         });
     }
 
-    public Assets getAssets() {
-        return assets;
-    }
-
-    public void setAssets(Assets assets) {
-        this.assets = assets;
-    }
-
-    public Image getDisableBG() {
-        return disableBG;
-    }
-
-    public void setDisableBG(Image disableBG) {
-        this.disableBG = disableBG;
-    }
-
-    public Image getInfoFrame() {
-        return infoFrame;
-    }
-
-    public void setInfoFrame(Image infoFrame) {
-        this.infoFrame = infoFrame;
-    }
-
-    public Text getInfoTitle() {
-        return infoTitle;
-    }
-
-    public void setInfoTitle(Text infoTitle) {
-        this.infoTitle = infoTitle;
-    }
-
-    public Table getDebuffListTable() {
-        return debuffListTable;
-    }
-
-    public void setDebuffListTable(Table debuffListTable) {
-        this.debuffListTable = debuffListTable;
-    }
-
-    public Text getDebuffDescription() {
-        return debuffDescription;
-    }
-
-    public void setDebuffDescription(Text debuffDescription) {
-        this.debuffDescription = debuffDescription;
-    }
-
-    public TextButton getOkButton() {
-        return okButton;
-    }
-
-    public void setOkButton(TextButton okButton) {
-        this.okButton = okButton;
-    }
-
-    public ArrayList<DebuffIconButton> getDebuffButtons() {
-        return debuffButtons;
-    }
-
-    public void setDebuffButtons(ArrayList<DebuffIconButton> debuffButtons) {
-        this.debuffButtons = debuffButtons;
-    }
-
-    public Boss getBoss() {
-        return boss;
-    }
-
-    public void setBoss(Boss boss) {
-        this.boss = boss;
-    }
 }

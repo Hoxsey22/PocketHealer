@@ -55,27 +55,39 @@ public class Apprentice extends Boss {
         }
     }
 
-    public SeedOfCorruption getSeedOfCorruption() {
-        return seedOfCorruption;
-    }
+// --Commented out by Inspection START (5/29/2018 8:13 PM):
+//    public SeedOfCorruption getSeedOfCorruption() {
+//        return seedOfCorruption;
+//    }
+// --Commented out by Inspection STOP (5/29/2018 8:13 PM)
 
-    public void setSeedOfCorruption(SeedOfCorruption seedOfCorruption) {
-        this.seedOfCorruption = seedOfCorruption;
-    }
+// --Commented out by Inspection START (5/29/2018 8:13 PM):
+//    public void setSeedOfCorruption(SeedOfCorruption seedOfCorruption) {
+//        this.seedOfCorruption = seedOfCorruption;
+//    }
+// --Commented out by Inspection STOP (5/29/2018 8:13 PM)
 
-    public Fireball getFireball() {
-        return fireball;
-    }
+// --Commented out by Inspection START (5/29/2018 8:13 PM):
+//    public Fireball getFireball() {
+//        return fireball;
+//    }
+// --Commented out by Inspection STOP (5/29/2018 8:13 PM)
 
-    public void setFireball(Fireball fireball) {
-        this.fireball = fireball;
-    }
+// --Commented out by Inspection START (5/29/2018 8:13 PM):
+//    public void setFireball(Fireball fireball) {
+//        this.fireball = fireball;
+//    }
+// --Commented out by Inspection STOP (5/29/2018 8:13 PM)
 
-    public Pyroblast getPyroblast() {
-        return pyroblast;
-    }
+// --Commented out by Inspection START (5/29/2018 8:13 PM):
+//    public Pyroblast getPyroblast() {
+//        return pyroblast;
+//    }
+// --Commented out by Inspection STOP (5/29/2018 8:13 PM)
 
-    public void setPyroblast(Pyroblast pyroblast) {
-        this.pyroblast = pyroblast;
-    }
+// --Commented out by Inspection START (5/29/2018 8:13 PM):
+//    public void setPyroblast(Pyroblast pyroblast) {
+//        this.pyroblast = pyroblast;
+//    }
+// --Commented out by Inspection STOP (5/29/2018 8:13 PM)
 }

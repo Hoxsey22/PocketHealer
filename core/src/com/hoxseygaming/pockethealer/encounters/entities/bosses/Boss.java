@@ -16,6 +16,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Debuff;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Hoxsey on 6/16/2017.
@@ -38,6 +39,7 @@ public abstract class Boss extends Entity {
     private String description;
     private RewardPackage rewardPackage;
 
+    @SuppressWarnings("unused")
     public Boss(String name, String description, int maxHp, Assets assets) {
         super(name, maxHp, assets);
         this.description = description;
@@ -48,7 +50,7 @@ public abstract class Boss extends Entity {
         rewardPackage = new RewardPackage(this);
     }
 
-    public Boss(String name, String description, int bossLength, Raid enemies, Assets assets) {
+    protected Boss(String name, String description, int bossLength, Raid enemies, Assets assets) {
         super(name, enemies.getRaidDamage()*bossLength, assets);
         setBounds(20, 740, 445, 40);
         this.description = description;
@@ -64,7 +66,7 @@ public abstract class Boss extends Entity {
 
         announcement = new Text("",16,Color.RED, false, assets);
         announcement.setPosition(getX(), enemies.getRaidMember(0).getY()+enemies.getRaidMember(0).getHeight()+10);
-        announcement.setWrap(true);
+        announcement.setWrap();
         announcement.setAlignment(Align.left);
         rewardPackage = new RewardPackage(this);
         rewardDescription = "";
@@ -86,19 +88,11 @@ public abstract class Boss extends Entity {
         return enemies.getRaidMember(1);
     }
 
-    public void loadMechanics(Mechanic... mechs) {
-        for(Mechanic mech: mechs)   {
-            mechanics.add(mech);
-        }
+    protected void loadDebuff(Debuff... newDebuff)    {
+        Collections.addAll(debuffList, newDebuff);
     }
 
-    public void loadDebuff(Debuff... newDebuff)    {
-        for(Debuff debuff: newDebuff)   {
-            debuffList.add(debuff);
-        }
-    }
-
-    public void displayAnnouncementTimer(final String text)  {
+    protected void displayAnnouncementTimer(final String text)  {
         final Timer announcementTimer = new Timer();
 
         announcementTimer.scheduleTask(new Timer.Task() {
@@ -203,6 +197,7 @@ public abstract class Boss extends Entity {
 
     public abstract void reward();
 
+    @SuppressWarnings("unused")
     public void setEnemies(Raid enemies)    {
         this.enemies = enemies;
     }
@@ -223,16 +218,14 @@ public abstract class Boss extends Entity {
         this.target = target;
     }
 
+    @SuppressWarnings("unused")
     public ArrayList<Mechanic> getMechanics() {
         return mechanics;
     }
 
+    @SuppressWarnings("unused")
     public void setMechanics(ArrayList<Mechanic> mechanics) {
         this.mechanics = mechanics;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
     }
 
     public int getRaidSize() {
@@ -251,7 +244,7 @@ public abstract class Boss extends Entity {
         this.debuffList = debuffList;
     }
 
-    public PhaseManager getPhaseManager() {
+    protected PhaseManager getPhaseManager() {
         return phaseManager;
     }
 

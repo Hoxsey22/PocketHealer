@@ -26,20 +26,20 @@ import static com.badlogic.gdx.utils.Align.top;
  */
 public class SpellSelectionState extends State {
 
-    public Stage stage;
-    public Player player;
-    public Assets assets;
-    public Image background;
-    public Table titleTable;
-    public Table descriptionTable;
-    public Text title;
-    public Text spellDescriptionName;
-    public Text spellDescription;
-    public Button done;
-    public Spell selectedSpell;
-    public SpellBook spellBook;
-    public SpellBar spellBar;
-    public boolean isSpellSelected;
+    private final Stage stage;
+    private final Player player;
+    private final Assets assets;
+    private final Image background;
+    private Table titleTable;
+    private Table descriptionTable;
+    private Text title;
+    private Text spellDescriptionName;
+    private Text spellDescription;
+    private final Button done;
+    private Spell selectedSpell;
+    private final SpellBook spellBook;
+    private final SpellBar spellBar;
+    private boolean isSpellSelected;
 
     public SpellSelectionState(StateManager sm, Player player) {
         super(sm);
@@ -67,14 +67,14 @@ public class SpellSelectionState extends State {
         createText();
     }
 
-    public void createText()    {
+    private void createText()    {
 
         // setting up title
         titleTable = new Table();
         titleTable.setName("Title Table");
 
         title  = new Text("Spell Selection", 45, Color.SKY, true, assets);
-        title.setWrap(true);
+        title.setWrap();
         title.setAlignment(top);
 
         titleTable.setBounds(spellBook.getLeft(), spellBook.getTop(), spellBook.getRight() - spellBook.getLeft(), 80);
@@ -91,7 +91,7 @@ public class SpellSelectionState extends State {
 
         spellDescriptionName = new Text("", 32, Color.BLACK, false, assets);
         spellDescription = new Text("", 24, Color.WHITE, false, assets);
-        spellDescription.setWrap(true);
+        spellDescription.setWrap();
         spellDescription.setAlignment(Align.center);
 
         descriptionTable.add(spellDescriptionName.getLabel()).center();

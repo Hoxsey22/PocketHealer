@@ -65,7 +65,7 @@ public class SeedOfCorruptionEffect extends Debuff {
         return output;
     }
 
-    public ArrayList<RaidMember> getRandomGroup()   {
+    private ArrayList<RaidMember> getRandomGroup()   {
         return getOwner().getEnemies().getRandomRaidMember(numOfTargets,getOwner().getEnemies().getDebuffLessRaidMembers(this.getName()));
     }
 

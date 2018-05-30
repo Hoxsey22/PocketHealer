@@ -28,7 +28,7 @@ public class Monster extends Boss {
         setDamage(10);
 
         bite = new Bite(this, 5f);
-        bite.setAnnounce(true);
+        bite.setAnnounce();
         autoAttack = new AutoAttack(this, 1f);
 
         //loadMechanics(autoAttack, bite);

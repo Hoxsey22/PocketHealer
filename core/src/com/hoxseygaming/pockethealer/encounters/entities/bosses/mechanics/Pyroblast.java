@@ -15,12 +15,12 @@ public class Pyroblast extends Mechanic {
 
     public Pyroblast(Boss owner) {
         super("Pyroblast", 50, 6f, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public Pyroblast(Boss owner, float speed) {
         super("Pyroblast", 50, speed, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override

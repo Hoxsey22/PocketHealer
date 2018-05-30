@@ -16,12 +16,12 @@ public class Rampage extends Mechanic{
 
     public Rampage(Boss owner) {
         super("Rampage", 10, 20f, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public Rampage(Boss owner, int damage, float speed) {
         super("Rampage", damage, speed, owner);
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
@@ -30,10 +30,10 @@ public class Rampage extends Mechanic{
         pause();
     }
 
-    public void startChannel()  {
+    private void startChannel()  {
         channel = new Timer();
 
-        channel.schedule(new Timer.Task() {
+        channel.scheduleTask(new Timer.Task() {
             int count =  0;
 
             @Override

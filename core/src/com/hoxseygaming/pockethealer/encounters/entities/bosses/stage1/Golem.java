@@ -31,7 +31,7 @@ public class Golem extends Boss {
 
         autoAttack = new AutoAttack(this, 3f);
         earthquake = new Earthquake(this, 5f);
-        earthquake.setAnnounce(true);
+        earthquake.setAnnounce();
 
         getPhaseManager().addPhase(new Phase(this, 0, autoAttack, earthquake));
 
@@ -47,19 +47,4 @@ public class Golem extends Boss {
         }
     }
 
-    public AutoAttack getAutoAttack() {
-        return autoAttack;
-    }
-
-    public void setAutoAttack(AutoAttack autoAttack) {
-        this.autoAttack = autoAttack;
-    }
-
-    public Earthquake getEarthquake() {
-        return earthquake;
-    }
-
-    public void setEarthquake(Earthquake earthquake) {
-        this.earthquake = earthquake;
-    }
 }

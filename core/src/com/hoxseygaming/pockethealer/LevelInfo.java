@@ -1,7 +1,6 @@
 package com.hoxseygaming.pockethealer;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -14,7 +13,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
  * Created by Hoxsey on 7/20/2017.
  */
 
-public class LevelInfo extends Group {
+class LevelInfo extends Group {
 
     private Image frame;
     private Label bossName;
@@ -67,8 +66,7 @@ public class LevelInfo extends Group {
 
     public void createFont()    {
         Label.LabelStyle textStyle = new Label.LabelStyle();
-        BitmapFont font = assets.getFont(assets.talentTooltipFont);
-        textStyle.font = font;
+        textStyle.font = assets.getFont(assets.talentTooltipFont);
 
         bossName = new Label("test",textStyle);
         bossName.setFontScale(1.5f);

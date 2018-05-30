@@ -9,6 +9,7 @@ import com.hoxseygaming.pockethealer.PocketHealer;
 /**
  * Created by Hoxsey on 6/20/2017.
  */
+@SuppressWarnings("unused")
 public class CastBar extends Actor {
 
     private Player owner;
@@ -24,11 +25,11 @@ public class CastBar extends Actor {
         setPosition(PocketHealer.WIDTH/2 - this.getWidth()/2, actor.getY()+ actor.getHeight() + 10);
     }
 
-    public boolean isActive() {
+    private boolean isActive() {
         return owner.isCasting();
     }
 
-    public float getPercentage()    {
+    private float getPercentage()    {
         return owner.getSpellCastPercent();
     }
 

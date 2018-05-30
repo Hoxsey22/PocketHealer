@@ -17,22 +17,22 @@ public class UnstablePyroblast extends Mechanic {
     public UnstablePyroblast(Boss owner) {
         super("Unstable Pyroblast", 0, 20f, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public UnstablePyroblast(Boss owner, float speed) {
         super("Unstable Pyroblast", 0, speed, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
     public void action() {
-        numOfTargets = new Random().nextInt(5)*1;
+        numOfTargets = new Random().nextInt(5);
         ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
 
         for (int i = 0; i < temp.size(); i++)   {
-            temp.get(i).takeDamage(new Random().nextInt(70)*1);
+            temp.get(i).takeDamage(new Random().nextInt(70));
         }
     }
 

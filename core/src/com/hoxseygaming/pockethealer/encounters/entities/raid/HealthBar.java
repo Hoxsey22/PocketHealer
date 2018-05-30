@@ -18,18 +18,6 @@ public class HealthBar {
     private RaidMember owner;
 
 
-    public HealthBar(RaidMember owner, int x, int y, int width, int height) {
-        this.owner = owner;
-        assets = owner.getAssets();
-        this.x = x + 9;
-        this.y = y + 7;
-        this.width = width - 19;
-        this.height = height / 4;
-
-        healthBar = getAssets().getTexture(getAssets().hpManaBar);
-
-    }
-
     public HealthBar(RaidMember owner) {
         this.owner = owner;
         assets = owner.getAssets();
@@ -47,56 +35,20 @@ public class HealthBar {
         return x;
     }
 
-    public void setX(float x) {
-        this.x = x;
-    }
-
     public float getY() {
         return y;
-    }
-
-    public void setY(float y) {
-        this.y = y;
     }
 
     public float getWidth() {
         return width;
     }
 
-    public void setWidth(float width) {
-        this.width = width;
-    }
-
     public float getHeight() {
         return height;
     }
 
-    public void setHeight(float height) {
-        this.height = height;
-    }
-
-    public Assets getAssets() {
+    private Assets getAssets() {
         return assets;
-    }
-
-    public void setAssets(Assets assets) {
-        this.assets = assets;
-    }
-
-    public Texture getHealthBar() {
-        return healthBar;
-    }
-
-    public void setHealthBar(Texture healthBar) {
-        this.healthBar = healthBar;
-    }
-
-    public RaidMember getOwner() {
-        return owner;
-    }
-
-    public void setOwner(RaidMember owner) {
-        this.owner = owner;
     }
 
     public void draw(Batch batch, float alpha)  {

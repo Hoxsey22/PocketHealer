@@ -6,7 +6,7 @@ import com.hoxseygaming.pockethealer.Player;
 /**
  * Created by Hoxsey on 6/18/2017.
  */
-public class GreaterHeal extends Heal {
+class GreaterHeal extends Heal {
 
     public GreaterHeal(Player player, Assets assets) {
         super(player, assets);

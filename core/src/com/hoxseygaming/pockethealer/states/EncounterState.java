@@ -11,14 +11,11 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.GameOverFrame;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
-import com.hoxseygaming.pockethealer.WindowFrame;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
@@ -30,23 +27,23 @@ import com.hoxseygaming.pockethealer.encounters.spells.Spell;
  * Created by Hoxsey on 5/28/2017.
  */
 public class EncounterState extends State {
-    public Player player;
-    public ManaBar manaBar;
-    public CastBar castBar;
-    public Stage stage;
-    public Raid raid;
-    public Boss boss;
+    private final Player player;
+    private ManaBar manaBar;
+    private CastBar castBar;
+    private Stage stage;
+    private final Raid raid;
+    private final Boss boss;
     //public Music bgMusic;
-    public Image bgImage;
-    public Assets assets;
-    public GameOverFrame gameOverFrame;
-    public boolean isDone;
-    public int page;
+    private Image bgImage;
+    private Assets assets;
+    private GameOverFrame gameOverFrame;
+    private boolean isDone;
+    private int page;
     // window frame to confirm quit
-    WindowFrame quitWindow;
-    Label quitWindowText;
-    TextButton yesButton;
-    TextButton noButton;
+    //WindowFrame quitWindow;
+    // --Commented out by Inspection (5/29/2018 8:27 PM):Label quitWindowText;
+    // --Commented out by Inspection (5/29/2018 8:27 PM):TextButton yesButton;
+    // --Commented out by Inspection (5/29/2018 8:27 PM):TextButton noButton;
 
     //commit
     public EncounterState(StateManager sm, Player player, Boss boss) {
@@ -87,7 +84,7 @@ public class EncounterState extends State {
 
         //hogger = new Hogger(assets);
 
-        AudioManager.playMusic(assets.getMusic(assets.battleMusic), true);
+        AudioManager.playMusic(assets.getMusic(assets.battleMusic));
 
         /* DELETE
         bgMusic = assets.getMusic("sfx/battle_music.ogg");
@@ -229,104 +226,106 @@ public class EncounterState extends State {
 
     }
 
-    protected void endGameHandleInput() {
-
-        Gdx.input.setInputProcessor(new InputProcessor() {
-            @Override
-            public boolean keyDown(int keycode) {
-                switch (keycode)    {
-                    case Input.Keys.NUM_1:
-                        break;
-                    case Input.Keys.NUM_2:
-                        break;
-                    case Input.Keys.NUM_3:
-                        break;
-                    case Input.Keys.NUM_0:
-                        break;
-                }
-                return false;
-            }
-
-            @Override
-            public boolean keyUp(int keycode) {
-                return false;
-            }
-
-            @Override
-            public boolean keyTyped(char character) {
-                return false;
-            }
-
-            @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
-
-                if(gameOverFrame.isWon())   {
-                    int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
-
-                    if(buttonHit != -1)    {
-                        switch (buttonHit)  {
-                            case 1:
-                                switch (page) {
-                                    case 1:
-                                        gameOverFrame.showReward();
-                                        page = 2;
-                                        break;
-
-                                    case 2:
-                                        player.newLevel(boss.getLevel());
-                                        sm.set(new MapState(sm, player));
-                                        break;
-                                }
-                                break;
-                        }
-                    }
-                }
-                else    {
-                    int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
-                    System.out.println(buttonHit);
-
-                    if(buttonHit != -1) {
-                        switch (buttonHit) {
-                            case 0:
-                                sm.set(new MapState(sm, player));
-                                break;
-
-                            case 2:
-                                System.out.println("reset");
-                                boss.reset();
-                                sm.set(new EncounterState(sm, player, boss));
-                                break;
-                        }
-                    }
-                }
-
-
-                return false;
-            }
-
-            @Override
-            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-                return false;
-            }
-
-            @Override
-            public boolean touchDragged(int screenX, int screenY, int pointer) {
-                return false;
-            }
-
-            @Override
-            public boolean mouseMoved(int screenX, int screenY) {
-                return false;
-            }
-
-            @Override
-            public boolean scrolled(int amount) {
-                return false;
-            }
-        });
-
-    }
+// --Commented out by Inspection START (5/29/2018 8:27 PM):
+//    protected void endGameHandleInput() {
+//
+//        Gdx.input.setInputProcessor(new InputProcessor() {
+//            @Override
+//            public boolean keyDown(int keycode) {
+//                switch (keycode)    {
+//                    case Input.Keys.NUM_1:
+//                        break;
+//                    case Input.Keys.NUM_2:
+//                        break;
+//                    case Input.Keys.NUM_3:
+//                        break;
+//                    case Input.Keys.NUM_0:
+//                        break;
+//                }
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean keyUp(int keycode) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean keyTyped(char character) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+//                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
+//
+//                if(gameOverFrame.isWon())   {
+//                    int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
+//
+//                    if(buttonHit != -1)    {
+//                        switch (buttonHit)  {
+//                            case 1:
+//                                switch (page) {
+//                                    case 1:
+//                                        gameOverFrame.showReward();
+//                                        page = 2;
+//                                        break;
+//
+//                                    case 2:
+//                                        player.newLevel(boss.getLevel());
+//                                        sm.set(new MapState(sm, player));
+//                                        break;
+//                                }
+//                                break;
+//                        }
+//                    }
+//                }
+//                else    {
+//                    int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
+//                    System.out.println(buttonHit);
+//
+//                    if(buttonHit != -1) {
+//                        switch (buttonHit) {
+//                            case 0:
+//                                sm.set(new MapState(sm, player));
+//                                break;
+//
+//                            case 2:
+//                                System.out.println("reset");
+//                                boss.reset();
+//                                sm.set(new EncounterState(sm, player, boss));
+//                                break;
+//                        }
+//                    }
+//                }
+//
+//
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean touchDragged(int screenX, int screenY, int pointer) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean mouseMoved(int screenX, int screenY) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean scrolled(int amount) {
+//                return false;
+//            }
+//        });
+//
+//    }
+// --Commented out by Inspection STOP (5/29/2018 8:27 PM)
 
     @Override
     public void update(float dt) {
@@ -373,12 +372,12 @@ public class EncounterState extends State {
 
     }
 
-    public InputListener getEndGameListener()   {
+    private InputListener getEndGameListener()   {
         return new InputListener()   {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)x,(float)y));
+                Vector2 coord = stage.screenToStageCoordinates(new Vector2(x, y));
 
                 if(gameOverFrame.isWon())   {
                     switch (page)   {
@@ -420,7 +419,7 @@ public class EncounterState extends State {
     /**
      * Stops all timers in boss raid and player.
      */
-    public void stop()  {
+    private void stop()  {
         boss.stop();
         raid.stop();
         player.stop();

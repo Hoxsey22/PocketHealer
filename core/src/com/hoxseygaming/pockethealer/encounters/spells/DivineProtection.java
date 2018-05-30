@@ -42,27 +42,4 @@ public class DivineProtection extends Castable {
     @Override
     public void checkTalents() {}
 
-    public ArrayList<Barrier> getBarriers() {
-        return barriers;
-    }
-
-    public void setBarriers(ArrayList<Barrier> barriers) {
-        this.barriers = barriers;
-    }
-
-    public boolean isSelectedCriticalHealerII() {
-        return isSelectedCriticalHealerII;
-    }
-
-    public void setSelectedCriticalHealerII(boolean selectedCriticalHealerII) {
-        isSelectedCriticalHealerII = selectedCriticalHealerII;
-    }
-
-    public boolean isSelectedResurgence() {
-        return isSelectedResurgence;
-    }
-
-    public void setSelectedResurgence(boolean selectedResurgence) {
-        isSelectedResurgence = selectedResurgence;
-    }
 }

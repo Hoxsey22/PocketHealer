@@ -12,15 +12,16 @@ import com.hoxseygaming.pockethealer.encounters.spells.Spell;
  * Created by Hoxsey on 8/31/2017.
  */
 
+@SuppressWarnings("ALL")
 public abstract class ChannelCast extends Spell {
 
     private float castTime;
     private float MIN_CAST_TIME;
     private int ticksPerCast;
     private int MIN_TICK_PER_CAST;
-    protected Timer castTimer;
-    protected Sound castingSFX;
-    protected Sound spellSFX;
+    private Timer castTimer;
+    private Sound castingSFX;
+    private Sound spellSFX;
 
     /**
      *
@@ -33,8 +34,8 @@ public abstract class ChannelCast extends Spell {
      * @param cooldown
      * @param assets
      */
-    public ChannelCast(Player player, String name, String description, int levelRequirement, float castTime, int ticksPerCast,
-                       int output, float costPercentage, float cooldown, Assets assets) {
+    protected ChannelCast(Player player, String name, String description, int levelRequirement, float castTime, int ticksPerCast,
+                          int output, float costPercentage, float cooldown, Assets assets) {
         super(player, name, description, levelRequirement, output, costPercentage, cooldown, assets);
         setSpellType("Channeled");
         this.castTime = castTime;
@@ -57,7 +58,7 @@ public abstract class ChannelCast extends Spell {
         target.receiveHealing(getOutput(), getCriticalChance().isCritical());
     }
 
-    public void startCastTimer()    {
+    private void startCastTimer()    {
         castTimer = new Timer();
         setCasting(true);
         getOwner().setCasting(isCasting());
@@ -107,59 +108,16 @@ public abstract class ChannelCast extends Spell {
         }
     }
 
-    public float getCastTime() {
-        return castTime;
-    }
-
-    public void setCastTime(float castTime) {
+    protected void setCastTime(float castTime) {
         this.castTime = castTime;
     }
 
-    public Sound getCastingSFX() {
-        return castingSFX;
-    }
-
-    public void setCastingSFX(Sound castingSFX) {
-        this.castingSFX = castingSFX;
-    }
-
-    public Sound getSpellSFX() {
-        return spellSFX;
-    }
-
-    public void setSpellSFX(Sound spellSFX) {
-        this.spellSFX = spellSFX;
-    }
-
-    public float getMIN_CAST_TIME() {
+    protected float getMIN_CAST_TIME() {
         return MIN_CAST_TIME;
     }
 
-    public void setMIN_CAST_TIME(float MIN_CAST_TIME) {
-        this.MIN_CAST_TIME = MIN_CAST_TIME;
-    }
-
-    public int getTicksPerCast() {
-        return ticksPerCast;
-    }
-
-    public void setTicksPerCast(int ticksPerCast) {
+    protected void setTicksPerCast(int ticksPerCast) {
         this.ticksPerCast = ticksPerCast;
     }
 
-    public int getMIN_TICK_PER_CAST() {
-        return MIN_TICK_PER_CAST;
-    }
-
-    public void setMIN_TICK_PER_CAST(int MIN_TICK_PER_CAST) {
-        this.MIN_TICK_PER_CAST = MIN_TICK_PER_CAST;
-    }
-
-    public Timer getCastTimer() {
-        return castTimer;
-    }
-
-    public void setCastTimer(Timer castTimer) {
-        this.castTimer = castTimer;
-    }
 }

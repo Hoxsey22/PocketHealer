@@ -58,7 +58,7 @@ public class MapFrame extends Group {
         create();
     }
 
-    public void create()    {
+    private void create()    {
         setBgFrame(new Image(getAssets().getTexture(getAssets().mapOuterFrame)));
         getBgFrame().setName("bg");
         getBgFrame().setPosition(0,0);
@@ -116,10 +116,10 @@ public class MapFrame extends Group {
         });
     }
 
-    public void createFont()    {
+    private void createFont()    {
 
         setTitle(new Text("", 32, Color.YELLOW, false, getAssets()));
-        getTitle().setWrap(true);
+        getTitle().setWrap();
         getTitle().setAlignment(Align.center);
         getTitle().debug();
 
@@ -127,7 +127,7 @@ public class MapFrame extends Group {
         getTable().row();
 
         setBody(new Text("",24, Color.WHITE, false, getAssets()));
-        getBody().setWrap(true);
+        getBody().setWrap();
 
         getBody().debug();
 
@@ -137,7 +137,7 @@ public class MapFrame extends Group {
 
     }
 
-    public void add(Boss boss) {
+    private void add(Boss boss) {
         boss.setDefeated(getPlayer().getLevel() > boss.getId());
         BossIcon bossIcon = new BossIcon(getAssets(),boss);
         getBossIconsList().add(bossIcon);
@@ -152,13 +152,8 @@ public class MapFrame extends Group {
         getBody().setText(newBody);
     }
 
-    public Map getMap() {
+    private Map getMap() {
         return map;
-    }
-
-    @Override
-    public void draw(Batch batch, float parentAlpha) {
-        super.draw(batch, parentAlpha);
     }
 
     public void setBoss(int index)   {
@@ -212,7 +207,7 @@ public class MapFrame extends Group {
         }
     }
 
-    public void clearBossList() {
+    private void clearBossList() {
 
         //remove boss icons from their parent
         for(int i = 0; i < getBossIconsList().size(); i++)   {
@@ -229,14 +224,11 @@ public class MapFrame extends Group {
         return super.remove();
     }
 
-    public void dispose()   {
-    }
-
-    public Image getBgFrame() {
+    private Image getBgFrame() {
         return bgFrame;
     }
 
-    public void setBgFrame(Image bgFrame) {
+    private void setBgFrame(Image bgFrame) {
         this.bgFrame = bgFrame;
     }
 
@@ -244,19 +236,19 @@ public class MapFrame extends Group {
         return innerFrame;
     }
 
-    public void setInnerFrame(Image innerFrame) {
+    private void setInnerFrame(Image innerFrame) {
         this.innerFrame = innerFrame;
     }
 
-    public void setMap(Map map) {
+    private void setMap(Map map) {
         this.map = map;
     }
 
-    public TextButton getInfoButton() {
+    private TextButton getInfoButton() {
         return infoButton;
     }
 
-    public void setInfoButton(TextButton infoButton) {
+    private void setInfoButton(TextButton infoButton) {
         this.infoButton = infoButton;
     }
 
@@ -264,7 +256,7 @@ public class MapFrame extends Group {
         return infoFrame;
     }
 
-    public void setInfoFrame(InfoFrame infoFrame) {
+    private void setInfoFrame(InfoFrame infoFrame) {
         this.infoFrame = infoFrame;
     }
 
@@ -276,27 +268,27 @@ public class MapFrame extends Group {
         this.bossIconsList = bossIconsList;
     }
 
-    public Table getTable() {
+    private Table getTable() {
         return table;
     }
 
-    public void setTable(Table table) {
+    private void setTable(Table table) {
         this.table = table;
     }
 
-    public Text getTitle() {
+    private Text getTitle() {
         return title;
     }
 
-    public void setTitle(Text title) {
+    private void setTitle(Text title) {
         this.title = title;
     }
 
-    public Text getBody() {
+    private Text getBody() {
         return body;
     }
 
-    public void setBody(Text body) {
+    private void setBody(Text body) {
         this.body = body;
     }
 
@@ -304,23 +296,23 @@ public class MapFrame extends Group {
         return page;
     }
 
-    public void setPage(int page) {
+    private void setPage(int page) {
         this.page = page;
     }
 
-    public Player getPlayer() {
+    private Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    private void setPlayer(Player player) {
         this.player = player;
     }
 
-    public Assets getAssets() {
+    private Assets getAssets() {
         return assets;
     }
 
-    public void setAssets(Assets assets) {
+    private void setAssets(Assets assets) {
         this.assets = assets;
     }
 }

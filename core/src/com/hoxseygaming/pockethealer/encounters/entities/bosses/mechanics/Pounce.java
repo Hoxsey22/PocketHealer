@@ -16,15 +16,13 @@ public class Pounce extends Mechanic {
 
     public Pounce(Boss owner) {
         super("Pounce",30,4f,owner);
-        ;
         numOfTargets = 3;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     public Pounce(Boss owner, float speed) {
         super("Pounce",30,speed,owner);
-        ;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
@@ -41,11 +39,6 @@ public class Pounce extends Mechanic {
 
     @Override
     public void stop() {
-        super.stop();
-        stopBleeds();
-    }
-
-    public void stopBleeds() {
         super.stop();
     }
 

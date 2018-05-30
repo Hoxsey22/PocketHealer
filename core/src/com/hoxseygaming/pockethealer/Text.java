@@ -49,8 +49,8 @@ public class Text extends Actor{
         return label.getHeight();
     }
 
-    public void setWrap(boolean wrap)   {
-        label.setWrap(wrap);
+    public void setWrap()   {
+        label.setWrap(true);
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Text extends Actor{
         label.setAlignment(alignment);
     }
 
-    public BitmapFont loadFont(int fontSize, boolean isBordered)    {
+    private BitmapFont loadFont(int fontSize, boolean isBordered)    {
         if(isBordered) {
             switch (fontSize) {
                 case 16:

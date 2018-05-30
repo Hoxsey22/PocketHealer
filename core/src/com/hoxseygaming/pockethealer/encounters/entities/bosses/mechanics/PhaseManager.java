@@ -61,7 +61,7 @@ public class PhaseManager {
     /**
      * Clears all the Phase's getTimer().
      */
-    public void cleanPhases()  {
+    private void cleanPhases()  {
         if(phases.size() > 0) {
             phases.get(index).clear();
             for (int i = 0; i < phases.size(); i++) {

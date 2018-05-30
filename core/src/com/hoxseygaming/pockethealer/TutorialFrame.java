@@ -37,7 +37,7 @@ public class TutorialFrame extends Group {
         create();
     }
 
-    public void create()    {
+    private void create()    {
         setDisableBG(new Image(getAssets().getTexture(getAssets().disableBG)));
         getDisableBG().setName("disable bg");
         getDisableBG().setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
@@ -52,13 +52,13 @@ public class TutorialFrame extends Group {
         createText();
     }
 
-    public void createText()    {
+    private void createText()    {
         setTable(new Table());
         getTable().setBounds(getFrame().getX()+5, getFrame().getY(), getFrame().getWidth(), getFrame().getHeight());
 
 
         setText(new Text("Welcome to \nPocket Healer!",24, Color.WHITE, false, getAssets()));
-        getText().setWrap(true);
+        getText().setWrap();
         getText().setAlignment(Align.center);
 
         getTable().add(getText().getLabel()).width(getTable().getWidth()-10);
@@ -126,75 +126,75 @@ public class TutorialFrame extends Group {
             super.draw(batch, parentAlpha);
     }
 
-    public Image getDisableBG() {
+    private Image getDisableBG() {
         return disableBG;
     }
 
-    public void setDisableBG(Image disableBG) {
+    private void setDisableBG(Image disableBG) {
         this.disableBG = disableBG;
     }
 
-    public Image getFrame() {
+    private Image getFrame() {
         return frame;
     }
 
-    public void setFrame(Image frame) {
+    private void setFrame(Image frame) {
         this.frame = frame;
     }
 
-    public Text getText() {
+    private Text getText() {
         return text;
     }
 
-    public void setText(Text text) {
+    private void setText(Text text) {
         this.text = text;
     }
 
-    public Table getTable() {
+    private Table getTable() {
         return table;
     }
 
-    public void setTable(Table table) {
+    private void setTable(Table table) {
         this.table = table;
     }
 
-    public Assets getAssets() {
+    private Assets getAssets() {
         return assets;
     }
 
-    public void setAssets(Assets assets) {
+    private void setAssets(Assets assets) {
         this.assets = assets;
     }
 
-    public BlinkingImage getPointer() {
+    private BlinkingImage getPointer() {
         return pointer;
     }
 
-    public void setPointer(BlinkingImage pointer) {
+    private void setPointer(BlinkingImage pointer) {
         this.pointer = pointer;
     }
 
-    public int getStageNumber() {
+    private int getStageNumber() {
         return stageNumber;
     }
 
-    public void setStageNumber(int stageNumber) {
+    private void setStageNumber(int stageNumber) {
         this.stageNumber = stageNumber;
     }
 
-    public Player getPlayer() {
+    private Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    private void setPlayer(Player player) {
         this.player = player;
     }
 
-    public Boss getBoss() {
+    private Boss getBoss() {
         return boss;
     }
 
-    public void setBoss(Boss boss) {
+    private void setBoss(Boss boss) {
         this.boss = boss;
     }
 
@@ -202,7 +202,7 @@ public class TutorialFrame extends Group {
         return isComplete;
     }
 
-    public void setComplete(boolean complete) {
+    private void setComplete(boolean complete) {
         isComplete = complete;
     }
 }

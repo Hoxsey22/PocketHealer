@@ -14,17 +14,12 @@ public class BlinkingImage extends Actor {
 
     private Image image;
     private boolean isBlink;
-    protected Timer timer;
+    private Timer timer;
     private float speed;
 
     public BlinkingImage(Texture texture)   {
         image = new Image(texture);
         speed = 0.5f;
-    }
-
-    public BlinkingImage(Texture texture, float speed)   {
-        image = new Image(texture);
-        this.speed = speed;
     }
 
     @Override
@@ -45,44 +40,9 @@ public class BlinkingImage extends Actor {
         timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
-                if(isBlink)
-                    isBlink = false;
-                else
-                    isBlink = true;
+                isBlink = !isBlink;
             }
         },speed, speed);
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
-    public boolean isBlink() {
-        return isBlink;
-    }
-
-    public void setBlink(boolean blink) {
-        isBlink = blink;
-    }
-
-    public Timer getTimer() {
-        return timer;
-    }
-
-    public void setTimer(Timer timer) {
-        this.timer = timer;
-    }
-
-    public float getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(float speed) {
-        this.speed = speed;
     }
 
     @Override

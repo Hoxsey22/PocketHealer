@@ -47,7 +47,7 @@ public class Smite extends Castable {
 
         int newOutput = getOwner().getBoss().takeDamage(getOutput(), getCriticalChance().isCritical());
 
-        if(getOwner().getTalentTree().getTalent(getOwner().getTalentTree().CRITICAL_HEALER_II).isSelected()) {
+        if(getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
             applyCriticalHealerII(lowest, newOutput);
             triggerAtonement(newOutput);
         }

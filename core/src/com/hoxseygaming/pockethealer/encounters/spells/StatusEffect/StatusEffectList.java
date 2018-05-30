@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public class StatusEffectList {
 
-    public ArrayList<StatusEffect> statusEffects;
-    public RaidMember owner;
+    private ArrayList<StatusEffect> statusEffects;
+    private RaidMember owner;
 
     public StatusEffectList(RaidMember owner)   {
         statusEffects = new ArrayList<>();
@@ -74,7 +74,7 @@ public class StatusEffectList {
      * Removes status effect based on name.
      * @param name
      */
-    public void removeStatusEffect(String name)    {
+    private void removeStatusEffect(String name)    {
        getStatusEffect(name).remove();
     }
 

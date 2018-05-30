@@ -46,8 +46,4 @@ public class ConsumingShadowEffect extends Debuff {
         return output + (int)((float)output*0.7f);
     }
 
-    public void stopTimer() {
-        getTimer().stop();
-        getTimer().clear();
-    }
 }

@@ -22,10 +22,6 @@ public class HealingTracker {
         totalHealingDone += thd;
     }
 
-    public int getOverHealing() {
-        return totalHealingDone - healingDone;
-    }
-
     public int getEffectiveHealingPercent() {
         return (int)(100*((float)healingDone/(float)totalHealingDone));
     }
@@ -44,24 +40,4 @@ public class HealingTracker {
         addTotalHealingDone(healingTracker.totalHealingDone);
     }
 
-    public void clear() {
-        healingDone = 0;
-        totalHealingDone = 0;
-    }
-
-    public int getHealingDone() {
-        return healingDone;
-    }
-
-    public void setHealingDone(int healingDone) {
-        this.healingDone = healingDone;
-    }
-
-    public int getTotalHealingDone() {
-        return totalHealingDone;
-    }
-
-    public void setTotalHealingDone(int totalHealingDone) {
-        this.totalHealingDone = totalHealingDone;
-    }
 }

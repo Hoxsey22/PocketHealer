@@ -17,7 +17,7 @@ public class SeedOfCorruption extends Mechanic {
     public SeedOfCorruption(Boss owner) {
         super("Seed of Corruption", owner.getDamage(), 0.1f, owner);
         numOfTargets = 1;
-        setAnnounce(true);
+        setAnnounce();
     }
 
     @Override
@@ -31,11 +31,6 @@ public class SeedOfCorruption extends Mechanic {
                 temp.get(i).addStatusEffect(seedOfCorruptionEffect);
             }
         }
-    }
-
-    @Override
-    public void stop() {
-        super.stop();
     }
 
     public int getNumOfTargets() {

@@ -43,7 +43,7 @@ public class Hydra extends Boss {
 
         autoAttack = new AutoAttack(this, 1.5f);
         doubleAttack = new DoubleAttack(this, 13f);
-        p1Poison = new PoisonSpit(this, 5.1f, 4, true);
+        p1Poison = new PoisonSpit(this, 5.1f, 4);
         rampage = new Rampage(this, 15, 5f);
         thunderStorm = new ThunderStorm(this, 15f);
 
@@ -69,43 +69,4 @@ public class Hydra extends Boss {
         getRewardPackage().addNewLevelText();
     }
 
-    public ThunderStorm getThunderStorm() {
-        return thunderStorm;
-    }
-
-    public void setThunderStorm(ThunderStorm thunderStorm) {
-        this.thunderStorm = thunderStorm;
-    }
-
-    public DoubleAttack getDoubleAttack() {
-        return doubleAttack;
-    }
-
-    public void setDoubleAttack(DoubleAttack doubleAttack) {
-        this.doubleAttack = doubleAttack;
-    }
-
-    public PoisonSpit getP1Poison() {
-        return p1Poison;
-    }
-
-    public void setP1Poison(PoisonSpit p1Poison) {
-        this.p1Poison = p1Poison;
-    }
-
-    public Rampage getRampage() {
-        return rampage;
-    }
-
-    public void setRampage(Rampage rampage) {
-        this.rampage = rampage;
-    }
-
-    public AutoAttack getAutoAttack() {
-        return autoAttack;
-    }
-
-    public void setAutoAttack(AutoAttack autoAttack) {
-        this.autoAttack = autoAttack;
-    }
 }

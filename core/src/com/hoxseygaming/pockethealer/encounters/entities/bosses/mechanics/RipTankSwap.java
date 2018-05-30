@@ -13,14 +13,14 @@ public class RipTankSwap extends Mechanic {
         super("Rip Tank Swap",0,8f,owner);
         setMainTank();
         setOffTank();
-        setBgMech(true);
+        setBgMech();
     }
 
     public RipTankSwap(Boss owner, float speed) {
         super("Rip Tank Swap",0,speed,owner);
         setMainTank();
         setOffTank();
-        setBgMech(true);
+        setBgMech();
     }
 
     @Override
@@ -31,7 +31,7 @@ public class RipTankSwap extends Mechanic {
         System.out.println("TANK SWAP!");
     }
 
-    public void tankSwap()  {
+    private void tankSwap()  {
         if(getOffTank().isDead() || getMainTank().isDead())   {
             if(getMainTank().isDead()) {
                 getOwner().setTarget(getOwner().getOffTank());

@@ -6,7 +6,7 @@ import com.hoxseygaming.pockethealer.Player;
 /**
  * Created by Hoxsey on 6/18/2017.
  */
-public class FlashHeal extends Heal {
+class FlashHeal extends Heal {
 
 
     public FlashHeal(Player player, Assets assets) {

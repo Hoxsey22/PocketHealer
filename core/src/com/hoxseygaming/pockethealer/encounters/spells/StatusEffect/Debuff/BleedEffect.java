@@ -22,6 +22,7 @@ public class BleedEffect extends Debuff {
                 false);
     }
 
+    @SuppressWarnings("unused")
     public BleedEffect(Boss owner, int damage) {
         super(owner,
                 1,

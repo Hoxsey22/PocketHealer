@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
  * Created by Hoxsey on 7/30/2017.
  */
 
+@SuppressWarnings({"CanBeFinal", "unused"})
 public class Button extends Actor {
 
     public Image image;
@@ -87,7 +88,7 @@ public class Button extends Actor {
             text = new Text(getName(),24, Color.BLACK, false, assets);
         //title.setFontSize(32);
         //title.setColor(Color.BLACK);
-        text.setWrap(true);
+        text.setWrap();
 
         text.setPosition(getX()+getWidth()/2-text.getWidth()/2,getY()+ getHeight()/2 - text.getHeight()/2);
     }
@@ -96,10 +97,7 @@ public class Button extends Actor {
 
         Rectangle bounds = new Rectangle((int)getX(), (int)getY(),(int)getWidth(), (int)getHeight());
 
-        if(bounds.contains((int)x, (int)y)) {
-            return true;
-        }
-        return false;
+        return bounds.contains((int) x, (int) y);
     }
 
     public void hit()   {
@@ -160,9 +158,6 @@ public class Button extends Actor {
 
     public void setParent(Table parent) {
         this.parent = parent;
-    }
-
-    public void dispose()   {
     }
 
 }
