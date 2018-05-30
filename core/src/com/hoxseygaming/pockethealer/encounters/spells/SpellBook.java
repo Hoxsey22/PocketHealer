@@ -120,7 +120,7 @@ public class SpellBook extends Group{
         return null;
     }
 
-    private boolean isSpellSelectable(Spell spell)    {
+    public boolean isSpellSelectable(Spell spell)    {
 
         switch (spell.getName())    {
             case BLESSED_GARDEN:

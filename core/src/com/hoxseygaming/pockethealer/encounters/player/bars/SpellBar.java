@@ -155,6 +155,16 @@ public class SpellBar extends Group {
         return null;
     }
 
+    public void revalidateSpellBar()    {
+        for(int i = 0; i < spells.size(); i++)   {
+            if(!owner.getSpellBook().isSpellSelectable(spells.get(i)))    {
+                spells.get(i).remove();
+                spells.remove(i);
+            }
+        }
+        System.out.println("Spells size:"+spells.size());
+    }
+
     public ArrayList<String> getData()  {
         ArrayList<String> spellData = new ArrayList<>();
         for (int i = 0; i < spells.size(); i++) {

@@ -256,6 +256,7 @@ public class TalentTree extends Group{
 
     public void reset() {
         clearTalents();
+        owner.getSpellBar().revalidateSpellBar();
         unusedPoints = totalPoints;
     }
 
