@@ -28,7 +28,7 @@ public abstract class Mechanic {
     private boolean bgMech;
 
 
-    Mechanic(String name, int damage, float speed, Boss owner)   {
+   public Mechanic(String name, int damage, float speed, Boss owner)   {
         this.owner = owner;
         this.name = name;
         this.damage = damage;
@@ -58,13 +58,13 @@ public abstract class Mechanic {
         System.out.println("Mechanic created");
     }
 
-    void pausePhase()    {
+    public void pausePhase()    {
         if(parentPhase != null) {
             parentPhase.pauseMechanics(this);
         }
     }
 
-    void resumePhase()   {
+   public void resumePhase()   {
         if(parentPhase != null) {
             this.pause();
             parentPhase.resumeMechanics();
@@ -150,11 +150,11 @@ public abstract class Mechanic {
         return name;
     }
 
-    Boss getOwner() {
+   public Boss getOwner() {
         return owner;
     }
 
-    Timer getTimer() {
+   public Timer getTimer() {
         return timer;
     }
 
@@ -162,15 +162,15 @@ public abstract class Mechanic {
         this.timer = timer;
     }
 
-    RaidMember getTarget() {
+   public RaidMember getTarget() {
         return target;
     }
 
-    void setTarget(RaidMember target) {
+   public void setTarget(RaidMember target) {
         this.target = target;
     }
 
-    int getDamage() {
+   public int getDamage() {
         return damage;
     }
 
@@ -223,7 +223,7 @@ public abstract class Mechanic {
         this.owner = owner;
     }
 
-    RaidMember getMainTank() {
+   public RaidMember getMainTank() {
         return getOwner().getMainTank();
     }
 
@@ -271,7 +271,7 @@ public abstract class Mechanic {
         this.announcementTimer = announcementTimer;
     }
 
-    Phase getParentPhase() {
+    public Phase getParentPhase() {
         return parentPhase;
     }
 
@@ -283,7 +283,7 @@ public abstract class Mechanic {
         return bgMech;
     }
 
-    void setBgMech() {
+   public void setBgMech() {
         this.bgMech = true;
     }
 }

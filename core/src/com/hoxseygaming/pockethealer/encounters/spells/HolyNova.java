@@ -34,7 +34,7 @@ public class HolyNova extends Castable {
 
         checkCriticalHealer();
         if(getOwner().getTalentTree().getTalent(TalentTree.SUPER_NOVA).isSelected())    {
-            setNumOfTargets(5);
+            setNumOfTargets(4);
         }
     }
 

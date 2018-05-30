@@ -36,6 +36,7 @@ public class Phase {
     public Phase(Boss owner, float length, Mechanic...mechanics) {
         this.owner = owner;
         this.length = length;
+        name = "";
         isActive = false;
         this.mechanics = new ArrayList<>();
         delay = 0f;
@@ -74,6 +75,7 @@ public class Phase {
     public Phase(Boss owner, int percentage, Mechanic...mechanics) {
         this.owner = owner;
         this.percentage = (float)percentage/100;
+        name = "";
         isActive = false;
         this.mechanics = new ArrayList<>();
         delay = 0f;
@@ -112,6 +114,7 @@ public class Phase {
     public Phase(Boss owner, float length, float delay, Mechanic...mechanics) {
         this.owner = owner;
         this.length = length;
+        name = "";
         isActive = false;
         this.mechanics = new ArrayList<>();
         this.delay = delay;
@@ -132,6 +135,7 @@ public class Phase {
         if(isNameChange)    {
             changeBossName();
         }
+        /*
         if(name.equalsIgnoreCase("")) {
             Timer phaseTitleTimer = new Timer();
             getOwner().getAnnouncement().setText(name);
@@ -141,7 +145,7 @@ public class Phase {
                     getOwner().getAnnouncement().setText("");
                 }
             }, 1f, 1);
-        }
+        }*/
         startMechanics();
 
         if(isTimed) {

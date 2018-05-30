@@ -212,7 +212,7 @@ public class Raid extends Group {
         Collections.sort(temp);
         int counter = 0;
         for(int i = 0; i < temp.size(); i++) {
-            if (temp.get(i).isSelected() && !temp.get(i).isDead()) {
+            if (!temp.get(i).isSelected() && !temp.get(i).isDead()) {
                 lowest.add(temp.get(i));
                 counter++;
                 if(counter == cap)    {

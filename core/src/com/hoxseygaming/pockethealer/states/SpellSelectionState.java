@@ -35,6 +35,9 @@ public class SpellSelectionState extends State {
     private Text title;
     private Text spellDescriptionName;
     private Text spellDescription;
+    private Text spellCost;
+    private Text spellType;
+    private Text spellCooldown;
     private final Button done;
     private Spell selectedSpell;
     private final SpellBook spellBook;
@@ -90,13 +93,33 @@ public class SpellSelectionState extends State {
         descriptionTable.top();
 
         spellDescriptionName = new Text("", 32, Color.BLACK, false, assets);
-        spellDescription = new Text("", 24, Color.WHITE, false, assets);
+
+        spellDescription = new Text("", 24, Color.YELLOW, false, assets);
         spellDescription.setWrap();
         spellDescription.setAlignment(Align.center);
 
+        spellCost = new Text("", 24, Color.WHITE, false, assets);
+        spellCost.setWrap();
+        spellCost.setAlignment(Align.center);
+
+        spellType = new Text("", 24, Color.WHITE, false, assets);
+        spellType.setWrap();
+        spellType.setAlignment(Align.center);
+
+        spellCooldown = new Text("", 24, Color.WHITE, false, assets);
+        spellCooldown.setWrap();
+        spellCooldown.setAlignment(Align.center);
+
+
         descriptionTable.add(spellDescriptionName.getLabel()).center();
         descriptionTable.row();
-        descriptionTable.add(spellDescription.getLabel()).width(descriptionTable.getWidth()).expandX().center();
+        descriptionTable.add(spellDescription.getLabel()).width(descriptionTable.getWidth()).expandX().center().padTop(5);
+        descriptionTable.row();
+        descriptionTable.add(spellCost.getLabel()).center();
+        descriptionTable.row();
+        descriptionTable.add(spellType.getLabel()).center();
+        descriptionTable.row();
+        descriptionTable.add(spellCooldown.getLabel()).center();
 
         stage.addActor(descriptionTable);
     }
@@ -133,7 +156,10 @@ public class SpellSelectionState extends State {
                         Spell hit = spellBook.selectSpell(coords.x, coords.y);
                         if(hit != null) {
                             spellDescriptionName.setText(hit.getName());
-                            spellDescription.setText(hit.toString());
+                            spellDescription.setText(hit.getDescription());
+                            spellCost.setText(100*(float)hit.getCost()/player.getMaxMana()+"% of base mana");
+                            spellType.setText(hit.getSpellType());
+                            spellCooldown.setText(hit.getCooldown()+" second cooldown");
                             selectedSpell = hit;
                             selectedSpell.setPosition(coords.x-selectedSpell.getWidth()/2, coords.y-selectedSpell.getHeight()/2);
                             isSpellSelected = true;

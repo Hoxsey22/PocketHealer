@@ -359,10 +359,9 @@ public abstract class Spell extends Actor {
     }
 
     public String toString()    {
-        return 100*(float)cost/owner.getMaxMana()+"% of base mana\n"+
+        return description+"\n"+100*(float)cost/owner.getMaxMana()+"% of base mana\n"+
                 spellType+"\n"+
-                cooldown+" second cooldown\n"+
-                description;
+                cooldown+" second cooldown";
     }
 
     @Override
