@@ -23,6 +23,7 @@ task debug(dependsOn: classes, type: JavaExec) {
     debug = true
 }
 
+
 task dist(type: Jar) {
     from files(sourceSets.main.output.classesDir)
     from files(sourceSets.main.output.resourcesDir)

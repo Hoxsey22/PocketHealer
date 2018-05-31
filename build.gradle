@@ -87,6 +87,19 @@ project(":desktop") {
         //freetype
         compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
     }
+
+    task deleteJar(type: Delete) {
+        delete 'libs/jars/pockethealer.jar'
+    }
+
+    task createJar(type: Copy) {
+        from('build/intermediates/bundles/release/')
+        into('libs/jars/')
+        include('classes.jar')
+        rename('classes.jar', 'pockethealer.jar')
+    }
+
+    createJar.dependsOn(deleteJar, build)
 }
 
 tasks.eclipse.doLast {

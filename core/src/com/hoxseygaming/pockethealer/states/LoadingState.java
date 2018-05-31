@@ -22,6 +22,7 @@ import com.hoxseygaming.pockethealer.PocketHealer;
 public class LoadingState extends State {
 
     private final Image logo;
+    private final Image libgdxLogo;
     private float progress;
     @SuppressWarnings("CanBeFinal")
     private ShapeRenderer shapeRenderer;
@@ -38,6 +39,10 @@ public class LoadingState extends State {
         //logo.setSize(PocketHealer.WIDTH,PocketHealer.HEIGHT);
         logo.setBounds(0,PocketHealer.HEIGHT/2 - 360/2,480, 360);
 
+        libgdxLogo = new Image(new Texture("logo/libgdx_logo.png"));
+        libgdxLogo.setBounds(PocketHealer.WIDTH/2 - 300/2,logo.getY() - 80, 300, 50 );
+
+
         createFont();
 
         progress = 0f;
@@ -51,6 +56,7 @@ public class LoadingState extends State {
         stage = new Stage(viewport);
 
         stage.addActor(logo);
+        stage.addActor(libgdxLogo);
         stage.addActor(loadingText);
 
         assets.load();
