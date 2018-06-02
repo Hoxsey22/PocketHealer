@@ -3,6 +3,7 @@ package com.hoxseygaming.pockethealer;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.utils.Base64Coder;
 import com.badlogic.gdx.utils.Json;
 import com.hoxseygaming.pockethealer.Player.PlayerData;
 
@@ -18,7 +19,8 @@ public class GameData {
 
         if(prefs.contains("save"))  {
             Json json = new Json();
-            player.setData(json.fromJson(PlayerData.class, prefs.getString("save")));
+            String parsedData =  Base64Coder.decodeString(prefs.getString("save"));
+            player.setData(json.fromJson(PlayerData.class, parsedData));
             System.out.println("save point found!");
             return true;
         }
@@ -34,7 +36,7 @@ public class GameData {
         json.toJson(player.getData());
         System.out.println(json.prettyPrint(player.getData()));
 
-        prefs.putString("save", json.toJson(player.getData()));
+        prefs.putString("save", Base64Coder.encodeString(json.toJson(player.getData())));
         prefs.flush();
 
         System.out.println("save successful!");
@@ -46,7 +48,7 @@ public class GameData {
         if(prefs.contains("audio_settings"))  {
             System.out.println("save point found!");
             Json json = new Json();
-            AudioManager.setData(json.fromJson(AudioManager.AudioData.class, prefs.getString("audio_settings")));
+            AudioManager.setData(json.fromJson(AudioManager.AudioData.class, Base64Coder.decodeString(prefs.getString("audio_settings"))));
             return true;
         }
         else {
@@ -60,7 +62,7 @@ public class GameData {
         json.toJson(AudioManager.getData());
         System.out.println(json.prettyPrint(AudioManager.getData()));
 
-        prefs.putString("audio_settings", json.toJson(AudioManager.getData()));
+        prefs.putString("audio_settings", Base64Coder.encodeString(json.toJson(AudioManager.getData())));
         prefs.flush();
 
         System.out.println("save successful!");

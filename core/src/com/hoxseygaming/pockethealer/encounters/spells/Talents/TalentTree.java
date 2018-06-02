@@ -77,7 +77,7 @@ public class TalentTree extends Group{
                 getAssets().getTexture(getAssets().superNovaIcon), assets));
         talents.add(new Talent(this, 11,HOLY_FOCUS,"Divine Hymn gives 15% mana back and Light Well will be available",talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().divineHymnIcon), assets));
-        talents.add(new Talent(this, 12, MASTERING_HEALING,"All heal now have a 40% chance of increase it output based on missing health. In addition, Heal will now heal a second ally unit.",
+        talents.add(new Talent(this, 12, MASTERING_HEALING,"All heals now have a 60% chance of increasing its output based on missing health. In addition, Heal will now heal a second ally unit.",
                 talents.get(talents.size()-1), getAssets().getTexture(getAssets().innerFocusIcon), assets));
 
         for(int i = 0; i < talents.size(); i++)   {
