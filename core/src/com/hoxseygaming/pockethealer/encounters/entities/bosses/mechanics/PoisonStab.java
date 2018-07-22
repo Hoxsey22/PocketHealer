@@ -15,7 +15,7 @@ public class PoisonStab extends Mechanic {
     private int numOfTargets;
 
     public PoisonStab(Boss owner) {
-        super("Poison Stab", owner.getDamage(), 18f, owner);
+        super("Poison Stab", owner.getDamage(), 19f, owner);
         numOfTargets = 1;
         setAnnounce();
     }

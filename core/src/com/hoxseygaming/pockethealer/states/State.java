@@ -11,7 +11,7 @@ import com.hoxseygaming.pockethealer.PocketHealer;
  * Created by Hoxsey on 5/27/2017.
  */
 abstract class State extends ApplicationAdapter {
-    private final OrthographicCamera cam;
+    public final OrthographicCamera cam;
     private final Vector3 mouse;
     final com.hoxseygaming.pockethealer.states.StateManager sm;
     final StretchViewport viewport;

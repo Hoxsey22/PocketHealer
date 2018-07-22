@@ -15,7 +15,7 @@ public class BackStab extends Mechanic {
     private int numOfTargets;
 
     public BackStab(Boss owner) {
-        super("Back Stab", owner.getDamage()*3, 15f, owner);
+        super("Back Stab", owner.getDamage()*3, 17f, owner);
         numOfTargets = 1;
         setAnnounce();
     }

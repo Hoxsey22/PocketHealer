@@ -5,11 +5,29 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.hoxseygaming.pockethealer.Assets;
 
+import java.io.Serializable;
+
 /**
  * Created by Hoxsey on 9/2/2017.
  */
 
 public class Talent extends Actor{
+
+    public static class TalentData implements Serializable {
+
+        public String name;
+        public String description;
+
+        public TalentData() {
+            name = "";
+            description = "";
+        }
+
+        public void setData(String name, String description){
+            this.name = ""+name+"";
+            this.description = ""+description+"";
+        }
+    }
 
     private int id;
     private TalentTree talentTree;
@@ -19,6 +37,7 @@ public class Talent extends Actor{
     private Talent preReq;
     private Texture image;
     private Assets assets;
+    public TalentData talentData;
 
     public Talent(TalentTree talentTree, int id, String name, String description, Talent pair, Texture image, Assets assets) {
         this.talentTree = talentTree;
@@ -30,6 +49,7 @@ public class Talent extends Actor{
         preReq = pair;
         totalPointRequirement = 0;
         this.assets = assets;
+        talentData = new TalentData();
     }
 
     public Talent(TalentTree talentTree, int id, String name, String description, Texture image, Assets assets) {
@@ -41,6 +61,7 @@ public class Talent extends Actor{
         isSelected = false;
         totalPointRequirement = 0;
         this.assets = assets;
+        talentData = new TalentData();
     }
 
     public int getId() {
@@ -117,6 +138,11 @@ public class Talent extends Actor{
 
     public void setAssets(Assets assets) {
         this.assets = assets;
+    }
+
+    public TalentData getTalentData() {
+        talentData.setData(""+getName(), ""+getDescription());
+        return talentData;
     }
 
     @Override

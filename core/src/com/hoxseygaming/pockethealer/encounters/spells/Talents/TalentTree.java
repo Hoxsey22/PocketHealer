@@ -1,8 +1,12 @@
 package com.hoxseygaming.pockethealer.encounters.spells.Talents;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonWriter;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 
@@ -42,6 +46,7 @@ public class TalentTree extends Group{
         assets = owner.getAssets();
         createTalents();
         placeTalentPosition();
+        toJSON();
     }
 
     public TalentTree(Player player, int unusedPoints, int totalPoints) {
@@ -52,6 +57,20 @@ public class TalentTree extends Group{
         assets = owner.getAssets();
         createTalents();
         placeTalentPosition();
+        toJSON();
+    }
+
+    public void toJSON()    {
+        Json json = new Json(JsonWriter.OutputType.javascript);
+        FileHandle file = Gdx.files.external("talents.json");
+
+        ArrayList<Talent.TalentData> talentData = new ArrayList<>();
+        for(int i = 0; i < talents.size(); i++)   {
+            talentData.add(talents.get(i).getTalentData());
+        }
+
+        file.writeString(json.toJson(talentData),false);
+
     }
 
     private void createTalents()  {

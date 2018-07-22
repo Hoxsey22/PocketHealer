@@ -1,8 +1,12 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.JsonWriter;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
@@ -75,10 +79,25 @@ public class SpellBook extends Group{
         spells.add(new DivineHymn(owner, assets));
         spells.add(new DivineProtection(owner, assets));
         spells.add(new BlessedGarden(owner, assets));
+
         // add spell to group
         for(int i = 0; i < spells.size(); i++)   {
             addActor(spells.get(i));
         }
+        toJSON();
+    }
+
+    public void toJSON()    {
+        Json json = new Json(JsonWriter.OutputType.javascript);
+        FileHandle file = Gdx.files.external("spells.json");
+
+        ArrayList<Spell.SpellData> spellData = new ArrayList<>();
+        for(int i = 0; i < spells.size(); i++)   {
+            spellData.add(spells.get(i).getSpellData());
+        }
+
+        file.writeString(json.toJson(spellData),false);
+
     }
 
     private void placeSpellPosition()   {

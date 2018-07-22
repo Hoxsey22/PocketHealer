@@ -119,6 +119,9 @@ public class EncounterState extends State {
         stage.addActor(castBar);
         //
         boss.start();
+
+        // remove after picture
+        //player.setMana(400);
         System.out.println("STAGE - > Width:"+stage.getWidth()+" Height:"+stage.getHeight());
 
     }

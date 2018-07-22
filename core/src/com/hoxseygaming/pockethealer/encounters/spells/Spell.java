@@ -15,6 +15,7 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.Barrier
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.RenewingNovaEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -23,8 +24,29 @@ import java.util.ArrayList;
 public abstract class Spell extends Actor {
 
 
-    public enum EffectType  {
-        HEAL,HEALALL,HEALMULTIPLE,SHIELD,HEALOVERTIME,DAMAGEHEAL, LBHEAL,RNHEAL
+    public static class SpellData implements Serializable {
+
+        public String name;
+        public String description;
+        public String cost;
+        public String spelltype;
+        public String cooldown;
+
+        public SpellData() {
+            name = "";
+            description = "";
+            cost = "";
+            spelltype = "";
+            cooldown = "";
+        }
+
+        public void setData(String name, String description, String cost, String spelltype, String cooldown){
+            this.name = ""+name+"";
+            this.description = ""+description+"";
+            this.cost = ""+cost+"";
+            this.spelltype = ""+spelltype+"";
+            this.cooldown = ""+cooldown+"";
+        }
     }
 
     private Player owner;
@@ -51,6 +73,7 @@ public abstract class Spell extends Actor {
     private int levelRequirement;
     private int numOfTargets;
     private ArrayList<RaidMember> targets;
+    private SpellData spellData;
 //
     /**
      * @param player
@@ -63,7 +86,7 @@ public abstract class Spell extends Actor {
      */
     protected Spell(Player player, String name, String description, int levelRequirement, int output,
                     float costPercentage, float cooldown, Assets assets) {
-        setBounds(SpellData.positions[0].x,SpellData.positions[0].y,80,80);
+        setBounds(0,0,80,80);
         owner = player;
         this.assets = assets;
         this.name = name;
@@ -82,6 +105,7 @@ public abstract class Spell extends Actor {
         cdPercentage = 1f;
         MIN_CRITICAL = 15;
         criticalChance = new CriticalChance(MIN_CRITICAL);
+        spellData = new SpellData();
         setupText();
     }
     public abstract void castSpell();
@@ -456,6 +480,11 @@ public abstract class Spell extends Actor {
 
     protected void setTargets(ArrayList<RaidMember> targets) {
         this.targets = targets;
+    }
+
+    public SpellData getSpellData() {
+        spellData.setData(""+getName(), ""+getDescription(), ""+getCost()+" Mana",""+getSpellType(), ""+getCooldown()+"s CD");
+        return spellData;
     }
 
 
