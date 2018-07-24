@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.TextureLoader;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -203,150 +204,155 @@ public class Assets {
     }
 
     private void loadImages() {
-        manager.load(dpsIcon, Texture.class);
-        manager.load(healerIcon, Texture.class);
-        manager.load(tankIcon, Texture.class);
+        TextureLoader.TextureParameter param = new TextureLoader.TextureParameter();
+        param.minFilter = Texture.TextureFilter.MipMapLinearNearest;
+        param.genMipMaps = true;
 
-        manager.load(healIcon, Texture.class);
-        manager.load(deathIcon, Texture.class);
-        manager.load(renewIcon, Texture.class);
-        manager.load(barrierIcon, Texture.class);
-        manager.load(flashIcon, Texture.class);
+        manager.load(dpsIcon, Texture.class, param);
+        manager.load(healerIcon, Texture.class, param);
+        manager.load(tankIcon, Texture.class, param);
 
-        manager.load(blackBar, Texture.class);
-        manager.load(whiteBar, Texture.class);
-        manager.load(raidFrameIdle, Texture.class);
-        manager.load(raidFrameSelected, Texture.class);
-        manager.load(redBar, Texture.class);
-        manager.load(redOutlineBar, Texture.class);
-        manager.load(greenBar, Texture.class);
-        manager.load(redFill, Texture.class);
-        manager.load(yellowFill, Texture.class);
-        manager.load(greenFill, Texture.class);
-        manager.load(purpleFill, Texture.class);
+        manager.load(healIcon, Texture.class, param);
+        manager.load(deathIcon, Texture.class, param);
+        manager.load(renewIcon, Texture.class, param);
+        manager.load(barrierIcon, Texture.class, param);
+        manager.load(flashIcon, Texture.class, param);
+
+        manager.load(blackBar, Texture.class, param);
+        manager.load(whiteBar, Texture.class, param);
+        manager.load(raidFrameIdle, Texture.class, param);
+        manager.load(raidFrameSelected, Texture.class, param);
+        manager.load(redBar, Texture.class, param);
+        manager.load(redOutlineBar, Texture.class, param);
+        manager.load(greenBar, Texture.class, param);
+        manager.load(redFill, Texture.class, param);
+        manager.load(yellowFill, Texture.class, param);
+        manager.load(greenFill, Texture.class, param);
+        manager.load(purpleFill, Texture.class, param);
 
 
-        manager.load(hpManaBar, Texture.class);
-        manager.load(manaFill, Texture.class);
+        manager.load(hpManaBar, Texture.class, param);
+        manager.load(manaFill, Texture.class, param);
 
-        manager.load(castBar, Texture.class);
-        manager.load(cooldownBar, Texture.class);
+        manager.load(castBar, Texture.class, param);
+        manager.load(cooldownBar, Texture.class, param);
 
-        manager.load(hoggerName, Texture.class);
+        manager.load(hoggerName, Texture.class, param);
 
-        manager.load(battleBg1, Texture.class);
-        manager.load(battleBg2, Texture.class);
-        manager.load(battleBg3, Texture.class);
+        manager.load(battleBg1, Texture.class, param);
+        manager.load(battleBg2, Texture.class, param);
+        manager.load(battleBg3, Texture.class, param);
 
-        manager.load(continuousRenewalIcon, Texture.class);
-        manager.load(lifeboomIcon, Texture.class);
-        manager.load(unstableMagicIcon, Texture.class);
-        manager.load(burstHealerIcon, Texture.class);
-        manager.load(innerFocusIcon, Texture.class);
-        manager.load(workTogetherIcon, Texture.class);
-        manager.load(selectedTalent, Texture.class);
-        manager.load(talentWindow, Texture.class);
-        manager.load(diseaseIcon, Texture.class);
-        manager.load(spellBar, Texture.class);
+        manager.load(continuousRenewalIcon, Texture.class, param);
+        manager.load(lifeboomIcon, Texture.class, param);
+        manager.load(unstableMagicIcon, Texture.class, param);
+        manager.load(burstHealerIcon, Texture.class, param);
+        manager.load(innerFocusIcon, Texture.class, param);
+        manager.load(workTogetherIcon, Texture.class, param);
+        manager.load(selectedTalent, Texture.class, param);
+        manager.load(talentWindow, Texture.class, param);
+        manager.load(diseaseIcon, Texture.class, param);
+        manager.load(spellBar, Texture.class, param);
 
-        manager.load(talentBg, Texture.class);
-        manager.load(doneButton, Texture.class);
-        manager.load(toolTipFrame, Texture.class);
-        manager.load(talentStateBg, Texture.class);
+        manager.load(talentBg, Texture.class, param);
+        manager.load(doneButton, Texture.class, param);
+        manager.load(toolTipFrame, Texture.class, param);
+        manager.load(talentStateBg, Texture.class, param);
 
-        manager.load(miniBossIcon, Texture.class);
-        manager.load(bossIcon, Texture.class);
+        manager.load(miniBossIcon, Texture.class, param);
+        manager.load(bossIcon, Texture.class, param);
 
-        manager.load(mmBG, Texture.class);
-        manager.load(mmBG2, Texture.class);
-        manager.load(mmBG3, Texture.class);
-        manager.load(mmBG4, Texture.class);
+        manager.load(mmBG, Texture.class, param);
+        manager.load(mmBG2, Texture.class, param);
+        manager.load(mmBG3, Texture.class, param);
+        manager.load(mmBG4, Texture.class, param);
 
-        manager.load(mmPlayButtonIdle, Texture.class);
-        manager.load(mmPlayButtonHover, Texture.class);
-        manager.load(mmContinueButtonIdle, Texture.class);
-        manager.load(mmContinueButtonHover, Texture.class);
+        manager.load(mmPlayButtonIdle, Texture.class, param);
+        manager.load(mmPlayButtonHover, Texture.class, param);
+        manager.load(mmContinueButtonIdle, Texture.class, param);
+        manager.load(mmContinueButtonHover, Texture.class, param);
 
-        manager.load(bossLocation, Texture.class);
-        manager.load(exitButton, Texture.class);
-        manager.load(infoFrame, Texture.class);
-        manager.load(mapBg1, Texture.class);
-        manager.load(spellButton, Texture.class);
-        manager.load(talentButton, Texture.class);
-        manager.load(infoButton, Texture.class);
-        manager.load(startButton, Texture.class);
-        manager.load(selectedLevel, Texture.class);
-        manager.load(bleedIcon, Texture.class);
-        manager.load(wampusCatName, Texture.class);
+        manager.load(bossLocation, Texture.class, param);
+        manager.load(exitButton, Texture.class, param);
+        manager.load(infoFrame, Texture.class, param);
+        manager.load(mapBg1, Texture.class, param);
+        manager.load(spellButton, Texture.class, param);
+        manager.load(talentButton, Texture.class, param);
+        manager.load(infoButton, Texture.class, param);
+        manager.load(startButton, Texture.class, param);
+        manager.load(selectedLevel, Texture.class, param);
+        manager.load(bleedIcon, Texture.class, param);
+        manager.load(wampusCatName, Texture.class, param);
 
-        manager.load(disableBG, Texture.class);
-        manager.load(endGameFrame, Texture.class);
-        manager.load(finishButton, Texture.class);
-        manager.load(resetButton, Texture.class);
-        manager.load(leaveButton, Texture.class);
-        manager.load(youWin, Texture.class);
-        manager.load(youWiped, Texture.class);
+        manager.load(disableBG, Texture.class, param);
+        manager.load(endGameFrame, Texture.class, param);
+        manager.load(finishButton, Texture.class, param);
+        manager.load(resetButton, Texture.class, param);
+        manager.load(leaveButton, Texture.class, param);
+        manager.load(youWin, Texture.class, param);
+        manager.load(youWiped, Texture.class, param);
 
-        manager.load(mapInnerFrame, Texture.class);
-        manager.load(mapOuterFrame, Texture.class);
+        manager.load(mapInnerFrame, Texture.class, param);
+        manager.load(mapOuterFrame, Texture.class, param);
 
-        manager.load(button, Texture.class);
-        manager.load(smallButton, Texture.class);
+        manager.load(button, Texture.class, param);
+        manager.load(smallButton, Texture.class, param);
 
-        manager.load(title, Texture.class);
+        manager.load(title, Texture.class, param);
 
-        manager.load(poisonIcon, Texture.class);
-        manager.load(diseaseIcon, Texture.class);
+        manager.load(poisonIcon, Texture.class, param);
+        manager.load(diseaseIcon, Texture.class, param);
 
-        manager.load(biteIcon, Texture.class);
-        manager.load(boilIcon, Texture.class);
+        manager.load(biteIcon, Texture.class, param);
+        manager.load(boilIcon, Texture.class, param);
 
-        manager.load(smiteIcon, Texture.class);
-        manager.load(holyNovaIcon, Texture.class);
-        manager.load(greaterHealerIcon, Texture.class);
-        manager.load(lightWellIcon, Texture.class);
-        manager.load(divineHymnIcon, Texture.class);
+        manager.load(smiteIcon, Texture.class, param);
+        manager.load(holyNovaIcon, Texture.class, param);
+        manager.load(greaterHealerIcon, Texture.class, param);
+        manager.load(lightWellIcon, Texture.class, param);
+        manager.load(divineHymnIcon, Texture.class, param);
 
-        manager.load(renewingNovaIcon, Texture.class);
-        manager.load(disciplineIcon, Texture.class);
-        manager.load(criticalHealer2Icon, Texture.class);
-        manager.load(resurgenceIcon, Texture.class);
-        manager.load(aodIcon, Texture.class);
-        manager.load(superNovaIcon, Texture.class);
-        manager.load(idleLine, Texture.class);
-        manager.load(selectedLine, Texture.class);
-        manager.load(shadowIcon, Texture.class);
-        manager.load(talentCalculatorFrame, Texture.class);
-        manager.load(buttonHighlight, Texture.class);
-        manager.load(blankIcon, Texture.class);
-        manager.load(arrowPointer, Texture.class);
-        manager.load(defeatedBossIcon, Texture.class);
-        manager.load(spellBG, Texture.class);
+        manager.load(renewingNovaIcon, Texture.class, param);
+        manager.load(disciplineIcon, Texture.class, param);
+        manager.load(criticalHealer2Icon, Texture.class, param);
+        manager.load(resurgenceIcon, Texture.class, param);
+        manager.load(aodIcon, Texture.class, param);
+        manager.load(superNovaIcon, Texture.class, param);
+        manager.load(idleLine, Texture.class, param);
+        manager.load(selectedLine, Texture.class, param);
+        manager.load(shadowIcon, Texture.class, param);
+        manager.load(talentCalculatorFrame, Texture.class, param);
+        manager.load(buttonHighlight, Texture.class, param);
+        manager.load(blankIcon, Texture.class, param);
+        
+        manager.load(arrowPointer, Texture.class, param);
+        manager.load(defeatedBossIcon, Texture.class, param);
+        manager.load(spellBG, Texture.class, param);
 
-        manager.load(map1, Texture.class);
-        manager.load(map2, Texture.class);
-        manager.load(map3, Texture.class);
-        manager.load(pageRight, Texture.class);
-        manager.load(pageLeft, Texture.class);
-        manager.load(prayerOfMendingIcon, Texture.class);
-        manager.load(dispelIcon, Texture.class);
-        manager.load(burnIcon, Texture.class);
-        manager.load(agonyIcon, Texture.class);
-        manager.load(corruptionIcon, Texture.class);
-        manager.load(seedOfCorruptionIcon, Texture.class);
+        manager.load(map1, Texture.class, param);
+        manager.load(map2, Texture.class, param);
+        manager.load(map3, Texture.class, param);
+        manager.load(pageRight, Texture.class, param);
+        manager.load(pageLeft, Texture.class, param);
+        manager.load(prayerOfMendingIcon, Texture.class, param);
+        manager.load(dispelIcon, Texture.class, param);
+        manager.load(burnIcon, Texture.class, param);
+        manager.load(agonyIcon, Texture.class, param);
+        manager.load(corruptionIcon, Texture.class, param);
+        manager.load(seedOfCorruptionIcon, Texture.class, param);
 
-        manager.load(healingAbsorbIcon, Texture.class);
-        manager.load(webIcon, Texture.class);
-        manager.load(swarmingShadowIcon, Texture.class);
-        manager.load(venomIcon, Texture.class);
-        manager.load(penanceIcon, Texture.class);
-        manager.load(divineProtectionIcon, Texture.class);
-        manager.load(blessedGardenIcon, Texture.class);
-        manager.load(stoneSkinIcon, Texture.class);
+        manager.load(healingAbsorbIcon, Texture.class, param);
+        manager.load(webIcon, Texture.class, param);
+        manager.load(swarmingShadowIcon, Texture.class, param);
+        manager.load(venomIcon, Texture.class, param);
+        manager.load(penanceIcon, Texture.class, param);
+        manager.load(divineProtectionIcon, Texture.class, param);
+        manager.load(blessedGardenIcon, Texture.class, param);
+        manager.load(stoneSkinIcon, Texture.class, param);
 
-        manager.load(ripIcon, Texture.class);
-        manager.load(igniteIcon, Texture.class);
-        manager.load(sunderIcon, Texture.class);
+        manager.load(ripIcon, Texture.class, param);
+        manager.load(igniteIcon, Texture.class, param);
+        manager.load(sunderIcon, Texture.class, param);
 
     }
 
