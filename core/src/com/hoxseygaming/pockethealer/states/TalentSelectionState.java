@@ -56,10 +56,10 @@ public class TalentSelectionState extends State {
         //pointTracker.setPosition(talentTree.getRight()-talentTree.getLeft()-pointTracker.getWidth()/2, talentTree.getTop() + 20 );
 
         select = new Button("RESET", false, assets);
-        select.setPosition(talentTree.getLeft(), 50);
+        select.setPosition(talentTree.getLeft(), 25);
 
         done = new Button("DONE", false, assets);
-        done.setPosition(talentTree.getRight() - done.getWidth(), 50);
+        done.setPosition(talentTree.getRight() - done.getWidth(), 25);
 
         talentTreeTitle = new Text("Talent Tree", 45, Color.SKY, true, assets);
         talentTreeTitle.setName("Talent Tree Title");
@@ -85,7 +85,7 @@ public class TalentSelectionState extends State {
         lowerTable.setName("Lower Table");
 
         title  = new Text("", 24, Color.BLACK, false, assets);
-        body  = new Text("", 16, Color.SKY, false, assets);
+        body  = new Text("", 16, Color.BLACK, false, assets);
         body.setWrap();
 
         title.setWrap();

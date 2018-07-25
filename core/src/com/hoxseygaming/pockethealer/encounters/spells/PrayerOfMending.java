@@ -18,7 +18,7 @@ public class PrayerOfMending extends Castable {
                 "A ward is placed on an ally unit that heals the ally unit when damaged and will jump to a new target.",
                 4,
                 1.5f,
-                35,
+                25,
                 2f,
                 8,
                 assets.getSound(assets.healSFX),

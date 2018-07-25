@@ -44,7 +44,7 @@ public class Barrier extends InstantCast {
         target.applyShield(getOutput());
         target.addStatusEffect(new BarrierEffect(getOwner()));
 
-        if(getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
+        if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
             applyAtonement(target);
         }
     }

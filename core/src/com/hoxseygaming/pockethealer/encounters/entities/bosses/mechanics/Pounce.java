@@ -27,7 +27,7 @@ public class Pounce extends Mechanic {
 
     @Override
     public void action() {
-        ArrayList<RaidMember> temp  = getRaid().getRandomRaidMember(3);
+        ArrayList<RaidMember> temp  = getRaid().getRandomRaidMember(numOfTargets);
 
         for (int i = 0; i < temp.size(); i++)   {
             if(temp.get(i) != null) {

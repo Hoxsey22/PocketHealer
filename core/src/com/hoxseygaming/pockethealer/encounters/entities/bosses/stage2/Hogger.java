@@ -34,7 +34,7 @@ public class Hogger extends Boss {
     @Override
     public void create() {
         super.create();
-        setDamage(20);
+        setDamage(17);
 
         autoAttack = new AutoAttack(this, 2f);
         tankSwap = new TankSwap(this, 8f);
@@ -50,17 +50,17 @@ public class Hogger extends Boss {
     public void update() {
         if(getHpPercent() < 0.75 && getHpPercent() > 0.51 && phase == 0)    {
             cleave.setNumOfTargets(3);
-            cleave.setSpeed(cleave.getSpeed()-0.3f);
+            cleave.setSpeed(cleave.getSpeed()-0.2f);
             phase = 1;
         }
         else if(getHpPercent() < 0.50 && getHpPercent() > 0.26 && phase == 1)    {
-            cleave.setNumOfTargets(4);
-            cleave.setSpeed(cleave.getSpeed()-0.3f);
+            cleave.setNumOfTargets(3);
+            cleave.setSpeed(cleave.getSpeed()-0.2f);
             phase = 2;
         }
         else if(getHpPercent() < 0.25 && phase == 2)    {
-            cleave.setNumOfTargets(5);
-            cleave.setSpeed(cleave.getSpeed()-0.3f);
+            cleave.setNumOfTargets(4);
+            cleave.setSpeed(cleave.getSpeed()-0.2f);
             phase = 3;
         }
     }

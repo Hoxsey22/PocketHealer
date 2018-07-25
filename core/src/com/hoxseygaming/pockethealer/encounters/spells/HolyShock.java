@@ -42,6 +42,11 @@ public class HolyShock extends InstantCast {
             target.receiveHealing(getOutput(), getCriticalChance().isCritical());
         }
 
+        if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
+            applyAtonement(target);
+        }
+
+
         getOwner().setHolyShockIncrease(true);
 
     }

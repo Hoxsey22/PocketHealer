@@ -34,7 +34,7 @@ public class Wolf extends Boss {
         setDamage(15);
 
         pounce = new Pounce(this, 2);
-        pounce.setNumOfTargets(2);
+        pounce.setNumOfTargets(3);
         pounce.setSpeed(15f);
         pounce.setAnnounce();
 

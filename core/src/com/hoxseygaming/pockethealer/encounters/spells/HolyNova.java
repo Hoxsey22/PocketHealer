@@ -34,6 +34,7 @@ public class HolyNova extends Castable {
         resetDefault();
 
         checkCriticalHealer();
+        checkHasteBuild();
         if(getOwner().getTalentTree().getTalent(TalentTree.SUPER_NOVA).isSelected())    {
             setNumOfTargets(4);
         }
@@ -49,11 +50,6 @@ public class HolyNova extends Castable {
                 applyCriticalHealerII(getTargets().get(i),getOutput());
             }
             applyCriticalHealerII(target, getOutput());
-
-            for(int i = 0; i < getTargets().size(); i++) {
-                applyAtonement(getTargets().get(i));
-            }
-            applyAtonement(target);
         }
         else if(getOwner().getTalentTree().getTalent(TalentTree.RENEWING_NOVA).isSelected())  {
             for(int i = 0; i < getTargets().size(); i++) {
@@ -75,6 +71,13 @@ public class HolyNova extends Castable {
             for(int i = 0; i < getTargets().size(); i++) {
                 getTargets().get(i).receiveHealing(getOutput(), getCriticalChance().isCritical());
             }
+        }
+
+        if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected()) {
+            for(int i = 0; i < getTargets().size(); i++) {
+                applyAtonement(getTargets().get(i));
+            }
+            applyAtonement(target);
         }
 
 
