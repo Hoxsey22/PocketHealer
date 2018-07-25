@@ -25,6 +25,7 @@ public class Heal extends Castable {
                 0.5f,
                 assets.getSound(assets.healSFX),
                 assets);
+        setDescription("Heals an ally unit for "+getOutput()+"hp.");
         setImage(getAssets().getTexture(getAssets().healIcon));
     }
 

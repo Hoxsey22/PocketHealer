@@ -57,7 +57,7 @@ public class TalentTree extends Group{
         assets = owner.getAssets();
         createTalents();
         placeTalentPosition();
-        toJSON();
+        //toJSON();
     }
 
     public void toJSON()    {
@@ -74,29 +74,28 @@ public class TalentTree extends Group{
     }
 
     private void createTalents()  {
-        talents.add(new Talent(this, 1, LIFEBOOM, "After Renew expires, half of renew's healing will heal the ally unit.", getAssets().getTexture(getAssets().lifeboomIcon), assets));
-        talents.add(new Talent(this, 2, HEALER_CHANNEL, "Healers in the raid will no longer deal damage, but will instead heal.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 1, LIFEBOOM, "When a Renew expires, the ally unit will receive a burst of healing based on 50% of Renew’s total healing done.", getAssets().getTexture(getAssets().lifeboomIcon), assets));
+        talents.add(new Talent(this, 2, HEALER_CHANNEL, "All healers in the raid will no longer deal damage, but will instead heal.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().workTogetherIcon), assets));
-        talents.add(new Talent(this, 3, RENEWING_NOVA, "Holy Nova now put a Renew on each target that was healed.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 3, RENEWING_NOVA, "Holy Nova will now place a Renew on each of the ally units healed by Holy Nova.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().renewingNovaIcon), assets));
-        talents.add(new Talent(this, 4, AOD,"Renew now does more healing and faster ticks and will be able to apply additional Renew.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 4, AOD,"Renew now does more healing, the time between ticks are faster and ally units will now be able to receive one additional Renew.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().aodIcon), assets));
 
-        talents.add(new Talent(this, 5,CRITICAL_HEALER,"Increase the critical strike chance of all spells.",
+        talents.add(new Talent(this, 5,CRITICAL_HEALER,"The critical chance of spells will now be 35% instead of 15%.",
                 getAssets().getTexture(getAssets().smiteIcon), assets));
-        talents.add(new Talent(this, 6, BARRIER_MASTER, "The cooldown of Barrier is now 1.0 second and the cost is reduced to 15.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 6, BARRIER_MASTER, "Barrier cooldown will now be 1 second and the cost will be reduced by 15.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().tankIcon), assets));
-        talents.add(new Talent(this, 7, DISCIPLINE, "Barrier absorbs more damage. Smite does more healing and damage. Also when Smite is critical," +
-                        " it will place a small barrier on the target.",talents.get(talents.size()-1), getAssets().getTexture(getAssets().disciplineIcon), assets));
-        talents.add(new Talent(this, 8,CRITICAL_HEALER_II, "Any spells that are critical will place a barrier for 50% of the amount healed. Smite's barrier increase as well. Smite will now apply atonement.",
+        talents.add(new Talent(this, 7, DISCIPLINE, "Barrier will now absorb more damage, Smite does more damage and healing and when Smite is a critical, it will place a small barrier on the ally unit healed.",talents.get(talents.size()-1), getAssets().getTexture(getAssets().disciplineIcon), assets));
+        talents.add(new Talent(this, 8,CRITICAL_HEALER_II, "All spells that are critical will now place a barrier for 50% of the heal and Barriers created from Smite will now be stronger.",
                 talents.get(talents.size()-1), getAssets().getTexture(getAssets().criticalHealer2Icon), assets));
 
-        talents.add(new Talent(this, 9,HASTE_BUILD,"All spell are 0.5 seconds faster.", getAssets().getTexture(getAssets().flashIcon), assets));
-        talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova and Prayer of Mending now heal one additional target.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 9,HASTE_BUILD,"All castable spells are now 0.5 second faster.", getAssets().getTexture(getAssets().flashIcon), assets));
+        talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova will now heals 4 ally units.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().superNovaIcon), assets));
-        talents.add(new Talent(this, 11,HOLY_FOCUS,"Divine Hymn gives 15% mana back and Light Well will be available",talents.get(talents.size()-1),
+        talents.add(new Talent(this, 11,HOLY_FOCUS,"Divine Hymn and Light Well will now be available and Divine Hymn will now restores 15% mana back.",talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().divineHymnIcon), assets));
-        talents.add(new Talent(this, 12, MASTERING_HEALING,"All heals now have a 60% chance of increasing its output based on missing health. In addition, Heal will now heal a second ally unit.",
+        talents.add(new Talent(this, 12, MASTERING_HEALING,"All healing spells will now have a 60% chance to increase the heal base on the ally unit’s missing health and Heal will now heal an additional ally unit.",
                 talents.get(talents.size()-1), getAssets().getTexture(getAssets().innerFocusIcon), assets));
 
         for(int i = 0; i < talents.size(); i++)   {

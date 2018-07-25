@@ -27,6 +27,7 @@ public class Lightwell extends Periodical {
                 1f,
                 assets.getSound(assets.hotSFX),
                 assets);
+        setDescription("Heals the most injured ally unit for "+getOutput()+"hp every second for 60 seconds.");
         setImage(this.getAssets().getTexture(getAssets().lightWellIcon));
     }
 

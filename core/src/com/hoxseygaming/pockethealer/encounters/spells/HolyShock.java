@@ -25,7 +25,7 @@ public class HolyShock extends InstantCast {
                 12f,
                 assets.getSound(assets.healSFX),
                 assets);
-
+        setDescription("Heals an ally unit instantly for "+getOutput()+"hp and grants the user a buff that will increase output of the next Heal by 200%.");
         setImage(getAssets().getTexture(getAssets().criticalHealer2Icon));
     }
 

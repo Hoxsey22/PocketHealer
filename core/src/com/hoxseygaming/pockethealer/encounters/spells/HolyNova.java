@@ -24,6 +24,7 @@ public class HolyNova extends Castable {
                 1f,
                 assets.getSound(assets.hotSFX),
                 assets);
+        setDescription("Heals the targeted ally unit and 4 other injured ally unit for "+getOutput()+"hp.");
         setImage(getAssets().getTexture(getAssets().holyNovaIcon));
         setNumOfTargets(MIN_NUM_OF_TARGETS);
     }

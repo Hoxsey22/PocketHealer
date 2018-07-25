@@ -22,6 +22,7 @@ public class BlessedGarden extends Castable {
                 100f,
                 assets.getSound(assets.healSFX),
                 assets);
+        setDescription("Grants all ally units a buff that will increase all healing received by 40% for 15 seconds.");
         setImage(getAssets().getTexture(getAssets().blessedGardenIcon));
     }
 

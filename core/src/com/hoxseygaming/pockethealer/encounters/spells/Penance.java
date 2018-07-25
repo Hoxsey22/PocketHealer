@@ -21,6 +21,7 @@ public class Penance extends ChannelCast {
                 3f,
                 8f,
                 assets);
+        setDescription("Heals an ally unit for "+getOutput()+"hp 4 times.");
         setImage(getAssets().getTexture(getAssets().penanceIcon));
     }
 

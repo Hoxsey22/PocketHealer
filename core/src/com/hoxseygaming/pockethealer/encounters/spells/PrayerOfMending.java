@@ -23,6 +23,7 @@ public class PrayerOfMending extends Castable {
                 8,
                 assets.getSound(assets.healSFX),
                 assets);
+        setDescription("Grants an ally unit a buff that will heal the ally unit with this buff for "+getOutput()+"hp and jumps to the most injured ally unit and does this 5 times.");
         setImage(getAssets().getTexture(getAssets().prayerOfMendingIcon));
         setNumOfTargets(5);
     }

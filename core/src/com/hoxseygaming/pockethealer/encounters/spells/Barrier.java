@@ -21,6 +21,7 @@ public class Barrier extends InstantCast {
                 4f,
                 assets.getSound(assets.barrierSFX),
                 assets);
+        setDescription("Grants an ally unit a barrier that prevents "+getOutput()+" damage.");
         setImage(this.getAssets().getTexture(getAssets().barrierIcon));
         checkTalents();
     }

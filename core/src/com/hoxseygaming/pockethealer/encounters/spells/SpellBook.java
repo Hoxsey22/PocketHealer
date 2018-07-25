@@ -84,7 +84,7 @@ public class SpellBook extends Group{
         for(int i = 0; i < spells.size(); i++)   {
             addActor(spells.get(i));
         }
-        toJSON();
+        //toJSON();
     }
 
     public void toJSON()    {
