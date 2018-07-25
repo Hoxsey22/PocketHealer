@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Cleave;
@@ -21,8 +22,8 @@ public class Hogger extends Boss {
     private int phase;
 
     public Hogger(Assets assets) {
-        super("Hogger","Hogger, the predecessor of the bandit leader, finds out that his replacement has been defeated. So Hogger has stepped back in his role" +
-                " and is ready to extract his revenge. He carries a mighty axe that allows him to cleave so be careful.\n ",
+        super("Hogger",
+                Strings.HOGGER_DESCRIPTION,
                 210,
                 new Raid(12,assets),
                 assets);

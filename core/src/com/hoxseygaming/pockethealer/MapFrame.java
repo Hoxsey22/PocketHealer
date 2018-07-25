@@ -120,17 +120,15 @@ public class MapFrame extends Group {
         setTitle(new Text("", 32, Color.YELLOW, false, getAssets()));
         getTitle().setWrap();
         getTitle().setAlignment(Align.center);
-        getTitle().debug();
 
-        getTable().add(getTitle().getLabel()).expandX().fillY();
+
+        getTable().add(getTitle().getLabel()).expandX().fillY().padBottom(5);
         getTable().row();
 
-        setBody(new Text("",24, Color.WHITE, false, getAssets()));
+        setBody(new Text("",16, Color.WHITE, false, getAssets()));
         getBody().setWrap();
 
-        getBody().debug();
-
-        getTable().add(getBody().getLabel()).width(getTable().getWidth()).expandX().expandY();
+        getTable().add(getBody().getLabel()).width(getTable().getWidth()).expandX().expandY().top().padLeft(5);
 
         addActor(getTable());
 

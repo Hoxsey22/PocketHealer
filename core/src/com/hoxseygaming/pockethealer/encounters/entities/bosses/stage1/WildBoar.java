@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BullCharge;
@@ -18,8 +19,7 @@ public class WildBoar extends Boss {
     private AutoAttack autoAttack;
 
     public WildBoar(Assets assets) {
-        super("Wild Boar","A wild boar is rampaging through the town and hurting innocent " +
-                "people. It needs to be stopped.",
+        super("Wild Boar", Strings.BOAR_DESCRIPTION,
                 120,
                 new Raid(6,assets),
                 assets);

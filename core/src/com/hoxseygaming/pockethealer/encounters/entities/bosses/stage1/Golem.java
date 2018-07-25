@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Earthquake;
@@ -18,8 +19,11 @@ public class Golem extends Boss {
     private Earthquake earthquake;
 
     public Golem(Assets assets) {
-        super("Golem","The sorcerer is at it again and has summoned a Golem to stop anyone " +
-                "from reaching her. The Golem is very dangerous and is a hard hitter and will erupt earth around it.", 150, new Raid(6,assets), assets);
+        super("Golem",
+                Strings.GOLEM_DESCRIPTION,
+                150,
+                new Raid(6,assets),
+                assets);
         setId(4);
         create();
     }

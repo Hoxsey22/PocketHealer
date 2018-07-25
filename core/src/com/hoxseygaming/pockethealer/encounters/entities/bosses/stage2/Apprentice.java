@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Fireball;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
@@ -22,8 +23,8 @@ public class Apprentice extends Boss {
     private Pyroblast pyroblast;
 
     public Apprentice(Assets assets) {
-        super("Apprentice"," The Sorcerer is cornered with no where to go, but her apprentice steps in so his master can escape. He very " +
-                        "skilled with fire and corruption spells.",
+        super("Apprentice",
+                Strings.APPRENTICE_DESCRIPTION,
                 240,
                 new Raid(12,assets),
                 assets);

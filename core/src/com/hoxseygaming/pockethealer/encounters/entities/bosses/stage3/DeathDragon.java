@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Agony;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
@@ -46,8 +47,7 @@ public class DeathDragon extends Boss {
 
     public DeathDragon(Assets assets) {
         super("Resurrected Sorcerer",
-                "Somehow the Sorcerer has been resurrected! Now stronger than ever, but something is different... She has a " +
-                        "dark force around her. She is overflowing with power. She must be stopped!",
+                Strings.RESURRECTED_SORCERER_DESCRIPTION,
                 600,
                 new Raid(2,3,7, assets),
                 assets);

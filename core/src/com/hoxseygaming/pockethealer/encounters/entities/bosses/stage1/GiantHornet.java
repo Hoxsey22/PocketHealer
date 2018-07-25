@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
@@ -19,8 +20,9 @@ public class GiantHornet extends Boss {
     private Sting sting;
 
     public GiantHornet(Assets assets) {
-        super("Giant Hornet","A sorcerer has put a spell on a hornet causing it to grow into " +
-                "a giant. It needs to be stopped before someone gets hurt. Make sure to bring a cute for poison.", 125,
+        super("Giant Hornet",
+                Strings.GIANT_HORNET_DESCRIPTION,
+                125,
                 new Raid(6, assets),
                 assets);
         setId(3);

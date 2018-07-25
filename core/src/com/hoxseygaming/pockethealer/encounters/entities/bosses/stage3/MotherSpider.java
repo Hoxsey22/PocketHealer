@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.FeedingTime;
@@ -23,9 +24,8 @@ public class MotherSpider extends Boss {
     private FeedingTime feedingTime;
 
     public MotherSpider(Assets assets) {
-        super("Mother Spider","Something is still wrong and a huge dark force is coming from the castle. Though the creepy cave, a giant spider, the mother of all spider is blocking the way to the castle. " +
-                        "She does a ferocious leap and injects them with venom. She loves to eat her victims, but only if they are in " +
-                        "her web. Be careful!",
+        super("Mother Spider",
+                Strings.MOTHER_SPIDER_DESCRIPTION,
                 255,
                 new Raid(12,assets),
                 assets);

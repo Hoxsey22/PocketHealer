@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Agony;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BlanketCorruption;
@@ -26,8 +27,8 @@ public class Sorcerer extends Boss {
     private FireBreath fireBreath;
 
     public Sorcerer(Assets assets) {
-        super("Sorcerer","The time has come, the Sorcerer is finally taking a stand. The Sorcerer is very similar to his " +
-                "apprentice, but has some more tricks up her sleeves.",
+        super("Sorcerer",
+                Strings.SORCERER_DESCRIPTION,
                 240,
                 new Raid(12,assets),
                 assets);

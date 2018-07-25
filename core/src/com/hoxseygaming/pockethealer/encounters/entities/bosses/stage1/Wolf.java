@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
@@ -19,8 +20,8 @@ public class Wolf extends Boss {
     private AutoAttack autoAttack;
 
     public Wolf(Assets assets) {
-        super("Nax's Wolf","A tiger is eating all the live stock and harming some people that " +
-                "try to stop it. Something else is causing this animal to act so erratic. ",
+        super("Nax's Wolf",
+                Strings.NAXS_WOLF_DESCRIPTION,
                 150,
                 new Raid(6,assets),
                 assets);

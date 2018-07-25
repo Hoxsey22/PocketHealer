@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BloodLink;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Cleave;
@@ -26,8 +27,7 @@ public class BloodQueen extends Boss {
 
     public BloodQueen(Assets assets) {
         super("Blood Queen",
-                "The queen of all vampires has come to stop you in your tracks. She likes to bite her victims " +
-                        "help her army of vampires, but can be a double edge sword. Watch her shadow spells they can be devastating.",
+                Strings.BLOOD_QUEEN_DESCRIPTION,
                 600,
                 new Raid(12,assets),
                 assets);

@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BackStab;
@@ -24,9 +25,8 @@ public class Nax extends Boss {
     private boolean isEnrage;
 
     public Nax(Assets assets) {
-        super("Nax, The Bandit Leader","The sorcerer is partnering up the bandit Leader and is having" +
-                " him steal precious materials for her. If not stopped, the Sorcerer will have all she needs " +
-                        "for her plan. Be careful, this bandit is very sneaky and will stab you in the back.",
+        super("Nax, The Bandit Leader",
+                Strings.NAX_DESCRIPTION,
                 180,
                 new Raid(9, assets),
                 assets);

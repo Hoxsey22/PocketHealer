@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.BullCharge;
@@ -24,8 +25,8 @@ public class Proctor extends Boss {
     private TankSwap tankSwap;
 
     public Proctor(Assets assets) {
-        super("Proctor","A long dirt trail leading to the Sorcerer's hideout is being protected by the Proctor." +
-                " A giant monster with heavy hand and with running speeds hard to dodge. He also has a fire breath that can be very devastating.",
+        super("Proctor",
+                Strings.PROTECTOR_DESCRIPTION,
                 210,
                 new Raid(12, assets),
                 assets);

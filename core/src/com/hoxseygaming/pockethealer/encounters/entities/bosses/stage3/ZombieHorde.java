@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.ZombieAttack;
@@ -19,8 +20,8 @@ public class ZombieHorde extends Boss {
     private ZombieBite zombieBite;
 
     public ZombieHorde(Assets assets) {
-        super("Zombie Horde"," After the cave, a horde of zombies are drifting around. The only through is through them. Luckily, " +
-                "each zombie defeated is one less to deal with. Be careful for their bites, if not treated, that person becomes part of the horde.",
+        super("Zombie Horde",
+                Strings.HORDE_OF_ZOMBIE_DESCRIPTION,
                 240,
                 new Raid(12,assets),
                 assets);

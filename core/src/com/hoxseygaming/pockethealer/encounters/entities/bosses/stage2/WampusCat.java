@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
@@ -19,8 +20,8 @@ public class WampusCat extends Boss {
     private AutoAttack autoAttack;
 
     public WampusCat(Assets assets) {
-        super("Wampus Cat","The Sorcerer has given an evil woman the power of the Wampus Cat. " +
-                "Her Cat form is fierce and not to be taken lightly, but her human form is nothing to worry about.",
+        super("Wampus Cat",
+                Strings.WAMPUS_CAT_DESCRIPTION,
                 210 ,
                 new Raid(9, assets),
                 assets);

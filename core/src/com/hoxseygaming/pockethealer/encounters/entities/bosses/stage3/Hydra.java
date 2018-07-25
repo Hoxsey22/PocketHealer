@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.Strings;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.AutoAttack;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.DoubleAttack;
@@ -26,9 +27,8 @@ public class Hydra extends Boss {
 
 
     public Hydra(Assets assets) {
-        super("Ion, The Hydra", "A monstrous hydra is blocking the way to the top of castle. " +
-                "This hydra has been altered for mass destruction with electricity. This beast can also go on a blind rage. Luckily," +
-                        " the injured shaman in the monster's room is going to try to help with a strong spell, Stone Skin.",
+        super("Ion, The Hydra",
+                Strings.ION_DESCRIPTION,
                 230,
                 new Raid(2,3,7, assets),
                 assets);
