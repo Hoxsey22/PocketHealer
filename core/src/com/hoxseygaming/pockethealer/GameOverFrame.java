@@ -116,7 +116,10 @@ public class GameOverFrame extends Group {
         body.setText(boss.getRewardPackage().getReward());
         table.add(body.getLabel()).colspan(2).expandY();
         table.row();
-        table.add(okButton).bottom().padBottom(10);
+        if(boss.getRewardPackage().getImages().size() > 1)
+            table.add(okButton).bottom().colspan(2).padBottom(10);
+        else
+            table.add(okButton).bottom().padBottom(10);
     }
 
     public void showLose() {

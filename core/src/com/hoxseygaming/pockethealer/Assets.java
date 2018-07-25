@@ -382,11 +382,11 @@ public class Assets {
         }
 
         // boss icon position
-        bossIconPosition.add(new Vector2(50,270)); // wild boar
-        bossIconPosition.add(new Vector2(85,47)); // tiger
-        bossIconPosition.add(new Vector2(300,70)); // giant bee
-        bossIconPosition.add(new Vector2(190,240)); // golem
-        bossIconPosition.add(new Vector2(350,250)); // bandit leader
+        bossIconPosition.add(new Vector2(100,270)); // wild boar
+        bossIconPosition.add(new Vector2(50,30)); // giant hornet
+        bossIconPosition.add(new Vector2(235,150)); // golem
+        bossIconPosition.add(new Vector2(330,30)); // nax's wolf
+        bossIconPosition.add(new Vector2(330,270)); // nax
 
         bossIconPosition.add(new Vector2(40,60)); // hogger
         bossIconPosition.add(new Vector2(60,230)); // wampus

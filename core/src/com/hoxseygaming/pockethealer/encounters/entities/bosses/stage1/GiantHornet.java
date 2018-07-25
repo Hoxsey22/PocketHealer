@@ -23,7 +23,7 @@ public class GiantHornet extends Boss {
                 "a giant. It needs to be stopped before someone gets hurt. Make sure to bring a cute for poison.", 125,
                 new Raid(6, assets),
                 assets);
-        setId(4);
+        setId(3);
         create();
     }
 

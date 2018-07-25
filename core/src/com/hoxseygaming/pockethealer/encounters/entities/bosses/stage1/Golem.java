@@ -20,7 +20,7 @@ public class Golem extends Boss {
     public Golem(Assets assets) {
         super("Golem","The sorcerer is at it again and has summoned a Golem to stop anyone " +
                 "from reaching her. The Golem is very dangerous and is a hard hitter and will erupt earth around it.", 150, new Raid(6,assets), assets);
-        setId(5);
+        setId(4);
         create();
     }
 
@@ -42,8 +42,7 @@ public class Golem extends Boss {
         if(getPlayer().getLevel() >= getId()) {
             getRewardPackage().addNewLevelText();
             getRewardPackage().addNewSpellText();
-            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().barrierIcon)));
-            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().greaterHealerIcon)));
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().flashIcon)));
         }
     }
 

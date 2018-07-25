@@ -1,7 +1,6 @@
 package com.hoxseygaming.pockethealer;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -10,10 +9,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.BanditLeader;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Nax;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.GiantHornet;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Golem;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Tiger;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Wolf;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.WildBoar;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Apprentice;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Hogger;
@@ -162,17 +161,17 @@ public class MapFrame extends Group {
             case 2:
                 add(new WildBoar(getAssets()));
                 break;
-            case 3:
-                add(new Tiger(getAssets()));
+            case 5:
+                add(new Wolf(getAssets()));
                 break;
-            case 4:
+            case 3:
                 add(new GiantHornet(getAssets()));
                 break;
-            case 5:
+            case 4:
                 add(new Golem(getAssets()));
                 break;
             case 6:
-                add(new BanditLeader(getAssets()));
+                add(new Nax(getAssets()));
                 break;
             case 7:
                 add(new Hogger(getAssets()));

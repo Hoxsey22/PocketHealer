@@ -17,7 +17,7 @@ public class Dispel extends InstantCast {
     public Dispel(Player player, Assets assets) {
         super(player, "Dispel",
                 "Dispels all dispellable debuffs from the targeted ally unit. ",
-                4,
+                3,
                 1,
                 0,
                 1.5f,

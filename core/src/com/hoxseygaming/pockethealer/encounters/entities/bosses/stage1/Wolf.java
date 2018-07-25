@@ -13,18 +13,18 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Bleed
  * Created by Hoxsey on 8/17/2017.
  */
 
-public class Tiger extends Boss {
+public class Wolf extends Boss {
 
     private Pounce pounce;
     private AutoAttack autoAttack;
 
-    public Tiger(Assets assets) {
-        super("Tiger","A tiger is eating all the live stock and harming some people that " +
+    public Wolf(Assets assets) {
+        super("Nax's Wolf","A tiger is eating all the live stock and harming some people that " +
                 "try to stop it. Something else is causing this animal to act so erratic. ",
                 150,
                 new Raid(6,assets),
                 assets);
-        setId(3);
+        setId(5);
         create();
     }
 
@@ -50,7 +50,8 @@ public class Tiger extends Boss {
         if(getPlayer().getLevel() >= getId()) {
             getRewardPackage().addNewLevelText();
             getRewardPackage().addNewSpellText();
-            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().dispelIcon)));
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().greaterHealerIcon)));
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().barrierIcon)));
         }
     }
 

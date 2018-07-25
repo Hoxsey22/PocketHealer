@@ -46,7 +46,7 @@ public class WildBoar extends Boss {
             getRewardPackage().addNewLevelText();
             getRewardPackage().addNewTalentText();
             getRewardPackage().addNewSpellText();
-            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().flashIcon)));
+            getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().dispelIcon)));
         }
     }
 

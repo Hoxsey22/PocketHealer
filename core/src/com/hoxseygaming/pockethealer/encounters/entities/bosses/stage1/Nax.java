@@ -16,15 +16,15 @@ import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.Poiso
  * Created by Hoxsey on 8/20/2017.
  */
 
-public class BanditLeader extends Boss {
+public class Nax extends Boss {
 
     private AutoAttack autoAttack;
     private BackStab backStab;
     private PoisonStab poisonStab;
     private boolean isEnrage;
 
-    public BanditLeader(Assets assets) {
-        super("Bandit Leader","The sorcerer is partnering up the bandit Leader and is having" +
+    public Nax(Assets assets) {
+        super("Nax, The Bandit Leader","The sorcerer is partnering up the bandit Leader and is having" +
                 " him steal precious materials for her. If not stopped, the Sorcerer will have all she needs " +
                         "for her plan. Be careful, this bandit is very sneaky and will stab you in the back.",
                 180,
