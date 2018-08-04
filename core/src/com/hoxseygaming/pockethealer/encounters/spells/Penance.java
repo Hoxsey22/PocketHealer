@@ -48,7 +48,7 @@ public class Penance extends ChannelCast {
             if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
                 for (int i = 0; i < getOwner().getRaid().getRaidMembers().size(); i++) {
                     if(getOwner().getRaid().getRaidMembers().get(i).getStatusEffectList().contains("Atonement Effect")) {
-                        getOwner().getRaid().getRaidMembers().get(i).receiveHealing((int)(newOutput*0.6f), getCriticalChance().isCritical());
+                        getOwner().getRaid().getRaidMembers().get(i).receiveHealing((int)(newOutput*0.4f), getCriticalChance().isCritical());
                     }
                 }
             }

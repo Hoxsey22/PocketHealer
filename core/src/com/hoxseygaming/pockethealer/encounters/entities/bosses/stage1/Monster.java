@@ -17,7 +17,7 @@ public class Monster extends Boss {
     private AutoAttack autoAttack;
 
     public Monster(Assets assets) {
-        super("Monster","", 30, new Raid(3,assets), assets);
+        super("Monster","", 30, new Raid(1,1,1, assets), assets);
         setId(1);
         create();
     }

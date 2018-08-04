@@ -24,6 +24,7 @@ public class Bite extends Mechanic {
     @Override
     public void action() {
         ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
-        random.get(0).takeDamage(getDamage());
+        if(random.get(0) != null)
+            random.get(0).takeDamage(getDamage());
     }
 }
