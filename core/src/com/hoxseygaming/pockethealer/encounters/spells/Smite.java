@@ -37,7 +37,7 @@ public class Smite extends Castable {
         checkCriticalHealer();
 
         if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
-            setOutput(getOutput()+2);
+            setOutput(getOutput()+5);
         }
         checkHasteBuild();
     }

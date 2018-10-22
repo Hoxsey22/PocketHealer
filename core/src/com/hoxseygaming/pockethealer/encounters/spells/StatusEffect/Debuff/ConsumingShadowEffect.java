@@ -43,7 +43,7 @@ public class ConsumingShadowEffect extends Debuff {
 
     @Override
     public int modifyOutput(int output) {
-        return output + (int)((float)output*0.7f);
+        return output + (int)((float)output*0.9f);
     }
 
 }

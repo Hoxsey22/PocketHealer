@@ -32,6 +32,7 @@ public class Assets {
     // --Commented out by Inspection (5/29/2018 8:13 PM):public String gameFont = "fonts/chela_one_regular.ttf";
 
     public final String gameFont16 = "fonts/game_font_small.fnt";
+    public final String gameFont18 = "fonts/game_font_18.fnt";
     public final String gameFont24 = "fonts/game_font_medium.fnt";
     public final String gameFont32 = "fonts/game_font_large.fnt";
     public final String gameFont45 = "fonts/game_font_xlarge.fnt";
@@ -97,6 +98,7 @@ public class Assets {
     public final String exitButton = "map_state/exit_button.png";
     private final String bossLocation = "map_state/boss_location.png";
     public final String infoFrame = "map_state/info_frame.png";
+    public final String infoFrame2 = "map_state/info_frame_2.png";
     private final String spellButton = "map_state/spells_button.png";
     private final String talentButton = "map_state/talent_button.png";
     private final String infoButton = "map_state/info_button.png";
@@ -275,6 +277,7 @@ public class Assets {
         manager.load(bossLocation, Texture.class, param);
         manager.load(exitButton, Texture.class, param);
         manager.load(infoFrame, Texture.class, param);
+        manager.load(infoFrame2, Texture.class, param);
         manager.load(mapBg1, Texture.class, param);
         manager.load(spellButton, Texture.class, param);
         manager.load(talentButton, Texture.class, param);
@@ -412,6 +415,7 @@ public class Assets {
         manager.load(mapDescription, BitmapFont.class);
 
         manager.load(gameFont16,BitmapFont.class);
+        manager.load(gameFont18,BitmapFont.class);
         manager.load(gameFont24,BitmapFont.class);
         manager.load(gameFont32,BitmapFont.class);
         manager.load(gameFont45,BitmapFont.class);

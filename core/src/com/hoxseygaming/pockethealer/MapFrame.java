@@ -37,7 +37,7 @@ public class MapFrame extends Group {
     private Image innerFrame;
     private Map map;
     private TextButton infoButton;
-    private InfoFrame infoFrame;
+    private DebuffInfoFrame infoFrame;
     private ArrayList<BossIcon> bossIconsList;
     private Table table;
     private Text title;
@@ -65,7 +65,7 @@ public class MapFrame extends Group {
 
         bossIconsList = new ArrayList<>();
 
-        setInfoFrame(new InfoFrame(getAssets()));
+        setInfoFrame(new DebuffInfoFrame(getAssets()));
 
         setInfoButton(new TextButton("INFO", getAssets().getSkin(), "small_button"));
         createInfoButtonListener();
@@ -125,10 +125,10 @@ public class MapFrame extends Group {
         getTable().add(getTitle().getLabel()).expandX().fillY().padBottom(5);
         getTable().row();
 
-        setBody(new Text("",16, Color.WHITE, false, getAssets()));
-        getBody().setWrap();
+        body = new Text("",18, Color.WHITE, false, getAssets());
+        body.setWrap();
 
-        getTable().add(getBody().getLabel()).width(getTable().getWidth()).expandX().expandY().top().padLeft(5);
+        getTable().add(body.getLabel()).width(getTable().getWidth()).expandX().expandY().top().padLeft(5);
 
         addActor(getTable());
 
@@ -146,7 +146,9 @@ public class MapFrame extends Group {
     }
 
     public void setBody(String newBody)  {
-        getBody().setText(newBody);
+        body.setFontSize(18);
+        body.setText(newBody);
+
     }
 
     private Map getMap() {
@@ -249,11 +251,11 @@ public class MapFrame extends Group {
         this.infoButton = infoButton;
     }
 
-    public InfoFrame getInfoFrame() {
+    public DebuffInfoFrame getInfoFrame() {
         return infoFrame;
     }
 
-    private void setInfoFrame(InfoFrame infoFrame) {
+    private void setInfoFrame(DebuffInfoFrame infoFrame) {
         this.infoFrame = infoFrame;
     }
 
@@ -281,7 +283,7 @@ public class MapFrame extends Group {
         this.title = title;
     }
 
-    private Text getBody() {
+    public Text getBody() {
         return body;
     }
 

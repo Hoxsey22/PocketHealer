@@ -16,7 +16,7 @@ public class BarrierEffect extends Buff {
                 "Barrier",
                 "An absorb shield.",
                 owner.getAssets().getTexture(owner.getAssets().barrierIcon),
-                45f,
+                555f,
                 0.1f,
                 0
         );
@@ -24,7 +24,6 @@ public class BarrierEffect extends Buff {
 
     @Override
     public void startConditions() {
-
     }
 
     @Override

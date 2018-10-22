@@ -22,7 +22,7 @@ public class BlanketCorruption extends Mechanic{
     @Override
     public void action() {
         for(int i = 0; i < getOwner().getEnemies().getRaidMembers().size(); i++)   {
-            CorruptionEffect corruptionEffect = new CorruptionEffect(getOwner());
+            CorruptionEffect corruptionEffect = new CorruptionEffect(getOwner(), true);
             corruptionEffect.setModValue(5);
 
             getOwner().getEnemies().getRaidMembers().get(i).addStatusEffect(corruptionEffect);

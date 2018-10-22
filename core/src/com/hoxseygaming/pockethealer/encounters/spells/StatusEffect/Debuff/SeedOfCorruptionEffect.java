@@ -56,8 +56,13 @@ public class SeedOfCorruptionEffect extends Debuff {
 
     @Override
     public void applyEffect() {
-        getTarget().takeDamage(getModValue());
-        setModValue(getModValue()+2);
+        if(!getTarget().isDead()) {
+            getTarget().takeDamage(getModValue());
+            setModValue(getModValue() + 1);
+        }
+        else    {
+            remove();
+        }
     }
 
     @Override

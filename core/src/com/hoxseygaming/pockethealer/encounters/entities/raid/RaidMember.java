@@ -35,6 +35,8 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         floatingTextManager = new FloatingTextManager(this, getAssets());
         statusEffects = new StatusEffectList(this);
         setHp(getMaxHp());
+        setShield(0);
+        setHealingAbsorb(0);
         setDead(false);
     }
 
@@ -104,8 +106,13 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         return (float)getHp()/(float)getMaxHp();
     }
 
-    private float getFullHealthPercent() {
-        return (float)(getHp()-getHealingAbsorb())/(float)getMaxHp();
+    public float getFullHealthPercent() {
+
+       if(getHp()-getHealingAbsorb() <= 0)
+           return 0;
+       else {
+           return (float)(getHp()-getHealingAbsorb())/(float)getMaxHp();
+       }
     }
 
     @Override

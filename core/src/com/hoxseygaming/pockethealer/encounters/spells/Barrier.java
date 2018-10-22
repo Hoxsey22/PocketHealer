@@ -16,7 +16,7 @@ public class Barrier extends InstantCast {
         super(player,"Barrier", "Places a barrier around the ally unit, absorbing incoming damage.",
                 6,
                 1,
-                60,
+                50,
                 2.3f,
                 4f,
                 assets.getSound(assets.barrierSFX),
@@ -32,10 +32,10 @@ public class Barrier extends InstantCast {
 
         if(getOwner().getTalentTree().getTalent(TalentTree.BARRIER_MASTER).isSelected())    {
             setCooldown(1f);
-            setCost(25);
+            setCost(15);
         }
         if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
-            setOutput(80);
+            setOutput(70);
         }
     }
 

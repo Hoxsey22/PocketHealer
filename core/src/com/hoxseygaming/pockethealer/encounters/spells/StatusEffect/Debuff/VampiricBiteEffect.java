@@ -21,7 +21,7 @@ public class VampiricBiteEffect extends Debuff {
                 5,
                 "Vampiric Bite Effect",
                 "Vampiric Bite will do moderate damage and will increase the target's damage " +
-                        " by 1000%.",
+                        " by 10 times and only increases healer's damage by 3 times.",
                 owner.getAssets().getTexture(owner.getAssets().biteIcon),
                 600f,
                 5f,
@@ -36,12 +36,14 @@ public class VampiricBiteEffect extends Debuff {
             public void run() {
                 ArrayList<RaidMember> debuffless = getOwner().getEnemies().getDebuffLessRaidMembers(getName());
                 if(debuffless.size() > 0) {
+
                     RaidMember newTarget = getOwner().getEnemies().getRandomRaidMember(1, debuffless).get(0);
                     newTarget.addStatusEffect(new VampiricBiteEffect(getOwner()));
+
                 }
         //30f
             }
-        },30f,30f);
+        },90f,90f);
     }
 
     @Override
@@ -62,7 +64,13 @@ public class VampiricBiteEffect extends Debuff {
 
     @Override
     public void startConditions() {
-        getTarget().setDamage(getTarget().getDamage() * 10);
+        if(getTarget().getRole().equalsIgnoreCase("Healer"))    {
+            getTarget().setDamage(getTarget().getDamage() * 3);
+        }
+        else {
+            getTarget().setDamage(getTarget().getDamage() * 10);
+        }
+
         startPassTimer();
     }
 

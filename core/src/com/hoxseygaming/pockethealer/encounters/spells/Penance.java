@@ -14,7 +14,7 @@ public class Penance extends ChannelCast {
     public Penance(Player player, Assets assets) {
         super(player, "Penance",
                 "Throws a volley of holy light at an ally unit.",
-                7,
+                8,
                 2.5f,
                 4,
                 15,

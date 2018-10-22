@@ -19,7 +19,21 @@ public class CorruptionEffect extends Debuff {
                 400f,
                 3f,
                 10,
-                false);
+                true);
+    }
+
+    /**
+     */
+    public CorruptionEffect(Boss owner, boolean dispellable) {
+        super(owner,
+                4,
+                "Corruption Effect",
+                "Corruption will cause the target to take a moderate amount of damage over time.",
+                owner.getAssets().getTexture(owner.getAssets().corruptionIcon),
+                400f,
+                3f,
+                10,
+                dispellable);
     }
 
     @Override

@@ -40,4 +40,9 @@ public class HealingTracker {
         addTotalHealingDone(healingTracker.totalHealingDone);
     }
 
+    public void printHealingDone()  {
+        System.out.println("Healing Done: "+healingDone);
+        System.out.println("Total Healing Done: "+totalHealingDone);
+    }
+
 }

@@ -74,6 +74,8 @@ public class Text extends Actor{
             switch (fontSize) {
                 case 16:
                     return assets.getFont(assets.gameFontB16);
+                case 18:
+                    return assets.getFont(assets.gameFont18);
                 case 24:
                     return assets.getFont(assets.gameFontB24);
                 case 32:
@@ -86,6 +88,8 @@ public class Text extends Actor{
             switch (fontSize) {
                 case 16:
                     return assets.getFont(assets.gameFont16);
+                case 18:
+                    return assets.getFont(assets.gameFont18);
                 case 24:
                     return assets.getFont(assets.gameFont24);
                 case 32:

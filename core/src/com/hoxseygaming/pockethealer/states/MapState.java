@@ -15,8 +15,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.BossIcon;
+import com.hoxseygaming.pockethealer.InfoFrame;
 import com.hoxseygaming.pockethealer.MapFrame;
 import com.hoxseygaming.pockethealer.Player;
+import com.hoxseygaming.pockethealer.Strings;
 
 /**
  * Created by Hoxsey on 7/11/2017.
@@ -139,6 +141,23 @@ public class MapState extends State {
         }
         loadPage();
         createBossIconListeners();
+
+        System.out.println("Player Level:"+player.getLevel());
+        InfoFrame infoFrame;
+        switch (player.getLevel()) {
+            case 2:
+                infoFrame = new InfoFrame("", Strings.STAGE_1_INTRO, assets);
+                stage.addActor(infoFrame);
+                break;
+            case 7:
+                infoFrame = new InfoFrame("", Strings.STAGE_2_INTRO, assets);
+                stage.addActor(infoFrame);
+                break;
+            case 12:
+                infoFrame = new InfoFrame("", Strings.STAGE_3_INTRO, assets);
+                stage.addActor(infoFrame);
+                break;
+        }
     }
 
     private void loadPage()  {
@@ -216,7 +235,7 @@ public class MapState extends State {
             buttonTable.add(spellButton).padLeft(5).padTop(5);
         }
 
-        if(player.getTalentTree().getUnusedPoints() > 1)    {
+        if(player.getTalentTree().getUnusedPoints() > 0)    {
             talentButton.setChecked(true);
         } else {
             talentButton.setChecked(false);
@@ -286,6 +305,7 @@ public class MapState extends State {
 
                     mapFrame.setTitle(selectedLevel.getName());
                     mapFrame.setBody(selectedLevel.getDescription());
+                    System.out.println("map body size: "+mapFrame.getBody().getFontSize());
                     mapFrame.getInfoFrame().addInfo(selectedLevel.boss);
                     mapFrame.disableInfoButton();
                     mapFrame.showInfoButton();

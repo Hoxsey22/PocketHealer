@@ -8,7 +8,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Cleave
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.ConsumingShadow;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.SwarmingShadow;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics.VampiricBite;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.ConsumingShadowEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.VampiricBiteEffect;
@@ -23,7 +22,6 @@ public class BloodQueen extends Boss {
     private Cleave cleave;
     private SwarmingShadow swarmingShadow;
     private ConsumingShadow consumingShadow;
-    private VampiricBite vampiricBite;
 
     public BloodQueen(Assets assets) {
         super("Blood Queen",
@@ -44,15 +42,22 @@ public class BloodQueen extends Boss {
         cleave = new Cleave(this, 4f);
         cleave.setNumOfTargets(4);
         cleave.setDamage(35);
-        vampiricBite = new VampiricBite(this);
-        consumingShadow = new ConsumingShadow(this, 8f);
+        consumingShadow = new ConsumingShadow(this, 5f);
 
-        swarmingShadow = new SwarmingShadow(this, 10, 8f);
+        swarmingShadow = new SwarmingShadow(this, 12, 8f);
 
-        getPhaseManager().addPhase(new Phase(this, 70f, bloodLink, cleave, vampiricBite));
-        getPhaseManager().addPhase(new Phase(this, 32f, consumingShadow,swarmingShadow));
+        getPhaseManager().addPhase(new Phase(this, 70f, bloodLink, cleave));
+        getPhaseManager().addPhase(new Phase(this, 6f, consumingShadow));
+        getPhaseManager().addPhase(new Phase(this, 34f, swarmingShadow));
 
         loadDebuff(new VampiricBiteEffect(this), new ConsumingShadowEffect(this));
+    }
+
+    @Override
+    public void start() {
+        super.start();
+        getEnemies().getRaidMembers().get(7).addStatusEffect(new VampiricBiteEffect(this));
+        System.out.println("Phase Manager - number of phases: "+getPhaseManager().getPhases().size()+".");
     }
 
     @Override

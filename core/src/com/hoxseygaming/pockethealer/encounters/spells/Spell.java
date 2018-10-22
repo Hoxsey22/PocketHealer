@@ -354,7 +354,7 @@ public abstract class Spell extends Actor {
     public void applyMasteringHealing(RaidMember target, int output) {
         if(CriticalDice.roll(60, 100,1)) {
             int newOutput = output;
-            float missingHpPercentage = 1f - target.getHealthPercent();
+            float missingHpPercentage = 1f - target.getFullHealthPercent();
 
             newOutput = newOutput + (int) ((float) newOutput * missingHpPercentage);
 
@@ -410,8 +410,8 @@ public abstract class Spell extends Actor {
         return MIN_COST;
     }
 
-    public void setMIN_COST(int MIN_COST) {
-        this.MIN_COST = MIN_COST;
+    public void setMIN_COST(float costPercentage) {
+        this.MIN_COST = (int)((float)owner.getMaxMana()*(costPercentage/100f));
     }
 
     public float getCooldown() {

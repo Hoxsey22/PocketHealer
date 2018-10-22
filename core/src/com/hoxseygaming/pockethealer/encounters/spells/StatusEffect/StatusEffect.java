@@ -93,6 +93,20 @@ public abstract class StatusEffect{
         }
     }
 
+    public void pause() {
+        if(timer != null)   {
+            timer.stop();
+            isActive = false;
+        }
+    }
+
+    public void resume()    {
+        if(timer != null)   {
+            timer.start();
+            isActive = true;
+        }
+    }
+
     public void remove()    {
         if(timer != null) {
             timer.stop();

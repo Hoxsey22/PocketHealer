@@ -84,7 +84,7 @@ public class TalentTree extends Group{
 
         talents.add(new Talent(this, 5,CRITICAL_HEALER,"The critical chance of spells will now be 35% instead of 15%.",
                 getAssets().getTexture(getAssets().smiteIcon), assets));
-        talents.add(new Talent(this, 6, BARRIER_MASTER, "Barrier cooldown will now be 1 second and the cost will be reduced by 15.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 6, BARRIER_MASTER, "Barrier cooldown will now be 1 second and the cost will be reduced by 10.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().tankIcon), assets));
         talents.add(new Talent(this, 7, DISCIPLINE, "Barrier absorbs more damage, Smite does more damage, critical Smites will place a small barrier and all direct heals will place an atonement buff. Smite heals will be applied to all ally units with atonement.",talents.get(talents.size()-1), getAssets().getTexture(getAssets().disciplineIcon), assets));
         talents.add(new Talent(this, 8,CRITICAL_HEALER_II, "All spells that are critical will now place a barrier for 50% of the heal and Barriers created from Smite will now be stronger.",

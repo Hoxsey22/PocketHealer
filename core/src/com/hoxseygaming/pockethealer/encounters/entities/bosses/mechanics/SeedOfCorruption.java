@@ -22,7 +22,7 @@ public class SeedOfCorruption extends Mechanic {
 
     @Override
     public void action() {
-        if(getOwner().getEnemies().getDebuffLessRaidMembers("Seed of Corruption Effect").size() == getOwner().getEnemies().getRaidMembers().size()) {
+        if(getOwner().getEnemies().getDebuffLessRaidMembers("Seed of Corruption Effect").size() == getOwner().getEnemies().getNumOfAlive()) {
             ArrayList<RaidMember> temp = getOwner().getEnemies().getRandomRaidMember(
                     numOfTargets,getOwner().getEnemies().getDebuffLessRaidMembers("Seed of Corruption Effect"));
 

@@ -44,7 +44,7 @@ public class SwarmingShadow extends Mechanic{
                 else    {
                     channel.stop();
                     channel.clear();
-                    getTimer().start();
+                    resumePhase();
                 }
             }
         },0.5f,0.5f,4);

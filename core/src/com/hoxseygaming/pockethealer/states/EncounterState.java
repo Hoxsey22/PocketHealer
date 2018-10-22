@@ -425,7 +425,9 @@ public class EncounterState extends State {
     private void stop()  {
         boss.stop();
         raid.stop();
+        raid.getHealingTracker().printHealingDone();
         player.stop();
+
     }
 
     @Override

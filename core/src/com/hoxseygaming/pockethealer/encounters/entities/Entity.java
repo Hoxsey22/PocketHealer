@@ -160,16 +160,23 @@ public class Entity extends Actor{
     public int receiveHealing(int output, boolean isCritical)    {
         int newOutput = output;
 
-        healingTracker.addTotalHealingDone(newOutput);
 
-        if(isCritical)
-            newOutput = newOutput + (newOutput/2);
+
+        if(isCritical) {
+            newOutput = newOutput + (newOutput / 2);
+            healingTracker.addTotalHealingDone(newOutput);
+        }
+        else    {
+            healingTracker.addTotalHealingDone(newOutput);
+        }
+
         if(healingAbsorb > 0) {
             reduceHealingAbsorb(newOutput);
         }
         else {
             receiveHealing(newOutput);
         }
+
         return newOutput;
     }
 

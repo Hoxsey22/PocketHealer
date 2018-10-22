@@ -27,7 +27,8 @@ public class Leap extends Mechanic{
     @Override
     public void action() {
         startChannel();
-        pausePhase();
+        //pausePhase();
+        pause();
     }
 
     private void startChannel()  {

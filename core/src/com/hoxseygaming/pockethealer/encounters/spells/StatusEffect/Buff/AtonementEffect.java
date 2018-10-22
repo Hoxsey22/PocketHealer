@@ -16,7 +16,7 @@ public class AtonementEffect extends Buff {
                 "Atonement Effect",
                 "Atonement effect will allow smite heals to heal all targets to be healed by smite.",
                 owner.getAssets().getTexture(owner.getAssets().smiteIcon),
-                10f,
+                13f,
                 0.1f,
                 0
         );
