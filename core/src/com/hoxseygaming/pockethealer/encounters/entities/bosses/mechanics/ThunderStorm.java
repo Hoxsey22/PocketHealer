@@ -28,6 +28,7 @@ public class ThunderStorm extends Mechanic{
         }
         startPowerlessTimer();
         getParentPhase().pauseMechanics();
+        //pausePhase();
 
     }
 
@@ -37,15 +38,20 @@ public class ThunderStorm extends Mechanic{
         powerlessTimer = new Timer();
 
         powerlessTimer.scheduleTask(new Timer.Task() {
-
+            int count = 0;
             @Override
             public void run() {
-                powerlessTimer.stop();
-                powerlessTimer.clear();
+
                 getOwner().getAnnouncement().setText("");
-                resume();
+                getRaid().takeDamage(100);
+                if(count == 2)    {
+                    powerlessTimer.stop();
+                    powerlessTimer.clear();
+                    resume();
+                }
+                count++;
             }
-        },7f,7f,1);
+        },7f,7f, 2);
     }
 
     @Override

@@ -29,7 +29,7 @@ public class Hydra extends Boss {
     public Hydra(Assets assets) {
         super("Ion, The Hydra",
                 Strings.ION_DESCRIPTION,
-                230,
+                210,
                 new Raid(2,3,7, assets),
                 assets);
         setId(15);
@@ -47,7 +47,7 @@ public class Hydra extends Boss {
         rampage = new Rampage(this, 15, 5f);
         thunderStorm = new ThunderStorm(this, 15f);
 
-        getPhaseManager().addPhase(new Phase(this, 75f, autoAttack, doubleAttack,p1Poison, thunderStorm));
+        getPhaseManager().addPhase(new Phase(this, 40f, autoAttack, doubleAttack,p1Poison, thunderStorm));
         getPhaseManager().addPhase(new Phase(this, 25f, rampage));
 
         loadDebuff(new StoneSkinEffect(this), new PoisonEffect(this));
