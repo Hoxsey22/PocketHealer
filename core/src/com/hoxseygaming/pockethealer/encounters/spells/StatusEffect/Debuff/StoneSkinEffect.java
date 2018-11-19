@@ -24,7 +24,7 @@ public class StoneSkinEffect extends Debuff {
                 0.1f,
                 0,
                 false);
-        setType(DAMAGE_AMPLIFIER);
+        setType(DAMAGE_TAKEN_MODIFIER);
     }
 
     @Override

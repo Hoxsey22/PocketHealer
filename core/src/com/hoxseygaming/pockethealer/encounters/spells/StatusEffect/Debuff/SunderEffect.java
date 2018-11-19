@@ -24,7 +24,7 @@ public class SunderEffect extends Debuff {
                 14f,
                 0,
                 false);
-        setType(DAMAGE_AMPLIFIER);
+        setType(DAMAGE_TAKEN_MODIFIER);
     }
 
     /**
@@ -43,7 +43,7 @@ public class SunderEffect extends Debuff {
                 duration,
                 0,
                 false);
-        setType(DAMAGE_AMPLIFIER);
+        setType(DAMAGE_TAKEN_MODIFIER);
     }
 
     @Override

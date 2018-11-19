@@ -219,7 +219,7 @@ public class Entity extends Actor{
         this.name = name;
     }
 
-    protected int getMaxHp() {
+    public int getMaxHp() {
         return maxHp;
     }
 

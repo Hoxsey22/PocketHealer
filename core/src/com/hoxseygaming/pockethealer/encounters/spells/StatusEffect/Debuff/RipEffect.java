@@ -24,7 +24,7 @@ public class RipEffect extends Debuff {
                 2f,
                 8,
                 false);
-        setType(DAMAGE_AMPLIFIER);
+        setType(DAMAGE_TAKEN_MODIFIER);
     }
 
     /**
@@ -43,7 +43,7 @@ public class RipEffect extends Debuff {
                 2f,
                 10,
                 false);
-        setType(DAMAGE_AMPLIFIER);
+        setType(DAMAGE_TAKEN_MODIFIER);
     }
 
     @Override

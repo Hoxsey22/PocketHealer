@@ -22,7 +22,7 @@ public class UnstableMagic extends Mechanic {
 
     @Override
     public void action() {
-        ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets,getOwner().getEnemies().getDebuffLessRaidMembers("unstable magic"));
+        ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets,getOwner().getEnemies().getDebuffLessRaidMembers("Unstable Magic Effect"));
 
         for (int i = 0; i < temp.size(); i++)   {
             temp.get(i).addStatusEffect(new UnstableMagicEffect(getOwner()));

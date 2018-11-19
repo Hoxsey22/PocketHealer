@@ -99,12 +99,12 @@ public class StatusEffectList {
             switch (statusEffects.get(i).getType()) {
                 case StatusEffect.NONE:
                     break;
-                case StatusEffect.DAMAGE_AMPLIFIER:
+                case StatusEffect.DAMAGE_TAKEN_MODIFIER:
                     if (!isHealing) {
                         newOutput = statusEffects.get(i).modifyOutput(newOutput);
                     }
                     break;
-                case StatusEffect.HEALING_REDUCTION:
+                case StatusEffect.HEALING_TAKEN_MODIFIER:
                     if (isHealing) {
                         newOutput = statusEffects.get(i).modifyOutput(newOutput);
                     }

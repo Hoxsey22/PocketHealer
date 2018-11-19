@@ -44,6 +44,7 @@ public class MapFrame extends Group {
     private Text body;
     private int page;
     private Player player;
+    private Boss selectedBoss;
     private Assets assets;
 
     public MapFrame(Player player, int page, Assets assets)    {
@@ -109,6 +110,7 @@ public class MapFrame extends Group {
         getInfoButton().addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                infoFrame.addInfo(selectedBoss);
                 getParent().addActor(getInfoFrame());
                 System.out.println("-----Info Frame hit");
             }
@@ -221,6 +223,10 @@ public class MapFrame extends Group {
         clearBossList();
         disableInfoButton();
         return super.remove();
+    }
+
+    public void addBossSelection(Boss boss)  {
+        selectedBoss = boss;
     }
 
     private Image getBgFrame() {

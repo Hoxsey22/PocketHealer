@@ -20,7 +20,7 @@ public class BlessedGardenEffect extends Buff {
                 0.1f,
                 0
         );
-        setType(HEALING_REDUCTION);
+        setType(HEALING_TAKEN_MODIFIER);
     }
 
     @Override

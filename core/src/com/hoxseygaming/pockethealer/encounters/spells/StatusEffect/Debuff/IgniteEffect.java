@@ -48,7 +48,7 @@ public class IgniteEffect extends Debuff {
             getOwner().getEnemies().takeDamage(20);
         }
         else {
-            getOwner().getEnemies().takeDamage(40);
+            getOwner().getEnemies().takeDamage(30);
         }
         super.remove();
     }

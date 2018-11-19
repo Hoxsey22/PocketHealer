@@ -306,7 +306,8 @@ public class MapState extends State {
                     mapFrame.setTitle(selectedLevel.getName());
                     mapFrame.setBody(selectedLevel.getDescription());
                     System.out.println("map body size: "+mapFrame.getBody().getFontSize());
-                    mapFrame.getInfoFrame().addInfo(selectedLevel.boss);
+                    //mapFrame.getInfoFrame().addInfo(selectedLevel.boss);
+                    mapFrame.addBossSelection(selectedLevel.boss);
                     mapFrame.disableInfoButton();
                     mapFrame.showInfoButton();
                 }

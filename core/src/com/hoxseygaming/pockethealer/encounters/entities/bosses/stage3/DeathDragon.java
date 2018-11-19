@@ -18,6 +18,7 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.AgonyEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BurnEffect;
+import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.IgniteEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.RipEffect;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.UnstableMagicEffect;
 
@@ -48,7 +49,7 @@ public class DeathDragon extends Boss {
     public DeathDragon(Assets assets) {
         super("Resurrected Sorcerer",
                 Strings.RESURRECTED_SORCERER_DESCRIPTION,
-                600,
+                530,
                 new Raid(2,3,7, assets),
                 assets);
         setId(16);
@@ -73,19 +74,18 @@ public class DeathDragon extends Boss {
 
         autoAttackp3 = new AutoAttack(this, 2f);
         ripTankSwap = new RipTankSwap(this, 10f);
-        flurry = new Flurry(this, 10, 10f);
+        flurry = new Flurry(this, 15, 10f);
         tailSwipe = new TailSwipe(this, 20f);
         fireBreath = new FireBreath(this, 8, 30f);
 
         ignite = new Ignite(this, 8f);
-
         Phase phase1 = new Phase(this, 75, agony, pyroblast,autoAttackp1);
 
         Phase phase2 = new Phase(this, 60f, unstableMagic,unstablePyroblast, autoAttackp2);
         phase2.setNameChange();
         phase2.setNameChange("Deformed Sorcerer");
 
-        Phase phase3 = new Phase(this, 1, autoAttackp3, ripTankSwap, flurry,tailSwipe,fireBreath, ignite);
+        Phase phase3 = new Phase(this, 0, autoAttackp3, ripTankSwap, flurry,tailSwipe,fireBreath, ignite);
         phase3.setNameChange();
         phase3.setNameChange("Death Dragon");
 
@@ -95,7 +95,7 @@ public class DeathDragon extends Boss {
         getPhaseManager().addPhase(phase3);
 
         loadDebuff(new AgonyEffect(this), new BurnEffect(this), new UnstableMagicEffect(this),
-                new RipEffect(this), new BleedEffect(this));
+                new RipEffect(this), new BleedEffect(this), new IgniteEffect(this));
 
     }
 

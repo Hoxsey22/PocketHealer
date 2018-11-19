@@ -12,8 +12,8 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 public abstract class StatusEffect{
 
     public static final int NONE = 0;
-    public static final int DAMAGE_AMPLIFIER = 1;
-    public static final int HEALING_REDUCTION = 2;
+    public static final int DAMAGE_TAKEN_MODIFIER = 1;
+    public static final int HEALING_TAKEN_MODIFIER = 2;
 
 
     private String name;

@@ -6,19 +6,22 @@ import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
 import com.hoxseygaming.pockethealer.encounters.spells.Types.Castable;
 
+import java.util.Random;
+
 /**
  * Created by Hoxsey on 6/18/2017.
  */
 public class HolyNova extends Castable {
 
     private final int MIN_NUM_OF_TARGETS = 3;
+    private Random chainHealChance;
 
     public HolyNova(Player player, Assets assets) {
         super(player,
                 "Holy Nova",
                 "An explosion of holy light that heals several ally units for a moderate amount.",
                 4,
-                2f,
+                1.8f,
                 25,
                 3.5f,
                 1f,
@@ -27,6 +30,7 @@ public class HolyNova extends Castable {
         setDescription("Heals the targeted ally unit and 4 other injured ally unit for "+getOutput()+"hp.");
         setImage(getAssets().getTexture(getAssets().holyNovaIcon));
         setNumOfTargets(MIN_NUM_OF_TARGETS);
+        chainHealChance = new Random();
     }
 
     @Override
@@ -82,6 +86,33 @@ public class HolyNova extends Castable {
 
 
         System.out.println("checking renew");
+    }
+
+    @Override
+    protected void getRandomTargets() {
+        if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
+            int roll = chainHealChance.nextInt(100);
+            System.out.println("ROLL: "+roll);
+            if(roll > 80)    {
+                targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets+3);
+                System.out.println("# of targets: "+numOfTargets+3);
+            }
+            else if(roll > 50)   {
+                targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets+2);
+                System.out.println("# of targets: "+numOfTargets+2);
+            }
+            else if(roll > 10)   {
+                targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets+1);
+                System.out.println("# of targets: "+numOfTargets+1);
+            }
+            else    {
+                super.getRandomTargets();
+            }
+
+        }
+        else {
+            super.getRandomTargets();
+        }
     }
 
     @Override

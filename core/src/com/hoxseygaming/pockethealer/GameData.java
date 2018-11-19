@@ -45,10 +45,10 @@ public class GameData {
 
     public static boolean loadAudioSettings()   {
 
-        if(prefs.contains("audio_settings"))  {
+        if(prefs.contains("audio settings"))  {
             System.out.println("save point found!");
             Json json = new Json();
-            AudioManager.setData(json.fromJson(AudioManager.AudioData.class, Base64Coder.decodeString(prefs.getString("audio_settings"))));
+            AudioManager.setData(json.fromJson(AudioManager.AudioData.class, Base64Coder.decodeString(prefs.getString("audio settings"))));
             return true;
         }
         else {
@@ -62,7 +62,7 @@ public class GameData {
         json.toJson(AudioManager.getData());
         System.out.println(json.prettyPrint(AudioManager.getData()));
 
-        prefs.putString("audio_settings", Base64Coder.encodeString(json.toJson(AudioManager.getData())));
+        prefs.putString("audio settings", Base64Coder.encodeString(json.toJson(AudioManager.getData())));
         prefs.flush();
 
         System.out.println("save successful!");

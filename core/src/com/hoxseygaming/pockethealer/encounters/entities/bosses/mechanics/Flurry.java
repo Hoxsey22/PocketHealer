@@ -44,11 +44,13 @@ public class Flurry extends Mechanic{
             public void run() {
                 if(count != 10) {
                     count++;
-                    if(random.get(0).isDead()) {
-                        random = getRaid().getRandomRaidMember(1);
-                    }
                     if(random != null) {
-                        random.get(0).takeDamage(getDamage());
+                        if (random != null && random.size() != 0) {
+                            random.get(0).takeDamage(getDamage());
+                        }
+                        if (random.get(0).isDead()) {
+                            random = getRaid().getRandomRaidMember(1);
+                        }
                     }
                 }
                 else    {

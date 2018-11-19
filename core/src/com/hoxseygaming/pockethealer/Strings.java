@@ -99,13 +99,11 @@ public final class Strings {
             " castle, the Blood Queen appears. She is skilled with shadow abilities, but what is" +
             " more deadly is her bite. It gives her victims extreme powers, but always at a cost. ";
 
-    public static final String ION_DESCRIPTION = "After the defeat of the Blood Queen, and " +
-            "searching the castle some more, the source of the lightning strikes was found " +
-            "giantantic hydra named Ion with electricity pulsating throughout its body. In the " +
-            "corner of the room, a severely hurt shaman lies on the floor, but his totem, Stone " +
-            "Skin, stood tall. Stone Skin totem prevents a person from being knocked out, but " +
-            "they have to have enough strength in order for this effect to work. Ion’s Lightning " +
-            "is extremely dangerous and it has deadly poison spit.";
+    public static final String ION_DESCRIPTION = "With the defeat of the Blood Queen, the " +
+            "search throughout the castle continues. Finally, the source of the lightning strikes was found, " +
+            "gigantic hydra named Ion with electricity pulsating throughout its body. In the " +
+            "corner of the room, a severely hurt shaman lies on the floor. His totem, Stone " +
+            "Skin, stands tall. Ion’s Lightning is extremely dangerous and it has deadly poison spit.";
 
     public static final String RESURRECTED_SORCERER_DESCRIPTION = "The Sorcerer has been " +
             "resurrected! More powerful than ever! She consumed all the unknown dark forces she " +

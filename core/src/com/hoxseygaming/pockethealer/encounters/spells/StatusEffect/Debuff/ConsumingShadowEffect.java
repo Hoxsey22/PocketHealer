@@ -24,7 +24,7 @@ public class ConsumingShadowEffect extends Debuff {
                 0.1f,
                 0,
                 true);
-        setType(DAMAGE_AMPLIFIER);
+        setType(DAMAGE_TAKEN_MODIFIER);
     }
 
     @Override

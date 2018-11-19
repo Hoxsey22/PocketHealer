@@ -75,8 +75,8 @@ public class DebuffInfoFrame extends Group {
         debuffListTable.row();
 
         for(int i = 0; i < debuffButtons.size(); i++)   {
-            debuffListTable.add(debuffButtons.get(i)).expandX().height(50).top().pad(10);
-            if((i+1 % 5) == 0)    {
+            debuffListTable.add(debuffButtons.get(i)).expandX().height(50).top();
+            if(((i+1) % 3) == 0)    {
                 debuffListTable.row();
             }
         }

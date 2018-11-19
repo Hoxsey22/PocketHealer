@@ -71,8 +71,8 @@ public abstract class Spell extends Actor {
     private CriticalChance criticalChance;
     private int MIN_CRITICAL;
     private int levelRequirement;
-    private int numOfTargets;
-    private ArrayList<RaidMember> targets;
+    protected int numOfTargets;
+    protected ArrayList<RaidMember> targets;
     private SpellData spellData;
 //
     /**

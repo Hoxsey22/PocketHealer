@@ -28,7 +28,7 @@ public class PoisonEffect extends Debuff {
                 15,
                 true);
         healingReductionPercentage = 0.5f;
-        setType(HEALING_REDUCTION);
+        setType(HEALING_TAKEN_MODIFIER);
     }
 
     /**
@@ -50,7 +50,7 @@ public class PoisonEffect extends Debuff {
                 modValue,
                 true);
         this.healingReductionPercentage = healingReductionPercentage;
-        setType(HEALING_REDUCTION);
+        setType(HEALING_TAKEN_MODIFIER);
     }
 
     /**
@@ -70,7 +70,7 @@ public class PoisonEffect extends Debuff {
                 modValue,
                 true);
         this.healingReductionPercentage = healingReductionPercentage;
-        setType(HEALING_REDUCTION);
+        setType(HEALING_TAKEN_MODIFIER);
     }
 
     @Override

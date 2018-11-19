@@ -61,6 +61,7 @@ public class Raid extends Group {
                             player.receiveMana(raidMembers.get(i).getDamage());
                             if(healerChannel) {
                                 getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).getDamage(),false);
+                                //getRaidMemberWithLowestHp().receiveHealing(200,false);
                             }
                             else {
                                 t.takeDamage(raidMembers.get(i).getDamage());
@@ -245,7 +246,8 @@ public class Raid extends Group {
 
     public void takeDamage(int damage)    {
         for(int i= 0; i <  raidMembers.size(); i++)   {
-            raidMembers.get(i).takeDamage(damage);
+            if (!raidMembers.get(i).isDead())
+                raidMembers.get(i).takeDamage(damage);
         }
     }
 

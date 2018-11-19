@@ -52,7 +52,6 @@ public class MotherSpider extends Boss {
     public void reward() {
         if(getPlayer().getLevel() >= getId()) {
             getRewardPackage().addNewLevelText();
-            getRewardPackage().addNewTalentText();
         }
     }
 

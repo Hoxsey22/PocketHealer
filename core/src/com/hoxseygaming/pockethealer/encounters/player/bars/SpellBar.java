@@ -157,11 +157,15 @@ public class SpellBar extends Group {
 
     public void revalidateSpellBar()    {
         for(int i = 0; i < spells.size(); i++)   {
+            System.out.println("Spell: "+spells.get(i).getName());
             if(!owner.getSpellBook().isSpellSelectable(spells.get(i)))    {
                 spells.get(i).remove();
                 spells.remove(i);
+                System.out.println("---- spell removed");
+                i--;
             }
         }
+        resetSpellPosition();
         System.out.println("Spells size:"+spells.size());
     }
 
