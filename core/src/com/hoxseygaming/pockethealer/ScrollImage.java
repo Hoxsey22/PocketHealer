@@ -32,6 +32,7 @@ public class ScrollImage {
         getImage2().setBounds(frame.x,frame.y,texture.getWidth(),texture.getHeight());
 
         setPosition(frame.x,frame.y);
+        matchPartner();
 
         this.setVelocity(velocity);
 
@@ -47,6 +48,19 @@ public class ScrollImage {
         matchPartner();
     }
 
+    private void matchPartner() {
+        if(isVertical())
+            getImage2().setPosition(getImage1().getX(), getImage1().getY()+ getImage1().getHeight());
+        else {
+            if(velocity > 0) {
+                getImage2().setPosition(getImage1().getX() + getImage1().getWidth(), getImage1().getY());
+            }
+            else  {
+                getImage2().setPosition(getImage1().getX() - getImage1().getWidth(), getImage1().getY());
+            }
+        }
+    }
+
     public void move()    {
         if(isVertical())    {
             outOfRange();
@@ -55,17 +69,10 @@ public class ScrollImage {
         }
         else    {
             outOfRange();
-            getImage1().setX(getImage1().getX() + getVelocity());
+            getImage1().setX(getImage1().getX() - getVelocity());
             matchPartner();
 
         }
-    }
-
-    private void matchPartner() {
-        if(isVertical())
-            getImage2().setPosition(getImage1().getX(), getImage1().getY()+ getImage1().getHeight());
-        else
-            getImage2().setPosition(getImage1().getX()- getImage1().getWidth(), getImage1().getY());
     }
 
     private void outOfRange()   {
@@ -75,8 +82,15 @@ public class ScrollImage {
             }
         }
         else    {
-            if(getImage2().getX()+ getVelocity() > getEndX())    {
-                reposition();
+            if(velocity > 0) {
+                if (getImage2().getX() - getVelocity() <= getEndX()) {
+                    reposition();
+                }
+            }
+            else {
+                if (getImage2().getX() - getVelocity() >= getEndX()) {
+                    reposition();
+                }
             }
         }
 

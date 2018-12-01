@@ -35,19 +35,26 @@ public class LoadingState extends State {
     public LoadingState(StateManager sm) {
         super(sm);
 
-        logo = new Image(new Texture("logo_screen.png"));
-        //logo.setSize(PocketHealer.WIDTH,PocketHealer.HEIGHT);
-        logo.setBounds(0,PocketHealer.HEIGHT/2 - 360/2,480, 360);
+        Texture ls = new Texture(Gdx.files.internal("logo_screen.png"), true);
+        ls.setFilter(Texture.TextureFilter.MipMap, Texture.TextureFilter.MipMapLinearNearest);
 
-        libgdxLogo = new Image(new Texture("logo/libgdx_logo.png"));
-        libgdxLogo.setBounds(PocketHealer.WIDTH/2 - 300/2,logo.getY() - 80, 300, 50 );
+        logo = new Image(ls);
+
+        //logo.setSize(PocketHealer.WIDTH,PocketHealer.HEIGHT);
+        logo.setBounds(PocketHealer.WIDTH/2 - 512/2,PocketHealer.HEIGHT/2 - 512/2+50,512, 512);
+
+        Texture ll = new Texture(Gdx.files.internal("logo/libgdx_logo.png"), true);
+        ll.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.MipMapLinearNearest);
+
+        libgdxLogo = new Image(ll);
+        libgdxLogo.setBounds(PocketHealer.WIDTH/2 - 300/2,logo.getY() - 20, 300, 50 );
 
 
         createFont();
 
         progress = 0f;
 
-        shapeRenderer = new ShapeRenderer();
+        //shapeRenderer = new ShapeRenderer();
 
         isReady = false;
 
@@ -65,11 +72,12 @@ public class LoadingState extends State {
 
     private void createFont()   {
         Label.LabelStyle textStyle = new Label.LabelStyle();
-        BitmapFont font = new BitmapFont(Gdx.files.internal("fonts/loading_font.fnt"));
+        BitmapFont font = new BitmapFont(Gdx.files.internal("fonts/game_font_large_border.fnt"));
         textStyle.font = font;
 
         loadingText = new Label("Loading...", textStyle);
-        loadingText.setSize(1,1);
+        loadingText.setSize(2,2);
+        loadingText.setColor(Color.GOLD);
         loadingText.setPosition((PocketHealer.WIDTH/2)-(loadingText.getWidth()/2),50);
         loadingText.setAlignment(Align.center);
     }
@@ -140,15 +148,15 @@ public class LoadingState extends State {
     @Override
     public void render(SpriteBatch sb) {
 
-        Gdx.gl.glClearColor(Color.BLACK.r,Color.BLACK.g,Color.BLACK.b,Color.BLACK.a);
+        Gdx.gl.glClearColor(Color.WHITE.r,Color.WHITE.g,Color.WHITE.b,Color.WHITE.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glEnable(GL20.GL_BLEND);
         stage.act(Gdx.graphics.getDeltaTime());
-        shapeRenderer.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
+        /*shapeRenderer.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.GOLD);
         shapeRenderer.rect(logo.getWidth()/4, logo.getY()+logo.getHeight()-2, logo.getWidth()/2, 0-progress*logo.getHeight()+10);
-        shapeRenderer.end();
+        shapeRenderer.end();*/
         stage.draw();
 
     }
