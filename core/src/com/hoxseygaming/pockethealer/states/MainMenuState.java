@@ -21,6 +21,7 @@ import com.hoxseygaming.pockethealer.GameData;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.ScrollImage;
+import com.hoxseygaming.pockethealer.Text;
 import com.hoxseygaming.pockethealer.WindowFrame;
 
 /**
@@ -29,7 +30,7 @@ import com.hoxseygaming.pockethealer.WindowFrame;
 public class MainMenuState extends State{
 
     private Stage stage;
-    private Image title;
+    private Image titleImage;
     private AnimatedBackground animatedBackground;
     //public Button newGameButton;
     private TextButton newGameButton;
@@ -37,6 +38,7 @@ public class MainMenuState extends State{
     private TextButton continueButton;
     private TextButton settingsButton;
     // window and window components
+    private Text title;
     private WindowFrame window;
     private Label windowTitleText;
     private Label musicText;
@@ -119,11 +121,10 @@ public class MainMenuState extends State{
 
         stage.addActor(animatedBackground);
 
-        title = new Image(assets.getTexture(assets.title));
-        title.setPosition(PocketHealer.WIDTH/2-title.getWidth()/2,PocketHealer.HEIGHT - title.getHeight());
-        title.setName("title");
-
-        stage.addActor(title);
+        titleImage = new Image(assets.getTexture(assets.title));
+        titleImage.setBounds(PocketHealer.WIDTH/2- 380/2,PocketHealer.HEIGHT - 224,380,214);
+        titleImage.setName("titleImage");
+        stage.addActor(titleImage);
 
         stage.addActor(buttonTable);
 

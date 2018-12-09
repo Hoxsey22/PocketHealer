@@ -27,7 +27,7 @@ public class Assets {
     private final String manaFnt = "fonts/mana_font.fnt";
     private final String cooldownFnt = "fonts/cooldown_font.fnt";
     public final String talentTooltipFont = "fonts/talent_tooltip_font.fnt";
-    private final String mapTitle = "map_state/title.fnt";
+    public final String mapTitle = "fonts/title_font.fnt";
     private final String mapDescription = "map_state/description.fnt";
     // --Commented out by Inspection (5/29/2018 8:13 PM):public String gameFont = "fonts/chela_one_regular.ttf";
 
@@ -118,7 +118,7 @@ public class Assets {
     public final String button = "button.png";
     public final String smallButton = "small_button.png";
     public final String buttonHighlight = "button_select.png";
-    public final String title = "title.png";
+    public final String title = "logo/pocket-healer-logo.png";
     public final String poisonIcon = "icons/poison_icon.png";
     public final String agonyIcon = "icons/agony_icon.png";
     public final String corruptionIcon = "icons/corruption_icon.png";
@@ -207,7 +207,7 @@ public class Assets {
 
     private void loadImages() {
         TextureLoader.TextureParameter param = new TextureLoader.TextureParameter();
-        param.minFilter = Texture.TextureFilter.MipMapLinearNearest;
+        param.minFilter = Texture.TextureFilter.MipMap;
         param.genMipMaps = true;
 
         manager.load(dpsIcon, Texture.class, param);
@@ -452,6 +452,10 @@ public class Assets {
         else {
             return manager.get(gameFont16, BitmapFont.class);
         }
+    }
+
+    public BitmapFont getFontTitle()   {
+        return manager.get(mapTitle, BitmapFont.class);
     }
 
     public Skin getSkin()   {

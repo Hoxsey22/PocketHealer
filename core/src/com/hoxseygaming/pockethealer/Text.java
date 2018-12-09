@@ -29,6 +29,16 @@ public class Text extends Actor{
 
     }
 
+    public Text(String text, Assets assets)    {
+        this.assets = assets;
+
+        labelStyle = new Label.LabelStyle(assets.getFontTitle(), Color.WHITE);
+        label = new Label(text,labelStyle);
+
+        label.setAlignment(Align.left);
+
+    }
+
     public Text(String text, int fontSize, Color color, boolean isBordered, Assets assets)    {
         this.assets = assets;
         labelStyle = new Label.LabelStyle(loadFont(fontSize,isBordered), color);
