@@ -34,7 +34,7 @@ public class MainMenuState extends State{
     private AnimatedBackground animatedBackground;
     //public Button newGameButton;
     private TextButton newGameButton;
-    //public Button continueButton;
+    public TextButton creditsButton;
     private TextButton continueButton;
     private TextButton settingsButton;
     // window and window components
@@ -109,6 +109,16 @@ public class MainMenuState extends State{
 
         buttonTable.add(settingsButton);
 
+        creditsButton = new TextButton("Credit", PocketHealer.ui);
+        creditsButton.setPosition(PocketHealer.WIDTH/2-creditsButton.getWidth()/2, PocketHealer.HEIGHT/2-creditsButton.getHeight()/2);
+        creditsButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                sm.set(new CreditsState(sm, player, 0));
+            }
+        });
+
+
         initWindowFrame();
         initNewGameConfirmationWindow();
 
@@ -127,6 +137,8 @@ public class MainMenuState extends State{
         stage.addActor(titleImage);
 
         stage.addActor(buttonTable);
+
+        stage.addActor(creditsButton);
 
         animatedBackground.start();
     }

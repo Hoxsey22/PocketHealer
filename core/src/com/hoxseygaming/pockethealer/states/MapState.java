@@ -38,12 +38,43 @@ public class MapState extends State {
     private TextButton startButton;
     private TextButton spellButton;
     private Table buttonTable;
+    private int previousState;
 
 
     public MapState(StateManager sm, Player player) {
         super(sm);
 
         stage = new Stage(viewport);
+
+        previousState = 0;
+
+        Gdx.input.setInputProcessor(stage);
+
+        assets = player.getAssets();
+
+        AudioManager.playMusic(assets.getMusic(assets.mmMusic));
+
+        pageLeft = new ImageButton(assets.getSkin(), "page_left");
+        pageLeft.setBounds(40, 550, 30,30);
+
+        pageRight = new ImageButton(assets.getSkin(), "page_right");
+        pageRight.setBounds(410, 550, 30,30);
+
+        page = 1;
+
+        this.player = player;
+
+        startPage();
+        createButtons();
+        createButtonListeners();
+    }
+
+    public MapState(StateManager sm, Player player, int previousState) {
+        super(sm);
+
+        stage = new Stage(viewport);
+
+        this.previousState = previousState;
 
         Gdx.input.setInputProcessor(stage);
 
@@ -144,18 +175,30 @@ public class MapState extends State {
 
         System.out.println("Player Level:"+player.getLevel());
         InfoFrame infoFrame;
-        switch (player.getLevel()) {
+        switch (previousState) {
+            case 1:
+                if(player.getLevel() == 2) {
+                    infoFrame = new InfoFrame("", Strings.STAGE_1_INTRO, assets);
+                    stage.addActor(infoFrame);
+                }
+                break;
             case 2:
-                infoFrame = new InfoFrame("", Strings.STAGE_1_INTRO, assets);
-                stage.addActor(infoFrame);
+                if(player.getLevel() == 7) {
+                    infoFrame = new InfoFrame("", Strings.STAGE_2_INTRO, assets);
+                    stage.addActor(infoFrame);
+                }
                 break;
-            case 7:
-                infoFrame = new InfoFrame("", Strings.STAGE_2_INTRO, assets);
-                stage.addActor(infoFrame);
+            case 3:
+                if(player.getLevel() == 12) {
+                    infoFrame = new InfoFrame("", Strings.STAGE_3_INTRO, assets);
+                    stage.addActor(infoFrame);
+                }
                 break;
-            case 12:
-                infoFrame = new InfoFrame("", Strings.STAGE_3_INTRO, assets);
-                stage.addActor(infoFrame);
+            case 4:
+                if(player.getLevel() == 17) {
+                    infoFrame = new InfoFrame("", Strings.STAGE_END, assets);
+                    stage.addActor(infoFrame);
+                }
                 break;
         }
     }

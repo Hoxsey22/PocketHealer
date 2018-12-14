@@ -300,7 +300,7 @@ public class TutorialState extends State {
 
                         case 2:
                             player.newLevel(boss.getLevel());
-                            sm.set(new MapState(sm, player));
+                            sm.set(new MapState(sm, player,1));
                             break;
                     }
                 }

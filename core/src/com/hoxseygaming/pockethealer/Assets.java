@@ -169,6 +169,14 @@ public class Assets {
     public final String ripIcon = "icons/rip_icon.png";
     public final String igniteIcon = "icons/ignite_icon.png";
 
+    //credits
+    public final String creditsLayer1 = "credits_state/credits_layer_1.png";
+    public final String creditsLayer2 = "credits_state/credits_layer_2.png";
+    public final String creditsLayer3 = "credits_state/credits_layer_3.png";
+    public final String creditsLayer4 = "credits_state/credits_layer_4.png";
+    public final String creditsLayer5 = "credits_state/credits_layer_5.png";
+
+
 
 
     public final ArrayList<String> maps;
@@ -176,6 +184,7 @@ public class Assets {
     // music
     public final String mmMusic = "mm_music.ogg";
     public final String battleMusic = "sfx/battle_music.ogg";
+    public final String creditsMusic = "sfx/credit_music.ogg";
 
     // sounds
     public final String barrierSFX ="sfx/barrier_sfx.mp3";
@@ -356,6 +365,11 @@ public class Assets {
         manager.load(ripIcon, Texture.class, param);
         manager.load(igniteIcon, Texture.class, param);
         manager.load(sunderIcon, Texture.class, param);
+        manager.load(creditsLayer1, Texture.class, param);
+        manager.load(creditsLayer2, Texture.class, param);
+        manager.load(creditsLayer3, Texture.class, param);
+        manager.load(creditsLayer4, Texture.class, param);
+        manager.load(creditsLayer5, Texture.class, param);
 
     }
 
@@ -366,6 +380,7 @@ public class Assets {
         manager.load(castingSFX, Sound.class);
         manager.load(healSFX, Sound.class);
         manager.load(hotSFX, Sound.class);
+        manager.load(creditsMusic, Music.class);
 
     }
 

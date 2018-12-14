@@ -399,11 +399,22 @@ public class EncounterState extends State {
                             gameOverFrame.showReward();
                             page = 2;
                             break;
-
                         case 2:
                             player.newLevel(boss.getLevel());
-                            sm.set(new MapState(sm, player));
-                            break;
+                            switch (boss.getId()) {
+                                case 6:
+                                    sm.set(new MapState(sm, player,2));
+                                    break;
+                                case 11:
+                                    sm.set(new MapState(sm, player,3));
+                                    break;
+                                case 16:
+                                    sm.set(new MapState(sm, player,4));
+                                    break;
+                                default:
+                                    sm.set(new MapState(sm, player));
+                                    break;
+                            }
                     }
                 }
                 else    {

@@ -24,6 +24,9 @@ public final class Strings {
             "defeated, but now major rumbles in the earth have started occurring and lightning" +
             " has been striking same location in the distances. Figure out what is going on!";
 
+    public static final String STAGE_END = "Finally The Sorcerer has been defeated and" +
+            " peace has been restore to the land. For now...";
+
     public static final String BOAR_DESCRIPTION = "A suspicious boar has gone on a frenzy and has " +
             "injured a number of people. At first glance, this boar may appear to be like a wild boar" +
             ", but there is something else going on.";
