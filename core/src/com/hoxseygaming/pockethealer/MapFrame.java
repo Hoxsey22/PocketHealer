@@ -153,7 +153,7 @@ public class MapFrame extends Group {
 
     }
 
-    private Map getMap() {
+    public Map getMap() {
         return map;
     }
 

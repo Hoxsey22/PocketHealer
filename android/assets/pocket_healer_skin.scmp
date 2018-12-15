@@ -17,6 +17,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/end_game_frame.png
@@ -33,6 +34,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/cooldown_font.png
@@ -49,6 +51,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/floating_font.png
@@ -65,6 +68,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/game_font_large.png
@@ -81,6 +85,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/game_font_large_border.png
@@ -97,6 +102,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/game_font_medium.png
@@ -113,6 +119,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/game_font_medium_border.png
@@ -129,6 +136,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/game_font_small.png
@@ -145,6 +153,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/game_font_small_border.png
@@ -161,6 +170,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/game_font_xlarge.png
@@ -177,6 +187,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/game_font_xlarge_border.png
@@ -193,6 +204,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/button.png
@@ -209,6 +221,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/button_select.png
@@ -225,6 +238,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/small_button.png
@@ -241,6 +255,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/test2/android/assets/knob.png
@@ -257,6 +272,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/test2/android/assets/knob_down.png
@@ -273,6 +289,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/test2/android/assets/slider_bg.png
@@ -289,6 +306,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/game_title_font.png
@@ -305,6 +323,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/title_font.png
@@ -321,6 +340,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/map_state/boss_location.png
@@ -337,6 +357,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/map_state/defeated_boss.png
@@ -353,6 +374,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/map_state/selected_level.png
@@ -369,6 +391,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/map_state/page_right_icon.png
@@ -385,6 +408,7 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
 		}
 		{
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/map_state/page_left_icon.png
@@ -401,6 +425,24 @@ atlasData: {
 			tiled: false
 			minWidth: 0
 			minHeight: 0
+			customized: false
+		}
+		{
+			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/map_state/exit_button.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			visible: true
+			tint: null
+			tintName: null
+			name: exit_button
+			tiled: false
+			minWidth: 0
+			minHeight: 0
+			customized: false
 		}
 	]
 }
@@ -519,6 +561,7 @@ jsonData: {
 			file: C:/Users/Hoxsey/Documents/PocketHealer/android/assets/fonts/title_font.fnt
 		}
 	]
+	freeTypeFonts: []
 	classStyleMap: {
 		com.badlogic.gdx.scenes.scene2d.ui.Button: [
 			{
@@ -612,6 +655,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.CheckBox: [
@@ -790,6 +834,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.ImageButton: [
@@ -926,6 +971,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -1060,6 +1106,7 @@ jsonData: {
 					}
 				}
 				deletable: true
+				parent: null
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -1194,6 +1241,7 @@ jsonData: {
 					}
 				}
 				deletable: true
+				parent: null
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -1328,6 +1376,7 @@ jsonData: {
 					}
 				}
 				deletable: true
+				parent: null
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -1462,6 +1511,156 @@ jsonData: {
 					}
 				}
 				deletable: true
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: exit_button
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+				properties: {
+					imageUp: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageUp
+						optional: true
+						value: exit_button
+					}
+					imageDown: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDown
+						optional: true
+						value: null
+					}
+					imageOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageOver
+						optional: true
+						value: null
+					}
+					imageChecked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageChecked
+						optional: true
+						value: null
+					}
+					imageCheckedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageCheckedOver
+						optional: true
+						value: null
+					}
+					imageDisabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDisabled
+						optional: true
+						value: null
+					}
+					up: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: exit_button
+					}
+					down: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: null
+					}
+					focused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					checked: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					disabled: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 0
+					}
+					pressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 0
+					}
+					unpressedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						class: com.ray3k.skincomposer.data.StyleProperty
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: true
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton: [
@@ -1647,6 +1846,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.Label: [
@@ -1678,6 +1878,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -1707,6 +1908,7 @@ jsonData: {
 					}
 				}
 				deletable: true
+				parent: null
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -1736,6 +1938,7 @@ jsonData: {
 					}
 				}
 				deletable: true
+				parent: null
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -1765,6 +1968,7 @@ jsonData: {
 					}
 				}
 				deletable: true
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.List: [
@@ -1810,6 +2014,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.ProgressBar: [
@@ -1876,6 +2081,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -1940,6 +2146,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.ScrollPane: [
@@ -1992,6 +2199,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.SelectBox: [
@@ -2065,6 +2273,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.Slider: [
@@ -2145,6 +2354,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -2223,6 +2433,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.SplitPane: [
@@ -2240,6 +2451,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -2255,6 +2467,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.TextButton: [
@@ -2398,6 +2611,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 			{
 				class: com.ray3k.skincomposer.data.StyleData
@@ -2539,6 +2753,7 @@ jsonData: {
 					}
 				}
 				deletable: true
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.TextField: [
@@ -2626,6 +2841,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.TextTooltip: [
@@ -2657,6 +2873,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.Touchpad: [
@@ -2681,6 +2898,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.Tree: [
@@ -2726,6 +2944,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.Window: [
@@ -2764,6 +2983,7 @@ jsonData: {
 					}
 				}
 				deletable: false
+				parent: null
 			}
 		]
 	}
@@ -2810,6 +3030,7 @@ jsonData: {
 				]
 				deletable: true
 			}
+			declareAfterUIclasses: false
 		}
 	]
 }

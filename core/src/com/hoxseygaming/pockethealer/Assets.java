@@ -95,7 +95,6 @@ public class Assets {
     private final String castBar = "casting_bar.png";
     private final String cooldownBar = "cooldown_bar.png";
     public final String spellBar = "spell_bar.png";
-    public final String exitButton = "map_state/exit_button.png";
     private final String bossLocation = "map_state/boss_location.png";
     public final String infoFrame = "map_state/info_frame.png";
     public final String infoFrame2 = "map_state/info_frame_2.png";
@@ -168,6 +167,8 @@ public class Assets {
     private final String pageLeft = "map_state/page_left_icon.png";
     public final String ripIcon = "icons/rip_icon.png";
     public final String igniteIcon = "icons/ignite_icon.png";
+
+    public final String exitButton = "map_state/exit_button.png";
 
     //credits
     public final String creditsLayer1 = "credits_state/credits_layer_1.png";
@@ -370,6 +371,7 @@ public class Assets {
         manager.load(creditsLayer3, Texture.class, param);
         manager.load(creditsLayer4, Texture.class, param);
         manager.load(creditsLayer5, Texture.class, param);
+        manager.load(exitButton, Texture.class, param);
 
     }
 

@@ -71,9 +71,14 @@ public class MainMenuState extends State{
 
         AudioManager.playMusic(assets.getMusic(assets.mmMusic));
 
+        titleImage = new Image(assets.getTexture(assets.title));
+        titleImage.setBounds(PocketHealer.WIDTH/2- 380/2,PocketHealer.HEIGHT - 224,380,214);
+        titleImage.setName("titleImage");
+
         buttonTable = new Table();
         buttonTable.setName("button table");
-        buttonTable.setBounds(0,0,PocketHealer.WIDTH,PocketHealer.HEIGHT);
+        //buttonTable.setBounds(0,0,PocketHealer.WIDTH,PocketHealer.HEIGHT);
+        buttonTable.setPosition(PocketHealer.WIDTH/2-buttonTable.getWidth()/2,PocketHealer.HEIGHT/5);
         buttonTable.center().bottom().padBottom(20);
 
         newGameButton = new TextButton("New", PocketHealer.ui);
@@ -83,7 +88,8 @@ public class MainMenuState extends State{
                 ngConfirmationWindow.show(stage);
             }
         });
-        buttonTable.add(newGameButton);
+        buttonTable.add(newGameButton).padBottom(15);
+        buttonTable.row();
 
         if(GameData.doesDataExist("save")) {
             continueButton = new TextButton("Continue", PocketHealer.ui);
@@ -96,7 +102,8 @@ public class MainMenuState extends State{
                     System.out.println("Continued Game has been started.");
                 }
             });
-            buttonTable.add(continueButton);
+            buttonTable.add(continueButton).padBottom(15);;
+            buttonTable.row();
         }
 
         settingsButton = new TextButton("Setting", PocketHealer.ui);
@@ -106,8 +113,8 @@ public class MainMenuState extends State{
                 window.show(stage);
             }
         });
-
-        buttonTable.add(settingsButton);
+        buttonTable.add(settingsButton).padBottom(15);
+        buttonTable.row();
 
         creditsButton = new TextButton("Credit", PocketHealer.ui);
         creditsButton.setPosition(PocketHealer.WIDTH/2-creditsButton.getWidth()/2, PocketHealer.HEIGHT/2-creditsButton.getHeight()/2);
@@ -117,6 +124,7 @@ public class MainMenuState extends State{
                 sm.set(new CreditsState(sm, player, 0));
             }
         });
+        buttonTable.add(creditsButton);
 
 
         initWindowFrame();
@@ -131,14 +139,11 @@ public class MainMenuState extends State{
 
         stage.addActor(animatedBackground);
 
-        titleImage = new Image(assets.getTexture(assets.title));
-        titleImage.setBounds(PocketHealer.WIDTH/2- 380/2,PocketHealer.HEIGHT - 224,380,214);
-        titleImage.setName("titleImage");
         stage.addActor(titleImage);
 
         stage.addActor(buttonTable);
 
-        stage.addActor(creditsButton);
+        //stage.addActor(creditsButton);
 
         animatedBackground.start();
     }

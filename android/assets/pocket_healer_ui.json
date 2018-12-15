@@ -69,6 +69,12 @@ com.badlogic.gdx.graphics.Color: {
 		a: 1
 	}
 }
+com.hoxseygaming.pockethealer.WindowFrame$WindowFrameStyle: {
+	default: {
+		stageBackground: disable_bg
+		background: end_game_frame
+	}
+}
 com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 	defeated_boss_icon: {
 		imageUp: defeated_boss
@@ -83,6 +89,10 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 	}
 	page_left: {
 		imageUp: page_left_icon
+	}
+	exit_button: {
+		imageUp: exit_button
+		up: exit_button
 	}
 }
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
@@ -127,12 +137,6 @@ com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
 com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
 	default: {
 		label: default
-	}
-}
-com.hoxseygaming.pockethealer.WindowFrame$WindowFrameStyle: {
-	default: {
-		stageBackground: disable_bg
-		background: end_game_frame
 	}
 }
 }
