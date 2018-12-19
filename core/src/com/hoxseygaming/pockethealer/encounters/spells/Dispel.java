@@ -22,7 +22,7 @@ public class Dispel extends InstantCast {
                 0,
                 1.5f,
                 1f,
-                assets.getSound(assets.healSFX),
+                assets.getSound(assets.dispelSFX),
                 assets);
         setDescription("Dispels a magic effect off an ally unit.");
         setImage(getAssets().getTexture(getAssets().dispelIcon));

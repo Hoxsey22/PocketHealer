@@ -42,7 +42,7 @@ public abstract class ChannelCast extends Spell {
         MIN_CAST_TIME = castTime;
         this.ticksPerCast = ticksPerCast;
         MIN_TICK_PER_CAST = ticksPerCast;
-        castingSFX = getAssets().getSound(getAssets().castingSFX);
+        castingSFX = getAssets().getSound(getAssets().penanceTriggerSFX);
     }
 
     @Override
@@ -62,7 +62,7 @@ public abstract class ChannelCast extends Spell {
         castTimer = new Timer();
         setCasting(true);
         getOwner().setCasting(isCasting());
-        AudioManager.playSFX(castingSFX, true);
+        AudioManager.playSFX(castingSFX, false);
         final float tickTime = (castTime/ticksPerCast)-0.01f;
 
         final RaidMember sTarget = getOwnerTarget();
@@ -119,5 +119,6 @@ public abstract class ChannelCast extends Spell {
     protected void setTicksPerCast(int ticksPerCast) {
         this.ticksPerCast = ticksPerCast;
     }
+
 
 }

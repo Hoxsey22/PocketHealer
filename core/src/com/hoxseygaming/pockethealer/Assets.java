@@ -188,10 +188,35 @@ public class Assets {
     public final String creditsMusic = "sfx/credit_music.ogg";
 
     // sounds
-    public final String barrierSFX ="sfx/barrier_sfx.mp3";
+    // OLD CODE
+    //public final String barrierSFX ="sfx/barrier_sfx.mp3";
     public final String castingSFX ="sfx/casting_sfx.mp3";
-    public final String healSFX ="sfx/heal_sfx.mp3";
+    //public final String healSFX ="sfx/heal_sfx.mp3";
     public final String hotSFX ="sfx/hot_sfx.mp3";
+
+
+    public final String barrierSFX = "sfx/SFX/p_spells/barrier_sfx.wav";
+    public final String blessedGardenSFX = "sfx/SFX/p_spells/blessed_garden_sfx.wav";
+    public final String dispelSFX = "sfx/SFX/p_spells/dispel_sfx.wav";
+    public final String divineHymnSFX = "sfx/SFX/p_spells/divine_hymn_sfx.wav";
+    public final String divineProtectionSFX = "sfx/SFX/p_spells/divine_protection_sfx.wav";
+    public final String greaterHealSFX = "sfx/SFX/p_spells/greater_heal_sfx.wav";
+    public final String healSFX = "sfx/SFX/p_spells/heal_sfx.wav";
+    public final String holyNovaSFX = "sfx/SFX/p_spells/holy_nova_sfx.wav";
+    public final String holyShockSFX = "sfx/SFX/p_spells/holy_shock_sfx.wav";
+    public final String lightwellSFX = "sfx/SFX/p_spells/lightwell_sfx.wav";
+    public final String renewSFX = "sfx/SFX/p_spells/renew_sfx.wav";
+    public final String smiteSFX = "sfx/SFX/p_spells/smite_sfx.wav";
+    //penance package
+    public final String penanceHit1SFX = "sfx/SFX/p_spells/penance/penance_hit1_sfx.wav";
+    public final String penanceHit2SFX = "sfx/SFX/p_spells/penance/penance_hit2_sfx.wav";
+    public final String penanceHit3SFX = "sfx/SFX/p_spells/penance/penance_hit3_sfx.wav";
+    public final String penanceHit4SFX = "sfx/SFX/p_spells/penance/penance_hit4_sfx.wav";
+    public final String penanceTriggerSFX = "sfx/SFX/p_spells/penance/penance_trigger_sfx.wav";
+    //pom
+    public final String pomHitSFX = "sfx/SFX/p_spells/pom/pom_hit_sfx.wav";
+    public final String pomTriggerSFX = "sfx/SFX/p_spells/pom/pom_trigger_sfx.wav";
+
 
     // skin
     private final String uiSkin = "pocket_healer_ui.json";
@@ -383,6 +408,26 @@ public class Assets {
         manager.load(healSFX, Sound.class);
         manager.load(hotSFX, Sound.class);
         manager.load(creditsMusic, Music.class);
+
+        manager.load(blessedGardenSFX, Sound.class);
+        manager.load(dispelSFX, Sound.class);
+        manager.load(divineHymnSFX, Sound.class);
+        manager.load(divineProtectionSFX, Sound.class);
+        manager.load(greaterHealSFX, Sound.class);
+        manager.load(holyNovaSFX, Sound.class);
+        manager.load(holyShockSFX, Sound.class);
+        manager.load(lightwellSFX, Sound.class);
+        manager.load(renewSFX, Sound.class);
+        manager.load(smiteSFX, Sound.class);
+
+        manager.load(penanceHit1SFX, Sound.class);
+        manager.load(penanceHit2SFX, Sound.class);
+        manager.load(penanceHit3SFX, Sound.class);
+        manager.load(penanceHit4SFX, Sound.class);
+        manager.load(penanceTriggerSFX, Sound.class);
+
+        manager.load(pomHitSFX, Sound.class);
+        manager.load(pomTriggerSFX, Sound.class);
 
     }
 

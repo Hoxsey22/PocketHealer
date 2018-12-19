@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
@@ -10,6 +11,8 @@ import com.hoxseygaming.pockethealer.encounters.spells.Types.ChannelCast;
  * Created by Hoxsey on 6/18/2017.
  */
 public class Penance extends ChannelCast {
+
+    int sfxIndex;
 
     public Penance(Player player, Assets assets) {
         super(player, "Penance",
@@ -23,10 +26,13 @@ public class Penance extends ChannelCast {
                 assets);
         setDescription("Heals an ally unit for "+getOutput()+"hp 4 times.");
         setImage(getAssets().getTexture(getAssets().penanceIcon));
+
     }
 
     @Override
     public void applySpell(RaidMember target) {
+        triggerSFX();
+
         if(!getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
             target.receiveHealing(getOutput(), getCriticalChance().isCritical());
         }
@@ -55,6 +61,24 @@ public class Penance extends ChannelCast {
         }
 
 
+    }
+
+    public void triggerSFX()    {
+        switch ((sfxIndex%4)) {
+            case 0:
+                AudioManager.playSFX(getAssets().getSound(getAssets().penanceHit1SFX), false);
+                break;
+            case 1:
+                AudioManager.playSFX(getAssets().getSound(getAssets().penanceHit2SFX), false);
+                break;
+            case 2:
+                AudioManager.playSFX(getAssets().getSound(getAssets().penanceHit3SFX), false);
+                break;
+            case 3:
+                AudioManager.playSFX(getAssets().getSound(getAssets().penanceHit4SFX), false);
+                break;
+        }
+        sfxIndex++;
     }
 
     @Override
