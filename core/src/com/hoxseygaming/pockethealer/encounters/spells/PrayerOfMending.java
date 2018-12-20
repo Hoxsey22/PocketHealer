@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.spells;
 
 import com.hoxseygaming.pockethealer.Assets;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff.PrayerOfMendingEffect;
@@ -21,7 +22,7 @@ public class PrayerOfMending extends Castable {
                 25,
                 2f,
                 8,
-                assets.getSound(assets.healSFX),
+                assets.getSound(assets.pomTriggerSFX),
                 assets);
         setDescription("Grants an ally unit a buff that will heal the ally unit with this buff for "+getOutput()+"hp and jumps to the most injured ally unit and does this 5 times.");
         setImage(getAssets().getTexture(getAssets().prayerOfMendingIcon));

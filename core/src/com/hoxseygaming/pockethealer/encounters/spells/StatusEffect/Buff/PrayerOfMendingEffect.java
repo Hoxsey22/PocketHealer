@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Buff;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.CriticalDice;
@@ -40,7 +41,7 @@ public class PrayerOfMendingEffect extends Buff{
 
     @Override
     public void applyEffect() {
-
+        AudioManager.playSFX(getAssets().getSound(getAssets().pomHitSFX), false);
         if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())    {
             getOwner().getSpellBar().getSpell(0).applyMasteringHealing(getTarget(), getModValue());
         }

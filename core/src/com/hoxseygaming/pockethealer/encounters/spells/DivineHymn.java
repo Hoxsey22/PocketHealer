@@ -22,6 +22,8 @@ public class DivineHymn extends ChannelCast {
                 20,
                 5f,
                 100f,
+                assets.getSound(assets.divineHymnSFX),
+                true,
                 assets);
         setDescription("Heals the majority of the raid for "+getOutput()+"hp every second for 4 seconds");
         setImage(getAssets().getTexture(getAssets().divineHymnIcon));

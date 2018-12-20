@@ -23,6 +23,8 @@ public class Penance extends ChannelCast {
                 15,
                 3f,
                 8f,
+                assets.getSound(assets.penanceTriggerSFX),
+                true,
                 assets);
         setDescription("Heals an ally unit for "+getOutput()+"hp 4 times.");
         setImage(getAssets().getTexture(getAssets().penanceIcon));

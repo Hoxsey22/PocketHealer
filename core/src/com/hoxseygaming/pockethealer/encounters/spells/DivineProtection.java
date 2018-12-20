@@ -27,7 +27,7 @@ public class DivineProtection extends Castable {
                 0,
                 10f,
                 100f,
-                assets.getSound(assets.hotSFX),
+                assets.getSound(assets.divineProtectionSFX),
                 assets);
         setDescription("Grants all ally units a buff that will reduce all damage taken by 40% for 15 seconds.");
         setImage(getAssets().getTexture(getAssets().divineProtectionIcon));

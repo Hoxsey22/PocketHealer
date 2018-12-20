@@ -31,7 +31,7 @@ public class Renew2 extends Periodical {
                 0.5f,
                 10f,
                 2f,
-                assets.getSound(assets.hotSFX), assets);
+                assets.getSound(assets.renewSFX), assets);
         setDescription("Heals an ally unit for "+getOutput()+"hp every 2 seconds for 10 seconds.");
         setImage(this.getAssets().getTexture(getAssets().renewIcon));
 

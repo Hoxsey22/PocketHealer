@@ -22,6 +22,7 @@ public abstract class ChannelCast extends Spell {
     private Timer castTimer;
     private Sound castingSFX;
     private Sound spellSFX;
+    private boolean isTriggerSFX;
 
     /**
      *
@@ -35,14 +36,15 @@ public abstract class ChannelCast extends Spell {
      * @param assets
      */
     protected ChannelCast(Player player, String name, String description, int levelRequirement, float castTime, int ticksPerCast,
-                          int output, float costPercentage, float cooldown, Assets assets) {
+                          int output, float costPercentage, float cooldown, Sound castingSFX, boolean isTriggerSFX, Assets assets) {
         super(player, name, description, levelRequirement, output, costPercentage, cooldown, assets);
         setSpellType("Channeled");
         this.castTime = castTime;
         MIN_CAST_TIME = castTime;
         this.ticksPerCast = ticksPerCast;
         MIN_TICK_PER_CAST = ticksPerCast;
-        castingSFX = getAssets().getSound(getAssets().penanceTriggerSFX);
+        this.castingSFX = castingSFX;
+        this.isTriggerSFX = isTriggerSFX;
     }
 
     @Override
@@ -62,7 +64,7 @@ public abstract class ChannelCast extends Spell {
         castTimer = new Timer();
         setCasting(true);
         getOwner().setCasting(isCasting());
-        AudioManager.playSFX(castingSFX, false);
+        AudioManager.playSFX(castingSFX, !isTriggerSFX);
         final float tickTime = (castTime/ticksPerCast)-0.01f;
 
         final RaidMember sTarget = getOwnerTarget();

@@ -303,6 +303,7 @@ public abstract class Spell extends Actor {
             cdTimer.clear();
         }
         isReady = true;
+        isCasting = false;
         setCdCounter(0);
     }
 

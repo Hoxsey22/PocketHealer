@@ -173,16 +173,19 @@ public class Player {
 
     public void reset() {
         mana = maxMana;
-        stop();
+        //stop();
         for (int i = 0; i < spellBar.getSpells().size(); i++) {
             spellBar.getSpells().get(i).resetCD();
         }
+        isCasting = false;
+        setSpellCastPercent(0);
     }
 
     public void stop()  {
         for (int i = 0; i < spellBar.getSpells().size(); i++) {
             spellBar.getSpells().get(i).stop();
         }
+        reset();
     }
 
     public Boss getBoss() {

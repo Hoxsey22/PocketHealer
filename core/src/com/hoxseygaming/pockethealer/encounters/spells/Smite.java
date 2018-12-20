@@ -24,7 +24,7 @@ public class Smite extends Castable {
                 5,
                 0.5f,
                 0.5f,
-                assets.getSound(assets.healSFX),
+                assets.getSound(assets.smiteSFX),
                 assets);
         setDescription("Damages the enemy and heals an ally unit with the lowest health for the damage dealt to the enemy.");
         setImage(getAssets().getTexture(getAssets().smiteIcon));
