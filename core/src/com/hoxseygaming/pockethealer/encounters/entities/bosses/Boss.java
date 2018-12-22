@@ -244,7 +244,7 @@ public abstract class Boss extends Entity {
         this.debuffList = debuffList;
     }
 
-    protected PhaseManager getPhaseManager() {
+    public PhaseManager getPhaseManager() {
         return phaseManager;
     }
 

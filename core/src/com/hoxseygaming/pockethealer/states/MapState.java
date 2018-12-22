@@ -52,7 +52,7 @@ public class MapState extends State {
 
         assets = player.getAssets();
 
-        AudioManager.playMusic(assets.getMusic(assets.mmMusic));
+        AudioManager.playMusic(assets.getMusic(assets.mainMusic));
 
         pageLeft = new ImageButton(assets.getSkin(), "page_left");
         pageLeft.setBounds(40, 550, 30,30);
@@ -80,7 +80,7 @@ public class MapState extends State {
 
         assets = player.getAssets();
 
-        AudioManager.playMusic(assets.getMusic(assets.mmMusic));
+        AudioManager.playMusic(assets.getMusic(assets.mainMusic));
 
         pageLeft = new ImageButton(assets.getSkin(), "page_left");
         pageLeft.setBounds(40, 550, 30,30);
@@ -302,7 +302,11 @@ public class MapState extends State {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 if(selectedLevel != null)    {
-                    sm.set(new EncounterState(sm, player, selectedLevel.boss));
+                    System.out.println("++++Boss: "+selectedLevel.getBoss().getId());
+                    if(selectedLevel.getBoss().getId() == 16)
+                        sm.set(new LastBossEncounterState(sm, player, selectedLevel.boss));
+                    else
+                        sm.set(new EncounterState(sm, player, selectedLevel.boss));
                 }
             }
         });

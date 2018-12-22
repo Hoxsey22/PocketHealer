@@ -183,9 +183,17 @@ public class Assets {
     public final ArrayList<String> maps;
 
     // music
-    public final String mmMusic = "mm_music.ogg";
+    public final String mainMusic = "sfx/main_music.ogg";
+    public final String victoryMusic = "sfx/Music/victory_music.wav";
+    public final String defeatMusic = "sfx/Music/defeat_music.wav";
     public final String battleMusic = "sfx/battle_music.ogg";
     public final String creditsMusic = "sfx/credit_music.ogg";
+    public final String stage1BattleMusic = "sfx/Music/stage1_battle_music.wav";
+    public final String stage2BattleMusic = "sfx/Music/stage2_battle_music.wav";
+    public final String stage3BattleMusic = "sfx/Music/stage3_battle_music.wav";
+    public final String lastBossBattle1Music = "sfx/Music/last_boss_1_battle_music.wav";
+    public final String lastBossBattle2Music = "sfx/Music/last_boss_2_battle_music.wav";
+    public final String lastBossBattle3Music = "sfx/Music/last_boss_3_battle_music.wav";
 
     // sounds
     // OLD CODE
@@ -402,7 +410,7 @@ public class Assets {
 
     private void loadSounds() {
         manager.load(battleMusic, Music.class);
-        manager.load(mmMusic, Music.class);
+        manager.load(mainMusic, Music.class);
         manager.load(barrierSFX, Sound.class);
         manager.load(castingSFX, Sound.class);
         manager.load(healSFX, Sound.class);
@@ -428,6 +436,15 @@ public class Assets {
 
         manager.load(pomHitSFX, Sound.class);
         manager.load(pomTriggerSFX, Sound.class);
+
+        manager.load(stage1BattleMusic, Music.class);
+        manager.load(stage2BattleMusic, Music.class);
+        manager.load(stage3BattleMusic, Music.class);
+        manager.load(lastBossBattle1Music, Music.class);
+        manager.load(lastBossBattle2Music, Music.class);
+        manager.load(lastBossBattle3Music, Music.class);
+        manager.load(victoryMusic, Music.class);
+        manager.load(defeatMusic, Music.class);
 
     }
 

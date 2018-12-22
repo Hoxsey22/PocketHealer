@@ -84,7 +84,19 @@ public class EncounterState extends State {
 
         //hogger = new Hogger(assets);
 
-        AudioManager.playMusic(assets.getMusic(assets.battleMusic));
+        //AudioManager.playMusic(assets.getMusic(assets.battleMusic));
+
+        if(boss.getId() < 7)    {
+            AudioManager.playMusic(assets.getMusic(assets.stage1BattleMusic));
+        }
+        else if(boss.getId() < 12)   {
+            AudioManager.playMusic(assets.getMusic(assets.stage3BattleMusic));
+        }
+        else if(boss.getId() < 16)   {
+            AudioManager.playMusic(assets.getMusic(assets.stage2BattleMusic));
+        }
+
+
 
         /* DELETE
         bgMusic = assets.getMusic("sfx/battle_music.ogg");
@@ -347,6 +359,7 @@ public class EncounterState extends State {
             handleInput();
             boss.update();
             if (boss.isDead()) {
+                AudioManager.playMusic(assets.getMusic(assets.victoryMusic));
                 page = 2;
                 if(!boss.isDefeated())    {
                     boss.reward();
@@ -367,6 +380,7 @@ public class EncounterState extends State {
                 player.stop();*/
                 isDone = true;
             } else if (raid.isRaidDead()) {
+                AudioManager.playMusic(assets.getMusic(assets.defeatMusic));
                 gameOverFrame = new GameOverFrame(false, boss, assets);
                 gameOverFrame.showLose();
                 gameOverFrame.addListener(getEndGameListener());
