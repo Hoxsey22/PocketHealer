@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.IgniteEffect;
@@ -23,6 +24,7 @@ public class Ignite extends Mechanic {
 
     @Override
     public void action() {
+        AudioManager.playSFX(getAssets().getSound(getAssets().debuffSFX), false);
         ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
 
         for (int i = 0; i < temp.size(); i++)   {

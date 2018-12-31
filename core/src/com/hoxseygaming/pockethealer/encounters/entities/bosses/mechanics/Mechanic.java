@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
@@ -283,7 +284,11 @@ public abstract class Mechanic {
         return bgMech;
     }
 
-   public void setBgMech() {
+    public void setBgMech() {
         this.bgMech = true;
+    }
+
+    public Assets getAssets()  {
+        return getOwner().getAssets();
     }
 }

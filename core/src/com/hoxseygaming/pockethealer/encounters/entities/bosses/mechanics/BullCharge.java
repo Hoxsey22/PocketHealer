@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
@@ -24,6 +25,7 @@ public class BullCharge extends Mechanic {
 
     @Override
     public void action() {
+        AudioManager.playSFX(getAssets().getSound(getAssets().chargeSFX), false);
         ArrayList<RaidMember> selected = getRaid().getRandomRaidMember(4);
         if(selected != null)    {
             selected.get(0).takeDamage(getDamage());

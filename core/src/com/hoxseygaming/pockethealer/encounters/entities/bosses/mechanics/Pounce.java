@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
@@ -31,6 +32,7 @@ public class Pounce extends Mechanic {
 
         for (int i = 0; i < temp.size(); i++)   {
             if(temp.get(i) != null) {
+                AudioManager.playSFX(getAssets().getSound(getAssets().biteSFX), false);
                 temp.get(i).takeDamage(getDamage());
                 temp.get(i).addStatusEffect(new BleedEffect(getOwner()));
             }

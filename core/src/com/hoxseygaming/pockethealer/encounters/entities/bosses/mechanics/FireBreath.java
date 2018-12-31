@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BurnEffect;
 
@@ -37,6 +38,7 @@ public class FireBreath extends Mechanic{
     private void startChannel()  {
         channel = new Timer();
 
+
         channel.scheduleTask(new Timer.Task() {
             int count =  0;
 
@@ -45,6 +47,7 @@ public class FireBreath extends Mechanic{
                 if(count != 5) {
                     count++;
                     for(int i = 0; i <  getOwner().getEnemies().getRaidMembers().size(); i++)   {
+                        AudioManager.playSFX(getAssets().getSound(getAssets().fireBreathSFX), false);
                         getOwner().getEnemies().getRaidMember(i).takeDamage(getDamage());
                         if(dice.nextInt(100) > 94)    {
                             getOwner().getEnemies().getRaidMember(i).addStatusEffect(new BurnEffect(getOwner()));

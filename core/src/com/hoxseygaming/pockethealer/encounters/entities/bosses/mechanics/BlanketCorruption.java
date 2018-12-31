@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.CorruptionEffect;
 
@@ -21,6 +22,7 @@ public class BlanketCorruption extends Mechanic{
 
     @Override
     public void action() {
+        AudioManager.playSFX(getAssets().getSound(getAssets().debuffSFX), false);
         for(int i = 0; i < getOwner().getEnemies().getRaidMembers().size(); i++)   {
             CorruptionEffect corruptionEffect = new CorruptionEffect(getOwner(), true);
             corruptionEffect.setModValue(5);

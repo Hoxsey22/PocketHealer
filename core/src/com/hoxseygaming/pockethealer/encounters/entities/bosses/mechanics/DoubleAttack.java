@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.SunderEffect;
 
@@ -36,6 +37,7 @@ public class DoubleAttack extends Mechanic {
         secondTimer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
+                AudioManager.playSFX(getAssets().getSound(getAssets().biteSFX),false);
                 getOwner().getTarget().takeDamage(200);
                 getOwner().getTarget().addStatusEffect(new SunderEffect(getOwner()));
                 getOwner().setTarget(getOwner().getNextThreat());

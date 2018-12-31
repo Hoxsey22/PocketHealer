@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
@@ -12,8 +13,8 @@ import java.util.ArrayList;
 
 public class Flurry extends Mechanic{
 
-
     private Timer channel;
+    private int sfxIndex;
 
     @SuppressWarnings("unused")
     public Flurry(Boss owner) {
@@ -46,6 +47,7 @@ public class Flurry extends Mechanic{
                     count++;
                     if(random != null) {
                         if (random != null && random.size() != 0) {
+                            triggerSFX();
                             random.get(0).takeDamage(getDamage());
                         }
                         if (random.get(0).isDead()) {
@@ -60,6 +62,30 @@ public class Flurry extends Mechanic{
                 }
             }
         },0.5f,0.5f,10);
+    }
+
+    public void triggerSFX()    {
+        switch ((sfxIndex%6)) {
+            case 0:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing1SFX), false);
+                break;
+            case 1:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing2SFX), false);
+                break;
+            case 2:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing3SFX), false);
+                break;
+            case 3:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing4SFX), false);
+                break;
+            case 4:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing5SFX), false);
+                break;
+            case 5:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing6SFX), false);
+                break;
+        }
+        sfxIndex++;
     }
 
 

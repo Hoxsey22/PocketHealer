@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.PoisonEffect;
@@ -23,9 +24,10 @@ public class Sting extends Mechanic {
     @Override
     public void action() {
         ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
-
+        AudioManager.playSFX(getAssets().getSound(getAssets().finishImpactSFX), false);
         for (int i = 0; i < temp.size(); i++)   {
             if(temp.get(i) != null) {
+                AudioManager.playSFX(getAssets().getSound(getAssets().stabSFX), false);
                 temp.get(i).takeDamage(getDamage());
                 temp.get(i).addStatusEffect(new PoisonEffect(getOwner()));
             }

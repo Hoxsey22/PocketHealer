@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 /**
@@ -11,6 +12,7 @@ public class Earthquake extends Mechanic {
 
     private int numOfTargets;
     private Timer channel;
+    private int sfxIndex;
 
     @SuppressWarnings("unused")
     public Earthquake(Boss owner) {
@@ -38,6 +40,8 @@ public class Earthquake extends Mechanic {
             public void run() {
                 if(count != 3) {
                     count++;
+                    //triggerSFX();
+                    AudioManager.playSFX(getAssets().getSound(getAssets().earthquake1SFX), false);
                     getRaid().takeDamage(getDamage());
                 }
                 else    {
@@ -47,6 +51,21 @@ public class Earthquake extends Mechanic {
                 }
             }
         },0.5f,0.5f,5);
+    }
+
+    public void triggerSFX()    {
+        switch ((sfxIndex%3)) {
+            case 0:
+                AudioManager.playSFX(getAssets().getSound(getAssets().earthquake1SFX), false);
+                break;
+            case 1:
+                AudioManager.playSFX(getAssets().getSound(getAssets().earthquake2SFX), false);
+                break;
+            case 2:
+                AudioManager.playSFX(getAssets().getSound(getAssets().earthquake3SFX), false);
+                break;
+        }
+        sfxIndex++;
     }
 
     @Override

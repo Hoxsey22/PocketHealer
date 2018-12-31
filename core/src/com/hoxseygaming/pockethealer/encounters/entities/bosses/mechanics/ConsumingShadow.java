@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.ConsumingShadowEffect;
 
@@ -21,6 +22,7 @@ public class ConsumingShadow extends Mechanic{
 
     @Override
     public void action() {
+        AudioManager.playSFX(getAssets().getSound(getAssets().bigDebuffSFX), false);
         for(int i = 0; i <  getOwner().getEnemies().getRaidMembers().size(); i++)   {
             getOwner().getEnemies().getRaidMembers().get(i).addStatusEffect(new ConsumingShadowEffect(getOwner()));
         }

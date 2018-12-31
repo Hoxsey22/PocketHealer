@@ -229,7 +229,8 @@ public class LastBossEncounterState extends State {
                 stage.addActor(gameOverFrame);
                 stop();
                 isDone = true;
-            } else if (raid.isRaidDead()) {
+            }
+            else if (raid.isRaidDead()) {
                 AudioManager.playMusic(assets.getMusic(assets.defeatMusic));
                 gameOverFrame = new GameOverFrame(false, boss, assets);
                 gameOverFrame.showLose();

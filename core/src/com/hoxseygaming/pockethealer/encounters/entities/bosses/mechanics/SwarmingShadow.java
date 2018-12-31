@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 /**
@@ -37,6 +38,7 @@ public class SwarmingShadow extends Mechanic{
             public void run() {
                 if(count != 4) {
                     count++;
+                    AudioManager.playSFX(getAssets().getSound(getAssets().firecastSFX), false);
                     for(int i = 0; i <  getOwner().getEnemies().getRaidMembers().size(); i++)   {
                         getOwner().getEnemies().getRaidMember(i).takeDamage(getDamage());
                     }

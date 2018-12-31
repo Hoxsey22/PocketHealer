@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
@@ -39,6 +40,7 @@ public class SeedOfCorruptionEffect extends Debuff {
         super.remove();
         ArrayList<RaidMember> group = getRandomGroup();
 
+        AudioManager.playSFX(getAssets().getSound(getAssets().bigDebuffSFX), false);
         getOwner().getEnemies().takeDamage(30);
 
         for(int i = 0; i < group.size(); i++)   {

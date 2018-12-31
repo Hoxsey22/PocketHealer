@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
@@ -28,6 +29,7 @@ public class UnstablePyroblast extends Mechanic {
 
     @Override
     public void action() {
+        AudioManager.playSFX(getAssets().getSound(getAssets().bigFireballSFX), false);
         numOfTargets = new Random().nextInt(5);
         ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
 

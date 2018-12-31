@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 /**
@@ -23,6 +24,7 @@ public class ThunderStorm extends Mechanic{
 
     @Override
     public void action() {
+        AudioManager.playSFX(getAssets().getSound(getAssets().electricStrikeSFX), false);
         for(int i = 0; i < getRaid().getRaidMembers().size(); i++)   {
             getRaid().getRaidMember(i).takeDamage(100);
         }

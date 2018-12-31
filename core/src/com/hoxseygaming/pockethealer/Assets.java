@@ -224,8 +224,31 @@ public class Assets {
     //pom
     public final String pomHitSFX = "sfx/SFX/p_spells/pom/pom_hit_sfx.wav";
     public final String pomTriggerSFX = "sfx/SFX/p_spells/pom/pom_trigger_sfx.wav";
-
-
+    // boss sounds
+    public final String firecastSFX = "sfx/SFX/b_spells/firecast_sfx.wav";
+    public final String bigDebuffSFX = "sfx/SFX/b_spells/big_debuff_sfx.wav";
+    public final String bigFireballSFX = "sfx/SFX/b_spells/big_fireball_sfx.wav";
+    public final String debuffSFX = "sfx/SFX/b_spells/debuff_sfx.wav";
+    public final String explosionSFX = "sfx/SFX/b_spells/explosion_sfx.wav";
+    public final String finishImpactSFX = "sfx/SFX/b_spells/finish_impact_sfx.wav";
+    public final String fireBreathSFX = "sfx/SFX/b_spells/fire_breath_sfx.wav";
+    public final String fireballSFX = "sfx/SFX/b_spells/fireball_sfx.wav";
+    public final String unstableProblastSFX = "sfx/SFX/b_spells/u_pyroblast_sfx.wav";
+    public final String swordSwing1SFX = "sfx/SFX/b_spells/flurry/ss1_sfx.wav";
+    public final String swordSwing2SFX = "sfx/SFX/b_spells/flurry/ss2_sfx.wav";
+    public final String swordSwing3SFX = "sfx/SFX/b_spells/flurry/ss3_sfx.wav";
+    public final String swordSwing4SFX = "sfx/SFX/b_spells/flurry/ss4_sfx.wav";
+    public final String swordSwing5SFX = "sfx/SFX/b_spells/flurry/ss5_sfx.wav";
+    public final String swordSwing6SFX = "sfx/SFX/b_spells/flurry/ss6_sfx.wav";
+    public final String earthquake1SFX = "sfx/SFX/b_spells/earthquake/earthquake1_sfx.wav";
+    public final String earthquake2SFX = "sfx/SFX/b_spells/earthquake/earthquake2_sfx.wav";
+    public final String earthquake3SFX = "sfx/SFX/b_spells/earthquake/earthquake3_sfx.wav";
+    public final String chargeSFX = "sfx/SFX/b_spells/charge_sfx.wav";
+    public final String biteSFX = "sfx/SFX/b_spells/bite_sfx.wav";
+    public final String stabSFX = "sfx/SFX/b_spells/stab_sfx.wav";
+    public final String magicStabSFX = "sfx/SFX/b_spells/magic_stab_sfx.wav";
+    public final String darkMagicSFX = "sfx/SFX/b_spells/dark_magic_sfx.wav";
+    public final String electricStrikeSFX = "sfx/SFX/b_spells/electric_strike_sfx.wav";
     // skin
     private final String uiSkin = "pocket_healer_ui.json";
 
@@ -445,6 +468,33 @@ public class Assets {
         manager.load(lastBossBattle3Music, Music.class);
         manager.load(victoryMusic, Music.class);
         manager.load(defeatMusic, Music.class);
+
+        manager.load(firecastSFX, Sound.class);
+        manager.load(bigDebuffSFX, Sound.class);
+        manager.load(bigFireballSFX, Sound.class);
+        manager.load(debuffSFX, Sound.class);
+        manager.load(explosionSFX, Sound.class);
+        manager.load(finishImpactSFX, Sound.class);
+        manager.load(fireBreathSFX,Sound.class);
+        manager.load(fireballSFX, Sound.class);
+        manager.load(unstableProblastSFX, Sound.class);
+
+        manager.load(swordSwing1SFX, Sound.class);
+        manager.load(swordSwing2SFX, Sound.class);
+        manager.load(swordSwing3SFX, Sound.class);
+        manager.load(swordSwing4SFX, Sound.class);
+        manager.load(swordSwing5SFX, Sound.class);
+        manager.load(swordSwing6SFX, Sound.class);
+
+        manager.load(earthquake1SFX,Sound.class);
+        manager.load(earthquake2SFX,Sound.class);
+        manager.load(earthquake3SFX,Sound.class);
+        manager.load(chargeSFX,Sound.class);
+        manager.load(stabSFX,Sound.class);
+        manager.load(magicStabSFX,Sound.class);
+        manager.load(biteSFX,Sound.class);
+        manager.load(darkMagicSFX,Sound.class);
+        manager.load(electricStrikeSFX,Sound.class);
 
     }
 

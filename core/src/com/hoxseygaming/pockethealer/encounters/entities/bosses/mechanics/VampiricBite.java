@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.VampiricBiteEffect;
@@ -29,6 +30,7 @@ public class VampiricBite extends Mechanic {
         RaidMember t = getOwner().getEnemies().getRandomRaidMember(1).get(0);
         if(t != null)    {
             setTarget(t);
+            AudioManager.playSFX(getAssets().getSound(getAssets().biteSFX), false);
             getTarget().takeDamage(getDamage());
             getTarget().addStatusEffect(new VampiricBiteEffect(getOwner()));
         }

@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.CriticalDice;
@@ -25,6 +26,7 @@ public class Pyroblast extends Mechanic {
 
     @Override
     public void action() {
+        AudioManager.playSFX(getOwner().getAssets().getSound(getOwner().getAssets().bigFireballSFX),false);
         ArrayList<RaidMember> selected = getRaid().getRandomRaidMember(1);
         if(selected != null)    {
             selected.get(0).takeDamage(getDamage());

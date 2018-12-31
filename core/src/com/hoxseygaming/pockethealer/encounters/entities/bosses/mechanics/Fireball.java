@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BurnEffect;
@@ -30,6 +31,7 @@ public class Fireball extends Mechanic {
 
     @Override
     public void action() {
+        AudioManager.playSFX(getAssets().getSound(getAssets().fireballSFX), false);
         ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
         random.get(0).takeDamage(getDamage());
         if(dice.nextInt(100) > 95)    {

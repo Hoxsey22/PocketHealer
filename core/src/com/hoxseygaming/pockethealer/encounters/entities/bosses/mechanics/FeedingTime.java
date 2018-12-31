@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.MotherSpider;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
@@ -31,6 +32,7 @@ public class FeedingTime extends Mechanic {
 
     @Override
     public void action() {
+        AudioManager.playSFX(getAssets().getSound(getAssets().debuffSFX), false);
         for (int i = 0; i < getOwner().getEnemies().getRaidMembers().size(); i++) {
             getOwner().getEnemies().getRaidMembers().get(i).addStatusEffect(new WebEffect(getOwner(),100));
         }

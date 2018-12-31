@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.VenomEffect;
@@ -41,6 +42,7 @@ public class Leap extends Mechanic{
             @Override
             public void run() {
                 if(count != targets.size()) {
+                    AudioManager.playSFX(getAssets().getSound(getAssets().biteSFX), false);
                     targets.get(count).takeDamage(getDamage());
                     targets.get(count).addStatusEffect(new VenomEffect(getOwner()));
                 }

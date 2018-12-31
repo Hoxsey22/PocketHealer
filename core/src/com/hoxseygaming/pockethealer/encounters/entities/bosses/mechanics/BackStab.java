@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
@@ -23,7 +24,7 @@ public class BackStab extends Mechanic {
     @Override
     public void action() {
         ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets);
-
+        AudioManager.playSFX(getAssets().getSound(getAssets().stabSFX), false);
         for (int i = 0; i < temp.size(); i++)   {
             BleedEffect bleedEffect = new BleedEffect(getOwner());
             bleedEffect.setModValue(5);

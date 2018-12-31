@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
@@ -24,6 +25,7 @@ public class Bite extends Mechanic {
     @Override
     public void action() {
         ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
+        AudioManager.playSFX(getAssets().getSound(getAssets().biteSFX), false);
         if(random.get(0) != null)
             random.get(0).takeDamage(getDamage());
     }

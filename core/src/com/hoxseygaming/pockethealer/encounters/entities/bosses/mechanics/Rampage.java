@@ -1,6 +1,7 @@
 package com.hoxseygaming.pockethealer.encounters.entities.bosses.mechanics;
 
 import com.badlogic.gdx.utils.Timer;
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 public class Rampage extends Mechanic{
 
     private Timer channel;
+    private int sfxIndex;
 
     public Rampage(Boss owner) {
         super("Rampage", 10, 20f, owner);
@@ -43,6 +45,7 @@ public class Rampage extends Mechanic{
                     count++;
                     for (int i = 0; i < randoms.size(); i++)    {
                         if(!randoms.get(i).isDead())    {
+                            triggerSFX();
                             randoms.get(i).takeDamage(getDamage());
                         }
                     }
@@ -54,6 +57,30 @@ public class Rampage extends Mechanic{
                 }
             }
         },1f,1f,20);
+    }
+
+    public void triggerSFX()    {
+        switch ((sfxIndex%6)) {
+            case 0:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing1SFX), false);
+                break;
+            case 1:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing2SFX), false);
+                break;
+            case 2:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing3SFX), false);
+                break;
+            case 3:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing4SFX), false);
+                break;
+            case 4:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing5SFX), false);
+                break;
+            case 5:
+                AudioManager.playSFX(getAssets().getSound(getAssets().swordSwing6SFX), false);
+                break;
+        }
+        sfxIndex++;
     }
 
     @Override

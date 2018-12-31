@@ -1,5 +1,6 @@
 package com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff;
 
+import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 
 /**
@@ -45,9 +46,11 @@ public class IgniteEffect extends Debuff {
     @Override
     public void remove() {
         if (isDispelled) {
+            AudioManager.playSFX(getAssets().getSound(getAssets().explosionSFX), false);
             getOwner().getEnemies().takeDamage(20);
         }
         else {
+            AudioManager.playSFX(getAssets().getSound(getAssets().explosionSFX), false);
             getOwner().getEnemies().takeDamage(30);
         }
         super.remove();
