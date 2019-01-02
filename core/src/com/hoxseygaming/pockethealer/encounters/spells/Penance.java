@@ -34,11 +34,31 @@ public class Penance extends ChannelCast {
     @Override
     public void applySpell(RaidMember target) {
         triggerSFX();
-
+        int newOutput;
         if(!getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
             target.receiveHealing(getOutput(), getCriticalChance().isCritical());
         }
         else {
+            if (getOwner().getRaid().getBuffLessRaidMembers("Atonement Effect").size() > 0) {
+                newOutput = getOwner().getBoss().takeDamage(getOutput(), getCriticalChance().isCritical());
+                if (getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
+                    for (int i = 0; i < getOwner().getRaid().getBuffedRaidMembers("Atonement Effect").size(); i++) {
+                        applyCriticalHealerII(getOwner().getRaid().getBuffedRaidMembers("Atonement Effect").get(i), newOutput);
+                    }
+                } else {
+                    for (int i = 0; i < getOwner().getRaid().getBuffedRaidMembers("Atonement Effect").size(); i++) {
+                        getOwner().getRaid().getBuffedRaidMembers("Atonement Effect").get(i).receiveHealing(newOutput, false);
+                    }
+                }
+            } else {
+                if (getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
+                    applyCriticalHealerII(target, getOutput());
+                } else {
+                    target.receiveHealing(getOutput(), getCriticalChance().isCritical());
+                }
+            }
+        }
+/*
             RaidMember lowest = getOwner().getRaid().getRaidMemberWithLowestHp();
             int newOutput = getOwner().getBoss().takeDamage(getOutput(), getCriticalChance().isCritical());
 
@@ -60,7 +80,7 @@ public class Penance extends ChannelCast {
                     }
                 }
             }
-        }
+        }*/
 
 
     }

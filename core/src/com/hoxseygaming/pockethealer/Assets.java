@@ -117,7 +117,7 @@ public class Assets {
     public final String button = "button.png";
     public final String smallButton = "small_button.png";
     public final String buttonHighlight = "button_select.png";
-    public final String title = "logo/pocket-healer-logo.png";
+    public final String title = "logo/pocket_healer_logo.png";
     public final String poisonIcon = "icons/poison_icon.png";
     public final String agonyIcon = "icons/agony_icon.png";
     public final String corruptionIcon = "icons/corruption_icon.png";

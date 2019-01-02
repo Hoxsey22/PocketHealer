@@ -60,8 +60,8 @@ public class Raid extends Group {
                         if(raidMembers.get(i).getRole().equalsIgnoreCase("Healer"))    {
                             player.receiveMana(raidMembers.get(i).getDamage());
                             if(healerChannel) {
-                                //getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).getDamage(),false);
-                                getRaidMemberWithLowestHp().receiveHealing(200,false);
+                                getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).getDamage(),false);
+                                //getRaidMemberWithLowestHp().receiveHealing(200,false);
                             }
                             else {
                                 t.takeDamage(raidMembers.get(i).getDamage());
@@ -343,6 +343,16 @@ public class Raid extends Group {
             }
         }
         return  buffLess;
+    }
+
+    public ArrayList<RaidMember> getBuffedRaidMembers(String name)    {
+        ArrayList<RaidMember> buffed = new ArrayList<>();
+        for(int i = 0; i <  raidMembers.size(); i++)   {
+            if(raidMembers.get(i).getStatusEffectList().contains(name))    {
+                buffed.add(raidMembers.get(i));
+            }
+        }
+        return  buffed;
     }
 
     public int getNumOfAlive() {

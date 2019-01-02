@@ -46,7 +46,7 @@ public class TalentTree extends Group{
         assets = owner.getAssets();
         createTalents();
         placeTalentPosition();
-        toJSON();
+        //  toJSON();
     }
 
     public TalentTree(Player player, int unusedPoints, int totalPoints) {

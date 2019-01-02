@@ -44,11 +44,32 @@ public class Smite extends Castable {
 
     @Override
     public void applySpell(RaidMember target) {
-        RaidMember lowest = getOwner().getRaid().getRaidMemberWithLowestHp();
-
+        //RaidMember lowest = getOwner().getRaid().getRaidMemberWithLowestHp();
         int newOutput = getOwner().getBoss().takeDamage(getOutput(), getCriticalChance().isCritical());
 
-        if(getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
+        if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
+            if(getOwner().getRaid().getBuffedRaidMembers("Atonement Effect").size() > 0) {
+                if (getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
+                    for (int i = 0; i < getOwner().getRaid().getBuffedRaidMembers("Atonement Effect").size(); i++) {
+                        applyCriticalHealerII(getOwner().getRaid().getBuffedRaidMembers("Atonement Effect").get(i), newOutput);
+                    }
+                } else {
+                    for (int i = 0; i < getOwner().getRaid().getBuffedRaidMembers("Atonement Effect").size(); i++) {
+                        getOwner().getRaid().getBuffedRaidMembers("Atonement Effect").get(i).receiveHealing(newOutput, getCriticalChance().isCritical());
+                    }
+                }
+            }
+            else {
+                getOwner().getRaid().getRaidMemberWithLowestHp().receiveHealing(newOutput, getCriticalChance().isCritical());
+            }
+        }
+        else    {
+            getOwner().getRaid().getRaidMemberWithLowestHp().receiveHealing(newOutput, getCriticalChance().isCritical());
+        }
+
+
+
+        /*if(getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
             applyCriticalHealerII(lowest, newOutput);
         }
         else {
@@ -61,7 +82,7 @@ public class Smite extends Castable {
                     getOwner().getRaid().getRaidMembers().get(i).receiveHealing(newOutput, getCriticalChance().isCritical());
                 }
             }
-        }
+        }*/
     }
 
 
