@@ -47,6 +47,7 @@ public class BlinkingOutline extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         if(!isBlink) {
+            shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
             shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
                 shapeRenderer.setColor(Color.GREEN);
                 shapeRenderer.rect(outline.getX(),outline.getY(), outline.getWidth(), outline.getHeight());
