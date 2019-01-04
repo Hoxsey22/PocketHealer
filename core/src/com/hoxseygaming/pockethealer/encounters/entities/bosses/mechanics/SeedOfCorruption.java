@@ -23,11 +23,11 @@ public class SeedOfCorruption extends Mechanic {
 
     @Override
     public void action() {
-        AudioManager.playSFX(getAssets().getSound(getAssets().debuffSFX), false);
+
         if(getOwner().getEnemies().getDebuffLessRaidMembers("Seed of Corruption Effect").size() == getOwner().getEnemies().getNumOfAlive()) {
             ArrayList<RaidMember> temp = getOwner().getEnemies().getRandomRaidMember(
                     numOfTargets,getOwner().getEnemies().getDebuffLessRaidMembers("Seed of Corruption Effect"));
-
+            AudioManager.playSFX(getAssets().getSound(getAssets().debuffSFX), false);
             for (int i = 0; i < temp.size(); i++) {
                 SeedOfCorruptionEffect seedOfCorruptionEffect = new SeedOfCorruptionEffect(getOwner());
                 temp.get(i).addStatusEffect(seedOfCorruptionEffect);

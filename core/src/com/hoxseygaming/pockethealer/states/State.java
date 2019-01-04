@@ -4,7 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.hoxseygaming.pockethealer.PocketHealer;
 
 /**
@@ -14,13 +14,13 @@ abstract class State extends ApplicationAdapter {
     public final OrthographicCamera cam;
     private final Vector3 mouse;
     final com.hoxseygaming.pockethealer.states.StateManager sm;
-    final StretchViewport viewport;
+    final FitViewport viewport;
 
     State(com.hoxseygaming.pockethealer.states.StateManager sm)   {
         this.sm = sm;
         cam = new OrthographicCamera();
         cam.setToOrtho(false, PocketHealer.WIDTH,PocketHealer.HEIGHT);
-        viewport = new StretchViewport(PocketHealer.WIDTH,PocketHealer.HEIGHT,cam);
+        viewport = new FitViewport(PocketHealer.WIDTH,PocketHealer.HEIGHT,cam);
         mouse = new Vector3();
     }
 
