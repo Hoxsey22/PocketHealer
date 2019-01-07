@@ -21,6 +21,7 @@ import com.hoxseygaming.pockethealer.GameData;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.ScrollImage;
+import com.hoxseygaming.pockethealer.ShutterAnimation;
 import com.hoxseygaming.pockethealer.Text;
 import com.hoxseygaming.pockethealer.WindowFrame;
 
@@ -52,6 +53,7 @@ public class MainMenuState extends State{
     private Label ngConfirmationText;
     private TextButton confirmButton;
     private TextButton backButton;
+    private ShutterAnimation shutterAnimation;
 
 
     private Table buttonTable;
@@ -99,8 +101,17 @@ public class MainMenuState extends State{
                 public void changed(ChangeEvent event, Actor actor) {
                     animatedBackground.stop();
                     GameData.load(player);
-                    sm.set(new MapState(sm, player));
-                    System.out.println("Continued Game has been started.");
+
+                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                        @Override
+                        public void run() {
+                            sm.set(new MapState(sm, player));
+                            System.out.println("Continued Game has been started.");
+                        }
+                    });
+                    shutterAnimation.start();
+
+
                 }
             });
             buttonTable.add(continueButton).padBottom(15);;
@@ -144,6 +155,8 @@ public class MainMenuState extends State{
 
         stage.addActor(buttonTable);
 
+
+
         //stage.addActor(creditsButton);
 
         animatedBackground.start();
@@ -172,8 +185,14 @@ public class MainMenuState extends State{
             public void changed(ChangeEvent event, Actor actor) {
                 animatedBackground.stop();
                 player.newGame();
-                sm.set(new TutorialState(sm, player));
-                System.out.println("A New Game has been started.");
+                shutterAnimation = new ShutterAnimation(stage, assets,true,new Runnable() {
+                    @Override
+                    public void run() {
+                        sm.set(new TutorialState(sm, player));
+                        System.out.println("A New Game has been started.");
+                    }
+                });
+                shutterAnimation.start();
             }
         });
         backButton = new TextButton("Back",PocketHealer.ui, "small_button");

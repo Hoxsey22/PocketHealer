@@ -18,6 +18,7 @@ import com.hoxseygaming.pockethealer.BossIcon;
 import com.hoxseygaming.pockethealer.InfoFrame;
 import com.hoxseygaming.pockethealer.MapFrame;
 import com.hoxseygaming.pockethealer.Player;
+import com.hoxseygaming.pockethealer.ShutterAnimation;
 import com.hoxseygaming.pockethealer.Strings;
 
 /**
@@ -39,6 +40,7 @@ public class MapState extends State {
     private TextButton spellButton;
     private Table buttonTable;
     private int previousState;
+    private ShutterAnimation shutterAnimation;
 
 
     public MapState(StateManager sm, Player player) {
@@ -67,6 +69,9 @@ public class MapState extends State {
         startPage();
         createButtons();
         createButtonListeners();
+
+        shutterAnimation = new ShutterAnimation(stage, assets, false);
+        shutterAnimation.start();
     }
 
     public MapState(StateManager sm, Player player, int previousState) {
@@ -95,6 +100,9 @@ public class MapState extends State {
         startPage();
         createButtons();
         createButtonListeners();
+
+        shutterAnimation = new ShutterAnimation(stage, assets, false);
+        shutterAnimation.start();
     }
 
     private void turnPage()  {
@@ -372,6 +380,7 @@ public class MapState extends State {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glEnable(GL20.GL_BLEND);
         update(Gdx.graphics.getDeltaTime());
+        stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
     }
 

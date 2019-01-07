@@ -62,6 +62,7 @@ public class Assets {
     public final String mmBG2 = "main_menu_state/bg2.png";
     public final String mmBG3 = "main_menu_state/bg3.png";
     public final String mmBG4 = "main_menu_state/main.png";
+    public final String blackPanel = "black_panel.png";
 
     private final String mmPlayButtonIdle = "main_menu_state/play_button_idle.png";
     private final String mmPlayButtonHover = "main_menu_state/play_button_hover.png";
@@ -79,7 +80,7 @@ public class Assets {
     public final String battleBg1 = "battle_bg1.png";
     public final String battleBg2 = "battle_bg2.png";
     public final String battleBg3 = "battle_bg3.png";
-    private final String blackBar = "black_bar.png";
+    public final String blackBar = "black_bar.png";
     private final String whiteBar = "white_bar.png";
     private final String redBar = "red_bar.png";
     private final String redOutlineBar = "red_outline_bar.png";

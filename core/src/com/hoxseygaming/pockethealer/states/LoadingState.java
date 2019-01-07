@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Container;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
@@ -31,6 +33,7 @@ public class LoadingState extends State {
     private final Assets assets;
     private Label loadingText;
     private Player player;
+    private Container<Label> container;
 
     public LoadingState(StateManager sm) {
         super(sm);
@@ -66,6 +69,9 @@ public class LoadingState extends State {
         stage.addActor(libgdxLogo);
         stage.addActor(loadingText);
 
+        stage.addAction(Actions.alpha(0));
+        stage.addAction(Actions.fadeIn(2));
+
         assets.load();
 
     }
@@ -80,6 +86,8 @@ public class LoadingState extends State {
         loadingText.setColor(Color.GOLD);
         loadingText.setPosition((PocketHealer.WIDTH/2)-(loadingText.getWidth()/2),50);
         loadingText.setAlignment(Align.center);
+
+        //stage.addActor(container);
     }
 
     @Override
@@ -139,16 +147,30 @@ public class LoadingState extends State {
             progress = assets.getProgress();
         }
         else {
-            isReady = true;
-            loadingText.setText("Press the screen!");
+            if (!isReady) {
+                isReady = true;
+                loadingText.setText("Press the screen!");
+                startLoadingTextAnimation();
+            }
+
         }
 
+    }
+
+    public void startLoadingTextAnimation() {
+        loadingText.addAction(Actions.repeat(100,
+                Actions.sequence(
+                        Actions.moveBy(0, 10, 0.5f),
+                        Actions.moveBy(0,-10,0.5f)
+
+                )
+        ));
     }
 
     @Override
     public void render(SpriteBatch sb) {
 
-        Gdx.gl.glClearColor(Color.WHITE.r,Color.WHITE.g,Color.WHITE.b,Color.WHITE.a);
+        Gdx.gl.glClearColor(255,254,219,Color.DARK_GRAY.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glEnable(GL20.GL_BLEND);
         stage.act(Gdx.graphics.getDeltaTime());
