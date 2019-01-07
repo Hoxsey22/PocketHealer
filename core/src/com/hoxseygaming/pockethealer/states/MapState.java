@@ -302,27 +302,48 @@ public class MapState extends State {
         talentButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                sm.set(new TalentSelectionState(sm, player));
+                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                    @Override
+                    public void run() {
+                        sm.set(new TalentSelectionState(sm, player));
+                    }
+                });
+                shutterAnimation.start();
+
             }
         });
 
         startButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(selectedLevel != null)    {
-                    System.out.println("++++Boss: "+selectedLevel.getBoss().getId());
-                    if(selectedLevel.getBoss().getId() == 16)
-                        sm.set(new LastBossEncounterState(sm, player, selectedLevel.boss));
-                    else
-                        sm.set(new EncounterState(sm, player, selectedLevel.boss));
-                }
+                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                    @Override
+                    public void run() {
+                        if(selectedLevel != null)    {
+                            System.out.println("++++Boss: "+selectedLevel.getBoss().getId());
+                            if(selectedLevel.getBoss().getId() == 16)
+                                sm.set(new LastBossEncounterState(sm, player, selectedLevel.boss));
+                            else
+                                sm.set(new EncounterState(sm, player, selectedLevel.boss));
+                        }
+                    }
+                });
+                shutterAnimation.start();
+
             }
         });
 
         spellButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                sm.set(new SpellSelectionState(sm, player));
+                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                    @Override
+                    public void run() {
+                        sm.set(new SpellSelectionState(sm, player));
+                    }
+                });
+                shutterAnimation.start();
+
             }
         });
 

@@ -19,6 +19,7 @@ import com.hoxseygaming.pockethealer.GameData;
 import com.hoxseygaming.pockethealer.GameOverFrame;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
+import com.hoxseygaming.pockethealer.ShutterAnimation;
 import com.hoxseygaming.pockethealer.TutorialFrame;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Monster;
@@ -46,6 +47,7 @@ public class TutorialState extends State {
     private BlinkingOutline blinkingOutline;
     private ArrayList<Rectangle> outlines;
     private int page;
+    private ShutterAnimation shutterAnimation;
 
 
     public TutorialState(StateManager sm, Player player) {
@@ -69,6 +71,9 @@ public class TutorialState extends State {
         player.setCasting(true);
         player.setTarget(raid.getRaidMember(0));
         create();
+
+        shutterAnimation = new ShutterAnimation(stage, assets, false);
+        shutterAnimation.start();
     }
 
     @Override
@@ -300,7 +305,14 @@ public class TutorialState extends State {
 
                         case 2:
                             player.newLevel(boss.getLevel());
-                            sm.set(new MapState(sm, player,1));
+                            shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                                @Override
+                                public void run() {
+                                    sm.set(new MapState(sm, player,1));
+                                }
+                            });
+                            shutterAnimation.start();
+
                             break;
                     }
                 }
@@ -312,12 +324,25 @@ public class TutorialState extends State {
                         switch (buttonHit) {
                             case 0:
                                 GameData.remove("save");
-                                sm.set(new MainMenuState(sm, player));
+                                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        sm.set(new MainMenuState(sm, player));
+                                    }
+                                });
+                                shutterAnimation.start();
+
                                 break;
 
                             case 2:
                                 System.out.println("reset");
-                                sm.set(new TutorialState(sm, player));
+                                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        sm.set(new TutorialState(sm, player));
+                                    }
+                                });
+                                shutterAnimation.start();
                                 break;
                         }
                     }

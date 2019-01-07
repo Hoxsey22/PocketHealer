@@ -14,6 +14,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Button;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
+import com.hoxseygaming.pockethealer.ShutterAnimation;
 import com.hoxseygaming.pockethealer.Text;
 import com.hoxseygaming.pockethealer.encounters.player.bars.SpellBar;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
@@ -43,6 +44,7 @@ public class SpellSelectionState extends State {
     private final SpellBook spellBook;
     private final SpellBar spellBar;
     private boolean isSpellSelected;
+    private ShutterAnimation shutterAnimation;
 
     public SpellSelectionState(StateManager sm, Player player) {
         super(sm);
@@ -68,6 +70,8 @@ public class SpellSelectionState extends State {
         stage.addActor(spellBar);
 
         createText();
+        shutterAnimation = new ShutterAnimation(stage, assets, false);
+        shutterAnimation.start();
     }
 
     private void createText()    {
@@ -148,7 +152,14 @@ public class SpellSelectionState extends State {
 
                 if(done.pressed(coords.x, coords.y))    {
                     player.save();
-                    sm.set(new MapState(sm, player));
+                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                        @Override
+                        public void run() {
+                            sm.set(new MapState(sm, player));
+                        }
+                    });
+                    shutterAnimation.start();
+
                     return false;
                 }
                 // check if the user to selecting a spell from the spell book

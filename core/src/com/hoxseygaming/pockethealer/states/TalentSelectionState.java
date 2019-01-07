@@ -14,6 +14,7 @@ import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.Button;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
+import com.hoxseygaming.pockethealer.ShutterAnimation;
 import com.hoxseygaming.pockethealer.Text;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.Talent;
 import com.hoxseygaming.pockethealer.encounters.spells.Talents.TalentTree;
@@ -41,6 +42,7 @@ public class TalentSelectionState extends State {
     public Button reset;
     private Talent selectedTalent;
     private final Text pointTracker;
+    private ShutterAnimation shutterAnimation;
 
     public TalentSelectionState(StateManager sm, Player player) {
         super(sm);
@@ -78,6 +80,9 @@ public class TalentSelectionState extends State {
         stage.addActor(done);
         //stageNumber.setDebugAll(true);
         createText();
+
+        shutterAnimation = new ShutterAnimation(stage, assets, false);
+        shutterAnimation.start();
     }
 
     private void createText()    {
@@ -160,7 +165,13 @@ public class TalentSelectionState extends State {
                                 break;
                             case "DONE":
                                 player.save();
-                                sm.set(new MapState(sm, player));
+                                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        sm.set(new MapState(sm, player));
+                                    }
+                                });
+                                shutterAnimation.start();
                                 break;
                         }
                     }

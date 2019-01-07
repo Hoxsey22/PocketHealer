@@ -16,6 +16,7 @@ import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.GameOverFrame;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
+import com.hoxseygaming.pockethealer.ShutterAnimation;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
@@ -39,6 +40,7 @@ public class EncounterState extends State {
     private GameOverFrame gameOverFrame;
     private boolean isDone;
     private int page;
+    private ShutterAnimation shutterAnimation;
     // window frame to confirm quit
     //WindowFrame quitWindow;
     // --Commented out by Inspection (5/29/2018 8:27 PM):Label quitWindowText;
@@ -65,6 +67,8 @@ public class EncounterState extends State {
         player.setBoss(this.boss);
 
         create();
+        shutterAnimation = new ShutterAnimation(stage,player.getAssets(), false);
+        shutterAnimation.start();
     }
 
     @Override
@@ -417,16 +421,40 @@ public class EncounterState extends State {
                             player.newLevel(boss.getLevel());
                             switch (boss.getId()) {
                                 case 6:
-                                    sm.set(new MapState(sm, player,2));
+                                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            sm.set(new MapState(sm, player,2));
+                                        }
+                                    });
+                                    shutterAnimation.start();
                                     break;
                                 case 11:
-                                    sm.set(new MapState(sm, player,3));
+                                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            sm.set(new MapState(sm, player,3));
+                                        }
+                                    });
+                                    shutterAnimation.start();
                                     break;
                                 case 16:
-                                    sm.set(new MapState(sm, player,4));
+                                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            sm.set(new MapState(sm, player,4));
+                                        }
+                                    });
+                                    shutterAnimation.start();
                                     break;
                                 default:
-                                    sm.set(new MapState(sm, player));
+                                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            sm.set(new MapState(sm, player));
+                                        }
+                                    });
+                                    shutterAnimation.start();
                                     break;
                             }
                     }
@@ -438,18 +466,29 @@ public class EncounterState extends State {
                     if(buttonHit != -1) {
                         switch (buttonHit) {
                             case 0:
-                                sm.set(new MapState(sm, player));
+                                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        sm.set(new MapState(sm, player));
+                                    }
+                                });
+                                shutterAnimation.start();
+
                                 break;
 
                             case 2:
                                 System.out.println("reset");
-                                sm.set(new EncounterState(sm, player, boss));
+                                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        sm.set(new EncounterState(sm, player, boss));
+                                    }
+                                });
+                                shutterAnimation.start();
                                 break;
                         }
                     }
                 }
-
-
                 return false;
             }
         };
