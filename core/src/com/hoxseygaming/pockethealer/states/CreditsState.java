@@ -77,6 +77,8 @@ public class CreditsState extends State{
         table.row();
         table.add(new Text("Music",24, Color.BLACK, false, assets).getLabel()).left();
         table.row();
+        table.add(new Text("- wowsoundsg @ Gamedevmarket.com",24, Color.BLACK, false, assets).getLabel()).left();
+        table.row();
         table.add(new Text("- Riku20xx @ Gamedevmarket.com",24, Color.BLACK, false, assets).getLabel()).left();
 
         table.setPosition(PocketHealer.WIDTH/2 - table.getWidth()/2,PocketHealer.HEIGHT/2 - table.getHeight()/2);
