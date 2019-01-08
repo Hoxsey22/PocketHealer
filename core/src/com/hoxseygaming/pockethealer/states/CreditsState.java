@@ -15,6 +15,7 @@ import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.Player;
 import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.ScrollImage;
+import com.hoxseygaming.pockethealer.ShutterAnimation;
 import com.hoxseygaming.pockethealer.Text;
 
 /**
@@ -29,6 +30,7 @@ public class CreditsState extends State{
     private Player player;
     private int previousState;
     private boolean isReady;
+    private ShutterAnimation shutterAnimation;
 
     public CreditsState(StateManager sm, Player player, int previousState) {
         super(sm);
@@ -92,6 +94,8 @@ public class CreditsState extends State{
         stage.addActor(table);
 
         animatedBackground.start();
+        shutterAnimation = new ShutterAnimation(stage, player.getAssets(), false);
+        shutterAnimation.start();
     }
 
     @Override
@@ -120,7 +124,13 @@ public class CreditsState extends State{
                             sm.push(new MainMenuState(sm, player));
                             break;
                         case 1:
-                            sm.push(new MapState(sm, player));
+                            shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                                @Override
+                                public void run() {
+                                    sm.push(new MapState(sm, player,4));
+                                }
+                            });
+                            shutterAnimation.start();
                             break;
                     }
 

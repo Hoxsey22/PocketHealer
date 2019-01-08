@@ -268,39 +268,11 @@ public class LastBossEncounterState extends State {
                         case 2:
                             player.newLevel(boss.getLevel());
                             switch (boss.getId()) {
-                                case 6:
-                                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            sm.set(new MapState(sm, player,2));
-                                        }
-                                    });
-                                    shutterAnimation.start();
-                                    break;
-                                case 11:
-                                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            sm.set(new MapState(sm, player,3));
-                                        }
-                                    });
-                                    shutterAnimation.start();
-                                    break;
                                 case 16:
                                     shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
                                         @Override
                                         public void run() {
-                                            sm.set(new MapState(sm, player,4));
-                                        }
-                                    });
-                                    shutterAnimation.start();
-
-                                    break;
-                                default:
-                                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            sm.set(new MapState(sm, player));
+                                            sm.set(new CreditsState(sm,player,1));
                                         }
                                     });
                                     shutterAnimation.start();
