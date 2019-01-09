@@ -2,6 +2,7 @@ package com.hoxseygaming.pockethealer.encounters.player.bars;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -56,16 +57,47 @@ public class SpellBar extends Group {
      * @return
      */
     public boolean addSpell(Spell spell)   {
+        return  positionSpell(spell);
+    }
+
+    private boolean positionSpell(Spell spell)    {
+        int bestPosition = -1;
+        float bestPositionResult = -1;
+
         Rectangle spellBounds = new Rectangle(spell.getX(), spell.getY(), spell.getWidth(), spell.getHeight());
         for(int i = 0; i < positions.size(); i++)   {
             if(spellBounds.overlaps(positions.get(i)))    {
-                addSpell(i, spell);
-                return true;
-
+                if(bestPosition == -1)    {
+                    bestPosition = i;
+                    bestPositionResult = getDistanceBetweenRectangles(positions.get(i), spellBounds);
+                }
+                else {
+                    if(bestPositionResult > getDistanceBetweenRectangles(positions.get(i), spellBounds))    {
+                        bestPosition = i;
+                        bestPositionResult = getDistanceBetweenRectangles(positions.get(i), spellBounds);
+                    }
+                }
             }
         }
-        return false;
+        if(bestPosition != -1)    {
+            addSpell(bestPosition, spell);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
+
+    private float getDistanceBetweenRectangles(Rectangle r1, Rectangle r2) {
+        Vector2 r1Center = r1.getCenter(new Vector2());
+        Vector2 r2Center = r2.getCenter(new Vector2());
+
+        return Math.abs(r1Center.y - r2Center.y) + Math.abs(r1Center.x - r2Center.x);
+    }
+
+
+
+
 
     private void addSpell(int index, Spell spell)  {
         if(index > spells.size()-1)   {
