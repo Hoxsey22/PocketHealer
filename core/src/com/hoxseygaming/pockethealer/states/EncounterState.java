@@ -7,10 +7,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.hoxseygaming.pockethealer.Assets;
 import com.hoxseygaming.pockethealer.AudioManager;
 import com.hoxseygaming.pockethealer.GameOverFrame;
@@ -34,20 +34,14 @@ public class EncounterState extends State {
     private Stage stage;
     private final Raid raid;
     private final Boss boss;
-    //public Music bgMusic;
     private Image bgImage;
     private Assets assets;
     private GameOverFrame gameOverFrame;
     private boolean isDone;
     private int page;
     private ShutterAnimation shutterAnimation;
-    // window frame to confirm quit
-    //WindowFrame quitWindow;
-    // --Commented out by Inspection (5/29/2018 8:27 PM):Label quitWindowText;
-    // --Commented out by Inspection (5/29/2018 8:27 PM):TextButton yesButton;
-    // --Commented out by Inspection (5/29/2018 8:27 PM):TextButton noButton;
 
-    //commit
+
     public EncounterState(StateManager sm, Player player, Boss boss) {
         super(sm);
         this.player = player;
@@ -57,9 +51,6 @@ public class EncounterState extends State {
         this.boss = boss;
         this.boss.reset();
         boss.setPlayer(player);
-
-
-        //Gdx.input.setCursorCatched(true);
 
         raid = this.boss.getEnemies();
         raid.setPlayer(player);
@@ -73,57 +64,33 @@ public class EncounterState extends State {
 
     @Override
     public void create() {
-        //super.create();
+        stage = new Stage(viewport);
+
         isDone = false;
+
         assets = player.getAssets();
-        //player.createSpellBar();
-        //player.addDebuggingSpell();
 
         manaBar = new ManaBar(player, assets);
 
         castBar = new CastBar(player, assets);
         castBar.anchor(manaBar);
-        //raid = new Raid(10, assets);
+
         player.setRaid(boss.getEnemies());
 
-        //hogger = new Hogger(assets);
-
-        //AudioManager.playMusic(assets.getMusic(assets.battleMusic));
-
         if(boss.getId() < 7)    {
+            bgImage = new Image(assets.getTexture(assets.battleBg1));
             AudioManager.playMusic(assets.getMusic(assets.stage1BattleMusic));
         }
-        else if(boss.getId() < 12)   {
+        else if(boss.getId() < 12 )   {
+            bgImage = new Image(assets.getTexture(assets.battleBg2));
             AudioManager.playMusic(assets.getMusic(assets.stage3BattleMusic));
         }
         else if(boss.getId() < 16)   {
+            bgImage = new Image(assets.getTexture(assets.battleBg3));
             AudioManager.playMusic(assets.getMusic(assets.stage2BattleMusic));
         }
 
-
-
-        /* DELETE
-        bgMusic = assets.getMusic("sfx/battle_music.ogg");
-        bgMusic.setLooping(true);
-        bgMusic.setVolume(0.3f);
-        bgMusic.play();
-        */
-        if(boss.getId() <= 6)    {
-            bgImage = new Image(assets.getTexture(assets.battleBg1));
-        }
-        else if(boss.getId() >= 7 && boss.getId() <= 11)    {
-            bgImage = new Image(assets.getTexture(assets.battleBg2));
-        }
-        else    {
-            bgImage = new Image(assets.getTexture(assets.battleBg3));
-        }
-        //bgImage = new Image(assets.getTexture("battle_bg1.png"));
         bgImage.setX(bgImage.getWidth()/2-PocketHealer.WIDTH/2);
-
-
-
-
-        stage = new Stage(viewport);
         bgImage.setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
 
         // add all actors to the stageNumber
@@ -261,137 +228,146 @@ public class EncounterState extends State {
         if(!isDone) {
             handleInput();
             boss.update();
-            if (boss.isDead()) {
-                AudioManager.playMusic(assets.getMusic(assets.victoryMusic));
-                page = 2;
-                if(!boss.isDefeated())    {
-                    boss.reward();
-                    boss.setDefeated(true);
-                    player.setLevel(boss.getId()+1);
-                    player.save();
-                    page = 1;
-                }
-                raid.loadHealingStats();
-                gameOverFrame = new GameOverFrame(true, boss, assets);
-                gameOverFrame.showHealingStats();
-                gameOverFrame.addListener(getEndGameListener());
-
-                stage.addActor(gameOverFrame);
-                stop();
-                /*boss.stop();
-                raid.stop();
-                player.stop();*/
-                isDone = true;
-            } else if (raid.isRaidDead()) {
-                AudioManager.playMusic(assets.getMusic(assets.defeatMusic));
-                gameOverFrame = new GameOverFrame(false, boss, assets);
-                gameOverFrame.showLose();
-                gameOverFrame.addListener(getEndGameListener());
-                stage.addActor(gameOverFrame);
-                stop();
-                /*boss.stop();
-                raid.stop();
-                player.stop();*/
-                isDone = true;
-
-            }
-        }
-        else {
-            Gdx.input.setInputProcessor(stage);
-            //endGameHandleInput();
+            if (boss.isDead())
+                victory();
+            else if (raid.isRaidDead())
+                defeat();
         }
 
     }
 
-    private InputListener getEndGameListener()   {
-        return new InputListener()   {
+    /**
+     * This is a end game sub-state if the player wins.
+     */
+    private void victory()  {
+        Gdx.input.setInputProcessor(stage);
 
+        AudioManager.playMusic(assets.getMusic(assets.victoryMusic));
+
+        page = 2;
+
+        if(!boss.isDefeated())    {
+            boss.reward();
+            boss.setDefeated(true);
+            player.setLevel(boss.getId()+1);
+            player.save();
+            page = 1;
+        }
+        raid.loadHealingStats();
+
+        gameOverFrame = new GameOverFrame(true, boss, assets);
+        gameOverFrame.displayHealingStats();
+        startOkButtonListener();
+        gameOverFrame.show(stage);
+
+        stop();
+
+        isDone = true;
+    }
+
+    /**
+     * This is a end game sub-state if the player loses.
+     */
+    private void defeat() {
+        Gdx.input.setInputProcessor(stage);
+
+        AudioManager.playMusic(assets.getMusic(assets.defeatMusic));
+
+        gameOverFrame = new GameOverFrame(false, boss, assets);
+        gameOverFrame.displayDefeat();
+        stateResetButtonListener();
+        stateLeaveButtonListener();
+        gameOverFrame.show(stage);
+
+
+        stop();
+
+        isDone = true;
+    }
+
+    /**
+     * This method creates the ok button listener and starts. This is needed to be called if
+     * the okButton wants to be used.
+     */
+    private void startOkButtonListener()   {
+        gameOverFrame.getOkButton().addListener(new ChangeListener() {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Vector2 coord = stage.screenToStageCoordinates(new Vector2(x, y));
-
-                if(gameOverFrame.isWon())   {
-                    switch (page)   {
-                        case 1:
-                            gameOverFrame.showReward();
-                            page = 2;
-                            break;
-                        case 2:
-                            player.newLevel(boss.getLevel());
-                            switch (boss.getId()) {
-                                case 6:
-                                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            sm.set(new MapState(sm, player,2));
-                                        }
-                                    });
-                                    shutterAnimation.start();
-                                    break;
-                                case 11:
-                                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            sm.set(new MapState(sm, player,3));
-                                        }
-                                    });
-                                    shutterAnimation.start();
-                                    break;
-                                case 16:
-                                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            sm.set(new MapState(sm, player,4));
-                                        }
-                                    });
-                                    shutterAnimation.start();
-                                    break;
-                                default:
-                                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            sm.set(new MapState(sm, player));
-                                        }
-                                    });
-                                    shutterAnimation.start();
-                                    break;
-                            }
-                    }
-                }
-                else    {
-                    int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
-                    System.out.println(buttonHit);
-
-                    if(buttonHit != -1) {
-                        switch (buttonHit) {
-                            case 0:
-                                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                    @Override
-                                    public void run() {
+            public void changed(ChangeEvent event, Actor actor) {
+                switch (page)   {
+                    case 1:
+                        //gameOverFrame.show(stage);
+                        gameOverFrame.displayReward();
+                        page = 2;
+                        break;
+                    case 2:
+                        boss.getPlayer().newLevel(boss.getLevel());
+                        shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                            @Override
+                            public void run() {
+                                switch (boss.getId()) {
+                                    case 6:
+                                        sm.set(new MapState(sm, player, 2));
+                                        break;
+                                    case 11:
+                                        sm.set(new MapState(sm, player, 3));
+                                        break;
+                                    case 16:
+                                        sm.set(new MapState(sm, player, 4));
+                                        break;
+                                    default:
                                         sm.set(new MapState(sm, player));
-                                    }
-                                });
-                                shutterAnimation.start();
-
-                                break;
-
-                            case 2:
-                                System.out.println("reset");
-                                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        sm.set(new EncounterState(sm, player, boss));
-                                    }
-                                });
-                                shutterAnimation.start();
-                                break;
-                        }
-                    }
+                                        break;
+                                }
+                            }
+                        });
+                        shutterAnimation.start();
+                        break;
                 }
-                return false;
+
+                }
+            });
+        }
+    /**
+     * This method creates the leaveButton listener and starts. This is needed to be called if
+     * the leaveButton wants to be used. This also tells the StateManager to go to the MapState.
+     */
+    private void stateLeaveButtonListener()   {
+        gameOverFrame.getLeaveButton().addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                    @Override
+                    public void run() {
+                        sm.set(new MapState(sm, player));
+                    }
+                });
+                shutterAnimation.start();
             }
-        };
+        });
     }
+
+    /**
+     * This method creates the resetButton listener and starts. This is needed to be called if
+     * the leaveButton wants to be used. This also tells the StateManager to go to the EncounterState.
+     */
+    private void stateResetButtonListener()   {
+        gameOverFrame.getResetButton().addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                    @Override
+                    public void run() {
+                        sm.set(new EncounterState(sm, player, boss));
+                    }
+                });
+                shutterAnimation.start();
+            }
+        });
+    }
+
+
+
+
 
     /**
      * Stops all timers in boss raid and player.

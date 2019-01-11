@@ -178,8 +178,8 @@ public class MainMenuState extends State{
         ngConfirmationText = new Label("Are you sure you want to start a new game?", PocketHealer.ui);
         ngConfirmationText.setWrap(true);
         ngConfirmationText.setAlignment(Align.center);
-        confirmButton = new TextButton("Confirm",PocketHealer.ui, "small_button");
 
+        confirmButton = new TextButton("Confirm",PocketHealer.ui, "small_button");
         confirmButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -195,6 +195,7 @@ public class MainMenuState extends State{
                 shutterAnimation.start();
             }
         });
+
         backButton = new TextButton("Back",PocketHealer.ui, "small_button");
         backButton.addListener(new ChangeListener() {
             @Override
@@ -202,6 +203,7 @@ public class MainMenuState extends State{
                 ngConfirmationWindow.hide();
             }
         });
+
         ngConfirmationWindow.center();
         ngConfirmationWindow.add(ngConfirmationText).width(ngConfirmationWindow.getWidth()).center().colspan(2).pad(10).row();
         ngConfirmationWindow.add(confirmButton).center();

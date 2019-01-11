@@ -262,7 +262,7 @@ public class TutorialState extends State {
                 }
                 raid.loadHealingStats();
                 gameOverFrame = new GameOverFrame(true, boss, assets);
-                gameOverFrame.showHealingStats();
+                gameOverFrame.displayHealingStats();
                 page = 1;
                 gameOverFrame.addListener(getEndGameListener());
                 stage.addActor(gameOverFrame);
@@ -272,7 +272,7 @@ public class TutorialState extends State {
                 isDone = true;
             } else if (raid.isRaidDead()) {
                 gameOverFrame = new GameOverFrame(false, boss, assets);
-                gameOverFrame.showLose();
+                gameOverFrame.displayDefeat();
                 gameOverFrame.addListener(getEndGameListener());
                 stage.addActor(gameOverFrame);
                 boss.stop();
@@ -299,7 +299,7 @@ public class TutorialState extends State {
                 if(gameOverFrame.isWon())   {
                     switch (page)   {
                         case 1:
-                            gameOverFrame.showReward();
+                            gameOverFrame.displayReward();
                             page = 2;
                             break;
 

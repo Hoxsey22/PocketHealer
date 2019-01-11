@@ -228,7 +228,7 @@ public class LastBossEncounterState extends State {
                 }
                 raid.loadHealingStats();
                 gameOverFrame = new GameOverFrame(true, boss, assets);
-                gameOverFrame.showHealingStats();
+                gameOverFrame.displayHealingStats();
                 gameOverFrame.addListener(getEndGameListener());
 
                 stage.addActor(gameOverFrame);
@@ -238,7 +238,7 @@ public class LastBossEncounterState extends State {
             else if (raid.isRaidDead()) {
                 AudioManager.playMusic(assets.getMusic(assets.defeatMusic));
                 gameOverFrame = new GameOverFrame(false, boss, assets);
-                gameOverFrame.showLose();
+                gameOverFrame.displayDefeat();
                 gameOverFrame.addListener(getEndGameListener());
                 stage.addActor(gameOverFrame);
                 stop();
@@ -262,7 +262,7 @@ public class LastBossEncounterState extends State {
                 if(gameOverFrame.isWon())   {
                     switch (page)   {
                         case 1:
-                            gameOverFrame.showReward();
+                            gameOverFrame.displayReward();
                             page = 2;
                             break;
                         case 2:
