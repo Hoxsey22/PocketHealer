@@ -46,6 +46,10 @@ public class MapState extends State {
     public MapState(StateManager sm, Player player) {
         super(sm);
 
+        if(player.getLevel() < 2)    {
+            player.setLevel(2);
+        }
+
         stage = new Stage(viewport);
 
         previousState = 0;
@@ -305,6 +309,7 @@ public class MapState extends State {
                 shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
                     @Override
                     public void run() {
+                        talentButton.toggle();
                         sm.set(new TalentSelectionState(sm, player));
                     }
                 });
@@ -321,6 +326,7 @@ public class MapState extends State {
                         @Override
                         public void run() {
                             System.out.println("++++Boss: " + selectedLevel.getBoss().getId());
+
                             if (selectedLevel.getBoss().getId() == 16)
                                 sm.set(new LastBossEncounterState(sm, player, selectedLevel.boss));
                             else
@@ -368,17 +374,16 @@ public class MapState extends State {
     }
 
     private void createBossIconListeners()   {
-        for(int i = 0; i < mapFrame.getBossIconsList().size(); i++)   {
-            mapFrame.getBossIconsList().get(i).addListener(new ChangeListener() {
+        for(int i = 0; i < mapFrame.getBossIconsList().getButtons().size; i++)   {
+            mapFrame.getBossIconsList().getButtons().get(i).addListener(new ChangeListener() {
 
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-
                     if(selectedLevel != null)    {
-                        selectedLevel.setChecked(false);
+                        selectedLevel.setDisabled(false);
                     }
-
                     selectedLevel = (BossIcon) actor;
+                    selectedLevel.setDisabled(true);
 
                     mapFrame.setTitle(selectedLevel.getName());
                     mapFrame.setBody(selectedLevel.getDescription());
