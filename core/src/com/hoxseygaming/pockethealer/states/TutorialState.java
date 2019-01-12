@@ -3,27 +3,16 @@ package com.hoxseygaming.pockethealer.states;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.hoxseygaming.pockethealer.Assets;
-import com.hoxseygaming.pockethealer.AudioManager;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.hoxseygaming.pockethealer.BlinkingOutline;
 import com.hoxseygaming.pockethealer.GameData;
-import com.hoxseygaming.pockethealer.GameOverFrame;
 import com.hoxseygaming.pockethealer.Player;
-import com.hoxseygaming.pockethealer.PocketHealer;
 import com.hoxseygaming.pockethealer.ShutterAnimation;
 import com.hoxseygaming.pockethealer.TutorialFrame;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Monster;
-import com.hoxseygaming.pockethealer.encounters.entities.raid.Raid;
 import com.hoxseygaming.pockethealer.encounters.entities.raid.RaidMember;
 import com.hoxseygaming.pockethealer.encounters.spells.Spell;
 import com.hoxseygaming.pockethealer.encounters.spells.StatusEffect.Debuff.TestEffect;
@@ -33,53 +22,40 @@ import java.util.ArrayList;
 /**
  * Created by Hoxsey on 5/28/2017.
  */
-public class TutorialState extends State {
-    private final Player player;
-    private Stage stage;
-    private final Raid raid;
-    private final Boss boss;
-    //public Music bgMusic; // Delete
-    private Image bgImage;
-    private Assets assets;
-    private GameOverFrame gameOverFrame;
+public class TutorialState extends EncounterState {
     private final TutorialFrame tutorialFrame;
-    private boolean isDone;
     private BlinkingOutline blinkingOutline;
     private ArrayList<Rectangle> outlines;
-    private int page;
-    private ShutterAnimation shutterAnimation;
+    private boolean isReady;
 
 
     public TutorialState(StateManager sm, Player player) {
-        super(sm);
-        this.player = player;
-        this.player.loadTalents();
-        this.player.reset();
-
-        boss = new Monster(player.getAssets());
-        boss.setPlayer(player);
-        this.boss.reset();
-
-        raid = this.boss.getEnemies();
+        super(sm, player, new Monster(player.getAssets()));
 
         tutorialFrame = new TutorialFrame(player, boss, player.getAssets());
 
-        player.setBoss(this.boss);
-        raid.setPlayer(player);
         raid.getRaidMember(0).addStatusEffect(new TestEffect(boss));
+
         boss.getAnnouncement().setText("Monster is about to Bite!");
+
         player.setCasting(true);
         player.setTarget(raid.getRaidMember(0));
-        create();
-
-        shutterAnimation = new ShutterAnimation(stage, assets, false);
+        shutterAnimation = new ShutterAnimation(stage, player.getAssets(), false, new Runnable() {
+            @Override
+            public void run() {
+                isReady = true;
+                stage.addActor(tutorialFrame);
+                stage.addActor(blinkingOutline);
+            }
+        });
         shutterAnimation.start();
+
+
     }
 
     @Override
     public void create() {
-        isDone = false;
-        assets = player.getAssets();
+        super.create();
 
         blinkingOutline = new BlinkingOutline();
         blinkingOutline.start();
@@ -127,29 +103,7 @@ public class TutorialState extends State {
 
         blinkingOutline.setOutline(outlines.get(0));
 
-        player.setRaid(boss.getEnemies());
-
-        AudioManager.playMusic(assets.getMusic(assets.battleMusic));
-
-        bgImage = new Image(assets.getTexture("battle_bg1.png"));
-
-        stage = new Stage(viewport);
-
-        bgImage.setBounds(0,0,PocketHealer.WIDTH, PocketHealer.HEIGHT);
-
-        // add all actors to the stageNumber
-        stage.addActor(bgImage);
-        stage.addActor(boss);
-        stage.addActor(raid);
-        stage.addActor(player.getSpellBar());
-        stage.addActor(player.getManaBar());
-        stage.addActor(player.getCastBar());
-        stage.addActor(tutorialFrame);
-        stage.addActor(blinkingOutline);
-        //
-        //boss.start();
-        System.out.println("STAGE - > Width:"+stage.getWidth()+" Height:"+stage.getHeight());
-
+        boss.stop();
     }
 
     @Override
@@ -159,20 +113,53 @@ public class TutorialState extends State {
             @Override
             public boolean keyDown(int keycode) {
                 switch (keycode)    {
-                    case Input.Keys.NUM_1:
+                    case Input.Keys.NUM_0:
                         boss.takeDamage(1000);
                         break;
-                    case Input.Keys.NUM_2:
+                    case Input.Keys.NUM_9:
                         for(int i = 0; i < raid.getRaidMembers().size(); i++)   {
                             raid.getRaidMembers().get(i).takeDamage(50);
                         }
                         break;
-                    case Input.Keys.NUM_3:
-                        raid.getRaidMembers().get(0).takeDamage(50);
+                    case Input.Keys.NUM_1:
+                        if(player.getSpellBar().getSpells().size() > 0)    {
+                            if(!player.isCasting())
+                                player.getSpellBar().getSpells().get(0).castSpell();
+                        }
                         break;
-                    case Input.Keys.NUM_0:
-                        for (int i = 0; i < raid.getRaidMembers().size(); i++)
-                            System.out.println("ID:"+raid.getRaidMembers().get(i).getId()+", role:"+raid.getRaidMembers().get(i).getRole());
+                    case Input.Keys.NUM_2:
+                        if(player.getSpellBar().getSpells().size() > 1)    {
+                            if(!player.isCasting())
+                                player.getSpellBar().getSpells().get(1).castSpell();
+                        }
+                        break;
+                    case Input.Keys.NUM_3:
+                        if(player.getSpellBar().getSpells().size() > 2)    {
+                            if(!player.isCasting())
+                                player.getSpellBar().getSpells().get(2).castSpell();
+                        }
+                        break;
+                    case Input.Keys.NUM_4:
+                        if(player.getSpellBar().getSpells().size() > 3)    {
+                            if(!player.isCasting())
+                                player.getSpellBar().getSpells().get(3).castSpell();
+                        }
+                        break;
+                    case Input.Keys.L:
+                        System.out.println("********** Raid Stats **********");
+                        System.out.println("id|role|maxhp|hp|damage");
+                        for(int i = 0; i < boss.getEnemies().getRaidMembers().size(); i++)   {
+                            System.out.println(boss.getEnemies().getRaidMember(i).getId() + "|"+
+                                    boss.getEnemies().getRaidMember(i).getRole() + "|"+
+                                    boss.getEnemies().getRaidMember(i).getMaxHp() + "|"+
+                                    boss.getEnemies().getRaidMember(i).getHp() + "|"+
+                                    boss.getEnemies().getRaidMember(i).getDamage());
+                        }
+                        break;
+                    case Input.Keys.BACK:
+
+                        break;
+                    case Input.Keys.BACKSPACE:
                         break;
                 }
                 return false;
@@ -209,16 +196,18 @@ public class TutorialState extends State {
                     }
                 }
                 else{
-                    tutorialFrame.nextStage();
-                    if(!tutorialFrame.isComplete())
-                        blinkingOutline.setOutline(outlines.get(tutorialFrame.stageNumber-1));
-                    else {
-                        blinkingOutline.stop();
-                        blinkingOutline.remove();
-                        tutorialFrame.remove();
-                        player.setCasting(false);
-                        boss.getAnnouncement().setText("");
-                        raid.getRaidMember(0).getStatusEffectList().dispel();
+                    if(isReady) {
+                        tutorialFrame.nextStage();
+                        if (!tutorialFrame.isComplete())
+                            blinkingOutline.setOutline(outlines.get(tutorialFrame.stageNumber - 1));
+                        else {
+                            blinkingOutline.stop();
+                            blinkingOutline.remove();
+                            tutorialFrame.remove();
+                            player.setCasting(false);
+                            boss.getAnnouncement().setText("");
+                            raid.getRaidMember(0).getStatusEffectList().dispel();
+                        }
                     }
                 }
                 return false;
@@ -247,132 +236,39 @@ public class TutorialState extends State {
 
     }
 
+
     @Override
-    public void update(float dt) {
-        if(!isDone) {
-            handleInput();
-            boss.update();
-            if (boss.isDead()) {
-
-                if(!boss.isDefeated())    {
-                    boss.reward();
-                    boss.setDefeated(true);
-                    player.setLevel(2);
-                    player.save();
-                }
-                raid.loadHealingStats();
-                gameOverFrame = new GameOverFrame(true, boss, assets);
-                gameOverFrame.displayHealingStats();
-                page = 1;
-                gameOverFrame.addListener(getEndGameListener());
-                stage.addActor(gameOverFrame);
-                boss.stop();
-                raid.stop();
-                player.stop();
-                isDone = true;
-            } else if (raid.isRaidDead()) {
-                gameOverFrame = new GameOverFrame(false, boss, assets);
-                gameOverFrame.displayDefeat();
-                gameOverFrame.addListener(getEndGameListener());
-                stage.addActor(gameOverFrame);
-                boss.stop();
-                raid.stop();
-                player.stop();
-                isDone = true;
-
-            }
-        }
-        else {
-            Gdx.input.setInputProcessor(stage);
-            //endGameHandleInput();
-        }
-
-    }
-
-    private InputListener getEndGameListener()   {
-        return new InputListener()   {
-
+    protected void stateLeaveButtonListener()   {
+        gameOverFrame.getLeaveButton().addListener(new ChangeListener() {
             @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                Vector2 coord = stage.screenToStageCoordinates(new Vector2(x, y));
-
-                if(gameOverFrame.isWon())   {
-                    switch (page)   {
-                        case 1:
-                            gameOverFrame.displayReward();
-                            page = 2;
-                            break;
-
-                        case 2:
-                            player.newLevel(boss.getLevel());
-                            shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                @Override
-                                public void run() {
-                                    sm.set(new MapState(sm, player,1));
-                                }
-                            });
-                            shutterAnimation.start();
-
-                            break;
+            public void changed(ChangeEvent event, Actor actor) {
+                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                    @Override
+                    public void run() {
+                        GameData.clear();
+                        sm.set(new MainMenuState(sm, player));
                     }
-                }
-                else    {
-                    int buttonHit = gameOverFrame.hitButton(coord.x, coord.y);
-                    System.out.println(buttonHit);
-
-                    if(buttonHit != -1) {
-                        switch (buttonHit) {
-                            case 0:
-                                GameData.remove("save");
-                                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        sm.set(new MainMenuState(sm, player));
-                                    }
-                                });
-                                shutterAnimation.start();
-
-                                break;
-
-                            case 2:
-                                System.out.println("reset");
-                                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        sm.set(new TutorialState(sm, player));
-                                    }
-                                });
-                                shutterAnimation.start();
-                                break;
-                        }
-                    }
-                }
-
-
-                return false;
+                });
+                shutterAnimation.start();
             }
-        };
+        });
     }
 
     @Override
-    public void render(SpriteBatch sb) {
-        Gdx.gl.glClearColor(Color.BLACK.r,Color.BLACK.g,Color.BLACK.b,Color.BLACK.a);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Gdx.gl.glEnable(GL20.GL_BLEND);
-        stage.act(Gdx.graphics.getDeltaTime());
-        stage.draw();
-
+    protected void stateResetButtonListener()   {
+        gameOverFrame.getResetButton().addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                    @Override
+                    public void run() {
+                        sm.set(new TutorialState(sm, player));
+                    }
+                });
+                shutterAnimation.start();
+            }
+        });
     }
 
-    @Override
-    public void resize(int width, int height) {
-        stage.getViewport().update(width, height,true);
-        System.out.println("Width:"+width+" Height:"+height);
-    }
-
-    @Override
-    public void dispose() {
-        AudioManager.clearAll();
-    }
 }
 

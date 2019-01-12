@@ -190,6 +190,7 @@ public class MainMenuState extends State{
                     public void run() {
                         sm.set(new TutorialState(sm, player));
                         System.out.println("A New Game has been started.");
+
                     }
                 });
                 shutterAnimation.start();

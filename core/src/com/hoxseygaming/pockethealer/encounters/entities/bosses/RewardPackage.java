@@ -25,7 +25,7 @@ public class RewardPackage {
 
     public void addNewSpellText()  {
         spell = true;
-        reward+="New Spell!\n";
+        reward+="New Spell!";
     }
 
     public void addNewTalentText()  {

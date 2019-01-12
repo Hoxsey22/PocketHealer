@@ -64,7 +64,7 @@ public class GameOverFrame extends WindowFrame {
 
         //addActor(disableBG);
         //addActor(frame);
-
+        //debugAll();
         createText();
     }
 
@@ -94,7 +94,7 @@ public class GameOverFrame extends WindowFrame {
         center();
 
         title.setText("Healing");
-        add(title.getLabel()).width(getWidth()).expandX().center().padTop(5);
+        add(title.getLabel()).width(getWidth()).expandX().center().pad(10);
         //table.add(title.getLabel()).expandX();
         //table.row();
         row();
@@ -108,7 +108,6 @@ public class GameOverFrame extends WindowFrame {
         //table.row();
 
         //table.add(okButton).bottom().padBottom(10);
-        okButton = new TextButton("OK", assets.getSkin(), "small_button");
         add(okButton).bottom().padBottom(10);
 
     }
@@ -119,7 +118,7 @@ public class GameOverFrame extends WindowFrame {
         //table.clear();
 
         title.setText("Reward");
-        add(title.getLabel()).colspan(2);
+        add(title.getLabel()).colspan(2).pad(10);
         //table.add(title.getLabel()).colspan(2);
 
         row();
@@ -127,7 +126,7 @@ public class GameOverFrame extends WindowFrame {
 
         if (boss.getRewardPackage().isSpell()) {
             for (int i = 0; i < boss.getRewardPackage().getImages().size(); i++) {
-                add(boss.getRewardPackage().getImages().get(i));
+                add(boss.getRewardPackage().getImages().get(i)).width(50).height(50).fillY();
                 //table.add(boss.getRewardPackage().getImages().get(i));
             }
             row();
@@ -142,19 +141,17 @@ public class GameOverFrame extends WindowFrame {
         //table.row();
         if(boss.getRewardPackage().getImages().size() > 1) {
             //table.add(okButton).bottom().colspan(2).padBottom(10);
-            okButton = new TextButton("OK", assets.getSkin(), "small_button");
             add(okButton).bottom().colspan(2).padBottom(10);
         }
         else {
             //table.add(okButton).bottom().padBottom(10);
-            okButton = new TextButton("OK", assets.getSkin(), "small_button");
             add(okButton).bottom().padBottom(10);
         }
     }
 
     public void displayDefeat() {
         title.setText("You have wiped!");
-        add(title.getLabel()).width(getWidth()).colspan(2).expand().top().center();
+        add(title.getLabel()).width(getWidth()).colspan(2).expand().top().center().pad(10);
         //table.add(title.getLabel()).width(table.getWidth()).colspan(2).expand().top().center();
 
         row();

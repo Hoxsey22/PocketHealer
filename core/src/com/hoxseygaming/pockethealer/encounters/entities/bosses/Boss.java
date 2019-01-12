@@ -133,6 +133,7 @@ public abstract class Boss extends Entity {
         /*for (int i = 0; i <  mechanics.size(); i++)
             mechanics.get(i).stop();
             */
+        enemies.stop();
         getPhaseManager().reset();
     }
 

@@ -3,17 +3,18 @@ package com.hoxseygaming.pockethealer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.ui.ButtonGroup;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.Boss;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Nax;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.GiantHornet;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Golem;
-import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Wolf;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Nax;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.WildBoar;
+import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage1.Wolf;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Apprentice;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Hogger;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage2.Proctor;
@@ -24,8 +25,6 @@ import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.DeathDrag
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.Hydra;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.MotherSpider;
 import com.hoxseygaming.pockethealer.encounters.entities.bosses.stage3.ZombieHorde;
-
-import java.util.ArrayList;
 
 /**
  * Created by Hoxsey on 7/30/2017.
@@ -38,7 +37,8 @@ public class MapFrame extends Group {
     private Map map;
     private TextButton infoButton;
     private DebuffInfoFrame infoFrame;
-    private ArrayList<BossIcon> bossIconsList;
+    private ButtonGroup<BossIcon> bossIconList;
+    //private ArrayList<BossIcon> bossIconsList;
     private Table table;
     private Text title;
     private Text body;
@@ -64,7 +64,10 @@ public class MapFrame extends Group {
         getBgFrame().setPosition(0,0);
         addActor(getBgFrame());
 
-        bossIconsList = new ArrayList<>();
+        bossIconList = new ButtonGroup<>();
+        bossIconList.setMaxCheckCount(1);
+        bossIconList.setMinCheckCount(0);
+        bossIconList.setUncheckLast(true);
 
         setInfoFrame(new DebuffInfoFrame(getAssets()));
 
@@ -211,8 +214,8 @@ public class MapFrame extends Group {
     private void clearBossList() {
 
         //remove boss icons from their parent
-        for(int i = 0; i < getBossIconsList().size(); i++)   {
-            getBossIconsList().get(i).remove();
+        for(int i = 0; i < getBossIconsList().getButtons().size; i++)   {
+            getBossIconsList().getButtons().get(i).remove();
         }
         getBossIconsList().clear();
 
@@ -265,12 +268,12 @@ public class MapFrame extends Group {
         this.infoFrame = infoFrame;
     }
 
-    public ArrayList<BossIcon> getBossIconsList() {
-        return bossIconsList;
+    public ButtonGroup<BossIcon> getBossIconsList() {
+        return bossIconList;
     }
 
-    public void setBossIconsList(ArrayList<BossIcon> bossIconsList) {
-        this.bossIconsList = bossIconsList;
+    public void setBossIconsList(ButtonGroup<BossIcon> bossIconsList) {
+        this.bossIconList = bossIconsList;
     }
 
     private Table getTable() {

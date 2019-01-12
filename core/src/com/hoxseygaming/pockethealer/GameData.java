@@ -15,6 +15,10 @@ public class GameData {
 
     private static final Preferences prefs = Gdx.app.getPreferences("save");
 
+    public static void clear()  {
+        prefs.clear();
+    }
+
     public static boolean load(Player player)   {
 
         if(prefs.contains("save"))  {

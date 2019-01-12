@@ -70,7 +70,7 @@ public class TutorialFrame extends Group {
                 getText().setText("This is the Boss Frame. When the health bar is completely empty or red then the boss has been defeated!");
                 break;
             case 3:
-                getText().setText("This is the announcement section. If a special ability is coming, it will be announced here. You will have about 1.5 seconds to prepare for the ability. For example:");
+                getText().setText("This is the announcement section. If a special ability is coming, it will be announced here. You will have about 1.5 seconds to prepare for the ability.");
                 break;
             case 4:
                 getText().setText("These are the raid frames. These are the ally units you will be protecting so watch them closely!\n" +
@@ -80,12 +80,12 @@ public class TutorialFrame extends Group {
                 getText().setText("The Tank is the primary target for the boss and will take constant damage. Watch them carefully. The tank has double the health of the other units, 200 hp to be exact, and the Tank can do about 5 damage per second.");
                 break;
             case 6:
-                getText().setText("These are the healers--your brethren. Healers provide you with 2 mana per second  and will deal 2 damage per second. Protect your brethren as they provide you and your raid with damage and mana back.");
+                getText().setText("These are the healers, your brethren. Healers provide you with 2 mana per second and will deal 2 damage per second. Protect your brethren as they provide you and your raid with damage and mana back.");
                 break;
             case 7:
-                getText().setText("The DPS (damage per second) also known as the damage dealers, are the primary source of damage toward the boss. They deal 10 damage per second so they are crucial to keep alive.");                break;
+                getText().setText("The DPS also known as the damage dealers, are the primary source of damage toward the boss. They deal 10 damage per second so they are crucial to keep alive.");                break;
             case 8:
-                getText().setText("These are the buff and debuff. Buffs are positive benefits and Debuff are negative benefits for the ally unit. ");
+                getText().setText("These are the buffs and debuffs. Buffs are positive benefits and Debuffs are negative benefits for the ally unit. ");
                 break;
             case 9:
                 getText().setText("Now the red box around the ally unit indicates that this particular unit is being targeted by the boss and should be watched at all times because all bosses have an auto attack.");
@@ -110,6 +110,7 @@ public class TutorialFrame extends Group {
                 break;
             case 16:
                 setComplete(true);
+                getBoss().reset();
                 getBoss().start();
                 break;
         }

@@ -28,18 +28,18 @@ import com.hoxseygaming.pockethealer.encounters.spells.Spell;
  * Created by Hoxsey on 5/28/2017.
  */
 public class EncounterState extends State {
-    private final Player player;
-    private ManaBar manaBar;
-    private CastBar castBar;
-    private Stage stage;
-    private final Raid raid;
-    private final Boss boss;
-    private Image bgImage;
-    private Assets assets;
-    private GameOverFrame gameOverFrame;
-    private boolean isDone;
-    private int page;
-    private ShutterAnimation shutterAnimation;
+    protected final Player player;
+    protected ManaBar manaBar;
+    protected CastBar castBar;
+    protected Stage stage;
+    protected final Raid raid;
+    protected final Boss boss;
+    protected Image bgImage;
+    protected Assets assets;
+    protected GameOverFrame gameOverFrame;
+    protected boolean isDone;
+    protected int page;
+    protected ShutterAnimation shutterAnimation;
 
 
     public EncounterState(StateManager sm, Player player, Boss boss) {
@@ -85,7 +85,7 @@ public class EncounterState extends State {
             bgImage = new Image(assets.getTexture(assets.battleBg2));
             AudioManager.playMusic(assets.getMusic(assets.stage3BattleMusic));
         }
-        else if(boss.getId() < 16)   {
+        else if(boss.getId() < 17)   {
             bgImage = new Image(assets.getTexture(assets.battleBg3));
             AudioManager.playMusic(assets.getMusic(assets.stage2BattleMusic));
         }
@@ -239,7 +239,7 @@ public class EncounterState extends State {
     /**
      * This is a end game sub-state if the player wins.
      */
-    private void victory()  {
+    protected void victory()  {
         Gdx.input.setInputProcessor(stage);
 
         AudioManager.playMusic(assets.getMusic(assets.victoryMusic));
@@ -268,7 +268,7 @@ public class EncounterState extends State {
     /**
      * This is a end game sub-state if the player loses.
      */
-    private void defeat() {
+    protected void defeat() {
         Gdx.input.setInputProcessor(stage);
 
         AudioManager.playMusic(assets.getMusic(assets.defeatMusic));
@@ -289,13 +289,12 @@ public class EncounterState extends State {
      * This method creates the ok button listener and starts. This is needed to be called if
      * the okButton wants to be used.
      */
-    private void startOkButtonListener()   {
+    protected void startOkButtonListener()   {
         gameOverFrame.getOkButton().addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 switch (page)   {
                     case 1:
-                        //gameOverFrame.show(stage);
                         gameOverFrame.displayReward();
                         page = 2;
                         break;
@@ -305,6 +304,9 @@ public class EncounterState extends State {
                             @Override
                             public void run() {
                                 switch (boss.getId()) {
+                                    case 1:
+                                        sm.set(new MapState(sm, player, 1));
+                                        break;
                                     case 6:
                                         sm.set(new MapState(sm, player, 2));
                                         break;
@@ -331,7 +333,7 @@ public class EncounterState extends State {
      * This method creates the leaveButton listener and starts. This is needed to be called if
      * the leaveButton wants to be used. This also tells the StateManager to go to the MapState.
      */
-    private void stateLeaveButtonListener()   {
+    protected void stateLeaveButtonListener()   {
         gameOverFrame.getLeaveButton().addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -350,7 +352,7 @@ public class EncounterState extends State {
      * This method creates the resetButton listener and starts. This is needed to be called if
      * the leaveButton wants to be used. This also tells the StateManager to go to the EncounterState.
      */
-    private void stateResetButtonListener()   {
+    protected void stateResetButtonListener()   {
         gameOverFrame.getResetButton().addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -372,7 +374,7 @@ public class EncounterState extends State {
     /**
      * Stops all timers in boss raid and player.
      */
-    private void stop()  {
+    protected void stop()  {
         boss.stop();
         raid.stop();
         raid.getHealingTracker().printHealingDone();

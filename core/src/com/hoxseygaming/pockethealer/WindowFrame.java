@@ -35,7 +35,7 @@ public class WindowFrame extends Table {
         setBackground(windowFrameStyle.background);
         // sets the position to the button of the screen
         // default size of the table
-        setSize(200,200);
+        setSize(252,252);
         // defaults the widgets to the top left of the table
         this.top().left();
 
