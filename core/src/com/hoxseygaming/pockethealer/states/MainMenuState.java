@@ -75,7 +75,7 @@ public class MainMenuState extends State{
         AudioManager.playMusic(assets.getMusic(assets.mainMusic));
 
         titleImage = new Image(assets.getTexture(assets.title));
-        titleImage.setBounds(PocketHealer.WIDTH/2- 380/2,PocketHealer.HEIGHT - 224,380,214);
+        titleImage.setBounds(PocketHealer.WIDTH/2- 380/2,PocketHealer.HEIGHT - 250,380,214);
         titleImage.setName("titleImage");
 
         buttonTable = new Table();
